@@ -18,3 +18,10 @@ dist/
 src/.observablehq/
 /.env
 .DS_Store
+
+# Script del mapa del INIDE, guardado solo para consulta. Trae incrustado el
+# token de Mapbox de ESE sitio: es una credencial ajena y no se republica
+# (la protección de push de GitHub además lo rechaza). Este tablero no usa
+# Mapbox: el mapa va con MapLibre y PMTiles.
+/script0.js
+referencias/mapa-inide/script0.js
