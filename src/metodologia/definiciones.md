@@ -1,0 +1,111 @@
+---
+title: Definiciones
+---
+
+# Definiciones
+
+## Quién es población indígena en este tablero
+
+Las tres encuestas hacen dos preguntas distintas, y el tablero ofrece las dos
+como **criterio de identificación** en el panel de cada gráfica:
+
+- **Habla lengua indígena.** La persona declaró hablar alguna lengua indígena.
+  Es la pregunta `HLENGUA` del Censo (personas de 3 años o más), `hablaind` de
+  la ENIGH y `P6A_5` de la ENDUTIH 2025. Bajo este criterio la población
+  indígena de 6 años o más es del orden del 6 % del país.
+- **Se considera indígena.** La persona declaró considerarse indígena, hable o
+  no una lengua. Es `PERTE_INDIGENA` del Censo, `etnia` de la ENIGH y `P6A_3`
+  de la ENDUTIH. Es una población unas tres veces mayor: 19.5 % en el Censo,
+  entre 24 y 30 % en la ENIGH según la edición y 28 % en la ENDUTIH 2025.
+
+Las dos preguntas se responden por separado, así que cada persona cae en una
+de cuatro combinaciones (habla y se considera, habla y no se considera, no
+habla y se considera, ni una ni otra). Los archivos del tablero guardan esas
+cuatro celdas y el navegador suma las que corresponden al criterio elegido: los
+dos criterios comparten universo y ninguna persona se cuenta dos veces. El
+**resto de la población** es siempre todo el que no cumple el criterio activo.
+
+Quien no respondió alguna de las dos preguntas (0.4 % en el Censo, menos en
+las encuestas) queda fuera del universo bajo ambos criterios.
+
+## Qué mide cada fuente
+
+| Fuente | Unidad de la pregunta | Ediciones | Qué responde |
+| --- | --- | --- | --- |
+| Censo 2020, cuestionario ampliado | La **vivienda**: dispone de internet, celular, computadora, televisor, radio, televisión de paga, streaming, consola | 2020 | Qué proporción de personas vive con el bien o servicio |
+| ENIGH | El **hogar**: conexión a internet, celular, computadora, teléfono fijo, televisión de paga, streaming (2024) | 2020, 2022, 2024 | Lo mismo, en tres ediciones y con decil de ingreso |
+| ENDUTIH 2025 | La **persona**: usó internet, computadora o celular en los últimos tres meses, con qué, dónde y para qué; y el hogar | 2025 | Uso personal, no solo disponibilidad |
+
+En las tres, el porcentaje que se publica es la fracción de **personas de 6
+años o más** de cada grupo que cumple la condición. Se cuentan personas y no
+viviendas u hogares porque la pregunta del tablero es cuánta población indígena
+vive conectada, no cuántas viviendas lo están. El piso de 6 años es el universo
+de la ENDUTIH; recortar las tres fuentes al mismo piso deja los denominadores
+comparables.
+
+## Los universos que no son toda la población
+
+Varios indicadores de la ENDUTIH se calculan solo entre quienes ya usan algo, y
+cada figura lo dice en su subtítulo:
+
+- **Entre quienes usan internet:** usar internet todos los días, desde qué
+  equipo y en qué lugar se conectan, y todas las actividades (estudiar,
+  trabajar, trámites, dinero, comunicación, entretenimiento, riesgos).
+- **Entre quienes usan celular:** si el celular es inteligente.
+- **Entre quienes usan celular inteligente:** si se conectan con datos móviles o
+  por wifi.
+- **Entre quienes no usan** internet, computadora o celular, o cuyo hogar no
+  tiene internet: el motivo declarado. Los motivos de un mismo bloque suman
+  100 % dentro de cada grupo.
+
+En la escolaridad el universo son las personas de **15 años o más**, porque
+antes de esa edad la escolaridad está en curso.
+
+## Las dimensiones de los filtros
+
+- **Entidad.** Las tres fuentes son representativas por entidad. "Comparar
+  entidades" ordena las 32 por la brecha; "Ver mapa" pinta el nivel de cada
+  grupo y la brecha en puntos.
+- **Sexo.** Como faceta o como recorte, en la comparación población indígena
+  contra resto. La comparación mujeres indígenas contra hombres indígenas lo
+  lleva ya en las series.
+- **Localidad.** Cuatro tramos de tamaño de localidad (100 mil o más; 15 mil a
+  99 999; 2 500 a 14 999; menos de 2 500). "Rural" es el último tramo, que es la
+  definición del INEGI. El Censo publica cinco tramos y aquí se junta el de 15
+  mil a 49 999 con el de 50 mil a 99 999.
+- **Rango de edad.** 6 a 11, 12 a 17, 18 a 29, 30 a 44, 45 a 59 y 60 o más.
+- **Decil de ingreso** (solo ENIGH). Decil del ingreso corriente trimestral
+  per cápita del hogar, calculado sobre la distribución nacional ponderada de
+  cada edición: es un ranking dentro del año, no un monto comparable entre
+  ediciones.
+- **Escolaridad** (15 años o más). Primaria o menos; secundaria; media
+  superior; superior. Cada fuente traduce su propio catálogo: en el Censo el
+  tramo se fijó cruzando cada código con los años de escolaridad acumulada.
+
+Como máximo se despliegan dos dimensiones a la vez; una tercera reemplaza a la
+más antigua. Decil y escolaridad viven en archivos sin tamaño de localidad y son
+excluyentes con el filtro de localidad.
+
+## Muestra, error e intervalo
+
+Toda cifra va expandida con el factor de la encuesta, pero la suficiencia se
+juzga con los **casos sin expandir**: por debajo de 30 la cifra lleva asterisco
+y trama, y el aviso junto a la gráfica dice cuántas hay.
+
+El **intervalo al 95 %** que aparece en el tooltip, la tabla y los bigotes
+sale del diseño muestral real (estratificado por conglomerados), por
+linearización de Taylor con varianza entre UPM dentro de estrato. No se usa la
+fórmula binomial `sqrt(p(1-p)/n)`: supone muestreo aleatorio simple y, medido
+sobre estas encuestas, subestima el error en un tercio. Cuando el error no es
+estimable (estratos con una sola UPM) la cifra viaja sin intervalo, nunca con
+un cero. Al agregar celdas en el navegador (entidades, edades) las varianzas se
+suman como si las partes fueran independientes, lo que subestima levemente el
+error del agregado.
+
+## El mapa por manzana de la Ciudad de México
+
+Usa otra fuente y otra definición: el tabulado por AGEB y manzana del Censo
+2020, y la variable `PHOG_IND`, personas en hogares donde la persona de
+referencia, su cónyuge o alguno de sus ascendientes hablan lengua indígena. Es
+un indicador de hogar y de lengua, no de autoadscripción; el detalle está en
+[Fuentes y cobertura](./fuentes).
