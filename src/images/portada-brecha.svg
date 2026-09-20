@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 94" width="300" height="94">
+<g class="portada-brecha">
+<line x1="59.1" y1="8.0" x2="174.4" y2="8.0" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="59.1" cy="8.0" r="3.6" fill="#FFB3B8"/>
+<circle cx="174.4" cy="8.0" r="3.6" fill="#B8D8F7"/>
+<line x1="117.3" y1="21.0" x2="224.8" y2="21.0" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="117.3" cy="21.0" r="3.6" fill="#FFB3B8"/>
+<circle cx="224.8" cy="21.0" r="3.6" fill="#B8D8F7"/>
+<line x1="37.8" y1="34.0" x2="115.1" y2="34.0" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="37.8" cy="34.0" r="3.6" fill="#FFB3B8"/>
+<circle cx="115.1" cy="34.0" r="3.6" fill="#B8D8F7"/>
+<line x1="189.5" y1="47.0" x2="258.2" y2="47.0" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="189.5" cy="47.0" r="3.6" fill="#FFB3B8"/>
+<circle cx="258.2" cy="47.0" r="3.6" fill="#B8D8F7"/>
+<line x1="223.2" y1="60.0" x2="265.4" y2="60.0" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="223.2" cy="60.0" r="3.6" fill="#FFB3B8"/>
+<circle cx="265.4" cy="60.0" r="3.6" fill="#B8D8F7"/>
+<line x1="41.4" y1="73.0" x2="120.9" y2="73.0" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="41.4" cy="73.0" r="3.6" fill="#FFB3B8"/>
+<circle cx="120.9" cy="73.0" r="3.6" fill="#B8D8F7"/>
+<line x1="158.1" y1="86.0" x2="246.4" y2="86.0" stroke="rgba(255,255,255,0.55)" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="158.1" cy="86.0" r="3.6" fill="#FFB3B8"/>
+<circle cx="246.4" cy="86.0" r="3.6" fill="#B8D8F7"/>
+</g></svg>

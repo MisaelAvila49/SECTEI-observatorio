@@ -1,0 +1,32 @@
+{
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf src/.observablehq/cache",
+    "build": "observable build",
+    "dev": "observable preview",
+    "deploy": "observable deploy",
+    "observable": "observable",
+    "datos": "uv run python scripts/loaders/censo.py && uv run python scripts/loaders/enigh.py && uv run python scripts/loaders/endutih.py",
+    "verificar": "uv run python src/data/verificar_fuentes.py",
+    "verificar:render": "node scripts/verificar_render.mjs",
+    "verificar:filtros": "node scripts/verificar_filtros.mjs",
+    "verificar:a11y": "node scripts/verificar_a11y.mjs",
+    "verificar:paleta": "node scripts/verificar_paleta.mjs",
+    "verificar:todo": "npm run verificar && npm run build && npm run verificar:render && npm run verificar:filtros && npm run verificar:a11y && npm run verificar:paleta"
+  },
+  "dependencies": {
+    "@observablehq/framework": "^1.13.4",
+    "d3-dsv": "^3.0.1",
+    "maplibre-gl": "^5.24.0",
+    "pmtiles": "^4.5.0"
+  },
+  "devDependencies": {
+    "axe-core": "^4.13.0",
+    "playwright-core": "^1.49.1",
+    "rimraf": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

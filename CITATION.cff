@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "Si usas este tablero, cítalo con los datos de este archivo."
+title: "Grupos originarios: el acceso digital de la población indígena de México"
+type: dataset
+authors:
+  - family-names: "Avila López"
+    given-names: "Misael Saúl"
+    orcid: "https://orcid.org/0009-0003-9606-354X"
+    affiliation: "Social Data Ibero, Universidad Iberoamericana"
+  - family-names: "Gómez Arias"
+    given-names: "Wilfrido"
+    orcid: "https://orcid.org/0009-0002-2406-8555"
+    affiliation: "Social Data Ibero, Universidad Iberoamericana"
+    email: "wilfrido.gomez@ibero.mx"
+date-released: "2026-09-18"
+version: "0.2.0"
+license: "CC-BY-4.0"
+keywords:
+  - población indígena
+  - brecha digital
+  - Censo 2020
+  - ENIGH
+  - ENDUTIH
+  - Observable Framework
+abstract: >-
+  Tablero de datos sobre el acceso a internet, celular y computadora de la
+  población indígena de México, comparada con el resto de la población, con
+  microdatos del Censo 2020 (cuestionario ampliado), la ENIGH 2020, 2022 y
+  2024 y la ENDUTIH 2025; y mapa por manzana de la población en hogares
+  indígenas de la Ciudad de México.

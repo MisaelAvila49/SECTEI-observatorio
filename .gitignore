@@ -1,0 +1,20 @@
+# Insumos crudos: se descargan con scripts/descargar_datos.sh y pesan ~180 MB.
+# No se versionan; lo que se publica son las teselas.
+data-raw/
+
+# GeoJSON intermedios: los genera construir_manzanas.py y de ellos salen las
+# teselas. Versionarlos duplicaría 100 MB por cada regeneración.
+src/data/manzanas_cdmx.geojson
+src/data/colonias_cdmx.geojson
+
+# Teselas de colonias: generar_teselas.sh las produce, pero ninguna página las
+# lee (el mapa agrega a colonia desde los atributos de las manzanas). Son 4 MB
+# que se publicarían sin usarse.
+src/data/colonias.pmtiles
+
+node_modules/
+dist/
+.observablehq/
+src/.observablehq/
+/.env
+.DS_Store

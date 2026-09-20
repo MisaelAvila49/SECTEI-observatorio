@@ -1,0 +1,3616 @@
+/* --- 1. Theme Imports --- */
+/* El tablero es CLARO por omisión y el modo oscuro se activa con el botón del
+   sidebar, no con la preferencia del sistema. La razón: es un producto
+   editorial que se lee y se cita, y su forma canónica —la que sale en una
+   captura o en una impresión— es sobre blanco. Que el sistema decidiera por su
+   cuenta hacía que la misma página se viera distinta según la máquina, sin que
+   nadie lo hubiera pedido.
+   La elección vive en `data-tema` sobre <html>, la escribe el script de
+   observablehq.config.js y se recuerda en localStorage.
+
+   Solo se importa el tema CLARO de Framework. El oscuro no se importa: sus
+   tokens se redefinen abajo, en el bloque 3b, bajo el selector del atributo.
+   Un @import no puede envolverse en un selector, así que traerlo obligaría a
+   una media query y volveríamos al problema de partida. */
+@import url("observablehq:default.css");
+@import url("observablehq:theme-air.css");
+@import url("observablehq:theme-wide.css");
+
+/* --- 2. Tipografía (Google Fonts) --- */
+/* Ya no se cargan por @import: un @import de fuentes bloquea el render hasta
+   que resuelve, y aquí además competía con los @import de tema del bloque 1.
+   Se cargan como globalStylesheets en observablehq.config.js, que Framework
+   inyecta como <link rel="stylesheet"> en el <head> de cada página. */
+
+/* --- 3. Variables de marca y overrides de tema --- */
+/* Un solo bloque de tokens para todo el sitio. Antes había dos `:root` (aquí y
+   en la capa de tablero) con DOS rojos de acento distintos —#e30a18 y
+   #c4101b— mientras `base.js` dibujaba las gráficas con #C4101B. El rojo del
+   chrome y el rojo de los datos tienen que ser el mismo color, o la marca se
+   lee como dos marcas en la misma página. Se conserva #C4101B, que es el que
+   pasó el validador de paleta de la skill `dataviz` en claro y en oscuro.
+
+   Los tokens van en tres capas:
+     --brand-*    la marca, valores crudos
+     --surface-*  / --text-* / --border-*   intención, es lo que consume el CSS
+     --tablero-*  alias de compatibilidad para la capa de dashboard heredada
+
+   Regla: ningún selector de esta hoja escribe un hex. Si hace falta un color
+   nuevo, se agrega aquí con su justificación y se redefine en el bloque de
+   modo oscuro; un color definido solo en un lado desaparece en el otro. */
+:root {
+  color-scheme: light dark;
+
+  /* Paleta Social Data IBERO */
+  --brand-red: #c4101b;
+  --brand-red-dark: #9c0d16;
+  --brand-dark: #1d1d1b;
+  --brand-gray: #6b6966;
+  --brand-light-gray: #f6f6f6;
+
+  /* Capa semántica (consumida por el chrome: sidebar/header/footer).
+     Da nombres de intención sobre la paleta de marca, para que los
+     componentes no dependan directamente de los --brand-*. */
+  --surface-1: #ffffff;
+  --surface-2: var(--brand-light-gray);
+  --surface-3: #fafaf9;
+  --text-primary: var(--brand-dark);
+  /* Tinta secundaria: el gris de marca #a7a3a2 daba 2.5:1 sobre blanco, por
+     debajo del 4.5:1 de WCAG AA para texto normal. #6b6966 da 5.5:1 sobre
+     blanco y 5.2:1 sobre la superficie gris, y conserva el matiz cálido. */
+  --text-secondary: #4a4845;
+  --text-muted: var(--brand-gray);
+  --border-subtle: color-mix(in srgb, var(--brand-dark) 12%, transparent);
+  --border-strong: color-mix(in srgb, var(--brand-dark) 22%, transparent);
+
+  /* Elevación en dos capas: una sombra de contacto corta y muy tenue, y una
+     difusa que separa la tarjeta del fondo. Una sola sombra grande se lee
+     como halo. */
+  --sombra-1: 0 1px 2px rgb(29 29 27 / 0.06), 0 1px 3px rgb(29 29 27 / 0.04);
+  --sombra-2: 0 1px 2px rgb(29 29 27 / 0.06), 0 8px 24px rgb(29 29 27 / 0.08);
+  --radio-1: 8px;
+  --radio-2: 12px;
+
+  /* Tinta de la portada del libro. La cubierta pinta su propio fondo oscuro
+     en los dos modos —representa un objeto real, no una superficie de la
+     interfaz— así que su texto es blanco SIEMPRE y no puede leer
+     --surface-1: en modo oscuro esa variable es casi negra y el título de la
+     cubierta desaparecería sobre su propio fondo. */
+  --tinta-portada: #ffffff;
+
+  /* El papel de esa misma cubierta: el reverso exacto de --tinta-portada, y
+     por eso tampoco se redefine en el bloque oscuro. Antes la cubierta leía
+     --brand-dark, que SÍ se invierte entre temas (#1d1d1b en claro, #ecebe8
+     en oscuro), así que en modo oscuro el fondo se volvía casi blanco
+     mientras la tinta seguía siendo blanca: el título, el año y el logo
+     desaparecían sobre su propia portada. */
+  --papel-portada: #1d1d1b;
+
+  /* Placa de los chips de instituciones (pie y portada). Fija a propósito y
+     sin redefinir en oscuro: los logos de INIDE (gris sobre blanco) y de
+     IBERO (caja roja) traen su propio fondo cocido en el archivo, así que la
+     placa que los enmarca tiene que seguir blanca también de noche, o el
+     recorte del logo se notaría contra el fondo oscuro del sitio. */
+  --placa-logo: #ffffff;
+
+  /* Colores de estado. Reservados: nunca se reutilizan como "serie 4" de una
+     gráfica. Van siempre acompañados de texto (la palabra "Nota", "Aviso"),
+     nunca solos, porque el color por sí mismo no es una etiqueta accesible.
+     --estado-*-tinta es el paso oscuro que se usa sobre fondo claro, donde el
+     tono pleno no libra 4.5:1. */
+  --estado-bien: #2a7f3e;
+  --estado-aviso: #c48a00;
+  --estado-aviso-tinta: #8a5500;
+
+  /* Ancho de las gráficas que se salen de la columna de texto.
+     Se calculaba con `100vw`, y eso es el ancho de la VENTANA: incluye el
+     sidebar (272 px) y la columna del índice (192 px), que no son espacio
+     disponible. A 1500 px la gráfica arrancaba en x=192 con el sidebar
+     llegando hasta 272 —tapada— y a 1280 px se salía 67 px por la derecha,
+     por debajo del índice. Se descuentan las dos columnas más un margen de
+     respiro, y el mínimo con 1180 px pone el techo.
+     Las dos columnas aparecen y desaparecen por media query, así que sus
+     anchos se declaran aquí como variables y se ponen a cero donde el
+     elemento no existe. */
+  --ancho-sidebar: 272px;
+  --ancho-indice: 192px;
+  /* El descuento de 6rem no es decorativo: son los ~13 px de separación que el
+     índice necesita a cada lado más el respiro de la columna. Con 4rem la
+     gráfica llegaba a tocarlo justo en el ancho en que el índice todavía
+     existe (1200 a 1250 px), que es la peor combinación posible. */
+  --ancho-desbordado: min(
+    1180px,
+    calc(100vw - var(--ancho-sidebar) - var(--ancho-indice) - 6rem)
+  );
+  /* Alias de la capa de tablero. Existían como `:root` aparte más abajo en la
+     hoja; ahora apuntan aquí para que el modo oscuro los mueva a todos. */
+  --tablero-rojo: var(--brand-red);
+  --tablero-borde: var(--border-subtle);
+  --tablero-superficie: var(--surface-3);
+
+  /* Overrides de Observable Framework */
+  --sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --monospace: "JetBrains Mono", Menlo, Consolas, monospace;
+  --theme-foreground: var(--text-primary);
+  --theme-foreground-focus: var(--brand-red);
+  --theme-background-a: var(--surface-1);
+  --theme-red: var(--brand-red);
+  /* Framework deriva sus grises mezclando la tinta con el fondo (60 % y 50 %):
+     el índice de la derecha salía en #777776, 4.48:1 sobre blanco, justo por
+     debajo del 4.5:1 de AA. Apuntan a las tintas propias, ya validadas. */
+  --theme-foreground-muted: var(--text-secondary);
+  --theme-foreground-faint: var(--text-muted);
+}
+
+/* Puntos de corte del layout de Framework. Cuando una de las dos columnas no
+   está en pantalla, su ancho tiene que valer cero o la gráfica se calcularía
+   más angosta de lo que cabe.
+
+   Las condiciones son LAS MISMAS EXPRESIONES que usa Framework en su hoja
+   (layout.css) para mostrar u ocultar cada columna, copiadas literalmente en
+   vez de un número redondo medido a ojo en el navegador. Los valores que había
+   antes —1199 y 1023— estaban desplazados respecto a los reales y entre 912 y
+   1010 px la gráfica se salía por la izquierda de la ventana y pasaba por
+   debajo del índice.
+
+   El índice tiene dos huecos, no uno: no existe por debajo de 912 px, y
+   tampoco entre 1008 y 1216, donde el sidebar ocupa su sitio. */
+@media (max-width: calc(640px + 5rem + 192px - 1px)) {
+  :root {
+    --ancho-indice: 0px;
+  }
+}
+@media (min-width: calc(640px + 6rem + 272px)) and (max-width: calc(640px + 7rem + 272px + 192px - 1px)) {
+  :root {
+    --ancho-indice: 0px;
+  }
+}
+@media (max-width: calc(640px + 6rem + 272px - 1px)) {
+  :root {
+    --ancho-sidebar: 0px;
+  }
+}
+
+/* --- 3b. Modo oscuro --- */
+/* Se redefinen SOLO los tokens, nunca los selectores. La lección que dejó el
+   intento anterior (documentado más abajo, sección de tarjetas) es que pintar
+   la superficie oscura sin mover también la tinta produce negro sobre negro:
+   por eso aquí se mueven las dos, y el tema oscuro de Framework entra por el
+   @import condicional del bloque 1.
+
+   Las superficies no son el claro invertido: se escalonan para que la tarjeta
+   quede MÁS clara que el fondo, que es como se lee elevación en oscuro (en
+   claro es al revés, la tarjeta es blanca sobre gris). */
+:root[data-tema="oscuro"] {
+    /* `color-scheme` le dice al navegador que pinte con su paleta oscura los
+       widgets que él controla: barras de scroll, autocompletado, el desplegable
+       abierto de un <select>. Sin esto quedan blancos sobre la página oscura y
+       ninguna regla CSS los alcanza. */
+    color-scheme: dark;
+
+    /* Los tres tokens de los que Framework deriva todos los suyos
+       (--theme-background, --theme-foreground-muted, etc. salen de estos por
+       color-mix). Se redefinen aquí en vez de importar theme-near-midnight
+       porque un @import no puede envolverse en un selector de atributo. */
+    --theme-foreground: #dfdfd6;
+    --theme-background-b: #161616;
+
+    /* El rojo de marca a plena saturación sobre fondo oscuro queda en 3.2:1 y
+       vibra. #E8474F es el paso que el validador de `dataviz` deja en la banda
+       L 0.48–0.67 con 5.4:1 contra la superficie oscura. */
+    --brand-red: #e8474f;
+    --brand-red-dark: #f27076;
+    --brand-dark: #ecebe8;
+    --brand-gray: #a3a09b;
+    --brand-light-gray: #2a2a28;
+
+    /* El escalonado de superficies es AMPLIO a propósito. Una primera versión
+       usaba #1a1a19 de fondo con #232322 de tarjeta, y esos dos tonos quedan a
+       1.11:1: sobre negro el ojo distingue muy poco, y la página se veía como
+       una mancha plana sin jerarquía entre capas. Con el fondo casi negro y la
+       tarjeta bastante más clara la separación sube a 1.19:1, que ya se
+       percibe, y el borde termina de definir el borde de cada bloque.
+       En oscuro la capa elevada es la MÁS CLARA, al revés que en claro, donde
+       la tarjeta es blanca sobre gris. */
+    --surface-1: #0a0a09;
+    --surface-2: #131312;
+    --surface-3: #1e1e1c;
+    --text-primary: #ecebe8;
+    --text-secondary: #c9c7c2;
+    --text-muted: #a3a09b;
+    /* Bordes bastante más marcados que en claro: sobre superficie oscura un
+       borde al 14% es invisible. El sutil queda en 1.5:1 contra la tarjeta y
+       el fuerte en 2:1, que es lo que hace legible el contorno de un bloque
+       cuando su fondo apenas se separa del de la página. */
+    --border-subtle: color-mix(in srgb, #ecebe8 22%, transparent);
+    --border-strong: color-mix(in srgb, #ecebe8 38%, transparent);
+
+    --sombra-1: 0 1px 2px rgb(0 0 0 / 0.5);
+    --sombra-2: 0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px rgb(0 0 0 / 0.45);
+
+  /* Los tokens del chrome de Framework apuntan a los propios, para que el
+     sidebar y el pie sigan la misma superficie que el resto. Se declaran al
+     final del bloque: --theme-foreground ya se fijó arriba con el valor del
+     tema oscuro, y esta línea lo reemplaza a propósito por la tinta de marca,
+     que es la que se validó contra estas superficies. */
+  --theme-foreground: var(--text-primary);
+  --theme-background-a: var(--surface-1);
+  --theme-foreground-muted: var(--text-secondary);
+  --theme-foreground-faint: var(--text-muted);
+}
+
+/* --- 4. Tipografía base --- */
+body {
+  /* El tamaño base es RELATIVO, no 16px fijos. Toda la hoja mide en rem —más
+     de cuatrocientas declaraciones—, así que anclar el body a un valor
+     absoluto convertía cada uno de esos rem en un píxel fijo y dejaba fuera a
+     quien sube el tamaño de letra en su navegador, que es el ajuste de
+     accesibilidad más usado (WCAG 1.4.4). Con `1rem` el 16 px sigue siendo el
+     valor de partida —es el tamaño por omisión de todo navegador—, pero ahora
+     acompaña a quien lo cambia. */
+  font: 1rem/1.65 var(--sans-serif);
+  /* Fondo y tinta explícitos. El tema de Framework deja el body transparente y
+     hereda el color del navegador; en modo oscuro eso dejaba la página con
+     fondo del sistema y las tarjetas claras encima, con la tinta ya invertida.
+     Un bloque que decide su modo pinta su fondo Y su texto. */
+  background: var(--surface-1);
+  color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--sans-serif);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--brand-red);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.45rem;
+  margin-top: 2rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+}
+
+/* Subtítulo debajo de h1 (patrón h1 + h2 de Observable) */
+h1 + h2 {
+  border: none;
+  color: var(--brand-gray);
+  font-size: 1.1rem;
+  padding-bottom: 0;
+}
+
+/* --- 5. Enlaces --- */
+a[href] {
+  color: var(--theme-foreground-focus);
+  transition: color 0.15s ease;
+}
+
+a[href]:hover,
+a[href]:focus {
+  color: var(--brand-red-dark);
+}
+
+/* Enlaces dentro de un párrafo: el rojo de marca contrasta 2.76:1 con la
+   tinta del texto que lo rodea, y WCAG exige 3:1 o una marca que no sea el
+   color. Se subrayan. Los enlaces con clase son componentes (botones, tarjetas,
+   pestañas de cita) y ya se distinguen por su forma; los del sidebar y el
+   índice viven fuera de #observablehq-main. */
+#observablehq-main :is(p, li, td, th, figcaption, dd, summary, blockquote) a[href]:not([class]),
+.verificado a[href] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+}
+#observablehq-main :is(p, li, td, th, figcaption, dd, summary, blockquote) a[href]:not([class]):hover,
+.verificado a[href]:hover {
+  text-decoration-color: currentColor;
+}
+
+/* --- 6. Details / Summary (reemplaza estilos inline de capítulos) --- */
+details {
+  margin: 0.75rem 0;
+}
+
+details summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: var(--sans-serif);
+  font-weight: 500;
+  color: var(--brand-dark);
+  padding: 0.4rem 0;
+  transition: color 0.15s ease;
+}
+
+details summary:hover {
+  color: var(--brand-red);
+}
+
+details summary::marker {
+  color: var(--brand-red);
+}
+
+details[open] summary {
+  margin-bottom: 0.25rem;
+}
+
+/* --- 7. Bloques de código --- */
+pre {
+  background-color: var(--brand-light-gray);
+  border-left: 3px solid var(--brand-gray);
+  border-radius: 6px;
+}
+
+code,
+tt {
+  font-family: var(--monospace);
+}
+
+/* Código inline */
+:not(pre) > code {
+  background-color: var(--brand-light-gray);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* --- 8. Bibliografía --- */
+.bibliography-title {
+  color: var(--brand-red);
+  border-top: 2px solid color-mix(in srgb, var(--brand-gray) 50%, transparent);
+  border-bottom: none;
+  padding-top: 1.5rem;
+  margin-top: 3rem;
+  font-size: 1.3rem;
+}
+
+.csl-entry {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--theme-foreground-alt);
+  padding: 0.3rem 0;
+}
+
+/* --- 9. Cards --- */
+/* Tarjeta: definición ÚNICA. Estaba repartida en cuatro bloques de esta hoja
+   —uno por tablero del que se heredó CSS— y aunque cada uno aportaba una
+   propiedad distinta y no se pisaban, bastaba con que dos tocaran la misma
+   para que ganara la de abajo en silencio. Si hace falta cambiar el aspecto de
+   una tarjeta, se cambia aquí. */
+.card {
+  /* Costado gris y no rojo. El acento de marca se acumulaba con el titulo en
+     rojo y con la cifra destacada, y de los tres el que sobraba era la franja.
+     El borde superior se quita del todo: el de 1 px que pone `card.css` de
+     Framework cierra la tarjeta por arriba sin dejar hueco. */
+  border-left: 4px solid var(--border-subtle);
+  border-radius: var(--radio-2);
+  box-shadow: var(--sombra-1);
+  /* Color explícito y no heredado: la tarjeta pinta su fondo, así que pinta
+     también su texto. Depender de --theme-foreground acopla su legibilidad a
+     un token que esta hoja no controla, y ahí apareció el negro sobre negro. */
+  color: var(--text-primary);
+}
+
+/* Título de las tarjetas de navegación de la portada, en rojo de marca como
+   los títulos de gráfica y los rótulos del bloque de fuentes: los tres son
+   encabezados de bloque y comparten el mismo código de color. */
+#observablehq-main .card > h3 {
+  margin: 0 0 0.4rem;
+  color: var(--brand-red);
+}
+:root[data-tema="oscuro"] #observablehq-main .card > h3 {
+  /* El rojo pleno da 4.32:1 sobre la tarjeta oscura; este escalón, 5.6:1. */
+  color: #f06a70;
+}
+
+/* Tarjetas de navegación de la portada, compactas: son un índice visual, no
+   un resumen. Con el texto a tamaño de párrafo cada una ocupaba media pantalla
+   y las ocho no cabían de un vistazo. */
+#observablehq-main .grid-cols-2 > .card {
+  padding: 0.7rem 0.85rem;
+}
+#observablehq-main .grid-cols-2 > .card > h3 {
+  font-size: 0.92rem;
+}
+#observablehq-main .grid-cols-2 > .card > p {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+#observablehq-main .grid-cols-2 > .card > p:last-child {
+  margin-bottom: 0;
+  font-size: 0.78rem;
+}
+
+/* --- 10. Tablas --- */
+thead tr {
+  border-bottom: solid 2px var(--brand-red);
+}
+
+/* --- 11. Separadores --- */
+hr {
+  background: no-repeat center/100% 1px
+    linear-gradient(to right, transparent, var(--brand-gray), transparent);
+}
+
+/* --- 12. Sidebar --- */
+
+/* 12a. Base */
+#observablehq-sidebar {
+  font-family: var(--sans-serif);
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+/* 12b. Separadores entre secciones */
+#observablehq-sidebar > details,
+#observablehq-sidebar > section {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+  margin: 0.35rem 0;
+}
+
+#observablehq-sidebar > details:last-child,
+#observablehq-sidebar > section:last-child {
+  border-bottom: none;
+}
+
+/* 12c. Headers de sección */
+#observablehq-sidebar summary {
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  position: relative;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+#observablehq-sidebar summary::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 3px;
+  background: var(--brand-red);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#observablehq-sidebar details[open] > summary::before,
+#observablehq-sidebar details.observablehq-section-active > summary::before {
+  opacity: 1;
+}
+
+#observablehq-sidebar details summary:hover {
+  color: var(--brand-red);
+  background: color-mix(in srgb, var(--brand-red) 4%, transparent);
+}
+
+/* Caret del chevron */
+#observablehq-sidebar details summary::after {
+  background: var(--brand-gray);
+  transition: transform 250ms ease, background 0.2s ease;
+}
+
+#observablehq-sidebar details summary:hover::after {
+  background: var(--brand-red);
+}
+
+/* 12d. Links de capítulo */
+#observablehq-sidebar .observablehq-link a {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: color-mix(in srgb, var(--text-primary) 75%, transparent);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+#observablehq-sidebar .observablehq-link a:hover {
+  color: var(--brand-red);
+  background: color-mix(in srgb, var(--brand-red) 5%, transparent);
+}
+
+/* 12e. Página activa */
+#observablehq-sidebar .observablehq-link-active a {
+  color: var(--brand-red);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--brand-red) 6%, transparent);
+}
+
+#observablehq-sidebar .observablehq-link-active::before {
+  background: var(--brand-red);
+}
+
+/* 12f. Bloque de marca (home link sticky con logo + título + sutítulo) */
+/* Anulamos `position: sticky` del tema default: con un brand vertical alto
+   (logo 72px + título + subtítulo) el sticky robaría demasiado espacio del
+   sidebar al scrollear. `relative` preserva el contexto para el ::before
+   que pinta el fondo con `inset: 0 -0.5rem`. */
+#observablehq-sidebar > ol:first-child {
+  position: relative;
+  top: auto;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 0.35rem;
+}
+
+#observablehq-sidebar > ol:first-child::before {
+  background: var(--surface-2);
+}
+
+/* El primer <li> contiene el <a href="/"> que envuelve el bloque de marca:
+   se anula el padding/hover de link normal y se deja respirar al brand. */
+#observablehq-sidebar > ol:first-child > li.observablehq-link {
+  padding: 0;
+  margin: 0;
+}
+
+/* El tema default de Observable Framework fija `height: calc(var(--observablehq-header-height) - 1rem)`
+   al <a> del primer <li> del sidebar (pensado para un brand de una sola línea). Lo anulamos
+   para que el bloque vertical (logo + título + subtítulo) pueda crecer a su altura natural. */
+#observablehq-sidebar > ol:first-child > li.observablehq-link a {
+  display: block;
+  height: auto;
+  padding: 1rem 0.5rem 0.9rem;
+  background: transparent;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+#observablehq-sidebar > ol:first-child > li.observablehq-link a:hover {
+  background: color-mix(in srgb, var(--brand-red) 6%, transparent);
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.25rem 0;
+  text-align: center;
+  min-width: 0;
+}
+
+.sidebar-brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+  max-width: 80%;
+  flex-shrink: 0;
+}
+
+.sidebar-brand-logo svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+/* En modo oscuro el logo se pierde: su SVG lleva el negro de marca (#13110c)
+   escrito dentro, así que las letras y los nodos oscuros quedan invisibles
+   sobre el sidebar. Se recolorean SOLO esas piezas (la clase .cls-3 del
+   archivo) y no todo el logo, para conservar los dos rojos y el gris que le
+   dan identidad: una versión monocroma del logo perdería el rojo. */
+:root[data-tema="oscuro"] .sidebar-brand-logo svg .cls-3 {
+  fill: var(--text-primary);
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.sidebar-brand-title {
+  font-family: var(--sans-serif);
+  font-weight: 700;
+  /* Grande, para que domine sobre "Observatorio". */
+  font-size: 1.3rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* "Observatorio" bajo el "PISA": más pequeño, sin negritas y sin versalitas.
+   El contraste de tamaño y peso entre las dos líneas es lo que da el aire
+   moderno; poner las dos en mayúsculas y en negrita las igualaba y el
+   conjunto se leía como una sigla larga. */
+.sidebar-brand-obs {
+  font-family: var(--sans-serif);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+  margin-top: -0.1rem;
+}
+
+/* 12g. Búsqueda
+
+   OJO CON EL PADDING DEL CONTENEDOR. La lupa es un ::before de
+   #observablehq-search posicionado en `left: 0.5rem` respecto a ese
+   contenedor, y el input lleva `padding-left: 2.2em` para dejarle hueco.
+   Si el contenedor recibe padding lateral propio, el input se corre y la
+   lupa no: quedan desalineados y el hueco del texto cae en otro sitio.
+   Por eso aquí el padding lateral es CERO y solo se ajusta el vertical. */
+#observablehq-search {
+  padding: 0.5rem 0 0.25rem 0;
+}
+
+#observablehq-search input {
+  background-color: var(--surface-1);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 6px 8px 6px 2.2em;
+  font-size: 0.8rem;
+  font-family: var(--sans-serif);
+  height: 32px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#observablehq-search input:focus {
+  outline: none;
+  border-color: var(--brand-red);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-red) 12%, transparent);
+}
+
+#observablehq-search input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+#observablehq-search::before {
+  color: var(--text-muted);
+}
+
+#observablehq-search:focus-within::before {
+  color: var(--brand-red);
+}
+
+/* 12h. Resultados de búsqueda
+
+   POR QUÉ ESTE BLOQUE EXISTE. La lista de resultados es `position: absolute`
+   respecto al SIDEBAR (no al input), y Framework la ancla con `top: 6.5rem`
+   —la altura de SU cabecera: una línea de título—. La marca de Social Data
+   es un logo de 72px más título y subtítulo, así que los resultados nacían
+   dentro de la marca y se encimaban con ella y con el propio buscador.
+
+   La cabecera del sidebar (`> ol:first-child`) es `position: sticky`, o sea
+   que se queda visible al hacer scroll: los resultados NO pueden empezar
+   arriba de ella, tienen que empezar debajo. Bajarlos al ras del input, que
+   fue el primer intento, los mete justo debajo de la marca sticky y se
+   encima todo.
+
+   La altura no se puede calcular en CSS —depende de cuánto ocupe el SVG del
+   logo, del texto y del ancho de la ventana—, así que la mide un script en
+   `head` (ver observablehq.config.js) y la publica en --alto-cabecera. El
+   respaldo de 10.5rem solo aplica si ese script no llegó a correr. */
+#observablehq-search-results {
+  /* La variable ya incluye el margen entre la cabecera y el buscador, así
+     que aquí solo se separa un poco del borde inferior del input. */
+  top: calc(var(--alto-cabecera, 15rem) + 0.5rem);
+}
+
+#observablehq-search-results .observablehq-link-active a {
+  background: color-mix(in srgb, var(--brand-red) 8%, transparent);
+}
+
+#observablehq-search-results li.observablehq-link-active:after {
+  background: var(--brand-red);
+}
+
+/* 12i. Pager en español */
+#observablehq-footer nav a[rel="prev"]::before {
+  content: "Capítulo anterior";
+}
+
+#observablehq-footer nav a[rel="next"]::before {
+  content: "Siguiente capítulo";
+}
+
+#observablehq-footer nav a:hover {
+  border-color: var(--brand-red);
+}
+
+/* --- 14. Footer --- */
+#observablehq-footer {
+  font-family: var(--sans-serif);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--surface-1);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0;
+}
+
+.book-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1.25rem;
+}
+
+/* 14a. Grid editorial: tres columnas parejas, una sola en móvil */
+.book-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 1.5rem 2rem;
+  align-items: start;
+}
+
+/* 14b. Columnas editoriales */
+.book-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.book-footer-col-title {
+  margin: 0 0 0.35rem 0;
+  font-family: var(--monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.book-footer-col-line {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.book-footer-col-line a {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.book-footer-col-line a:hover {
+  color: var(--brand-red);
+  border-bottom-color: var(--brand-red);
+}
+
+/* 14c. Instituciones: banda de logos compartida por el pie y la portada */
+.instituciones-fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+}
+
+.instituciones-eyebrow {
+  font-family: var(--monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.instituciones-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 0.9rem;
+  background: var(--placa-logo);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.instituciones-chip:hover,
+.instituciones-chip:focus-visible {
+  border-color: var(--brand-red);
+}
+
+.instituciones-chip img {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+/* Bloque rojo sólido: a igual altura que los otros dos, pesa más. */
+.instituciones-chip--ibero img {
+  height: 34px;
+}
+
+/* Wordmark alto y estrecho: necesita más altura para pesar lo mismo. */
+.instituciones-chip--inide img {
+  height: 46px;
+}
+
+.instituciones-fila--hero {
+  margin: 0 0 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 480px) {
+  .instituciones-eyebrow {
+    width: 100%;
+  }
+  .instituciones-chip {
+    height: 42px;
+  }
+}
+
+/* 14d. Banda inferior (copyright + built-with) */
+.book-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-muted); /* al 85 % daba 3.94:1 */
+}
+
+.book-footer-bottom a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--border-subtle);
+  text-underline-offset: 2px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.book-footer-bottom a:hover {
+  color: var(--brand-red);
+  text-decoration-color: var(--brand-red);
+}
+
+.book-footer-tech {
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .book-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .book-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .book-footer-tech {
+    text-align: left;
+  }
+}
+
+/* --- 15. Notas --- */
+.note {
+  border-radius: 6px;
+}
+
+/* --- 16. Selección de texto --- */
+::selection {
+  background-color: color-mix(in srgb, var(--brand-red) 20%, transparent);
+}
+
+/* --- 17. Index / Home — portada, metadata editorial y citación --- */
+
+/* Los enlaces "Ir a X" de las tarjetas llevan la flecha puesta por CSS y no
+   en el texto: así el copy se lee bien solo (lector de pantalla, texto
+   copiado) y la flecha queda como lo que es, un detalle visual. */
+.card p a::after {
+  content: " \2192";
+}
+
+/* Numeración discreta de las tarjetas de navegación de la portada: un
+   contador visual y no semántico (aria-hidden), antes del título, en el
+   mismo tono monoespaciado tenue que los demás rótulos del tablero. */
+.card-numero {
+  margin-right: 0.5em;
+  font-family: var(--monospace);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Hero principal: contenido + portada animada lado a lado */
+.book-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 640px) clamp(220px, 22vw, 280px);
+  column-gap: clamp(1.5rem, 3vw, 3rem);
+  row-gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.book-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.book-hero-eyebrow {
+  font-family: var(--monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+  margin-bottom: 0.25rem;
+}
+
+.book-hero-title {
+  font-family: var(--sans-serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--brand-dark);
+  margin: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.book-hero-subtitle {
+  font-size: clamp(1.05rem, 1vw + 0.7rem, 1.3rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--brand-dark) 78%, transparent);
+  margin: 0;
+}
+
+.book-hero-abstract {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--brand-dark) 70%, transparent);
+  margin: 0.35rem 0 1rem;
+  max-width: 60ch;
+}
+
+.book-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.book-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--brand-red);
+  background: transparent;
+  color: var(--brand-red);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.18s ease, color 0.18s ease,
+    transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.book-cta:hover,
+.book-cta:focus-visible {
+  background: color-mix(in srgb, var(--brand-red) 8%, transparent);
+  color: var(--brand-red-dark);
+  transform: translateY(-1px);
+}
+
+a.book-cta-primary {
+  background: var(--brand-red);
+  color: var(--surface-1);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--brand-red) 28%, transparent);
+}
+
+a.book-cta-primary:hover,
+a.book-cta-primary:focus-visible {
+  background: var(--brand-red-dark);
+  color: var(--surface-1);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--brand-red) 35%, transparent);
+}
+
+/* Bloque de metadata editorial */
+.book-meta-grid {
+  display: grid;
+  /* 240px y no los 190 de obs-data-book: allá el contenido ocupa todo el
+     ancho de la ventana, y aquí el tablero le cede espacio al sidebar, así
+     que con 190 entraban dos columnas espachurradas en vez de las tres o
+     cuatro holgadas del libro. Con el mínimo más alto, o caben cómodas o
+     el auto-fit las manda a una sola. */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem 2rem;
+  margin: 0 0 2.5rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid color-mix(in srgb, var(--brand-gray) 28%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--brand-light-gray) 55%, transparent);
+}
+
+.book-meta-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.book-meta-field--wide {
+  grid-column: 1 / -1;
+}
+
+.book-meta-label {
+  font-family: var(--sans-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--brand-gray);
+  margin: 0;
+}
+
+.book-meta-value {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--brand-dark);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.book-meta-sub {
+  font-size: 0.78rem;
+  /* Antes: tinta al 55 % (#80807f, 3.78:1). La tinta secundaria da 5.5:1. */
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.book-meta-placeholder {
+  font-style: italic;
+  color: color-mix(in srgb, var(--brand-gray) 95%, transparent);
+  font-weight: 400;
+}
+
+.book-meta-link {
+  color: var(--brand-red);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px dotted
+    color-mix(in srgb, var(--brand-red) 50%, transparent);
+  width: fit-content;
+  word-break: break-all;
+}
+
+.book-meta-link:hover {
+  color: var(--brand-red-dark);
+  border-bottom-style: solid;
+}
+
+.book-authors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.75rem;
+  row-gap: 0.5rem;
+}
+
+.book-authors li {
+  flex: 1 1 auto;
+  min-width: max-content;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: var(--brand-dark);
+  white-space: nowrap;
+}
+
+.book-authors .orcid-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: text-bottom;
+  margin-left: 0.2rem;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.book-authors .mail-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: text-bottom;
+  margin-left: 0.15rem;
+  color: var(--brand-red);
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.book-authors a:hover .orcid-icon,
+.book-authors a:hover .mail-icon {
+  opacity: 1;
+}
+
+/* Cómo citar */
+.book-citation {
+  margin: 0 0 2.5rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid color-mix(in srgb, var(--brand-gray) 28%, transparent);
+  border-radius: 10px;
+  background: var(--surface-1);
+  position: relative;
+}
+
+.book-citation-header {
+  margin-bottom: 1rem;
+}
+
+.book-citation-header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  color: var(--brand-dark);
+  border: none;
+  padding: 0;
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+
+.book-citation-header p {
+  font-size: 0.88rem;
+  color: color-mix(in srgb, var(--brand-dark) 65%, transparent);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.book-citation-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--brand-gray) 30%, transparent);
+  margin-bottom: 1rem;
+}
+
+.book-citation-tab {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0.55rem 0.95rem;
+  font-family: var(--sans-serif);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted); /* tinta al 60 % daba 4.48:1 */
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.book-citation-tab:hover {
+  color: var(--brand-red);
+}
+
+.book-citation-tab.is-active {
+  color: var(--brand-red);
+  border-bottom-color: var(--brand-red);
+  font-weight: 600;
+}
+
+.book-citation-tab:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--brand-red) 50%, transparent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.book-citation-panel {
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+.book-citation-text {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: var(--brand-dark);
+  padding-right: 5.5rem;
+}
+
+.book-citation-bibtex {
+  font-family: var(--monospace);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  background: color-mix(in srgb, var(--brand-dark) 4%, transparent);
+  border-left: 3px solid var(--brand-red);
+  border-radius: 4px;
+  padding: 1rem 1.25rem 1rem 1.25rem;
+  margin: 0;
+  overflow-x: auto;
+  color: var(--brand-dark);
+  white-space: pre;
+}
+
+.book-citation-bibtex code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+}
+
+.book-citation-copy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--brand-gray) 45%, transparent);
+  background: var(--surface-1);
+  color: var(--brand-dark);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.book-citation-copy:hover,
+.book-citation-copy:focus-visible {
+  background: var(--brand-red);
+  color: var(--surface-1);
+  border-color: var(--brand-red);
+}
+
+.book-citation-copy--code {
+  top: 0.85rem;
+  right: 0.85rem;
+}
+
+.book-citation-feedback {
+  font-size: 0.78rem;
+  color: var(--brand-red);
+  margin-top: 0.5rem;
+  min-height: 1em;
+}
+
+/* --- 18b. Portada del libro --- */
+.book-cover {
+  perspective: 1100px;
+  align-self: start;
+  width: 100%;
+  max-width: 260px;
+  justify-self: start;
+}
+
+.book-cover-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: var(--papel-portada);
+  background-image: radial-gradient(
+      ellipse at 50% 42%,
+      color-mix(in srgb, var(--brand-red) 16%, transparent) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 85% 90%,
+      color-mix(in srgb, var(--brand-red) 10%, transparent) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      color-mix(in srgb, var(--tinta-portada) 6%, transparent) 1px,
+      transparent 1.2px
+    ),
+    linear-gradient(160deg, #141413 0%, var(--papel-portada) 45%, #2a2a28 100%);
+  background-size: auto, auto, 14px 14px, auto;
+  background-position: center, center, 0 0, center;
+  border-radius: 4px 12px 12px 4px;
+  box-shadow: inset 0 0 60px color-mix(in srgb, #000 55%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--tinta-portada) 8%, transparent),
+    -4px 0 0 0 color-mix(in srgb, var(--papel-portada) 92%, transparent),
+    -6px 1px 0 0 color-mix(in srgb, var(--papel-portada) 75%, transparent),
+    6px 12px 32px color-mix(in srgb, var(--papel-portada) 45%, transparent),
+    0 18px 40px color-mix(in srgb, var(--brand-red) 10%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 1.2vw, 1.25rem);
+  padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1rem, 1.8vw, 1.5rem);
+  overflow: hidden;
+  transform: rotateY(-4deg);
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+/* El libro se endereza al pasar el mouse, y nada más: se probó una
+   flotación permanente y estorbaba justamente cuando alguien intenta leer
+   el título sin acercar el cursor. La cubierta se queda quieta; el
+   movimiento vive en las líneas y en el reflejo. */
+.book-cover:hover .book-cover-inner {
+  transform: rotateY(0deg) translateZ(4px);
+}
+
+/* Reflejo que cruza la cubierta, como la luz sobre un libro real. Va en su
+   propio elemento y NO en ::after, que en esta misma tarjeta ya dibuja el
+   marco interno: reutilizarlo habría borrado el marco.
+
+   Pasa cada siete segundos, desfasado del destello de la franja roja para
+   que no parpadeen juntos. */
+.book-cover-brillo {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 35%,
+    color-mix(in srgb, var(--tinta-portada) 12%, transparent) 48%,
+    transparent 62%
+  );
+  opacity: 0;
+  animation: cover-reflejo 7s ease-in-out infinite;
+}
+
+@keyframes cover-reflejo {
+  0%,
+  62% {
+    opacity: 0;
+    transform: translateX(-60%);
+  }
+  70% {
+    opacity: 1;
+  }
+  85%,
+  100% {
+    opacity: 0;
+    transform: translateX(60%);
+  }
+}
+
+/* Viñeta / brillo superior sobre todo el fondo */
+.book-cover-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--tinta-portada) 6%, transparent) 0%,
+      transparent 30%
+    ),
+    linear-gradient(
+      0deg,
+      color-mix(in srgb, #000 45%, transparent) 0%,
+      transparent 40%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Marco interno tenue */
+.book-cover-inner::after {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid color-mix(in srgb, var(--tinta-portada) 8%, transparent);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.book-cover-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--brand-red-dark),
+    var(--brand-red) 50%,
+    var(--brand-red-dark)
+  );
+  overflow: hidden;
+  z-index: 3;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--brand-red) 55%, transparent);
+}
+
+.book-cover-accent-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: cover-shimmer 6s ease-in-out infinite;
+}
+
+@keyframes cover-shimmer {
+  0%,
+  20% {
+    transform: translateX(-100%);
+  }
+  60%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* La clase va en el propio <img>: el SVG del logo trae id="Capa_1" y clases
+   .cls-N, y como el sidebar ya lo inlina en la misma página, inlinarlo otra
+   vez aquí haría colisionar esos identificadores. Servido como imagen, cada
+   uno queda en su propio documento. */
+img.book-cover-logo {
+  height: auto;
+  display: block;
+}
+
+/* Contenido */
+.book-cover-logo {
+  position: relative;
+  z-index: 4;
+  /* Bajo el año, como firma: más ancho que cuando iba arriba, porque ahora
+     es el logo completo con el nombre y no solo el isotipo. */
+  width: 132px;
+  height: auto;
+  margin-top: 0.85rem;
+  opacity: 0.92;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  animation: cover-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: 0.1s;
+}
+
+.book-cover-text {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.45rem;
+  animation: cover-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: 0.25s;
+}
+
+.book-cover-eyebrow {
+  font-family: var(--monospace);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+  padding: 0.15rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--brand-red) 55%, transparent);
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--brand-red) 10%, transparent);
+}
+
+.book-cover-title {
+  font-family: var(--sans-serif);
+  font-size: clamp(1.15rem, 1.3vw + 0.7rem, 1.5rem);
+  font-weight: 700;
+  color: var(--tinta-portada);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45),
+    0 0 24px color-mix(in srgb, var(--brand-red) 35%, transparent);
+  padding: 0.15rem 0;
+  position: relative;
+}
+
+.book-cover-title::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 2px;
+  /* 0.45rem abajo y no 0.1: el trazo quedaba pegado al subtítulo y su halo
+     rojo se encimaba con la primera línea, justo sobre "discapacidad". El
+     margen inferior tiene que cubrir el desenfoque del box-shadow, no solo
+     el grosor del trazo. */
+  margin: 0.55rem auto 0.45rem;
+  background: var(--brand-red);
+  border-radius: 2px;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--brand-red) 70%, transparent);
+}
+
+.book-cover-subtitle {
+  font-family: var(--sans-serif);
+  font-size: clamp(0.62rem, 0.35vw + 0.55rem, 0.74rem);
+  font-weight: 400;
+  font-style: italic;
+  color: color-mix(in srgb, var(--tinta-portada) 75%, transparent);
+  line-height: 1.45;
+  max-width: 95%;
+}
+
+.book-cover-year {
+  position: relative;
+  z-index: 4;
+  font-family: var(--monospace);
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--tinta-portada) 70%, transparent);
+  letter-spacing: 0.22em;
+  padding-top: 0.4rem;
+  border-top: 1px solid color-mix(in srgb, var(--brand-gray) 25%, transparent);
+  animation: cover-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: 0.4s;
+}
+
+@keyframes cover-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accesibilidad: respeta prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .book-cover-inner,
+  .book-cover:hover .book-cover-inner {
+    transition: none;
+  }
+  .book-cover-accent-shimmer {
+    animation: none;
+    display: none;
+  }
+  .book-cover-logo,
+  .book-cover-text,
+  .book-cover-year {
+    animation: none;
+  }
+  /* El reflejo es movimiento permanente; se apaga por completo. La
+     cubierta ya no flota, así que no hay transform que restituir. */
+  .book-cover-brillo {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .book-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .book-hero-content {
+    order: 2;
+    text-align: left;
+  }
+  .book-hero-title {
+    font-size: clamp(1.75rem, 7vw, 2.4rem);
+  }
+  .book-hero-ctas {
+    justify-content: flex-start;
+  }
+  .book-cover {
+    order: 1;
+    max-width: 220px;
+    margin: 0 auto;
+    justify-self: center;
+  }
+  .book-cover-inner {
+    transform: rotateY(0deg);
+  }
+  .book-cover:hover .book-cover-inner {
+    transform: rotateY(0deg);
+  }
+  .book-meta-grid {
+    padding: 1.25rem 1.25rem;
+    gap: 1rem 1.5rem;
+  }
+  .book-citation {
+    padding: 1.25rem 1.25rem;
+  }
+  .book-citation-text {
+    padding-right: 0;
+  }
+  .book-citation-copy {
+    position: static;
+    margin-top: 0.75rem;
+  }
+  .book-citation-copy--code {
+    margin-top: 0.5rem;
+  }
+}
+
+/* --- 20. Figuras numeradas --- */
+figure {
+  margin: 1.75rem 0;
+  padding: 0;
+}
+
+figure > figcaption {
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--brand-dark) 70%, transparent);
+  line-height: 1.5;
+  padding: 0.5rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--brand-gray) 25%, transparent);
+  margin-top: 0.75rem;
+}
+
+figure > figcaption strong {
+  color: var(--brand-red);
+  font-weight: 600;
+}
+
+figure .mermaid,
+figure svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* ---------- Dashboards de anomalias: filtros ---------- */
+.panel-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.4rem;
+  align-items: flex-end;
+  padding: 0.8rem 1rem;
+  margin: 0.8rem 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: var(--surface-3);
+}
+.filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+.filtro-etiqueta {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+/* Los selectores del panel. Se listan las dos formas porque el panel mezcla
+   controles propios (`.filtro select`) con Inputs de Observable, que generan su
+   propia clase `inputs-XXXX-input` y no heredan nada de aquí.
+
+   `appearance: none` es lo que arregla el modo oscuro: con la apariencia
+   nativa, el navegador dibuja el widget con SUS colores —un gris medio— y
+   ninguna regla de fondo o borde lo toca. Al quitarla hay que reponer la
+   flecha, que se dibuja como imagen de fondo en SVG con el color de la tinta
+   codificado en la URL; por eso hay dos declaraciones, una por modo. */
+.filtro select,
+.panel-filtros [class*="inputs-"] select,
+.panel-filtros [class*="inputs-"] input[type="text"],
+.panel-filtros [class*="inputs-"] input[type="search"] {
+  appearance: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radio-1);
+  padding: 0.4rem 2rem 0.4rem 0.65rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  background-color: var(--surface-1);
+  /* Los Inputs de Observable fijan 360 px de ancho al <select>, y entre 600 y
+     1024 px eso desbordaba la ventana y aparecía una barra de scroll
+     horizontal en toda la página. El ancho pasa a ser flexible: mínimo
+     cómodo, máximo el del contenedor. */
+  min-width: min(11rem, 100%);
+  max-width: 100%;
+  width: auto;
+  color: var(--text-primary);
+}
+
+/* El <form> que Observable envuelve alrededor de cada Input también trae ancho
+   propio; sin esto el contenedor sigue midiendo 360 px aunque el select ya no. */
+.panel-filtros [class*="inputs-"] {
+  max-width: 100%;
+}
+.panel-filtros [class*="inputs-"] > label {
+  max-width: 100%;
+}
+
+.filtro select,
+.panel-filtros [class*="inputs-"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%236b6966' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
+  background-size: 0.7rem;
+  cursor: pointer;
+}
+
+:root[data-tema="oscuro"] .filtro select,
+:root[data-tema="oscuro"] .panel-filtros [class*="inputs-"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23a3a09b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.filtro select:hover,
+.panel-filtros [class*="inputs-"] select:hover {
+  border-color: var(--border-strong);
+}
+.filtro select:focus {
+  outline: 2px solid color-mix(in srgb, var(--brand-red) 25%, transparent);
+  border-color: var(--brand-red);
+}
+.filtro select:disabled {
+  opacity: 0.45;
+}
+
+/* Kicker de sección ("01 · El panorama"). Definición ÚNICA: estaba en tres
+   bloques distintos de esta hoja, cada uno con su propio `margin`, así que el
+   espacio real lo fijaba el último por cascada (1rem) mientras los dos de
+   arriba —los que se editaban— no tenían efecto alguno. */
+.kicker {
+  display: block;
+  margin: 1rem 0 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+}
+/* Separa el número de sección del título que emite seccion() en graficas.js. */
+.kicker-num {
+  margin-right: 0.6em;
+}
+/* Subtítulo de año dentro de una sección que compara ediciones apilando un
+   bloque de tarjetas por año (apoyos.md), en vez de facetar dentro de una
+   sola gráfica. */
+.subseccion-anio {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  color: var(--text-secondary);
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: 0.8rem;
+}
+.subseccion-anio:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0.4rem;
+}
+
+/* ---------- Capa de tablero ------------------------------------------------ */
+/* Los tokens --tablero-* viven ahora en el bloque 3 como alias de la capa
+   semántica. Antes se declaraban aquí, en un segundo `:root`, con un rojo
+   distinto al del chrome; eso hacía que el sidebar y las gráficas usaran dos
+   rojos y que el modo oscuro tuviera que redefinirse en dos lugares. */
+
+/* --- Fila de KPIs (patrón F: cifras arriba, gráfica enseguida) --- */
+.kpi-fila {
+  display: grid;
+  gap: 0.9rem;
+  margin: 1rem 0 1.3rem;
+  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+}
+.kpi-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--tablero-borde);
+  border-radius: 10px;
+  border-left: 4px solid var(--border-subtle);
+  background: var(--tablero-superficie);
+  /* Color de texto explícito y no heredado: la tarjeta pinta su propio fondo,
+     así que tiene que pintar también su propio texto. Depender de
+     --theme-foreground acopla la legibilidad de la cifra a un token que esta
+     hoja no controla, y ahí es donde apareció el negro sobre negro. */
+  color: var(--brand-dark);
+  box-shadow: var(--sombra-1);
+}
+.kpi-etiqueta {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.kpi-cifra {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* La tarjeta aparece al desplegar: colapsado es una línea de texto como sus
+   hermanos, y abierto es un bloque con su propio fondo. */
+.verificado[open] {
+  padding: 0.15rem 0.85rem 0.6rem;
+  border-left: 3px solid var(--border-strong);
+  border-radius: 0 var(--radio-1) var(--radio-1) 0;
+  background: var(--surface-3);
+}
+/* La cifra primaria se distingue solo por el color. El costado rojo que antes
+   la acompanaba se retiro, asi que `.kpi-destacado` hereda el gris de
+   `.kpi-tarjeta` y queda con la misma silueta que sus hermanas de la fila. */
+.kpi-destacado .kpi-cifra {
+  color: var(--tablero-rojo);
+}
+.kpi-nota {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* --- Tabla de respaldo de cada gráfica (relevo de accesibilidad) --- */
+.tabla-datos {
+  margin: 0.4rem 0 1.4rem;
+  font-size: 0.88rem;
+}
+.tabla-datos summary {
+  cursor: pointer;
+  color: var(--tablero-rojo);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0;
+}
+.tabla-datos table {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+.tabla-datos th {
+  text-align: left;
+  font-size: 0.78rem;
+}
+.tabla-datos td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Animación de entrada de las gráficas --- */
+.grafica-anim {
+  animation: tablero-entrada 320ms ease-out both;
+}
+/* OJO: el contorno de hover (Plot.pointer/pointerX/pointerY) también es un
+   g[aria-label="bar"], con fill="none" en el grupo. Ese contorno se re-crea
+   en cada movimiento del mouse; animarlo produce un parpadeo constante.
+   Hay que excluir el grupo completo, no solo el rect. */
+.grafica-anim svg g[aria-label="bar"]:not([fill="none"]) rect {
+  animation: tablero-barra 420ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  transform-origin: center bottom;
+}
+.grafica-anim svg g[aria-label="bar"][fill="none"] rect {
+  animation: none;
+}
+.grafica-anim svg g[aria-label="cell"][fill="none"] rect {
+  animation: none;
+}
+/* Al redibujar por un cambio de ancho no se anima: arrastrar el borde de la
+   ventana haría parpadear todas las gráficas a la vez. En el redibujo por
+   filtro sí se anima, porque ahí el movimiento es la respuesta a un clic. */
+.seccion-cuerpo.sin-entrada .grafica-anim,
+.seccion-cuerpo.sin-entrada .grafica-anim svg g[aria-label="bar"] rect {
+  animation: none;
+}
+
+@keyframes tablero-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes tablero-barra {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* --- Contorno al pasar el mouse sobre un mapa ------------------------------
+   Plot no expone un canal de hover para Plot.geo: se marca el SVG con una
+   clase (conHoverGeo en graficas.js) y el resaltado lo hace este CSS.
+   `pointer-events: all` es necesario porque Plot pone fill/stroke en el <g>
+   padre, no en cada <path>: sin esto, el navegador solo detecta el mouse
+   sobre el TRAZO del path, no su interior. */
+.mapa-hover g[aria-label="geo"] path {
+  pointer-events: all;
+  transition: stroke-width 120ms ease;
+  cursor: pointer;
+}
+.mapa-hover g[aria-label="geo"] path:hover {
+  /* El contorno lee el token de tinta: en claro es casi negro y en oscuro es
+     casi blanco. Un contorno oscuro fijo desaparecería sobre el mapa en modo
+     oscuro, que es justo cuando más falta hace. */
+  stroke: var(--text-primary) !important;
+  stroke-width: 2.5 !important;
+  paint-order: stroke fill;
+}
+/* Los cuatro participantes sin polígono se dibujan como círculo; el hover
+   tiene que alcanzarlos también, o Singapur y Hong Kong quedan mudos. */
+.mapa-hover g[aria-label="dot"] circle {
+  pointer-events: all;
+  cursor: pointer;
+}
+.mapa-hover g[aria-label="dot"] circle:hover {
+  stroke: var(--text-primary) !important;
+  stroke-width: 2.5 !important;
+  paint-order: stroke fill;
+}
+
+/* Encabezado real solo para que el TOC nativo de Framework lo detecte en el
+   build estático: las páginas construidas a mano (apoyos.md) pintan su
+   propio kicker con JS al ejecutar, y el TOC se genera antes de eso,
+   escaneando el HTML del build. Se colapsa a cero: sirve de ancla, no de
+   título visible duplicado. */
+h2.toc-anchor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Las gráficas llenan el ancho de su tarjeta y se centran. */
+.grafica-anim figure,
+.grafica-anim svg {
+  max-width: 100%;
+}
+
+/* Sin bloque de modo oscuro, a propósito.
+
+   El sitio importa observablehq:theme-air, que es un tema CLARO fijo: no
+   redefine sus tokens bajo prefers-color-scheme. Una primera versión de este
+   archivo sí traía superficies oscuras, y el resultado fue que en un sistema
+   configurado en oscuro las tarjetas tomaban fondo negro mientras
+   --theme-foreground seguía siendo el negro de marca del tema claro. Texto
+   negro sobre fondo negro: las cifras de "Mujeres" y "Hombres" desaparecían,
+   y solo sobrevivían las que llevan color propio (la brecha, en rojo).
+
+   Mientras el sitio use un tema de un solo modo, estas superficies tienen que
+   seguirlo. Si algún día se adopta un tema con soporte de ambos modos, el
+   modo oscuro se agrega redefiniendo AQUÍ tanto la superficie como el color
+   de texto, nunca solo la superficie. */
+
+@media (prefers-reduced-motion: reduce) {
+  .grafica-anim,
+  .grafica-anim svg g[aria-label="bar"]:not([fill="none"]) rect {
+    animation: none;
+  }
+}
+
+/* --- Gráficas dentro de una rejilla ---------------------------------------- */
+
+/* En rejilla, las gráficas no deben desbordar su columna. */
+.grid .grafica-anim svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Densidad de tablero -------------------------------------------------- */
+/* El objetivo es que la página se lea de un vistazo, sin scroll largo: se
+   comprimen los espacios verticales de las piezas que rodean a la gráfica. */
+
+/* KPIs compactos: la cifra sigue siendo lo dominante, pero la tarjeta deja de
+   ocupar el alto de un párrafo. */
+.kpi-fila {
+  gap: 0.6rem;
+  margin: 0.6rem 0 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+.kpi-tarjeta {
+  padding: 0.6rem 0.75rem;
+  gap: 0.15rem;
+}
+.kpi-cifra {
+  font-size: 1.45rem;
+}
+.kpi-nota {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.panel-filtros {
+  padding: 0.6rem 0.8rem;
+  margin: 0.5rem 0;
+  gap: 0.7rem 1.1rem;
+}
+
+/* La tabla de respaldo va cerrada y discreta: es un relevo de accesibilidad,
+   no un bloque que deba competir por el espacio de la gráfica. */
+.tabla-datos {
+  margin: 0.25rem 0 0;
+}
+.tabla-datos summary {
+  font-size: 0.78rem;
+}
+
+/* La nota de la tarjeta de KPI se mantiene en un solo renglón: con nombres de
+   serie largos ("Mujeres con discapacidad") el texto crecía a tres líneas y
+   descuadraba la altura de la fila de tarjetas. Si no cabe, se recorta con
+   puntos suspensivos y el texto completo queda en el title. */
+.kpi-nota {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Secciones con filtros propios ---------------------------------------- */
+/* Cada sección (principal, indicadores relacionados, territorio) trae su panel
+   y se repinta sola. Se separan con una línea sutil para que se lea dónde
+   termina el alcance de un panel y empieza el del siguiente. */
+.seccion-tablero {
+  margin: 0 0 1.4rem;
+}
+.seccion-tablero + .seccion-tablero {
+  border-top: 1px solid var(--tablero-borde);
+  padding-top: 0.5rem;
+}
+.seccion-tablero .kicker {
+  margin-top: 0.6rem;
+}
+.seccion-cuerpo {
+  margin-top: 0.3rem;
+}
+
+/* --- Filtros fijos al hacer scroll ---------------------------------------- */
+/* El problema que resuelve: con cinco o seis gráficas por sección, llegar a la
+   última obligaba a bajar tanto que el panel de filtros salía de la pantalla.
+   Comparar exigía subir, cambiar el filtro y volver a bajar, y en ese viaje se
+   pierde justo lo que se estaba comparando.
+
+   Con el panel pegado arriba, se cambia el filtro con las gráficas a la vista
+   y el resultado se ve al instante. Se fija sin header (se eliminó del sitio),
+   así que top: 0 no tapa nada.
+
+   OJO: Framework pone `container-type: inline-size` en #observablehq-main
+   (grid.css), y eso ANULA `position: sticky` en todos sus descendientes —
+   un contenedor de tamaño ("containment") corta el contexto de scroll que
+   sticky necesita. Sin esta corrección, el panel de abajo simplemente no se
+   pega, sin ningún error visible. */
+#observablehq-main {
+  container-type: normal;
+}
+
+/* Efecto colateral de la regla anterior: las rejillas de Framework
+   (.grid-cols-2, .grid-cols-3, .grid-cols-4) se reparten en columnas con
+   @container, y sin contenedor esa consulta nunca se cumple: toda rejilla se
+   queda en UNA columna sin ningún aviso (las tarjetas de la portada salían
+   apiladas).
+
+   Antes esto se parcheaba replicando los cortes con @media contra la ventana y
+   descontando el sidebar a ojo, lo que erraba por unos 240 px: entre 912 y
+   1152 las tarjetas se partían en dos columnas de 400 px.
+
+   Ahora se le devuelve el contenedor a las páginas que no tienen panel de
+   filtros, que son justamente las que llevan rejillas. Donde sí lo hay —las
+   páginas de análisis— se mantiene sin contenedor, porque `container-type`
+   anula el `position: sticky` de todos sus descendientes. Así el corte lo pone
+   Framework contra el ancho REAL de la columna y no una cuenta paralela. */
+#observablehq-main:not(:has(.panel-filtros)) {
+  container-type: inline-size;
+}
+
+/* El panel pegajoso se define UNA sola vez, más abajo en esta hoja. Antes
+   había dos bloques con este mismo selector y fondos distintos
+   (--surface-1 aquí, --tablero-superficie allá): ganaba el de abajo y el de
+   arriba no tenía ningún efecto. */
+
+/* El kicker de la sección también acompaña, arriba del panel, para no perder
+   de vista de qué sección son los filtros que se están tocando. */
+.seccion-tablero .kicker {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: var(--surface-1);
+  padding-top: 0.5rem;
+  padding-bottom: 0.1rem;
+  margin-top: 0.6rem;
+}
+/* Cuando hay kicker, el panel se pega justo debajo de él. */
+.seccion-tablero .kicker + .panel-filtros {
+  top: 1.9rem;
+}
+
+/* En pantallas bajas el panel pegajoso se come demasiado alto: ahí se libera. */
+@media (max-height: 620px) {
+  .seccion-tablero .panel-filtros,
+  .seccion-tablero .kicker {
+    position: static;
+    box-shadow: none;
+  }
+}
+
+/* --- Desplegable "¿Qué quiere decir este análisis?" ------------------------ */
+/* Va cerrado y discreto, junto a la tabla de datos: no compite con la gráfica,
+   pero está a un clic para quien no viene de la encuesta. */
+.explica-analisis {
+  margin: 0.3rem 0 0;
+}
+.explica-analisis summary {
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tablero-rojo);
+  padding: 0.25rem 0;
+}
+.explica-analisis p {
+  margin: 0.3rem 0 0.2rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--brand-dark);
+  max-width: 68ch;
+  padding-left: 0.7rem;
+  border-left: 2px solid var(--tablero-borde);
+}
+
+/* ===========================================================================
+   TABLERO PISA: clases propias de este proyecto
+   ---------------------------------------------------------------------------
+   Las clases de marca (.book-hero, .book-cover, .book-citation, .kpi-*,
+   .panel-filtros, .filtro, .tabla-datos, .kicker, .explica-analisis,
+   .grafica-anim) ya están definidas arriba y se reutilizan tal cual aquí
+   abajo: volver a declararlas las anularía por cascada, que es exactamente
+   el error que ya costó una sesión de trabajo.
+   ========================================================================= */
+
+/* --- Encabezado de página ------------------------------------------------ */
+.hero-pagina {
+  margin: 0 0 1.6rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--tablero-borde);
+}
+.hero-pagina h1 {
+  margin: 0.35rem 0 0.5rem;
+  line-height: 1.15;
+}
+.hero-entrada {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* --- Cabecera de sección ------------------------------------------------- */
+.seccion-cabeza {
+  margin: 2rem 0 0.6rem;
+}
+.seccion-titulo {
+  margin: 0 0 0.3rem;
+  font-size: 1.15rem;
+}
+.seccion-entrada {
+  margin: 0.35rem 0 0;
+  max-width: 68ch;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Ancla del índice lateral. El TOC de Framework se arma en el build estático,
+   antes de que el JS del navegador pinte nada, así que no ve los títulos que
+   genera seccion(): hace falta un h2 real escrito en el .md. Se colapsa a
+   cero con clip y NO con display:none, porque tiene que seguir siendo
+   detectable en el DOM. */
+.toc-anchor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Panel de filtros: piezas nuevas ------------------------------------- */
+/* El panel se hereda; lo que se agrega es la fila de campos y la ranura del
+   buscador, que se reconstruye al cambiar de nivel de análisis. */
+/* Todos los campos del panel viven en la MISMA rejilla —los homologados y los
+   propios de cada gráfica— para que compartan línea base y ancho de columna.
+   Antes el buscador colgaba en su propia fila y los selectores de eje y de
+   área quedaban fuera de la tarjeta, encima de la gráfica: se leían como tres
+   controles sin relación entre sí. */
+.panel-campos {
+  display: grid;
+  /* `auto-fill` y no `auto-fit`: con auto-fit una sola columna se estira a
+     todo el ancho del panel y un selector de dos opciones acababa midiendo
+     700 px. Con auto-fill la rejilla conserva las columnas vacías y cada
+     control mantiene un ancho razonable. */
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.9rem 1.2rem;
+  align-items: end;
+  width: 100%;
+}
+/* Los Input de Observable traen su propio layout de fila (label a la
+   izquierda); dentro de la rejilla se enderezan a columna para que la etiqueta
+   quede encima del control, como en los campos propios del tablero. */
+.panel-campos > form,
+.panel-campos > .filtro,
+.panel-campos > .filtro-extra {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.28rem;
+  margin: 0;
+  min-width: 0;
+  /* Tope en el ancho del contenedor, no `none`. Los Inputs de Observable fijan
+     360 px al <select> y su <form>, y con `max-width: none` ese ancho ganaba:
+     entre 600 y 1024 px el panel desbordaba la ventana y aparecía una barra de
+     scroll horizontal en toda la página. */
+  max-width: 100%;
+}
+.panel-campos > form > label,
+.panel-campos > .filtro-extra > label {
+  width: auto;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 0;
+}
+.panel-campos > form select,
+.panel-campos > .filtro-extra select {
+  width: 100%;
+  min-width: 0;
+}
+/* Salto de renglón antes de los selectores propios de la gráfica: ocupa
+   todas las columnas con alto cero y compensa el hueco de la rejilla. */
+.panel-campos > .panel-salto {
+  grid-column: 1 / -1;
+  height: 0;
+  margin-top: -0.9rem;
+}
+.panel-campos-denso {
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+}
+/* Las casillas de área sí van en fila: son tres opciones cortas y apiladas
+   robarían tres renglones a la tarjeta. */
+.panel-campos > form > div[class*="inputs-"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.9rem;
+}
+/* El buscador ocupa el ancho completo por debajo de la rejilla: su lista de
+   chips crece hacia abajo y en una columna estrecha se desbordaría. */
+.filtro-ranura {
+  width: 100%;
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border-subtle);
+}
+/* El buscador y sus chips comparten fila mientras quepan: apilarlos siempre
+   hacía que el panel midiera tres renglones para dos controles. */
+.filtro-busca {
+  display: grid;
+  grid-template-columns: minmax(12rem, 22rem) 1fr;
+  gap: 0.3rem 0.9rem;
+  align-items: start;
+}
+.filtro-busca > .filtro-etiqueta {
+  grid-column: 1 / -1;
+}
+.busca-chips {
+  margin-top: 0;
+  align-self: center;
+}
+@media (max-width: 640px) {
+  .filtro-busca {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Filtros pegajosos: con cinco gráficas por página, llegar a la última saca el
+   panel de la pantalla y comparar obliga a subir, cambiar y volver a bajar.
+   Requiere el container-type normal sobre #observablehq-main que ya está
+   más arriba en esta hoja: sin él, sticky no funciona en ningún descendiente. */
+.seccion-tablero .panel-filtros {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  /* Opaco a propósito: con fondo translúcido las gráficas se ven por debajo. */
+  background: var(--tablero-superficie);
+  box-shadow: var(--sombra-2);
+}
+
+/* El panel flota por encima de la gráfica, así que al saltar a una sección
+   desde el índice el título aterriza DEBAJO de él y queda oculto. El margen de
+   scroll reserva ese alto: es la única forma de que un ancla respete un
+   elemento pegajoso. */
+.seccion-tablero,
+h2.toc-anchor {
+  scroll-margin-top: 7.5rem;
+}
+
+/* En las gráficas altas —el ranking son 1,400 px y la matriz 1,870— el panel
+   tapa las primeras filas mientras se recorre. Se le da un margen superior a
+   la gráfica para que su cabecera no nazca justo debajo del panel. */
+.seccion-tablero .seccion-cuerpo > figure:first-child {
+  margin-top: 0.4rem;
+}
+/* --- Buscador con autocompletado ----------------------------------------- */
+.filtro-busca {
+  flex: 1 1 100%;
+}
+.busca-caja {
+  display: flex;
+  gap: 0.5rem;
+}
+.busca-input {
+  flex: 1 1 auto;
+  min-width: 12rem;
+  max-width: 26rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.42rem 0.7rem;
+  font-size: 0.85rem;
+  background: var(--surface-1);
+  color: var(--brand-dark);
+}
+.busca-input:focus {
+  outline: 2px solid color-mix(in srgb, var(--brand-red) 25%, transparent);
+  border-color: var(--tablero-rojo);
+}
+.busca-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+.busca-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--tablero-rojo);
+  border-radius: 999px;
+  padding: 0.22rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  /* Pinta su fondo, así que pinta su texto: heredar el color acopla la
+     legibilidad del chip a un token que esta hoja no controla. */
+  background: color-mix(in srgb, var(--brand-red) 8%, transparent);
+  color: var(--tablero-rojo);
+}
+.busca-chip:hover {
+  background: color-mix(in srgb, var(--brand-red) 16%, transparent);
+}
+/* En oscuro el rojo de marca (#e8474f) da 4.2:1 sobre el fondo teñido del
+   chip; un rojo dos pasos más claro llega a 5.4:1 y sigue siendo el mismo
+   matiz. */
+:root[data-tema="oscuro"] .busca-chip {
+  color: #f06a70;
+  border-color: #f06a70;
+}
+.busca-chip span {
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.7;
+}
+/* Aviso de "no hay resultado" del buscador. Vacío no ocupa alto: el :empty
+   evita que el panel dé un salto cada vez que se limpia el mensaje. */
+.busca-aviso {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+.busca-aviso:empty {
+  display: none;
+}
+
+.busca-limpiar {
+  border: 1px dashed var(--border-subtle);
+  border-radius: 999px;
+  padding: 0.22rem 0.6rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  background: var(--surface-1);
+  color: var(--text-muted);
+}
+.busca-limpiar:hover {
+  border-color: var(--tablero-rojo);
+  color: var(--tablero-rojo);
+}
+
+/* --- Figuras -------------------------------------------------------------- */
+/* Por prefijo de clase y no por lista: toda figura que devuelva una función
+   de graficas.js o graficas-estudios.js lleva la tarjeta con el costado gris.
+   La lista explícita dejaba sin tarjeta a las diez figuras de los estudios
+   (apilada, dumbbell, cuadrantes, forest, rejilla, riesgo, rangos, curvas,
+   paralelas) y nada avisaba. */
+figure[class^="grafica-"],
+figure[class*=" grafica-"],
+.medida-ancho {
+  margin: 1.1rem 0 0.6rem;
+  padding: 0.9rem 1rem 0.7rem;
+  border: 1px solid var(--tablero-borde);
+  border-left: 4px solid var(--tablero-borde);
+  border-radius: 10px;
+  background: var(--surface-1);
+  color: var(--brand-dark);
+  box-shadow: var(--sombra-1);
+  overflow-x: auto;
+}
+/* Título de toda figura de la librería. Por prefijo de clase y no por lista:
+   cada función nueva quedaba fuera y su título salía con el tamaño por
+   omisión. Va en rojo de marca, como los rótulos del bloque de fuentes, para
+   que se lea como el encabezado del bloque y no como una línea más del
+   texto. */
+#observablehq-main figure[class^="grafica-"] > h3,
+#observablehq-main figure[class*=" grafica-"] > h3 {
+  margin: 0 0 0.15rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--brand-red);
+}
+.grafica-sub {
+  margin: 0 0 0.5rem;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+figure[class^="grafica-"] > figcaption,
+figure[class*=" grafica-"] > figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+/* Framework mete .card h2 ~ svg { margin-top: 1rem } y su reset de
+   :first-child no alcanza al título de Plot cuando hay un envoltorio en medio. */
+figure[class^="grafica-"] figure > h2,
+figure[class*=" grafica-"] figure > h2 {
+  margin-top: 0;
+  margin-bottom: 0.15rem;
+}
+
+/* El ranking dibuja 88 filas: necesita alto propio, no el tope de las demás. */
+.grafica-ranking .grafica-anim svg {
+  max-height: none;
+}
+
+/* --- Mapa y leyenda bivariada -------------------------------------------- */
+.mapa-con-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.mapa-con-leyenda > .grafica-anim {
+  flex: 1 1 30rem;
+  min-width: 0;
+}
+.leyenda-bivariada {
+  flex: 0 0 auto;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--tablero-borde);
+  border-radius: 10px;
+  background: var(--tablero-superficie);
+  color: var(--brand-dark);
+}
+.leyenda-biv-titulo {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+/* La rejilla va rotada 45 grados en los mapas bivariados clásicos; aquí se
+   deja recta y con los dos ejes rotulados, que se lee mejor a este tamaño. */
+.leyenda-biv-cuerpo {
+  display: grid;
+  grid-template-areas:
+    "ejeB escalaB rejilla"
+    ".    .       escalaA"
+    ".    .       ejeA";
+  gap: 0.25rem 0.35rem;
+  align-items: center;
+}
+/* Los rangos de puntaje al lado de cada clase. Sin ellos el color dice el
+   ORDEN (más o menos) pero no la MAGNITUD, y un mapa bivariado sin magnitud
+   solo se puede leer de forma aproximada. */
+.leyenda-biv-escalaA,
+.leyenda-biv-escalaB {
+  display: grid;
+  font-size: 0.7rem;
+  line-height: 1.25;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.leyenda-biv-escalaA {
+  grid-area: escalaA;
+  grid-template-columns: repeat(3, 1.35rem);
+  gap: 2px;
+  text-align: center;
+}
+.leyenda-biv-escalaA > span {
+  /* Los rangos no caben en 1.35rem: se giran para no ensanchar la leyenda. */
+  writing-mode: vertical-rl;
+  justify-self: center;
+  margin-top: 0.15rem;
+}
+.leyenda-biv-escalaB {
+  grid-area: escalaB;
+  grid-template-rows: repeat(3, 1.35rem);
+  gap: 2px;
+  align-items: center;
+  justify-items: end;
+  text-align: right;
+}
+.leyenda-biv-rejilla {
+  grid-area: rejilla;
+  display: grid;
+  grid-template-columns: repeat(3, 1.35rem);
+  grid-template-rows: repeat(3, 1.35rem);
+  /* 2px de separación entre celdas: el espaciador que exige la guía de marcas
+     para que dos rellenos contiguos no se lean como uno solo. */
+  gap: 2px;
+}
+.leyenda-biv-celda {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+}
+.leyenda-biv-ejeA {
+  grid-area: ejeA;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+}
+.leyenda-biv-ejeB {
+  grid-area: ejeB;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  justify-self: center;
+}
+.leyenda-biv-cortes {
+  margin: 0.55rem 0 0;
+  max-width: 14rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* --- Varios --------------------------------------------------------------- */
+.aviso-vacio {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 8px;
+  background: var(--surface-1);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.tabla-scroll {
+  max-height: 26rem;
+  overflow: auto;
+}
+.tabla-datos td.num,
+.tabla-datos th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Gráfico de la portada de libro -------------------------------------- */
+/* La portada dibuja el dato del proyecto, no un adorno: son las trayectorias
+   ternarias reales de doce países a lo largo de los ciclos de PISA — las
+   mismas "cometas" que el tablero muestra en el panorama—, con el punto rojo
+   en el ciclo más reciente de cada uno.
+
+   Se sirve con <img> y no inlinado: `${...}` dentro de HTML crudo escaparía el
+   contenido, y además evita que los `id` y clases del SVG choquen con los del
+   logo que ya vive en el sidebar.
+
+   El alto del grupo se controla con UNA sola variable para poder ajustarlo a
+   ojo sin desalinear nada, igual que en los tableros hermanos. */
+.book-cover {
+  --gap-alto-pisa: 8;
+}
+.book-cover-grafico {
+  position: absolute;
+  /* El SVG ya viene encuadrado sobre la nube de datos y centrado en su propio
+     viewBox, así que aquí solo se le da la caja: se ancla al tercio superior
+     de la portada, que es el espacio libre por encima del bloque de texto. */
+  /* Ocupa solo el tercio superior: por debajo empieza el bloque de texto
+     (logo, banda de nombre, título) y el gráfico no debe pisarlo. */
+  /* La caja termina donde empieza el logo: el enjambre se dibuja en la franja
+     libre de arriba y no compite con el bloque de texto. El alto se ajustó a
+     ojo contra la captura, que es la única forma de verlo. */
+  top: calc(var(--gap-alto-pisa) * 1px);
+  left: 7%;
+  right: 7%;
+  width: 86%;
+  height: 27%;
+  /* `contain` respeta la proporción del ternario. Con `cover` o con un
+     preserveAspectRatio "none" las trayectorias se deformarían y las
+     direcciones dejarían de corresponder a los vértices del triángulo. */
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+  /* Atenuado: el título y el subtítulo van encima, y a opacidad plena las
+     marcas competían con ellos. */
+  opacity: 0.82;
+}
+
+/* El subtítulo de ESTA portada es más largo que el del tablero del que se
+   heredó el bloque, y a su tamaño original se desbordaba por los lados de la
+   cubierta. Se ajusta solo aquí, sin tocar la regla compartida. */
+.book-cover-subtitle {
+  font-size: 0.72rem;
+  line-height: 1.45;
+  padding: 0 1.4rem;
+  text-wrap: balance;
+}
+
+/* La especialización y la pendiente dibujan una fila por país: necesitan alto
+   propio, no el tope compartido de las demás gráficas. */
+.grafica-especializacion .grafica-anim svg,
+.grafica-pendiente .grafica-anim svg {
+  max-height: none;
+}
+
+/* --- Matriz-cinta -------------------------------------------------------- */
+/* La matriz y la columna de trayectoria son dos Plot distintos que tienen que
+   quedar alineados fila a fila: van uno junto al otro en flex, sin hueco, y
+   comparten el mismo alto porque ambos se calculan con el mismo número de
+   países. Se separan en dos gráficas porque la matriz usa una escala ordinal
+   de banda en x y la mini-serie necesita una escala continua. */
+.matriz-leyenda {
+  margin: 0 0 0.5rem;
+}
+.matriz-cuerpo {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+}
+.matriz-tendencia {
+  position: relative;
+  flex: 0 0 auto;
+}
+.matriz-tendencia-titulo {
+  position: absolute;
+  top: 30px;
+  left: 4px;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+/* 88 filas necesitan alto propio, no el tope compartido de las demás. */
+.grafica-matriz .grafica-anim svg,
+.matriz-tendencia svg {
+  max-height: none;
+}
+
+/* La matriz es la única gráfica del tablero que no cabe en el ancho de la
+   columna de texto: son nueve columnas de celdas más la de trayectoria. Se le
+   permite salirse hacia los dos lados hasta el ancho de la ventana, con un
+   tope para que en pantallas muy anchas no se estire sin sentido. Framework
+   pone `container-type: normal` en #observablehq-main (más arriba en esta
+   hoja), así que los márgenes negativos se calculan contra el viewport. */
+/* Selector por prefijo: toda figura que una función de graficas.js o
+   graficas-estudios.js devuelva con clase grafica-* desborda la columna. La
+   lista explícita dejó fuera a las diez figuras nuevas de los estudios, que
+   quedaban en 640 px dentro de una columna de 980. */
+#observablehq-main figure[class^="grafica-"],
+#observablehq-main figure[class*=" grafica-"],
+#observablehq-main .medida-ancho {
+  width: var(--ancho-desbordado);
+  max-width: none;
+  margin-left: calc((100% - var(--ancho-desbordado)) / 2);
+  margin-right: calc((100% - var(--ancho-desbordado)) / 2);
+}
+@media (max-width: 900px) {
+  /* En pantallas angostas no hay nada que ganar desbordando: se deja en el
+     ancho de la columna y la tarjeta ya trae overflow-x para recorrerla. */
+  #observablehq-main figure[class^="grafica-"],
+  #observablehq-main figure[class*=" grafica-"],
+  #observablehq-main .medida-ancho {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* La regla con la que base.js mide el ancho de las gráficas. Comparte con la
+   tarjeta de figura todo lo que decide su ancho —el desbordamiento de la
+   columna, el tope, los rellenos y los bordes laterales— y aquí se le quita
+   todo lo que ocupa alto. La medida sale de la hoja de estilos y no de una
+   fórmula repetida en JS, que se desincronizaría al primer retoque de aquí.
+
+   `visibility: hidden` y no `display: none`: un elemento sin caja no tiene
+   ancho que medir ni dispara el ResizeObserver. Y nada de `container-type`,
+   `contain`, `transform` ni `filter` sobre ella o sus ancestros: cualquiera de
+   los cuatro vuelve a romper el `position: sticky` del panel de filtros. */
+.medida-ancho {
+  height: 0;
+  padding-block: 0;
+  border-block: 0;
+  margin-block: 0;
+  overflow: hidden;
+  visibility: hidden;
+  box-shadow: none;
+}
+/* Las gráficas del tablero se dibujan al ancho real de su tarjeta, así que no
+   hay nada que escalar: `max-width: 100%` solo estorbaría en el único caso en
+   que el SVG es más ancho que la tarjeta, que es cuando el ancho disponible
+   cae por debajo del piso de base.js. Ahí se prefiere recorrer la gráfica en
+   horizontal —el `overflow-x: auto` de la tarjeta ya está puesto— a encogerle
+   la tipografía, que es la misma decisión que ya tomaba la matriz de países.
+   Los márgenes automáticos de `figure svg` no hacen falta anularlos: cuando el
+   hijo es más ancho que el contenedor, CSS los trata como cero, así que el
+   borde izquierdo sigue siendo alcanzable con el scroll. */
+.seccion-cuerpo figure[class^="grafica-"] svg,
+.seccion-cuerpo figure[class*=" grafica-"] svg {
+  max-width: none;
+}
+
+/* El SVG de la matriz no se escala al ancho de la tarjeta: al escalarlo se
+   encogen los márgenes y las etiquetas de país acaban encima de las celdas.
+   El contenedor ya tiene overflow-x: auto. */
+.matriz-cuerpo svg {
+  max-width: none;
+}
+
+/* El panel de filtros acompaña el ancho de su gráfica: una tarjeta de filtros
+   estrecha encima de una gráfica ancha se lee como si fueran dos bloques sin
+   relación. */
+.seccion-tablero .panel-filtros {
+  width: var(--ancho-desbordado);
+  margin-left: calc((100% - var(--ancho-desbordado)) / 2);
+  margin-right: calc((100% - var(--ancho-desbordado)) / 2);
+}
+@media (max-width: 900px) {
+  .seccion-tablero .panel-filtros {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* Un campo oculto del panel de filtros NO se pinta.
+   `hidden` es un atributo, y su regla del user-agent (`display: none`) tiene
+   especificidad 0-0-1: cualquier selector propio que fije `display` la vence.
+   Aquí la vencían `.panel-campos > form` y `.panel-campos > .filtro-extra`,
+   que declaran `display: flex`, así que las casillas que el panel marcaba
+   como ocultas seguían visibles y solo se ocultaban "en el DOM". Va al final
+   de la hoja y con `!important` a propósito: es una regla de estado que debe
+   ganar a cualquier estilo de componente, presente o futuro. */
+.panel-filtros [hidden] {
+  display: none !important;
+}
+
+/* --- Botón de descarga de una gráfica -------------------------------------
+   Va bajo el pie de la figura, en la misma familia visual que el desplegable
+   de explicación y el bloque de fuentes: texto, no icono, para que se lea sin
+   depender de reconocer un símbolo. */
+.descarga {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+}
+.descarga-etiqueta {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+}
+.descarga-boton {
+  padding: 0.16rem 0.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.descarga-boton:hover {
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+}
+.descarga-aviso {
+  color: var(--text-muted);
+}
+:root[data-tema="oscuro"] .descarga-etiqueta {
+  color: #f06a70;
+}
+
+/* --- Accesibilidad transversal --------------------------------------------
+   Va al final a propósito: son reglas que deben ganar por cascada a
+   cualquier estilo de componente anterior. Ninguna cambia la apariencia en
+   reposo; solo aparecen al navegar con teclado o en modos forzados. */
+
+/* Anillo de foco único para todo control interactivo. Framework y los Inputs
+   de Observable traen focus por omisión del navegador, que en algunos temas
+   queda casi invisible sobre superficie clara. Se usa :focus-visible y no
+   :focus para que el anillo NO salga al hacer clic con el ratón, solo al
+   llegar por teclado. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+select:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Los <select> e <input> del panel de filtros traían `outline` propio en
+   :focus (un halo rojo translúcido) que no cumple 3:1 contra la superficie.
+   Se sustituye por el anillo de arriba. */
+.filtro select:focus,
+.busca-input:focus {
+  outline: none;
+}
+.filtro select:focus-visible,
+.busca-input:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 2px;
+  border-color: var(--brand-red);
+}
+
+/* Enlace de salto al contenido. Vive fuera de la pantalla hasta recibir foco;
+   es el primer tabulador de la página y evita recorrer todo el sidebar en
+   cada navegación. El nodo lo inserta el script de observablehq.config.js. */
+.saltar-contenido {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--surface-1);
+  color: var(--brand-red);
+  border: 2px solid var(--brand-red);
+  border-radius: 0 0 var(--radio-1) 0;
+  font-weight: 600;
+  text-decoration: none;
+}
+.saltar-contenido:focus {
+  left: 0;
+}
+
+/* Región que anuncia el repintado de una gráfica a un lector de pantalla.
+   Sin esto, cambiar un filtro no produce ningún aviso: la gráfica se
+   reemplaza en silencio y quien no la ve no sabe que pasó algo. */
+.aviso-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Modo de altos contrastes de Windows. Ahí el sistema reemplaza todos los
+   colores, así que un bloque que se distinguía solo por su fondo desaparece:
+   se le devuelve un borde de sistema. */
+@media (forced-colors: active) {
+  .card,
+  .kpi-tarjeta,
+  .panel-filtros,
+  .explica-analisis,
+  .leyenda-bivariada {
+    border: 1px solid CanvasText;
+  }
+  .busca-chip {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Envoltorio que el script de observablehq.config.js pone alrededor del
+   <label> de cierre del sidebar, que Framework cuelga directo de un <ol>.
+   El label es absoluto respecto al <ol>, así que el <li> no debe ocupar
+   sitio ni pintar viñeta. */
+.li-envoltorio {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  line-height: 0;
+}
+
+/* --- Botón de tema claro / oscuro ------------------------------------------
+   Vive en el sidebar, bajo la marca. El script de observablehq.config.js lo
+   inserta y mantiene su `aria-pressed`; aquí solo va su aspecto. */
+.boton-tema-caja {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0.1rem 0.75rem 0.6rem;
+}
+
+.boton-tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.34rem 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  /* Superficie elevada y no --surface-1: el sidebar ya usa esa misma, y con el
+     fondo del botón igual al de su contenedor solo lo delataba el borde, que
+     en modo oscuro casi no se veía. Con la capa 3 el botón se lee como una
+     pieza puesta encima, en los dos temas. */
+  background: var(--surface-3);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.boton-tema:hover {
+  color: var(--brand-red);
+  border-color: var(--brand-red);
+  background: color-mix(in srgb, var(--brand-red) 6%, var(--surface-1));
+}
+
+.boton-tema-icono {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+}
+.boton-tema-icono svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* El icono gira al cambiar de estado. Es el único movimiento del sidebar y
+   dura menos de medio segundo: confirma que el clic surtió efecto sin
+   distraer de la lectura. */
+.boton-tema[aria-pressed="true"] .boton-tema-icono {
+  animation: giraTema 0.4s ease;
+}
+.boton-tema[aria-pressed="false"] .boton-tema-icono {
+  animation: giraTema 0.4s ease;
+}
+@keyframes giraTema {
+  from {
+    transform: rotate(-90deg) scale(0.6);
+    opacity: 0.3;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boton-tema .boton-tema-icono {
+    animation: none;
+  }
+}
+
+/* En modo de altos contrastes el botón se distingue solo por su borde, así que
+   se le da uno del sistema. */
+@media (forced-colors: active) {
+  .boton-tema {
+    border: 1px solid ButtonText;
+  }
+}
+
+/* --- Pie "Verificado con fuente" ------------------------------------------
+   Debajo de cada gráfica. Tres líneas como máximo: de dónde salen los datos,
+   contra qué se cotejaron (con el resultado) y qué leer. Se distingue de la
+   figcaption de Plot porque esta habla del DATO y no de la forma. */
+/* Resumen del bloque colapsable de fuentes. Misma forma que el desplegable de
+   explicación y la tabla de respaldo, para que los tres se lean como la misma
+   familia de controles. */
+/* Mismo aspecto que «¿Qué quiere decir este análisis?» y «Ver los datos»: los
+   tres son el mismo tipo de control y colapsados tienen que verse iguales. La
+   tarjeta gris solo aparece al desplegar. */
+.verificado > summary {
+  cursor: pointer;
+  padding: 0.25rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--tablero-rojo);
+  /* Sin marcador propio: el triángulo lo pone el navegador, igual que en los
+     otros dos desplegables. Dibujarlo con ::before daba un glifo distinto y
+     un tamaño distinto, y los tres se veían de familias diferentes. */
+}
+.verificado[open] > summary {
+  margin-bottom: 0.35rem;
+}
+:root[data-tema="oscuro"] .verificado > summary {
+  color: #f06a70;
+}
+
+.verificado {
+  margin: 0.3rem 0 0.2rem;
+  /* Un solo tamaño para todo el bloque, en rem y no en em: encadenar em
+     sobre el 0.8rem del contenedor daba tres tamaños distintos según el
+     anidamiento. */
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  /* Las cifras de las tablas (I.B1.2b.24, 362.6, 57.24) se leen mejor con
+     cifras de ancho fijo: sin esto los dígitos bailan dentro de la frase. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* Rejilla de dos columnas: rótulo y contenido. Con el rótulo en línea el
+   texto envolvía por debajo de él y las tres entradas se leían como un solo
+   párrafo. La primera columna se dimensiona con el rótulo más largo. */
+.verificado-fila {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, max-content) 1fr;
+  gap: 0.15rem 0.7rem;
+  align-items: baseline;
+  padding: 0.28rem 0;
+}
+.verificado-fila + .verificado-fila {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.verificado-etiqueta {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  /* Rojo de marca: da 5.1:1 sobre la superficie de la tarjeta. */
+  color: var(--brand-red);
+}
+
+.verificado-cuerpo > * {
+  margin: 0;
+}
+.verificado-cuerpo > * + * {
+  margin-top: 0.25rem;
+}
+
+/* Las citas van algo más tenues que la frase del resultado: son la
+   referencia, y el resultado es lo que hay que leer. */
+.verificado-citas {
+  color: var(--text-secondary);
+}
+.verificado-resultado {
+  color: var(--text-primary);
+}
+
+/* Marca de verificación en TEXTO, no solo color: quien no distingue el rojo
+   la sigue viendo. */
+.verificado-ok .verificado-etiqueta::before {
+  content: "✓ ";
+}
+.verificado-pendiente .verificado-etiqueta::before {
+  content: "○ ";
+}
+
+.verificado a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 2px;
+}
+.verificado a:hover {
+  color: var(--brand-red);
+  text-decoration-color: var(--brand-red);
+}
+
+/* En pantallas angostas la rejilla se apila: con 7.5rem de rótulo y el resto
+   para el texto, las citas quedaban en columnas de dos palabras. */
+@media (max-width: 640px) {
+  .verificado-fila {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}
+
+:root[data-tema="oscuro"] .verificado-etiqueta,
+:root[data-tema="oscuro"] #observablehq-main figure[class^="grafica-"] > h3,
+:root[data-tema="oscuro"] #observablehq-main figure[class*=" grafica-"] > h3 {
+  /* El rojo de marca da 4.32:1 sobre la tarjeta oscura; este escalón llega a
+     5.6:1 conservando el matiz. */
+  color: #f06a70;
+}
+
+/* El estado "verificado" ya no se distingue por color sino por la marca de
+   texto de abajo: los tres rótulos comparten el rojo de marca. */
+.verificado-ok .verificado-etiqueta::before {
+  /* Marca de verificación en TEXTO, no solo color: quien no distingue el
+     verde la sigue viendo. */
+  content: "✓ ";
+}
+.verificado-pendiente .verificado-etiqueta::before {
+  content: "○ ";
+}
+.verificado-resultado {
+  color: var(--text-primary);
+}
+.verificado a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 2px;
+}
+.verificado a:hover {
+  color: var(--brand-red);
+  text-decoration-color: var(--brand-red);
+}
+
+/* Zoom del mapa: el SVG se transforma dentro de un marco que recorta lo que
+   sale; los botones flotan en la esquina. */
+.mapa-zoom {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.mapa-zoom-ampliado {
+  cursor: grab;
+}
+.mapa-zoom-ampliado.mapa-zoom-activo {
+  cursor: grabbing;
+}
+.mapa-zoom-botones {
+  position: absolute;
+  right: 0.6rem;
+  top: 0.6rem;
+  display: flex;
+  gap: 0.25rem;
+}
+.mapa-zoom-botones button {
+  min-width: 1.9rem;
+  height: 1.9rem;
+  padding: 0 0.55rem;
+  border: 1px solid var(--tablero-borde);
+  border-radius: 999px;
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--sombra-1);
+}
+.mapa-zoom-botones button:hover {
+  border-color: var(--tablero-rojo);
+  color: var(--tablero-rojo);
+}
+
+/* Situación mundial: la leyenda va DEBAJO del mapa y no a su derecha, para
+   que el mapa ocupe todo el ancho y cada país se vea a simple vista. */
+.mapa-con-leyenda {
+  flex-direction: column;
+  align-items: stretch;
+}
+.mapa-con-leyenda > .grafica-anim {
+  flex: 1 1 auto;
+}
+.mapa-con-leyenda > .leyenda-bivariada {
+  align-self: flex-start;
+  max-width: 100%;
+}
+/* Con la leyenda debajo del mapa hay ancho de sobra: los cortes del eje
+   horizontal se leen en horizontal, no girados. */
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-escalaA > span {
+  writing-mode: horizontal-tb;
+  transform: none;
+  text-align: center;
+}
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-escalaA {
+  height: auto;
+}
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-rejilla,
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-escalaA {
+  grid-template-columns: repeat(3, 56px);
+  gap: 2px;
+}
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-escalaA {
+  display: grid;
+}
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-celda {
+  width: 56px;
+  height: 24px;
+}
+/* El título del eje vertical iba girado en la primera fila de la rejilla:
+   con 30 caracteres medía unos 170 px de alto, la fila crecía con él y las
+   celdas quedaban centradas a media altura, con los cortes del eje x a 60 px
+   de distancia. En columna el título va horizontal, encima de la rejilla. */
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-cuerpo {
+  grid-template-areas:
+    "ejeB    ejeB"
+    "escalaB rejilla"
+    ".       escalaA"
+    ".       ejeA";
+  gap: 0.2rem 0.35rem;
+  align-items: start;
+}
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-ejeB {
+  writing-mode: horizontal-tb;
+  transform: none;
+  justify-self: start;
+  text-align: left;
+}
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-escalaB {
+  grid-template-rows: repeat(3, 24px);
+}
+.mapa-con-leyenda > .leyenda-bivariada .leyenda-biv-escalaA > span {
+  margin-top: 0;
+}
+
+/* --- Ver también: enlaces cruzados al final de cada página de contenido --- */
+.ver-tambien {
+  margin: 2.5rem 0 1rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.ver-tambien-titulo {
+  margin: 0 0 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.ver-tambien-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.6rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ver-tambien-lista a {
+  font-weight: 600;
+  color: var(--brand-red);
+  text-decoration: none;
+}
+.ver-tambien-lista a:hover,
+.ver-tambien-lista a:focus-visible {
+  text-decoration: underline;
+}
+.ver-tambien-nota {
+  display: block;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+
+/* =====================================================================
+   Bloques propios de grupos-originarios: mapa de manzanas (MapLibre),
+   globo, leyenda, definiciones y piezas heredadas de discriminacion-mujeres.
+   ===================================================================== */
+
+/* Nota de la fuente dentro del panel de filtros: ocupa el ancho completo para
+   caer debajo de los selectores, no entre ellos. */
+.panel-nota {
+  flex-basis: 100%;
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* --- Aviso de muestra insuficiente: pegado a la gráfica, no al pie --- */
+.aviso-muestra {
+  margin: 0.5rem 0 1rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  border-left: 3px solid #e8930c;
+  background: color-mix(in srgb, #e8930c 8%, transparent);
+  /* Igual que las tarjetas: si el bloque pinta fondo, pinta su texto. */
+  color: var(--brand-dark);
+  border-radius: 0 8px 8px 0;
+}
+
+.aviso-muestra strong {
+  color: var(--estado-aviso-tinta);
+}
+/* En oscuro el ámbar de tinta queda en 2.9:1 sobre el fondo del aviso. */
+:root[data-tema="oscuro"] .aviso-muestra strong {
+  color: #f0b84a;
+}
+
+/* Nota que acompaña a un indicador secundario dentro de su tarjeta. */
+.nota-indicador {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* El aviso de muestra insuficiente, más compacto. */
+.aviso-muestra {
+  margin: 0.4rem 0 0.2rem;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+/* Los rótulos de las gráficas comparten tamaño con los de Plot (13px = 0.81rem)
+   para que el tablero no se vea disparejo según qué componente toque. */
+.mapas-rejilla {
+  display: grid;
+  gap: 0.5rem 0.7rem;
+  grid-template-columns: repeat(auto-fit, minmax(var(--mapa-min, 220px), 1fr));
+}
+
+/* ---------- Mapa de manzanas (PMTiles + MapLibre) ---------- */
+/* Prefijo .mapa-manzanas / .mapa-leyenda / .globo-: no colisiona con
+   .mapa-hover ni .mapa-panel, que son de las gráficas de Plot heredadas. */
+
+.mapa-manzanas {
+  width: 100%;
+  border: 1px solid var(--tablero-borde, #e3e3e3);
+  border-left: 3px solid var(--tablero-rojo, #C4101B);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.06);
+  overflow: hidden;
+  margin: 0.8rem 0;
+}
+
+/* MapLibre calcula su tamaño al montar; sin esto el canvas nace en 0px cuando
+   el contenedor todavía no tiene alto asignado. */
+.mapa-manzanas .maplibregl-canvas {
+  outline: none;
+}
+
+/* El globo de MapLibre trae su propio fondo blanco y punta; solo se ajusta la
+   tipografía para que hable el mismo idioma que las tarjetas. */
+.mapa-globo .maplibregl-popup-content {
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.14);
+  font-family: var(--sans-serif);
+  font-size: 12.5px;
+}
+
+.globo-titulo {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.globo-sub {
+  color: var(--text-muted, #6b6b6b);
+  font-size: 11.5px;
+  margin-bottom: 0.35rem;
+}
+
+.globo-tabla {
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.globo-tabla th,
+.globo-tabla td {
+  padding: 0.1rem 0 0.1rem 0;
+  text-align: left;
+  font-weight: 400;
+  vertical-align: baseline;
+}
+
+.globo-tabla th {
+  color: var(--text-muted, #6b6b6b);
+  padding-right: 0.7rem;
+  font-size: 11.5px;
+}
+
+.globo-tabla td {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.mapa-leyenda {
+  margin: 0.6rem 0 0.2rem;
+  max-width: 620px;
+}
+
+.mapa-leyenda figcaption {
+  font-size: 12.5px;
+  color: var(--text-muted, #6b6b6b);
+  margin-bottom: 0.35rem;
+}
+
+.mapa-leyenda-tira {
+  display: flex;
+  gap: 3px;
+}
+
+.mapa-leyenda-columna {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mapa-leyenda-paso {
+  height: 16px;
+  border-radius: 3px;
+  /* Borde tenue: sin él, el escalón más claro de la rampa se pierde contra el
+     fondo de la página y la leyenda parece tener una clase menos. */
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+}
+
+/* La etiqueta va DEBAJO del color, no encima: sobre los tonos oscuros de la
+   rampa el texto era ilegible con cualquier halo, y el extremo oscuro es
+   justamente el valor que más importa leer. Aquí el contraste es siempre el
+   mismo, sin depender del escalón. */
+.mapa-leyenda-valor {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary, #1a1a1a);
+  text-align: center;
+}
+
+.mapa-leyenda-sindato {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  font-size: 11.5px;
+  color: var(--text-muted, #6b6b6b);
+}
+
+.mapa-leyenda-muestra {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgb(0 0 0 / 0.12);
+  flex: none;
+}
+
+/* Lista de definiciones de los indicadores, dentro del desplegable "¿Qué quiere
+   decir este análisis?". El indicador activo se marca con el acento de la
+   marca para que el lector encuentre de inmediato el que está viendo. */
+.lista-definiciones {
+  margin: 0.6rem 0 0.9rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.lista-definiciones .definicion {
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--border-subtle, #e3e3e3);
+  background: var(--tablero-superficie, #fafafa);
+  border-radius: 0 6px 6px 0;
+}
+
+.lista-definiciones .definicion.es-activa {
+  border-left-color: var(--tablero-rojo, #C4101B);
+}
+
+.lista-definiciones dt {
+  font-weight: 600;
+  font-size: 13px;
+  margin: 0 0 0.15rem;
+}
+
+.lista-definiciones dd {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted, #6b6b6b);
+}
+
+/* --- Rejillas dentro de una sección con filtros (lección 61) -------------- */
+/* `container-type: normal` en #observablehq-main apaga las rejillas
+   `.grid-cols-N` de Framework, que se reparten con @container. Aquí se
+   replican con @media usando la misma expresión de layout.css (640px de
+   columna + 6rem de aire + 272px de sidebar) para las rejillas de las
+   páginas de análisis. La rejilla ocupa el ancho desbordado de la sección
+   y sus figuras se quedan en el ancho de su columna, no en el desbordado. */
+.seccion-cuerpo .grid,
+#observablehq-main .rejilla-figuras {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  width: var(--ancho-desbordado);
+  max-width: none;
+  margin-left: calc((100% - var(--ancho-desbordado)) / 2);
+  margin-right: calc((100% - var(--ancho-desbordado)) / 2);
+}
+@media (min-width: calc(640px + 6rem + 272px)) {
+  .seccion-cuerpo .grid-cols-2,
+  #observablehq-main .rejilla-figuras.grid-cols-2 {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .seccion-cuerpo .grid,
+  #observablehq-main .rejilla-figuras {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+#observablehq-main .grid figure[class^="grafica-"],
+#observablehq-main .grid figure[class*=" grafica-"] {
+  width: auto;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+.bloque-indicador {
+  min-width: 0;
+}
+/* La figura de un bloque en rejilla se mide al ancho de su columna: el SVG
+   se dibuja a ese ancho desde JS y no debe escalarse. */
+.bloque-indicador figure[class^="grafica-"] svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Páginas sin índice lateral (toc: false) ----------------------------- */
+/* --ancho-desbordado descuenta el ancho del índice de la página, pero la
+   portada no lo tiene: con el descuento, el desbordado nace corrido 192 px
+   a la izquierda e invade el sidebar. Se recalcula sin índice. */
+body:not(:has(#observablehq-toc)) #observablehq-main {
+  --ancho-desbordado: min(1180px, calc(100vw - var(--ancho-sidebar) - 6rem));
+}
+
+/* --- Leyenda de muestras de Plot ------------------------------------------ */
+/* Plot escribe la leyenda de color a 10 px y con la tinta tenue del tema, que
+   en oscuro queda en 3.8:1. Se sube a la tinta secundaria y a 12 px. */
+#observablehq-main figure [class*="-swatches"],
+#observablehq-main figure [class*="-swatch"] {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+/* --- Mapas comparados: leyendas en una fila y tres paneles alineados ------ */
+.mapas-leyendas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 2.5rem;
+  margin: 0.2rem 0 0.4rem;
+  color: var(--text-secondary);
+}
+.mapas-comparados .mapas-rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--mapa-min, 280px), 1fr));
+  gap: 0.5rem;
+  align-items: start;
+}
+.mapas-comparados .mapas-rejilla svg {
+  max-width: 100%;
+  height: auto;
+}
