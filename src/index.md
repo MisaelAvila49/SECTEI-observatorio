@@ -5,12 +5,12 @@ toc: false
 <div class="book-hero">
   <div class="book-hero-content">
     <span class="book-hero-eyebrow">Tablero de datos de Social Data Ibero</span>
-    <h1 class="book-hero-title">Grupos originarios: el acceso digital de la población indígena</h1>
-    <p class="book-hero-subtitle">Internet, celular y computadora en la población indígena de México, comparada con el resto, y el mapa por manzana de la Ciudad de México</p>
-    <p class="book-hero-abstract">Tres encuestas del INEGI preguntan a la vez por la conectividad y por la identidad indígena: el Censo 2020 mide lo que hay en la vivienda, la ENIGH lo que hay en el hogar en tres ediciones y la ENDUTIH 2025 lo que cada persona usa y para qué. Este tablero las pone lado a lado, con el criterio de identificación a elección del lector (hablar una lengua indígena o considerarse indígena) y con filtros por entidad, sexo, edad, tamaño de localidad, decil de ingreso y escolaridad. La primera etapa, el mapa por manzana de la Ciudad de México, sigue disponible.</p>
+    <h1 class="book-hero-title">Grupos originarios: dónde viven y cómo se conectan</h1>
+    <p class="book-hero-subtitle">El mapa por manzana de la Ciudad de México y el acceso a internet, celular y computadora en el país</p>
+    <p class="book-hero-abstract">Este tablero reúne dos trabajos sobre la población indígena de México: el mapa por manzana de la Ciudad de México, con el Censo 2020, y el acceso a internet, celular y computadora comparado con el resto de la población, con el Censo, la ENIGH y la ENDUTIH.</p>
     <div class="book-hero-ctas">
-      <a class="book-cta book-cta-primary" href="./encuestas/endutih/uso">Empezar por quién usa internet</a>
-      <a class="book-cta" href="./mapa-manzanas">Abrir el mapa por manzana</a>
+      <a class="book-cta book-cta-primary" href="./mapa-manzanas">Abrir el mapa por manzana</a>
+      <a class="book-cta" href="./encuestas/endutih/uso">Ver el acceso digital</a>
     </div>
   </div>
 
@@ -20,14 +20,20 @@ toc: false
 <div class="book-cover-brillo" aria-hidden="true"></div>
   <img class="book-cover-grafico" src="./images/portada-brecha.svg" alt="" aria-hidden="true">
   <div class="book-cover-text">
-  <img class="book-cover-logo" src="./images/social_data_blanco.svg" alt="Social Data Ibero">
   <span class="book-cover-eyebrow">Social Data Ibero</span>
   <span class="book-cover-title">Grupos originarios</span>
-  <span class="book-cover-subtitle">La brecha digital de la población indígena, indicador por indicador</span>
+  <span class="book-cover-subtitle">Población indígena de México: dónde vive y cómo se conecta</span>
 </div>
   <span class="book-cover-year">MMXXVI · 2026</span>
+  <img class="book-cover-logo" src="./images/social_data_blanco.svg" alt="Social Data Ibero">
 </div>
 </div>
+</div>
+
+<div class="instituciones-fila instituciones-fila--hero">
+  <span class="instituciones-eyebrow">Un proyecto de</span>
+  <a class="instituciones-chip instituciones-chip--ibero" href="https://ibero.mx" target="_blank" rel="noopener"><img src="./images/ibero/ibero-logo-color.webp" alt="Universidad Iberoamericana Ciudad de México"></a>
+  <a class="instituciones-chip instituciones-chip--sdie" href="https://socialdata.ibero.mx" target="_blank" rel="noopener"><img src="./images/social_data_original.svg" alt="Social Data Ibero"></a>
 </div>
 
 <section class="book-meta-grid" aria-label="Información editorial">
@@ -148,12 +154,12 @@ const b20 = brechaDe(serie2020, "indigena"), b24 = brechaDe(serie2024, "indigena
 
 ```js
 display(kpis([
-  {etiqueta: "Brecha en uso de internet, 2025", cifra: brechaUsa ? brechaUsa.texto : "s/d",
-   nota: `${formatear(usa.find((s) => s.serie === "Población indígena")?.pct)} de quienes hablan lengua indígena usan internet, contra ${formatear(usa.find((s) => s.serie === "Resto de la población")?.pct)} del resto (ENDUTIH 2025)`},
-  {etiqueta: "Brecha en internet en la vivienda, 2020", cifra: brechaViv ? brechaViv.texto : "s/d",
-   nota: `${formatear(viv.find((s) => s.serie === "Población indígena")?.pct)} contra ${formatear(viv.find((s) => s.serie === "Resto de la población")?.pct)} (Censo 2020)`},
-  {etiqueta: "Hogares indígenas con internet, 2020 a 2024", cifra: `${formatear(ind20)} → ${formatear(ind24)}`,
-   nota: `la brecha pasó de ${b20?.texto ?? "s/d"} a ${b24?.texto ?? "s/d"} (ENIGH)`},
+  {etiqueta: "Brecha en uso de internet", cifra: brechaUsa ? brechaUsa.texto : "s/d",
+   nota: "ENDUTIH 2025, personas de 6 años o más, criterio de lengua"},
+  {etiqueta: "Brecha en internet en la vivienda", cifra: brechaViv ? brechaViv.texto : "s/d",
+   nota: "Censo 2020, personas de 6 años o más, criterio de lengua"},
+  {etiqueta: "Brecha en internet en el hogar", cifra: b24 ? b24.texto : "s/d",
+   nota: "ENIGH 2024, personas de 6 años o más, criterio de lengua"},
 ]));
 ```
 
@@ -202,12 +208,12 @@ display(seccion({numero: "02", titulo: "Explorar por fuente"}));
 ```js
 {
   const t = html`<div class="grid grid-cols-2"></div>`;
-  ENCUESTAS.forEach((c, i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 1}</span>
-    <h3><a href=".${c.ruta}">${c.nombre}</a></h3>
-    <p>${c.resumen}</p></div>`));
-  t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">04</span>
+  t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">01</span>
     <h3><a href="./mapa-manzanas">Mapa por manzana de la Ciudad de México</a></h3>
     <p>Dónde vive la población en hogares indígenas de la ciudad, manzana por manzana, con el Censo 2020 y los pueblos originarios señalados.</p></div>`);
+  ENCUESTAS.forEach((c, i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 2}</span>
+    <h3><a href=".${c.ruta}">${c.nombre}</a></h3>
+    <p>${c.resumen}</p></div>`));
   display(t);
 }
 ```
@@ -237,7 +243,7 @@ const indTotal = 273851;
 ```js
 display(conDescarga(figura({
   titulo: "Cuántas colonias tienen cada porcentaje de población en hogares indígenas",
-  subtitulo: "Colonias de 500 habitantes o más. La línea marca el promedio de la ciudad, 2.99 %.",
+  subtitulo: "Colonias de 500 habitantes o más. La línea marca el promedio de la ciudad.",
   pie: "Censo 2020, tabulado por manzana: cada barra cuenta colonias con ese porcentaje de su población en hogares censales indígenas.",
 }, [resize((width) => Plot.plot({
   width, height: 260, style: {fontSize: "13px"}, marginLeft: 55,

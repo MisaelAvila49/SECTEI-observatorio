@@ -16,7 +16,7 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 <div class="hero-pagina">
   <span class="kicker">ENDUTIH 2025</span>
   <h1>Quién no se conecta y por qué</h1>
-  <p class="hero-entrada">La ENDUTIH pregunta a quien no usa internet, computadora o celular por qué no lo hace, y al hogar sin internet por qué no lo tiene. Esta página mide primero cuánta gente queda fuera y luego qué motivo declara cada grupo.</p>
+  <p class="hero-entrada">La ENDUTIH pregunta a quien no usa internet, computadora o celular por qué no lo hace, y al hogar sin internet por qué no lo tiene. Esta página muestra ambas respuestas por condición indígena.</p>
 </div>
 
 ```js

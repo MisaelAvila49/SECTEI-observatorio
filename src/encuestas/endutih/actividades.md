@@ -16,7 +16,7 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 <div class="hero-pagina">
   <span class="kicker">ENDUTIH 2025</span>
   <h1>Para qué se usa internet</h1>
-  <p class="hero-entrada">Entre quienes usan internet, la ENDUTIH pregunta para qué: estudiar, trabajar, informarse, hacer trámites, manejar dinero, comunicarse y entretenerse. Todos los indicadores de esta página se calculan solo entre quienes usan internet, así que miden la profundidad del uso, no el acceso.</p>
+  <p class="hero-entrada">Entre quienes usan internet, la ENDUTIH pregunta para qué: estudiar, trabajar, informarse, hacer trámites, manejar dinero, comunicarse y entretenerse. Los indicadores de esta página se calculan solo entre quienes usan internet.</p>
 </div>
 
 ```js

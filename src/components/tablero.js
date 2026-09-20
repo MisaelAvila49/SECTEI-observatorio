@@ -301,7 +301,7 @@ export function seccionesTema(clave, datos, {geoEntidades = null, datosDecil = n
           faceta: faceta && new Set(series.map((d) => d[faceta])).size > 1 ? faceta : null, width: ancho, ordenarPorBrecha: true, alturaFila: 30});
         return [
           conDescarga(figura({titulo: m.titulo, subtitulo: [`Universo: ${ffil[0].universo.toLowerCase()}.`, notaSeleccion(v, anios)].join(" "),
-            pie: `${ffil[0].fuente}: cada fila es un motivo y los dos puntos, la fracción de cada grupo que lo declara; suman 100 % por grupo.`}, [grafica, avisoMuestra(series)])),
+            pie: `${ffil[0].fuente}: cada fila es un motivo y los dos puntos, la fracción de cada grupo que lo declara.`}, [grafica, avisoMuestra(series)])),
           explicacion([m.explica, `Denominador: ${ffil[0].universo.toLowerCase()}.`]),
           bloqueFuentes(fuentes, encuesta, m.fuentes ?? tema.fuentes),
           tablaDatos(series, {dims: ["indicador", ...(faceta ? [faceta] : [])], formato: "pct"}),

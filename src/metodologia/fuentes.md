@@ -16,10 +16,10 @@ por entidad y municipio. Pregunta a la vivienda si dispone de internet,
 celular, computadora, televisor, radio, televisión de paga, servicio de
 películas por internet y consola de videojuegos; y a cada persona de 3 años o
 más si habla lengua indígena y si se considera indígena. Aquí se cuentan las
-personas de 6 años o más en viviendas particulares (13.3 millones de registros
-en la muestra). La cifra nacional de viviendas con internet que da la muestra
-(53.9 %) difiere de la del cuestionario básico (52.1 %) por el diseño de la
-muestra; la diferencia se declara en cada figura.
+personas de 6 años o más en viviendas particulares. La cifra nacional de
+viviendas con internet que da la muestra difiere ligeramente de la del
+cuestionario básico por el diseño de la muestra; el cotejo está en
+`src/data/verificaciones.csv`.
 
 **ENIGH 2020, 2022 y 2024.** Representativa por entidad. La tabla de hogares
 pregunta si el hogar tiene conexión a internet, celular, línea telefónica fija,
@@ -37,9 +37,9 @@ disponibilidad en el hogar. Hasta 2024 la encuesta no preguntaba por lengua
 indígena ni autoadscripción; el módulo 6.A de 2025 incorpora ambas, así que no
 hay serie histórica con este corte. Se verificó contra los propios microdatos
 qué pregunta es cuál: la variable que encabeza el módulo (P6A_1) no es la de
-lengua indígena sino la de afrodescendencia; la de lengua es P6A_5 (6.3 % de la
-población de 6 años o más, concentrada en Oaxaca, Yucatán y Chiapas, con 92 %
-de autoadscripción entre quienes la declaran) y la de autoadscripción, P6A_3.
+lengua indígena sino la de afrodescendencia; la de lengua es P6A_5 y la de
+autoadscripción, P6A_3. La comprobación se hizo por el peso de cada respuesta,
+su distribución por entidad y el cruce entre las tres variables.
 
 En las tres fuentes el porcentaje es de **personas de 6 años o más**, y en las
 tres la población indígena se define con el criterio que el lector elige en el

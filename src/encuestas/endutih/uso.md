@@ -16,7 +16,7 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 <div class="hero-pagina">
   <span class="kicker">ENDUTIH 2025</span>
   <h1>Quién usa internet y con qué</h1>
-  <p class="hero-entrada">La ENDUTIH pregunta a cada persona de 6 años o más si usó internet, computadora y celular en los últimos tres meses, con qué equipo y desde dónde. Desde 2025 pregunta también si habla lengua indígena y si se considera indígena: es la única fuente de uso personal con ese corte.</p>
+  <p class="hero-entrada">La ENDUTIH pregunta a cada persona de 6 años o más si usó internet, computadora y celular, con qué equipo y desde dónde. Desde 2025 pregunta también por lengua indígena y autoadscripción.</p>
 </div>
 
 ```js

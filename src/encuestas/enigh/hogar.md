@@ -17,7 +17,7 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 <div class="hero-pagina">
   <span class="kicker">ENIGH</span>
   <h1>Acceso en el hogar, 2020 - 2024</h1>
-  <p class="hero-entrada">La ENIGH pregunta al hogar si tiene conexión a internet, celular, computadora y otros servicios, con la misma pregunta cada dos años. Es la única de las tres fuentes que permite ver si la brecha entre la población indígena y el resto se cierra o se abre, y la única con decil de ingreso del hogar.</p>
+  <p class="hero-entrada">La ENIGH pregunta a cada hogar si tiene internet, celular, computadora y otros servicios, con la misma pregunta cada dos años. Esta página muestra las ediciones 2020, 2022 y 2024 por condición indígena, con decil de ingreso.</p>
 </div>
 
 ```js

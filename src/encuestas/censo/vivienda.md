@@ -16,7 +16,7 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 <div class="hero-pagina">
   <span class="kicker">Censo 2020</span>
   <h1>Conectividad en la vivienda</h1>
-  <p class="hero-entrada">El Censo 2020 pregunta, vivienda por vivienda, si dispone de internet, celular, computadora y otros bienes y servicios de comunicación. Esta página cuenta a las personas de 6 años o más según lo que hay en la vivienda donde viven, y las separa por condición indígena bajo el criterio que se elija: hablar una lengua indígena o considerarse indígena.</p>
+  <p class="hero-entrada">El Censo 2020 pregunta a cada vivienda si dispone de internet, celular, computadora y otros servicios. Esta página cuenta a las personas de 6 años o más según lo que hay en su vivienda, por condición indígena.</p>
 </div>
 
 ```js

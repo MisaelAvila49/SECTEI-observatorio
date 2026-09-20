@@ -11,11 +11,7 @@ import {mapaManzanas, leyenda, cortesPorCuantil, RAMPA_MORADA} from "./component
 
 # Población en hogares indígenas, manzana por manzana
 
-La Ciudad de México tiene 66,449 manzanas urbanas con dato censal. En ellas viven
-9,145,155 personas, de las cuales 273,851 —el 2.99 %— forman parte de un hogar
-censal indígena. Ese promedio de ciudad esconde lo que este mapa muestra: hay
-manzanas donde la proporción llega al 100 % y colonias enteras que rondan el
-20 %, a pocos kilómetros de otras donde no vive ninguna.
+Este mapa pinta cada manzana urbana de la Ciudad de México según la proporción de su población que cumple el indicador elegido, con el Censo 2020. Los indicadores miden lengua indígena, en hogares o en personas, y se pueden agregar a colonia.
 
 ```js
 // Los indicadores que se pueden pintar. El denominador es siempre la población
@@ -352,15 +348,11 @@ misma manzana no revela una contradicción sino esa diferencia de universo.
 
 Ninguno de los cuatro es autoadscripción, y no por omisión: la pregunta sobre si
 la persona se considera indígena solo se levantó en el cuestionario ampliado, que
-es una muestra y no se publica por manzana. Por eso la cifra de ciudad que arroja
-este mapa —2.99 %— es menor que el 8 o 9 % que suele citarse para la Ciudad de
-México, que proviene de esa otra pregunta. Son mediciones distintas, no un error;
-quien necesite la medida amplia debe usar la autoadscripción, y quien necesite la
-distribución territorial fina no tiene más opción que estos indicadores.
+es una muestra y no se publica por manzana. Las cifras de este mapa y las de
+autoadscripción responden preguntas distintas y no son comparables entre sí.
 
-Las manzanas grises no valen cero: son las 5,452 donde INEGI suprime la cifra
-por confidencialidad, casi siempre por tener muy pocos habitantes. Contarlas como
-ausencia de población indígena sesgaría el mapa hacia abajo.
+Las manzanas grises no valen cero: son aquellas donde el INEGI suprime la cifra
+por confidencialidad, casi siempre por tener muy pocos habitantes.
 
 </details>
 
@@ -370,17 +362,7 @@ ausencia de población indígena sesgaría el mapa hacia abajo.
 
 ## De la manzana al barrio
 
-La manzana es la unidad más fina que publica el Censo, pero no es la unidad en la
-que se piensa la ciudad ni en la que se decide una política. Al agregar a colonia
-aparece un problema que la jerarquía del INEGI no tiene: **5,925 manzanas —el
-8.9 %— caen en más de una colonia**, porque los límites de colonia no siguen los
-de la cartografía censal.
-
-A esas manzanas se les reparte la población en proporción al área que cae en cada
-colonia. El supuesto es que la gente se distribuye de manera uniforme dentro de
-la manzana, cosa que no es cierta cuando media manzana es un parque o una
-vialidad; es la mejor aproximación posible porque el Censo publica una sola cifra
-por manzana completa, sin detalle interno.
+La manzana es la unidad más fina que publica el Censo. Esta tabla agrega las manzanas a colonia: cuando una manzana cae en más de una colonia, su población se reparte en proporción al área que queda en cada una. El procedimiento está en la página de fuentes.
 
 ```js
 const colTabla = colonias
@@ -428,20 +410,13 @@ display(tablaColonias);
 <summary>¿Qué quiere decir este análisis?</summary>
 
 La tabla ordena las colonias por el porcentaje del indicador elegido y se limita
-a las que tienen al menos 500 habitantes: en una colonia de treinta personas, que
-tres formen hogares indígenas da un 10 % que no dice nada sobre la ciudad.
+a las que tienen al menos 500 habitantes, porque en colonias muy pequeñas unas
+cuantas personas mueven mucho el porcentaje.
 
 La columna de pueblo originario marca los 50 pueblos que reconoce el padrón de
 la Secretaría de Pueblos y Barrios Originarios (SEPI), cruzados por su clave de
 unidad territorial, la misma que usa el IECM. Los 50 son de etnia náhuatl y se
 concentran en siete alcaldías del sur y el poniente: Xochimilco, Milpa Alta,
 Tlalpan, Tláhuac, Cuajimalpa, La Magdalena Contreras y Álvaro Obregón.
-
-En conjunto tienen 4.59 % de su población en hogares indígenas, contra 2.86 % en
-el resto de la ciudad. La concentración es real, pero no los agota: ninguna de
-las colonias con mayor porcentaje de toda la ciudad es un pueblo originario. La
-población indígena de la Ciudad de México es, en buena medida, población migrante
-asentada en la periferia urbana, no solo la descendiente de los pueblos que la
-ciudad absorbió al crecer.
 
 </details>

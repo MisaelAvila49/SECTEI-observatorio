@@ -18,9 +18,8 @@ export const ENCUESTAS = [
 
 const EXPLICA_CRITERIO = `Población indígena es, según el criterio elegido en el panel,
   quien declaró hablar alguna lengua indígena o quien declaró considerarse indígena.
-  Son dos preguntas distintas del cuestionario y dan poblaciones distintas: la
-  segunda es unas tres veces mayor que la primera. El resto de la población es todo
-  el que no cumple el criterio activo.`;
+  Son dos preguntas distintas del cuestionario y delimitan poblaciones distintas.
+  El resto de la población es todo el que no cumple el criterio activo.`;
 
 export const CATALOGO = {
   "censo-vivienda": {
@@ -47,11 +46,9 @@ export const CATALOGO = {
           {indicador: "Vive en una vivienda con teléfono celular"},
           {indicador: "Vive en una vivienda con computadora, laptop o tableta"},
           {indicador: "Vive en una vivienda con celular pero sin internet",
-           explica: `Viviendas que tienen al menos un celular y no disponen de internet: el
-             celular como único puente, con datos de prepago o sin conexión.`},
+           explica: `Viviendas que tienen al menos un celular y no disponen de internet.`},
           {indicador: "Vive en una vivienda sin internet ni celular",
-           explica: `Viviendas sin internet y sin ningún celular entre sus integrantes: la
-             desconexión completa.`},
+           explica: `Viviendas sin internet y sin ningún celular entre sus integrantes.`},
         ],
         explica: `Cada gráfica muestra la fracción de personas de cada grupo cuya vivienda
           dispone del bien. Con el desglose por edad se lee si la brecha es la misma en
@@ -68,14 +65,14 @@ export const CATALOGO = {
           {indicador: "Vive en una vivienda con radio"},
           {indicador: "Vive en una vivienda con consola de videojuegos"},
         ],
-        explica: `Los servicios de paga (telefonía fija, televisión de paga, streaming) dependen
-          de que haya oferta en la localidad y de poder pagarla; el televisor y la radio
-          son los bienes de comunicación más extendidos y sirven de referencia.`,
+        explica: `Cada gráfica muestra la fracción de personas de cada grupo cuya vivienda
+          dispone del servicio o del bien: telefonía fija, televisión de paga, streaming,
+          televisor, radio y consola de videojuegos.`,
       },
     ],
     fuentes: {
       verificadoCon: ["R-CENSO-2020-TAB"],
-      resultado: "los tabulados del Censo publican 52.1 % de viviendas particulares habitadas con internet; la muestra ampliada da 53.9 % a nivel vivienda, dentro de la diferencia esperada entre el cuestionario básico y la muestra. El corte por condición indígena no se publica y es cálculo propio sobre los microdatos.",
+      resultado: "la proporción nacional de viviendas con internet, celular, computadora y televisor que da la muestra ampliada se cotejó con los tabulados del cuestionario básico y queda dentro de la diferencia esperada entre ambos diseños; las cifras del cotejo están en verificaciones.csv. El corte por condición indígena no se publica y es cálculo propio sobre los microdatos.",
     },
   },
 
@@ -85,8 +82,7 @@ export const CATALOGO = {
     ruta: "/encuestas/enigh/hogar",
     entrada: `La ENIGH pregunta al hogar si tiene conexión a internet, celular, computadora y
       otros servicios, y lo hace cada dos años con la misma pregunta. Es la única de las
-      tres fuentes que permite ver si la brecha se cierra o se abre, y la única con decil
-      de ingreso.`,
+      tres fuentes con más de una edición y la única con decil de ingreso.`,
     explica: `${EXPLICA_CRITERIO} El porcentaje es la fracción de personas de 6 años o más
       de cada grupo que vive en un hogar con el servicio. El decil de ingreso es del
       ingreso corriente per cápita del hogar, calculado dentro de cada edición.`,
@@ -230,8 +226,8 @@ export const CATALOGO = {
           {indicador: "Compró por internet"},
           {indicador: "Vendió por internet"},
         ],
-        explica: `Gobierno, banca y comercio son los usos que sustituyen un trámite presencial:
-          donde hay brecha aquí, la hay también en el acceso a esos servicios.`,
+        explica: `Trámites y consultas de gobierno, banca electrónica, pagos, compras y ventas por
+          internet. El periodo de referencia de compras, ventas, pagos y gobierno son doce meses.`,
       },
       {
         titulo: "Comunicarse y entretenerse",
@@ -269,16 +265,14 @@ export const CATALOGO = {
     titulo: "Quién no se conecta y por qué",
     ruta: "/encuestas/endutih/barreras",
     entrada: `La ENDUTIH pregunta a quien no usa internet, computadora o celular por qué no
-      lo hace, y al hogar sin internet por qué no lo tiene. Esta página mide primero
-      cuánta gente queda fuera y luego qué motivo declara.`,
+      lo hace, y al hogar sin internet por qué no lo tiene.`,
     explica: `${EXPLICA_CRITERIO} El primer bloque se calcula sobre toda la población de 6
-      años o más; los motivos, solo entre quienes no usan o no tienen, y suman 100 %
-      dentro de cada grupo.`,
+      años o más; los motivos, solo entre quienes no usan o no tienen, y suman el
+      total de cada grupo.`,
     principal: {
       indicador: "No usa internet ni celular",
       titulo: "No usa internet ni celular",
-      explica: `Personas que en los últimos tres meses no usaron internet ni celular: la
-        desconexión completa, sin ningún puente.`,
+      explica: `Personas que en los últimos tres meses no usaron internet ni celular.`,
     },
     bloques: [
       {
@@ -290,25 +284,21 @@ export const CATALOGO = {
           {indicador: "No dispone de celular"},
           {indicador: "Vive en un hogar sin internet"},
         ],
-        explica: `Son los complementos de los indicadores de uso, vistos desde la exclusión:
-          aquí el rojo alto es desventaja.`,
+        explica: `Son los complementos de los indicadores de uso: la fracción de cada grupo que
+          no usa internet, no usa computadora, no dispone de celular o vive en un hogar sin internet.`,
       },
     ],
     motivos: [
       {titulo: "Por qué no usa internet", prefijo: "Motivo para no usar internet: ",
-       explica: `Cada persona que no usa internet declara UN motivo principal. "No sabe
-         utilizarlo" y "falta de recursos" son barreras de habilidad y de ingreso; "no
-         tiene acceso, aunque sabe" es una barrera de oferta.`},
+       explica: `Cada persona que no usa internet declara un motivo principal, de una lista
+         cerrada del cuestionario.`},
       {titulo: "Por qué no usa computadora", prefijo: "Motivo para no usar computadora: ",
-       explica: `Un motivo principal por persona. "Usa su celular inteligente" no es una
-         barrera sino una sustitución.`},
+       explica: `Un motivo principal por persona, de una lista cerrada del cuestionario.`},
       {titulo: "Por qué no dispone de celular", prefijo: "Motivo para no disponer de celular: ",
-       explica: `Un motivo principal por persona sin celular. "No hay servicio en su localidad"
-         es la barrera de cobertura.`},
+       explica: `Un motivo principal por persona sin celular, de una lista cerrada del cuestionario.`},
       {titulo: "Por qué el hogar no tiene internet", prefijo: "Motivo del hogar para no tener internet: ",
        explica: `Lo responde el hogar, no la persona; aquí se cuenta a las personas de 6 años
-         o más que viven en hogares sin internet según el motivo que declaró su hogar.
-         "No hay proveedor o infraestructura" es la barrera de oferta.`},
+         o más que viven en hogares sin internet según el motivo que declaró su hogar.`},
     ],
     fuentes: {
       referencia: ["R-ENDUTIH-2025-COM"],

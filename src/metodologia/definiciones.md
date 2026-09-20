@@ -11,12 +11,11 @@ como **criterio de identificación** en el panel de cada gráfica:
 
 - **Habla lengua indígena.** La persona declaró hablar alguna lengua indígena.
   Es la pregunta `HLENGUA` del Censo (personas de 3 años o más), `hablaind` de
-  la ENIGH y `P6A_5` de la ENDUTIH 2025. Bajo este criterio la población
-  indígena de 6 años o más es del orden del 6 % del país.
+  la ENIGH y `P6A_5` de la ENDUTIH 2025.
 - **Se considera indígena.** La persona declaró considerarse indígena, hable o
   no una lengua. Es `PERTE_INDIGENA` del Censo, `etnia` de la ENIGH y `P6A_3`
-  de la ENDUTIH. Es una población unas tres veces mayor: 19.5 % en el Censo,
-  entre 24 y 30 % en la ENIGH según la edición y 28 % en la ENDUTIH 2025.
+  de la ENDUTIH. Delimita una población más amplia que la del criterio de
+  lengua, y su tamaño varía entre fuentes y ediciones.
 
 Las dos preguntas se responden por separado, así que cada persona cae en una
 de cuatro combinaciones (habla y se considera, habla y no se considera, no
@@ -25,8 +24,8 @@ cuatro celdas y el navegador suma las que corresponden al criterio elegido: los
 dos criterios comparten universo y ninguna persona se cuenta dos veces. El
 **resto de la población** es siempre todo el que no cumple el criterio activo.
 
-Quien no respondió alguna de las dos preguntas (0.4 % en el Censo, menos en
-las encuestas) queda fuera del universo bajo ambos criterios.
+Quien no respondió alguna de las dos preguntas queda fuera del universo bajo
+ambos criterios.
 
 ## Qué mide cada fuente
 
@@ -55,8 +54,8 @@ cada figura lo dice en su subtítulo:
 - **Entre quienes usan celular inteligente:** si se conectan con datos móviles o
   por wifi.
 - **Entre quienes no usan** internet, computadora o celular, o cuyo hogar no
-  tiene internet: el motivo declarado. Los motivos de un mismo bloque suman
-  100 % dentro de cada grupo.
+  tiene internet: el motivo declarado. Los motivos de un mismo bloque suman el
+  total de cada grupo.
 
 En la escolaridad el universo son las personas de **15 años o más**, porque
 antes de esa edad la escolaridad está en curso.
@@ -92,11 +91,11 @@ Toda cifra va expandida con el factor de la encuesta, pero la suficiencia se
 juzga con los **casos sin expandir**: por debajo de 30 la cifra lleva asterisco
 y trama, y el aviso junto a la gráfica dice cuántas hay.
 
-El **intervalo al 95 %** que aparece en el tooltip, la tabla y los bigotes
+El **intervalo de confianza** que aparece en el tooltip, la tabla y los bigotes
 sale del diseño muestral real (estratificado por conglomerados), por
 linearización de Taylor con varianza entre UPM dentro de estrato. No se usa la
-fórmula binomial `sqrt(p(1-p)/n)`: supone muestreo aleatorio simple y, medido
-sobre estas encuestas, subestima el error en un tercio. Cuando el error no es
+fórmula binomial `sqrt(p(1-p)/n)`: supone muestreo aleatorio simple y
+subestima el error de un diseño por conglomerados. Cuando el error no es
 estimable (estratos con una sola UPM) la cifra viaja sin intervalo, nunca con
 un cero. Al agregar celdas en el navegador (entidades, edades) las varianzas se
 suman como si las partes fueran independientes, lo que subestima levemente el
