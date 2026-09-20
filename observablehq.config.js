@@ -67,13 +67,13 @@ export default {
   // cuál está viendo.
   pages: [
     {name: "Inicio", path: "/"},
+    // El mapa por manzana es la primera etapa del proyecto y la puerta de
+    // entrada: va primero, fuera de los grupos por encuesta.
+    {name: "Mapa por manzana", path: "/mapa-manzanas"},
     {
       name: "Censo 2020",
       open: true,
-      pages: [
-        {name: "Conectividad en la vivienda", path: "/encuestas/censo/vivienda"},
-        {name: "Mapa por manzana (CDMX)", path: "/mapa-manzanas"},
-      ],
+      pages: [{name: "Conectividad en la vivienda", path: "/encuestas/censo/vivienda"}],
     },
     {
       name: "ENIGH 2020 - 2024",
@@ -298,27 +298,31 @@ export default {
   // Sin header: su único enlace ya vive en el pie y en la marca del sidebar.
 
   footer: `<div class="book-footer">
+  <div class="instituciones-fila">
+    <span class="instituciones-eyebrow">Un proyecto de</span>
+    <a class="instituciones-chip instituciones-chip--ibero" href="https://ibero.mx" target="_blank" rel="noopener"><img src="/images/ibero/ibero-logo-color.webp" alt="Universidad Iberoamericana Ciudad de México"></a>
+    <a class="instituciones-chip instituciones-chip--sdie" href="https://socialdata.ibero.mx" target="_blank" rel="noopener"><img src="/images/social_data_original.svg" alt="Social Data Ibero"></a>
+  </div>
   <div class="book-footer-grid">
-    <a href="https://socialdata.ibero.mx" target="_blank" rel="noopener" class="book-footer-brand" aria-label="Social Data Ibero, Universidad Iberoamericana">
-      <img src="/images/social_data_gris.svg" alt="" class="book-footer-logo">
-      <span class="book-footer-brand-text">
-        <span class="book-footer-name">Social Data Ibero</span>
-        <span class="book-footer-inst">Universidad Iberoamericana, Ciudad de México</span>
-      </span>
-    </a>
     <div class="book-footer-col">
       <p class="book-footer-col-title">Explorar</p>
       <p class="book-footer-col-line"><a href="/">Inicio</a></p>
+      <p class="book-footer-col-line"><a href="/mapa-manzanas">Mapa por manzana</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/censo/vivienda">Censo 2020</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/enigh/hogar">ENIGH 2020 - 2024</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/endutih/uso">ENDUTIH 2025</a></p>
-      <p class="book-footer-col-line"><a href="/mapa-manzanas">Mapa por manzana</a></p>
     </div>
     <div class="book-footer-col">
       <p class="book-footer-col-title">Datos y método</p>
-      <p class="book-footer-col-line">Censo de Población y Vivienda 2020, ENIGH 2020, 2022 y 2024, ENDUTIH 2025 (INEGI)</p>
-      <p class="book-footer-col-line">Marco Geoestadístico 2020 · Colonias del IECM 2022 · Padrón de pueblos originarios de la SEPI</p>
-      <p class="book-footer-col-line"><a href="/metodologia/fuentes">Fuentes y cobertura</a> · <a href="/#citar">Cómo citar este tablero</a></p>
+      <p class="book-footer-col-line">Fuente: <a href="https://www.inegi.org.mx" target="_blank" rel="noopener">INEGI</a>, Censo 2020, ENIGH 2020 - 2024 y ENDUTIH 2025</p>
+      <p class="book-footer-col-line"><a href="/metodologia/fuentes">Fuentes y cobertura</a></p>
+      <p class="book-footer-col-line"><a href="/metodologia/definiciones">Definiciones</a></p>
+      <p class="book-footer-col-line"><a href="/#citar">Cómo citar este tablero</a></p>
+    </div>
+    <div class="book-footer-col">
+      <p class="book-footer-col-title">Contacto</p>
+      <p class="book-footer-col-line">Correspondencia: <a href="mailto:wilfrido.gomez@ibero.mx">wilfrido.gomez@ibero.mx</a></p>
+      <p class="book-footer-col-line"><a href="https://socialdata.ibero.mx" target="_blank" rel="noopener">socialdata.ibero.mx</a></p>
     </div>
   </div>
   <div class="book-footer-bottom">

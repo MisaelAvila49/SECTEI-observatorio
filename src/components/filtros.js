@@ -143,7 +143,13 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
     ["comparacion", comparacion], ["criterio", criterio], ["sexo", sexo], ["anio", anio],
     ["entidad", entidad], ["ambito", ambito], ["edad", edad], ["decil", decil], ["escolaridad", escolaridad],
   ].filter(([, c]) => c);
-  const envoltorios = new Map(campos.map(([nombre, c]) => [nombre, html`<div class="filtro" data-campo="${nombre}">${c}</div>`]));
+  // Los formularios de Inputs van DIRECTOS en .panel-campos, sin envoltorio: la
+  // hoja los estiliza como `.panel-campos > form` (etiqueta arriba, selector
+  // debajo, ancho flexible). Envueltos en un <div> esa regla dejaba de
+  // aplicar y las etiquetas se encimaban con los selectores. El nombre del
+  // campo viaja en data-campo del propio formulario, igual que en PISA.
+  for (const [nombre, c] of campos) c.dataset.campo = nombre;
+  const envoltorios = new Map(campos);
 
   const cont = html`<div class="panel-filtros">
     <div class="panel-campos">${[...envoltorios.values()]}</div>

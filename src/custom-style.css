@@ -3614,3 +3614,41 @@ body:not(:has(#observablehq-toc)) #observablehq-main {
   max-width: 100%;
   height: auto;
 }
+
+/* --- Marca del sidebar ----------------------------------------------------- */
+/* El subtítulo heredaba un margen negativo pensado para la palabra
+   "Observatorio" bajo un título de una línea; con "Grupos originarios" se
+   encimaba con el título. */
+.sidebar-brand-obs {
+  margin-top: 0.3rem;
+}
+.sidebar-brand-title {
+  line-height: 1.15;
+}
+
+/* --- Tarjetas de cifras dentro de una sección ------------------------------ */
+/* Comparten el ancho desbordado de la figura y del panel: a 1920 px las
+   tarjetas ocupaban toda la columna y la figura 1180 px centrados, y los dos
+   bloques se leían como si no tuvieran relación. */
+.seccion-cuerpo > .kpi-fila {
+  width: var(--ancho-desbordado);
+  max-width: none;
+  margin-left: calc((100% - var(--ancho-desbordado)) / 2);
+  margin-right: calc((100% - var(--ancho-desbordado)) / 2);
+}
+@media (max-width: 900px) {
+  .seccion-cuerpo > .kpi-fila {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* --- Cubierta: el gráfico de datos no se encima con el rótulo -------------- */
+/* La caja heredada (27 % del alto) estaba medida para un título de una
+   palabra. Con un título de dos palabras y subtítulo de dos líneas el bloque
+   de texto sube, así que el gráfico se acorta para quedar por encima. */
+.book-cover-grafico {
+  height: 17%;
+  top: calc(var(--gap-alto-pisa, 8) * 1px + 4px);
+}
