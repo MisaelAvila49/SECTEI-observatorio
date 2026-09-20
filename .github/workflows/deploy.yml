@@ -1,0 +1,77 @@
+# Despliegue a GitHub Pages.
+#
+# El sitio se construye en el runner con `observable build` y se publica
+# dist/. El build NO corre ningún data loader: todos los datos del sitio van
+# versionados (src/data/indicadores/*.parquet, colonias_resumen.csv, las
+# teselas .pmtiles), porque salen de microdatos de varios GB que no viven en
+# el repositorio. Por eso el runner no necesita Python, uv ni DuckDB. Los
+# datos se regeneran en local con `npm run datos` y los scripts del mapa.
+#
+# La ruta base (/<repo>/) la resuelve observablehq.config.js leyendo
+# GITHUB_REPOSITORY, así que renombrar el repo no rompe nada.
+#
+# Requisito de una sola vez en GitHub: Settings → Pages → Source = "GitHub
+# Actions". Con "Deploy from a branch" este flujo no publica nada.
+
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue a la vez; el más reciente gana.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      # render.js escribe <html> a secas: el lang="es" que fija el script del
+      # head llega después, ya con JS corriendo, así que quien lee el HTML
+      # crudo (un rastreador, una auditoría) ve el documento sin idioma. Se
+      # corrige aquí, sobre lo ya construido. De paso se quita
+      # maximum-scale=1 de la etiqueta viewport que Framework añade por su
+      # cuenta: bloquear el zoom deja fuera a quien lo necesita.
+      - run: find dist -name "*.html" -exec sed -i -e 's/<html>/<html lang="es">/' -e 's/, maximum-scale=1//' {} +
+
+      # La imagen Open Graph se referencia por URL absoluta desde `head`, pero
+      # Framework solo copia a dist/ lo que un href/src del Markdown apunta:
+      # como ninguna página la usa, hay que copiarla a mano.
+      - run: mkdir -p dist/images && cp src/images/og-grupos-originarios.png dist/images/
+
+      # Sin Jekyll: Pages ignora carpetas que empiezan con guion bajo
+      # (_observablehq/, _file/, _npm/), que es donde Framework pone todo.
+      - run: touch dist/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
