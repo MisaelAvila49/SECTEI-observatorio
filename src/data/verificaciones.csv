@@ -1,0 +1,10 @@
+clave,encuesta,anio,unidad,valor_oficial,tolerancia,fuente_id,consultado,estado,nota
+viv_internet,censo,2020,% de viviendas particulares habitadas con internet,52.1,2.5,R-CENSO-2020-TAB,2026-09-18,verificado,"Tabulado de disponibilidad de TIC en la vivienda, cuestionario básico. La muestra ampliada da una cifra cercana pero no idéntica; la tolerancia cubre esa diferencia de diseño."
+viv_celular,censo,2020,% de viviendas particulares habitadas con teléfono celular,87.5,2.5,R-CENSO-2020-TAB,2026-09-18,verificado,"Mismo tabulado."
+viv_computadora,censo,2020,"% de viviendas particulares habitadas con computadora, laptop o tableta",37.6,2.5,R-CENSO-2020-TAB,2026-09-18,verificado,"Mismo tabulado."
+viv_televisor,censo,2020,% de viviendas particulares habitadas con televisor,91.1,2.5,R-CENSO-2020-TAB,2026-09-18,verificado,"Mismo tabulado."
+pob_hli_6mas,censo,2020,% de personas de 6 años o más que hablan lengua indígena,6.1,1.0,R-INEGI-PI,2026-09-18,referencia,"El INEGI publica 6.1 % sobre la población de 3 años o más; aquí el universo es 6 años o más, así que la cifra es referencia y no verificación exacta."
+pob_autoads_6mas,censo,2020,% de personas que se consideran indígenas,19.4,1.0,R-INEGI-PI,2026-09-18,referencia,"El INEGI publica 19.4 % sobre la población total; aquí es 6 años o más."
+usa_internet_6mas,endutih,2025,% de personas de 6 años o más que usan internet,,1.0,R-ENDUTIH-2025-COM,2026-09-18,pendiente,"Transcribir la cifra del comunicado de resultados de la ENDUTIH 2025 cuando esté disponible; la comprobación se hace contra calculado.csv."
+usa_celular_6mas,endutih,2025,% de personas de 6 años o más que usan celular,,1.0,R-ENDUTIH-2025-COM,2026-09-18,pendiente,"Ídem."
+hog_internet_2024,enigh,2024,% de hogares con conexión a internet,,1.5,R-ENIGH-2024-TAB,2026-09-18,pendiente,"Transcribir de la presentación de resultados de la ENIGH 2024 (disponibilidad de servicios en el hogar)."

@@ -1,0 +1,27 @@
+encuesta,clave,valor,nota
+censo,pob_autoads_6mas,19.4962,% de personas de 6 años o más que se consideran indígenas
+censo,pob_hli_6mas,6.3915,% de personas de 6 años o más que hablan lengua indígena
+censo,viv_celular,88.1479,"% de viviendas particulares habitadas, muestra ampliada"
+censo,viv_computadora,38.4009,"% de viviendas particulares habitadas, muestra ampliada"
+censo,viv_internet,53.9161,"% de viviendas particulares habitadas, muestra ampliada"
+censo,viv_radio,69.2559,"% de viviendas particulares habitadas, muestra ampliada"
+censo,viv_streaming,19.2060,"% de viviendas particulares habitadas, muestra ampliada"
+censo,viv_telefono,37.6924,"% de viviendas particulares habitadas, muestra ampliada"
+censo,viv_televisor,91.3229,"% de viviendas particulares habitadas, muestra ampliada"
+censo,viv_tv_paga,43.4936,"% de viviendas particulares habitadas, muestra ampliada"
+censo,viv_videojuegos,11.7233,"% de viviendas particulares habitadas, muestra ampliada"
+endutih,usa_celular_6mas,89.1481,% de personas de 6 años o más que usan celular
+endutih,usa_computadora_6mas,38.1445,% de personas de 6 años o más que usan computadora
+endutih,usa_internet_6mas,86.0526,% de personas de 6 años o más que usan internet
+enigh,hog_celular_2020,90.1202,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,hog_celular_2022,92.3126,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,hog_celular_2024,94.7941,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,hog_internet_2020,53.6202,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,hog_internet_2022,60.5949,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,hog_internet_2024,70.4706,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,hog_tv_paga_2020,42.7164,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,hog_tv_paga_2022,41.8340,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,hog_tv_paga_2024,37.4134,"% de hogares (con al menos una persona de 6+), ponderado con el factor"
+enigh,pers_internet_2020,57.0131,% de personas de 6+ en hogares con internet
+enigh,pers_internet_2022,63.9506,% de personas de 6+ en hogares con internet
+enigh,pers_internet_2024,73.5993,% de personas de 6+ en hogares con internet
