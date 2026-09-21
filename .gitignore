@@ -26,3 +26,6 @@ src/.observablehq/
 # Mapbox: el mapa va con MapLibre y PMTiles.
 /script0.js
 referencias/mapa-inide/script0.js
+
+# Bytecode de Python
+__pycache__/
