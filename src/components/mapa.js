@@ -172,6 +172,11 @@ export function mapaManzanas({
   zoom = 10,
   alto = 620,
   tooltip,
+  // Zoom desde el que se dibuja el borde entre polígonos y el resaltado bajo
+  // el cursor. Con 66 mil manzanas tienen que esperar a zoom de calle; con
+  // 2,400 AGEB se pueden ver desde la vista de ciudad.
+  zoomBorde = 13,
+  zoomHover = 12,
   // Contornos de referencia: la silueta del estado y sus alcaldías, como
   // GeoJSON ya cargado. Se probó además una máscara que aclaraba todo lo de
   // fuera del estado y se descartó: ensuciaba el mapa sin aportar: el contorno
@@ -243,10 +248,10 @@ export function mapaManzanas({
       type: "line",
       source: "manzanas",
       "source-layer": capa,
-      minzoom: 13,
+      minzoom: zoomBorde,
       paint: {
         "line-color": "#ffffff",
-        "line-width": ["interpolate", ["linear"], ["zoom"], 13, 0.2, 16, 0.8],
+        "line-width": ["interpolate", ["linear"], ["zoom"], zoomBorde, 0.2, 16, 0.8],
         "line-opacity": 0.5
       }
     });
@@ -271,7 +276,7 @@ export function mapaManzanas({
       "source-layer": capa,
       // A zoom de ciudad una manzana mide menos de un píxel: resaltarla no
       // comunica nada y solo produce destellos al pasar el cursor.
-      minzoom: 12,
+      minzoom: zoomHover,
       paint: {
         "line-color": ROJO_IBERO,
         "line-width": 2,
@@ -399,7 +404,10 @@ export function mapaManzanas({
  * La clase sin dato se dibuja separada del gradiente y con su etiqueta, porque
  * es de otra naturaleza: no es un valor bajo, es la ausencia del valor.
  */
-export function leyenda({cortes, rampa = RAMPA_MORADA, titulo, formato = (x) => x.toFixed(1)}) {
+// `abierta: false` es para escalas de CATEGORÍAS ordenadas (los cinco grados de
+// marginación): ahí el último escalón no es "o más", es una categoría.
+export function leyenda({cortes, rampa = RAMPA_MORADA, titulo, formato = (x) => x.toFixed(1),
+    abierta = true, notaSinDato = "Sin dato publicado (INEGI suprime la cifra por confidencialidad)"}) {
   const nodo = document.createElement("figure");
   nodo.className = "mapa-leyenda";
 
@@ -421,7 +429,8 @@ export function leyenda({cortes, rampa = RAMPA_MORADA, titulo, formato = (x) => 
     const muestra = document.createElement("div");
     muestra.className = "mapa-leyenda-paso";
     muestra.style.background = rampa[Math.min(i, rampa.length - 1)];
-    muestra.title = i === cortes.length - 1
+    muestra.title = !abierta ? formato(cortes[i])
+      : i === cortes.length - 1
       ? `${formato(cortes[i])} o más`
       : `de ${formato(cortes[i])} a ${formato(cortes[i + 1])}`;
 
@@ -429,7 +438,7 @@ export function leyenda({cortes, rampa = RAMPA_MORADA, titulo, formato = (x) => 
     texto.className = "mapa-leyenda-valor";
     // El último escalón es abierto: se marca con "+" en vez de un tope que no
     // existe. Los demás muestran el valor donde empieza la clase.
-    texto.textContent = i === cortes.length - 1
+    texto.textContent = abierta && i === cortes.length - 1
       ? `${formato(cortes[i])}+`
       : formato(cortes[i]);
 
@@ -442,7 +451,8 @@ export function leyenda({cortes, rampa = RAMPA_MORADA, titulo, formato = (x) => 
   nota.className = "mapa-leyenda-sindato";
   nota.innerHTML =
     `<span class="mapa-leyenda-muestra" style="background:${SIN_DATO}"></span>` +
-    `<span>Sin dato publicado (INEGI suprime la cifra por confidencialidad)</span>`;
+    `<span></span>`;
+  nota.lastElementChild.textContent = notaSinDato;
   nodo.append(nota);
 
   return nodo;

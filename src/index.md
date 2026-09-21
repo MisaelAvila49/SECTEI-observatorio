@@ -211,7 +211,10 @@ display(seccion({numero: "02", titulo: "Explorar por fuente"}));
   t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">01</span>
     <h3><a href="./mapa-manzanas">Mapa por manzana de la Ciudad de México</a></h3>
     <p>Dónde vive la población en hogares indígenas de la ciudad, manzana por manzana, con el Censo 2020 y los pueblos originarios señalados.</p></div>`);
-  ENCUESTAS.forEach((c, i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 2}</span>
+  t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">02</span>
+    <h3><a href="./mapa-agebs">Mapa por AGEB</a></h3>
+    <p>Presencia indígena, conectividad de las viviendas, marginación urbana y rezago social por AGEB, con un umbral a elección.</p></div>`);
+  ENCUESTAS.forEach((c, i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 3}</span>
     <h3><a href=".${c.ruta}">${c.nombre}</a></h3>
     <p>${c.resumen}</p></div>`));
   display(t);
@@ -233,8 +236,12 @@ const props = (await FileAttachment("./data/colonias_resumen.csv").csv({typed: t
   .filter((p) => p.POBTOT >= 500);
 import * as Plot from "npm:@observablehq/plot";
 import {resize} from "observablehq:stdlib";
-const pobTotal = 9145155;
-const indTotal = 273851;
+// Promedio de la ciudad: la fila de TOTAL DE LA ENTIDAD del tabulado del Censo
+// (289,139 personas en hogares indígenas de 9,209,944 habitantes). Antes se
+// usaba la suma de las manzanas con cifra publicada (273,851 de 9,145,155),
+// que deja fuera lo suprimido por confidencialidad y lo rural.
+const pobTotal = 9209944;
+const indTotal = 289139;
 ```
 
 <div class="grid grid-cols-2 rejilla-figuras">

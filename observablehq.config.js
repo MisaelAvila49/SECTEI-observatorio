@@ -40,6 +40,7 @@ const DESCRIPCIONES = {
   "/encuestas/endutih/actividades": "Para qué usa internet la población indígena que se conecta: estudiar, trabajar, trámites, dinero y entretenimiento, según la ENDUTIH 2025.",
   "/encuestas/endutih/barreras": "Quién no usa internet, computadora ni celular y qué motivo declara, por condición indígena, según la ENDUTIH 2025.",
   "/mapa-manzanas": "Mapa por manzana de la población en hogares indígenas de la Ciudad de México, con el Censo 2020, agregable a colonia y con los pueblos originarios señalados.",
+  "/mapa-agebs": "Población en hogares indígenas, conectividad de las viviendas, marginación urbana y rezago social por AGEB de la Ciudad de México, con un umbral de presencia indígena a elección.",
   "/metodologia/fuentes": "Fuentes, cobertura y cautelas de cada encuesta usada en el tablero.",
   "/metodologia/definiciones": "Cómo se define la población indígena en cada fuente y qué mide cada indicador.",
 };
@@ -70,6 +71,7 @@ export default {
     // El mapa por manzana es la primera etapa del proyecto y la puerta de
     // entrada: va primero, fuera de los grupos por encuesta.
     {name: "Mapa por manzana", path: "/mapa-manzanas"},
+    {name: "Mapa por AGEB", path: "/mapa-agebs"},
     {
       name: "Censo 2020",
       open: true,
@@ -308,13 +310,14 @@ export default {
       <p class="book-footer-col-title">Explorar</p>
       <p class="book-footer-col-line"><a href="/">Inicio</a></p>
       <p class="book-footer-col-line"><a href="/mapa-manzanas">Mapa por manzana</a></p>
+      <p class="book-footer-col-line"><a href="/mapa-agebs">Mapa por AGEB</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/censo/vivienda">Censo 2020</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/enigh/hogar">ENIGH 2020 - 2024</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/endutih/uso">ENDUTIH 2025</a></p>
     </div>
     <div class="book-footer-col">
       <p class="book-footer-col-title">Datos y método</p>
-      <p class="book-footer-col-line">Fuente: <a href="https://www.inegi.org.mx" target="_blank" rel="noopener">INEGI</a>, Censo 2020, ENIGH 2020 - 2024 y ENDUTIH 2025</p>
+      <p class="book-footer-col-line">Fuente: <a href="https://www.inegi.org.mx" target="_blank" rel="noopener">INEGI</a>, Censo 2020, ENIGH 2020 - 2024 y ENDUTIH 2025; CONAPO y CONEVAL por AGEB</p>
       <p class="book-footer-col-line"><a href="/metodologia/fuentes">Fuentes y cobertura</a></p>
       <p class="book-footer-col-line"><a href="/metodologia/definiciones">Definiciones</a></p>
       <p class="book-footer-col-line"><a href="/#citar">Cómo citar este tablero</a></p>

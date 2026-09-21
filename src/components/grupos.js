@@ -57,7 +57,18 @@ export const COMPARACIONES = [
     pregunta: "Dentro de la población indígena, ¿cuánto pesa ser mujer?",
   },
 ];
-export const COMPARACION_POR_CLAVE = Object.fromEntries(COMPARACIONES.map((c) => [c.clave, c]));
+// Comparación territorial del mapa por AGEB. No entra al selector de las
+// páginas de encuesta (por eso no está en COMPARACIONES): compara AGEB, no
+// personas, y solo la usa la página del mapa por AGEB.
+export const COMPARACION_AGEB = {
+  clave: "ageb",
+  etiqueta: "AGEB que alcanzan el umbral vs resto de las AGEB",
+  series: ["AGEB que alcanzan el umbral", "Resto de las AGEB"],
+  admiteSexo: false,
+};
+
+export const COMPARACION_POR_CLAVE = Object.fromEntries(
+  [...COMPARACIONES, COMPARACION_AGEB].map((c) => [c.clave, c]));
 
 // ¿Es indígena esta fila bajo el criterio activo?
 export function esIndigena(fila, criterio) {

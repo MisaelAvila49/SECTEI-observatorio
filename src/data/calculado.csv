@@ -1,4 +1,12 @@
 encuesta,clave,valor,nota
+ageb,cdmx_phog_ind,3.0755,"% de población en hogares indígenas, suma de AGEB urbanas"
+ageb,cdmx_phog_ind_oficial,3.1394,fila de total de la entidad del tabulado
+ageb,cdmx_viv_internet,75.9751,"% de viviendas con internet, suma de AGEB urbanas"
+ageb,cdmx_viv_internet_oficial,75.7278,fila de total de la entidad del tabulado
+ageb,pob_igual_conapo,100.0000,% de AGEB con población idéntica a la de CONAPO
+ageb,pob_igual_coneval,100.0000,% de AGEB con población idéntica a la de CONEVAL
+ageb,sin_internet_dentro_medio_punto,97.6190,% de AGEB donde viviendas sin internet difiere de CONEVAL en 0.5 pp o menos
+ageb,viv_igual_coneval,99.4606,% de AGEB con el mismo total de viviendas con características que CONEVAL
 censo,pob_autoads_6mas,19.4962,% de personas de 6 años o más que se consideran indígenas
 censo,pob_hli_6mas,6.3915,% de personas de 6 años o más que hablan lengua indígena
 censo,viv_celular,88.1479,"% de viviendas particulares habitadas, muestra ampliada"

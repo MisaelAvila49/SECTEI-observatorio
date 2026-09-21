@@ -40,14 +40,23 @@ bajar "https://datos.cdmx.gob.mx/dataset/02c6ce99-dbd8-47d8-aee1-ae885a12bb2f/re
 bajar "https://datos.cdmx.gob.mx/dataset/cfcb1777-6279-46c9-a56f-92bbd8e06838/resource/f82befde-6872-4582-9d30-fcd9794d2373/download/f82befde-6872-4582-9d30-fcd9794d2373.json" \
       "$CRUDO/sepi/pueblos_originarios_sepi.json" "Pueblos Originarios SEPI (0.5 MB)"
 
+# Clasificaciones por AGEB urbana que usa scripts/construir_agebs.py. El indice
+# de marginacion de CONAPO se baja de su copia oficial en datos.gob.mx porque el
+# servidor de CONAPO no siempre responde; el rezago social, directo de CONEVAL.
+bajar "https://www.datos.gob.mx/dataset/d8f2a534-bcee-4114-853d-82982a81ce24/resource/9600f414-c1ba-408a-8dd6-7f73d76601d4/download/imu_2020.csv"       "$CRUDO/conapo/imu_2020.csv" "Índice de marginación urbana 2020, CONAPO (15 MB)"
+
+bajar "https://www.coneval.org.mx/Medicion/Documents/GRS_AGEB_2020/GRS_AGEB_urbana_2020.zip"       "$CRUDO/coneval/GRS_AGEB_urbana_2020.zip" "Grado de rezago social por AGEB 2020, CONEVAL"
+
 echo
 echo "descomprimiendo..."
 unzip -o -q "$CRUDO/censo2020/ageb_mza_09.zip"        -d "$CRUDO/censo2020"
 unzip -o -q "$CRUDO/cartografia/09_ciudaddemexico.zip" -d "$CRUDO/cartografia/mg09"
 unzip -o -q "$CRUDO/colonias/iecm2022.zip"             -d "$CRUDO/colonias/iecm2022"
 unzip -o -q "$CRUDO/colonias/catalogo.zip"             -d "$CRUDO/colonias/catalogo"
+unzip -o -q "$CRUDO/coneval/GRS_AGEB_urbana_2020.zip"  -d "$CRUDO/coneval"
 
 echo
 echo "Listo. Sigue:"
 echo "  python scripts/construir_manzanas.py    # une censo y cartografía"
+echo "  python scripts/construir_agebs.py       # AGEB con marginación y rezago social"
 echo "  scripts/generar_teselas.sh              # en WSL: produce los .pmtiles"

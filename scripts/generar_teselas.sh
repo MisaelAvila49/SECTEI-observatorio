@@ -4,7 +4,7 @@
 # Corre en WSL, no en Windows: tippecanoe no tiene binario nativo de Windows.
 # Desde PowerShell:
 #
-#   wsl -d Ubuntu -e bash -lc "cd /mnt/z/SocialDataIbero/Framework/grupos-originarios && scripts/generar_teselas.sh"
+#   wsl -d Ubuntu -e bash -lc "cd /mnt/d/IMPORTANTE/SocialDataIbero/Framework/grupos-originarios && scripts/generar_teselas.sh"
 #
 # Instalación previa de tippecanoe (una sola vez, pide contraseña de sudo):
 #
@@ -61,6 +61,12 @@ tippecanoe \
   -z13 -Z8 \
   --no-tile-compression \
   "$ENTRADA/colonias_cdmx.geojson"
+
+echo "Generando agebs.pmtiles..."
+# Las AGEB urbanas de la ciudad son unos 2,400 polígonos: caben enteras a
+# cualquier zoom, así que no se tira ninguna. --generate-ids por lo mismo que en
+# las manzanas: el resaltado bajo el cursor usa feature-state.
+tippecanoe   -o "$SALIDA/agebs.pmtiles"   --force   --layer=agebs   --name="AGEB urbanas CDMX · Censo 2020"   --attribution="INEGI Censo 2020 · CONAPO · CONEVAL"   -z14 -Z8   --no-tile-size-limit   --generate-ids   "$ENTRADA/agebs_cdmx.geojson"
 
 echo
 ls -lh "$SALIDA"/*.pmtiles

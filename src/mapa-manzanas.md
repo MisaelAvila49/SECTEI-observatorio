@@ -5,6 +5,9 @@ toc: false
 
 ```js
 import {mapaManzanas, leyenda, cortesPorCuantil, RAMPA_MORADA} from "./components/mapa.js";
+import {seccionCruce, filasDesdeTabla} from "./components/cruce.js";
+import {catalogo, verificado} from "./components/fuentes.js";
+const fuentes = catalogo(await FileAttachment("data/fuentes.csv").csv());
 ```
 
 <h2 id="mapa-manzana" class="toc-anchor">Mapa por manzana</h2>
@@ -100,6 +103,59 @@ const INDICADORES = [
       "Personas de 5 años y más que en marzo de 2015 vivían en otra entidad. " +
       "Frente a la anterior, que capta la migración de toda la vida, esta mide " +
       "la llegada del último quinquenio antes del Censo."
+  },
+  // Conectividad y condiciones de la manzana. Son VIVIENDAS, no personas, y su
+  // denominador es VIVPARH_CV (viviendas particulares habitadas con
+  // características), que es el que usa CONEVAL y se verificó contra su tabla
+  // por AGEB. `denominador` y `unidad` viajan con el indicador para que el
+  // globo, la leyenda y la tabla nombren lo que de verdad se está dividiendo.
+  {
+    base: "VPH_INTER", grupo: "Conectividad de las viviendas",
+    nombre: "Viviendas que disponen de internet", corto: "Viviendas con internet",
+    porSexo: false, denominador: "VIVPARH_CV", unidad: "viviendas",
+    definicion: "Viviendas particulares habitadas que disponen de internet, sobre el total de viviendas particulares habitadas con características de la manzana."
+  },
+  {
+    base: "VPH_PC", grupo: "Conectividad de las viviendas",
+    nombre: "Viviendas que disponen de computadora, laptop o tableta", corto: "Viviendas con computadora",
+    porSexo: false, denominador: "VIVPARH_CV", unidad: "viviendas",
+    definicion: "Viviendas particulares habitadas que disponen de computadora, laptop o tableta."
+  },
+  {
+    base: "VPH_CEL", grupo: "Conectividad de las viviendas",
+    nombre: "Viviendas que disponen de teléfono celular", corto: "Viviendas con celular",
+    porSexo: false, denominador: "VIVPARH_CV", unidad: "viviendas",
+    definicion: "Viviendas particulares habitadas donde al menos un integrante dispone de teléfono celular."
+  },
+  {
+    base: "VPH_RADIO", grupo: "Conectividad de las viviendas",
+    nombre: "Viviendas que disponen de radio", corto: "Viviendas con radio",
+    porSexo: false, denominador: "VIVPARH_CV", unidad: "viviendas",
+    definicion: "Viviendas particulares habitadas que disponen de radio."
+  },
+  {
+    base: "VPH_STVP", grupo: "Conectividad de las viviendas",
+    nombre: "Viviendas que disponen de televisión de paga", corto: "Viviendas con televisión de paga",
+    porSexo: false, denominador: "VIVPARH_CV", unidad: "viviendas",
+    definicion: "Viviendas particulares habitadas que disponen de servicio de televisión de paga."
+  },
+  {
+    base: "VPH_SPMVPI", grupo: "Conectividad de las viviendas",
+    nombre: "Viviendas con servicio de películas, música o videos de paga por internet", corto: "Viviendas con streaming",
+    porSexo: false, denominador: "VIVPARH_CV", unidad: "viviendas",
+    definicion: "Viviendas particulares habitadas que disponen de servicio de películas, música o videos de paga por internet."
+  },
+  {
+    base: "VPH_SINTIC", grupo: "Conectividad de las viviendas",
+    nombre: "Viviendas sin ninguna tecnología de la información", corto: "Viviendas sin ninguna tecnología",
+    porSexo: false, denominador: "VIVPARH_CV", unidad: "viviendas",
+    definicion: "Viviendas particulares habitadas que no disponen de radio, televisor, computadora, teléfono fijo, celular ni internet."
+  },
+  {
+    base: "PSINDER", grupo: "Condiciones de la población",
+    nombre: "Población sin afiliación a servicios de salud", corto: "Sin afiliación a servicios de salud",
+    porSexo: false,
+    definicion: "Personas que no están afiliadas a servicios médicos en ninguna institución pública o privada, sobre la población total de la manzana."
   }
 ];
 
@@ -112,8 +168,6 @@ const SEXOS = [
   {clave: "M", etiqueta: "Hombres", sufijo: "_M", denominador: "POBMAS"}
 ];
 ```
-
-<div class="panel-filtros">
 
 ```js
 // Selector agrupado por tema: los indicadores de población indígena primero y
@@ -159,33 +213,41 @@ function selectorIndicador() {
   return form;
 }
 
-const indicador = view(selectorIndicador());
+const selIndicador = selectorIndicador();
 ```
 
 ```js
 // Desplegable y no botones de radio, como en los demás tableros del proyecto:
 // los tres controles del panel se leen entonces igual.
-const sexo = view(
-  Inputs.select(SEXOS, {
-    label: "Sexo",
-    format: (d) => d.etiqueta,
-    value: SEXOS[0]
-  })
-);
+const selSexo = Inputs.select(SEXOS, {
+  label: "Sexo",
+  format: (d) => d.etiqueta,
+  value: SEXOS[0]
+});
 ```
 
 ```js
 // También desplegable: un interruptor rompía la lectura del panel y su
 // etiqueta larga se partía en tres líneas.
-const ambito = view(
-  Inputs.select(["Toda la ciudad", "Solo pueblos originarios"], {
-    label: "Ámbito",
-    value: "Toda la ciudad"
-  })
-);
+const selAmbito = Inputs.select(["Toda la ciudad", "Solo pueblos originarios"], {
+  label: "Ámbito",
+  value: "Toda la ciudad"
+});
 ```
 
-</div>
+```js
+// El panel se arma en UNA celda, con los formularios directos dentro de
+// .panel-campos. Declarados cada uno en su celda de Markdown, Framework los
+// envolvía en un bloque y la hoja dejaba de reconocerlos como campos: la
+// etiqueta quedaba al lado del selector en vez de arriba.
+display(html`<div class="panel-filtros"><div class="panel-campos">${selIndicador}${selSexo}${selAmbito}</div></div>`);
+```
+
+```js
+const indicador = Generators.input(selIndicador);
+const sexo = Generators.input(selSexo);
+const ambito = Generators.input(selAmbito);
+```
 
 ```js
 // Los cortes se calculan sobre los datos reales de cada indicador, no fijos.
@@ -205,7 +267,13 @@ const colonias = await FileAttachment("data/colonias_resumen.csv").csv({typed: t
 const sexoEfectivo = indicador.porSexo ? sexo : SEXOS[0];
 const campo = `tasa_${(indicador.base + sexoEfectivo.sufijo).toLowerCase()}`;
 const conteo = indicador.base + sexoEfectivo.sufijo;
-const denominador = sexoEfectivo.denominador;
+// El denominador lo manda el indicador cuando trae el suyo (las viviendas);
+// si no, lo manda el sexo elegido.
+const esVivienda = indicador.unidad === "viviendas";
+const denominador = indicador.denominador ?? sexoEfectivo.denominador;
+// En la tabla por colonia el denominador de las viviendas es el restringido a
+// las manzanas con cifra publicada (den_<indicador>), no un total de la colonia.
+const denColonia = esVivienda ? `den_${indicador.base}` : denominador;
 ```
 
 ```js
@@ -213,13 +281,7 @@ const denominador = sexoEfectivo.denominador;
 // que en los demás tableros del proyecto: un filtro que no aplica se quita en
 // vez de ofrecer una opción que devolvería celdas vacías. Es el caso de
 // PHOG_IND, que cuenta hogares completos y el Censo no publica por sexo.
-{
-  const panel = document.querySelector(".panel-filtros");
-  const control = [...(panel?.querySelectorAll("form") ?? [])].find(
-    (f) => f.querySelector("label")?.textContent.trim() === "Sexo"
-  );
-  if (control) control.style.display = indicador.porSexo ? "" : "none";
-}
+selSexo.style.display = indicador.porSexo ? "" : "none";
 ```
 
 ```js
@@ -243,7 +305,8 @@ function tooltip(p) {
   // El denominador se nombra en el globo: con el filtro en Mujeres, el
   // porcentaje es sobre las mujeres de la manzana y no sobre su población, y
   // sin decirlo la cifra se leería mal.
-  const etiquetaDen = denominador === "POBFEM" ? "Mujeres en la manzana"
+  const etiquetaDen = esVivienda ? "Viviendas de la manzana"
+    : denominador === "POBFEM" ? "Mujeres en la manzana"
     : denominador === "POBMAS" ? "Hombres en la manzana"
     : "Población de la manzana";
   const rotulo = indicador.porSexo && sexoEfectivo.clave !== "T"
@@ -256,7 +319,7 @@ function tooltip(p) {
       <tr><th>${escapar(rotulo)}</th><td>${
         tasa == null ? "sin dato publicado" : Number(tasa).toFixed(1) + " %"
       }</td></tr>
-      <tr><th>Personas</th><td>${entero(n)}</td></tr>
+      <tr><th>${esVivienda ? "Viviendas" : "Personas"}</th><td>${entero(n)}</td></tr>
       <tr><th>${escapar(etiquetaDen)}</th><td>${entero(p[denominador])}</td></tr>
     </table>`;
 }
@@ -308,7 +371,8 @@ display(
         ? ` · ${sexoEfectivo.etiqueta.toLowerCase()}`
         : ""
     } (% de ${
-      denominador === "POBFEM" ? "las mujeres"
+      esVivienda ? "las viviendas"
+        : denominador === "POBFEM" ? "las mujeres"
         : denominador === "POBMAS" ? "los hombres"
         : "la población"
     } de la manzana)`,
@@ -326,11 +390,11 @@ manzana**. La pregunta que responde el mapa es dónde vive la población indíge
 dentro de la ciudad, no cuánta hay: una manzana de doscientos habitantes donde
 veinte forman hogares indígenas se pinta igual que una de dos mil con doscientos.
 
-Los cuatro indicadores no miden lo mismo y no son intercambiables:
+Los indicadores del mismo grupo no miden lo mismo y no son intercambiables:
 
 ```js
 display(
-  html`<dl class="lista-definiciones">${INDICADORES.map(
+  html`<dl class="lista-definiciones">${INDICADORES.filter((d) => d.grupo === indicador.grupo).map(
     (d) => html`<div class="definicion${d === indicador ? " es-activa" : ""}">
       <dt>${d.corto}</dt>
       <dd>${d.definicion}</dd>
@@ -339,14 +403,16 @@ display(
 );
 ```
 
-Los tres últimos son **subconjuntos anidados de personas**: quienes hablan una
-lengua indígena se dividen en bilingües y monolingües, y la suma de ambos da el
-total de hablantes. El primero es de otra naturaleza —cuenta hogares completos,
-incluidos los integrantes que ya no hablan la lengua—, y por eso siempre arroja
-una cifra mayor. Comparar el porcentaje de hogares con el de hablantes en la
+En el grupo de población indígena, los tres indicadores de hablantes son
+**subconjuntos anidados de personas**: quienes hablan una lengua indígena se
+dividen en bilingües y monolingües, y la suma de ambos da el total de hablantes.
+El de hogares es de otra naturaleza —cuenta hogares completos, incluidos los
+integrantes que ya no hablan la lengua—, y por eso siempre arroja una cifra mayor.
+Los indicadores de conectividad cuentan viviendas y se dividen entre las
+viviendas particulares habitadas con características de la manzana. Comparar el porcentaje de hogares con el de hablantes en la
 misma manzana no revela una contradicción sino esa diferencia de universo.
 
-Ninguno de los cuatro es autoadscripción, y no por omisión: la pregunta sobre si
+Ninguno de los indicadores es autoadscripción, y no por omisión: la pregunta sobre si
 la persona se considera indígena solo se levantó en el cuestionario ampliado, que
 es una muestra y no se publica por manzana. Las cifras de este mapa y las de
 autoadscripción responden preguntas distintas y no son comparables entre sí.
@@ -366,7 +432,7 @@ La manzana es la unidad más fina que publica el Censo. Esta tabla agrega las ma
 
 ```js
 const colTabla = colonias
-  .filter((p) => p[denominador] >= 500 && p[campo] != null)
+  .filter((p) => (esVivienda ? p.POBTOT : p[denominador]) >= 500 && p[campo] != null)
   .sort((a, b) => b[campo] - a[campo])
   .slice(0, 25);
 ```
@@ -379,20 +445,21 @@ const tablaColonias =
     // Sin casillas de selección: la tabla es de consulta y las casillas sin
     // etiqueta eran 26 controles sin nombre accesible.
     select: false,
-    columns: ["colonia", "alcaldia_col", campo, conteo, denominador, "pueblo_originario"],
+    columns: ["colonia", "alcaldia_col", campo, conteo, denColonia, "pueblo_originario"],
     header: {
       colonia: "Colonia",
       alcaldia_col: "Alcaldía",
       [campo]: "%",
-      [conteo]: "Personas",
-      [denominador]: denominador === "POBFEM" ? "Mujeres"
+      [conteo]: esVivienda ? "Viviendas que cumplen" : "Personas",
+      [denColonia]: esVivienda ? "Viviendas"
+        : denominador === "POBFEM" ? "Mujeres"
         : denominador === "POBMAS" ? "Hombres" : "Población",
       pueblo_originario: "Pueblo originario"
     },
     format: {
       [campo]: (x) => x.toFixed(1) + " %",
       [conteo]: (x) => (x ?? 0).toLocaleString("es-MX"),
-      [denominador]: (x) => (x ?? 0).toLocaleString("es-MX"),
+      [denColonia]: (x) => (x ?? 0).toLocaleString("es-MX"),
       pueblo_originario: (x) => (x ? "Sí" : "")
     },
     sort: campo,
@@ -420,3 +487,28 @@ concentran en siete alcaldías del sur y el poniente: Xochimilco, Milpa Alta,
 Tlalpan, Tláhuac, Cuajimalpa, La Magdalena Contreras y Álvaro Obregón.
 
 </details>
+
+---
+
+<h2 id="cruce" class="toc-anchor">Conectividad según la presencia indígena</h2>
+
+```js
+const cruce = await FileAttachment("data/cruce_manzanas.csv").csv({typed: true});
+```
+
+```js
+display(seccionCruce({
+  numero: "03",
+  titulo: "Conectividad según la presencia indígena",
+  filasDe: (ind) => filasDesdeTabla(cruce, ind),
+  etiquetaUnidades: "Manzanas",
+  unidadTexto: "manzana",
+  fuenteTexto: "INEGI, Censo 2020, resultados por manzana urbana",
+  fuentesBloque: verificado(fuentes, {
+    datos: ["D-CENSO-2020-RESAGEBURB"],
+    verificadoCon: ["D-CONEVAL-GRS-2020"],
+    resultado: "el denominador de las viviendas (viviendas particulares habitadas con características) se cotejó por AGEB contra el total que publica CONEVAL y coincide. El agrupamiento de manzanas por presencia indígena no se publica y es cálculo propio; entran solo las manzanas con cifra publicada.",
+    lectura: ["R-IFT-BRECHA"],
+  }),
+}));
+```

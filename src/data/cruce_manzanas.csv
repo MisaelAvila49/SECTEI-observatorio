@@ -1,0 +1,55 @@
+nivel,orden,banda,indicador,num,den,unidades,poblacion
+manzana,0,Sin población en hogares indígenas,VPH_INTER,784167.0,988396,33999,3262446
+manzana,0,Sin población en hogares indígenas,VPH_PC,636925.0,980408,32962,3232417
+manzana,0,Sin población en hogares indígenas,VPH_CEL,916707.0,991579,34624,3274067
+manzana,0,Sin población en hogares indígenas,VPH_RADIO,785443.0,990144,34302,3268876
+manzana,0,Sin población en hogares indígenas,VPH_STVP,509445.0,968426,31882,3189409
+manzana,0,Sin población en hogares indígenas,VPH_SPMVPI,367216.0,926873,29559,3036759
+manzana,0,Sin población en hogares indígenas,VPH_SINTIC,665.0,886283,32514,2921523
+manzana,0,Sin población en hogares indígenas,PSINDER,829771.0,3223854,33183,3223854
+manzana,0,Sin población en hogares indígenas,GRAPROES,32484629.51,2739617,34851,3277036
+manzana,1,Más de 0 y hasta 5 %,VPH_INTER,817337.0,1060404,11431,3463365
+manzana,1,Más de 0 y hasta 5 %,VPH_PC,652905.0,1060214,11424,3462614
+manzana,1,Más de 0 y hasta 5 %,VPH_CEL,981705.0,1060440,11433,3463529
+manzana,1,Más de 0 y hasta 5 %,VPH_RADIO,832984.0,1060440,11433,3463529
+manzana,1,Más de 0 y hasta 5 %,VPH_STVP,508705.0,1058865,11377,3457405
+manzana,1,Más de 0 y hasta 5 %,VPH_SPMVPI,392428.0,1047419,11075,3414092
+manzana,1,Más de 0 y hasta 5 %,VPH_SINTIC,1101.0,792818,9269,2576272
+manzana,1,Más de 0 y hasta 5 %,PSINDER,925357.0,3459304,11414,3459304
+manzana,1,Más de 0 y hasta 5 %,GRAPROES,33050422.12,2839930,11433,3463529
+manzana,2,Más de 5 y hasta 10 %,VPH_INTER,226174.0,331870,6413,1195242
+manzana,2,Más de 5 y hasta 10 %,VPH_PC,162429.0,330984,6357,1191636
+manzana,2,Más de 5 y hasta 10 %,VPH_CEL,301417.0,332115,6430,1196287
+manzana,2,Más de 5 y hasta 10 %,VPH_RADIO,259212.0,332115,6430,1196287
+manzana,2,Más de 5 y hasta 10 %,VPH_STVP,119084.0,328136,6200,1180576
+manzana,2,Más de 5 y hasta 10 %,VPH_SPMVPI,79419.0,316133,5763,1134027
+manzana,2,Más de 5 y hasta 10 %,VPH_SINTIC,441.0,248707,5407,893797
+manzana,2,Más de 5 y hasta 10 %,PSINDER,364923.0,1193198,6385,1193198
+manzana,2,Más de 5 y hasta 10 %,GRAPROES,10024704.17,950743,6430,1196287
+manzana,3,Más de 10 y hasta 20 %,VPH_INTER,85548.0,137012,3492,516385
+manzana,3,Más de 10 y hasta 20 %,VPH_PC,56859.0,135298,3339,509392
+manzana,3,Más de 10 y hasta 20 %,VPH_CEL,124103.0,137355,3534,517767
+manzana,3,Más de 10 y hasta 20 %,VPH_RADIO,106711.0,137306,3527,517590
+manzana,3,Más de 10 y hasta 20 %,VPH_STVP,40189.0,131628,3141,495274
+manzana,3,Más de 10 y hasta 20 %,VPH_SPMVPI,24437.0,122341,2772,459146
+manzana,3,Más de 10 y hasta 20 %,VPH_SINTIC,197.0,100607,2993,380098
+manzana,3,Más de 10 y hasta 20 %,PSINDER,173780.0,515120,3475,515120
+manzana,3,Más de 10 y hasta 20 %,GRAPROES,3957327.04,400212,3535,517805
+manzana,4,Más de 20 y hasta 40 %,VPH_INTER,14455.0,25591,1053,100442
+manzana,4,Más de 20 y hasta 40 %,VPH_PC,9046.0,24566,951,96459
+manzana,4,Más de 20 y hasta 40 %,VPH_CEL,23609.0,26205,1138,103033
+manzana,4,Más de 20 y hasta 40 %,VPH_RADIO,19972.0,26070,1113,102535
+manzana,4,Más de 20 y hasta 40 %,VPH_STVP,6160.0,22500,835,88575
+manzana,4,Más de 20 y hasta 40 %,VPH_SPMVPI,3331.0,19619,719,76702
+manzana,4,Más de 20 y hasta 40 %,VPH_SINTIC,31.0,19573,992,77842
+manzana,4,Más de 20 y hasta 40 %,PSINDER,37191.0,102175,1101,102175
+manzana,4,Más de 20 y hasta 40 %,GRAPROES,730940.36,77833,1151,103238
+manzana,5,Más de 40 %,VPH_INTER,1302.0,2490,156,10153
+manzana,5,Más de 40 %,VPH_PC,734.0,2169,126,8758
+manzana,5,Más de 40 %,VPH_CEL,2562.0,2837,215,11517
+manzana,5,Más de 40 %,VPH_RADIO,2090.0,2750,194,11156
+manzana,5,Más de 40 %,VPH_STVP,498.0,2199,139,8930
+manzana,5,Más de 40 %,VPH_SPMVPI,315.0,1781,119,7259
+manzana,5,Más de 40 %,VPH_SINTIC,6.0,2294,201,9576
+manzana,5,Más de 40 %,PSINDER,4943.0,11464,207,11464
+manzana,5,Más de 40 %,GRAPROES,74341.14,8635,224,11766

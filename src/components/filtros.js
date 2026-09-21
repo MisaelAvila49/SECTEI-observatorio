@@ -19,6 +19,7 @@ import {html} from "npm:htl";
 import {
   TODAS, TODOS, AGREGADO, POR_SEPARADO, VER_MAPA, COMPARAR_ENTIDADES, POR_TAMANO, COMPARAR,
   ORDEN_EDAD, ORDEN_TAM_LOC, TAM_LOC_RURAL, ORDEN_AMBITO, ORDEN_ESCOLARIDAD, ORDEN_SEXO, ORDEN_DECIL,
+  ORDEN_GRADO,
 } from "./base.js";
 import {COMPARACIONES, COMPARACION_POR_CLAVE, CRITERIOS, FUENTES, admiteNivel, serieDe} from "./grupos.js";
 import {tasaPorGrupo} from "./agregar.js";
@@ -58,6 +59,7 @@ export const DIMENSIONES = {
   entidad: {etiqueta: "Entidad", orden: null, columna: "entidad"},
   anio: {etiqueta: "Edición", orden: null, columna: "anio"},
   indicador: {etiqueta: "Motivo", orden: null, columna: "indicador"},
+  grado: {etiqueta: "Grado", orden: ORDEN_GRADO, columna: "grado"},
 };
 
 // --- El panel ---------------------------------------------------------------

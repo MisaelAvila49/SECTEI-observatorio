@@ -26,7 +26,12 @@ const PAR_INDIGENA_OSCURO = {"Población indígena": "#EE4C7C", "Resto de la pob
 const PAR_SEXO_CLARO = {"Mujeres indígenas": "#B87709", "Hombres indígenas": "#2166AC"};
 const PAR_SEXO_OSCURO = {"Mujeres indígenas": "#BE8700", "Hombres indígenas": "#4A90D9"};
 
-export const COLOR_SERIE = {...PAR_INDIGENA_CLARO, ...PAR_SEXO_CLARO};
+// Tercer par: AGEB que alcanzan el umbral de presencia indígena contra el
+// resto. Mismos dos tonos del par principal, ya validados.
+const PAR_AGEB_CLARO = {"AGEB que alcanzan el umbral": "#C4101B", "Resto de las AGEB": "#2166AC"};
+const PAR_AGEB_OSCURO = {"AGEB que alcanzan el umbral": "#EE4C7C", "Resto de las AGEB": "#4A90D9"};
+
+export const COLOR_SERIE = {...PAR_INDIGENA_CLARO, ...PAR_SEXO_CLARO, ...PAR_AGEB_CLARO};
 
 // Rojo de marca (kickers, títulos de figura, cifra destacada). Sobre
 // superficie oscura el rojo pleno queda en 3.2:1 y vibra: ahí se usa el mismo
@@ -70,7 +75,8 @@ export function alCambiarModo(fn) {
 
 export function aplicarModo(oscuro) {
   MODO.oscuro = oscuro;
-  const par = oscuro ? {...PAR_INDIGENA_OSCURO, ...PAR_SEXO_OSCURO} : {...PAR_INDIGENA_CLARO, ...PAR_SEXO_CLARO};
+  const par = oscuro ? {...PAR_INDIGENA_OSCURO, ...PAR_SEXO_OSCURO, ...PAR_AGEB_OSCURO}
+    : {...PAR_INDIGENA_CLARO, ...PAR_SEXO_CLARO, ...PAR_AGEB_CLARO};
   for (const k of Object.keys(COLOR_SERIE)) COLOR_SERIE[k] = par[k];
   const grises = oscuro ? GRISES_OSCURO : GRISES_CLARO;
   for (const k of Object.keys(GRIS)) GRIS[k] = grises[k];
@@ -208,6 +214,7 @@ export const ORDEN_AMBITO = ["Urbano", "Rural"];
 export const ORDEN_ESCOLARIDAD = ["Primaria o menos", "Secundaria", "Media superior", "Superior"];
 export const ORDEN_SEXO = ["Mujeres", "Hombres"];
 export const ORDEN_DECIL = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+export const ORDEN_GRADO = ["Muy bajo", "Bajo", "Medio", "Alto", "Muy alto"];
 
 // --- Animación --------------------------------------------------------------
 export function animar(nodo) {

@@ -6,6 +6,7 @@ data-raw/
 # teselas. Versionarlos duplicaría 100 MB por cada regeneración.
 src/data/manzanas_cdmx.geojson
 src/data/colonias_cdmx.geojson
+src/data/agebs_cdmx.geojson
 
 # Teselas de colonias: generar_teselas.sh las produce, pero ninguna página las
 # lee (el mapa agrega a colonia desde los atributos de las manzanas). Son 4 MB

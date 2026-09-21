@@ -65,6 +65,57 @@ INDICADORES = [
     "PRESOE15", "PRESOE15_F", "PRESOE15_M",        # residía en otra entidad en 2015
 ]
 
+# Conectividad y condiciones de la manzana, para cruzarlas con la presencia
+# indígena. Son conteos de VIVIENDAS y su denominador es VIVPARH_CV (viviendas
+# particulares habitadas con características), no la población ni TVIVPARHAB.
+# Se verificó contra el Grado de Rezago Social por AGEB de CONEVAL, que publica
+# ese total: coincide con VIVPARH_CV en 2,397 de 2,410 AGEB de la ciudad y con
+# TVIVPARHAB solo en 1,016. TVIVPARHAB incluye viviendas sin información de
+# ocupantes, que no pudieron responder si tienen internet.
+# PSINDER sí es de personas y va sobre POBTOT.
+#
+# Es un cruce ENTRE MANZANAS, no entre hogares: el tabulado no dice qué
+# vivienda tiene internet ni quién vive en ella, solo cuántas de la manzana.
+VIVIENDA = [
+    "VPH_INTER",    # disponen de internet
+    "VPH_PC",       # disponen de computadora, laptop o tablet
+    "VPH_CEL",      # disponen de teléfono celular
+    "VPH_RADIO",    # disponen de radio
+    "VPH_STVP",     # disponen de televisión de paga
+    "VPH_SPMVPI",   # disponen de servicio de películas, música o videos de paga por internet
+    "VPH_SINTIC",   # sin ninguna tecnología de la información y la comunicación
+]
+DENOMINADOR_PROPIO = {**{v: "VIVPARH_CV" for v in VIVIENDA}, "PSINDER": "POBTOT"}
+NUEVOS = VIVIENDA + ["PSINDER"]
+# Conteos que solo sirven de denominador o de peso.
+APOYO = ["VIVPARH_CV", "P_15YMAS"]
+# GRAPROES es un PROMEDIO (grado promedio de escolaridad de la población de 15
+# años o más), no un conteo: no se suma. Al agregar se pondera por P_15YMAS.
+PROMEDIO = "GRAPROES"
+
+# Bandas de presencia indígena para el cruce entre manzanas: proporción de la
+# población de la manzana que vive en hogares censales indígenas.
+BANDAS = [
+    (0, 0, "Sin población en hogares indígenas"),
+    (0, 5, "Más de 0 y hasta 5 %"),
+    (5, 10, "Más de 5 y hasta 10 %"),
+    (10, 20, "Más de 10 y hasta 20 %"),
+    (20, 40, "Más de 20 y hasta 40 %"),
+    (40, 100, "Más de 40 %"),
+]
+
+
+def banda_de(tasa):
+    """Etiqueta de banda para una tasa de población en hogares indígenas."""
+    if tasa is None or pd.isna(tasa):
+        return None
+    if tasa == 0:
+        return BANDAS[0][2]
+    for lo, hi, etiqueta in BANDAS[1:]:
+        if lo < tasa <= hi:
+            return etiqueta
+    return None
+
 
 def leer_censo():
     """Lee RESAGEBURB y arma el CVEGEO de 16 dígitos.
@@ -75,7 +126,8 @@ def leer_censo():
     "INEGI no publica el dato".
     """
     columnas = ",\n           ".join(
-        f"TRY_CAST({c} AS BIGINT) AS {c}" for c in INDICADORES
+        [f"TRY_CAST({c} AS BIGINT) AS {c}" for c in INDICADORES + NUEVOS + APOYO]
+        + [f"TRY_CAST({PROMEDIO} AS DOUBLE) AS {PROMEDIO}"]
     )
     sql = f"""
     SELECT lpad(ENTIDAD,2,'0') || lpad(MUN,3,'0') || lpad(LOC,4,'0')
@@ -176,16 +228,65 @@ def agregar_colonias(piezas, censo, colonias):
     det["manzanas_sin_dato"] = det["PHOG_IND"].isna() * det["fraccion"]
     det["manzanas"] = det["fraccion"]
 
+    # Indicadores nuevos: el denominador se suma SOLO en las manzanas donde el
+    # numerador está publicado. Si se sumaran todas las viviendas de la colonia,
+    # las de manzanas con la cifra suprimida entrarían al denominador sin poder
+    # entrar al numerador y la tasa saldría sesgada hacia abajo.
+    extras = []
+    for ind in NUEVOS:
+        den = DENOMINADOR_PROPIO[ind]
+        publicado = det[ind].notna() & det[den].notna()
+        det[f"den_{ind}"] = (det[den] * det["fraccion"]).where(publicado)
+        det[ind] = (det[ind] * det["fraccion"]).where(publicado)
+        extras += [ind, f"den_{ind}"]
+
+    # Promedio de escolaridad: ponderado por la población de 15 años o más de
+    # cada manzana, que es su universo.
+    con_prom = det[PROMEDIO].notna() & det["P_15YMAS"].notna()
+    det["_peso_prom"] = (det["P_15YMAS"] * det["fraccion"]).where(con_prom)
+    det["_suma_prom"] = (det[PROMEDIO] * det["P_15YMAS"] * det["fraccion"]).where(con_prom)
+
     agregado = det.groupby("cve_colonia", as_index=False)[
-        INDICADORES + ["manzanas", "manzanas_sin_dato"]
+        INDICADORES + extras + ["manzanas", "manzanas_sin_dato", "_peso_prom", "_suma_prom"]
     ].sum(min_count=1)
+    agregado[PROMEDIO] = (agregado["_suma_prom"] / agregado["_peso_prom"]).round(2)
+    agregado = agregado.drop(columns=["_peso_prom", "_suma_prom"])
 
     salida = colonias.merge(agregado, on="cve_colonia", how="left")
     salida["manzanas"] = salida["manzanas"].round().astype("Int64")
     salida["manzanas_sin_dato"] = salida["manzanas_sin_dato"].round().astype("Int64")
-    for ind in INDICADORES:
+    for ind in INDICADORES + extras:
         salida[ind] = salida[ind].round().astype("Int64")
     return salida
+
+
+def cruce_por_banda(manzanas):
+    """Conectividad y condiciones según la presencia indígena de la manzana.
+
+    Agrupa las manzanas por la proporción de su población que vive en hogares
+    censales indígenas y, dentro de cada banda, suma numerador y denominador de
+    cada indicador (nunca promedia tasas). Entran solo las manzanas con la
+    cifra de hogares indígenas publicada, y en cada indicador solo las que
+    publican su numerador y su denominador.
+    """
+    mz = manzanas.copy()
+    mz["banda"] = (100 * mz["PHOG_IND"] / mz["POBTOT"]).where(mz["POBTOT"] > 0).map(banda_de)
+    mz = mz[mz["banda"].notna()]
+    filas = []
+    for orden, (_, _, etiqueta) in enumerate(BANDAS):
+        sub = mz[mz["banda"] == etiqueta]
+        for ind in NUEVOS:
+            den = DENOMINADOR_PROPIO[ind]
+            ok = sub[sub[ind].notna() & sub[den].notna()]
+            filas.append({"nivel": "manzana", "orden": orden, "banda": etiqueta, "indicador": ind,
+                          "num": int(ok[ind].sum()), "den": int(ok[den].sum()),
+                          "unidades": len(ok), "poblacion": int(ok["POBTOT"].sum())})
+        ok = sub[sub[PROMEDIO].notna() & sub["P_15YMAS"].notna()]
+        filas.append({"nivel": "manzana", "orden": orden, "banda": etiqueta, "indicador": PROMEDIO,
+                      "num": round(float((ok[PROMEDIO] * ok["P_15YMAS"]).sum()), 2),
+                      "den": int(ok["P_15YMAS"].sum()),
+                      "unidades": len(ok), "poblacion": int(ok["POBTOT"].sum())})
+    return pd.DataFrame(filas)
 
 
 def con_tasas(gdf):
@@ -209,6 +310,14 @@ def con_tasas(gdf):
             (col for sufijo, col in denominadores.items() if ind.endswith(sufijo)),
             "POBTOT",
         )
+        tasa = 100 * gdf[ind] / gdf[den]
+        gdf[f"tasa_{ind.lower()}"] = tasa.where(gdf[den] > 0).round(2)
+
+    # Indicadores nuevos: sobre su propio denominador. En la colonia el
+    # denominador ya viene restringido a las manzanas con cifra publicada
+    # (den_<indicador>); en la manzana es la columna del tabulado tal cual.
+    for ind in NUEVOS:
+        den = f"den_{ind}" if f"den_{ind}" in gdf.columns else DENOMINADOR_PROPIO[ind]
         tasa = 100 * gdf[ind] / gdf[den]
         gdf[f"tasa_{ind.lower()}"] = tasa.where(gdf[den] > 0).round(2)
     return gdf
@@ -257,6 +366,18 @@ def main():
     SALIDA.mkdir(parents=True, exist_ok=True)
     destino_mz = SALIDA / "manzanas_cdmx.geojson"
     destino_col = SALIDA / "colonias_cdmx.geojson"
+
+    # Cruce entre manzanas: conectividad según la presencia indígena. Se escribe
+    # como tabla chica y versionada, porque el navegador no tiene las 66 mil
+    # manzanas (solo lee teselas) y no podría calcularlo.
+    cruce = cruce_por_banda(mz_out)
+    destino_cruce = SALIDA / "cruce_manzanas.csv"
+    cruce.to_csv(destino_cruce, index=False, encoding="utf-8", lineterminator="\n")
+    print(f"Escrito {destino_cruce.name} ({len(cruce)} filas)")
+
+    # P_15YMAS solo sirve de peso del promedio de escolaridad: no viaja a las
+    # teselas.
+    mz_out = mz_out.drop(columns=["P_15YMAS"])
 
     mz_out.to_crs(CRS_SALIDA).to_file(destino_mz, driver="GeoJSON")
     col_out.to_crs(CRS_SALIDA).to_file(destino_col, driver="GeoJSON")

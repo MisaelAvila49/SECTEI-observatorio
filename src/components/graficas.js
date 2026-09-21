@@ -120,7 +120,10 @@ export function avisoMuestra(filas, {umbral = MIN_CASOS} = {}) {
 
 // Tabla de respaldo: el relevo de accesibilidad para el color, con los casos
 // de muestra sin expandir que el tooltip no trae.
-export function tablaDatos(filas, {dims = [], formato = "pct", titulo = "Ver los datos"} = {}) {
+// `intervalo: false` y `etiquetaCasos` son para datos CENSALES: ahí no hay error
+// de muestreo que publicar y los "casos" son unidades territoriales, no entrevistas.
+export function tablaDatos(filas, {dims = [], formato = "pct", titulo = "Ver los datos",
+    intervalo = true, etiquetaCasos = "Casos en muestra", etiquetaNum = "Pob. cumple", etiquetaDen = "Pob. total"} = {}) {
   if (!filas.length) return document.createDocumentFragment();
   const lista = dims.filter(Boolean);
   return html`<details class="tabla-datos">
@@ -129,15 +132,15 @@ export function tablaDatos(filas, {dims = [], formato = "pct", titulo = "Ver los
       <thead><tr>
         ${lista.map((d) => html`<th>${DIMENSIONES[d]?.etiqueta ?? d}</th>`)}
         <th>Grupo</th><th>${etiquetaMedida(formato)}</th>
-        ${formato === "conteo" ? "" : html`<th>Intervalo 95 %</th>`}
-        ${formato === "pct" ? html`<th>Pob. cumple</th>` : ""}
-        <th>Pob. total</th><th>Casos en muestra</th>
+        ${formato === "conteo" || !intervalo ? "" : html`<th>Intervalo 95 %</th>`}
+        ${formato === "pct" ? html`<th>${etiquetaNum}</th>` : ""}
+        <th>${etiquetaDen}</th><th>${etiquetaCasos}</th>
       </tr></thead>
       <tbody>${filas.map((f) => html`<tr>
         ${lista.map((d) => html`<td>${rotulo(d, f[d])}</td>`)}
         <td>${f.serie ?? ""}</td>
         <td class="num">${formatear(f.pct, formato)}${f.fragil ? " *" : ""}</td>
-        ${formato === "conteo" ? "" : html`<td class="num">${f.ic ? `${formatear(f.ic.lo, formato)} a ${formatear(f.ic.hi, formato)}` : "sin estimar"}</td>`}
+        ${formato === "conteo" || !intervalo ? "" : html`<td class="num">${f.ic ? `${formatear(f.ic.lo, formato)} a ${formatear(f.ic.hi, formato)}` : "sin estimar"}</td>`}
         ${formato === "pct" ? html`<td class="num">${punto(f.num)}</td>` : ""}
         <td class="num">${punto(f.den)}</td>
         <td class="num">${punto(f.casos)}</td>
@@ -191,7 +194,8 @@ export function barrasComparadas(datos, {comparacion, formato = "pct", width = 6
 // entidades se ordenan por la brecha (el orden es el hallazgo); cuando son
 // ordinales conservan su orden natural.
 export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, formato = "pct",
-    width = 1120, referencia = null, ordenarPorBrecha = null, alturaFila = null, etiquetaFilas = null} = {}) {
+    width = 1120, referencia = null, ordenarPorBrecha = null, alturaFila = null, etiquetaFilas = null,
+    intervalo = true, etiquetaPoblacion = "Población"} = {}) {
   asegurarTrama();
   const comp = COMPARACION_POR_CLAVE[comparacion];
   const [serieA, serieB] = comp?.series ?? [];
@@ -244,8 +248,8 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
     ...(faceta ? {[dimFaceta?.etiqueta ?? "Panel"]: (d) => rotulo(faceta, d.faceta)} : {}),
     "Grupo": (d) => d.grupo,
     [etiquetaMedida(formato)]: (d) => formatear(d.valor, formato) + (d.fragil ? " *" : ""),
-    ...canalIntervalo(formato),
-    ...canalPoblacion(formato),
+    ...(intervalo ? canalIntervalo(formato) : {}),
+    ...(formato === "pct" ? {[etiquetaPoblacion]: (d) => poblacionCorta(d.num)} : {}),
     "Brecha": (d) => d.brecha == null ? "s/d" : `${diferencia(d.brecha, 1)} pp`,
   };
   const fx = faceta ? {fx: (d) => String(d.faceta)} : {};
@@ -304,6 +308,67 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
     ],
   });
   return animar(fig);
+}
+
+// --- Puntos por banda: un valor por categoría ordenada ----------------------
+// Para el cruce entre territorios: las manzanas (o las AGEB) se agrupan por su
+// proporción de población en hogares indígenas y cada banda es una fila con UN
+// valor, el del indicador elegido. No es un dumbbell porque no hay dos series:
+// lo que se compara es la misma cifra a lo largo de las bandas, contra la
+// referencia de toda la ciudad. El tallo va de la referencia al punto, así que
+// su longitud es la distancia a la ciudad y su lado, el signo.
+export function puntosPorBanda(filas, {formatoValor = (v) => formatear(v, "pct"), etiquetaX = "%",
+    referencia = null, etiquetaReferencia = "Toda la ciudad", etiquetaNum = "Viviendas",
+    etiquetaUnidades = "Manzanas", width = 900} = {}) {
+  const datos = filas.filter((d) => Number.isFinite(d.valor));
+  if (!datos.length) return document.createDocumentFragment();
+  const orden = datos.slice().sort((a, b) => a.orden - b.orden).map((d) => d.banda);
+  const canales = {
+    "Presencia indígena": (d) => d.banda,
+    "Valor": (d) => formatoValor(d.valor),
+    [etiquetaNum]: (d) => punto(d.num),
+    [etiquetaUnidades]: (d) => punto(d.unidades),
+    "Población": (d) => poblacionCorta(d.poblacion),
+  };
+  const valores = [...datos.map((d) => d.valor), ...(referencia == null ? [] : [referencia])];
+  const lo = Math.min(...valores), hi = Math.max(...valores);
+  const aire = (hi - lo || 1) * 0.18;
+  const fig = Plot.plot({
+    style: ESTILO_EJES,
+    width: Math.min(width, 980), height: orden.length * 40 + 96,
+    marginLeft: 250, marginRight: 70, marginTop: 44, marginBottom: 30,
+    x: {label: etiquetaX, axis: "top", grid: true, domain: [Math.max(0, lo - aire), hi + aire]},
+    y: {domain: orden, label: null, tickSize: 0},
+    marks: [
+      ...(referencia == null ? [] : [
+        Plot.ruleX([referencia], {stroke: GRIS.tinta, strokeWidth: 1.2, strokeDasharray: "5 3", strokeOpacity: 0.75}),
+        Plot.text([referencia], {x: (d) => d, frameAnchor: "bottom", dy: 14, text: () => `${etiquetaReferencia}: ${formatoValor(referencia)}`,
+          fontSize: TIPO.etiqueta, fill: GRIS.trazo, stroke: FONDO, strokeWidth: 3}),
+        Plot.link(datos, {y: "banda", x1: () => referencia, x2: "valor", stroke: GRIS.fondo, strokeWidth: 3.2, strokeLinecap: "round"}),
+      ]),
+      Plot.dot(datos, {y: "banda", x: "valor", r: 6, fill: ROJO, stroke: FONDO, strokeWidth: 1,
+        channels: canales, tip: {channels: canales, format: {x: false, y: false}}}),
+      Plot.text(datos, {y: "banda", x: "valor", text: (d) => formatoValor(d.valor) + (d.fragil ? " *" : ""), dy: -13,
+        fontSize: TIPO.etiqueta, fontWeight: 600, fill: "currentColor", stroke: FONDO, strokeWidth: 3}),
+      Plot.dot(datos, Plot.pointerY({y: "banda", x: "valor", r: 9, fill: "none", stroke: GRIS.tinta,
+        strokeWidth: 1.6, pointerEvents: "none", maxRadius: Infinity})),
+    ],
+  });
+  return animar(fig);
+}
+
+// Tabla de respaldo de columnas libres, para las vistas que no siguen el
+// esquema num/den/casos de las encuestas.
+export function tablaColumnas(filas, columnas, {titulo = "Ver los datos"} = {}) {
+  if (!filas.length) return document.createDocumentFragment();
+  return html`<details class="tabla-datos">
+    <summary>${titulo} (${punto(filas.length)} filas)</summary>
+    <div class="tabla-scroll"><table>
+      <thead><tr>${columnas.map((c) => html`<th>${c.etiqueta}</th>`)}</tr></thead>
+      <tbody>${filas.map((f) => html`<tr>${columnas.map((c) =>
+        html`<td class="${c.num ? "num" : ""}">${c.valor(f)}</td>`)}</tr>`)}</tbody>
+    </table></div>
+  </details>`;
 }
 
 // --- Pendiente: la serie de cada grupo a través de las ediciones -----------
