@@ -9,6 +9,7 @@ import {verTambien} from "../../components/navegacion.js";
 import {materializar} from "../../components/agregar.js";
 const datos = materializar(await FileAttachment("../../data/indicadores/enigh-hogar.parquet").parquet());
 const datosEscolaridad = materializar(await FileAttachment("../../data/indicadores/enigh-hogar_escolaridad.parquet").parquet());
+const datosEstrato = materializar(await FileAttachment("../../data/indicadores/enigh-hogar_estrato.parquet").parquet());
 const datosDecil = materializar(await FileAttachment("../../data/indicadores/enigh-hogar_decil.parquet").parquet());
 const geoEntidades = await FileAttachment("../../data/mx_entidades.json").json();
 const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
@@ -21,7 +22,7 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 </div>
 
 ```js
-const secciones = seccionesTema("enigh-hogar", datos, {geoEntidades, datosEscolaridad, datosDecil, fuentes});
+const secciones = seccionesTema("enigh-hogar", datos, {geoEntidades, datosEscolaridad, datosEstrato, datosDecil, fuentes});
 ```
 
 ---

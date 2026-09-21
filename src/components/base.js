@@ -212,6 +212,8 @@ export const ORDEN_TAM_LOC = ["100 mil habitantes o más", "15 mil a 99 999", "2
 export const TAM_LOC_RURAL = "Menos de 2 500";
 export const ORDEN_AMBITO = ["Urbano", "Rural"];
 export const ORDEN_ESCOLARIDAD = ["Primaria o menos", "Secundaria", "Media superior", "Superior"];
+// Estrato socioeconómico del INEGI (ENIGH `est_socio`, ENDUTIH `ESTRATO`).
+export const ORDEN_ESTRATO = ["Bajo", "Medio bajo", "Medio alto", "Alto"];
 export const ORDEN_SEXO = ["Mujeres", "Hombres"];
 export const ORDEN_DECIL = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 export const ORDEN_GRADO = ["Muy bajo", "Bajo", "Medio", "Alto", "Muy alto"];

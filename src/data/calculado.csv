@@ -18,7 +18,10 @@ censo,viv_telefono,37.6924,"% de viviendas particulares habitadas, muestra ampli
 censo,viv_televisor,91.3229,"% de viviendas particulares habitadas, muestra ampliada"
 censo,viv_tv_paga,43.4936,"% de viviendas particulares habitadas, muestra ampliada"
 censo,viv_videojuegos,11.7233,"% de viviendas particulares habitadas, muestra ampliada"
-endutih,usa_celular_6mas,89.1481,% de personas de 6 años o más que usan celular
+endutih,escucha_radio_6mas,29.7605,% de personas de 6 años o más que escucharon la radio en la última semana
+endutih,net_habla_lengua,4.6803,% de las personas usuarias de internet que hablan lengua indígena
+endutih,net_se_considera,26.6132,% de las personas usuarias de internet que se consideran indígenas
+endutih,usa_celular_6mas,84.6451,% de personas de 6 años o más que usan celular
 endutih,usa_computadora_6mas,38.1445,% de personas de 6 años o más que usan computadora
 endutih,usa_internet_6mas,86.0526,% de personas de 6 años o más que usan internet
 enigh,hog_celular_2020,90.1202,"% de hogares (con al menos una persona de 6+), ponderado con el factor"

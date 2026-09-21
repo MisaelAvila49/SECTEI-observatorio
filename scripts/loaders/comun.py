@@ -22,6 +22,7 @@ que permite agregar entidades o edades sin promediar tasas.
   rango_edad  "6-11" ... "60+"
   tam_loc     tamaño de localidad en cuatro tramos, o "Todos"
   decil       decil de ingreso per cápita del hogar (solo ENIGH), o "Todos"
+  estrato     estrato socioeconómico del INEGI (ENIGH y ENDUTIH), o "Todos"
   escolaridad nivel de escolaridad en cuatro tramos (15 años o más), o "Todos"
   num         suma ponderada de quienes cumplen la condición
   den         suma ponderada del universo
@@ -106,12 +107,24 @@ ESCOLARIDAD = [
 ]
 EDAD_MINIMA_ESCOLARIDAD = 15
 
+# Estrato socioeconómico del INEGI: clasificación de las viviendas según
+# características físicas y equipamiento, con cuatro niveles. La ENIGH lo
+# trae como `est_socio` y la ENDUTIH como `ESTRATO`, con los mismos códigos
+# (1 bajo ... 4 alto); se comprobó que ordenan el ingreso y el acceso a
+# internet en ese sentido antes de usarlos.
+ESTRATO = {"1": "Bajo", "2": "Medio bajo", "3": "Medio alto", "4": "Alto"}
+
+
+def sql_estrato(col):
+    casos = " ".join(f"WHEN '{k}' THEN '{v}'" for k, v in ESTRATO.items())
+    return f"CASE {col} {casos} END"
+
 LLAVES_BASE = ["anio", "lengua", "autoads", "sexo", "entidad", "rango_edad", "tam_loc"]
-LLAVES_EXTRA = {"decil": "decil", "escolaridad": "escolaridad"}
+LLAVES_EXTRA = {"decil": "decil", "escolaridad": "escolaridad", "estrato": "estrato"}
 
 COLUMNAS = [
     "tema", "indicador", "anio", "lengua", "autoads", "sexo", "entidad",
-    "rango_edad", "tam_loc", "decil", "escolaridad", "num", "den", "casos",
+    "rango_edad", "tam_loc", "decil", "escolaridad", "estrato", "num", "den", "casos",
     "ee", "fuente", "universo", "encuesta",
 ]
 
@@ -221,7 +234,7 @@ def agregar(con, tabla, llaves, indicadores, peso="w", upm="upm", estrato="est")
 def completar(df, fuente, encuesta):
     """Rellena las columnas opcionales y ordena al esquema común."""
     d = df.copy()
-    for c, v in (("tam_loc", "Todos"), ("decil", "Todos"), ("escolaridad", "Todos")):
+    for c, v in (("tam_loc", "Todos"), ("decil", "Todos"), ("escolaridad", "Todos"), ("estrato", "Todos")):
         if c not in d.columns:
             d[c] = v
         d[c] = d[c].fillna(v)

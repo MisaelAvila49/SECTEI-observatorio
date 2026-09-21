@@ -46,8 +46,7 @@ import pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from comun import (  # noqa: E402
     agregar, completar, escribir, guardia, anotar_calculado, sql_rango_edad,
-    sql_entidad, LLAVES_BASE, EDAD_MINIMA, EDAD_MINIMA_ESCOLARIDAD,
-)
+    sql_entidad, LLAVES_BASE, EDAD_MINIMA, EDAD_MINIMA_ESCOLARIDAD, ESTRATO, sql_estrato)
 
 BASE_ENIGH = os.environ.get("ENIGH_DIR", r"D:\IMPORTANTE\SocialDataIbero\AnalisisSueltos\Obindi\enigh")
 BASE_HOG = os.environ.get(
@@ -88,7 +87,7 @@ def cargar(year):
         for k in ("folioviv", "foliohog"):
             d[k] = d[k].str.strip()
 
-    cols_conc = ["folioviv", "foliohog", "tam_loc", "ing_cor", "tot_integ"]
+    cols_conc = ["folioviv", "foliohog", "tam_loc", "ing_cor", "tot_integ", "est_socio"]
     for c in ("factor", "upm", "est_dis"):
         if c not in pob.columns:
             cols_conc.append(c)
@@ -118,6 +117,12 @@ def cargar(year):
     part = m.groupby("decil")["w"].sum() / m["w"].sum() * 100
     if ((part < 5) | (part > 15)).any():
         raise SystemExit(f"ENIGH {year}: deciles desbalanceados: {part.round(1).to_dict()}")
+
+    # Estrato socioeconómico: mismos cuatro códigos en las tres ediciones.
+    m["est_socio"] = m["est_socio"].astype(str).str.strip()
+    fuera = set(m["est_socio"].unique()) - set(ESTRATO)
+    if fuera:
+        raise SystemExit(f"ENIGH {year}: est_socio trae códigos fuera del catálogo: {sorted(fuera)}")
 
     for c in ("hablaind", "etnia", "sexo", "nivelaprob", "tam_loc", "telefono", "celular",
               "conex_inte", "tv_paga", "num_lap", "peliculas", "upm", "est_dis"):
@@ -154,6 +159,7 @@ def preparar(con, m, year):
         WHEN '4' THEN 'Menos de 2 500'
       END AS tam_loc,
       decil,
+      {sql_estrato("est_socio")} AS estrato,
       CASE
         WHEN edad < {EDAD_MINIMA_ESCOLARIDAD} THEN NULL
         WHEN nivelaprob IN ('0', '1', '2') THEN 'Primaria o menos'
@@ -196,7 +202,7 @@ def main():
     ind = [{**i, "tema": TEMA, "universo": UNIVERSO} for i in INDICADORES]
     ind_esc = [{**i, "universo": "Personas de 15 años o más"} for i in ind]
 
-    principal, por_decil, por_esc = [], [], []
+    principal, por_decil, por_esc, por_estrato = [], [], [], []
     for year in ANIOS:
         m = cargar(year)
         print(f"[ok] ENIGH {year}: {len(m):,} personas de 6 años o más", file=sys.stderr)
@@ -231,6 +237,16 @@ def main():
         llaves_dec = [k for k in LLAVES_BASE if k != "tam_loc"] + ["decil"]
         por_decil.append(completar(agregar(con, "base", llaves_dec, ind), FUENTE, "enigh"))
 
+        llaves_est = [k for k in LLAVES_BASE if k != "tam_loc"] + ["estrato"]
+        e = completar(agregar(con, "base", llaves_est, ind), FUENTE, "enigh")
+        por_estrato.append(e)
+        # El estrato tiene que ordenar el acceso: si no, los códigos cambiaron.
+        net = e[e["indicador"] == INDICADORES[0]["indicador"]].groupby("estrato")[["num", "den"]].sum()
+        tasa = (100 * net["num"] / net["den"]).reindex(list(ESTRATO.values()))
+        print(f"     internet por estrato: {tasa.round(1).to_dict()}", file=sys.stderr)
+        if not tasa.is_monotonic_increasing:
+            raise SystemExit(f"ENIGH {year}: el estrato no ordena el acceso a internet; revisa est_socio.")
+
         con.execute("CREATE OR REPLACE VIEW base_esc AS SELECT * FROM base WHERE escolaridad IS NOT NULL")
         llaves_esc = [k for k in LLAVES_BASE if k != "tam_loc"] + ["escolaridad"]
         por_esc.append(completar(agregar(con, "base_esc", llaves_esc, ind_esc), FUENTE, "enigh"))
@@ -241,6 +257,7 @@ def main():
     escribir(todo, TEMA)
     escribir(pd.concat(por_decil, ignore_index=True), TEMA + "_decil")
     escribir(pd.concat(por_esc, ignore_index=True), TEMA + "_escolaridad")
+    escribir(pd.concat(por_estrato, ignore_index=True), TEMA + "_estrato")
 
 
 if __name__ == "__main__":

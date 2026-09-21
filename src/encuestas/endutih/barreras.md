@@ -9,6 +9,7 @@ import {verTambien} from "../../components/navegacion.js";
 import {materializar} from "../../components/agregar.js";
 const datos = materializar(await FileAttachment("../../data/indicadores/endutih-barreras.parquet").parquet());
 const datosEscolaridad = materializar(await FileAttachment("../../data/indicadores/endutih-barreras_escolaridad.parquet").parquet());
+const datosEstrato = materializar(await FileAttachment("../../data/indicadores/endutih-barreras_estrato.parquet").parquet());
 const geoEntidades = await FileAttachment("../../data/mx_entidades.json").json();
 const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 ```
@@ -20,7 +21,7 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 </div>
 
 ```js
-const secciones = seccionesTema("endutih-barreras", datos, {geoEntidades, datosEscolaridad, fuentes});
+const secciones = seccionesTema("endutih-barreras", datos, {geoEntidades, datosEscolaridad, datosEstrato, fuentes});
 ```
 
 ---

@@ -140,7 +140,10 @@ export const CATALOGO = {
         titulo: "Dispositivos y conexión",
         abre: "edad",
         indicadores: [
-          {indicador: "Usa celular"},
+          {indicador: "Usa celular",
+           explica: `Sigue la definición del INEGI de persona usuaria de celular: dispone de uno y
+             lo usó en los últimos tres meses. Quien usó un celular ajeno sin disponer de uno
+             propio no entra.`},
           {indicador: "Usa computadora, laptop o tableta"},
           {indicador: "El celular que usa es inteligente", universo: "Personas de 6 años o más que usan celular"},
           {indicador: "Usa internet todos los días", universo: "Personas de 6 años o más que usan internet"},
@@ -177,6 +180,24 @@ export const CATALOGO = {
         ],
         explica: `La ENDUTIH también pregunta por el hogar, con la misma pregunta que el Censo y
           la ENIGH; estas tres figuras permiten cotejar las tres fuentes.`,
+      },
+      {
+        titulo: "La radio",
+        abre: "edad",
+        indicadores: [
+          {indicador: "Escuchó la radio en la última semana"},
+          {indicador: "Vive en un hogar con radio"},
+          {indicador: "Escucha la radio en un aparato de radio", universo: "Personas de 6 años o más que escucharon la radio",
+           explica: `Estéreo o grabadora, radio del automóvil o del transporte y radio portátil,
+             según el dispositivo principal que declaró la persona.`},
+          {indicador: "Escucha la radio en celular, tableta o computadora", universo: "Personas de 6 años o más que escucharon la radio"},
+          {indicador: "Escucha la radio en el hogar", universo: "Personas de 6 años o más que escucharon la radio",
+           explica: `Lugar principal donde escuchó la radio; las otras opciones del cuestionario son
+             el automóvil, el transporte público y el trabajo.`},
+        ],
+        explica: `La ENDUTIH pregunta a cada persona si escuchó la radio en la última semana,
+          con qué dispositivo principal y en qué lugar. Los dos primeros indicadores se
+          calculan sobre toda la población; los demás, solo entre quienes la escucharon.`,
       },
     ],
     fuentes: {
@@ -239,6 +260,8 @@ export const CATALOGO = {
           {indicador: "Lee periódicos, revistas o libros en línea"},
           {indicador: "Ve video gratuito en línea"},
           {indicador: "Ve video de paga en línea"},
+          {indicador: "Escucha música en línea"},
+          {indicador: "Escucha radio AM o FM por internet"},
           {indicador: "Juega en línea"},
         ],
       },
@@ -264,8 +287,8 @@ export const CATALOGO = {
     encuesta: "endutih",
     titulo: "Quién no se conecta y por qué",
     ruta: "/encuestas/endutih/barreras",
-    entrada: `La ENDUTIH pregunta a quien no usa internet, computadora o celular por qué no
-      lo hace, y al hogar sin internet por qué no lo tiene.`,
+    entrada: `La ENDUTIH pregunta a quien no usa internet, computadora o celular, o no
+      escucha la radio, por qué no lo hace, y al hogar sin internet por qué no lo tiene.`,
     explica: `${EXPLICA_CRITERIO} El primer bloque se calcula sobre toda la población de 6
       años o más; los motivos, solo entre quienes no usan o no tienen, y suman el
       total de cada grupo.`,
@@ -283,6 +306,7 @@ export const CATALOGO = {
           {indicador: "No usa computadora, laptop ni tableta"},
           {indicador: "No dispone de celular"},
           {indicador: "Vive en un hogar sin internet"},
+          {indicador: "No escuchó la radio en la última semana"},
         ],
         explica: `Son los complementos de los indicadores de uso: la fracción de cada grupo que
           no usa internet, no usa computadora, no dispone de celular o vive en un hogar sin internet.`,
@@ -299,6 +323,9 @@ export const CATALOGO = {
       {titulo: "Por qué el hogar no tiene internet", prefijo: "Motivo del hogar para no tener internet: ",
        explica: `Lo responde el hogar, no la persona; aquí se cuenta a las personas de 6 años
          o más que viven en hogares sin internet según el motivo que declaró su hogar.`},
+      {titulo: "Por qué no escucha la radio", prefijo: "Motivo para no escuchar la radio: ",
+       explica: `Un motivo principal por persona que no escuchó la radio en la última semana,
+         de una lista cerrada del cuestionario.`},
     ],
     fuentes: {
       referencia: ["R-ENDUTIH-2025-COM"],

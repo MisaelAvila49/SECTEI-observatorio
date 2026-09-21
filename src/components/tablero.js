@@ -55,6 +55,7 @@ function notaSeleccion(v, anios) {
   else if (v.rangoEdad && v.rangoEdad !== AGREGADO) partes.push(`Personas de ${v.rangoEdad} años.`);
   if (v.decil === COMPARAR) partes.push("Por decil de ingreso del hogar.");
   if (v.escolaridad === COMPARAR) partes.push("Por escolaridad, personas de 15 años o más.");
+  if (v.estrato === COMPARAR) partes.push("Por estrato socioeconómico de la vivienda.");
   return partes.join(" ");
 }
 
@@ -177,14 +178,14 @@ function referenciaNacional(filas, v, formato) {
 
 // Secciones de un tema, cada una un nodo listo para `display`. `datos` son
 // las filas del archivo principal del tema; `datosDecil` y
-// `datosEscolaridad`, los desgloses opcionales.
+// `datosEscolaridad` y `datosEstrato`, los desgloses opcionales.
 export function seccionesTema(clave, datos, {geoEntidades = null, datosDecil = null,
-    datosEscolaridad = null, fuentes = null} = {}) {
+    datosEscolaridad = null, datosEstrato = null, fuentes = null} = {}) {
   const tema = CATALOGO[clave];
   if (!tema) return [html`<p>Tema desconocido: ${clave}</p>`];
   const encuesta = tema.encuesta;
   const formato = tema.formato ?? "pct";
-  const todo = datos.concat(datosDecil ?? [], datosEscolaridad ?? []);
+  const todo = datos.concat(datosDecil ?? [], datosEscolaridad ?? [], datosEstrato ?? []);
   const deIndicador = (nombre) => todo.filter((d) => d.indicador === nombre);
   const titulos = titulosDeSecciones(clave);
   let n = 0;
