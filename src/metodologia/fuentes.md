@@ -96,8 +96,12 @@ de lengua y se aplica a posiciones específicas dentro del hogar. Un hogar cuyos
 integrantes se reconocen indígenas pero ya no hablan la lengua no entra; uno
 donde solo el hijo la habla, tampoco.
 
-Bajo ese criterio, 273,851 personas de la Ciudad de México —el 2.99 %— viven en
-hogares censales indígenas. Es una cifra menor al 8 o 9 % que suele citarse para
+Bajo ese criterio, 289,139 de los 9,209,944 habitantes de la Ciudad de México,
+el 3.14 %, viven en hogares censales indígenas. Esa es la cifra oficial y sale de
+la fila de total de la entidad del mismo tabulado. La suma de las manzanas
+publicadas da 273,851 de 9,145,155 habitantes (2.99 %), porque deja fuera lo
+suprimido por confidencialidad y lo que no es manzana urbana; por eso la portada
+cita la primera y no la segunda. Es una cifra menor al 8 o 9 % que suele citarse para
 la ciudad, y la diferencia no es un error de ninguna de las dos: ese otro dato
 proviene de la **autoadscripción**, una pregunta distinta y más amplia, levantada
 en el cuestionario ampliado del mismo Censo. La autoadscripción no puede
@@ -180,11 +184,123 @@ El resultado cuadra: la suma de población por colonia difiere de la suma por
 manzana en 1,382 personas sobre 9.1 millones, un 0.015 %, atribuible al redondeo
 a enteros de 1,837 colonias.
 
+## Los indicadores de vivienda y su denominador
+
+El mismo tabulado publica, para cada manzana y cada AGEB, cuántas viviendas
+disponen de internet, computadora, teléfono celular, radio, televisión de paga y
+servicio de películas o música por internet, y cuántas no tienen ninguna de esas
+tecnologías (`VPH_INTER`, `VPH_PC`, `VPH_CEL`, `VPH_RADIO`, `VPH_STVP`,
+`VPH_SPMVPI` y `VPH_SINTIC`). Se incorporaron al mapa junto con la población sin
+afiliación a servicios de salud (`PSINDER`) y el grado promedio de escolaridad
+(`GRAPROES`), para poder describir las condiciones de las manzanas donde vive la
+población en hogares indígenas.
+
+El tabulado ofrece dos totales de vivienda y no dice cuál corresponde a estos
+indicadores: `TVIVPARHAB`, el total de viviendas particulares habitadas, y
+`VIVPARH_CV`, las viviendas particulares habitadas de las que se captaron
+características. Para decidirlo se cotejó cada total contra el que CONEVAL
+publica en su base de rezago social por AGEB, que parte del mismo Censo. Con
+`VIVPARH_CV` el total coincide en 2,397 de las 2,410 AGEB de la ciudad (99.5 %);
+con `TVIVPARHAB`, solo en 1,016 (42 %). Por esto todos los porcentajes de vivienda
+se calculan sobre `VIVPARH_CV`: dividir entre el total de viviendas contaría como
+"sin internet" a viviendas de las que no se sabe nada.
+
+Con ese denominador, el porcentaje de viviendas sin internet difiere del de
+CONEVAL en medio punto o menos en el 97.6 % de las AGEB. Las 14 AGEB que difieren
+más de dos puntos están todas en Miguel Hidalgo y son de alta no respuesta:
+CONEVAL excluye las viviendas que no contestaron la pregunta y el tabulado no
+permite separarlas. Es una limitación del dato publicado y no del cálculo, y
+afecta a menos del 1 % de las unidades. Para la ciudad completa, la suma por
+AGEB da 76.0 % de viviendas con internet y la fila de total del tabulado, 75.7 %.
+
+## El cruce entre presencia indígena y conectividad
+
+Las secciones de cruce agrupan las manzanas, o las AGEB, en seis bandas según la
+proporción de su población que vive en hogares censales indígenas: sin población
+en hogares indígenas, más de 0 y hasta 5 %, de 5 a 10, de 10 a 20, de 20 a 40 y
+más de 40 %. Dentro de cada banda se suman el numerador y el denominador del
+indicador y después se divide, de modo que una manzana de dos mil habitantes
+pesa más que una de veinte; en ningún caso se promedian porcentajes. El grado
+promedio de escolaridad, que ya es un promedio, se pondera por la población de
+15 años o más de cada unidad.
+
+Es importante destacar que se trata de un cruce entre territorios y no entre
+hogares. El tabulado dice cuántas viviendas de una manzana tienen internet y
+cuánta de su población vive en hogares indígenas, pero no qué vivienda es de
+quién. Lo que la figura permite afirmar es cómo son las manzanas con más o menos
+presencia indígena, no cómo son los hogares indígenas; esa segunda pregunta se
+responde con los microdatos, en las páginas del Censo, la ENIGH y la ENDUTIH.
+
+Las bandas no tienen el mismo tamaño. Por manzana, la banda de más de 40 % reúne
+156 manzanas y 10,153 habitantes, frente a 33,999 manzanas sin población en
+hogares indígenas. Por AGEB la misma banda se reduce a 4 unidades con 273
+habitantes en total, por lo que la figura marca con asterisco toda banda con
+menos de 30 unidades: su cifra se mueve mucho con un solo caso y sirve
+únicamente como orden de magnitud.
+
+## De dónde sale el mapa por AGEB
+
+La AGEB (Área Geoestadística Básica) es la unidad con la que el INEGI agrupa
+manzanas, entre una y cincuenta en zona urbana, para levantar y publicar el
+Censo. El tabulado por AGEB y manzana incluye una fila de total por AGEB, que es
+la que se usa: no se suman manzanas, porque la suma perdería las cifras que el
+INEGI suprime a nivel manzana y sí publica a nivel AGEB. La Ciudad de México
+tiene 2,431 AGEB urbanas con polígono, 9,138,524 habitantes en conjunto, y 2,379
+publican la cifra de población en hogares indígenas.
+
+A cada AGEB se le unen, por su clave de trece dígitos, dos clasificaciones
+externas: el grado de marginación urbana de CONAPO, publicado para 2,381 AGEB de
+la ciudad, y el grado de rezago social de CONEVAL, publicado para 2,410. La unión
+se verificó comparando la población total de cada AGEB en las tres fuentes: es
+idéntica en todas las AGEB que comparten, lo que confirma que las claves casan y
+que las tres parten del mismo levantamiento. Las AGEB sin grado son las de muy
+poca población, que ninguna de las dos instituciones clasifica, y el mapa las
+pinta como "sin dato".
+
+El servidor de CONAPO no respondió durante la construcción, así que el índice
+de marginación se descargó de la copia que la propia institución mantiene en
+datos.gob.mx. Es el mismo archivo oficial y no un espejo de terceros.
+
+## Marginación y rezago social: qué existe para 2020 y qué no
+
+Se buscó una medición de pobreza por AGEB actualizada a 2020 y se confirmó que
+no existe. CONEVAL publicó rangos de pobreza urbana por AGEB con información de
+2015, y para 2020 la desagregación más fina de la pobreza es la localidad
+urbana. Lo que sí existe para 2020 a nivel AGEB son las dos clasificaciones que
+usa el mapa, y ninguna es una medición de pobreza: el índice de marginación
+urbana resume carencias de educación, salud, vivienda y bienes, y el grado de
+rezago social resume indicadores de educación, salud, servicios y activos del
+hogar. Ninguno incorpora ingreso, seguridad social ni alimentación.
+
+Por lo anterior, el tablero habla de marginación y de rezago social y no de
+pobreza. Las dos clasificaciones no son intercambiables: en la ciudad, CONAPO
+ubica 116 AGEB en grado alto o muy alto y CONEVAL, 28, porque parten de
+indicadores y de cortes distintos. La sección ofrece ambas con un selector en
+lugar de combinarlas en un índice propio.
+
+## El umbral de presencia indígena
+
+No existe un criterio oficial para llamar indígena a una AGEB urbana. El más
+cercano es el que el INPI usa en las reglas de operación de sus programas para
+identificar localidades indígenas: al menos 40 % de población indígena (sección
+3.2.1 de las reglas del Programa de Infraestructura Indígena 2020, publicadas en
+el Diario Oficial de la Federación). Ese criterio se definió para localidades y
+va acompañado de condiciones de marginación y de tamaño.
+
+Aplicado a las AGEB de la ciudad, el corte de 40 % deja 4 AGEB con 273
+habitantes; el de 20 %, 11 AGEB con 7,972; el de 10 %, 95 AGEB con 272,619, y
+el de 5 %, 358 AGEB con 1,466,976. Por esto la página ofrece los cuatro cortes
+como selector y abre en 10 %: el de 40 % se conserva como referencia normativa,
+pero no describe una ciudad donde la población en hogares indígenas vive
+dispersa y en ninguna zona amplia es mayoría. El umbral es una herramienta de
+exploración y no una clasificación oficial de las AGEB.
+
 ## Cómo se publica el mapa
 
-Las 66,449 manzanas pesan 94.5 MB en GeoJSON, demasiado para que un navegador las
-cargue de una vez. Se convierten a teselas vectoriales con tippecanoe y se
-publican como un único archivo **PMTiles** de 21.6 MB, del que el navegador lee
+Las 66,449 manzanas pesan 150 MB en GeoJSON con todos sus indicadores, demasiado
+para que un navegador las cargue de una vez. Se convierten a teselas vectoriales
+con tippecanoe y se publican como un único archivo **PMTiles** de 59.1 MB (las
+AGEB, en otro de 4.0 MB), del que el navegador lee
 solo los fragmentos que la vista necesita, mediante peticiones de rango HTTP. Eso
 permite servir el mapa como archivo estático, sin servidor de teselas y sin
 cuenta en ningún proveedor.

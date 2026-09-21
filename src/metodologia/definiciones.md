@@ -108,3 +108,27 @@ Usa otra fuente y otra definición: el tabulado por AGEB y manzana del Censo
 referencia, su cónyuge o alguno de sus ascendientes hablan lengua indígena. Es
 un indicador de hogar y de lengua, no de autoadscripción; el detalle está en
 [Fuentes y cobertura](./fuentes).
+
+## El mapa por AGEB y sus clasificaciones
+
+La **AGEB** (Área Geoestadística Básica) es el conjunto de manzanas, entre una y
+cincuenta en zona urbana, con el que el INEGI organiza el levantamiento y la
+publicación del Censo. Es más gruesa que la manzana y más fina que la colonia o
+la alcaldía, y es la unidad en la que CONAPO y CONEVAL publican sus
+clasificaciones, por lo que es la única donde se pueden leer juntas la presencia
+indígena, la conectividad y la marginación.
+
+El **grado de marginación urbana** (CONAPO, 2020) ordena las AGEB en cinco
+grados, de muy bajo a muy alto, a partir de carencias de educación, salud,
+vivienda y bienes. El **grado de rezago social** (CONEVAL, 2020) usa los mismos
+cinco nombres con indicadores y cortes distintos. Ninguno de los dos mide
+pobreza, porque ninguno incorpora ingreso.
+
+Los indicadores de **vivienda** (internet, computadora, celular, radio,
+televisión de paga, streaming, sin ninguna tecnología) tienen como denominador
+las viviendas particulares habitadas con características captadas
+(`VIVPARH_CV`), no el total de viviendas. El **umbral de presencia indígena** es
+el porcentaje mínimo de población en hogares censales indígenas a partir del
+cual una AGEB entra al grupo que se compara; es un corte de exploración que
+elige el lector y no una clasificación oficial. La justificación de cada
+decisión está en [Fuentes y cobertura](./fuentes).

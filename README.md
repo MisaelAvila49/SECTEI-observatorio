@@ -75,19 +75,24 @@ para que las rutas `/encuestas/...` no se conviertan en rutas de Windows).
   por entidad, cruce con la autoadscripción y tasa de uso de internet.
 - `P4_8` de la ENDUTIH viene con dos dígitos y cero a la izquierda.
 
-## Mapa por manzana (etapa 1)
+## Mapas por manzana y por AGEB
 
 ```bash
 scripts/descargar_datos.sh            # insumos públicos del INEGI y del gobierno de la CDMX (~180 MB)
-python scripts/construir_manzanas.py  # une censo y cartografía, reparte manzanas entre colonias
+python scripts/construir_manzanas.py  # une censo y cartografía, reparte manzanas entre colonias, cruce por bandas
+python scripts/construir_agebs.py     # AGEB con marginación (CONAPO) y rezago social (CONEVAL); coteja y anota en calculado.csv
 python scripts/construir_contornos.py # límite del estado, alcaldías y máscara del exterior
 python scripts/construir_colonias_resumen.py  # src/data/colonias_resumen.csv (se versiona)
 scripts/generar_teselas.sh            # en WSL: produce los .pmtiles con tippecanoe
 python scripts/verificar_salida.py    # comprueba que las cifras cuadren
 ```
 
-Las 66,449 manzanas pesan 94.5 MB en GeoJSON; se convierten a teselas con
-tippecanoe y se publican como PMTiles de 21.6 MB. **La versión de
+Las 66,449 manzanas pesan 150 MB en GeoJSON; se convierten a teselas con
+tippecanoe y se publican como PMTiles de 59.1 MB (las 2,431 AGEB, 4.0 MB). Los
+indicadores de vivienda se dividen entre `VIVPARH_CV`, no entre `TVIVPARHAB`:
+es el total que coincide con el de CONEVAL en 99.5 % de las AGEB. La cifra de la
+ciudad sale de la fila de total de la entidad del tabulado (289,139 de
+9,209,944), no de la suma de manzanas, que pierde lo suprimido. **La versión de
 `maplibre-gl` va escrita en el import** (`npm:maplibre-gl@5.24.0`): Observable
 resuelve `npm:` contra su CDN y la 6 quitó el export default y no pide teselas
 a pmtiles. Si aparece `does not provide an export named 'default'`, se coló la
@@ -100,8 +105,8 @@ en la página de metodología.
 
 `.github/workflows/deploy.yml` construye y publica `dist/` en cada push a
 `main`. El build no corre ningún data loader: todos los datos van versionados
-(los parquet de `src/data/indicadores/`, `colonias_resumen.csv` y
-`manzanas.pmtiles`), porque salen de microdatos de varios GB que no viven en el
+(los parquet de `src/data/indicadores/`, `colonias_resumen.csv`, `agebs_resumen.csv`, `cruce_manzanas.csv` y los dos
+`.pmtiles`), porque salen de microdatos de varios GB que no viven en el
 repositorio, así que el runner solo necesita Node. Requisito de una sola vez:
 en GitHub, Settings → Pages → Source = "GitHub Actions". La imagen de vista
 previa se regenera con `node scripts/generar_og.mjs`.
