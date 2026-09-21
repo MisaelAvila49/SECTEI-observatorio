@@ -175,6 +175,40 @@ for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar","/encue
     }
   }
 }
+// Mapas de teselas: un filtro que no recorta no da error, deja el mapa igual. Se
+// cuentan las marcas que de verdad se pintan, con la instancia que mapa.js
+// cuelga del nodo: al elegir un cruce tienen que bajar y cambiar el campo
+// pintado, y al quitar el mínimo tienen que volver.
+for (const [ruta, id] of [["/mapa-manzanas","mza"],["/mapa-agebs","ageb"]]) {
+  await pg.goto(`http://127.0.0.1:8838${ruta}`,{waitUntil:"networkidle"});
+  await pg.waitForSelector(`#${id}-cruce`,{timeout:90000});
+  await pg.waitForTimeout(6000);
+  const medir = () => pg.evaluate(() => {
+    const m = [...document.querySelectorAll("*")].find((e) => e.mapa)?.mapa;
+    if (!m) return null;
+    return {n: m.queryRenderedFeatures({layers:["manzanas-relleno"]}).length,
+            campo: JSON.stringify(m.getPaintProperty("manzanas-relleno","fill-color")).match(/tasa_\w+|\w+_orden/)?.[0]};
+  });
+  const inicio = await medir();
+  console.log(`
+=== ${ruta} · mapa ===`);
+  if (!inicio || !inicio.n) { fallos.push(`${ruta}: el mapa no pinta marcas`); continue; }
+  const opciones = await pg.$eval(`#${id}-cruce`, (s) => [...s.options].map((o) => o.textContent));
+  await pg.selectOption(`#${id}-cruce`, {label: opciones[1]});
+  await pg.waitForTimeout(4500);
+  const cruce = await medir();
+  const okCruce = cruce.n < inicio.n && cruce.campo !== inicio.campo;
+  console.log(`  ${okCruce?"ok   ":"FALLA"} «Cruzar con» → «${opciones[1]}»: ${inicio.n} → ${cruce.n} marcas, pinta ${cruce.campo}`);
+  if (!okCruce) fallos.push(`${ruta}: el cruce no recorta el mapa o no cambia lo que pinta (${inicio.n} → ${cruce.n}, ${cruce.campo})`);
+  const selU = await pg.$('form[data-campo="umbral"] select');
+  const ops = await selU.evaluate((s) => [...s.options].map((o) => o.textContent));
+  await selU.selectOption({label: ops[0]});
+  await pg.waitForTimeout(4500);
+  const libre = await medir();
+  const okLibre = libre.n > cruce.n;
+  console.log(`  ${okLibre?"ok   ":"FALLA"} «Presencia indígena mínima» → «${ops[0]}»: ${cruce.n} → ${libre.n} marcas`);
+  if (!okLibre) fallos.push(`${ruta}: quitar el mínimo no devuelve las marcas (${cruce.n} → ${libre.n})`);
+}
 for(const e of errs.slice(0,5)) fallos.push("error en consola: "+e.slice(0,120));
 console.log("\n"+"=".repeat(60));
 if(fallos.length){ console.log(`FALLOS (${fallos.length}):`); for(const f of fallos) console.log("  - "+f); process.exit(1); }

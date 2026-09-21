@@ -3652,3 +3652,74 @@ body:not(:has(#observablehq-toc)) #observablehq-main {
   height: 17%;
   top: calc(var(--gap-alto-pisa, 8) * 1px + 4px);
 }
+
+/* Panel en grupos: de lo grande (qué se compara y dónde) a lo específico (entre
+   quiénes). Cada grupo es un fieldset con su leyenda, que además le da nombre
+   accesible al conjunto de selectores. */
+/* Solo cuando el panel trae grupos: los paneles de un solo selector conservan
+   su fila. `align-items: stretch` anula el `flex-end` de la regla base, que en
+   columna mandaba los grupos a la derecha y los encogía a una columna. */
+.panel-filtros:has(> .panel-grupo) {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0.35rem;
+}
+.panel-grupo {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.panel-grupo + .panel-grupo {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.65rem;
+  margin-top: 0.35rem;
+}
+.panel-grupo-titulo {
+  padding: 0;
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary, var(--theme-foreground));
+}
+
+/* Nota de las líneas de referencia: un renglón propio entre la leyenda y la
+   gráfica, con la muestra del trazo punteado. */
+.nota-referencia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.4rem;
+  margin: 0.15rem 0 0.35rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  max-width: none;
+}
+.nota-referencia strong {
+  color: var(--theme-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.nota-referencia-trazo {
+  display: inline-block;
+  width: 1.4rem;
+  height: 0;
+  border-top: 2px dashed currentColor;
+  flex: none;
+}
+
+/* Aviso bajo el panel del mapa cuando hay un mínimo de presencia activo. */
+.panel-aviso {
+  margin: 0.35rem 0 0.6rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  max-width: none;
+}
+.panel-aviso a {
+  text-decoration: underline;
+}

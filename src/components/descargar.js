@@ -161,6 +161,11 @@ function figuraASvg(figura, {fondo, tinta, tenue}) {
     y += 16;
   }
 
+  // La nota de las líneas de referencia viaja con la figura exportada.
+  y += 4;
+  escribir(figura.querySelector(".nota-referencia")?.textContent?.replace(/\s+/g, " ").trim(),
+           {tam: 11, peso: 400, color: tenue, anchoMax: anchoTexto});
+
   y += 4;
   escribir(figura.querySelector("figcaption")?.textContent?.replace(/\s+/g, " ").trim(),
            {tam: 11, peso: 400, color: tenue, anchoMax: anchoTexto});

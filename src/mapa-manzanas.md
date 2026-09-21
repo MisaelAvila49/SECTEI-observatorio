@@ -5,7 +5,7 @@ toc: false
 
 ```js
 import {mapaManzanas, leyenda, cortesPorCuantil, RAMPA_MORADA} from "./components/mapa.js";
-import {seccionCruce, filasDesdeTabla} from "./components/cruce.js";
+import {panelCruceMapa, seccionCruce, filasDesdeTabla} from "./components/cruce.js";
 import {catalogo, verificado} from "./components/fuentes.js";
 const fuentes = catalogo(await FileAttachment("data/fuentes.csv").csv());
 ```
@@ -170,83 +170,40 @@ const SEXOS = [
 ```
 
 ```js
-// Selector agrupado por tema: los indicadores de población indígena primero y
-// las variables de contexto después, para que quede claro que las segundas no
-// miden lo mismo aunque se pinten en el mismo mapa.
-//
-// Se construye a mano y no con `Inputs.select` porque este no admite
-// <optgroup>: se revisó su código y no lo genera. Sin la agrupación, "Nacidas
-// en otra entidad" aparecería en la misma lista plana que "Personas hablantes"
-// como si fueran indicadores equivalentes.
-function selectorIndicador() {
-  const select = document.createElement("select");
-  const grupos = new Map();
-  for (const ind of INDICADORES) {
-    if (!grupos.has(ind.grupo)) {
-      const g = document.createElement("optgroup");
-      g.label = ind.grupo;
-      grupos.set(ind.grupo, g);
-      select.append(g);
-    }
-    const opcion = document.createElement("option");
-    opcion.textContent = ind.corto;
-    opcion.value = ind.base;
-    grupos.get(ind.grupo).append(opcion);
-  }
+// Desplegable y no botones de radio, como en los demás tableros del proyecto.
+const selSexo = Inputs.select(SEXOS, {label: "Sexo", format: (d) => d.etiqueta, value: SEXOS[0]});
+selSexo.dataset.campo = "sexo";
+const selAmbito = Inputs.select(["Toda la ciudad", "Solo pueblos originarios"], {label: "Ámbito", value: "Toda la ciudad"});
+selAmbito.dataset.campo = "ambito";
 
-  const form = document.createElement("form");
-  form.className = "filtro";
-  const etiqueta = document.createElement("label");
-  etiqueta.className = "filtro-etiqueta";
-  etiqueta.textContent = "Indicador";
-  // La etiqueta se asocia al select por id: sin el `for`, el control no tiene
-  // nombre accesible y axe lo marca como crítico.
-  select.id = "selector-indicador";
-  etiqueta.htmlFor = select.id;
-  form.append(etiqueta, select);
-
-  form.value = INDICADORES[0];
-  select.onchange = () => {
-    form.value = INDICADORES.find((d) => d.base === select.value);
-    form.dispatchEvent(new CustomEvent("input", {bubbles: true}));
-  };
-  return form;
-}
-
-const selIndicador = selectorIndicador();
-```
-
-```js
-// Desplegable y no botones de radio, como en los demás tableros del proyecto:
-// los tres controles del panel se leen entonces igual.
-const selSexo = Inputs.select(SEXOS, {
-  label: "Sexo",
-  format: (d) => d.etiqueta,
-  value: SEXOS[0]
+// El panel separa el indicador de población indígena de las características
+// con las que se cruza. Antes todo vivía en una sola lista y elegir "Viviendas
+// con internet" pintaba el internet de TODA la ciudad, sin relación con la
+// población indígena. Ahora el cruce se pinta donde la presencia indígena
+// alcanza el mínimo elegido.
+const conClave = INDICADORES.map((d) => ({...d, clave: d.base}));
+const panelMapa = panelCruceMapa({
+  indigenas: conClave.filter((d) => d.grupo === "Población indígena"),
+  cruces: conClave.filter((d) => d.grupo !== "Población indígena"),
+  id: "mza", extrasQue: [selSexo], extrasDonde: [selAmbito],
 });
+display(panelMapa);
 ```
 
 ```js
-// También desplegable: un interruptor rompía la lectura del panel y su
-// etiqueta larga se partía en tres líneas.
-const selAmbito = Inputs.select(["Toda la ciudad", "Solo pueblos originarios"], {
-  label: "Ámbito",
-  value: "Toda la ciudad"
-});
-```
-
-```js
-// El panel se arma en UNA celda, con los formularios directos dentro de
-// .panel-campos. Declarados cada uno en su celda de Markdown, Framework los
-// envolvía en un bloque y la hoja dejaba de reconocerlos como campos: la
-// etiqueta quedaba al lado del selector en vez de arriba.
-display(html`<div class="panel-filtros"><div class="panel-campos">${selIndicador}${selSexo}${selAmbito}</div></div>`);
-```
-
-```js
-const indicador = Generators.input(selIndicador);
+const eleccion = Generators.input(panelMapa);
 const sexo = Generators.input(selSexo);
 const ambito = Generators.input(selAmbito);
+```
+
+```js
+// `indicador` es lo que se PINTA: el cruce si hay uno, o el indicador de
+// población indígena. `presencia` es siempre el indicador de población indígena,
+// que además decide qué manzanas entran cuando hay un mínimo.
+const indicador = eleccion.cruce ?? eleccion.indigena;
+const presencia = eleccion.indigena;
+const umbral = eleccion.umbral;
+const campoPresencia = `tasa_${presencia.base.toLowerCase()}`;
 ```
 
 ```js
@@ -305,13 +262,19 @@ function tooltip(p) {
   // El denominador se nombra en el globo: con el filtro en Mujeres, el
   // porcentaje es sobre las mujeres de la manzana y no sobre su población, y
   // sin decirlo la cifra se leería mal.
-  const etiquetaDen = esVivienda ? "Viviendas de la manzana"
-    : denominador === "POBFEM" ? "Mujeres en la manzana"
-    : denominador === "POBMAS" ? "Hombres en la manzana"
-    : "Población de la manzana";
+  const etiquetaDen = esVivienda ? "Viviendas"
+    : denominador === "POBFEM" ? "Mujeres"
+    : denominador === "POBMAS" ? "Hombres"
+    : "Personas";
   const rotulo = indicador.porSexo && sexoEfectivo.clave !== "T"
     ? `${indicador.corto} · ${sexoEfectivo.etiqueta.toLowerCase()}`
     : indicador.corto;
+  // Globo corto: el valor, la presencia indígena cuando se está cruzando, y el
+  // conteo sobre su total en un solo renglón.
+  const filaPresencia = eleccion.cruce
+    ? `<tr><th>${escapar(presencia.corto)}</th><td>${
+        p[campoPresencia] == null ? "sin dato" : Number(p[campoPresencia]).toFixed(1) + " %"}</td></tr>`
+    : "";
   return `
     <div class="globo-titulo">${escapar(p.colonia ?? "Sin colonia")}</div>
     <div class="globo-sub">${escapar(p.alcaldia)}</div>
@@ -319,8 +282,8 @@ function tooltip(p) {
       <tr><th>${escapar(rotulo)}</th><td>${
         tasa == null ? "sin dato publicado" : Number(tasa).toFixed(1) + " %"
       }</td></tr>
-      <tr><th>${esVivienda ? "Viviendas" : "Personas"}</th><td>${entero(n)}</td></tr>
-      <tr><th>${escapar(etiquetaDen)}</th><td>${entero(p[denominador])}</td></tr>
+      ${filaPresencia}
+      <tr><th>${escapar(etiquetaDen)}</th><td>${entero(n)} de ${entero(p[denominador])}</td></tr>
     </table>`;
 }
 ```
@@ -329,32 +292,50 @@ function tooltip(p) {
 const control = mapaManzanas({
   pmtiles: await FileAttachment("data/manzanas.pmtiles").url(),
   capa: "manzanas",
-  campo,
-  cortes,
+  // Valores INICIALES fijos, no las variables reactivas: si esta celda leyera
+  // `campo` o `cortes`, cada cambio del panel recrearía el mapa entero, volvería a
+  // bajar las teselas y descartaría el filtro recién puesto. El repintado va en
+  // la celda siguiente, con `actualizar` y `filtrar`.
+  campo: "tasa_phog_ind",
+  cortes: cortesPorCuantil(colonias.map((c) => c.tasa_phog_ind).filter((v) => v != null), 5),
   rampa: RAMPA_MORADA,
-  tooltip,
+  // El globo lee SIEMPRE la función vigente: se resuelve al pasar el cursor.
+  tooltip: (p) => globoActual.fn(p),
   // Contornos de referencia: sin ellos las manzanas se cortan de golpe en el
   // límite del estado sobre un mapa base que sigue hasta Morelos, y se lee como
   // si faltaran datos en vez de como un recorte deliberado.
   limite: await FileAttachment("data/cdmx_limite.geojson").json(),
   alcaldias: await FileAttachment("data/cdmx_alcaldias.geojson").json()
 });
-
+const globoActual = {fn: () => ""};
 display(control.nodo);
 ```
 
 ```js
+globoActual.fn = tooltip;
 // El mapa se crea una sola vez y se repinta al cambiar el filtro: recrearlo
 // obligaría a volver a descargar las teselas y perdería la posición de la vista.
 control.actualizar(campo, cortes);
 // La marca viaja como cadena "True"/"False" en las teselas, no como booleano:
 // el GeoJSON lo escribe Python y tippecanoe conserva el tipo tal cual. Comparar
 // contra `true` no casaba con nada y el filtro vaciaba el mapa en silencio.
-control.filtrar(
-  ambito === "Solo pueblos originarios"
-    ? ["==", ["to-string", ["get", "pueblo_originario"]], "True"]
-    : null
-);
+// El mínimo de presencia indígena se aplica sobre la tasa total del indicador de
+// población indígena. Una manzana con la cifra suprimida no la tiene y queda
+// fuera: `to-number` convierte el nulo en 0.
+const condiciones = [];
+if (ambito === "Solo pueblos originarios") condiciones.push(["==", ["to-string", ["get", "pueblo_originario"]], "True"]);
+if (umbral.valor > 0) condiciones.push([">=", ["to-number", ["get", campoPresencia]], umbral.valor]);
+control.filtrar(condiciones.length ? ["all", ...condiciones] : null);
+control.realzar(umbral.valor > 0);
+```
+
+```js
+// Con un mínimo activo quedan manzanas sueltas, que a zoom de ciudad son puntos.
+// Sin mínimo no se muestra nada: una plantilla vacía se imprime como «null».
+if (umbral.valor > 0) display(
+  html`<p class="panel-aviso" role="note">El mapa muestra solo las manzanas con ${umbral.valor} % o más de
+      ${presencia.nombre.toLowerCase()}. Son manzanas sueltas: acerca el mapa para verlas, o usa el
+      <a href="./mapa-agebs">mapa por AGEB</a> para la vista de toda la ciudad.</p>`);
 ```
 
 ```js
@@ -375,7 +356,8 @@ display(
         : denominador === "POBFEM" ? "las mujeres"
         : denominador === "POBMAS" ? "los hombres"
         : "la población"
-    } de la manzana)`,
+    } de la manzana)${umbral.valor > 0
+      ? `, en manzanas con ${umbral.valor} % o más de ${presencia.nombre.toLowerCase()}` : ""}`,
     formato: (x) => x.toFixed(decimales) + " %"
   })
 );
@@ -383,6 +365,16 @@ display(
 
 <details>
 <summary>¿Qué quiere decir este análisis?</summary>
+
+El panel tiene dos partes. **Qué se pinta** elige el indicador de población
+indígena y, si se quiere, una característica con la que cruzarlo: conectividad de
+las viviendas, migración o afiliación a servicios de salud. **Dónde** fija la
+presencia indígena mínima: con un cruce activo, el mapa pinta esa característica
+solo en las manzanas donde la población indígena alcanza ese mínimo. Es un cruce
+entre territorios: el tabulado dice cuántas viviendas de la manzana tienen
+internet y cuánta de su población vive en hogares indígenas, pero no qué vivienda
+es de quién. El cruce entre personas está en las páginas del Censo, la ENIGH y
+la ENDUTIH.
 
 Cada polígono es una manzana urbana de la Ciudad de México y su color es el
 porcentaje que representa el indicador elegido **sobre la población total de esa
@@ -433,6 +425,7 @@ La manzana es la unidad más fina que publica el Censo. Esta tabla agrega las ma
 ```js
 const colTabla = colonias
   .filter((p) => (esVivienda ? p.POBTOT : p[denominador]) >= 500 && p[campo] != null)
+  .filter((p) => umbral.valor === 0 || (p[campoPresencia] ?? -1) >= umbral.valor)
   .sort((a, b) => b[campo] - a[campo])
   .slice(0, 25);
 ```
@@ -476,8 +469,9 @@ display(tablaColonias);
 <details>
 <summary>¿Qué quiere decir este análisis?</summary>
 
-La tabla ordena las colonias por el porcentaje del indicador elegido y se limita
-a las que tienen al menos 500 habitantes, porque en colonias muy pequeñas unas
+La tabla ordena las colonias por el porcentaje de lo que pinta el mapa, aplica el
+mismo mínimo de presencia indígena que el panel y se limita a las que tienen al
+menos 500 habitantes, porque en colonias muy pequeñas unas
 cuantas personas mueven mucho el porcentaje.
 
 La columna de pueblo originario marca los 50 pueblos que reconoce el padrón de

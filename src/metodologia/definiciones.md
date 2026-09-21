@@ -33,7 +33,7 @@ ambos criterios.
 | --- | --- | --- | --- |
 | Censo 2020, cuestionario ampliado | La **vivienda**: dispone de internet, celular, computadora, televisor, radio, televisión de paga, streaming, consola | 2020 | Qué proporción de personas vive con el bien o servicio |
 | ENIGH | El **hogar**: conexión a internet, celular, computadora, teléfono fijo, televisión de paga, streaming (2024) | 2020, 2022, 2024 | Lo mismo, en tres ediciones y con decil de ingreso |
-| ENDUTIH 2025 | La **persona**: usó internet, computadora o celular en los últimos tres meses, con qué, dónde y para qué; y el hogar | 2025 | Uso personal, no solo disponibilidad |
+| ENDUTIH 2025 | La **persona**: usó internet, computadora o celular en los últimos tres meses, con qué, dónde y para qué; si escuchó la radio en la última semana; y el hogar | 2025 | Uso personal, no solo disponibilidad |
 
 En las tres, el porcentaje que se publica es la fracción de **personas de 6
 años o más** de cada grupo que cumple la condición. Se cuentan personas y no
@@ -53,8 +53,12 @@ cada figura lo dice en su subtítulo:
 - **Entre quienes usan celular:** si el celular es inteligente.
 - **Entre quienes usan celular inteligente:** si se conectan con datos móviles o
   por wifi.
-- **Entre quienes no usan** internet, computadora o celular, o cuyo hogar no
-  tiene internet: el motivo declarado. Los motivos de un mismo bloque suman el
+- **Entre quienes escucharon la radio** en la última semana: con qué dispositivo
+  principal y en qué lugar. "Aparato de radio" agrupa estéreo o grabadora, radio
+  del automóvil o del transporte y radio portátil; la otra figura agrupa celular,
+  tableta y computadora.
+- **Entre quienes no usan** internet, computadora o celular, no escucharon la
+  radio, o cuyo hogar no tiene internet: el motivo declarado. Los motivos de un mismo bloque suman el
   total de cada grupo.
 
 En la escolaridad el universo son las personas de **15 años o más**, porque
@@ -80,10 +84,18 @@ antes de esa edad la escolaridad está en curso.
 - **Escolaridad** (15 años o más). Primaria o menos; secundaria; media
   superior; superior. Cada fuente traduce su propio catálogo: en el Censo el
   tramo se fijó cruzando cada código con los años de escolaridad acumulada.
+- **Estrato socioeconómico** (ENIGH y ENDUTIH). Clasificación del INEGI de las
+  viviendas en cuatro niveles (bajo, medio bajo, medio alto y alto) a partir de
+  sus características físicas y su equipamiento; no es una medida de ingreso ni
+  de pobreza. La ENIGH lo trae en `est_socio` y la ENDUTIH en `ESTRATO`, con los
+  mismos códigos. Se comprobó que ordenan en el sentido esperado: en la ENIGH el
+  ingreso corriente medio del hogar crece del estrato 1 al 4 en las tres
+  ediciones, y en la ENDUTIH el hogar con internet pasa de 52 a 96 %. El Censo
+  no lo publica.
 
 Como máximo se despliegan dos dimensiones a la vez; una tercera reemplaza a la
-más antigua. Decil y escolaridad viven en archivos sin tamaño de localidad y son
-excluyentes con el filtro de localidad.
+más antigua. Decil, escolaridad y estrato viven cada uno en su archivo, sin tamaño
+de localidad: son excluyentes entre sí y con el filtro de localidad.
 
 ## Muestra, error e intervalo
 
@@ -108,6 +120,25 @@ Usa otra fuente y otra definición: el tabulado por AGEB y manzana del Censo
 referencia, su cónyuge o alguno de sus ascendientes hablan lengua indígena. Es
 un indicador de hogar y de lengua, no de autoadscripción; el detalle está en
 [Fuentes y cobertura](./fuentes).
+
+## Cómo se leen los filtros de los mapas
+
+El panel de los dos mapas separa lo que se pinta del lugar donde se pinta. En
+**Qué se pinta** va primero el indicador de población indígena y después,
+opcional, una característica con la que cruzarlo (conectividad de las viviendas,
+migración, afiliación a servicios de salud y, por AGEB, marginación y rezago
+social). En **Dónde** va la presencia indígena mínima, que recorta el mapa a las
+manzanas o AGEB donde el indicador de población indígena alcanza 5, 10, 20 o 40
+por ciento. Al elegir un cruce sin mínimo el panel propone 10 por ciento, porque
+sin recorte el mapa pintaría esa característica en toda la ciudad y dejaría de
+hablar de población indígena; el lector puede quitarlo.
+
+Es un cruce entre territorios y no entre personas. El tabulado dice cuántas
+viviendas de una manzana tienen internet y cuánta de su población vive en hogares
+indígenas, pero no qué vivienda es de quién, de modo que el mapa describe las
+manzanas con presencia indígena y no los hogares indígenas. El cruce entre
+personas sale de los microdatos y está en las páginas del Censo, la ENIGH y la
+ENDUTIH, a nivel nacional y por entidad.
 
 ## El mapa por AGEB y sus clasificaciones
 

@@ -18,7 +18,7 @@ import * as Inputs from "npm:@observablehq/inputs";
 import {html} from "npm:htl";
 import {
   TODAS, TODOS, AGREGADO, POR_SEPARADO, VER_MAPA, COMPARAR_ENTIDADES, POR_TAMANO, COMPARAR,
-  ORDEN_EDAD, ORDEN_TAM_LOC, TAM_LOC_RURAL, ORDEN_AMBITO, ORDEN_ESCOLARIDAD, ORDEN_SEXO, ORDEN_DECIL,
+  ORDEN_EDAD, ORDEN_TAM_LOC, TAM_LOC_RURAL, ORDEN_AMBITO, ORDEN_ESCOLARIDAD, ORDEN_ESTRATO, ORDEN_SEXO, ORDEN_DECIL,
   ORDEN_GRADO,
 } from "./base.js";
 import {COMPARACIONES, COMPARACION_POR_CLAVE, CRITERIOS, FUENTES, admiteNivel, serieDe} from "./grupos.js";
@@ -45,6 +45,8 @@ export const ETIQUETA = {
   decilComparar: "Por decil de ingreso (por separado)",
   escTodos: "Toda la población (junta)",
   escComparar: "Por escolaridad (15 años o más, por separado)",
+  estratoTodos: "Todos los estratos (juntos)",
+  estratoComparar: "Por estrato socioeconómico (por separado)",
 };
 
 // Dimensiones que pueden desplegarse "por separado", en el orden en que se
@@ -54,6 +56,7 @@ export const DIMENSIONES = {
   rango_edad: {etiqueta: "Rango de edad", orden: ORDEN_EDAD, columna: "rango_edad"},
   tam_loc: {etiqueta: "Tamaño de localidad", orden: ORDEN_TAM_LOC, columna: "tam_loc"},
   escolaridad: {etiqueta: "Escolaridad", orden: ORDEN_ESCOLARIDAD, columna: "escolaridad"},
+  estrato: {etiqueta: "Estrato socioeconómico", orden: ORDEN_ESTRATO, columna: "estrato"},
   ambito: {etiqueta: "Ámbito", orden: ORDEN_AMBITO, columna: "ambito"},
   sexo: {etiqueta: "Sexo", orden: ORDEN_SEXO, columna: "sexo"},
   entidad: {etiqueta: "Entidad", orden: null, columna: "entidad"},
@@ -79,6 +82,7 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
   const hayTamLoc = ORDEN_TAM_LOC.filter((t) => datos.some((d) => d.tam_loc === t)).length > 1;
   const hayDecil = (mostrarDecil ?? Boolean(meta.decil)) && datos.some((d) => d.decil && d.decil !== TODOS);
   const hayEsc = mostrarEscolaridad && datos.some((d) => d.escolaridad && d.escolaridad !== TODOS);
+  const hayEstrato = datos.some((d) => d.estrato && d.estrato !== TODOS);
   const puedeEntidad = admiteNivel(fuente, "estatal") && entidades.length > 1;
   const puedeMapa = mostrarMapa && puedeEntidad;
 
@@ -141,10 +145,24 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
       })
     : null;
 
-  const campos = [
-    ["comparacion", comparacion], ["criterio", criterio], ["sexo", sexo], ["anio", anio],
-    ["entidad", entidad], ["ambito", ambito], ["edad", edad], ["decil", decil], ["escolaridad", escolaridad],
-  ].filter(([, c]) => c);
+  const estrato = hayEstrato
+    ? Inputs.select([TODOS, COMPARAR], {
+        label: "Estrato socioeconómico", value: TODOS,
+        format: (k) => k === TODOS ? ETIQUETA.estratoTodos : ETIQUETA.estratoComparar,
+      })
+    : null;
+
+  // Dos grupos, de lo grande a lo específico: primero qué se compara y en qué
+  // territorio, después entre qué personas. Con nueve selectores en una sola
+  // rejilla el lector no distinguía cuáles cambian la pregunta y cuáles la
+  // afinan.
+  const GRUPOS = [
+    {titulo: "Qué se compara y dónde",
+     campos: [["comparacion", comparacion], ["criterio", criterio], ["anio", anio], ["entidad", entidad], ["ambito", ambito]]},
+    {titulo: "Entre quiénes",
+     campos: [["edad", edad], ["sexo", sexo], ["escolaridad", escolaridad], ["decil", decil], ["estrato", estrato]]},
+  ].map((g) => ({...g, campos: g.campos.filter(([, c]) => c)})).filter((g) => g.campos.length);
+  const campos = GRUPOS.flatMap((g) => g.campos);
   // Los formularios de Inputs van DIRECTOS en .panel-campos, sin envoltorio: la
   // hoja los estiliza como `.panel-campos > form` (etiqueta arriba, selector
   // debajo, ancho flexible). Envueltos en un <div> esa regla dejaba de
@@ -154,7 +172,10 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
   const envoltorios = new Map(campos);
 
   const cont = html`<div class="panel-filtros">
-    <div class="panel-campos">${[...envoltorios.values()]}</div>
+    ${GRUPOS.map((g) => html`<fieldset class="panel-grupo">
+      <legend class="panel-grupo-titulo">${g.titulo}</legend>
+      <div class="panel-campos">${g.campos.map(([, c]) => c)}</div>
+    </fieldset>`)}
     ${meta.nota ? html`<p class="panel-nota">${meta.nota}</p>` : ""}
   </div>`;
 
@@ -166,10 +187,11 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
     if (edad && edad.value === POR_SEPARADO) s.push("rango_edad");
     if (decil && decil.value === COMPARAR) s.push("decil");
     if (escolaridad && escolaridad.value === COMPARAR) s.push("escolaridad");
+    if (estrato && estrato.value === COMPARAR) s.push("estrato");
     return s;
   };
-  const control = {sexo, ambito, rango_edad: edad, decil, escolaridad};
-  const reposo = {sexo: AGREGADO, ambito: AGREGADO, rango_edad: AGREGADO, decil: TODOS, escolaridad: TODOS};
+  const control = {sexo, ambito, rango_edad: edad, decil, escolaridad, estrato};
+  const reposo = {sexo: AGREGADO, ambito: AGREGADO, rango_edad: AGREGADO, decil: TODOS, escolaridad: TODOS, estrato: TODOS};
   const apagar = (dim) => {
     if (control[dim]) control[dim].value = reposo[dim];
   };
@@ -186,6 +208,7 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
     rangoEdad: edad ? edad.value : AGREGADO,
     decil: decil ? decil.value : TODOS,
     escolaridad: escolaridad ? escolaridad.value : TODOS,
+    estrato: estrato ? estrato.value : TODOS,
     separadas: separadas(),
   });
 
@@ -204,20 +227,16 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
     const viendoMapa = entidad && entidad.value === VER_MAPA;
     const comparandoEnt = entidad && entidad.value === COMPARAR_ENTIDADES;
 
-    // Decil y escolaridad viven en archivos sin tamaño de localidad, y son
-    // excluyentes entre sí: activar uno apaga al otro y devuelve el ámbito a
-    // "todas las localidades".
-    if (cambiado === "decil" && decil?.value === COMPARAR) {
-      apagar("escolaridad");
-      if (ambito) ambito.value = AGREGADO;
-    }
-    if (cambiado === "escolaridad" && escolaridad?.value === COMPARAR) {
-      apagar("decil");
+    // Decil, escolaridad y estrato viven cada uno en su archivo, sin tamaño de
+    // localidad, y son excluyentes entre sí: activar uno apaga a los otros y
+    // devuelve el ámbito a "todas las localidades".
+    const CAPAS = {decil, escolaridad, estrato};
+    if (cambiado in CAPAS && CAPAS[cambiado]?.value === COMPARAR) {
+      for (const otra of Object.keys(CAPAS)) if (otra !== cambiado) apagar(otra);
       if (ambito) ambito.value = AGREGADO;
     }
     if (cambiado === "ambito" && ambito && ambito.value !== AGREGADO) {
-      apagar("decil");
-      apagar("escolaridad");
+      for (const capa of Object.keys(CAPAS)) apagar(capa);
     }
 
     // El mapa usa el territorio como dimensión principal: no se combina con
@@ -276,6 +295,7 @@ export function filtrar(datos, v, {indicador = null} = {}) {
     || x === VER_MAPA || x === COMPARAR_ENTIDADES || x === POR_TAMANO || x === COMPARAR;
   const capaDecil = v.decil === COMPARAR;
   const capaEsc = v.escolaridad === COMPARAR;
+  const capaEstrato = v.estrato === COMPARAR;
   return datos.filter((d) =>
     (indicador == null || d.indicador === indicador) &&
     (abierto(v.anio) || String(d.anio) === String(v.anio)) &&
@@ -284,7 +304,8 @@ export function filtrar(datos, v, {indicador = null} = {}) {
     (v.sexo === AGREGADO || v.sexo === POR_SEPARADO || d.sexo === v.sexo) &&
     (capaDecil ? (d.decil !== TODOS && d.decil != null) : (d.decil == null || d.decil === TODOS)) &&
     (capaEsc ? (d.escolaridad !== TODOS && d.escolaridad != null) : (d.escolaridad == null || d.escolaridad === TODOS)) &&
-    (capaDecil || capaEsc
+    (capaEstrato ? (d.estrato !== TODOS && d.estrato != null) : (d.estrato == null || d.estrato === TODOS)) &&
+    (capaDecil || capaEsc || capaEstrato
       ? (d.tam_loc == null || d.tam_loc === TODOS)
       : (d.tam_loc !== TODOS && (abierto(v.ambito)
           || (v.ambito === "Rural" ? d.tam_loc === TAM_LOC_RURAL : d.tam_loc !== TAM_LOC_RURAL))))
@@ -306,6 +327,7 @@ export function geometria(v, {aniosDisponibles = []} = {}) {
   if (v.rangoEdad === POR_SEPARADO) dims.push("rango_edad");
   if (v.ambito === POR_TAMANO) dims.push("tam_loc");
   if (v.escolaridad === COMPARAR) dims.push("escolaridad");
+  if (v.estrato === COMPARAR) dims.push("estrato");
   if (v.ambito === POR_SEPARADO) dims.push("ambito");
   if (v.sexo === POR_SEPARADO && v.comparacion === "indigena") dims.push("sexo");
 

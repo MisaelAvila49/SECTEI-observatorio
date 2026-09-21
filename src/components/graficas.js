@@ -54,6 +54,7 @@ function ejeValor(formato, {label = null} = {}) {
 function rotulo(dim, v) {
   if (dim === "rango_edad") return `${v} años`;
   if (dim === "decil") return `Decil ${v}`;
+  if (dim === "estrato") return `Estrato ${String(v).toLowerCase()}`;
   return String(v);
 }
 
@@ -159,7 +160,6 @@ export function barrasComparadas(datos, {comparacion, formato = "pct", width = 6
   const canales = {
     "Grupo": (d) => d.serie,
     [etiquetaMedida(formato)]: (d) => formatear(d.pct, formato),
-    ...canalIntervalo(formato),
     ...canalPoblacion(formato),
   };
   const maxV = Math.max(...datos.map((d) => d.ic?.hi ?? d.pct ?? 0), 0);
@@ -248,9 +248,7 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
     ...(faceta ? {[dimFaceta?.etiqueta ?? "Panel"]: (d) => rotulo(faceta, d.faceta)} : {}),
     "Grupo": (d) => d.grupo,
     [etiquetaMedida(formato)]: (d) => formatear(d.valor, formato) + (d.fragil ? " *" : ""),
-    ...(intervalo ? canalIntervalo(formato) : {}),
     ...(formato === "pct" ? {[etiquetaPoblacion]: (d) => poblacionCorta(d.num)} : {}),
-    "Brecha": (d) => d.brecha == null ? "s/d" : `${diferencia(d.brecha, 1)} pp`,
   };
   const fx = faceta ? {fx: (d) => String(d.faceta)} : {};
   const nFilas = ordenFilas.length;
@@ -268,14 +266,10 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
     ...(faceta ? {fx: {domain: ordenFacetas, label: null, tickFormat: (v) => rotulo(faceta, v)}} : {}),
     color,
     marks: [
-      // Referencia nacional: una línea punteada por serie, con su rótulo.
+      // Referencia nacional: una línea punteada por serie. Su rótulo va fuera
+      // del lienzo, en la nota de referencia.
       ...(referencia ? [
         Plot.ruleX([referencia.a, referencia.b].filter((v) => v != null), {stroke: GRIS.tinta, strokeWidth: 1.2, strokeDasharray: "5 3", strokeOpacity: 0.7}),
-        Plot.text([{x: referencia.a, t: `${serieA}: ${formatear(referencia.a, formato)} (nacional)`},
-                   {x: referencia.b, t: `${serieB}: ${formatear(referencia.b, formato)} (nacional)`}].filter((d) => d.x != null), {
-          x: "x", frameAnchor: "bottom", dy: 14, text: "t", fontSize: TIPO.etiqueta - 0.5, fill: GRIS.trazo,
-          textAnchor: (d) => d.x > maxV * 0.6 ? "end" : "start", stroke: FONDO, strokeWidth: 3,
-        }),
       ] : []),
       Plot.link(pares.filter((p) => p.va != null && p.vb != null), {
         ...fx, y: (d) => String(d.fila), x1: "va", x2: "vb",
@@ -307,7 +301,33 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
       })),
     ],
   });
-  return animar(fig);
+  const ref = referencia ? [[serieA, referencia.a], [serieB, referencia.b]].filter(([, v]) => v != null) : [];
+  return conNota(fig, ref.length
+    ? notaReferencia(html`Líneas punteadas, valor nacional: ${ref.map(([n, v], k) =>
+        html`${k ? " · " : ""}${n} <strong>${formatear(v, formato)}</strong>`)}`)
+    : null);
+}
+
+// Las líneas punteadas de referencia se explican en un renglón propio, ENCIMA
+// de la gráfica y fuera de ella. Dentro del lienzo el rótulo tapaba los ejes y
+// los nombres de las filas, y no dejaba ver qué se estaba comparando.
+function notaReferencia(partes) {
+  return html`<p class="nota-referencia"><span class="nota-referencia-trazo" aria-hidden="true"></span>
+    ${partes}</p>`;
+}
+
+// Coloca la nota dentro de la figura de Plot, después de la leyenda y antes
+// del lienzo, para que se lea en el orden leyenda, referencia, gráfica.
+function conNota(fig, nota) {
+  if (!nota) return animar(fig);
+  if (fig.tagName === "FIGURE") {
+    const lienzo = [...fig.children].filter((c) => c.tagName?.toLowerCase() === "svg").at(-1);
+    fig.insertBefore(nota, lienzo ?? null);
+    return animar(fig);
+  }
+  const env = animar(fig);
+  env.prepend(nota);
+  return env;
 }
 
 // --- Puntos por banda: un valor por categoría ordenada ----------------------
@@ -326,8 +346,6 @@ export function puntosPorBanda(filas, {formatoValor = (v) => formatear(v, "pct")
   const canales = {
     "Presencia indígena": (d) => d.banda,
     "Valor": (d) => formatoValor(d.valor),
-    [etiquetaNum]: (d) => punto(d.num),
-    [etiquetaUnidades]: (d) => punto(d.unidades),
     "Población": (d) => poblacionCorta(d.poblacion),
   };
   const valores = [...datos.map((d) => d.valor), ...(referencia == null ? [] : [referencia])];
@@ -342,8 +360,6 @@ export function puntosPorBanda(filas, {formatoValor = (v) => formatear(v, "pct")
     marks: [
       ...(referencia == null ? [] : [
         Plot.ruleX([referencia], {stroke: GRIS.tinta, strokeWidth: 1.2, strokeDasharray: "5 3", strokeOpacity: 0.75}),
-        Plot.text([referencia], {x: (d) => d, frameAnchor: "bottom", dy: 14, text: () => `${etiquetaReferencia}: ${formatoValor(referencia)}`,
-          fontSize: TIPO.etiqueta, fill: GRIS.trazo, stroke: FONDO, strokeWidth: 3}),
         Plot.link(datos, {y: "banda", x1: () => referencia, x2: "valor", stroke: GRIS.fondo, strokeWidth: 3.2, strokeLinecap: "round"}),
       ]),
       Plot.dot(datos, {y: "banda", x: "valor", r: 6, fill: ROJO, stroke: FONDO, strokeWidth: 1,
@@ -383,7 +399,6 @@ export function pendiente(datos, {comparacion, formato = "pct", width = 900} = {
     "Grupo": (d) => d.serie,
     "Edición": (d) => fmtAnio(d.anio),
     [etiquetaMedida(formato)]: (d) => formatear(d.pct, formato) + (d.fragil ? " *" : ""),
-    ...canalIntervalo(formato),
     ...canalPoblacion(formato),
   };
   const conIc = datos.filter((d) => d.ic);

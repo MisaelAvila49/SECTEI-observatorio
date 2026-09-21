@@ -150,6 +150,14 @@ export function selectorAgrupado(opciones, {etiqueta, id, inicial = opciones[0]}
   select.id = id;
   const grupos = new Map();
   for (const o of opciones) {
+    // Una opción sin grupo va suelta, antes de los grupos ("Sin cruce").
+    if (!o.grupo) {
+      const op = document.createElement("option");
+      op.textContent = o.corto;
+      op.value = o.clave;
+      select.append(op);
+      continue;
+    }
     if (!grupos.has(o.grupo)) {
       const g = document.createElement("optgroup");
       g.label = o.grupo;
@@ -178,3 +186,67 @@ export function selectorAgrupado(opciones, {etiqueta, id, inicial = opciones[0]}
   };
   return form;
 }
+
+// --- Panel de los mapas: qué se pinta y dónde --------------------------------
+// El mapa trata de población indígena, así que ese indicador va primero y solo.
+// Las demás características (internet, migración, marginación) no son otro
+// indicador de la misma lista: son un CRUCE. Al elegir una, el mapa la pinta
+// solo donde la presencia indígena alcanza el mínimo elegido, que es lo más
+// cerca que el tabulado permite estar de "población indígena con internet".
+// Sigue siendo un cruce entre territorios: el tabulado no dice qué vivienda es
+// de quién, y la explicación de cada mapa lo repite.
+export const PRESENCIA_MINIMA = [
+  {valor: 0, etiqueta: "Toda la ciudad, sin mínimo"},
+  {valor: 5, etiqueta: "Donde es 5 % o más"},
+  {valor: 10, etiqueta: "Donde es 10 % o más"},
+  {valor: 20, etiqueta: "Donde es 20 % o más"},
+  {valor: 40, etiqueta: "Donde es 40 % o más (criterio del INPI para localidades)"},
+];
+const SIN_CRUCE = {clave: "__sin_cruce", grupo: null, corto: "Sin cruce: solo población indígena"};
+
+// Devuelve el panel como un solo elemento con `.value = {indigena, cruce, umbral}`
+// (`cruce` es null sin cruce) y evento `input`, para usarse con Generators.input.
+// `extrasQue` y `extrasDonde` son formularios propios de la página (sexo, ámbito).
+export function panelCruceMapa({indigenas, cruces, id, extrasQue = [], extrasDonde = []}) {
+  const selIndigena = selectorAgrupado(indigenas, {etiqueta: "Población indígena", id: `${id}-indigena`});
+  const selCruce = selectorAgrupado([SIN_CRUCE, ...cruces], {etiqueta: "Cruzar con", id: `${id}-cruce`, inicial: SIN_CRUCE});
+  const selUmbral = Inputs.select(PRESENCIA_MINIMA, {label: "Presencia indígena mínima", format: (d) => d.etiqueta, value: PRESENCIA_MINIMA[0]});
+  selIndigena.dataset.campo = "indigena";
+  selCruce.dataset.campo = "cruce";
+  selUmbral.dataset.campo = "umbral";
+
+  const nodo = html`<div class="panel-filtros">
+    <fieldset class="panel-grupo">
+      <legend class="panel-grupo-titulo">Qué se pinta</legend>
+      <div class="panel-campos">${selIndigena}${selCruce}${extrasQue}</div>
+    </fieldset>
+    <fieldset class="panel-grupo">
+      <legend class="panel-grupo-titulo">Dónde</legend>
+      <div class="panel-campos">${selUmbral}${extrasDonde}</div>
+    </fieldset>
+  </div>`;
+
+  const leer = () => ({
+    indigena: selIndigena.value,
+    cruce: selCruce.value === SIN_CRUCE ? null : selCruce.value,
+    umbral: selUmbral.value,
+  });
+  nodo.value = leer();
+  const avisar = () => {
+    nodo.value = leer();
+    nodo.dispatchEvent(new CustomEvent("input", {bubbles: false}));
+  };
+  selIndigena.addEventListener("input", (e) => { e.stopPropagation(); avisar(); });
+  selUmbral.addEventListener("input", (e) => { e.stopPropagation(); avisar(); });
+  selCruce.addEventListener("input", (e) => {
+    e.stopPropagation();
+    // Al elegir un cruce sin mínimo, el mapa seguiría pintando toda la ciudad y
+    // el cruce no se vería: se propone 10 %, que el lector puede quitar.
+    if (selCruce.value !== SIN_CRUCE && selUmbral.value.valor === 0) {
+      selUmbral.value = PRESENCIA_MINIMA[2];
+    }
+    avisar();
+  });
+  return nodo;
+}
+

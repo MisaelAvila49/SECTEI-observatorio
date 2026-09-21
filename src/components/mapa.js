@@ -223,6 +223,16 @@ export function mapaManzanas({
     className: "mapa-globo"
   });
 
+  // Órdenes recibidas antes de que carguen las capas (pintura y filtro). Un
+  // filtro que llega temprano y se descarta no da error: deja el mapa sin
+  // recortar, que es justo lo que no se nota.
+  const pendiente = {pintura: null, filtro: undefined, realce: false};
+  // Relleno translúcido a zoom de ciudad, para que se vea la mancha urbana
+  // debajo; firme cuando el mapa está recortado a unas pocas unidades, que
+  // sueltas y translúcidas casi no se distinguen.
+  const OPACIDAD_BASE = ["interpolate", ["linear"], ["zoom"], 9, 0.5, 12, 0.72, 14, 0.88];
+  const OPACIDAD_REALCE = 0.95;
+
   mapa.on("load", () => {
     mapa.addSource("manzanas", {type: "vector", url: `pmtiles://${pmtiles}`});
 
@@ -237,7 +247,7 @@ export function mapaManzanas({
         // se encabalgan hasta formar una mancha uniforme donde no se distingue
         // el gradiente, y conviene ver por dónde va la mancha urbana debajo. A
         // zoom de calle el dato se pinta firme.
-        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 9, 0.5, 12, 0.72, 14, 0.88]
+        "fill-opacity": OPACIDAD_BASE
       }
     });
 
@@ -375,13 +385,30 @@ export function mapaManzanas({
       apagarActiva();
       globo.remove();
     });
+
+    // Las capas ya existen: se aplican las órdenes que llegaron antes.
+    if (pendiente.pintura) {
+      mapa.setPaintProperty("manzanas-relleno", "fill-color", expresionColor(...pendiente.pintura));
+    }
+    if (pendiente.realce) mapa.setPaintProperty("manzanas-relleno", "fill-opacity", OPACIDAD_REALCE);
+    if (pendiente.filtro !== undefined) {
+      for (const capaId of ["manzanas-relleno", "manzanas-borde"]) mapa.setFilter(capaId, pendiente.filtro);
+    }
   });
+
+  // La instancia queda colgada del nodo para que los verificadores de navegador
+  // puedan contar las marcas que de verdad se pintan (queryRenderedFeatures): un
+  // filtro que no recorta nada no da error, solo deja el mapa igual.
+  contenedor.mapa = mapa;
 
   return {
     nodo: contenedor,
     mapa,
     /** Cambia el indicador pintado sin recargar las teselas. */
     actualizar(nuevoCampo, nuevosCortes, nuevaRampa = rampa) {
+      // Si las capas aún no cargan, la orden se guarda y se aplica en `load`:
+      // antes se descartaba y el mapa se quedaba con el indicador inicial.
+      pendiente.pintura = [nuevoCampo, nuevosCortes, nuevaRampa];
       if (!mapa.getLayer("manzanas-relleno")) return;
       mapa.setPaintProperty(
         "manzanas-relleno",
@@ -389,8 +416,15 @@ export function mapaManzanas({
         expresionColor(nuevoCampo, nuevosCortes, nuevaRampa)
       );
     },
+    /** Relleno firme mientras el mapa está recortado a pocas unidades. */
+    realzar(activo) {
+      pendiente.realce = Boolean(activo);
+      if (!mapa.getLayer("manzanas-relleno")) return;
+      mapa.setPaintProperty("manzanas-relleno", "fill-opacity", activo ? OPACIDAD_REALCE : OPACIDAD_BASE);
+    },
     /** Acota la vista a un subconjunto, por ejemplo una alcaldía. */
     filtrar(expresion) {
+      pendiente.filtro = expresion;
       for (const capaId of ["manzanas-relleno", "manzanas-borde"]) {
         if (mapa.getLayer(capaId)) mapa.setFilter(capaId, expresion);
       }

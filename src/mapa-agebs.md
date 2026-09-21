@@ -5,7 +5,7 @@ title: Mapa por AGEB
 ```js
 import {mapaManzanas, leyenda, cortesPorCuantil, RAMPA_MORADA} from "./components/mapa.js";
 import {figura, seccion, kpis, dumbbell, tablaDatos, tablaColumnas, explicacion} from "./components/graficas.js";
-import {seccionCruce, filasDesdeAgebs, selectorAgrupado} from "./components/cruce.js";
+import {panelCruceMapa, seccionCruce, filasDesdeAgebs} from "./components/cruce.js";
 import {conDescarga} from "./components/descargar.js";
 import {catalogo, verificado} from "./components/fuentes.js";
 import {verTambien} from "./components/navegacion.js";
@@ -73,30 +73,39 @@ display(seccion({numero: "01", titulo: "Mapa por AGEB"}));
 ```
 
 ```js
-// El panel se arma en UNA celda, con los formularios directos dentro de
-// .panel-campos: si cada control se declara en su propia celda de Markdown,
-// Framework lo envuelve en un bloque y la hoja deja de reconocerlo como campo.
-const selIndicador = selectorAgrupado(INDICADORES, {etiqueta: "Indicador", id: "selector-indicador-ageb"});
-const selUmbral = Inputs.select(UMBRALES, {label: "Umbral de presencia indígena", format: (d) => d.etiqueta, value: UMBRALES[1]});
-const selMostrar = Inputs.select(["Todas las AGEB", "Solo las que alcanzan el umbral"], {label: "Mostrar", value: "Todas las AGEB"});
-display(html`<div class="panel-filtros"><div class="panel-campos">${selIndicador}${selUmbral}${selMostrar}</div></div>`);
+// El indicador de población indígena va solo; lo demás (conectividad, marginación,
+// rezago social) es un cruce, que se pinta donde la presencia indígena alcanza el
+// mínimo elegido.
+const panelMapa = panelCruceMapa({
+  indigenas: INDICADORES.filter((d) => d.grupo === "Población indígena"),
+  cruces: INDICADORES.filter((d) => d.grupo !== "Población indígena"),
+  id: "ageb",
+});
+display(panelMapa);
 ```
 
 ```js
-const indicador = Generators.input(selIndicador);
-const umbral = Generators.input(selUmbral);
-const mostrar = Generators.input(selMostrar);
+const eleccion = Generators.input(panelMapa);
 ```
 
 ```js
-// Tarjetas: cuántas AGEB alcanzan el umbral elegido y cuánta gente vive ahí.
+// `indicador` es lo que se pinta; `presencia`, el indicador de población indígena
+// que decide qué AGEB entran cuando hay un mínimo.
+const indicador = eleccion.cruce ?? eleccion.indigena;
+const presencia = eleccion.indigena;
+const umbral = eleccion.umbral;
+const enVista = (a) => Number.isFinite(a[presencia.campo]) && a[presencia.campo] >= umbral.valor;
+```
+
+```js
+// Tarjetas: cuántas AGEB alcanzan la presencia mínima y cuánta gente vive ahí.
 // La cifra es el dato; la nota solo dice el universo.
 {
-  const conDato = agebs.filter((a) => Number.isFinite(a.tasa_phog_ind));
-  const sobre = conDato.filter((a) => alcanza(a, umbral.valor));
+  const conDato = agebs.filter((a) => Number.isFinite(a[presencia.campo]));
+  const sobre = conDato.filter(enVista);
   const suma = (xs, k) => xs.reduce((s, a) => s + (a[k] ?? 0), 0);
   display(kpis([
-    {etiqueta: "AGEB que alcanzan el umbral", cifra: punto(sobre.length), nota: `de ${punto(conDato.length)} AGEB urbanas con cifra publicada`},
+    {etiqueta: umbral.valor > 0 ? "AGEB que alcanzan la presencia mínima" : "AGEB urbanas en el mapa", cifra: punto(sobre.length), nota: `de ${punto(conDato.length)} AGEB urbanas con cifra publicada`},
     {etiqueta: "Población que vive en ellas", cifra: punto(suma(sobre, "POBTOT")), nota: `de ${punto(suma(conDato, "POBTOT"))} habitantes en AGEB urbanas`},
     {etiqueta: "Población en hogares indígenas que vive en ellas", cifra: punto(suma(sobre, "PHOG_IND")), nota: `de ${punto(suma(conDato, "PHOG_IND"))} en toda la ciudad`},
   ]));
@@ -115,19 +124,20 @@ const entero = (n) => (n == null || n === "" ? "sin dato" : Number(n).toLocaleSt
 const pct = (v) => (v == null || v === "" ? "sin dato" : Number(v).toFixed(1) + " %");
 
 function tooltip(p) {
+  // Globo corto: el valor pintado, la presencia indígena cuando se cruza, y la
+  // población de la AGEB.
   const fila = indicador.categorias
     ? `<tr><th>${escapar(indicador.corto)}</th><td>${escapar(p[indicador.texto] ?? "sin grado")}</td></tr>`
-    : `<tr><th>${escapar(indicador.corto)}</th><td>${pct(p[indicador.campo])}</td></tr>
-       <tr><th>${indicador.unidad} que cumplen</th><td>${entero(p[indicador.num])}</td></tr>
-       <tr><th>${indicador.unidad} en total</th><td>${entero(p[indicador.den])}</td></tr>`;
+    : `<tr><th>${escapar(indicador.corto)}</th><td>${pct(p[indicador.campo])}</td></tr>`;
+  const filaPresencia = eleccion.cruce
+    ? `<tr><th>${escapar(presencia.corto)}</th><td>${pct(p[presencia.campo])}</td></tr>` : "";
   return `
     <div class="globo-titulo">AGEB ${escapar(String(p.cve_ageb ?? "").slice(-4))}</div>
     <div class="globo-sub">${escapar(p.alcaldia)}</div>
     <table class="globo-tabla">
       ${fila}
-      <tr><th>Población en hogares indígenas</th><td>${pct(p.tasa_phog_ind)}</td></tr>
-      <tr><th>Grado de marginación</th><td>${escapar(p.gm_conapo ?? "sin grado")}</td></tr>
-      <tr><th>Grado de rezago social</th><td>${escapar(p.grs_coneval ?? "sin grado")}</td></tr>
+      ${filaPresencia}
+      <tr><th>Población</th><td>${entero(p.POBTOT)}</td></tr>
     </table>`;
 }
 ```
@@ -155,15 +165,15 @@ display(control.nodo);
 // El mapa se crea una sola vez y se repinta al cambiar un control.
 globoActual.fn = tooltip;
 control.actualizar(indicador.campo, cortes);
-control.filtrar(mostrar === "Solo las que alcanzan el umbral"
-  ? [">=", ["to-number", ["get", "tasa_phog_ind"], -1], umbral.valor]
-  : null);
+control.filtrar(umbral.valor > 0 ? [">=", ["to-number", ["get", presencia.campo]], umbral.valor] : null);
+control.realzar(umbral.valor > 0);
 ```
 
 ```js
 display(leyenda({
   cortes,
-  titulo: indicador.categorias ? indicador.corto : `${indicador.corto} (% de ${indicador.denTexto} de la AGEB)`,
+  titulo: (indicador.categorias ? indicador.corto : `${indicador.corto} (% de ${indicador.denTexto} de la AGEB)`)
+    + (umbral.valor > 0 ? `, en AGEB con ${umbral.valor} % o más de ${presencia.corto.toLowerCase()}` : ""),
   formato: indicador.categorias ? (x) => ORDEN_GRADO[x - 1] : (x) => x.toFixed(1) + " %",
   abierta: !indicador.categorias,
   notaSinDato: indicador.categorias
@@ -178,8 +188,11 @@ display(explicacion([
    proporción sobre el denominador que nombra la leyenda: la población de la AGEB o sus viviendas particulares
    habitadas con características. Los dos grados son categorías que asignan CONAPO y CONEVAL a cada AGEB con
    indicadores del mismo Censo; ninguno de los dos mide ingreso ni es una medición de pobreza.`,
-  `El umbral marca desde qué proporción de población en hogares indígenas una AGEB cuenta como de presencia
-   indígena. No existe un criterio oficial para AGEB urbanas: el del INPI se definió para localidades y se
+  `El panel separa el indicador de población indígena de las características con las que se cruza. Con un
+   cruce activo, el mapa pinta esa característica solo en las AGEB donde la población indígena alcanza la
+   presencia mínima elegida. Es un cruce entre territorios y no entre personas: el tabulado no dice qué
+   vivienda es de quién.`,
+  `La presencia mínima marca desde qué proporción de población indígena una AGEB entra al mapa. No existe un criterio oficial para AGEB urbanas: el del INPI se definió para localidades y se
    ofrece aquí como referencia, junto con cortes más bajos para explorar. Las cifras salen de las filas de
    total por AGEB del propio tabulado, que casi no tienen valores suprimidos.`,
 ]));
@@ -191,7 +204,7 @@ display(verificado(fuentes, {
   lectura: ["R-INEGI-PI"],
 }));
 display(tablaColumnas(
-  agebs.filter((a) => alcanza(a, umbral.valor)).sort((a, b) => b.tasa_phog_ind - a.tasa_phog_ind).slice(0, 100),
+  agebs.filter(enVista).sort((a, b) => b[presencia.campo] - a[presencia.campo]).slice(0, 100),
   [
     {etiqueta: "AGEB", valor: (a) => String(a.cve_ageb).padStart(13, "0")},
     {etiqueta: "Alcaldía", valor: (a) => a.alcaldia},
@@ -202,7 +215,7 @@ display(tablaColumnas(
     {etiqueta: "Marginación", valor: (a) => a.gm_conapo ?? "sin grado"},
     {etiqueta: "Rezago social", valor: (a) => a.grs_coneval ?? "sin grado"},
   ],
-  {titulo: "Ver las AGEB que alcanzan el umbral"}
+  {titulo: umbral.valor > 0 ? "Ver las AGEB que alcanzan la presencia mínima" : "Ver las AGEB con mayor presencia indígena"}
 ));
 ```
 
