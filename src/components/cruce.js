@@ -237,13 +237,16 @@ export function panelCruceMapa({indigenas, cruces, id, extrasQue = [], extrasDon
     nodo.dispatchEvent(new CustomEvent("input", {bubbles: false}));
   };
   selIndigena.addEventListener("input", (e) => { e.stopPropagation(); avisar(); });
-  selUmbral.addEventListener("input", (e) => { e.stopPropagation(); avisar(); });
+  // El mínimo se propone UNA sola vez, con el primer cruce, y solo si el lector
+  // no ha tocado ese selector. Después manda su elección: si lo dejó en "sin
+  // mínimo", cambiar de cruce no se lo vuelve a poner en 10 %.
+  let minimoDelLector = false, yaPropuesto = false;
+  selUmbral.addEventListener("input", (e) => { e.stopPropagation(); minimoDelLector = true; avisar(); });
   selCruce.addEventListener("input", (e) => {
     e.stopPropagation();
-    // Al elegir un cruce sin mínimo, el mapa seguiría pintando toda la ciudad y
-    // el cruce no se vería: se propone 10 %, que el lector puede quitar.
-    if (selCruce.value !== SIN_CRUCE && selUmbral.value.valor === 0) {
+    if (selCruce.value !== SIN_CRUCE && !minimoDelLector && !yaPropuesto && selUmbral.value.valor === 0) {
       selUmbral.value = PRESENCIA_MINIMA[2];
+      yaPropuesto = true;
     }
     avisar();
   });
