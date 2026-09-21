@@ -2,13 +2,10 @@
 // el dibujo responde. Se usa una HUELLA que incluye grosores y opacidades,
 // porque muchos filtros no cambian el NÚMERO de marcas sino su énfasis.
 import {chromium} from "playwright-core";
-import {createServer} from "node:http";
-import {readFileSync, existsSync} from "node:fs";
+import {servirEstatico} from "./servidor_estatico.mjs";
 import path from "node:path";
 const RAIZ = path.join(process.cwd(), "dist");
-const T = {".html":"text/html;charset=utf-8",".js":"text/javascript;charset=utf-8",".css":"text/css",".json":"application/json",".csv":"text/csv",".svg":"image/svg+xml"};
-const srv = createServer((q,r)=>{let p=decodeURIComponent(new URL(q.url,"http://x").pathname);if(p.endsWith("/"))p+="index";let f=path.join(RAIZ,p);if(!existsSync(f)&&existsSync(f+".html"))f+=".html";try{r.writeHead(200,{"content-type":T[path.extname(f)]??"application/octet-stream"});r.end(readFileSync(f));}catch{r.writeHead(404).end("no");}});
-srv.listen(8838);
+const srv = await servirEstatico(RAIZ, 8838);
 const b = await chromium.launch({channel:"msedge"});
 const pg = await (await b.newContext({viewport:{width:1500,height:1000}})).newPage();
 const errs=[]; pg.on("pageerror",e=>errs.push(String(e.message)));
@@ -50,7 +47,7 @@ const HUELLA = (s) => {
 };
 
 const fallos=[];
-for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar","/encuestas/endutih/uso","/encuestas/endutih/actividades","/encuestas/endutih/barreras"]) {
+for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar","/encuestas/endutih/uso","/encuestas/endutih/actividades","/encuestas/endutih/barreras","/mapa-agebs","/mapa-manzanas"]) {
   await pg.goto(`http://127.0.0.1:8838${ruta}`,{waitUntil:"networkidle"});
   // La página de la ENIGH carga 4 MB de parquet: se espera a la primera
   // sección real en vez de un tiempo fijo.
@@ -60,7 +57,7 @@ for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar","/encue
   console.log(`\n=== ${ruta} · ${secs.length} secciones ===`);
   for (let i=0;i<secs.length;i++){
     const sec=secs[i];
-    const titulo=await sec.evaluate(s=>s.querySelector("h3")?.textContent?.slice(0,42) ?? `sección ${i}`);
+    const titulo=await sec.evaluate((s,n)=>s.querySelector("h3")?.textContent?.slice(0,42) ?? `sección ${n}`, i);
     // 1. Cada <select> del panel: probar su segunda opción
     const sels = await sec.$$(".panel-filtros select");
     for (let j=0;j<sels.length;j++){

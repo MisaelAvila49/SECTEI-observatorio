@@ -12,36 +12,17 @@
 // Uso:  npm run verificar:a11y   (requiere `npm run build` previo)
 
 import {chromium} from "playwright-core";
-import {createServer} from "node:http";
-import {readFile, readFileSync} from "node:fs";
-import {existsSync} from "node:fs";
+import {servirEstatico} from "./servidor_estatico.mjs";
+import {readFileSync} from "node:fs";
 import path from "node:path";
 
 const RAIZ = path.join(import.meta.dirname, "..", "dist");
 const PUERTO = 8897;
 const AXE = readFileSync(path.join(import.meta.dirname, "..", "node_modules", "axe-core", "axe.min.js"), "utf8");
-const TIPOS = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8",
-               ".json": "application/json; charset=utf-8", ".csv": "text/csv; charset=utf-8", ".svg": "image/svg+xml"};
-
 const PAGINAS = ["/index", "/encuestas/censo/vivienda", "/encuestas/enigh/hogar", "/encuestas/endutih/uso",
-                 "/encuestas/endutih/actividades", "/encuestas/endutih/barreras", "/mapa-manzanas", "/metodologia/fuentes", "/metodologia/definiciones"];
+                 "/encuestas/endutih/actividades", "/encuestas/endutih/barreras", "/mapa-manzanas", "/mapa-agebs", "/metodologia/fuentes", "/metodologia/definiciones"];
 
-function servidor() {
-  return new Promise((res) => {
-    const s = createServer((req, rsp) => {
-      let p = decodeURIComponent(new URL(req.url, "http://x").pathname);
-      if (p.endsWith("/")) p += "index";
-      let f = path.join(RAIZ, p);
-      if (!existsSync(f) && existsSync(f + ".html")) f += ".html";
-      readFile(f, (err, cuerpo) => {
-        if (err) { rsp.writeHead(404).end("no"); return; }
-        rsp.writeHead(200, {"content-type": TIPOS[path.extname(f)] ?? "application/octet-stream"});
-        rsp.end(cuerpo);
-      });
-    });
-    s.listen(PUERTO, () => res(s));
-  });
-}
+const servidor = () => servirEstatico(RAIZ, PUERTO);
 
 const srv = await servidor();
 const navegador = await chromium.launch({channel: "msedge"});

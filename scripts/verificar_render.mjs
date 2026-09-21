@@ -19,22 +19,11 @@
 // viene con Framework; no descarga navegadores).
 
 import {chromium} from "playwright-core";
-import {createServer} from "node:http";
-import {readFile} from "node:fs/promises";
-import {existsSync} from "node:fs";
+import {servirEstatico} from "./servidor_estatico.mjs";
 import path from "node:path";
 
 const RAIZ = path.join(import.meta.dirname, "..", "dist");
 const PUERTO = 8899;
-
-const TIPOS = {
-  ".html": "text/html; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".json": "application/json; charset=utf-8",
-  ".csv": "text/csv; charset=utf-8",
-  ".svg": "image/svg+xml",
-};
 
 // Qué se espera de cada página. `minimo` es el número de marcas por debajo del
 // cual la gráfica se considera vacía; se fija con holgura respecto a lo que
@@ -63,29 +52,18 @@ const PAGINAS = [
     {nombre: "puntos de los dumbbell", sel: 'g[aria-label="dot"] circle', minimo: 150},
     {nombre: "segmentos de brecha", sel: 'g[aria-label="link"] path', minimo: 80},
   ]},
+  {ruta: "/mapa-agebs", esperado: [
+    {nombre: "puntos del cruce y del dumbbell de grados", sel: 'g[aria-label="dot"] circle', minimo: 16},
+  ]},
+  {ruta: "/mapa-manzanas", esperado: [
+    {nombre: "puntos del cruce por banda", sel: 'g[aria-label="dot"] circle', minimo: 6},
+  ]},
   {ruta: "/index", esperado: [
     {nombre: "puntos y barras de la portada", sel: 'g[aria-label="dot"] circle, g[aria-label="rect"] rect', minimo: 30},
   ]},
 ];
 
-function servidor() {
-  return new Promise((res) => {
-    const s = createServer(async (req, rsp) => {
-      let p = decodeURIComponent(new URL(req.url, "http://x").pathname);
-      if (p.endsWith("/")) p += "index";
-      let f = path.join(RAIZ, p);
-      if (!existsSync(f) && existsSync(f + ".html")) f += ".html";
-      try {
-        const cuerpo = await readFile(f);
-        rsp.writeHead(200, {"content-type": TIPOS[path.extname(f)] ?? "application/octet-stream"});
-        rsp.end(cuerpo);
-      } catch {
-        rsp.writeHead(404).end("no");
-      }
-    });
-    s.listen(PUERTO, () => res(s));
-  });
-}
+const servidor = () => servirEstatico(RAIZ, PUERTO);
 
 // Espera a que la página deje de agregar marcas: las gráficas se pintan tras
 // cargar el CSV, así que un conteo inmediato siempre da cero.
