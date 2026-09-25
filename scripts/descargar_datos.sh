@@ -47,6 +47,17 @@ bajar "https://www.datos.gob.mx/dataset/d8f2a534-bcee-4114-853d-82982a81ce24/res
 
 bajar "https://www.coneval.org.mx/Medicion/Documents/GRS_AGEB_2020/GRS_AGEB_urbana_2020.zip"       "$CRUDO/coneval/GRS_AGEB_urbana_2020.zip" "Grado de rezago social por AGEB 2020, CONEVAL"
 
+# Serie por alcaldia, lenguas y variantes (mapa unificado). Los ITER de 1990,
+# 1995, 2000 y 2005 no tienen liga directa: se bajan a mano del portal del
+# INEGI (Censos y Conteos > Datos abiertos > ITER) a data-raw/iter/.
+bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/iter_09_2010_csv.zip"       "$CRUDO/iter/iter_09_2010_csv.zip" "ITER 2010, Distrito Federal (0.1 MB)"
+bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/iter/iter_09_cpv2020_csv.zip"       "$CRUDO/iter/iter_09_cpv2020_csv.zip" "ITER 2020, Ciudad de Mexico (0.2 MB)"
+bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/ageb_y_manzana/resageburb_09_2010_csv.zip"       "$CRUDO/resageburb2010/resageburb_09_2010_csv.zip" "Resultados por AGEB y manzana 2010, Distrito Federal (9.8 MB)"
+bajar "https://www.inegi.org.mx/contenidos/programas/intercensal/2015/microdatos/eic2015_09_csv.zip"       "$CRUDO/eic2015/eic2015_09_csv.zip" "Encuesta Intercensal 2015, microdatos de la Ciudad de Mexico (23 MB)"
+bajar "https://www.inegi.org.mx/contenidos/programas/eic/2025/datosabiertos/conjunto_de_datos_eic2025_105_csv.zip"       "$CRUDO/eic2025/conjunto_de_datos_eic2025_105_csv.zip" "Encuesta Intercensal 2025, conjunto 105 (8 MB)"
+bajar "https://www.inali.gob.mx/pdf/CLIN_completo.pdf"       "$CRUDO/inali/CLIN_completo.pdf" "Catalogo de las Lenguas Indigenas Nacionales, INALI 2008 (3 MB)"
+bajar "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/702825198701.pdf"       "$CRUDO/inali/clasificaciones_censo2020.pdf" "Clasificaciones del Censo 2020, INEGI (2.7 MB)"
+
 echo
 echo "descomprimiendo..."
 unzip -o -q "$CRUDO/censo2020/ageb_mza_09.zip"        -d "$CRUDO/censo2020"
@@ -54,9 +65,11 @@ unzip -o -q "$CRUDO/cartografia/09_ciudaddemexico.zip" -d "$CRUDO/cartografia/mg
 unzip -o -q "$CRUDO/colonias/iecm2022.zip"             -d "$CRUDO/colonias/iecm2022"
 unzip -o -q "$CRUDO/colonias/catalogo.zip"             -d "$CRUDO/colonias/catalogo"
 unzip -o -q "$CRUDO/coneval/GRS_AGEB_urbana_2020.zip"  -d "$CRUDO/coneval"
+for z in "$CRUDO"/iter/*.zip "$CRUDO"/resageburb2010/*.zip "$CRUDO"/eic2015/*.zip "$CRUDO"/eic2025/*.zip; do unzip -o -q "$z" -d "$(dirname "$z")"; done
 
 echo
 echo "Listo. Sigue:"
 echo "  python scripts/construir_manzanas.py    # une censo y cartografía"
 echo "  python scripts/construir_agebs.py       # AGEB con marginación y rezago social"
+echo "  uv run python scripts/loaders/serie_alcaldias.py && uv run python scripts/loaders/lenguas.py && uv run python scripts/construir_clin.py"
 echo "  scripts/generar_teselas.sh              # en WSL: produce los .pmtiles"

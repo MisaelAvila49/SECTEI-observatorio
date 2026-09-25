@@ -1,0 +1,73 @@
+clave,nombre,familia,clin
+0101,Kickapoo,álgica,kickapoo
+0201,Pápago,yuto-nahua,pápago
+0202,Pima,yuto-nahua,pima
+0203,Tepehuano del norte,yuto-nahua,tepehuano del norte
+0204,Tepehuano del sur,yuto-nahua,tepehuano del sur
+0205,Tarahumara,yuto-nahua,tarahumara
+0206,Guarijío,yuto-nahua,guarijío
+0207,Yaqui,yuto-nahua,yaqui
+0208,Mayo,yuto-nahua,mayo
+0209,Cora,yuto-nahua,cora
+0210,Huichol,yuto-nahua,huichol
+0211,Náhuatl,yuto-nahua,náhuatl
+0301,Paipai,cochimí-yumana,paipai
+0303,Cucapá,cochimí-yumana,cucapá
+0304,Kumiai,cochimí-yumana,kumiai
+0305,Kiliwa,cochimí-yumana,kiliwa
+0401,Seri,seri,seri
+0501,Otomí,oto-mangue,otomí
+0502,Mazahua,oto-mangue,mazahua
+0503,Matlatzinca,oto-mangue,matlatzinca
+0504,Tlahuica,oto-mangue,tlahuica
+0505,Pame,oto-mangue,pame
+0506,Chichimeco jonaz,oto-mangue,chichimeco jonaz
+0507,Chinanteco,oto-mangue,chinanteco
+0508,Tlapaneco,oto-mangue,tlapaneco
+0509,Mazateco,oto-mangue,mazateco
+0510,Ixcateco,oto-mangue,ixcateco
+0511,Chocholteco,oto-mangue,chocholteco
+0512,Popoloca,oto-mangue,popoloca
+0513,Zapoteco,oto-mangue,zapoteco
+0514,Chatino,oto-mangue,chatino
+0515,Amuzgo,oto-mangue,amuzgo
+0516,Mixteco,oto-mangue,mixteco
+0517,Cuicateco,oto-mangue,cuicateco
+0518,Triqui,oto-mangue,triqui
+0601,Huasteco,maya,huasteco
+0602,Maya,maya,maya
+0603,Lacandón,maya,lacandón
+0604,Ch'ol,maya,ch'ol
+0605,Chontal de Tabasco,maya,chontal de tabasco
+0606,Tseltal,maya,tseltal
+0607,Tsotsil,maya,tsotsil
+0608,Q'anjob'al,maya,q'anjob'al
+0609,Akateko,maya,akateko
+0610,Jakalteko,maya,jakalteko
+0611,Qato'k,maya,qato'k
+0612,Chuj,maya,chuj
+0613,Tojolabal,maya,tojolabal
+0614,Q'eqchi',maya,q'eqchi'
+0615,K'iche',maya,k'iche'
+0616,Kaqchikel,maya,kaqchikel
+0617,Teko,maya,teko
+0618,Mam,maya,mam
+0619,Awakateko,maya,awakateko
+0620,Ixil,maya,ixil
+0701,Totonaco,totonaco-tepehua,totonaco
+0702,Tepehua,totonaco-tepehua,tepehua
+0801,Tarasco (purépecha),tarasca,tarasco
+0901,Mixe,mixe-zoque,mixe
+0902,Sayulteco,mixe-zoque,sayulteco
+0903,Oluteco,mixe-zoque,oluteco
+0904,Texistepequeño,mixe-zoque,texistepequeño
+0905,Ayapaneco,mixe-zoque,ayapaneco
+0906,Popoluca de la Sierra,mixe-zoque,popoluca de la sierra
+0907,Zoque,mixe-zoque,zoque
+1001,Chontal de Oaxaca,chontal de Oaxaca,chontal de oaxaca
+1101,Huave,huave,huave
+8000,Otras lenguas indígenas de América,,
+9000,No especificado,,
+9010,Chontal insuficientemente especificado,,
+9020,Tepehuano insuficientemente especificado,,
+9030,Popoluca insuficientemente especificado,,
