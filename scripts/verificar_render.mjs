@@ -41,22 +41,10 @@ const PAGINAS = [
     {nombre: "puntos de los dumbbell", sel: 'g[aria-label="dot"] circle', minimo: 120},
     {nombre: "segmentos de brecha", sel: 'g[aria-label="link"] path', minimo: 60},
   ]},
-  {ruta: "/encuestas/endutih/uso", esperado: [
-    {nombre: "puntos de los dumbbell", sel: 'g[aria-label="dot"] circle', minimo: 150},
-    {nombre: "segmentos de brecha", sel: 'g[aria-label="link"] path', minimo: 80},
-  ]},
-  {ruta: "/encuestas/endutih/actividades", esperado: [
-    {nombre: "puntos de los dumbbell", sel: 'g[aria-label="dot"] circle', minimo: 150},
-  ]},
-  {ruta: "/encuestas/endutih/barreras", esperado: [
-    {nombre: "puntos de los dumbbell", sel: 'g[aria-label="dot"] circle', minimo: 150},
-    {nombre: "segmentos de brecha", sel: 'g[aria-label="link"] path', minimo: 80},
-  ]},
-  {ruta: "/mapa-agebs", esperado: [
-    {nombre: "puntos del cruce y del dumbbell de grados", sel: 'g[aria-label="dot"] circle', minimo: 16},
-  ]},
-  {ruta: "/mapa-manzanas", esperado: [
-    {nombre: "puntos del cruce por banda", sel: 'g[aria-label="dot"] circle', minimo: 6},
+  // El mapa dibuja en canvas (MapLibre), no en SVG: se cuentan los escalones
+  // de la leyenda, que solo aparecen cuando los datos cargaron y se pintó.
+  {ruta: "/mapa", espera: ".mapa-leyenda-paso", esperado: [
+    {nombre: "escalones de la leyenda del mapa", sel: ".mapa-leyenda-paso", minimo: 4},
   ]},
   {ruta: "/index", esperado: [
     {nombre: "puntos y barras de la portada", sel: 'g[aria-label="dot"] circle, g[aria-label="rect"] rect', minimo: 30},
@@ -67,10 +55,12 @@ const servidor = () => servirEstatico(RAIZ, PUERTO);
 
 // Espera a que la página deje de agregar marcas: las gráficas se pintan tras
 // cargar el CSV, así que un conteo inmediato siempre da cero.
-async function esperarDibujo(page) {
+// `espera` es un selector propio para páginas sin SVG: el mapa dibuja en
+// canvas y se le espera por los escalones de su leyenda.
+async function esperarDibujo(page, espera = null) {
   await page.waitForFunction(
-    () => document.querySelectorAll("#observablehq-main svg").length > 0,
-    null, {timeout: 30000}
+    (sel) => document.querySelectorAll(sel ?? "#observablehq-main svg").length > 0,
+    espera, {timeout: 30000}
   );
   // El primer SVG no basta: la portada pinta el dumbbell y después, en otras
   // celdas, las dos gráficas de colonias. Se espera a que no quede ninguna
@@ -135,7 +125,7 @@ for (const modo of ["claro", "oscuro"]) {
     });
 
     await page.goto(`http://127.0.0.1:${PUERTO}${pag.ruta}`, {waitUntil: "networkidle"});
-    await esperarDibujo(page);
+    await esperarDibujo(page, pag.espera ?? null);
 
     // Conteo global por tipo de marca. Se cuenta sobre TODA la página y no por
     // sección, porque los componentes no exponen un identificador estable por
@@ -220,7 +210,7 @@ const muestras = {};
 for (const modo of ["claro", "oscuro"]) {
   const ctx = await contexto(modo, 1500, 1000);
   const page = await ctx.newPage();
-  await page.goto(`http://127.0.0.1:${PUERTO}/encuestas/endutih/uso`, {waitUntil: "networkidle"});
+  await page.goto(`http://127.0.0.1:${PUERTO}/encuestas/censo/vivienda`, {waitUntil: "networkidle"});
   await esperarDibujo(page);
   muestras[modo] = await page.evaluate(() => {
     const cuerpo = getComputedStyle(document.body);

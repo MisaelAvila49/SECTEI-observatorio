@@ -24,6 +24,10 @@ const PALETAS = [
   {nombre: "Indígena vs resto (oscuro)", modo: "dark",  superficie: "#1e1e1c", pares: "all", hex: ["#EE4C7C", "#4A90D9"]},
   {nombre: "Mujeres vs hombres (claro)",  modo: "light", superficie: "#fafaf9", pares: "all", hex: ["#B87709", "#2166AC"]},
   {nombre: "Mujeres vs hombres (oscuro)", modo: "dark",  superficie: "#1e1e1c", pares: "all", hex: ["#BE8700", "#4A90D9"]},
+  // Variantes de una lengua en el mapa de origen: tres tonos y gris para las
+  // demás (con cuatro falla la separación para deuteranopía).
+  {nombre: "Variantes (claro)",  modo: "light", superficie: "#fafaf9", pares: "all", hex: ["#C4101B", "#2166AC", "#B87709"]},
+  {nombre: "Variantes (oscuro)", modo: "dark",  superficie: "#1e1e1c", pares: "all", hex: ["#EE4C7C", "#4A90D9", "#BE8700"]},
 ];
 
 let fallos = 0;

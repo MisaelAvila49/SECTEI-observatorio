@@ -101,6 +101,30 @@ indicador del mapa (`PHOG_IND`) mide lengua en posiciones del hogar, no
 autoadscripción; las manzanas grises son valores suprimidos, no ceros. Detalle
 en la página de metodología.
 
+## Serie 1990-2025, lenguas y variantes (mapa unificado)
+
+```bash
+uv run python scripts/loaders/serie_alcaldias.py   # src/data/serie_alcaldias.csv: ITER 2010/2020, EIC 2015, ampliado 2020, EIC 2025
+uv run python scripts/loaders/lenguas.py           # lenguas_alcaldia.csv y lenguas_origen.csv (muestras 2015 y 2020)
+uv run python scripts/construir_clin.py            # clin_variantes.csv: 364 variantes del Catálogo INALI 2008 (páginas del INALI)
+```
+
+Insumos en `data-raw/` (gitignored): `iter/` (ITER de la CDMX; 2010 y 2020 los
+baja `descargar_datos.sh`, 1990-2005 se descargan a mano del portal del INEGI),
+`eic2015/TR_PERSONA09.CSV`, `eic2025/conjunto_datos_eic2025_105.csv`,
+`inali/html/`. Los microdatos del ampliado 2020 se leen de la ruta de
+`scripts/loaders/muestras.py` (`CENSO2020_PERSONAS`). Cada loader aborta si la
+muestra no reproduce la cifra publicada (2015: 129 355 hablantes y 784 605
+autoadscritos; 2020: 825 348 autoadscritos) y anota sus cifras en
+`calculado.csv` para `npm run verificar`.
+
+El mapa (`src/mapa.md`, `sidebar: false`) pinta alcaldías por `feature-state`
+desde esos CSV y AGEB/manzanas desde las teselas de 2020. La lengua y la
+autoadscripción solo existen por alcaldía; la variante no la registra ningún
+censo y se muestra como "variante probable" por entidad de nacimiento, con el
+catálogo del INALI. Las páginas `mapa-manzanas`, `mapa-agebs` y las de la
+ENDUTIH quedan como borrador (`draft: true`).
+
 ## Publicación en GitHub Pages
 
 `.github/workflows/deploy.yml` construye y publica `dist/` en cada push a

@@ -47,7 +47,7 @@ const HUELLA = (s) => {
 };
 
 const fallos=[];
-for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar","/encuestas/endutih/uso","/encuestas/endutih/actividades","/encuestas/endutih/barreras","/mapa-agebs","/mapa-manzanas"]) {
+for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar"]) {
   await pg.goto(`http://127.0.0.1:8838${ruta}`,{waitUntil:"networkidle"});
   // La página de la ENIGH carga 4 MB de parquet: se espera a la primera
   // sección real en vez de un tiempo fijo.
@@ -175,39 +175,60 @@ for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar","/encue
     }
   }
 }
-// Mapas de teselas: un filtro que no recorta no da error, deja el mapa igual. Se
-// cuentan las marcas que de verdad se pintan, con la instancia que mapa.js
-// cuelga del nodo: al elegir un cruce tienen que bajar y cambiar el campo
-// pintado, y al quitar el mínimo tienen que volver.
-for (const [ruta, id] of [["/mapa-manzanas","mza"],["/mapa-agebs","ageb"]]) {
+// Mapa unificado: se cuentan las marcas que de verdad se pintan en cada
+// unidad (queryRenderedFeatures), el color de las alcaldías al cambiar de
+// lengua, las líneas de la vista de origen y el recorte del cruce. Un filtro
+// de mapa que no cambia nada no da error: solo deja el mapa igual.
+{
+  const ruta = "/mapa";
   await pg.goto(`http://127.0.0.1:8838${ruta}`,{waitUntil:"networkidle"});
-  await pg.waitForSelector(`#${id}-cruce`,{timeout:90000});
+  await pg.waitForSelector("#mapa-unidad",{timeout:90000});
   await pg.waitForTimeout(6000);
-  const medir = () => pg.evaluate(() => {
+  const medir = (capa) => pg.evaluate((capa) => {
     const m = [...document.querySelectorAll("*")].find((e) => e.mapa)?.mapa;
-    if (!m) return null;
-    return {n: m.queryRenderedFeatures({layers:["manzanas-relleno"]}).length,
-            campo: JSON.stringify(m.getPaintProperty("manzanas-relleno","fill-color")).match(/tasa_\w+|\w+_orden/)?.[0]};
+    if (!m || !m.getLayer(capa)) return {n: -1};
+    const fs = m.queryRenderedFeatures({layers: [capa]});
+    const prop = m.getLayer(capa).type === "line" ? "line-color" : "fill-color";
+    return {n: fs.length, color: JSON.stringify(m.getPaintProperty(capa, prop))};
+  }, capa);
+  const estado = () => pg.evaluate(() => {
+    const m = [...document.querySelectorAll("*")].find((e) => e.mapa)?.mapa;
+    const fs = m.querySourceFeatures("alcaldias");
+    return fs.map((f) => m.getFeatureState({source: "alcaldias", id: f.id}).valor).sort().join(",");
   });
-  const inicio = await medir();
-  console.log(`
-=== ${ruta} · mapa ===`);
-  if (!inicio || !inicio.n) { fallos.push(`${ruta}: el mapa no pinta marcas`); continue; }
-  const opciones = await pg.$eval(`#${id}-cruce`, (s) => [...s.options].map((o) => o.textContent));
-  await pg.selectOption(`#${id}-cruce`, {label: opciones[1]});
-  await pg.waitForTimeout(4500);
-  const cruce = await medir();
-  const okCruce = cruce.n < inicio.n && cruce.campo !== inicio.campo;
-  console.log(`  ${okCruce?"ok   ":"FALLA"} «Cruzar con» → «${opciones[1]}»: ${inicio.n} → ${cruce.n} marcas, pinta ${cruce.campo}`);
-  if (!okCruce) fallos.push(`${ruta}: el cruce no recorta el mapa o no cambia lo que pinta (${inicio.n} → ${cruce.n}, ${cruce.campo})`);
-  const selU = await pg.$('form[data-campo="umbral"] select');
-  const ops = await selU.evaluate((s) => [...s.options].map((o) => o.textContent));
-  await selU.selectOption({label: ops[0]});
-  await pg.waitForTimeout(4500);
-  const libre = await medir();
-  const okLibre = libre.n > cruce.n;
-  console.log(`  ${okLibre?"ok   ":"FALLA"} «Presencia indígena mínima» → «${ops[0]}»: ${cruce.n} → ${libre.n} marcas`);
-  if (!okLibre) fallos.push(`${ruta}: quitar el mínimo no devuelve las marcas (${cruce.n} → ${libre.n})`);
+  const visible = (sel) => pg.$eval(sel, (e) => !e.hidden && e.getBoundingClientRect().height > 0).catch(() => false);
+  console.log(`\n=== ${ruta} · mapa unificado ===`);
+  const ok = (cond, texto) => { console.log(`  ${cond ? "ok   " : "FALLA"} ${texto}`); if (!cond) fallos.push(`${ruta}: ${texto}`); };
+  const alc0 = await medir("alcaldias-relleno"); const est0 = await estado();
+  ok(alc0.n >= 16, `alcaldías pintadas: ${alc0.n} marcas`);
+  await pg.selectOption("#mapa-anio", "2025"); await pg.waitForTimeout(1500);
+  ok((await estado()) !== est0, "«Año» → 2025 cambia los valores de las alcaldías");
+  await pg.selectOption("#mapa-poblacion", "autoads"); await pg.waitForTimeout(1500);
+  ok(!(await visible('form[data-campo="lengua"]')), "con «Se consideran indígenas» el selector de lengua se oculta");
+  await pg.selectOption("#mapa-poblacion", "hablantes"); await pg.selectOption("#mapa-lengua", "0211"); await pg.waitForTimeout(1500);
+  const estN = await estado();
+  ok(estN !== est0 && (await pg.$$eval(".mapa-variantes-lista li", (l) => l.length)) === 30, "«Lengua» → náhuatl cambia los valores y lista 30 variantes");
+  await pg.click(".mapa-boton-origen"); await pg.waitForTimeout(3500);
+  const flujos = await medir("flujos-linea"); const ents = await medir("entidades-relleno");
+  ok(flujos.n >= 20 && ents.n >= 20, `vista de origen: ${flujos.n} líneas y ${ents.n} entidades pintadas`);
+  ok(!(await visible('form[data-campo="sexo"]')), "en la vista de origen el sexo se oculta");
+  await pg.click(".mapa-boton-origen"); await pg.waitForTimeout(2500);
+  await pg.selectOption("#mapa-unidad", "ageb"); await pg.waitForTimeout(6000);
+  const ageb0 = await medir("agebs-relleno");
+  ok(ageb0.n >= 1000, `AGEB pintadas: ${ageb0.n} marcas`);
+  ok(!(await visible('form[data-campo="lengua"]')) && (await visible('form[data-campo="cruce"]')), "por AGEB: sin lengua y con «Cruzar con»");
+  await pg.selectOption("#mapa-cruce", "inter"); await pg.waitForTimeout(4000);
+  const ageb1 = await medir("agebs-relleno");
+  ok(ageb1.n < ageb0.n && ageb1.color !== ageb0.color, `«Cruzar con» → internet recorta (${ageb0.n} → ${ageb1.n}) y cambia lo que pinta`);
+  await pg.selectOption("#mapa-umbral", "0"); await pg.waitForTimeout(4000);
+  ok((await medir("agebs-relleno")).n > ageb1.n, "quitar el mínimo devuelve las AGEB");
+  await pg.selectOption("#mapa-cruce", "sin"); await pg.selectOption("#mapa-unidad", "manzana"); await pg.waitForTimeout(7000);
+  const mza0 = await medir("manzanas-relleno");
+  ok(mza0.n >= 500, `manzanas pintadas: ${mza0.n} marcas`);
+  await pg.selectOption("#mapa-sexo", "Mujeres"); await pg.waitForTimeout(3000);
+  ok((await medir("manzanas-relleno")).color !== mza0.color, "«Sexo» → Mujeres cambia el campo pintado por manzana");
+  await pg.selectOption("#mapa-ambito", "pueblos"); await pg.waitForTimeout(4000);
+  ok((await medir("manzanas-relleno")).n < mza0.n, "«Ámbito» → pueblos originarios recorta las manzanas");
 }
 for(const e of errs.slice(0,5)) fallos.push("error en consola: "+e.slice(0,120));
 console.log("\n"+"=".repeat(60));

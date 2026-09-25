@@ -184,6 +184,109 @@ El resultado cuadra: la suma de población por colonia difiere de la suma por
 manzana en 1,382 personas sobre 9.1 millones, un 0.015 %, atribuible al redondeo
 a enteros de 1,837 colonias.
 
+## La serie 1990-2025 por alcaldía
+
+El mapa por alcaldía y la serie del sitio se arman con una fuente distinta por
+edición, porque ningún producto del INEGI cubre solo los 35 años con la misma
+unidad y la misma pregunta. Para 2010 y 2020 se usan los Principales resultados
+por localidad (ITER) de la Ciudad de México, que son conteo censal completo: las
+filas de total de la entidad y de cada demarcación traen hablantes de lengua
+indígena de 3 y de 5 años y más, monolingües y población en hogares indígenas,
+sin error muestral. Para 2015 se usan los microdatos de la Encuesta Intercensal
+y para la autoadscripción de 2020, los del cuestionario ampliado del Censo; las
+dos son muestras, así que sus cifras llevan error de diseño, calculado por
+linearización de Taylor con la varianza entre unidades primarias dentro de
+estrato, y la figura lo muestra como un intervalo de más o menos 1.96 errores.
+Para 2025 se usa el conjunto de datos abiertos 105 de la Encuesta Intercensal
+2025, que publica el porcentaje de cada indicador con su error estándar para la
+entidad, las 16 alcaldías y las localidades de 50 mil habitantes y más.
+
+Se comprobó que las muestras reproducen las cifras publicadas antes de usarlas:
+la EIC 2015 da 129 355 hablantes y 784 605 personas que se consideran
+indígenas, que son las tablas del documento de la Secretaría de Cultura, y el
+ampliado de 2020 da 825 348 autoadscritos, la cifra de la SEPI. Los hablantes
+del ampliado 2020 (142 201) no coinciden con los 125 153 del cuestionario
+básico porque la muestra estima y el básico cuenta; por esto los hablantes de
+2020 salen del ITER y la muestra se reserva para lo que solo ella pregunta.
+
+Tres cambios de definición cruzan la serie y se marcan en las figuras. El
+universo de hablantes fue de 5 años y más hasta 2005 y de 3 años y más desde
+2010; el ITER de 2010 y 2020 publica los dos, y la serie larga va en 5 años y
+más. La población en hogares indígenas contaba en 2010 a quienes vivían con
+una jefa o jefe o cónyuge hablante, y desde 2020 incluye también a los
+ascendientes, de modo que 271 463 y 289 139 no son estrictamente comparables.
+La autoadscripción no existe en 1990, 1995 ni 2005; en 2000 la pregunta era
+otra ("¿es náhuatl, maya, zapoteco, mixteco o de otro grupo indígena?") y desde
+2010 es "de acuerdo con su cultura, ¿se considera indígena?". En 2025 la cifra
+de la ciudad baja de 9.0 a 6.8 por ciento; no se determinó todavía si cambió la
+redacción, y la figura lo dice.
+
+Las ediciones de 1990, 1995, 2000 y 2005 entran cuando se descarguen sus ITER
+(el portal del INEGI no ofrece liga directa); mientras tanto la serie larga
+usa la cifra que publica la SEPI para toda la ciudad (111 552, 100 890,
+141 710 y 118 424 hablantes de 5 años y más) y no baja de entidad para esos
+años.
+
+## Qué lengua se habla y de dónde vienen quienes la hablan
+
+La lengua concreta solo la registran las muestras, en la variable
+`QDIALECT_INALI`, con la clave de agrupación lingüística del Catálogo INALI
+2008 (72 códigos: las 68 agrupaciones, otras lenguas indígenas de América, no
+especificado y tres códigos para chontal, tepehuano y popoluca
+insuficientemente especificados). Por esto la lengua se ofrece solo por
+alcaldía: ni el ITER ni el tabulado por AGEB y manzana dicen cuál lengua se
+habla. Los hablantes de cada lengua se calculan sobre la población de 3 años y
+más con las mismas muestras y el mismo error de diseño; la EIC 2015 registra 43
+claves en la ciudad y el ampliado 2020, 38. Las seis lenguas mayores de 2015
+(náhuatl 38 549, mixteco 15 920, otomí 13 764, mazateco 11 076, zapoteco
+10 593 y mazahua 8 321) reproducen exactamente la tabla 1 del documento de la
+Secretaría de Cultura, que es la comprobación de que la clave está bien leída.
+Para 2020 el náhuatl da 38 338 en la muestra contra 39 475 en la tabla de la
+SEPI, que usa el cuestionario básico: es diferencia de diseño y se deja como
+referencia, no como fallo.
+
+El origen se toma de dos preguntas de las mismas muestras: la entidad de
+nacimiento, para todos, y la entidad y municipio de residencia cinco años
+antes, para quienes llegaron en ese lapso. La vista "De dónde vienen" del mapa
+usa la entidad de nacimiento: cada línea une la entidad con la ciudad y su
+grosor es el número de hablantes de esa lengua nacidos ahí. En 2020 el 82 por
+ciento de los hablantes de la ciudad nació en otra entidad o en otro país; la
+SEPI publica 84.3 y 0.5 por ciento con el básico.
+
+## Las variantes: lo que el catálogo dice y lo que el censo no pregunta
+
+Ningún censo ni encuesta del INEGI pregunta qué variante de la lengua habla la
+persona: la clave llega hasta la agrupación. Las variantes existen en el
+Catálogo de las Lenguas Indígenas Nacionales del INALI, publicado en el Diario
+Oficial el 14 de enero de 2008, que reconoce 11 familias, 68 agrupaciones y 364
+variantes, cada una con su autodenominación y con las entidades, municipios y
+localidades donde se habla. El catálogo se tomó de las páginas oficiales del
+INALI (una por agrupación y una por sus variantes) y se guardó en
+`clin_variantes.csv` con 364 filas; el script que lo genera aborta si el conteo
+por familia o por agrupación no cuadra con el publicado.
+
+Con eso, la **variante probable** de un hablante es la que el catálogo ubica en
+su entidad de nacimiento, y solo cuando ahí hay una sola variante de esa lengua.
+Si la entidad tiene varias (Puebla registra nueve variantes del náhuatl) la
+línea se pinta en gris y el globo dice "una de N variantes"; si no tiene ninguna
+registrada, también. Es una inferencia sobre el lugar de nacimiento y no un
+dato de la persona: alguien pudo nacer en una entidad y hablar la variante de
+otra, y una persona nacida en la ciudad no recibe variante alguna. El mapa lo
+rotula así en cada vista y el color solo distingue las tres variantes con más
+hablantes; las demás van en gris, porque con cuatro tonos la paleta deja de
+distinguirse bajo deuteranopía.
+
+## Todas las poblaciones indígenas: la unión sin doble conteo
+
+La opción "Todas las poblaciones indígenas" cuenta a las personas que hablan
+una lengua indígena o se consideran indígenas, una sola vez cada una. Solo se
+puede calcular en los microdatos, donde las dos respuestas están en el mismo
+registro: en 2015 son 835 437 personas (784 605 autoadscritas más 50 832 que
+hablan una lengua sin considerarse indígenas) y en 2020, 852 286. Sumar las
+dos cifras publicadas contaría dos veces a las 78 523 personas de 2015 y a las
+115 263 de 2020 que cumplen ambas. Como la unión usa los hablantes de la
+muestra, su cifra de hablantes no coincide con la del cuestionario básico.
+
 ## Los indicadores de vivienda y su denominador
 
 El mismo tabulado publica, para cada manzana y cada AGEB, cuántas viviendas

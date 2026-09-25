@@ -19,8 +19,7 @@ import path from "node:path";
 const RAIZ = path.join(import.meta.dirname, "..", "dist");
 const PUERTO = 8897;
 const AXE = readFileSync(path.join(import.meta.dirname, "..", "node_modules", "axe-core", "axe.min.js"), "utf8");
-const PAGINAS = ["/index", "/encuestas/censo/vivienda", "/encuestas/enigh/hogar", "/encuestas/endutih/uso",
-                 "/encuestas/endutih/actividades", "/encuestas/endutih/barreras", "/mapa-manzanas", "/mapa-agebs", "/metodologia/fuentes", "/metodologia/definiciones"];
+const PAGINAS = ["/index", "/encuestas/censo/vivienda", "/encuestas/enigh/hogar", "/mapa", "/metodologia/fuentes", "/metodologia/definiciones"];
 
 const servidor = () => servirEstatico(RAIZ, PUERTO);
 

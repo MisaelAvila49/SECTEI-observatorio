@@ -121,6 +121,29 @@ referencia, su cónyuge o alguno de sus ascendientes hablan lengua indígena. Es
 un indicador de hogar y de lengua, no de autoadscripción; el detalle está en
 [Fuentes y cobertura](./fuentes).
 
+## Cómo se lee el mapa
+
+El mapa es uno solo y el panel decide qué se ve. En **Qué se pinta** se elige la
+población (hablantes de lengua indígena, población en hogares indígenas,
+personas que se consideran indígenas, o todas juntas), la lengua cuando la
+población son los hablantes, y una característica con la que cruzar por AGEB o
+manzana. En **Dónde y cuándo** se elige la unidad (alcaldía, AGEB o manzana), el
+año, el sexo, el ámbito de pueblos originarios por manzana y, con un cruce
+activo, la presencia mínima que recorta el mapa. Los controles que no aplican
+se ocultan: por AGEB y manzana solo hay hablantes y hogares indígenas de 2020,
+porque es lo único que el tabulado del Censo publica a ese nivel; la lengua, la
+autoadscripción, la unión de poblaciones y la serie 2010-2025 existen solo por
+alcaldía, porque salen de muestras representativas hasta ahí.
+
+Los cortes de color de cada indicador por alcaldía son fijos a lo largo de los
+años: se calculan sobre todas las alcaldías y ediciones de ese indicador, de
+modo que un mismo tono significa lo mismo en 2010 y en 2025. Por AGEB y manzana
+los cortes son cuantiles de las unidades con dato, como en la etapa anterior.
+Con una lengua elegida aparece el botón "Ver de dónde vienen", que cambia el
+mapa a la República: cada entidad se pinta por el número de hablantes de esa
+lengua nacidos ahí que viven en la ciudad, y cada línea los une con la ciudad,
+con el color de su variante probable.
+
 ## Cómo se leen los filtros de los mapas
 
 El panel de los dos mapas separa lo que se pinta del lugar donde se pinta. En
