@@ -221,21 +221,35 @@ otra ("¿es náhuatl, maya, zapoteco, mixteco o de otro grupo indígena?") y des
 de la ciudad baja de 9.0 a 6.8 por ciento; no se determinó todavía si cambió la
 redacción, y la figura lo dice.
 
-Las ediciones de 1990, 1995, 2000 y 2005 entran cuando se descarguen sus ITER
-(el portal del INEGI no ofrece liga directa); mientras tanto la serie larga
-usa la cifra que publica la SEPI para toda la ciudad (111 552, 100 890,
-141 710 y 118 424 hablantes de 5 años y más) y no baja de entidad para esos
-años.
+Las ediciones de 1990, 1995, 2000 y 2005 salen de los ITER nacionales, filas
+de total de la entidad y de cada delegación. Los totales de 1995, 2000 y
+2005 (100 890, 141 710 y 118 424 hablantes de 5 años y más) coinciden con la
+serie que publica la SEPI. El de 1990 no: ese ITER no publica el total de
+hablantes, solo a quienes hablan español y a quienes no, y la suma (107 647)
+deja fuera a 3 905 personas que no especificaron si hablan español; tampoco
+publica la población de 5 años y más, que se estimó con la proporción de la
+muestra del 10 % de ese censo en cada delegación. Las figuras de 1990 lo
+dicen. La autoadscripción de 2000 sale del cuestionario ampliado con su
+pregunta de pertenencia (68 426 personas de 5 años y más), y la de 2010 del
+ampliado de ese censo (438 855, el 5.0 por ciento): esta última queda por
+cotejar con el tabulado oficial de la muestra antes de leerla como caída
+frente al 8.8 por ciento de 2015.
 
 ## Qué lengua se habla y de dónde vienen quienes la hablan
 
-La lengua concreta solo la registran las muestras, en la variable
-`QDIALECT_INALI`, con la clave de agrupación lingüística del Catálogo INALI
-2008 (72 códigos: las 68 agrupaciones, otras lenguas indígenas de América, no
-especificado y tres códigos para chontal, tepehuano y popoluca
-insuficientemente especificados). Por esto la lengua se ofrece solo por
-alcaldía: ni el ITER ni el tabulado por AGEB y manzana dicen cuál lengua se
-habla. Los hablantes de cada lengua se calculan sobre la población de 3 años y
+La lengua concreta solo la registran las muestras: desde 2010 con la clave de
+agrupación lingüística del Catálogo INALI 2008 (72 códigos: las 68
+agrupaciones, otras lenguas indígenas de América, no especificado y tres
+códigos para chontal, tepehuano y popoluca insuficientemente especificados), y
+en 1990, 2000 y 2005 con el clasificador histórico del INEGI, que distingue
+más lenguas (doce chinantecos, siete zapotecos) y usa otros números. La
+equivalencia entre los dos se midió en la muestra de 2010, donde cada
+persona trae las dos claves, y está en `catalogo_lenguas_historico.csv`; hay
+que tenerla porque el código 0211 existe en ambos con significado distinto
+(chinanteco en el histórico, náhuatl en el INALI). Por esto la lengua se
+ofrece solo por alcaldía: ni el ITER ni el tabulado por AGEB y manzana dicen
+cuál lengua se habla. En 1990 y 2005 la muestra es autoponderada (una de cada
+diez viviendas, sin factor ni diseño publicado) y el error queda vacío. Los hablantes de cada lengua se calculan sobre la población de 3 años y
 más con las mismas muestras y el mismo error de diseño; la EIC 2015 registra 43
 claves en la ciudad y el ampliado 2020, 38. Las seis lenguas mayores de 2015
 (náhuatl 38 549, mixteco 15 920, otomí 13 764, mazateco 11 076, zapoteco

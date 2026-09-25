@@ -31,4 +31,12 @@ iztapalapa_parte_2015,serie,2015,% de los hablantes de la CDMX que viven en Izta
 nahuatl_2015,lenguas,2015,hablantes de náhuatl en la CDMX,38549,1,R-SECULT-LENGUAS,2026-09-24,verificado,"Tabla 1 del documento; los microdatos de la EIC 2015 la reproducen exacta, igual que mixteco, otomí, mazateco, zapoteco y mazahua."
 nahuatl_2020,lenguas,2020,hablantes de náhuatl en la CDMX,39475,1500,R-SEPI-2024-DIV,2026-09-24,referencia,"Tabla 3 de la SEPI (cuestionario básico). Aquí la lengua sale de la muestra ampliada (38 338): la diferencia es de diseño, no de código."
 hli_nacidos_fuera_2020,lenguas,2020,% de hablantes de la CDMX nacidos fuera de la ciudad,84.3,2.5,R-SEPI-2024-DIV,2026-09-24,referencia,"La SEPI publica 84.3 % en otra entidad y 0.5 % en otro país con el básico; la muestra ampliada da 82.3 % incluyendo otro país."
+cdmx_hli5_1990_n,serie,1990,hablantes de lengua indígena de 5 años y más en la CDMX,111552,4000,R-SEPI-2024-DIV,2026-09-24,referencia,"Gráfica 2 de la SEPI. El ITER 1990 solo publica quienes hablan y no hablan español (107 647); faltan 3 905 sin especificar."
+cdmx_hli5_1995_n,serie,1995,hablantes de lengua indígena de 5 años y más en la CDMX,100890,1,D-ITER-1995,2026-09-24,verificado,"ITER 1995, total de la entidad (P5HLIND); coincide con la serie de la SEPI."
+cdmx_hli5_2000_n,serie,2000,hablantes de lengua indígena de 5 años y más en la CDMX,141710,1,D-ITER-2000,2026-09-24,verificado,"ITER 2000, total de la entidad (P5_HLI); coincide con la serie de la SEPI."
+cdmx_hli5_2005_n,serie,2005,hablantes de lengua indígena de 5 años y más en la CDMX,118424,1,D-ITER-2005,2026-09-24,verificado,"ITER 2005, total de la entidad (P5YMAHLI); coincide con la serie de la SEPI."
+cdmx_hli5_2010_n,serie,2010,hablantes de lengua indígena de 5 años y más en la CDMX,122411,1,D-ITER-2010,2026-09-24,verificado,"ITER 2010 (P5_HLI); coincide con la serie de la SEPI."
+cdmx_hli5_2020_n,serie,2020,hablantes de lengua indígena de 5 años y más en la CDMX,124540,1,D-ITER-2020,2026-09-24,verificado,"ITER 2020 (P5_HLI); coincide con la serie de la SEPI."
+cdmx_phog_2005_n,serie,2005,población en hogares indígenas en la CDMX,247208,1,D-ITER-2005,2026-09-24,verificado,"ITER 2005 (P_HOG_IND), total de la entidad; definición jefe o cónyuge."
+cdmx_autoads_2010,serie,2010,% de población de 3 años y más que se considera indígena en la CDMX,,1.0,D-CENSO-2010-AMP,2026-09-24,pendiente,"La muestra da 5.0 %. Falta transcribir la cifra del tabulado oficial de la muestra del Censo 2010 (población que se considera indígena, Distrito Federal)."
 

@@ -120,7 +120,7 @@ function campo({id, etiqueta, opciones, valor, nombre}) {
  * para la combinación unidad + población + lengua. El nodo devuelto tiene
  * `.value` y emite `input` en cada cambio ya reconciliado.
  */
-export function panelMapa({lenguas, aniosDe}) {
+export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
   const c = {
     poblacion: campo({id: "mapa-poblacion", nombre: "poblacion", etiqueta: "Población", opciones: POBLACIONES, valor: "hablantes"}),
     lengua: campo({id: "mapa-lengua", nombre: "lengua", etiqueta: "Lengua", opciones: [{clave: "todas", etiqueta: "Todas las lenguas"}, ...lenguas], valor: "todas"}),
@@ -200,7 +200,8 @@ export function panelMapa({lenguas, aniosDe}) {
 
     // Sexo: no para hogares, no con cruce, no por AGEB (las teselas de AGEB
     // no traen el desglose).
-    const conSexo = pob.porSexo && !cruce && unidad !== "ageb";
+    const conSexo = pob.porSexo && !cruce && unidad !== "ageb"
+      && sexoDe({unidad, poblacion: pob.clave, lengua: c.lengua.value, anio: Number(c.anio.value)});
     ver("sexo", conSexo);
     if (!conSexo) c.sexo.value = "Total";
 

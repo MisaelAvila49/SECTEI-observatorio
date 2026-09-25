@@ -36,13 +36,29 @@ enigh,hog_tv_paga_2024,37.4134,"% de hogares (con al menos una persona de 6+), p
 enigh,pers_internet_2020,57.0131,% de personas de 6+ en hogares con internet
 enigh,pers_internet_2022,63.9506,% de personas de 6+ en hogares con internet
 enigh,pers_internet_2024,73.5993,% de personas de 6+ en hogares con internet
+lenguas,hli_nacidos_fuera_1990,83.8290,% de hablantes de la CDMX nacidos fuera de la ciudad
+lenguas,hli_nacidos_fuera_2000,76.3610,% de hablantes de la CDMX nacidos fuera de la ciudad
+lenguas,hli_nacidos_fuera_2010,86.6707,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,hli_nacidos_fuera_2015,83.7138,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,hli_nacidos_fuera_2020,82.2800,% de hablantes de la CDMX nacidos fuera de la ciudad
+lenguas,hli_nacidos_fuera_2025,83.4573,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,n_lenguas_2015,38.0000,"agrupaciones lingüísticas con hablantes en la CDMX, EIC 2015"
+lenguas,nahuatl_1990,24900.0000,"hablantes de náhuatl en la CDMX, muestra 1990"
+lenguas,nahuatl_2000,42044.0000,"hablantes de náhuatl en la CDMX, muestra 2000"
+lenguas,nahuatl_2005,32440.0000,"hablantes de náhuatl en la CDMX, muestra 2005"
+lenguas,nahuatl_2010,45300.0000,"hablantes de náhuatl en la CDMX, muestra 2010"
 lenguas,nahuatl_2015,38549.0000,"hablantes de náhuatl en la CDMX, muestra 2015"
 lenguas,nahuatl_2020,38338.0000,"hablantes de náhuatl en la CDMX, muestra 2020"
+lenguas,nahuatl_2025,38303.0000,"hablantes de náhuatl en la CDMX, muestra 2025"
+serie,ambas_2000,40575.0000,personas que hablan lengua indígena y además se consideran indígenas
+serie,ambas_2010,109047.0000,personas que hablan lengua indígena y además se consideran indígenas
 serie,ambas_2015,78523.0000,personas que hablan lengua indígena y además se consideran indígenas
 serie,ambas_2020,115263.0000,personas que hablan lengua indígena y además se consideran indígenas
+serie,ambas_2025,92967.0000,personas que hablan lengua indígena y además se consideran indígenas
+serie,cdmx_autoads_2000,0.8767,"% de autoads en la CDMX, 2000"
+serie,cdmx_autoads_2000_n,68426.0000,"personas (autoads) en la CDMX, 2000"
+serie,cdmx_autoads_2010,5.2044,"% de autoads en la CDMX, 2010"
+serie,cdmx_autoads_2010_n,438855.0000,"personas (autoads) en la CDMX, 2010"
 serie,cdmx_autoads_2015,8.7973,"% de autoads en la CDMX, 2015"
 serie,cdmx_autoads_2015_n,784605.0000,"personas (autoads) en la CDMX, 2015"
 serie,cdmx_autoads_2020,9.0109,"% de autoads en la CDMX, 2020"
@@ -57,6 +73,20 @@ serie,cdmx_hli3_2020,1.4010,"% de hablantes3 en la CDMX, 2020"
 serie,cdmx_hli3_2020_n,125153.0000,"personas (hablantes3) en la CDMX, 2020"
 serie,cdmx_hli3_2025,1.4000,"% de hablantes3 en la CDMX, 2025"
 serie,cdmx_hli3_2025_n,125550.8200,"personas (hablantes3) en la CDMX, 2025"
+serie,cdmx_hli5_1990,1.4563,"% de hablantes5 en la CDMX, 1990"
+serie,cdmx_hli5_1990_n,107647.0000,"personas (hablantes5) en la CDMX, 1990"
+serie,cdmx_hli5_1995,1.3120,"% de hablantes5 en la CDMX, 1995"
+serie,cdmx_hli5_1995_n,100890.0000,"personas (hablantes5) en la CDMX, 1995"
+serie,cdmx_hli5_2000,1.8313,"% de hablantes5 en la CDMX, 2000"
+serie,cdmx_hli5_2000_n,141710.0000,"personas (hablantes5) en la CDMX, 2000"
+serie,cdmx_hli5_2005,1.5192,"% de hablantes5 en la CDMX, 2005"
+serie,cdmx_hli5_2005_n,118424.0000,"personas (hablantes5) en la CDMX, 2005"
+serie,cdmx_hli5_2010,1.5235,"% de hablantes5 en la CDMX, 2010"
+serie,cdmx_hli5_2010_n,122411.0000,"personas (hablantes5) en la CDMX, 2010"
+serie,cdmx_hli5_2020,1.4281,"% de hablantes5 en la CDMX, 2020"
+serie,cdmx_hli5_2020_n,124540.0000,"personas (hablantes5) en la CDMX, 2020"
+serie,cdmx_phog_2005,2.8347,"% de hogares en la CDMX, 2005"
+serie,cdmx_phog_2005_n,247208.0000,"personas (hogares) en la CDMX, 2005"
 serie,cdmx_phog_2010,3.0670,"% de hogares en la CDMX, 2010"
 serie,cdmx_phog_2010_n,271463.0000,"personas (hogares) en la CDMX, 2010"
 serie,cdmx_phog_2020,3.1394,"% de hogares en la CDMX, 2020"
@@ -64,5 +94,8 @@ serie,cdmx_phog_2020_n,289139.0000,"personas (hogares) en la CDMX, 2020"
 serie,cdmx_phog_2025,3.0872,"% de hogares en la CDMX, 2025"
 serie,cdmx_phog_2025_n,282966.0000,"personas (hogares) en la CDMX, 2025"
 serie,iztapalapa_parte_2015,24.2240,"% de los hablantes de la CDMX que viven en Iztapalapa, 2015"
+serie,union_2000,196107.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
+serie,union_2010,474099.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
 serie,union_2015,835437.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
 serie,union_2020,852286.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
+serie,union_2025,652398.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)

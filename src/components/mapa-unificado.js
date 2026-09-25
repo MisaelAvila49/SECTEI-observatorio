@@ -35,7 +35,11 @@ const ENTIDAD = {
   "031": ["MX-YUC", "YUCATÁN"], "032": ["MX-ZAC", "ZACATECAS"],
 };
 const POB_SERIE = {hablantes: "hablantes3", hogares: "hogares", autoads: "autoads", todas: "todas", ambas: "ambas"};
-const FUENTE_ANIO = {2010: "Censo 2010 (INEGI)", 2015: "Encuesta Intercensal 2015 (INEGI)", 2020: "Censo 2020 (INEGI)", 2025: "Encuesta Intercensal 2025 (INEGI)"};
+// Antes de 2010 solo hay hablantes de 5 años y más: se usa ese universo y la
+// definición lo dice. Desde 2010, 3 años y más.
+const pobSerie = (poblacion, anio) => (poblacion === "hablantes" && anio < 2010 ? "hablantes5" : POB_SERIE[poblacion]);
+const FUENTE_ANIO = {1990: "Censo 1990 (INEGI)", 1995: "Conteo 1995 (INEGI)", 2000: "Censo 2000 (INEGI)", 2005: "Conteo 2005 (INEGI)",
+  2010: "Censo 2010 (INEGI)", 2015: "Encuesta Intercensal 2015 (INEGI)", 2020: "Censo 2020 (INEGI)", 2025: "Encuesta Intercensal 2025 (INEGI)"};
 
 const normal = (s) => String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().trim();
 const escapar = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
@@ -85,11 +89,20 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
     if (unidad !== "alcaldia") return [2020];
     const filas = lengua !== "todas"
       ? lenguas.filter((r) => r.lengua === lengua && r.nivel === "alcaldia")
-      : serie.filter((r) => r.poblacion === POB_SERIE[poblacion] && r.nivel === "alcaldia");
+      : serie.filter((r) => r.poblacion === pobSerie(poblacion, r.anio) && r.nivel === "alcaldia");
     return [...new Set(filas.map((r) => r.anio))].sort();
   };
+  // El sexo solo se ofrece si la fuente de ese año lo desglosa (los ITER de
+  // 1990 a 2000 no traen hablantes por sexo).
+  const sexoDe = ({unidad, poblacion, lengua, anio}) => {
+    if (unidad !== "alcaldia") return true;
+    const filas = lengua !== "todas"
+      ? lenguas.filter((r) => r.lengua === lengua && r.anio === anio && r.nivel === "alcaldia")
+      : serie.filter((r) => r.poblacion === pobSerie(poblacion, anio) && r.anio === anio && r.nivel === "alcaldia");
+    return filas.some((r) => r.sexo === "Mujeres");
+  };
 
-  const panel = panelMapa({lenguas: opcionesLengua, aniosDe});
+  const panel = panelMapa({lenguas: opcionesLengua, aniosDe, sexoDe});
   const contenedor = html`<div class="mapa-lienzo" role="region" aria-label="Mapa"></div>`;
   // Dentro del lienzo: la leyenda abajo a la derecha y una tarjeta de lectura
   // arriba a la izquierda, que muestra la cifra de la ciudad en reposo y la
@@ -208,7 +221,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
   function filasAlcaldia({anio, poblacion, lengua, sexo}, nivel) {
     return lengua !== "todas"
       ? lenguas.filter((r) => r.anio === anio && r.lengua === lengua && r.sexo === sexo && r.nivel === nivel)
-      : serie.filter((r) => r.anio === anio && r.poblacion === POB_SERIE[poblacion] && r.sexo === sexo && r.nivel === nivel);
+      : serie.filter((r) => r.anio === anio && r.poblacion === pobSerie(poblacion, anio) && r.sexo === sexo && r.nivel === nivel);
   }
 
   // Cortes FIJOS por indicador a lo largo de los años (lección 74): se miden
@@ -218,7 +231,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
     if (!cacheCortes.has(clave)) {
       const filas = lengua !== "todas"
         ? lenguas.filter((r) => r.lengua === lengua && r.nivel === "alcaldia")
-        : serie.filter((r) => r.poblacion === POB_SERIE[poblacion] && r.nivel === "alcaldia");
+        : serie.filter((r) => r.poblacion === pobSerie(poblacion, r.anio) && r.nivel === "alcaldia");
       cacheCortes.set(clave, cortesPorCuantil(filas.map((r) => 100 * r.num / r.den), 5));
     }
     return cacheCortes.get(clave);
@@ -321,7 +334,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
     mapa.setPaintProperty(`${id}-relleno`, "fill-opacity", e.umbral > 0 ? 0.95 : ["interpolate", ["linear"], ["zoom"], 9, 0.55, 12, 0.75, 14, 0.9]);
     visibles([`${id}-relleno`, `${id}-borde`, `${id}-hover`, "alcaldias-halo", "alcaldias-linea", "cdmx-limite-halo", "cdmx-limite"]);
     vistaActual = {unidad: e.unidad, etiqueta, valores: new Map(), cruce: e.cruce, poblacion: e.poblacion, campo};
-    const ent = serie.find((r) => r.anio === 2020 && r.nivel === "entidad" && r.poblacion === POB_SERIE[e.poblacion] && r.sexo === (pob.porSexo ? e.sexo : "Total"));
+    const ent = serie.find((r) => r.anio === 2020 && r.nivel === "entidad" && r.poblacion === pobSerie(e.poblacion, 2020) && r.sexo === (pob.porSexo ? e.sexo : "Total"));
     pintarResumen({e, etiqueta, cortes, ent: cruce ? null : ent, muestra: false, cruce});
   }
 
@@ -345,7 +358,11 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
     globo.reposo();
     const cifra = "";
     const fuente = e.unidad === "alcaldia" ? FUENTE_ANIO[e.anio] : "Censo 2020 (INEGI), resultados por AGEB y manzana";
-    const definicion = cruce ? cruce.definicion : pob.definicion;
+    // El universo de la definición es el de la fila (5 años y más antes de
+    // 2010; autoadscripción de 5+ en 2000 y de 3+ en 2010).
+    let definicion = cruce ? cruce.definicion : pob.definicion;
+    if (!cruce && ent?.universo && !/hablantes/i.test(ent.universo)) definicion = definicion.replace(/Personas de 3 años y más/, ent.universo.replace(/^Población/, "Personas")).replace(/sobre la población de 3 años y más/, `sobre la ${ent.universo.toLowerCase()}`);
+    if (!cruce && e.anio === 2000 && ["autoads", "todas", "ambas"].includes(e.poblacion)) definicion += " En 2000 la pregunta era distinta: si la persona era náhuatl, maya, zapoteca, mixteca o de otro grupo indígena.";
     const aviso = e.umbral > 0 && e.unidad === "manzana"
       ? html`<p class="mapa-aviso">Solo las manzanas con ${e.umbral} % o más: son manzanas sueltas, acerca el mapa para verlas o cambia a AGEB.</p>` : "";
     const avisoTodas = e.poblacion === "todas" ? html`<p class="mapa-aviso">Una persona cuenta una sola vez aunque hable una lengua y además se considere indígena.</p>` : "";

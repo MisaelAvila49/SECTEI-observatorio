@@ -1,4 +1,2251 @@
 anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
+1990,0205,Tarahumara,nacimiento,008,Chihuahua,,50.0,5
+1990,0205,Tarahumara,nacimiento,009,Ciudad de México,,50.0,5
+1990,0205,Tarahumara,nacimiento,011,Guanajuato,,10.0,1
+1990,0205,Tarahumara,nacimiento,032,Zacatecas,,10.0,1
+1990,0205,Tarahumara,nacimiento,026,Sonora,,10.0,1
+1990,0205,Tarahumara,nacimiento,219,Otro país,,10.0,1
+1990,0205,Tarahumara,nacimiento,021,Puebla,,10.0,1
+1990,0205,Tarahumara,nacimiento,016,Michoacán,,10.0,1
+1990,0207,Yaqui,nacimiento,026,Sonora,,30.0,3
+1990,0207,Yaqui,nacimiento,025,Sinaloa,,10.0,1
+1990,0207,Yaqui,nacimiento,014,Jalisco,,10.0,1
+1990,0208,Mayo,nacimiento,026,Sonora,,10.0,1
+1990,0208,Mayo,nacimiento,025,Sinaloa,,10.0,1
+1990,0209,Cora,nacimiento,115,Otro país,,60.0,6
+1990,0209,Cora,nacimiento,029,Tlaxcala,,10.0,1
+1990,0209,Cora,nacimiento,009,Ciudad de México,,10.0,1
+1990,0209,Cora,nacimiento,018,Nayarit,,10.0,1
+1990,0209,Cora,nacimiento,021,Puebla,,10.0,1
+1990,0210,Huichol,nacimiento,014,Jalisco,,70.0,7
+1990,0210,Huichol,nacimiento,030,Veracruz,,10.0,1
+1990,0210,Huichol,nacimiento,020,Oaxaca,,10.0,1
+1990,0211,Náhuatl,nacimiento,021,Puebla,,6800.0,680
+1990,0211,Náhuatl,nacimiento,009,Ciudad de México,,4390.0,439
+1990,0211,Náhuatl,nacimiento,013,Hidalgo,,4120.0,412
+1990,0211,Náhuatl,nacimiento,030,Veracruz,,3880.0,388
+1990,0211,Náhuatl,nacimiento,024,San Luis Potosí,,2190.0,219
+1990,0211,Náhuatl,nacimiento,012,Guerrero,,1300.0,130
+1990,0211,Náhuatl,nacimiento,015,México,,780.0,78
+1990,0211,Náhuatl,nacimiento,020,Oaxaca,,600.0,60
+1990,0211,Náhuatl,nacimiento,029,Tlaxcala,,310.0,31
+1990,0211,Náhuatl,nacimiento,017,Morelos,,250.0,25
+1990,0211,Náhuatl,nacimiento,016,Michoacán,,70.0,7
+1990,0211,Náhuatl,nacimiento,007,Chiapas,,40.0,4
+1990,0211,Náhuatl,nacimiento,011,Guanajuato,,30.0,3
+1990,0211,Náhuatl,nacimiento,005,Coahuila,,30.0,3
+1990,0211,Náhuatl,nacimiento,001,Aguascalientes,,20.0,2
+1990,0211,Náhuatl,nacimiento,999,No especificado,,20.0,2
+1990,0211,Náhuatl,nacimiento,014,Jalisco,,20.0,2
+1990,0211,Náhuatl,nacimiento,028,Tamaulipas,,20.0,2
+1990,0211,Náhuatl,nacimiento,008,Chihuahua,,10.0,1
+1990,0211,Náhuatl,nacimiento,032,Zacatecas,,10.0,1
+1990,0211,Náhuatl,nacimiento,010,Durango,,10.0,1
+1990,0211,Náhuatl,nacimiento,004,Campeche,,10.0,1
+1990,0211,Náhuatl,nacimiento,215,Otro país,,10.0,1
+1990,0211,Náhuatl,nacimiento,002,Baja California,,10.0,1
+1990,0211,Náhuatl,nacimiento,416,Otro país,,10.0,1
+1990,0501,Otomí,nacimiento,013,Hidalgo,,6570.0,657
+1990,0501,Otomí,nacimiento,015,México,,6050.0,605
+1990,0501,Otomí,nacimiento,009,Ciudad de México,,1840.0,184
+1990,0501,Otomí,nacimiento,022,Querétaro,,980.0,98
+1990,0501,Otomí,nacimiento,021,Puebla,,500.0,50
+1990,0501,Otomí,nacimiento,030,Veracruz,,490.0,49
+1990,0501,Otomí,nacimiento,020,Oaxaca,,340.0,34
+1990,0501,Otomí,nacimiento,016,Michoacán,,130.0,13
+1990,0501,Otomí,nacimiento,029,Tlaxcala,,90.0,9
+1990,0501,Otomí,nacimiento,024,San Luis Potosí,,70.0,7
+1990,0501,Otomí,nacimiento,007,Chiapas,,50.0,5
+1990,0501,Otomí,nacimiento,999,No especificado,,30.0,3
+1990,0501,Otomí,nacimiento,017,Morelos,,30.0,3
+1990,0501,Otomí,nacimiento,012,Guerrero,,30.0,3
+1990,0501,Otomí,nacimiento,028,Tamaulipas,,20.0,2
+1990,0501,Otomí,nacimiento,011,Guanajuato,,20.0,2
+1990,0501,Otomí,nacimiento,014,Jalisco,,10.0,1
+1990,0502,Mazahua,nacimiento,015,México,,6060.0,606
+1990,0502,Mazahua,nacimiento,009,Ciudad de México,,1020.0,102
+1990,0502,Mazahua,nacimiento,016,Michoacán,,800.0,80
+1990,0502,Mazahua,nacimiento,021,Puebla,,60.0,6
+1990,0502,Mazahua,nacimiento,070,Otro país,,30.0,3
+1990,0502,Mazahua,nacimiento,020,Oaxaca,,30.0,3
+1990,0502,Mazahua,nacimiento,025,Sinaloa,,20.0,2
+1990,0502,Mazahua,nacimiento,012,Guerrero,,20.0,2
+1990,0502,Mazahua,nacimiento,027,Tabasco,,10.0,1
+1990,0502,Mazahua,nacimiento,029,Tlaxcala,,10.0,1
+1990,0502,Mazahua,nacimiento,010,Durango,,10.0,1
+1990,0502,Mazahua,nacimiento,999,No especificado,,10.0,1
+1990,0502,Mazahua,nacimiento,013,Hidalgo,,10.0,1
+1990,0502,Mazahua,nacimiento,022,Querétaro,,10.0,1
+1990,0502,Mazahua,nacimiento,007,Chiapas,,10.0,1
+1990,0503,Matlatzinca,nacimiento,015,México,,150.0,15
+1990,0503,Matlatzinca,nacimiento,009,Ciudad de México,,40.0,4
+1990,0503,Matlatzinca,nacimiento,020,Oaxaca,,10.0,1
+1990,0506,Chichimeco jonaz,nacimiento,007,Chiapas,,10.0,1
+1990,0506,Chichimeco jonaz,nacimiento,030,Veracruz,,10.0,1
+1990,0507,Chinanteco,nacimiento,020,Oaxaca,,940.0,94
+1990,0507,Chinanteco,nacimiento,030,Veracruz,,50.0,5
+1990,0507,Chinanteco,nacimiento,009,Ciudad de México,,10.0,1
+1990,0507,Chinanteco,nacimiento,002,Baja California,,10.0,1
+1990,0508,Tlapaneco,nacimiento,012,Guerrero,,1260.0,126
+1990,0508,Tlapaneco,nacimiento,009,Ciudad de México,,30.0,3
+1990,0509,Mazateco,nacimiento,020,Oaxaca,,4200.0,420
+1990,0509,Mazateco,nacimiento,030,Veracruz,,120.0,12
+1990,0509,Mazateco,nacimiento,009,Ciudad de México,,80.0,8
+1990,0509,Mazateco,nacimiento,007,Chiapas,,20.0,2
+1990,0509,Mazateco,nacimiento,015,México,,10.0,1
+1990,0509,Mazateco,nacimiento,021,Puebla,,10.0,1
+1990,0511,Chocholteco,nacimiento,020,Oaxaca,,110.0,11
+1990,0511,Chocholteco,nacimiento,021,Puebla,,90.0,9
+1990,0511,Chocholteco,nacimiento,009,Ciudad de México,,20.0,2
+1990,0513,Zapoteco,nacimiento,020,Oaxaca,,12170.0,1217
+1990,0513,Zapoteco,nacimiento,009,Ciudad de México,,700.0,70
+1990,0513,Zapoteco,nacimiento,030,Veracruz,,380.0,38
+1990,0513,Zapoteco,nacimiento,021,Puebla,,120.0,12
+1990,0513,Zapoteco,nacimiento,015,México,,100.0,10
+1990,0513,Zapoteco,nacimiento,007,Chiapas,,80.0,8
+1990,0513,Zapoteco,nacimiento,012,Guerrero,,40.0,4
+1990,0513,Zapoteco,nacimiento,999,No especificado,,40.0,4
+1990,0513,Zapoteco,nacimiento,013,Hidalgo,,30.0,3
+1990,0513,Zapoteco,nacimiento,004,Campeche,,20.0,2
+1990,0513,Zapoteco,nacimiento,032,Zacatecas,,10.0,1
+1990,0513,Zapoteco,nacimiento,023,Quintana Roo,,10.0,1
+1990,0513,Zapoteco,nacimiento,016,Michoacán,,10.0,1
+1990,0513,Zapoteco,nacimiento,005,Coahuila,,10.0,1
+1990,0513,Zapoteco,nacimiento,011,Guanajuato,,10.0,1
+1990,0513,Zapoteco,nacimiento,019,Nuevo León,,10.0,1
+1990,0514,Chatino,nacimiento,020,Oaxaca,,50.0,5
+1990,0515,Amuzgo,nacimiento,012,Guerrero,,90.0,9
+1990,0515,Amuzgo,nacimiento,021,Puebla,,20.0,2
+1990,0515,Amuzgo,nacimiento,009,Ciudad de México,,10.0,1
+1990,0515,Amuzgo,nacimiento,020,Oaxaca,,10.0,1
+1990,0515,Amuzgo,nacimiento,999,No especificado,,10.0,1
+1990,0516,Mixteco,nacimiento,020,Oaxaca,,11900.0,1190
+1990,0516,Mixteco,nacimiento,021,Puebla,,1230.0,123
+1990,0516,Mixteco,nacimiento,009,Ciudad de México,,630.0,63
+1990,0516,Mixteco,nacimiento,012,Guerrero,,250.0,25
+1990,0516,Mixteco,nacimiento,015,México,,100.0,10
+1990,0516,Mixteco,nacimiento,030,Veracruz,,80.0,8
+1990,0516,Mixteco,nacimiento,013,Hidalgo,,20.0,2
+1990,0516,Mixteco,nacimiento,016,Michoacán,,20.0,2
+1990,0516,Mixteco,nacimiento,999,No especificado,,10.0,1
+1990,0516,Mixteco,nacimiento,017,Morelos,,10.0,1
+1990,0516,Mixteco,nacimiento,029,Tlaxcala,,10.0,1
+1990,0516,Mixteco,nacimiento,014,Jalisco,,10.0,1
+1990,0516,Mixteco,nacimiento,008,Chihuahua,,10.0,1
+1990,0516,Mixteco,nacimiento,024,San Luis Potosí,,10.0,1
+1990,0517,Cuicateco,nacimiento,020,Oaxaca,,300.0,30
+1990,0517,Cuicateco,nacimiento,012,Guerrero,,10.0,1
+1990,0518,Triqui,nacimiento,020,Oaxaca,,160.0,16
+1990,0518,Triqui,nacimiento,009,Ciudad de México,,10.0,1
+1990,0601,Huasteco,nacimiento,030,Veracruz,,390.0,39
+1990,0601,Huasteco,nacimiento,024,San Luis Potosí,,350.0,35
+1990,0601,Huasteco,nacimiento,020,Oaxaca,,100.0,10
+1990,0601,Huasteco,nacimiento,013,Hidalgo,,60.0,6
+1990,0601,Huasteco,nacimiento,012,Guerrero,,20.0,2
+1990,0601,Huasteco,nacimiento,021,Puebla,,20.0,2
+1990,0601,Huasteco,nacimiento,009,Ciudad de México,,10.0,1
+1990,0602,Maya,nacimiento,031,Yucatán,,1610.0,161
+1990,0602,Maya,nacimiento,009,Ciudad de México,,310.0,31
+1990,0602,Maya,nacimiento,004,Campeche,,190.0,19
+1990,0602,Maya,nacimiento,007,Chiapas,,50.0,5
+1990,0602,Maya,nacimiento,030,Veracruz,,40.0,4
+1990,0602,Maya,nacimiento,021,Puebla,,30.0,3
+1990,0602,Maya,nacimiento,027,Tabasco,,30.0,3
+1990,0602,Maya,nacimiento,023,Quintana Roo,,30.0,3
+1990,0602,Maya,nacimiento,224,Otro país,,30.0,3
+1990,0602,Maya,nacimiento,208,Otro país,,20.0,2
+1990,0602,Maya,nacimiento,005,Coahuila,,20.0,2
+1990,0602,Maya,nacimiento,016,Michoacán,,20.0,2
+1990,0602,Maya,nacimiento,019,Nuevo León,,20.0,2
+1990,0602,Maya,nacimiento,017,Morelos,,20.0,2
+1990,0602,Maya,nacimiento,029,Tlaxcala,,20.0,2
+1990,0602,Maya,nacimiento,014,Jalisco,,10.0,1
+1990,0602,Maya,nacimiento,028,Tamaulipas,,10.0,1
+1990,0602,Maya,nacimiento,214,Otro país,,10.0,1
+1990,0602,Maya,nacimiento,020,Oaxaca,,10.0,1
+1990,0602,Maya,nacimiento,026,Sonora,,10.0,1
+1990,0602,Maya,nacimiento,012,Guerrero,,10.0,1
+1990,0602,Maya,nacimiento,025,Sinaloa,,10.0,1
+1990,0604,Ch'ol,nacimiento,007,Chiapas,,40.0,4
+1990,0604,Ch'ol,nacimiento,027,Tabasco,,40.0,4
+1990,0604,Ch'ol,nacimiento,009,Ciudad de México,,10.0,1
+1990,0606,Tseltal,nacimiento,007,Chiapas,,240.0,24
+1990,0606,Tseltal,nacimiento,009,Ciudad de México,,70.0,7
+1990,0606,Tseltal,nacimiento,005,Coahuila,,10.0,1
+1990,0606,Tseltal,nacimiento,249,Otro país,,10.0,1
+1990,0606,Tseltal,nacimiento,014,Jalisco,,10.0,1
+1990,0606,Tseltal,nacimiento,030,Veracruz,,10.0,1
+1990,0607,Tsotsil,nacimiento,007,Chiapas,,190.0,19
+1990,0607,Tsotsil,nacimiento,009,Ciudad de México,,30.0,3
+1990,0607,Tsotsil,nacimiento,020,Oaxaca,,10.0,1
+1990,0607,Tsotsil,nacimiento,423,Otro país,,10.0,1
+1990,0607,Tsotsil,nacimiento,011,Guanajuato,,10.0,1
+1990,0607,Tsotsil,nacimiento,002,Baja California,,10.0,1
+1990,0608,Q'anjob'al,nacimiento,012,Guerrero,,10.0,1
+1990,0611,Qato'k,nacimiento,012,Guerrero,,10.0,1
+1990,0613,Tojolabal,nacimiento,402,Otro país,,20.0,2
+1990,0613,Tojolabal,nacimiento,009,Ciudad de México,,10.0,1
+1990,0613,Tojolabal,nacimiento,007,Chiapas,,10.0,1
+1990,0614,Q'eqchi',nacimiento,218,Otro país,,20.0,2
+1990,0614,Q'eqchi',nacimiento,224,Otro país,,20.0,2
+1990,0614,Q'eqchi',nacimiento,209,Otro país,,10.0,1
+1990,0614,Q'eqchi',nacimiento,236,Otro país,,10.0,1
+1990,0615,K'iche',nacimiento,001,Aguascalientes,,10.0,1
+1990,0618,Mam,nacimiento,224,Otro país,,20.0,2
+1990,0701,Totonaco,nacimiento,021,Puebla,,1320.0,132
+1990,0701,Totonaco,nacimiento,030,Veracruz,,1230.0,123
+1990,0701,Totonaco,nacimiento,009,Ciudad de México,,100.0,10
+1990,0701,Totonaco,nacimiento,020,Oaxaca,,60.0,6
+1990,0701,Totonaco,nacimiento,029,Tlaxcala,,40.0,4
+1990,0701,Totonaco,nacimiento,013,Hidalgo,,30.0,3
+1990,0701,Totonaco,nacimiento,012,Guerrero,,20.0,2
+1990,0701,Totonaco,nacimiento,022,Querétaro,,10.0,1
+1990,0701,Totonaco,nacimiento,016,Michoacán,,10.0,1
+1990,0702,Tepehua,nacimiento,013,Hidalgo,,100.0,10
+1990,0702,Tepehua,nacimiento,030,Veracruz,,40.0,4
+1990,0702,Tepehua,nacimiento,249,Otro país,,10.0,1
+1990,0702,Tepehua,nacimiento,021,Puebla,,10.0,1
+1990,0801,Tarasco (purépecha),nacimiento,016,Michoacán,,1210.0,121
+1990,0801,Tarasco (purépecha),nacimiento,009,Ciudad de México,,70.0,7
+1990,0801,Tarasco (purépecha),nacimiento,011,Guanajuato,,40.0,4
+1990,0801,Tarasco (purépecha),nacimiento,020,Oaxaca,,20.0,2
+1990,0801,Tarasco (purépecha),nacimiento,021,Puebla,,20.0,2
+1990,0801,Tarasco (purépecha),nacimiento,029,Tlaxcala,,10.0,1
+1990,0801,Tarasco (purépecha),nacimiento,030,Veracruz,,10.0,1
+1990,0801,Tarasco (purépecha),nacimiento,012,Guerrero,,10.0,1
+1990,0801,Tarasco (purépecha),nacimiento,024,San Luis Potosí,,10.0,1
+1990,0901,Mixe,nacimiento,020,Oaxaca,,1940.0,194
+1990,0901,Mixe,nacimiento,009,Ciudad de México,,40.0,4
+1990,0901,Mixe,nacimiento,021,Puebla,,30.0,3
+1990,0901,Mixe,nacimiento,013,Hidalgo,,20.0,2
+1990,0901,Mixe,nacimiento,030,Veracruz,,10.0,1
+1990,0901,Mixe,nacimiento,016,Michoacán,,10.0,1
+1990,0907,Zoque,nacimiento,007,Chiapas,,40.0,4
+1990,0907,Zoque,nacimiento,020,Oaxaca,,20.0,2
+1990,1101,Huave,nacimiento,213,Otro país,,10.0,1
+1990,1101,Huave,nacimiento,020,Oaxaca,,10.0,1
+1990,9000,No especificado,nacimiento,009,Ciudad de México,,8770.0,877
+1990,9000,No especificado,nacimiento,020,Oaxaca,,1820.0,182
+1990,9000,No especificado,nacimiento,021,Puebla,,880.0,88
+1990,9000,No especificado,nacimiento,015,México,,600.0,60
+1990,9000,No especificado,nacimiento,013,Hidalgo,,500.0,50
+1990,9000,No especificado,nacimiento,030,Veracruz,,480.0,48
+1990,9000,No especificado,nacimiento,016,Michoacán,,420.0,42
+1990,9000,No especificado,nacimiento,012,Guerrero,,360.0,36
+1990,9000,No especificado,nacimiento,011,Guanajuato,,340.0,34
+1990,9000,No especificado,nacimiento,007,Chiapas,,170.0,17
+1990,9000,No especificado,nacimiento,024,San Luis Potosí,,130.0,13
+1990,9000,No especificado,nacimiento,029,Tlaxcala,,130.0,13
+1990,9000,No especificado,nacimiento,413,Otro país,,110.0,11
+1990,9000,No especificado,nacimiento,014,Jalisco,,110.0,11
+1990,9000,No especificado,nacimiento,022,Querétaro,,90.0,9
+1990,9000,No especificado,nacimiento,031,Yucatán,,60.0,6
+1990,9000,No especificado,nacimiento,017,Morelos,,60.0,6
+1990,9000,No especificado,nacimiento,209,Otro país,,40.0,4
+1990,9000,No especificado,nacimiento,115,Otro país,,40.0,4
+1990,9000,No especificado,nacimiento,005,Coahuila,,40.0,4
+1990,9000,No especificado,nacimiento,999,No especificado,,30.0,3
+1990,9000,No especificado,nacimiento,010,Durango,,30.0,3
+1990,9000,No especificado,nacimiento,220,Otro país,,30.0,3
+1990,9000,No especificado,nacimiento,025,Sinaloa,,20.0,2
+1990,9000,No especificado,nacimiento,026,Sonora,,20.0,2
+1990,9000,No especificado,nacimiento,234,Otro país,,20.0,2
+1990,9000,No especificado,nacimiento,236,Otro país,,20.0,2
+1990,9000,No especificado,nacimiento,018,Nayarit,,20.0,2
+1990,9000,No especificado,nacimiento,128,Otro país,,10.0,1
+1990,9000,No especificado,nacimiento,233,Otro país,,10.0,1
+1990,9000,No especificado,nacimiento,345,Otro país,,10.0,1
+1990,9000,No especificado,nacimiento,027,Tabasco,,10.0,1
+1990,9000,No especificado,nacimiento,208,Otro país,,10.0,1
+1990,9000,No especificado,nacimiento,204,Otro país,,10.0,1
+1990,9000,No especificado,nacimiento,246,Otro país,,10.0,1
+1990,9000,No especificado,nacimiento,002,Baja California,,10.0,1
+1990,9000,No especificado,nacimiento,004,Campeche,,10.0,1
+1990,9000,No especificado,nacimiento,224,Otro país,,10.0,1
+1990,9010,Chontal insuficientemente especificado,nacimiento,020,Oaxaca,,50.0,5
+1990,9010,Chontal insuficientemente especificado,nacimiento,027,Tabasco,,30.0,3
+1990,9010,Chontal insuficientemente especificado,nacimiento,009,Ciudad de México,,10.0,1
+1990,9010,Chontal insuficientemente especificado,nacimiento,016,Michoacán,,10.0,1
+1990,9020,Tepehuano insuficientemente especificado,nacimiento,030,Veracruz,,10.0,1
+1990,9020,Tepehuano insuficientemente especificado,nacimiento,028,Tamaulipas,,10.0,1
+1990,0205,Tarahumara,residencia5,008,Chihuahua,,30.0,3
+1990,0205,Tarahumara,residencia5,015,México,,10.0,1
+1990,0205,Tarahumara,residencia5,011,Guanajuato,,10.0,1
+1990,0209,Cora,residencia5,021,Puebla,,10.0,1
+1990,0210,Huichol,residencia5,020,Oaxaca,,10.0,1
+1990,0211,Náhuatl,residencia5,021,Puebla,,1800.0,180
+1990,0211,Náhuatl,residencia5,030,Veracruz,,1300.0,130
+1990,0211,Náhuatl,residencia5,013,Hidalgo,,1220.0,122
+1990,0211,Náhuatl,residencia5,024,San Luis Potosí,,550.0,55
+1990,0211,Náhuatl,residencia5,015,México,,440.0,44
+1990,0211,Náhuatl,residencia5,012,Guerrero,,350.0,35
+1990,0211,Náhuatl,residencia5,020,Oaxaca,,250.0,25
+1990,0211,Náhuatl,residencia5,029,Tlaxcala,,60.0,6
+1990,0211,Náhuatl,residencia5,017,Morelos,,50.0,5
+1990,0211,Náhuatl,residencia5,027,Tabasco,,40.0,4
+1990,0211,Náhuatl,residencia5,028,Tamaulipas,,30.0,3
+1990,0211,Náhuatl,residencia5,001,Aguascalientes,,20.0,2
+1990,0211,Náhuatl,residencia5,025,Sinaloa,,10.0,1
+1990,0211,Náhuatl,residencia5,011,Guanajuato,,10.0,1
+1990,0211,Náhuatl,residencia5,007,Chiapas,,10.0,1
+1990,0501,Otomí,residencia5,013,Hidalgo,,1440.0,144
+1990,0501,Otomí,residencia5,015,México,,1080.0,108
+1990,0501,Otomí,residencia5,021,Puebla,,180.0,18
+1990,0501,Otomí,residencia5,022,Querétaro,,140.0,14
+1990,0501,Otomí,residencia5,030,Veracruz,,110.0,11
+1990,0501,Otomí,residencia5,020,Oaxaca,,110.0,11
+1990,0501,Otomí,residencia5,016,Michoacán,,40.0,4
+1990,0501,Otomí,residencia5,029,Tlaxcala,,20.0,2
+1990,0501,Otomí,residencia5,024,San Luis Potosí,,20.0,2
+1990,0501,Otomí,residencia5,027,Tabasco,,20.0,2
+1990,0501,Otomí,residencia5,011,Guanajuato,,10.0,1
+1990,0501,Otomí,residencia5,017,Morelos,,10.0,1
+1990,0501,Otomí,residencia5,008,Chihuahua,,10.0,1
+1990,0502,Mazahua,residencia5,015,México,,1330.0,133
+1990,0502,Mazahua,residencia5,016,Michoacán,,190.0,19
+1990,0502,Mazahua,residencia5,020,Oaxaca,,30.0,3
+1990,0502,Mazahua,residencia5,013,Hidalgo,,10.0,1
+1990,0502,Mazahua,residencia5,017,Morelos,,10.0,1
+1990,0503,Matlatzinca,residencia5,015,México,,10.0,1
+1990,0506,Chichimeco jonaz,residencia5,007,Chiapas,,10.0,1
+1990,0507,Chinanteco,residencia5,020,Oaxaca,,240.0,24
+1990,0507,Chinanteco,residencia5,030,Veracruz,,40.0,4
+1990,0508,Tlapaneco,residencia5,012,Guerrero,,560.0,56
+1990,0508,Tlapaneco,residencia5,015,México,,20.0,2
+1990,0509,Mazateco,residencia5,020,Oaxaca,,1220.0,122
+1990,0509,Mazateco,residencia5,015,México,,110.0,11
+1990,0509,Mazateco,residencia5,021,Puebla,,70.0,7
+1990,0509,Mazateco,residencia5,030,Veracruz,,60.0,6
+1990,0509,Mazateco,residencia5,014,Jalisco,,10.0,1
+1990,0509,Mazateco,residencia5,007,Chiapas,,10.0,1
+1990,0511,Chocholteco,residencia5,021,Puebla,,40.0,4
+1990,0511,Chocholteco,residencia5,015,México,,10.0,1
+1990,0513,Zapoteco,residencia5,020,Oaxaca,,2310.0,231
+1990,0513,Zapoteco,residencia5,030,Veracruz,,160.0,16
+1990,0513,Zapoteco,residencia5,015,México,,110.0,11
+1990,0513,Zapoteco,residencia5,021,Puebla,,50.0,5
+1990,0513,Zapoteco,residencia5,028,Tamaulipas,,20.0,2
+1990,0513,Zapoteco,residencia5,027,Tabasco,,20.0,2
+1990,0513,Zapoteco,residencia5,008,Chihuahua,,20.0,2
+1990,0513,Zapoteco,residencia5,007,Chiapas,,10.0,1
+1990,0513,Zapoteco,residencia5,026,Sonora,,10.0,1
+1990,0514,Chatino,residencia5,020,Oaxaca,,40.0,4
+1990,0515,Amuzgo,residencia5,012,Guerrero,,50.0,5
+1990,0515,Amuzgo,residencia5,020,Oaxaca,,10.0,1
+1990,0516,Mixteco,residencia5,020,Oaxaca,,2880.0,288
+1990,0516,Mixteco,residencia5,021,Puebla,,140.0,14
+1990,0516,Mixteco,residencia5,015,México,,110.0,11
+1990,0516,Mixteco,residencia5,012,Guerrero,,70.0,7
+1990,0516,Mixteco,residencia5,002,Baja California,,30.0,3
+1990,0516,Mixteco,residencia5,030,Veracruz,,30.0,3
+1990,0516,Mixteco,residencia5,013,Hidalgo,,20.0,2
+1990,0516,Mixteco,residencia5,017,Morelos,,10.0,1
+1990,0516,Mixteco,residencia5,014,Jalisco,,10.0,1
+1990,0516,Mixteco,residencia5,016,Michoacán,,10.0,1
+1990,0516,Mixteco,residencia5,028,Tamaulipas,,10.0,1
+1990,0516,Mixteco,residencia5,024,San Luis Potosí,,10.0,1
+1990,0517,Cuicateco,residencia5,020,Oaxaca,,60.0,6
+1990,0518,Triqui,residencia5,020,Oaxaca,,60.0,6
+1990,0601,Huasteco,residencia5,030,Veracruz,,170.0,17
+1990,0601,Huasteco,residencia5,024,San Luis Potosí,,110.0,11
+1990,0601,Huasteco,residencia5,013,Hidalgo,,20.0,2
+1990,0601,Huasteco,residencia5,015,México,,10.0,1
+1990,0601,Huasteco,residencia5,028,Tamaulipas,,10.0,1
+1990,0602,Maya,residencia5,031,Yucatán,,120.0,12
+1990,0602,Maya,residencia5,030,Veracruz,,30.0,3
+1990,0602,Maya,residencia5,021,Puebla,,20.0,2
+1990,0602,Maya,residencia5,023,Quintana Roo,,20.0,2
+1990,0602,Maya,residencia5,020,Oaxaca,,20.0,2
+1990,0602,Maya,residencia5,007,Chiapas,,10.0,1
+1990,0602,Maya,residencia5,012,Guerrero,,10.0,1
+1990,0602,Maya,residencia5,028,Tamaulipas,,10.0,1
+1990,0602,Maya,residencia5,015,México,,10.0,1
+1990,0604,Ch'ol,residencia5,027,Tabasco,,20.0,2
+1990,0606,Tseltal,residencia5,007,Chiapas,,100.0,10
+1990,0607,Tsotsil,residencia5,007,Chiapas,,50.0,5
+1990,0611,Qato'k,residencia5,012,Guerrero,,10.0,1
+1990,0618,Mam,residencia5,004,Campeche,,10.0,1
+1990,0701,Totonaco,residencia5,021,Puebla,,380.0,38
+1990,0701,Totonaco,residencia5,030,Veracruz,,350.0,35
+1990,0701,Totonaco,residencia5,029,Tlaxcala,,20.0,2
+1990,0701,Totonaco,residencia5,013,Hidalgo,,10.0,1
+1990,0701,Totonaco,residencia5,022,Querétaro,,10.0,1
+1990,0702,Tepehua,residencia5,030,Veracruz,,20.0,2
+1990,0702,Tepehua,residencia5,013,Hidalgo,,10.0,1
+1990,0702,Tepehua,residencia5,021,Puebla,,10.0,1
+1990,0801,Tarasco (purépecha),residencia5,016,Michoacán,,190.0,19
+1990,0801,Tarasco (purépecha),residencia5,015,México,,10.0,1
+1990,0901,Mixe,residencia5,020,Oaxaca,,440.0,44
+1990,0901,Mixe,residencia5,030,Veracruz,,20.0,2
+1990,0901,Mixe,residencia5,015,México,,10.0,1
+1990,0901,Mixe,residencia5,021,Puebla,,10.0,1
+1990,0901,Mixe,residencia5,019,Nuevo León,,10.0,1
+1990,0907,Zoque,residencia5,030,Veracruz,,10.0,1
+1990,9000,No especificado,residencia5,020,Oaxaca,,600.0,60
+1990,9000,No especificado,residencia5,015,México,,410.0,41
+1990,9000,No especificado,residencia5,021,Puebla,,290.0,29
+1990,9000,No especificado,residencia5,030,Veracruz,,210.0,21
+1990,9000,No especificado,residencia5,013,Hidalgo,,110.0,11
+1990,9000,No especificado,residencia5,016,Michoacán,,80.0,8
+1990,9000,No especificado,residencia5,012,Guerrero,,80.0,8
+1990,9000,No especificado,residencia5,011,Guanajuato,,60.0,6
+1990,9000,No especificado,residencia5,007,Chiapas,,50.0,5
+1990,9000,No especificado,residencia5,024,San Luis Potosí,,30.0,3
+1990,9000,No especificado,residencia5,029,Tlaxcala,,20.0,2
+1990,9000,No especificado,residencia5,031,Yucatán,,20.0,2
+1990,9000,No especificado,residencia5,022,Querétaro,,20.0,2
+1990,9000,No especificado,residencia5,014,Jalisco,,20.0,2
+1990,9000,No especificado,residencia5,028,Tamaulipas,,10.0,1
+1990,9000,No especificado,residencia5,025,Sinaloa,,10.0,1
+1990,9000,No especificado,residencia5,017,Morelos,,10.0,1
+1990,9000,No especificado,residencia5,026,Sonora,,10.0,1
+1990,9010,Chontal insuficientemente especificado,residencia5,020,Oaxaca,,20.0,2
+1990,9010,Chontal insuficientemente especificado,residencia5,027,Tabasco,,10.0,1
+2000,0205,Tarahumara,nacimiento,008,Chihuahua,,129.0,9
+2000,0205,Tarahumara,nacimiento,009,Ciudad de México,,58.0,5
+2000,0205,Tarahumara,nacimiento,030,Veracruz,,18.0,1
+2000,0207,Yaqui,nacimiento,026,Sonora,,27.0,4
+2000,0207,Yaqui,nacimiento,009,Ciudad de México,,20.0,2
+2000,0207,Yaqui,nacimiento,015,México,,8.0,1
+2000,0208,Mayo,nacimiento,026,Sonora,,23.0,3
+2000,0208,Mayo,nacimiento,012,Guerrero,,8.0,1
+2000,0209,Cora,nacimiento,020,Oaxaca,,14.0,1
+2000,0209,Cora,nacimiento,018,Nayarit,,10.0,1
+2000,0210,Huichol,nacimiento,018,Nayarit,,20.0,2
+2000,0210,Huichol,nacimiento,010,Durango,,19.0,1
+2000,0210,Huichol,nacimiento,014,Jalisco,,9.0,1
+2000,0210,Huichol,nacimiento,415,Otro país,,8.0,1
+2000,0210,Huichol,nacimiento,009,Ciudad de México,,3.0,1
+2000,0211,Náhuatl,nacimiento,021,Puebla,,13671.0,1287
+2000,0211,Náhuatl,nacimiento,013,Hidalgo,,7402.0,667
+2000,0211,Náhuatl,nacimiento,009,Ciudad de México,,6337.0,567
+2000,0211,Náhuatl,nacimiento,030,Veracruz,,6305.0,640
+2000,0211,Náhuatl,nacimiento,024,San Luis Potosí,,3017.0,265
+2000,0211,Náhuatl,nacimiento,012,Guerrero,,1733.0,201
+2000,0211,Náhuatl,nacimiento,020,Oaxaca,,1229.0,106
+2000,0211,Náhuatl,nacimiento,015,México,,1072.0,98
+2000,0211,Náhuatl,nacimiento,029,Tlaxcala,,697.0,53
+2000,0211,Náhuatl,nacimiento,999,No especificado,,158.0,14
+2000,0211,Náhuatl,nacimiento,017,Morelos,,126.0,13
+2000,0211,Náhuatl,nacimiento,011,Guanajuato,,113.0,12
+2000,0211,Náhuatl,nacimiento,016,Michoacán,,60.0,7
+2000,0211,Náhuatl,nacimiento,014,Jalisco,,46.0,7
+2000,0211,Náhuatl,nacimiento,007,Chiapas,,41.0,5
+2000,0211,Náhuatl,nacimiento,028,Tamaulipas,,39.0,4
+2000,0211,Náhuatl,nacimiento,005,Coahuila,,35.0,3
+2000,0211,Náhuatl,nacimiento,419,Otro país,,31.0,3
+2000,0211,Náhuatl,nacimiento,032,Zacatecas,,25.0,2
+2000,0211,Náhuatl,nacimiento,217,Otro país,,16.0,1
+2000,0211,Náhuatl,nacimiento,002,Baja California,,15.0,1
+2000,0211,Náhuatl,nacimiento,031,Yucatán,,14.0,1
+2000,0211,Náhuatl,nacimiento,027,Tabasco,,10.0,1
+2000,0211,Náhuatl,nacimiento,402,Otro país,,9.0,1
+2000,0211,Náhuatl,nacimiento,335,Otro país,,6.0,1
+2000,0211,Náhuatl,nacimiento,440,Otro país,,3.0,1
+2000,0211,Náhuatl,nacimiento,019,Nuevo León,,2.0,1
+2000,0211,Náhuatl,nacimiento,220,Otro país,,1.0,1
+2000,0501,Otomí,nacimiento,015,México,,6489.0,614
+2000,0501,Otomí,nacimiento,013,Hidalgo,,5609.0,530
+2000,0501,Otomí,nacimiento,022,Querétaro,,2966.0,226
+2000,0501,Otomí,nacimiento,009,Ciudad de México,,1987.0,185
+2000,0501,Otomí,nacimiento,021,Puebla,,729.0,70
+2000,0501,Otomí,nacimiento,030,Veracruz,,391.0,37
+2000,0501,Otomí,nacimiento,020,Oaxaca,,230.0,28
+2000,0501,Otomí,nacimiento,012,Guerrero,,110.0,7
+2000,0501,Otomí,nacimiento,029,Tlaxcala,,66.0,4
+2000,0501,Otomí,nacimiento,017,Morelos,,52.0,4
+2000,0501,Otomí,nacimiento,999,No especificado,,50.0,6
+2000,0501,Otomí,nacimiento,011,Guanajuato,,47.0,4
+2000,0501,Otomí,nacimiento,016,Michoacán,,24.0,3
+2000,0501,Otomí,nacimiento,024,San Luis Potosí,,20.0,2
+2000,0501,Otomí,nacimiento,014,Jalisco,,19.0,2
+2000,0501,Otomí,nacimiento,007,Chiapas,,11.0,1
+2000,0502,Mazahua,nacimiento,015,México,,9787.0,841
+2000,0502,Mazahua,nacimiento,016,Michoacán,,865.0,85
+2000,0502,Mazahua,nacimiento,009,Ciudad de México,,827.0,77
+2000,0502,Mazahua,nacimiento,999,No especificado,,99.0,6
+2000,0502,Mazahua,nacimiento,013,Hidalgo,,78.0,5
+2000,0502,Mazahua,nacimiento,020,Oaxaca,,45.0,5
+2000,0502,Mazahua,nacimiento,021,Puebla,,25.0,3
+2000,0502,Mazahua,nacimiento,011,Guanajuato,,14.0,1
+2000,0502,Mazahua,nacimiento,006,Colima,,11.0,1
+2000,0502,Mazahua,nacimiento,012,Guerrero,,10.0,1
+2000,0502,Mazahua,nacimiento,022,Querétaro,,8.0,1
+2000,0503,Matlatzinca,nacimiento,015,México,,365.0,19
+2000,0503,Matlatzinca,nacimiento,009,Ciudad de México,,40.0,2
+2000,0507,Chinanteco,nacimiento,020,Oaxaca,,2535.0,207
+2000,0507,Chinanteco,nacimiento,030,Veracruz,,213.0,21
+2000,0507,Chinanteco,nacimiento,009,Ciudad de México,,50.0,5
+2000,0507,Chinanteco,nacimiento,015,México,,18.0,1
+2000,0507,Chinanteco,nacimiento,999,No especificado,,9.0,1
+2000,0507,Chinanteco,nacimiento,012,Guerrero,,8.0,1
+2000,0508,Tlapaneco,nacimiento,012,Guerrero,,1963.0,187
+2000,0508,Tlapaneco,nacimiento,009,Ciudad de México,,10.0,1
+2000,0508,Tlapaneco,nacimiento,014,Jalisco,,7.0,1
+2000,0509,Mazateco,nacimiento,020,Oaxaca,,9783.0,850
+2000,0509,Mazateco,nacimiento,009,Ciudad de México,,365.0,30
+2000,0509,Mazateco,nacimiento,021,Puebla,,267.0,28
+2000,0509,Mazateco,nacimiento,030,Veracruz,,240.0,18
+2000,0509,Mazateco,nacimiento,015,México,,42.0,3
+2000,0509,Mazateco,nacimiento,999,No especificado,,38.0,4
+2000,0509,Mazateco,nacimiento,024,San Luis Potosí,,22.0,2
+2000,0509,Mazateco,nacimiento,017,Morelos,,17.0,1
+2000,0509,Mazateco,nacimiento,014,Jalisco,,1.0,1
+2000,0511,Chocholteco,nacimiento,020,Oaxaca,,100.0,12
+2000,0511,Chocholteco,nacimiento,021,Puebla,,18.0,2
+2000,0511,Chocholteco,nacimiento,007,Chiapas,,16.0,1
+2000,0511,Chocholteco,nacimiento,009,Ciudad de México,,8.0,1
+2000,0512,Popoloca,nacimiento,021,Puebla,,228.0,24
+2000,0512,Popoloca,nacimiento,030,Veracruz,,14.0,1
+2000,0513,Zapoteco,nacimiento,020,Oaxaca,,11969.0,1112
+2000,0513,Zapoteco,nacimiento,030,Veracruz,,831.0,75
+2000,0513,Zapoteco,nacimiento,009,Ciudad de México,,784.0,71
+2000,0513,Zapoteco,nacimiento,015,México,,190.0,14
+2000,0513,Zapoteco,nacimiento,021,Puebla,,108.0,15
+2000,0513,Zapoteco,nacimiento,007,Chiapas,,69.0,6
+2000,0513,Zapoteco,nacimiento,013,Hidalgo,,58.0,6
+2000,0513,Zapoteco,nacimiento,999,No especificado,,35.0,3
+2000,0513,Zapoteco,nacimiento,016,Michoacán,,35.0,4
+2000,0513,Zapoteco,nacimiento,012,Guerrero,,33.0,3
+2000,0513,Zapoteco,nacimiento,032,Zacatecas,,29.0,1
+2000,0513,Zapoteco,nacimiento,025,Sinaloa,,19.0,1
+2000,0513,Zapoteco,nacimiento,022,Querétaro,,15.0,1
+2000,0513,Zapoteco,nacimiento,011,Guanajuato,,14.0,1
+2000,0513,Zapoteco,nacimiento,024,San Luis Potosí,,13.0,1
+2000,0513,Zapoteco,nacimiento,031,Yucatán,,11.0,1
+2000,0513,Zapoteco,nacimiento,335,Otro país,,3.0,3
+2000,0513,Zapoteco,nacimiento,313,Otro país,,1.0,1
+2000,0514,Chatino,nacimiento,020,Oaxaca,,310.0,22
+2000,0515,Amuzgo,nacimiento,012,Guerrero,,248.0,26
+2000,0515,Amuzgo,nacimiento,020,Oaxaca,,133.0,12
+2000,0515,Amuzgo,nacimiento,009,Ciudad de México,,16.0,2
+2000,0515,Amuzgo,nacimiento,026,Sonora,,10.0,1
+2000,0516,Mixteco,nacimiento,020,Oaxaca,,13773.0,1268
+2000,0516,Mixteco,nacimiento,021,Puebla,,1242.0,102
+2000,0516,Mixteco,nacimiento,009,Ciudad de México,,542.0,48
+2000,0516,Mixteco,nacimiento,012,Guerrero,,526.0,47
+2000,0516,Mixteco,nacimiento,015,México,,348.0,25
+2000,0516,Mixteco,nacimiento,030,Veracruz,,113.0,14
+2000,0516,Mixteco,nacimiento,013,Hidalgo,,39.0,3
+2000,0516,Mixteco,nacimiento,024,San Luis Potosí,,24.0,2
+2000,0516,Mixteco,nacimiento,436,Otro país,,22.0,1
+2000,0516,Mixteco,nacimiento,999,No especificado,,22.0,2
+2000,0516,Mixteco,nacimiento,017,Morelos,,11.0,1
+2000,0516,Mixteco,nacimiento,016,Michoacán,,11.0,1
+2000,0516,Mixteco,nacimiento,415,Otro país,,8.0,1
+2000,0517,Cuicateco,nacimiento,020,Oaxaca,,529.0,41
+2000,0518,Triqui,nacimiento,020,Oaxaca,,242.0,19
+2000,0518,Triqui,nacimiento,009,Ciudad de México,,27.0,2
+2000,0601,Huasteco,nacimiento,024,San Luis Potosí,,625.0,61
+2000,0601,Huasteco,nacimiento,030,Veracruz,,531.0,44
+2000,0601,Huasteco,nacimiento,009,Ciudad de México,,27.0,1
+2000,0601,Huasteco,nacimiento,016,Michoacán,,19.0,1
+2000,0601,Huasteco,nacimiento,020,Oaxaca,,18.0,2
+2000,0601,Huasteco,nacimiento,013,Hidalgo,,14.0,1
+2000,0601,Huasteco,nacimiento,028,Tamaulipas,,7.0,1
+2000,0602,Maya,nacimiento,031,Yucatán,,1183.0,98
+2000,0602,Maya,nacimiento,009,Ciudad de México,,327.0,28
+2000,0602,Maya,nacimiento,004,Campeche,,156.0,14
+2000,0602,Maya,nacimiento,007,Chiapas,,23.0,2
+2000,0602,Maya,nacimiento,020,Oaxaca,,14.0,1
+2000,0602,Maya,nacimiento,017,Morelos,,14.0,2
+2000,0602,Maya,nacimiento,008,Chihuahua,,13.0,1
+2000,0602,Maya,nacimiento,030,Veracruz,,13.0,1
+2000,0602,Maya,nacimiento,225,Otro país,,13.0,1
+2000,0602,Maya,nacimiento,999,No especificado,,12.0,1
+2000,0602,Maya,nacimiento,019,Nuevo León,,11.0,1
+2000,0602,Maya,nacimiento,027,Tabasco,,10.0,1
+2000,0602,Maya,nacimiento,013,Hidalgo,,9.0,1
+2000,0602,Maya,nacimiento,005,Coahuila,,8.0,1
+2000,0602,Maya,nacimiento,011,Guanajuato,,7.0,1
+2000,0602,Maya,nacimiento,025,Sinaloa,,7.0,1
+2000,0602,Maya,nacimiento,015,México,,4.0,1
+2000,0602,Maya,nacimiento,023,Quintana Roo,,1.0,1
+2000,0604,Ch'ol,nacimiento,007,Chiapas,,271.0,18
+2000,0604,Ch'ol,nacimiento,015,México,,25.0,1
+2000,0606,Tseltal,nacimiento,007,Chiapas,,468.0,44
+2000,0606,Tseltal,nacimiento,009,Ciudad de México,,65.0,5
+2000,0606,Tseltal,nacimiento,015,México,,18.0,2
+2000,0606,Tseltal,nacimiento,029,Tlaxcala,,14.0,1
+2000,0606,Tseltal,nacimiento,005,Coahuila,,10.0,1
+2000,0606,Tseltal,nacimiento,014,Jalisco,,10.0,1
+2000,0606,Tseltal,nacimiento,030,Veracruz,,7.0,1
+2000,0607,Tsotsil,nacimiento,007,Chiapas,,344.0,27
+2000,0607,Tsotsil,nacimiento,009,Ciudad de México,,93.0,10
+2000,0607,Tsotsil,nacimiento,015,México,,8.0,1
+2000,0608,Q'anjob'al,nacimiento,007,Chiapas,,19.0,1
+2000,0608,Q'anjob'al,nacimiento,001,Aguascalientes,,6.0,1
+2000,0612,Chuj,nacimiento,007,Chiapas,,14.0,2
+2000,0613,Tojolabal,nacimiento,007,Chiapas,,35.0,3
+2000,0614,Q'eqchi',nacimiento,225,Otro país,,20.0,2
+2000,0614,Q'eqchi',nacimiento,237,Otro país,,7.0,1
+2000,0618,Mam,nacimiento,007,Chiapas,,14.0,1
+2000,0701,Totonaco,nacimiento,021,Puebla,,2801.0,240
+2000,0701,Totonaco,nacimiento,030,Veracruz,,2443.0,242
+2000,0701,Totonaco,nacimiento,009,Ciudad de México,,173.0,16
+2000,0701,Totonaco,nacimiento,015,México,,55.0,4
+2000,0701,Totonaco,nacimiento,029,Tlaxcala,,24.0,2
+2000,0701,Totonaco,nacimiento,020,Oaxaca,,23.0,2
+2000,0701,Totonaco,nacimiento,012,Guerrero,,9.0,1
+2000,0701,Totonaco,nacimiento,016,Michoacán,,8.0,1
+2000,0701,Totonaco,nacimiento,013,Hidalgo,,7.0,1
+2000,0701,Totonaco,nacimiento,005,Coahuila,,7.0,1
+2000,0702,Tepehua,nacimiento,013,Hidalgo,,149.0,13
+2000,0702,Tepehua,nacimiento,030,Veracruz,,92.0,8
+2000,0702,Tepehua,nacimiento,021,Puebla,,3.0,1
+2000,0702,Tepehua,nacimiento,009,Ciudad de México,,1.0,1
+2000,0801,Tarasco (purépecha),nacimiento,016,Michoacán,,2124.0,163
+2000,0801,Tarasco (purépecha),nacimiento,009,Ciudad de México,,95.0,9
+2000,0801,Tarasco (purépecha),nacimiento,021,Puebla,,22.0,1
+2000,0801,Tarasco (purépecha),nacimiento,012,Guerrero,,21.0,1
+2000,0801,Tarasco (purépecha),nacimiento,015,México,,20.0,2
+2000,0801,Tarasco (purépecha),nacimiento,026,Sonora,,13.0,1
+2000,0801,Tarasco (purépecha),nacimiento,032,Zacatecas,,10.0,1
+2000,0801,Tarasco (purépecha),nacimiento,030,Veracruz,,6.0,1
+2000,0901,Mixe,nacimiento,020,Oaxaca,,2959.0,280
+2000,0901,Mixe,nacimiento,009,Ciudad de México,,125.0,11
+2000,0901,Mixe,nacimiento,021,Puebla,,31.0,3
+2000,0901,Mixe,nacimiento,030,Veracruz,,16.0,2
+2000,0901,Mixe,nacimiento,999,No especificado,,13.0,1
+2000,0907,Zoque,nacimiento,007,Chiapas,,35.0,4
+2000,0907,Zoque,nacimiento,020,Oaxaca,,12.0,1
+2000,0907,Zoque,nacimiento,009,Ciudad de México,,7.0,1
+2000,1101,Huave,nacimiento,020,Oaxaca,,79.0,7
+2000,9000,No especificado,nacimiento,009,Ciudad de México,,27787.0,2425
+2000,9000,No especificado,nacimiento,011,Guanajuato,,618.0,56
+2000,9000,No especificado,nacimiento,999,No especificado,,248.0,22
+2000,9000,No especificado,nacimiento,014,Jalisco,,232.0,19
+2000,9000,No especificado,nacimiento,030,Veracruz,,170.0,14
+2000,9000,No especificado,nacimiento,017,Morelos,,134.0,17
+2000,9000,No especificado,nacimiento,415,Otro país,,121.0,12
+2000,9000,No especificado,nacimiento,015,México,,120.0,10
+2000,9000,No especificado,nacimiento,020,Oaxaca,,87.0,9
+2000,9000,No especificado,nacimiento,210,Otro país,,72.0,8
+2000,9000,No especificado,nacimiento,027,Tabasco,,63.0,5
+2000,9000,No especificado,nacimiento,221,Otro país,,59.0,5
+2000,9000,No especificado,nacimiento,022,Querétaro,,57.0,4
+2000,9000,No especificado,nacimiento,013,Hidalgo,,56.0,6
+2000,9000,No especificado,nacimiento,026,Sonora,,44.0,7
+2000,9000,No especificado,nacimiento,439,Otro país,,34.0,2
+2000,9000,No especificado,nacimiento,021,Puebla,,30.0,3
+2000,9000,No especificado,nacimiento,016,Michoacán,,27.0,2
+2000,9000,No especificado,nacimiento,010,Durango,,25.0,3
+2000,9000,No especificado,nacimiento,402,Otro país,,23.0,2
+2000,9000,No especificado,nacimiento,012,Guerrero,,21.0,2
+2000,9000,No especificado,nacimiento,225,Otro país,,20.0,2
+2000,9000,No especificado,nacimiento,025,Sinaloa,,19.0,2
+2000,9000,No especificado,nacimiento,311,Otro país,,19.0,1
+2000,9000,No especificado,nacimiento,208,Otro país,,19.0,1
+2000,9000,No especificado,nacimiento,236,Otro país,,18.0,2
+2000,9000,No especificado,nacimiento,330,Otro país,,17.0,1
+2000,9000,No especificado,nacimiento,314,Otro país,,14.0,2
+2000,9000,No especificado,nacimiento,214,Otro país,,13.0,1
+2000,9000,No especificado,nacimiento,002,Baja California,,12.0,1
+2000,9000,No especificado,nacimiento,211,Otro país,,12.0,2
+2000,9000,No especificado,nacimiento,024,San Luis Potosí,,11.0,2
+2000,9000,No especificado,nacimiento,229,Otro país,,10.0,1
+2000,9000,No especificado,nacimiento,004,Campeche,,10.0,1
+2000,9000,No especificado,nacimiento,217,Otro país,,9.0,1
+2000,9000,No especificado,nacimiento,237,Otro país,,2.0,2
+2000,9000,No especificado,nacimiento,028,Tamaulipas,,1.0,1
+2000,9000,No especificado,nacimiento,220,Otro país,,1.0,1
+2000,9010,Chontal insuficientemente especificado,nacimiento,020,Oaxaca,,98.0,8
+2000,9010,Chontal insuficientemente especificado,nacimiento,027,Tabasco,,24.0,3
+2000,9010,Chontal insuficientemente especificado,nacimiento,007,Chiapas,,20.0,1
+2000,9020,Tepehuano insuficientemente especificado,nacimiento,010,Durango,,15.0,1
+2000,9020,Tepehuano insuficientemente especificado,nacimiento,013,Hidalgo,,13.0,1
+2000,9020,Tepehuano insuficientemente especificado,nacimiento,030,Veracruz,,8.0,1
+2000,0205,Tarahumara,residencia5,008,Chihuahua,032,17.0,1
+2000,0205,Tarahumara,residencia5,021,Puebla,114,13.0,1
+2000,0205,Tarahumara,residencia5,016,Michoacán,053,8.0,1
+2000,0207,Yaqui,residencia5,026,Sonora,018,6.0,1
+2000,0207,Yaqui,residencia5,015,México,021,6.0,1
+2000,0207,Yaqui,residencia5,025,Sinaloa,006,1.0,1
+2000,0208,Mayo,residencia5,026,Sonora,042,12.0,1
+2000,0210,Huichol,residencia5,018,Nayarit,017,10.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,999,712.0,67
+2000,0211,Náhuatl,residencia5,013,Hidalgo,999,564.0,54
+2000,0211,Náhuatl,residencia5,013,Hidalgo,028,394.0,33
+2000,0211,Náhuatl,residencia5,030,Veracruz,999,362.0,38
+2000,0211,Náhuatl,residencia5,021,Puebla,114,335.0,37
+2000,0211,Náhuatl,residencia5,030,Veracruz,058,312.0,32
+2000,0211,Náhuatl,residencia5,030,Veracruz,193,266.0,32
+2000,0211,Náhuatl,residencia5,015,México,999,235.0,20
+2000,0211,Náhuatl,residencia5,015,México,058,229.0,23
+2000,0211,Náhuatl,residencia5,015,México,057,227.0,25
+2000,0211,Náhuatl,residencia5,021,Puebla,207,222.0,24
+2000,0211,Náhuatl,residencia5,015,México,033,194.0,17
+2000,0211,Náhuatl,residencia5,021,Puebla,208,176.0,14
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,037,173.0,13
+2000,0211,Náhuatl,residencia5,021,Puebla,217,165.0,13
+2000,0211,Náhuatl,residencia5,030,Veracruz,083,162.0,14
+2000,0211,Náhuatl,residencia5,020,Oaxaca,999,151.0,12
+2000,0211,Náhuatl,residencia5,012,Guerrero,999,149.0,12
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,999,148.0,15
+2000,0211,Náhuatl,residencia5,013,Hidalgo,025,134.0,12
+2000,0211,Náhuatl,residencia5,021,Puebla,156,127.0,13
+2000,0211,Náhuatl,residencia5,021,Puebla,109,122.0,8
+2000,0211,Náhuatl,residencia5,013,Hidalgo,073,110.0,10
+2000,0211,Náhuatl,residencia5,015,México,104,105.0,10
+2000,0211,Náhuatl,residencia5,015,México,025,89.0,8
+2000,0211,Náhuatl,residencia5,013,Hidalgo,077,84.0,6
+2000,0211,Náhuatl,residencia5,021,Puebla,017,81.0,7
+2000,0211,Náhuatl,residencia5,021,Puebla,043,79.0,10
+2000,0211,Náhuatl,residencia5,012,Guerrero,066,77.0,9
+2000,0211,Náhuatl,residencia5,021,Puebla,083,72.0,7
+2000,0211,Náhuatl,residencia5,021,Puebla,186,71.0,9
+2000,0211,Náhuatl,residencia5,030,Veracruz,155,67.0,4
+2000,0211,Náhuatl,residencia5,021,Puebla,212,67.0,6
+2000,0211,Náhuatl,residencia5,021,Puebla,216,66.0,5
+2000,0211,Náhuatl,residencia5,013,Hidalgo,080,66.0,6
+2000,0211,Náhuatl,residencia5,021,Puebla,049,63.0,6
+2000,0211,Náhuatl,residencia5,013,Hidalgo,027,61.0,4
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,028,60.0,5
+2000,0211,Náhuatl,residencia5,013,Hidalgo,076,59.0,3
+2000,0211,Náhuatl,residencia5,030,Veracruz,087,59.0,4
+2000,0211,Náhuatl,residencia5,021,Puebla,214,58.0,5
+2000,0211,Náhuatl,residencia5,021,Puebla,172,57.0,6
+2000,0211,Náhuatl,residencia5,020,Oaxaca,434,57.0,6
+2000,0211,Náhuatl,residencia5,015,México,106,56.0,5
+2000,0211,Náhuatl,residencia5,012,Guerrero,069,55.0,5
+2000,0211,Náhuatl,residencia5,021,Puebla,183,54.0,4
+2000,0211,Náhuatl,residencia5,029,Tlaxcala,056,52.0,4
+2000,0211,Náhuatl,residencia5,021,Puebla,203,51.0,4
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,057,51.0,3
+2000,0211,Náhuatl,residencia5,030,Veracruz,027,50.0,5
+2000,0211,Náhuatl,residencia5,030,Veracruz,129,44.0,5
+2000,0211,Náhuatl,residencia5,021,Puebla,100,44.0,2
+2000,0211,Náhuatl,residencia5,013,Hidalgo,048,42.0,3
+2000,0211,Náhuatl,residencia5,021,Puebla,010,41.0,4
+2000,0211,Náhuatl,residencia5,029,Tlaxcala,999,38.0,3
+2000,0211,Náhuatl,residencia5,013,Hidalgo,046,38.0,3
+2000,0211,Náhuatl,residencia5,015,México,031,37.0,4
+2000,0211,Náhuatl,residencia5,030,Veracruz,189,37.0,3
+2000,0211,Náhuatl,residencia5,013,Hidalgo,002,37.0,3
+2000,0211,Náhuatl,residencia5,030,Veracruz,201,35.0,2
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,014,35.0,3
+2000,0211,Náhuatl,residencia5,021,Puebla,177,33.0,2
+2000,0211,Náhuatl,residencia5,030,Veracruz,076,32.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,072,32.0,3
+2000,0211,Náhuatl,residencia5,021,Puebla,019,30.0,3
+2000,0211,Náhuatl,residencia5,021,Puebla,001,29.0,2
+2000,0211,Náhuatl,residencia5,029,Tlaxcala,033,28.0,3
+2000,0211,Náhuatl,residencia5,013,Hidalgo,011,27.0,2
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,029,27.0,4
+2000,0211,Náhuatl,residencia5,015,México,012,27.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,213,27.0,3
+2000,0211,Náhuatl,residencia5,030,Veracruz,160,26.0,3
+2000,0211,Náhuatl,residencia5,030,Veracruz,180,26.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,088,26.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,089,25.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,131,25.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,197,25.0,2
+2000,0211,Náhuatl,residencia5,012,Guerrero,007,24.0,5
+2000,0211,Náhuatl,residencia5,020,Oaxaca,067,23.0,3
+2000,0211,Náhuatl,residencia5,004,Campeche,003,22.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,026,22.0,3
+2000,0211,Náhuatl,residencia5,030,Veracruz,031,22.0,1
+2000,0211,Náhuatl,residencia5,015,México,039,22.0,2
+2000,0211,Náhuatl,residencia5,030,Veracruz,108,21.0,1
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,003,21.0,1
+2000,0211,Náhuatl,residencia5,020,Oaxaca,175,21.0,1
+2000,0211,Náhuatl,residencia5,020,Oaxaca,184,21.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,071,21.0,3
+2000,0211,Náhuatl,residencia5,021,Puebla,154,20.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,094,19.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,032,18.0,1
+2000,0211,Náhuatl,residencia5,015,México,054,18.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,075,18.0,7
+2000,0211,Náhuatl,residencia5,007,Chiapas,999,18.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,167,17.0,8
+2000,0211,Náhuatl,residencia5,021,Puebla,181,16.0,1
+2000,0211,Náhuatl,residencia5,015,México,098,16.0,1
+2000,0211,Náhuatl,residencia5,029,Tlaxcala,034,16.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,093,16.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,039,16.0,1
+2000,0211,Náhuatl,residencia5,012,Guerrero,028,16.0,3
+2000,0211,Náhuatl,residencia5,021,Puebla,070,16.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,202,15.0,4
+2000,0211,Náhuatl,residencia5,015,México,121,15.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,132,15.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,118,15.0,4
+2000,0211,Náhuatl,residencia5,030,Veracruz,019,15.0,1
+2000,0211,Náhuatl,residencia5,017,Morelos,007,15.0,1
+2000,0211,Náhuatl,residencia5,029,Tlaxcala,005,15.0,2
+2000,0211,Náhuatl,residencia5,015,México,074,15.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,107,14.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,045,14.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,053,14.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,053,14.0,1
+2000,0211,Náhuatl,residencia5,008,Chihuahua,999,14.0,1
+2000,0211,Náhuatl,residencia5,015,México,014,14.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,089,14.0,1
+2000,0211,Náhuatl,residencia5,002,Baja California,004,14.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,058,14.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,204,14.0,1
+2000,0211,Náhuatl,residencia5,015,México,013,14.0,1
+2000,0211,Náhuatl,residencia5,012,Guerrero,029,14.0,1
+2000,0211,Náhuatl,residencia5,014,Jalisco,094,14.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,013,14.0,1
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,035,13.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,202,13.0,1
+2000,0211,Náhuatl,residencia5,019,Nuevo León,039,13.0,1
+2000,0211,Náhuatl,residencia5,019,Nuevo León,999,13.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,087,13.0,1
+2000,0211,Náhuatl,residencia5,014,Jalisco,039,13.0,1
+2000,0211,Náhuatl,residencia5,015,México,037,13.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,078,13.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,195,13.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,128,13.0,1
+2000,0211,Náhuatl,residencia5,029,Tlaxcala,044,13.0,1
+2000,0211,Náhuatl,residencia5,010,Durango,019,13.0,1
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,039,12.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,174,12.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,006,12.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,029,12.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,014,12.0,2
+2000,0211,Náhuatl,residencia5,015,México,047,12.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,014,11.0,2
+2000,0211,Náhuatl,residencia5,027,Tabasco,004,11.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,120,11.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,173,11.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,050,11.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,140,10.0,1
+2000,0211,Náhuatl,residencia5,027,Tabasco,999,10.0,1
+2000,0211,Náhuatl,residencia5,020,Oaxaca,545,10.0,1
+2000,0211,Náhuatl,residencia5,002,Baja California,002,10.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,032,10.0,1
+2000,0211,Náhuatl,residencia5,020,Oaxaca,490,10.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,081,10.0,1
+2000,0211,Náhuatl,residencia5,029,Tlaxcala,013,10.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,008,10.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,036,10.0,1
+2000,0211,Náhuatl,residencia5,020,Oaxaca,397,10.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,078,10.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,114,10.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,103,10.0,1
+2000,0211,Náhuatl,residencia5,015,México,099,10.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,011,9.0,1
+2000,0211,Náhuatl,residencia5,012,Guerrero,014,9.0,1
+2000,0211,Náhuatl,residencia5,016,Michoacán,052,9.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,016,9.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,168,9.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,055,9.0,1
+2000,0211,Náhuatl,residencia5,012,Guerrero,059,8.0,4
+2000,0211,Náhuatl,residencia5,026,Sonora,030,8.0,1
+2000,0211,Náhuatl,residencia5,011,Guanajuato,020,8.0,1
+2000,0211,Náhuatl,residencia5,032,Zacatecas,017,8.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,001,8.0,1
+2000,0211,Náhuatl,residencia5,012,Guerrero,075,8.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,135,8.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,162,8.0,1
+2000,0211,Náhuatl,residencia5,015,México,020,7.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,013,7.0,1
+2000,0211,Náhuatl,residencia5,015,México,042,7.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,186,7.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,062,7.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,184,7.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,130,7.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,078,7.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,191,6.0,1
+2000,0211,Náhuatl,residencia5,013,Hidalgo,037,6.0,1
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,015,6.0,1
+2000,0211,Náhuatl,residencia5,015,México,114,6.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,016,6.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,138,5.0,1
+2000,0211,Náhuatl,residencia5,017,Morelos,999,4.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,004,4.0,1
+2000,0211,Náhuatl,residencia5,028,Tamaulipas,038,4.0,1
+2000,0211,Náhuatl,residencia5,024,San Luis Potosí,013,4.0,2
+2000,0211,Náhuatl,residencia5,013,Hidalgo,029,4.0,1
+2000,0211,Náhuatl,residencia5,015,México,122,3.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,072,3.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,158,2.0,2
+2000,0211,Náhuatl,residencia5,028,Tamaulipas,999,2.0,2
+2000,0211,Náhuatl,residencia5,021,Puebla,025,2.0,2
+2000,0211,Náhuatl,residencia5,017,Morelos,022,2.0,2
+2000,0211,Náhuatl,residencia5,016,Michoacán,112,1.0,1
+2000,0211,Náhuatl,residencia5,020,Oaxaca,469,1.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,099,1.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,134,1.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,211,1.0,1
+2000,0211,Náhuatl,residencia5,030,Veracruz,159,1.0,1
+2000,0211,Náhuatl,residencia5,021,Puebla,031,1.0,1
+2000,0211,Náhuatl,residencia5,015,México,086,1.0,1
+2000,0501,Otomí,residencia5,015,México,087,252.0,27
+2000,0501,Otomí,residencia5,015,México,106,252.0,23
+2000,0501,Otomí,residencia5,013,Hidalgo,999,237.0,23
+2000,0501,Otomí,residencia5,015,México,999,231.0,21
+2000,0501,Otomí,residencia5,022,Querétaro,999,226.0,17
+2000,0501,Otomí,residencia5,015,México,033,177.0,14
+2000,0501,Otomí,residencia5,015,México,058,154.0,13
+2000,0501,Otomí,residencia5,015,México,001,122.0,12
+2000,0501,Otomí,residencia5,022,Querétaro,001,95.0,5
+2000,0501,Otomí,residencia5,015,México,104,93.0,6
+2000,0501,Otomí,residencia5,013,Hidalgo,030,82.0,9
+2000,0501,Otomí,residencia5,013,Hidalgo,048,66.0,5
+2000,0501,Otomí,residencia5,015,México,047,63.0,4
+2000,0501,Otomí,residencia5,021,Puebla,114,62.0,4
+2000,0501,Otomí,residencia5,013,Hidalgo,053,55.0,6
+2000,0501,Otomí,residencia5,015,México,056,48.0,4
+2000,0501,Otomí,residencia5,022,Querétaro,004,48.0,3
+2000,0501,Otomí,residencia5,021,Puebla,999,45.0,4
+2000,0501,Otomí,residencia5,013,Hidalgo,015,43.0,4
+2000,0501,Otomí,residencia5,030,Veracruz,999,42.0,3
+2000,0501,Otomí,residencia5,015,México,092,42.0,3
+2000,0501,Otomí,residencia5,015,México,026,41.0,4
+2000,0501,Otomí,residencia5,015,México,057,37.0,5
+2000,0501,Otomí,residencia5,013,Hidalgo,019,37.0,3
+2000,0501,Otomí,residencia5,013,Hidalgo,028,36.0,4
+2000,0501,Otomí,residencia5,015,México,025,33.0,6
+2000,0501,Otomí,residencia5,013,Hidalgo,060,32.0,4
+2000,0501,Otomí,residencia5,013,Hidalgo,043,30.0,2
+2000,0501,Otomí,residencia5,013,Hidalgo,054,29.0,3
+2000,0501,Otomí,residencia5,022,Querétaro,014,27.0,2
+2000,0501,Otomí,residencia5,013,Hidalgo,055,24.0,3
+2000,0501,Otomí,residencia5,032,Zacatecas,999,24.0,1
+2000,0501,Otomí,residencia5,015,México,070,22.0,1
+2000,0501,Otomí,residencia5,021,Puebla,140,21.0,1
+2000,0501,Otomí,residencia5,015,México,016,20.0,1
+2000,0501,Otomí,residencia5,030,Veracruz,202,20.0,2
+2000,0501,Otomí,residencia5,030,Veracruz,193,20.0,2
+2000,0501,Otomí,residencia5,015,México,074,18.0,2
+2000,0501,Otomí,residencia5,013,Hidalgo,006,18.0,2
+2000,0501,Otomí,residencia5,019,Nuevo León,039,18.0,1
+2000,0501,Otomí,residencia5,021,Puebla,162,17.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,003,16.0,1
+2000,0501,Otomí,residencia5,015,México,095,16.0,1
+2000,0501,Otomí,residencia5,021,Puebla,177,15.0,1
+2000,0501,Otomí,residencia5,027,Tabasco,011,15.0,1
+2000,0501,Otomí,residencia5,021,Puebla,111,14.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,027,14.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,063,14.0,1
+2000,0501,Otomí,residencia5,020,Oaxaca,413,13.0,1
+2000,0501,Otomí,residencia5,015,México,064,13.0,1
+2000,0501,Otomí,residencia5,021,Puebla,109,13.0,1
+2000,0501,Otomí,residencia5,015,México,085,12.0,2
+2000,0501,Otomí,residencia5,012,Guerrero,038,12.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,041,11.0,1
+2000,0501,Otomí,residencia5,020,Oaxaca,999,11.0,1
+2000,0501,Otomí,residencia5,015,México,062,11.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,025,11.0,1
+2000,0501,Otomí,residencia5,015,México,067,11.0,1
+2000,0501,Otomí,residencia5,030,Veracruz,083,10.0,1
+2000,0501,Otomí,residencia5,015,México,109,10.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,059,10.0,1
+2000,0501,Otomí,residencia5,015,México,039,10.0,1
+2000,0501,Otomí,residencia5,030,Veracruz,058,10.0,1
+2000,0501,Otomí,residencia5,015,México,042,9.0,1
+2000,0501,Otomí,residencia5,017,Morelos,007,9.0,1
+2000,0501,Otomí,residencia5,015,México,037,9.0,1
+2000,0501,Otomí,residencia5,017,Morelos,999,8.0,1
+2000,0501,Otomí,residencia5,020,Oaxaca,067,8.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,029,8.0,1
+2000,0501,Otomí,residencia5,022,Querétaro,016,8.0,1
+2000,0501,Otomí,residencia5,030,Veracruz,114,7.0,1
+2000,0501,Otomí,residencia5,015,México,007,6.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,084,6.0,1
+2000,0501,Otomí,residencia5,021,Puebla,071,5.0,1
+2000,0501,Otomí,residencia5,015,México,003,5.0,1
+2000,0501,Otomí,residencia5,015,México,005,3.0,1
+2000,0501,Otomí,residencia5,021,Puebla,208,3.0,1
+2000,0501,Otomí,residencia5,016,Michoacán,999,3.0,1
+2000,0501,Otomí,residencia5,015,México,031,3.0,1
+2000,0501,Otomí,residencia5,013,Hidalgo,001,1.0,1
+2000,0502,Mazahua,residencia5,015,México,074,407.0,40
+2000,0502,Mazahua,residencia5,015,México,999,405.0,32
+2000,0502,Mazahua,residencia5,015,México,106,276.0,26
+2000,0502,Mazahua,residencia5,015,México,014,199.0,18
+2000,0502,Mazahua,residencia5,015,México,058,165.0,14
+2000,0502,Mazahua,residencia5,015,México,042,118.0,10
+2000,0502,Mazahua,residencia5,015,México,085,108.0,10
+2000,0502,Mazahua,residencia5,016,Michoacán,112,98.0,10
+2000,0502,Mazahua,residencia5,015,México,057,97.0,7
+2000,0502,Mazahua,residencia5,015,México,114,76.0,8
+2000,0502,Mazahua,residencia5,016,Michoacán,999,52.0,6
+2000,0502,Mazahua,residencia5,013,Hidalgo,999,50.0,3
+2000,0502,Mazahua,residencia5,015,México,087,30.0,2
+2000,0502,Mazahua,residencia5,015,México,064,30.0,2
+2000,0502,Mazahua,residencia5,015,México,054,30.0,3
+2000,0502,Mazahua,residencia5,021,Puebla,201,27.0,2
+2000,0502,Mazahua,residencia5,015,México,032,26.0,2
+2000,0502,Mazahua,residencia5,015,México,024,22.0,1
+2000,0502,Mazahua,residencia5,019,Nuevo León,999,20.0,2
+2000,0502,Mazahua,residencia5,015,México,092,19.0,1
+2000,0502,Mazahua,residencia5,015,México,099,18.0,2
+2000,0502,Mazahua,residencia5,015,México,110,16.0,2
+2000,0502,Mazahua,residencia5,015,México,111,16.0,2
+2000,0502,Mazahua,residencia5,015,México,076,15.0,2
+2000,0502,Mazahua,residencia5,015,México,104,15.0,2
+2000,0502,Mazahua,residencia5,015,México,005,14.0,1
+2000,0502,Mazahua,residencia5,015,México,101,13.0,1
+2000,0502,Mazahua,residencia5,012,Guerrero,001,13.0,1
+2000,0502,Mazahua,residencia5,015,México,051,11.0,1
+2000,0502,Mazahua,residencia5,007,Chiapas,065,11.0,1
+2000,0502,Mazahua,residencia5,013,Hidalgo,030,11.0,1
+2000,0502,Mazahua,residencia5,015,México,084,10.0,1
+2000,0502,Mazahua,residencia5,012,Guerrero,038,10.0,1
+2000,0502,Mazahua,residencia5,015,México,025,9.0,1
+2000,0502,Mazahua,residencia5,011,Guanajuato,020,9.0,1
+2000,0502,Mazahua,residencia5,015,México,031,8.0,1
+2000,0502,Mazahua,residencia5,016,Michoacán,049,8.0,1
+2000,0502,Mazahua,residencia5,015,México,050,4.0,1
+2000,0502,Mazahua,residencia5,016,Michoacán,012,3.0,3
+2000,0502,Mazahua,residencia5,015,México,037,2.0,2
+2000,0502,Mazahua,residencia5,015,México,001,2.0,2
+2000,0502,Mazahua,residencia5,017,Morelos,999,1.0,1
+2000,0502,Mazahua,residencia5,015,México,033,1.0,1
+2000,0503,Matlatzinca,residencia5,015,México,086,16.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,999,289.0,23
+2000,0507,Chinanteco,residencia5,020,Oaxaca,184,206.0,15
+2000,0507,Chinanteco,residencia5,020,Oaxaca,166,82.0,5
+2000,0507,Chinanteco,residencia5,020,Oaxaca,067,53.0,6
+2000,0507,Chinanteco,residencia5,020,Oaxaca,177,45.0,4
+2000,0507,Chinanteco,residencia5,030,Veracruz,130,40.0,5
+2000,0507,Chinanteco,residencia5,030,Veracruz,999,34.0,3
+2000,0507,Chinanteco,residencia5,020,Oaxaca,232,33.0,3
+2000,0507,Chinanteco,residencia5,020,Oaxaca,417,23.0,1
+2000,0507,Chinanteco,residencia5,015,México,057,23.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,471,22.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,468,19.0,1
+2000,0507,Chinanteco,residencia5,030,Veracruz,032,17.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,136,15.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,205,14.0,2
+2000,0507,Chinanteco,residencia5,020,Oaxaca,460,13.0,1
+2000,0507,Chinanteco,residencia5,030,Veracruz,210,12.0,1
+2000,0507,Chinanteco,residencia5,015,México,033,11.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,035,11.0,1
+2000,0507,Chinanteco,residencia5,015,México,104,10.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,009,7.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,559,3.0,1
+2000,0507,Chinanteco,residencia5,015,México,999,1.0,1
+2000,0507,Chinanteco,residencia5,020,Oaxaca,264,1.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,041,269.0,23
+2000,0508,Tlapaneco,residencia5,012,Guerrero,999,90.0,9
+2000,0508,Tlapaneco,residencia5,012,Guerrero,029,34.0,2
+2000,0508,Tlapaneco,residencia5,012,Guerrero,007,30.0,3
+2000,0508,Tlapaneco,residencia5,012,Guerrero,076,22.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,066,21.0,1
+2000,0508,Tlapaneco,residencia5,017,Morelos,007,15.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,013,13.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,052,13.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,033,11.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,045,10.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,063,9.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,010,6.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,001,5.0,1
+2000,0508,Tlapaneco,residencia5,012,Guerrero,072,5.0,1
+2000,0508,Tlapaneco,residencia5,015,México,037,3.0,3
+2000,0508,Tlapaneco,residencia5,015,México,108,3.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,999,947.0,88
+2000,0509,Mazateco,residencia5,020,Oaxaca,067,465.0,41
+2000,0509,Mazateco,residencia5,020,Oaxaca,041,320.0,28
+2000,0509,Mazateco,residencia5,020,Oaxaca,171,220.0,12
+2000,0509,Mazateco,residencia5,015,México,058,159.0,12
+2000,0509,Mazateco,residencia5,020,Oaxaca,184,150.0,11
+2000,0509,Mazateco,residencia5,020,Oaxaca,234,98.0,7
+2000,0509,Mazateco,residencia5,030,Veracruz,130,88.0,7
+2000,0509,Mazateco,residencia5,020,Oaxaca,406,77.0,7
+2000,0509,Mazateco,residencia5,020,Oaxaca,134,77.0,7
+2000,0509,Mazateco,residencia5,021,Puebla,999,69.0,6
+2000,0509,Mazateco,residencia5,021,Puebla,156,68.0,5
+2000,0509,Mazateco,residencia5,015,México,057,66.0,6
+2000,0509,Mazateco,residencia5,020,Oaxaca,246,64.0,6
+2000,0509,Mazateco,residencia5,020,Oaxaca,190,55.0,5
+2000,0509,Mazateco,residencia5,015,México,104,41.0,3
+2000,0509,Mazateco,residencia5,020,Oaxaca,309,40.0,4
+2000,0509,Mazateco,residencia5,015,México,122,37.0,2
+2000,0509,Mazateco,residencia5,020,Oaxaca,545,37.0,3
+2000,0509,Mazateco,residencia5,015,México,025,33.0,3
+2000,0509,Mazateco,residencia5,015,México,999,32.0,2
+2000,0509,Mazateco,residencia5,021,Puebla,114,29.0,6
+2000,0509,Mazateco,residencia5,020,Oaxaca,058,25.0,3
+2000,0509,Mazateco,residencia5,020,Oaxaca,206,24.0,1
+2000,0509,Mazateco,residencia5,030,Veracruz,193,20.0,1
+2000,0509,Mazateco,residencia5,021,Puebla,177,18.0,1
+2000,0509,Mazateco,residencia5,015,México,070,18.0,2
+2000,0509,Mazateco,residencia5,015,México,033,17.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,216,16.0,1
+2000,0509,Mazateco,residencia5,015,México,108,15.0,1
+2000,0509,Mazateco,residencia5,015,México,031,14.0,1
+2000,0509,Mazateco,residencia5,021,Puebla,111,14.0,1
+2000,0509,Mazateco,residencia5,030,Veracruz,999,14.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,559,13.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,327,12.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,254,11.0,1
+2000,0509,Mazateco,residencia5,030,Veracruz,067,11.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,222,10.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,278,9.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,163,9.0,1
+2000,0509,Mazateco,residencia5,002,Baja California,999,8.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,013,5.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,367,1.0,1
+2000,0509,Mazateco,residencia5,015,México,013,1.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,324,1.0,1
+2000,0509,Mazateco,residencia5,020,Oaxaca,030,1.0,1
+2000,0511,Chocholteco,residencia5,007,Chiapas,077,16.0,1
+2000,0511,Chocholteco,residencia5,021,Puebla,207,15.0,1
+2000,0511,Chocholteco,residencia5,020,Oaxaca,068,11.0,1
+2000,0511,Chocholteco,residencia5,015,México,999,8.0,1
+2000,0512,Popoloca,residencia5,021,Puebla,169,61.0,5
+2000,0512,Popoloca,residencia5,021,Puebla,999,26.0,2
+2000,0512,Popoloca,residencia5,021,Puebla,156,17.0,1
+2000,0512,Popoloca,residencia5,030,Veracruz,193,14.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,999,424.0,43
+2000,0513,Zapoteco,residencia5,020,Oaxaca,067,290.0,29
+2000,0513,Zapoteco,residencia5,030,Veracruz,130,210.0,17
+2000,0513,Zapoteco,residencia5,020,Oaxaca,043,165.0,18
+2000,0513,Zapoteco,residencia5,015,México,058,122.0,11
+2000,0513,Zapoteco,residencia5,020,Oaxaca,184,62.0,5
+2000,0513,Zapoteco,residencia5,025,Sinaloa,012,52.0,3
+2000,0513,Zapoteco,residencia5,020,Oaxaca,024,50.0,3
+2000,0513,Zapoteco,residencia5,015,México,033,50.0,4
+2000,0513,Zapoteco,residencia5,020,Oaxaca,551,44.0,3
+2000,0513,Zapoteco,residencia5,020,Oaxaca,005,44.0,4
+2000,0513,Zapoteco,residencia5,015,México,057,42.0,4
+2000,0513,Zapoteco,residencia5,020,Oaxaca,173,40.0,5
+2000,0513,Zapoteco,residencia5,020,Oaxaca,343,38.0,2
+2000,0513,Zapoteco,residencia5,015,México,104,35.0,2
+2000,0513,Zapoteco,residencia5,020,Oaxaca,325,33.0,4
+2000,0513,Zapoteco,residencia5,030,Veracruz,193,32.0,4
+2000,0513,Zapoteco,residencia5,020,Oaxaca,041,29.0,4
+2000,0513,Zapoteco,residencia5,015,México,999,27.0,3
+2000,0513,Zapoteco,residencia5,020,Oaxaca,058,24.0,2
+2000,0513,Zapoteco,residencia5,020,Oaxaca,057,23.0,2
+2000,0513,Zapoteco,residencia5,020,Oaxaca,124,23.0,2
+2000,0513,Zapoteco,residencia5,015,México,121,20.0,1
+2000,0513,Zapoteco,residencia5,024,San Luis Potosí,009,19.0,1
+2000,0513,Zapoteco,residencia5,006,Colima,002,19.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,198,18.0,1
+2000,0513,Zapoteco,residencia5,015,México,031,17.0,3
+2000,0513,Zapoteco,residencia5,020,Oaxaca,560,16.0,2
+2000,0513,Zapoteco,residencia5,022,Querétaro,001,15.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,188,15.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,371,14.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,079,14.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,384,14.0,1
+2000,0513,Zapoteco,residencia5,021,Puebla,207,14.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,307,14.0,1
+2000,0513,Zapoteco,residencia5,023,Quintana Roo,004,14.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,515,14.0,2
+2000,0513,Zapoteco,residencia5,014,Jalisco,094,14.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,397,13.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,042,13.0,2
+2000,0513,Zapoteco,residencia5,015,México,109,13.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,511,13.0,1
+2000,0513,Zapoteco,residencia5,015,México,020,12.0,1
+2000,0513,Zapoteco,residencia5,030,Veracruz,162,12.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,007,12.0,1
+2000,0513,Zapoteco,residencia5,015,México,060,12.0,1
+2000,0513,Zapoteco,residencia5,015,México,039,11.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,324,11.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,017,11.0,1
+2000,0513,Zapoteco,residencia5,015,México,007,11.0,1
+2000,0513,Zapoteco,residencia5,017,Morelos,007,11.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,030,10.0,2
+2000,0513,Zapoteco,residencia5,015,México,013,10.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,143,10.0,1
+2000,0513,Zapoteco,residencia5,015,México,122,10.0,1
+2000,0513,Zapoteco,residencia5,030,Veracruz,039,10.0,1
+2000,0513,Zapoteco,residencia5,030,Veracruz,142,9.0,1
+2000,0513,Zapoteco,residencia5,015,México,025,9.0,2
+2000,0513,Zapoteco,residencia5,013,Hidalgo,999,9.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,318,8.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,225,8.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,085,8.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,513,8.0,1
+2000,0513,Zapoteco,residencia5,030,Veracruz,999,8.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,279,8.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,559,8.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,216,7.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,003,7.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,125,7.0,1
+2000,0513,Zapoteco,residencia5,021,Puebla,999,7.0,1
+2000,0513,Zapoteco,residencia5,030,Veracruz,108,7.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,441,7.0,2
+2000,0513,Zapoteco,residencia5,020,Oaxaca,298,6.0,1
+2000,0513,Zapoteco,residencia5,007,Chiapas,019,5.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,482,5.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,014,5.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,066,4.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,506,2.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,128,2.0,1
+2000,0513,Zapoteco,residencia5,030,Veracruz,206,2.0,1
+2000,0513,Zapoteco,residencia5,029,Tlaxcala,999,2.0,1
+2000,0513,Zapoteco,residencia5,020,Oaxaca,367,1.0,1
+2000,0513,Zapoteco,residencia5,015,México,051,1.0,1
+2000,0514,Chatino,residencia5,020,Oaxaca,999,63.0,4
+2000,0514,Chatino,residencia5,020,Oaxaca,364,30.0,2
+2000,0514,Chatino,residencia5,020,Oaxaca,043,19.0,1
+2000,0514,Chatino,residencia5,020,Oaxaca,039,18.0,1
+2000,0514,Chatino,residencia5,020,Oaxaca,272,15.0,1
+2000,0514,Chatino,residencia5,013,Hidalgo,076,11.0,1
+2000,0514,Chatino,residencia5,015,México,058,8.0,1
+2000,0515,Amuzgo,residencia5,012,Guerrero,071,47.0,4
+2000,0515,Amuzgo,residencia5,012,Guerrero,999,24.0,3
+2000,0515,Amuzgo,residencia5,020,Oaxaca,073,24.0,2
+2000,0515,Amuzgo,residencia5,020,Oaxaca,999,24.0,2
+2000,0515,Amuzgo,residencia5,012,Guerrero,057,13.0,1
+2000,0515,Amuzgo,residencia5,015,México,058,12.0,1
+2000,0515,Amuzgo,residencia5,012,Guerrero,001,10.0,2
+2000,0515,Amuzgo,residencia5,026,Sonora,030,10.0,1
+2000,0515,Amuzgo,residencia5,012,Guerrero,046,10.0,1
+2000,0515,Amuzgo,residencia5,016,Michoacán,999,8.0,1
+2000,0515,Amuzgo,residencia5,020,Oaxaca,067,8.0,1
+2000,0515,Amuzgo,residencia5,015,México,104,8.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,999,889.0,83
+2000,0516,Mixteco,residencia5,020,Oaxaca,067,309.0,27
+2000,0516,Mixteco,residencia5,020,Oaxaca,397,249.0,25
+2000,0516,Mixteco,residencia5,020,Oaxaca,006,140.0,17
+2000,0516,Mixteco,residencia5,020,Oaxaca,467,119.0,8
+2000,0516,Mixteco,residencia5,015,México,057,96.0,7
+2000,0516,Mixteco,residencia5,020,Oaxaca,414,80.0,5
+2000,0516,Mixteco,residencia5,015,México,033,77.0,6
+2000,0516,Mixteco,residencia5,015,México,058,75.0,10
+2000,0516,Mixteco,residencia5,015,México,025,69.0,6
+2000,0516,Mixteco,residencia5,020,Oaxaca,133,66.0,4
+2000,0516,Mixteco,residencia5,020,Oaxaca,500,62.0,4
+2000,0516,Mixteco,residencia5,020,Oaxaca,482,59.0,5
+2000,0516,Mixteco,residencia5,015,México,999,56.0,5
+2000,0516,Mixteco,residencia5,015,México,104,56.0,4
+2000,0516,Mixteco,residencia5,015,México,037,56.0,4
+2000,0516,Mixteco,residencia5,020,Oaxaca,395,45.0,3
+2000,0516,Mixteco,residencia5,021,Puebla,037,42.0,2
+2000,0516,Mixteco,residencia5,012,Guerrero,999,42.0,4
+2000,0516,Mixteco,residencia5,021,Puebla,156,40.0,2
+2000,0516,Mixteco,residencia5,012,Guerrero,066,36.0,3
+2000,0516,Mixteco,residencia5,020,Oaxaca,041,32.0,3
+2000,0516,Mixteco,residencia5,020,Oaxaca,031,32.0,2
+2000,0516,Mixteco,residencia5,015,México,031,32.0,4
+2000,0516,Mixteco,residencia5,020,Oaxaca,131,30.0,5
+2000,0516,Mixteco,residencia5,013,Hidalgo,999,28.0,2
+2000,0516,Mixteco,residencia5,020,Oaxaca,050,26.0,2
+2000,0516,Mixteco,residencia5,021,Puebla,112,26.0,2
+2000,0516,Mixteco,residencia5,020,Oaxaca,399,26.0,2
+2000,0516,Mixteco,residencia5,020,Oaxaca,446,23.0,3
+2000,0516,Mixteco,residencia5,020,Oaxaca,392,22.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,261,22.0,2
+2000,0516,Mixteco,residencia5,020,Oaxaca,024,20.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,320,20.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,188,18.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,198,18.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,177,17.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,058,16.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,555,15.0,2
+2000,0516,Mixteco,residencia5,020,Oaxaca,221,15.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,387,15.0,1
+2000,0516,Mixteco,residencia5,021,Puebla,114,14.0,2
+2000,0516,Mixteco,residencia5,021,Puebla,089,14.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,264,14.0,4
+2000,0516,Mixteco,residencia5,030,Veracruz,999,14.0,3
+2000,0516,Mixteco,residencia5,030,Veracruz,155,14.0,1
+2000,0516,Mixteco,residencia5,007,Chiapas,999,13.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,312,13.0,3
+2000,0516,Mixteco,residencia5,020,Oaxaca,079,13.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,142,13.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,481,13.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,070,13.0,2
+2000,0516,Mixteco,residencia5,020,Oaxaca,068,11.0,1
+2000,0516,Mixteco,residencia5,017,Morelos,007,11.0,1
+2000,0516,Mixteco,residencia5,015,México,013,10.0,1
+2000,0516,Mixteco,residencia5,015,México,110,10.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,354,10.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,353,10.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,511,10.0,1
+2000,0516,Mixteco,residencia5,021,Puebla,127,9.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,217,9.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,082,9.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,111,8.0,2
+2000,0516,Mixteco,residencia5,026,Sonora,999,7.0,1
+2000,0516,Mixteco,residencia5,008,Chihuahua,032,7.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,492,7.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,057,7.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,406,6.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,480,6.0,1
+2000,0516,Mixteco,residencia5,021,Puebla,132,5.0,1
+2000,0516,Mixteco,residencia5,021,Puebla,135,5.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,269,3.0,1
+2000,0516,Mixteco,residencia5,015,México,122,3.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,382,3.0,1
+2000,0516,Mixteco,residencia5,021,Puebla,174,2.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,234,2.0,2
+2000,0516,Mixteco,residencia5,015,México,002,2.0,2
+2000,0516,Mixteco,residencia5,020,Oaxaca,451,1.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,377,1.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,003,1.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,559,1.0,1
+2000,0516,Mixteco,residencia5,030,Veracruz,044,1.0,1
+2000,0516,Mixteco,residencia5,020,Oaxaca,415,1.0,1
+2000,0517,Cuicateco,residencia5,020,Oaxaca,177,51.0,3
+2000,0517,Cuicateco,residencia5,020,Oaxaca,999,39.0,2
+2000,0517,Cuicateco,residencia5,015,México,999,25.0,1
+2000,0517,Cuicateco,residencia5,020,Oaxaca,415,19.0,1
+2000,0517,Cuicateco,residencia5,021,Puebla,019,14.0,1
+2000,0517,Cuicateco,residencia5,020,Oaxaca,067,11.0,1
+2000,0517,Cuicateco,residencia5,020,Oaxaca,019,9.0,2
+2000,0518,Triqui,residencia5,020,Oaxaca,067,54.0,4
+2000,0518,Triqui,residencia5,015,México,057,47.0,4
+2000,0518,Triqui,residencia5,020,Oaxaca,999,25.0,2
+2000,0518,Triqui,residencia5,020,Oaxaca,397,6.0,1
+2000,0601,Huasteco,residencia5,024,San Luis Potosí,999,55.0,7
+2000,0601,Huasteco,residencia5,030,Veracruz,999,50.0,3
+2000,0601,Huasteco,residencia5,030,Veracruz,155,40.0,3
+2000,0601,Huasteco,residencia5,024,San Luis Potosí,013,28.0,4
+2000,0601,Huasteco,residencia5,015,México,033,27.0,2
+2000,0601,Huasteco,residencia5,024,San Luis Potosí,018,24.0,2
+2000,0601,Huasteco,residencia5,030,Veracruz,007,15.0,1
+2000,0601,Huasteco,residencia5,030,Veracruz,063,14.0,1
+2000,0601,Huasteco,residencia5,030,Veracruz,193,13.0,1
+2000,0601,Huasteco,residencia5,024,San Luis Potosí,028,12.0,1
+2000,0601,Huasteco,residencia5,015,México,031,11.0,1
+2000,0601,Huasteco,residencia5,024,San Luis Potosí,054,8.0,1
+2000,0601,Huasteco,residencia5,015,México,104,8.0,1
+2000,0601,Huasteco,residencia5,015,México,058,7.0,1
+2000,0601,Huasteco,residencia5,019,Nuevo León,046,7.0,1
+2000,0601,Huasteco,residencia5,030,Veracruz,154,2.0,1
+2000,0602,Maya,residencia5,015,México,999,28.0,2
+2000,0602,Maya,residencia5,031,Yucatán,035,26.0,2
+2000,0602,Maya,residencia5,023,Quintana Roo,999,22.0,1
+2000,0602,Maya,residencia5,031,Yucatán,999,14.0,1
+2000,0602,Maya,residencia5,015,México,058,13.0,1
+2000,0602,Maya,residencia5,031,Yucatán,056,6.0,1
+2000,0602,Maya,residencia5,015,México,099,4.0,1
+2000,0602,Maya,residencia5,004,Campeche,001,3.0,1
+2000,0602,Maya,residencia5,031,Yucatán,096,2.0,1
+2000,0602,Maya,residencia5,023,Quintana Roo,005,1.0,1
+2000,0604,Ch'ol,residencia5,007,Chiapas,077,91.0,4
+2000,0604,Ch'ol,residencia5,007,Chiapas,999,12.0,1
+2000,0604,Ch'ol,residencia5,007,Chiapas,108,9.0,1
+2000,0604,Ch'ol,residencia5,007,Chiapas,071,7.0,1
+2000,0606,Tseltal,residencia5,015,México,025,22.0,2
+2000,0606,Tseltal,residencia5,007,Chiapas,999,20.0,2
+2000,0606,Tseltal,residencia5,007,Chiapas,094,19.0,1
+2000,0606,Tseltal,residencia5,007,Chiapas,052,14.0,1
+2000,0606,Tseltal,residencia5,007,Chiapas,046,13.0,1
+2000,0606,Tseltal,residencia5,007,Chiapas,101,13.0,1
+2000,0606,Tseltal,residencia5,014,Jalisco,035,10.0,1
+2000,0606,Tseltal,residencia5,015,México,058,8.0,1
+2000,0606,Tseltal,residencia5,007,Chiapas,106,7.0,1
+2000,0606,Tseltal,residencia5,001,Aguascalientes,999,7.0,1
+2000,0606,Tseltal,residencia5,030,Veracruz,087,7.0,1
+2000,0607,Tsotsil,residencia5,007,Chiapas,999,30.0,2
+2000,0607,Tsotsil,residencia5,007,Chiapas,108,14.0,1
+2000,0607,Tsotsil,residencia5,012,Guerrero,048,13.0,1
+2000,0607,Tsotsil,residencia5,007,Chiapas,078,13.0,1
+2000,0607,Tsotsil,residencia5,012,Guerrero,001,13.0,1
+2000,0607,Tsotsil,residencia5,007,Chiapas,101,7.0,1
+2000,0618,Mam,residencia5,007,Chiapas,059,14.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,999,172.0,15
+2000,0701,Totonaco,residencia5,021,Puebla,999,120.0,13
+2000,0701,Totonaco,residencia5,030,Veracruz,124,99.0,9
+2000,0701,Totonaco,residencia5,021,Puebla,114,88.0,7
+2000,0701,Totonaco,residencia5,030,Veracruz,193,60.0,7
+2000,0701,Totonaco,residencia5,021,Puebla,208,57.0,4
+2000,0701,Totonaco,residencia5,030,Veracruz,131,54.0,5
+2000,0701,Totonaco,residencia5,030,Veracruz,066,52.0,4
+2000,0701,Totonaco,residencia5,021,Puebla,111,52.0,5
+2000,0701,Totonaco,residencia5,015,México,058,39.0,3
+2000,0701,Totonaco,residencia5,030,Veracruz,203,35.0,6
+2000,0701,Totonaco,residencia5,030,Veracruz,003,34.0,2
+2000,0701,Totonaco,residencia5,021,Puebla,172,34.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,210,30.0,2
+2000,0701,Totonaco,residencia5,030,Veracruz,037,30.0,2
+2000,0701,Totonaco,residencia5,015,México,999,27.0,2
+2000,0701,Totonaco,residencia5,021,Puebla,084,23.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,029,22.0,1
+2000,0701,Totonaco,residencia5,015,México,057,21.0,2
+2000,0701,Totonaco,residencia5,030,Veracruz,040,19.0,4
+2000,0701,Totonaco,residencia5,021,Puebla,209,18.0,2
+2000,0701,Totonaco,residencia5,030,Veracruz,027,18.0,2
+2000,0701,Totonaco,residencia5,030,Veracruz,050,17.0,5
+2000,0701,Totonaco,residencia5,021,Puebla,183,17.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,089,16.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,012,16.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,003,16.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,178,16.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,058,14.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,015,14.0,1
+2000,0701,Totonaco,residencia5,015,México,033,14.0,2
+2000,0701,Totonaco,residencia5,021,Puebla,140,14.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,005,12.0,1
+2000,0701,Totonaco,residencia5,017,Morelos,009,12.0,2
+2000,0701,Totonaco,residencia5,015,México,020,12.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,211,12.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,033,11.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,107,11.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,108,10.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,028,10.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,102,10.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,008,9.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,123,8.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,014,7.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,155,7.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,062,7.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,149,6.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,213,6.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,044,5.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,215,4.0,1
+2000,0701,Totonaco,residencia5,021,Puebla,006,4.0,1
+2000,0701,Totonaco,residencia5,030,Veracruz,160,3.0,1
+2000,0702,Tepehua,residencia5,013,Hidalgo,027,52.0,4
+2000,0702,Tepehua,residencia5,030,Veracruz,058,37.0,3
+2000,0702,Tepehua,residencia5,030,Veracruz,999,15.0,2
+2000,0702,Tepehua,residencia5,021,Puebla,207,3.0,1
+2000,0702,Tepehua,residencia5,030,Veracruz,108,1.0,1
+2000,0801,Tarasco (purépecha),residencia5,016,Michoacán,108,108.0,4
+2000,0801,Tarasco (purépecha),residencia5,016,Michoacán,999,68.0,5
+2000,0801,Tarasco (purépecha),residencia5,016,Michoacán,032,36.0,3
+2000,0801,Tarasco (purépecha),residencia5,016,Michoacán,025,27.0,1
+2000,0801,Tarasco (purépecha),residencia5,016,Michoacán,107,26.0,2
+2000,0801,Tarasco (purépecha),residencia5,015,México,999,21.0,2
+2000,0801,Tarasco (purépecha),residencia5,016,Michoacán,024,21.0,1
+2000,0801,Tarasco (purépecha),residencia5,015,México,033,16.0,1
+2000,0801,Tarasco (purépecha),residencia5,016,Michoacán,090,15.0,1
+2000,0801,Tarasco (purépecha),residencia5,016,Michoacán,053,14.0,1
+2000,0801,Tarasco (purépecha),residencia5,015,México,058,14.0,1
+2000,0801,Tarasco (purépecha),residencia5,026,Sonora,018,13.0,1
+2000,0801,Tarasco (purépecha),residencia5,014,Jalisco,002,11.0,1
+2000,0801,Tarasco (purépecha),residencia5,030,Veracruz,999,6.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,999,263.0,26
+2000,0901,Mixe,residencia5,020,Oaxaca,067,255.0,19
+2000,0901,Mixe,residencia5,020,Oaxaca,337,58.0,5
+2000,0901,Mixe,residencia5,020,Oaxaca,057,48.0,3
+2000,0901,Mixe,residencia5,020,Oaxaca,437,44.0,4
+2000,0901,Mixe,residencia5,015,México,104,38.0,2
+2000,0901,Mixe,residencia5,015,México,057,35.0,2
+2000,0901,Mixe,residencia5,015,México,058,33.0,2
+2000,0901,Mixe,residencia5,015,México,033,32.0,5
+2000,0901,Mixe,residencia5,020,Oaxaca,031,29.0,2
+2000,0901,Mixe,residencia5,020,Oaxaca,198,26.0,8
+2000,0901,Mixe,residencia5,020,Oaxaca,502,23.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,190,22.0,2
+2000,0901,Mixe,residencia5,015,México,081,22.0,2
+2000,0901,Mixe,residencia5,015,México,999,19.0,2
+2000,0901,Mixe,residencia5,020,Oaxaca,006,18.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,043,18.0,2
+2000,0901,Mixe,residencia5,020,Oaxaca,353,17.0,1
+2000,0901,Mixe,residencia5,024,San Luis Potosí,028,16.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,066,16.0,1
+2000,0901,Mixe,residencia5,015,México,074,16.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,454,15.0,3
+2000,0901,Mixe,residencia5,020,Oaxaca,394,14.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,397,13.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,555,12.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,039,11.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,430,11.0,1
+2000,0901,Mixe,residencia5,013,Hidalgo,076,11.0,1
+2000,0901,Mixe,residencia5,015,México,070,10.0,1
+2000,0901,Mixe,residencia5,015,México,037,8.0,1
+2000,0901,Mixe,residencia5,030,Veracruz,193,8.0,1
+2000,0901,Mixe,residencia5,030,Veracruz,039,8.0,1
+2000,0901,Mixe,residencia5,017,Morelos,031,8.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,324,8.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,554,6.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,207,5.0,1
+2000,0901,Mixe,residencia5,015,México,025,1.0,1
+2000,0901,Mixe,residencia5,020,Oaxaca,177,1.0,1
+2000,0907,Zoque,residencia5,020,Oaxaca,407,12.0,1
+2000,1101,Huave,residencia5,020,Oaxaca,067,13.0,1
+2000,1101,Huave,residencia5,020,Oaxaca,515,10.0,1
+2000,1101,Huave,residencia5,020,Oaxaca,073,10.0,1
+2000,9000,No especificado,residencia5,015,México,058,252.0,18
+2000,9000,No especificado,residencia5,015,México,033,107.0,8
+2000,9000,No especificado,residencia5,015,México,999,94.0,8
+2000,9000,No especificado,residencia5,015,México,104,51.0,4
+2000,9000,No especificado,residencia5,015,México,057,46.0,4
+2000,9000,No especificado,residencia5,030,Veracruz,193,45.0,4
+2000,9000,No especificado,residencia5,014,Jalisco,120,28.0,3
+2000,9000,No especificado,residencia5,007,Chiapas,101,27.0,1
+2000,9000,No especificado,residencia5,015,México,025,27.0,2
+2000,9000,No especificado,residencia5,015,México,095,26.0,2
+2000,9000,No especificado,residencia5,011,Guanajuato,015,25.0,1
+2000,9000,No especificado,residencia5,015,México,037,24.0,4
+2000,9000,No especificado,residencia5,030,Veracruz,118,24.0,3
+2000,9000,No especificado,residencia5,002,Baja California,004,23.0,2
+2000,9000,No especificado,residencia5,015,México,031,23.0,3
+2000,9000,No especificado,residencia5,015,México,020,20.0,2
+2000,9000,No especificado,residencia5,021,Puebla,154,20.0,2
+2000,9000,No especificado,residencia5,013,Hidalgo,048,19.0,3
+2000,9000,No especificado,residencia5,020,Oaxaca,067,18.0,2
+2000,9000,No especificado,residencia5,017,Morelos,007,17.0,2
+2000,9000,No especificado,residencia5,015,México,109,17.0,1
+2000,9000,No especificado,residencia5,015,México,122,16.0,1
+2000,9000,No especificado,residencia5,011,Guanajuato,017,15.0,1
+2000,9000,No especificado,residencia5,024,San Luis Potosí,028,14.0,1
+2000,9000,No especificado,residencia5,030,Veracruz,045,14.0,1
+2000,9000,No especificado,residencia5,020,Oaxaca,058,14.0,1
+2000,9000,No especificado,residencia5,030,Veracruz,039,14.0,1
+2000,9000,No especificado,residencia5,015,México,045,14.0,1
+2000,9000,No especificado,residencia5,019,Nuevo León,026,13.0,1
+2000,9000,No especificado,residencia5,021,Puebla,114,13.0,1
+2000,9000,No especificado,residencia5,030,Veracruz,132,13.0,1
+2000,9000,No especificado,residencia5,022,Querétaro,999,12.0,1
+2000,9000,No especificado,residencia5,018,Nayarit,017,12.0,1
+2000,9000,No especificado,residencia5,021,Puebla,169,11.0,1
+2000,9000,No especificado,residencia5,027,Tabasco,003,11.0,1
+2000,9000,No especificado,residencia5,015,México,003,10.0,1
+2000,9000,No especificado,residencia5,024,San Luis Potosí,029,10.0,1
+2000,9000,No especificado,residencia5,020,Oaxaca,127,10.0,1
+2000,9000,No especificado,residencia5,002,Baja California,001,10.0,1
+2000,9000,No especificado,residencia5,015,México,010,10.0,1
+2000,9000,No especificado,residencia5,007,Chiapas,065,10.0,1
+2000,9000,No especificado,residencia5,024,San Luis Potosí,006,10.0,1
+2000,9000,No especificado,residencia5,015,México,044,10.0,1
+2000,9000,No especificado,residencia5,017,Morelos,006,8.0,1
+2000,9000,No especificado,residencia5,011,Guanajuato,020,8.0,1
+2000,9000,No especificado,residencia5,010,Durango,005,8.0,1
+2000,9000,No especificado,residencia5,030,Veracruz,067,7.0,1
+2000,9000,No especificado,residencia5,025,Sinaloa,005,6.0,1
+2000,9000,No especificado,residencia5,030,Veracruz,087,6.0,1
+2000,9000,No especificado,residencia5,016,Michoacán,102,5.0,1
+2000,9000,No especificado,residencia5,015,México,026,4.0,1
+2000,9000,No especificado,residencia5,013,Hidalgo,023,4.0,1
+2000,9000,No especificado,residencia5,012,Guerrero,001,1.0,1
+2000,9000,No especificado,residencia5,013,Hidalgo,027,1.0,1
+2000,9000,No especificado,residencia5,017,Morelos,023,1.0,1
+2000,9000,No especificado,residencia5,015,México,102,1.0,1
+2000,9000,No especificado,residencia5,016,Michoacán,069,1.0,1
+2000,9000,No especificado,residencia5,015,México,070,1.0,1
+2000,9010,Chontal insuficientemente especificado,residencia5,015,México,058,12.0,1
+2000,9010,Chontal insuficientemente especificado,residencia5,027,Tabasco,012,9.0,1
+2000,9010,Chontal insuficientemente especificado,residencia5,020,Oaxaca,453,7.0,1
+2000,9010,Chontal insuficientemente especificado,residencia5,027,Tabasco,999,6.0,1
+2000,9020,Tepehuano insuficientemente especificado,residencia5,030,Veracruz,193,8.0,1
+2005,0205,Tarahumara,residencia5,008,Chihuahua,,30.0,3
+2005,0205,Tarahumara,residencia5,007,Chiapas,,10.0,1
+2005,0210,Huichol,residencia5,015,México,,10.0,1
+2005,0210,Huichol,residencia5,014,Jalisco,,10.0,1
+2005,0211,Náhuatl,residencia5,021,Puebla,,1940.0,194
+2005,0211,Náhuatl,residencia5,030,Veracruz,,1050.0,105
+2005,0211,Náhuatl,residencia5,013,Hidalgo,,760.0,76
+2005,0211,Náhuatl,residencia5,015,México,,440.0,44
+2005,0211,Náhuatl,residencia5,020,Oaxaca,,370.0,37
+2005,0211,Náhuatl,residencia5,024,San Luis Potosí,,170.0,17
+2005,0211,Náhuatl,residencia5,012,Guerrero,,130.0,13
+2005,0211,Náhuatl,residencia5,007,Chiapas,,70.0,7
+2005,0211,Náhuatl,residencia5,017,Morelos,,60.0,6
+2005,0211,Náhuatl,residencia5,029,Tlaxcala,,50.0,5
+2005,0211,Náhuatl,residencia5,028,Tamaulipas,,30.0,3
+2005,0211,Náhuatl,residencia5,019,Nuevo León,,20.0,2
+2005,0211,Náhuatl,residencia5,027,Tabasco,,20.0,2
+2005,0211,Náhuatl,residencia5,014,Jalisco,,20.0,2
+2005,0211,Náhuatl,residencia5,004,Campeche,,10.0,1
+2005,0211,Náhuatl,residencia5,022,Querétaro,,10.0,1
+2005,0211,Náhuatl,residencia5,011,Guanajuato,,10.0,1
+2005,0501,Otomí,residencia5,015,México,,450.0,45
+2005,0501,Otomí,residencia5,013,Hidalgo,,400.0,40
+2005,0501,Otomí,residencia5,021,Puebla,,160.0,16
+2005,0501,Otomí,residencia5,020,Oaxaca,,90.0,9
+2005,0501,Otomí,residencia5,030,Veracruz,,60.0,6
+2005,0501,Otomí,residencia5,022,Querétaro,,50.0,5
+2005,0501,Otomí,residencia5,026,Sonora,,10.0,1
+2005,0501,Otomí,residencia5,029,Tlaxcala,,10.0,1
+2005,0501,Otomí,residencia5,016,Michoacán,,10.0,1
+2005,0501,Otomí,residencia5,023,Quintana Roo,,10.0,1
+2005,0501,Otomí,residencia5,028,Tamaulipas,,10.0,1
+2005,0501,Otomí,residencia5,012,Guerrero,,10.0,1
+2005,0502,Mazahua,residencia5,015,México,,680.0,68
+2005,0502,Mazahua,residencia5,016,Michoacán,,50.0,5
+2005,0502,Mazahua,residencia5,005,Coahuila,,10.0,1
+2005,0502,Mazahua,residencia5,028,Tamaulipas,,10.0,1
+2005,0507,Chinanteco,residencia5,020,Oaxaca,,540.0,54
+2005,0507,Chinanteco,residencia5,030,Veracruz,,70.0,7
+2005,0507,Chinanteco,residencia5,015,México,,20.0,2
+2005,0507,Chinanteco,residencia5,024,San Luis Potosí,,10.0,1
+2005,0508,Tlapaneco,residencia5,012,Guerrero,,260.0,26
+2005,0508,Tlapaneco,residencia5,030,Veracruz,,20.0,2
+2005,0508,Tlapaneco,residencia5,015,México,,10.0,1
+2005,0508,Tlapaneco,residencia5,017,Morelos,,10.0,1
+2005,0509,Mazateco,residencia5,020,Oaxaca,,1420.0,142
+2005,0509,Mazateco,residencia5,015,México,,190.0,19
+2005,0509,Mazateco,residencia5,030,Veracruz,,50.0,5
+2005,0509,Mazateco,residencia5,021,Puebla,,30.0,3
+2005,0509,Mazateco,residencia5,012,Guerrero,,20.0,2
+2005,0512,Popoloca,residencia5,021,Puebla,,10.0,1
+2005,0513,Zapoteco,residencia5,020,Oaxaca,,860.0,86
+2005,0513,Zapoteco,residencia5,015,México,,120.0,12
+2005,0513,Zapoteco,residencia5,030,Veracruz,,60.0,6
+2005,0513,Zapoteco,residencia5,014,Jalisco,,30.0,3
+2005,0513,Zapoteco,residencia5,007,Chiapas,,20.0,2
+2005,0513,Zapoteco,residencia5,008,Chihuahua,,10.0,1
+2005,0513,Zapoteco,residencia5,031,Yucatán,,10.0,1
+2005,0513,Zapoteco,residencia5,021,Puebla,,10.0,1
+2005,0513,Zapoteco,residencia5,027,Tabasco,,10.0,1
+2005,0513,Zapoteco,residencia5,005,Coahuila,,10.0,1
+2005,0513,Zapoteco,residencia5,012,Guerrero,,10.0,1
+2005,0515,Amuzgo,residencia5,020,Oaxaca,,40.0,4
+2005,0515,Amuzgo,residencia5,012,Guerrero,,30.0,3
+2005,0516,Mixteco,residencia5,020,Oaxaca,,1140.0,114
+2005,0516,Mixteco,residencia5,015,México,,170.0,17
+2005,0516,Mixteco,residencia5,012,Guerrero,,160.0,16
+2005,0516,Mixteco,residencia5,021,Puebla,,50.0,5
+2005,0516,Mixteco,residencia5,002,Baja California,,10.0,1
+2005,0516,Mixteco,residencia5,022,Querétaro,,10.0,1
+2005,0516,Mixteco,residencia5,013,Hidalgo,,10.0,1
+2005,0516,Mixteco,residencia5,017,Morelos,,10.0,1
+2005,0517,Cuicateco,residencia5,020,Oaxaca,,50.0,5
+2005,0518,Triqui,residencia5,023,Quintana Roo,,10.0,1
+2005,0601,Huasteco,residencia5,024,San Luis Potosí,,50.0,5
+2005,0601,Huasteco,residencia5,020,Oaxaca,,20.0,2
+2005,0601,Huasteco,residencia5,019,Nuevo León,,20.0,2
+2005,0601,Huasteco,residencia5,028,Tamaulipas,,10.0,1
+2005,0601,Huasteco,residencia5,030,Veracruz,,10.0,1
+2005,0601,Huasteco,residencia5,015,México,,10.0,1
+2005,0602,Maya,residencia5,031,Yucatán,,120.0,12
+2005,0602,Maya,residencia5,023,Quintana Roo,,50.0,5
+2005,0602,Maya,residencia5,015,México,,20.0,2
+2005,0602,Maya,residencia5,004,Campeche,,20.0,2
+2005,0602,Maya,residencia5,007,Chiapas,,10.0,1
+2005,0604,Ch'ol,residencia5,007,Chiapas,,40.0,4
+2005,0604,Ch'ol,residencia5,027,Tabasco,,10.0,1
+2005,0604,Ch'ol,residencia5,015,México,,10.0,1
+2005,0606,Tseltal,residencia5,007,Chiapas,,470.0,47
+2005,0606,Tseltal,residencia5,030,Veracruz,,20.0,2
+2005,0607,Tsotsil,residencia5,007,Chiapas,,170.0,17
+2005,0607,Tsotsil,residencia5,015,México,,20.0,2
+2005,0607,Tsotsil,residencia5,014,Jalisco,,10.0,1
+2005,0613,Tojolabal,residencia5,007,Chiapas,,30.0,3
+2005,0701,Totonaco,residencia5,030,Veracruz,,530.0,53
+2005,0701,Totonaco,residencia5,021,Puebla,,440.0,44
+2005,0701,Totonaco,residencia5,015,México,,110.0,11
+2005,0701,Totonaco,residencia5,016,Michoacán,,10.0,1
+2005,0701,Totonaco,residencia5,020,Oaxaca,,10.0,1
+2005,0701,Totonaco,residencia5,028,Tamaulipas,,10.0,1
+2005,0701,Totonaco,residencia5,002,Baja California,,10.0,1
+2005,0702,Tepehua,residencia5,021,Puebla,,10.0,1
+2005,0702,Tepehua,residencia5,013,Hidalgo,,10.0,1
+2005,0702,Tepehua,residencia5,030,Veracruz,,10.0,1
+2005,0801,Tarasco (purépecha),residencia5,016,Michoacán,,100.0,10
+2005,0801,Tarasco (purépecha),residencia5,002,Baja California,,10.0,1
+2005,0801,Tarasco (purépecha),residencia5,013,Hidalgo,,10.0,1
+2005,0901,Mixe,residencia5,020,Oaxaca,,560.0,56
+2005,0901,Mixe,residencia5,015,México,,20.0,2
+2005,0901,Mixe,residencia5,012,Guerrero,,10.0,1
+2005,0901,Mixe,residencia5,016,Michoacán,,10.0,1
+2005,0901,Mixe,residencia5,013,Hidalgo,,10.0,1
+2005,0901,Mixe,residencia5,027,Tabasco,,10.0,1
+2005,0907,Zoque,residencia5,020,Oaxaca,,20.0,2
+2005,0907,Zoque,residencia5,007,Chiapas,,10.0,1
+2005,9000,No especificado,residencia5,015,México,,270.0,27
+2005,9000,No especificado,residencia5,020,Oaxaca,,190.0,19
+2005,9000,No especificado,residencia5,021,Puebla,,160.0,16
+2005,9000,No especificado,residencia5,030,Veracruz,,100.0,10
+2005,9000,No especificado,residencia5,013,Hidalgo,,40.0,4
+2005,9000,No especificado,residencia5,023,Quintana Roo,,30.0,3
+2005,9000,No especificado,residencia5,012,Guerrero,,30.0,3
+2005,9000,No especificado,residencia5,016,Michoacán,,20.0,2
+2005,9000,No especificado,residencia5,017,Morelos,,20.0,2
+2005,9000,No especificado,residencia5,022,Querétaro,,20.0,2
+2005,9000,No especificado,residencia5,014,Jalisco,,20.0,2
+2005,9000,No especificado,residencia5,010,Durango,,20.0,2
+2005,9000,No especificado,residencia5,007,Chiapas,,20.0,2
+2005,9000,No especificado,residencia5,008,Chihuahua,,10.0,1
+2005,9000,No especificado,residencia5,011,Guanajuato,,10.0,1
+2005,9000,No especificado,residencia5,024,San Luis Potosí,,10.0,1
+2005,9000,No especificado,residencia5,027,Tabasco,,10.0,1
+2005,9000,No especificado,residencia5,025,Sinaloa,,10.0,1
+2005,9000,No especificado,residencia5,028,Tamaulipas,,10.0,1
+2005,9010,Chontal insuficientemente especificado,residencia5,027,Tabasco,,10.0,1
+2005,9010,Chontal insuficientemente especificado,residencia5,020,Oaxaca,,10.0,1
+2010,0205,Tarahumara,nacimiento,008,Chihuahua,,103.0,3
+2010,0205,Tarahumara,nacimiento,012,Guerrero,,78.0,1
+2010,0205,Tarahumara,nacimiento,009,Ciudad de México,,65.0,2
+2010,0207,Yaqui,nacimiento,026,Sonora,,21.0,2
+2010,0208,Mayo,nacimiento,026,Sonora,,49.0,2
+2010,0208,Mayo,nacimiento,025,Sinaloa,,46.0,1
+2010,0209,Cora,nacimiento,018,Nayarit,,32.0,1
+2010,0210,Huichol,nacimiento,007,Chiapas,,29.0,1
+2010,0210,Huichol,nacimiento,013,Hidalgo,,29.0,1
+2010,0211,Náhuatl,nacimiento,021,Puebla,,17065.0,762
+2010,0211,Náhuatl,nacimiento,009,Ciudad de México,,8294.0,322
+2010,0211,Náhuatl,nacimiento,030,Veracruz,,6782.0,252
+2010,0211,Náhuatl,nacimiento,013,Hidalgo,,6283.0,266
+2010,0211,Náhuatl,nacimiento,012,Guerrero,,1992.0,79
+2010,0211,Náhuatl,nacimiento,024,San Luis Potosí,,1534.0,82
+2010,0211,Náhuatl,nacimiento,020,Oaxaca,,1520.0,76
+2010,0211,Náhuatl,nacimiento,015,México,,491.0,36
+2010,0211,Náhuatl,nacimiento,029,Tlaxcala,,414.0,14
+2010,0211,Náhuatl,nacimiento,017,Morelos,,312.0,16
+2010,0211,Náhuatl,nacimiento,014,Jalisco,,168.0,4
+2010,0211,Náhuatl,nacimiento,016,Michoacán,,131.0,6
+2010,0211,Náhuatl,nacimiento,011,Guanajuato,,129.0,7
+2010,0211,Náhuatl,nacimiento,027,Tabasco,,48.0,1
+2010,0211,Náhuatl,nacimiento,025,Sinaloa,,32.0,1
+2010,0211,Náhuatl,nacimiento,002,Baja California,,22.0,1
+2010,0211,Náhuatl,nacimiento,900,Otro país,,21.0,2
+2010,0211,Náhuatl,nacimiento,008,Chihuahua,,17.0,1
+2010,0211,Náhuatl,nacimiento,007,Chiapas,,12.0,1
+2010,0211,Náhuatl,nacimiento,028,Tamaulipas,,11.0,1
+2010,0211,Náhuatl,nacimiento,032,Zacatecas,,10.0,1
+2010,0211,Náhuatl,nacimiento,019,Nuevo León,,9.0,1
+2010,0211,Náhuatl,nacimiento,006,Colima,,3.0,1
+2010,0305,Kiliwa,nacimiento,900,Otro país,,15.0,1
+2010,0501,Otomí,nacimiento,013,Hidalgo,,4944.0,208
+2010,0501,Otomí,nacimiento,015,México,,4713.0,238
+2010,0501,Otomí,nacimiento,022,Querétaro,,2362.0,84
+2010,0501,Otomí,nacimiento,009,Ciudad de México,,2224.0,83
+2010,0501,Otomí,nacimiento,020,Oaxaca,,736.0,20
+2010,0501,Otomí,nacimiento,030,Veracruz,,614.0,20
+2010,0501,Otomí,nacimiento,021,Puebla,,538.0,30
+2010,0501,Otomí,nacimiento,029,Tlaxcala,,119.0,7
+2010,0501,Otomí,nacimiento,024,San Luis Potosí,,61.0,1
+2010,0501,Otomí,nacimiento,017,Morelos,,48.0,1
+2010,0501,Otomí,nacimiento,011,Guanajuato,,46.0,3
+2010,0501,Otomí,nacimiento,016,Michoacán,,42.0,3
+2010,0501,Otomí,nacimiento,010,Durango,,25.0,1
+2010,0501,Otomí,nacimiento,007,Chiapas,,18.0,2
+2010,0501,Otomí,nacimiento,900,Otro país,,6.0,1
+2010,0501,Otomí,nacimiento,012,Guerrero,,5.0,1
+2010,0502,Mazahua,nacimiento,015,México,,6574.0,361
+2010,0502,Mazahua,nacimiento,016,Michoacán,,1269.0,54
+2010,0502,Mazahua,nacimiento,009,Ciudad de México,,1149.0,35
+2010,0502,Mazahua,nacimiento,020,Oaxaca,,117.0,7
+2010,0502,Mazahua,nacimiento,022,Querétaro,,86.0,2
+2010,0502,Mazahua,nacimiento,021,Puebla,,60.0,5
+2010,0502,Mazahua,nacimiento,010,Durango,,29.0,1
+2010,0502,Mazahua,nacimiento,900,Otro país,,25.0,3
+2010,0502,Mazahua,nacimiento,013,Hidalgo,,21.0,1
+2010,0503,Matlatzinca,nacimiento,015,México,,203.0,15
+2010,0503,Matlatzinca,nacimiento,009,Ciudad de México,,13.0,1
+2010,0506,Chichimeco jonaz,nacimiento,020,Oaxaca,,10.0,1
+2010,0507,Chinanteco,nacimiento,020,Oaxaca,,3280.0,137
+2010,0507,Chinanteco,nacimiento,030,Veracruz,,150.0,10
+2010,0507,Chinanteco,nacimiento,009,Ciudad de México,,10.0,2
+2010,0508,Tlapaneco,nacimiento,012,Guerrero,,1662.0,73
+2010,0508,Tlapaneco,nacimiento,009,Ciudad de México,,83.0,2
+2010,0508,Tlapaneco,nacimiento,015,México,,61.0,1
+2010,0508,Tlapaneco,nacimiento,900,Otro país,,22.0,2
+2010,0509,Mazateco,nacimiento,020,Oaxaca,,12829.0,612
+2010,0509,Mazateco,nacimiento,009,Ciudad de México,,844.0,41
+2010,0509,Mazateco,nacimiento,030,Veracruz,,438.0,10
+2010,0509,Mazateco,nacimiento,021,Puebla,,67.0,3
+2010,0509,Mazateco,nacimiento,015,México,,25.0,3
+2010,0509,Mazateco,nacimiento,012,Guerrero,,8.0,1
+2010,0511,Chocholteco,nacimiento,020,Oaxaca,,55.0,3
+2010,0511,Chocholteco,nacimiento,021,Puebla,,20.0,1
+2010,0512,Popoloca,nacimiento,021,Puebla,,260.0,9
+2010,0513,Zapoteco,nacimiento,020,Oaxaca,,9595.0,390
+2010,0513,Zapoteco,nacimiento,009,Ciudad de México,,1124.0,45
+2010,0513,Zapoteco,nacimiento,030,Veracruz,,294.0,19
+2010,0513,Zapoteco,nacimiento,900,Otro país,,68.0,3
+2010,0513,Zapoteco,nacimiento,021,Puebla,,66.0,3
+2010,0513,Zapoteco,nacimiento,007,Chiapas,,47.0,3
+2010,0513,Zapoteco,nacimiento,013,Hidalgo,,44.0,1
+2010,0513,Zapoteco,nacimiento,008,Chihuahua,,19.0,1
+2010,0513,Zapoteco,nacimiento,016,Michoacán,,10.0,1
+2010,0513,Zapoteco,nacimiento,015,México,,8.0,2
+2010,0514,Chatino,nacimiento,020,Oaxaca,,42.0,5
+2010,0515,Amuzgo,nacimiento,012,Guerrero,,174.0,9
+2010,0516,Mixteco,nacimiento,020,Oaxaca,,13919.0,608
+2010,0516,Mixteco,nacimiento,021,Puebla,,803.0,35
+2010,0516,Mixteco,nacimiento,009,Ciudad de México,,496.0,30
+2010,0516,Mixteco,nacimiento,015,México,,334.0,5
+2010,0516,Mixteco,nacimiento,012,Guerrero,,211.0,16
+2010,0516,Mixteco,nacimiento,007,Chiapas,,24.0,1
+2010,0516,Mixteco,nacimiento,030,Veracruz,,11.0,1
+2010,0516,Mixteco,nacimiento,017,Morelos,,2.0,1
+2010,0517,Cuicateco,nacimiento,020,Oaxaca,,137.0,6
+2010,0518,Triqui,nacimiento,020,Oaxaca,,229.0,13
+2010,0518,Triqui,nacimiento,009,Ciudad de México,,7.0,1
+2010,0601,Huasteco,nacimiento,024,San Luis Potosí,,357.0,14
+2010,0601,Huasteco,nacimiento,030,Veracruz,,173.0,9
+2010,0601,Huasteco,nacimiento,020,Oaxaca,,45.0,1
+2010,0601,Huasteco,nacimiento,009,Ciudad de México,,29.0,2
+2010,0601,Huasteco,nacimiento,028,Tamaulipas,,14.0,1
+2010,0601,Huasteco,nacimiento,013,Hidalgo,,1.0,1
+2010,0602,Maya,nacimiento,031,Yucatán,,881.0,36
+2010,0602,Maya,nacimiento,009,Ciudad de México,,547.0,17
+2010,0602,Maya,nacimiento,004,Campeche,,230.0,11
+2010,0602,Maya,nacimiento,030,Veracruz,,122.0,2
+2010,0602,Maya,nacimiento,015,México,,77.0,1
+2010,0602,Maya,nacimiento,900,Otro país,,67.0,2
+2010,0602,Maya,nacimiento,008,Chihuahua,,36.0,1
+2010,0602,Maya,nacimiento,027,Tabasco,,16.0,1
+2010,0602,Maya,nacimiento,026,Sonora,,15.0,1
+2010,0602,Maya,nacimiento,020,Oaxaca,,12.0,1
+2010,0602,Maya,nacimiento,017,Morelos,,1.0,1
+2010,0604,Ch'ol,nacimiento,007,Chiapas,,92.0,6
+2010,0606,Tseltal,nacimiento,007,Chiapas,,2405.0,65
+2010,0606,Tseltal,nacimiento,009,Ciudad de México,,117.0,5
+2010,0606,Tseltal,nacimiento,025,Sinaloa,,38.0,1
+2010,0607,Tsotsil,nacimiento,007,Chiapas,,193.0,11
+2010,0607,Tsotsil,nacimiento,009,Ciudad de México,,142.0,8
+2010,0607,Tsotsil,nacimiento,004,Campeche,,43.0,1
+2010,0607,Tsotsil,nacimiento,017,Morelos,,15.0,1
+2010,0607,Tsotsil,nacimiento,005,Coahuila,,8.0,1
+2010,0608,Q'anjob'al,nacimiento,020,Oaxaca,,16.0,1
+2010,0611,Qato'k,nacimiento,007,Chiapas,,21.0,1
+2010,0612,Chuj,nacimiento,021,Puebla,,50.0,1
+2010,0612,Chuj,nacimiento,007,Chiapas,,50.0,1
+2010,0613,Tojolabal,nacimiento,900,Otro país,,39.0,1
+2010,0613,Tojolabal,nacimiento,007,Chiapas,,11.0,1
+2010,0614,Q'eqchi',nacimiento,900,Otro país,,62.0,3
+2010,0615,K'iche',nacimiento,900,Otro país,,37.0,1
+2010,0618,Mam,nacimiento,009,Ciudad de México,,11.0,2
+2010,0618,Mam,nacimiento,007,Chiapas,,6.0,1
+2010,0701,Totonaco,nacimiento,021,Puebla,,3387.0,102
+2010,0701,Totonaco,nacimiento,030,Veracruz,,1832.0,105
+2010,0701,Totonaco,nacimiento,009,Ciudad de México,,230.0,12
+2010,0701,Totonaco,nacimiento,015,México,,93.0,1
+2010,0701,Totonaco,nacimiento,013,Hidalgo,,30.0,2
+2010,0701,Totonaco,nacimiento,005,Coahuila,,26.0,1
+2010,0701,Totonaco,nacimiento,900,Otro país,,20.0,1
+2010,0702,Tepehua,nacimiento,030,Veracruz,,395.0,8
+2010,0702,Tepehua,nacimiento,013,Hidalgo,,47.0,4
+2010,0801,Tarasco (purépecha),nacimiento,016,Michoacán,,950.0,84
+2010,0801,Tarasco (purépecha),nacimiento,009,Ciudad de México,,225.0,10
+2010,0801,Tarasco (purépecha),nacimiento,020,Oaxaca,,39.0,1
+2010,0801,Tarasco (purépecha),nacimiento,006,Colima,,28.0,1
+2010,0801,Tarasco (purépecha),nacimiento,011,Guanajuato,,10.0,1
+2010,0801,Tarasco (purépecha),nacimiento,015,México,,5.0,1
+2010,0801,Tarasco (purépecha),nacimiento,014,Jalisco,,2.0,1
+2010,0801,Tarasco (purépecha),nacimiento,900,Otro país,,1.0,1
+2010,0901,Mixe,nacimiento,020,Oaxaca,,3756.0,191
+2010,0901,Mixe,nacimiento,009,Ciudad de México,,394.0,11
+2010,0901,Mixe,nacimiento,030,Veracruz,,50.0,2
+2010,0901,Mixe,nacimiento,021,Puebla,,48.0,2
+2010,0901,Mixe,nacimiento,012,Guerrero,,44.0,2
+2010,0901,Mixe,nacimiento,016,Michoacán,,28.0,1
+2010,0901,Mixe,nacimiento,015,México,,2.0,1
+2010,0907,Zoque,nacimiento,020,Oaxaca,,47.0,3
+2010,0907,Zoque,nacimiento,007,Chiapas,,36.0,3
+2010,1001,Chontal de Oaxaca,nacimiento,020,Oaxaca,,40.0,2
+2010,1101,Huave,nacimiento,020,Oaxaca,,128.0,1
+2010,8000,Otras lenguas indígenas de América,nacimiento,900,Otro país,,618.0,15
+2010,8000,Otras lenguas indígenas de América,nacimiento,009,Ciudad de México,,24.0,1
+2010,9000,No especificado,nacimiento,009,Ciudad de México,,3205.0,135
+2010,9000,No especificado,nacimiento,020,Oaxaca,,981.0,48
+2010,9000,No especificado,nacimiento,021,Puebla,,456.0,17
+2010,9000,No especificado,nacimiento,030,Veracruz,,418.0,19
+2010,9000,No especificado,nacimiento,015,México,,354.0,20
+2010,9000,No especificado,nacimiento,900,Otro país,,170.0,6
+2010,9000,No especificado,nacimiento,013,Hidalgo,,164.0,8
+2010,9000,No especificado,nacimiento,016,Michoacán,,138.0,10
+2010,9000,No especificado,nacimiento,011,Guanajuato,,117.0,3
+2010,9000,No especificado,nacimiento,029,Tlaxcala,,71.0,1
+2010,9000,No especificado,nacimiento,012,Guerrero,,69.0,6
+2010,9000,No especificado,nacimiento,007,Chiapas,,66.0,3
+2010,9000,No especificado,nacimiento,031,Yucatán,,46.0,2
+2010,9000,No especificado,nacimiento,022,Querétaro,,40.0,4
+2010,9000,No especificado,nacimiento,026,Sonora,,23.0,1
+2010,9000,No especificado,nacimiento,024,San Luis Potosí,,18.0,3
+2010,9000,No especificado,nacimiento,017,Morelos,,5.0,1
+2010,9000,No especificado,nacimiento,014,Jalisco,,5.0,1
+2010,9010,Chontal insuficientemente especificado,nacimiento,020,Oaxaca,,68.0,2
+2010,9010,Chontal insuficientemente especificado,nacimiento,007,Chiapas,,30.0,5
+2010,9020,Tepehuano insuficientemente especificado,nacimiento,010,Durango,,31.0,1
+2010,0205,Tarahumara,residencia5,008,Chihuahua,037,54.0,1
+2010,0207,Yaqui,residencia5,026,Sonora,018,11.0,1
+2010,0207,Yaqui,residencia5,026,Sonora,030,10.0,1
+2010,0209,Cora,residencia5,018,Nayarit,017,32.0,1
+2010,0211,Náhuatl,residencia5,030,Veracruz,044,682.0,2
+2010,0211,Náhuatl,residencia5,013,Hidalgo,999,626.0,7
+2010,0211,Náhuatl,residencia5,030,Veracruz,058,603.0,12
+2010,0211,Náhuatl,residencia5,021,Puebla,203,338.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,217,281.0,16
+2010,0211,Náhuatl,residencia5,030,Veracruz,184,268.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,114,246.0,13
+2010,0211,Náhuatl,residencia5,021,Puebla,109,226.0,14
+2010,0211,Náhuatl,residencia5,020,Oaxaca,434,201.0,7
+2010,0211,Náhuatl,residencia5,015,México,057,201.0,13
+2010,0211,Náhuatl,residencia5,021,Puebla,216,176.0,8
+2010,0211,Náhuatl,residencia5,030,Veracruz,193,173.0,6
+2010,0211,Náhuatl,residencia5,021,Puebla,071,146.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,207,142.0,16
+2010,0211,Náhuatl,residencia5,030,Veracruz,202,140.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,191,118.0,1
+2010,0211,Náhuatl,residencia5,013,Hidalgo,028,116.0,8
+2010,0211,Náhuatl,residencia5,030,Veracruz,083,107.0,4
+2010,0211,Náhuatl,residencia5,020,Oaxaca,067,106.0,5
+2010,0211,Náhuatl,residencia5,015,México,121,101.0,2
+2010,0211,Náhuatl,residencia5,021,Puebla,084,95.0,1
+2010,0211,Náhuatl,residencia5,013,Hidalgo,014,89.0,4
+2010,0211,Náhuatl,residencia5,030,Veracruz,999,82.0,3
+2010,0211,Náhuatl,residencia5,027,Tabasco,004,76.0,1
+2010,0211,Náhuatl,residencia5,013,Hidalgo,048,58.0,4
+2010,0211,Náhuatl,residencia5,021,Puebla,172,57.0,5
+2010,0211,Náhuatl,residencia5,030,Veracruz,047,57.0,1
+2010,0211,Náhuatl,residencia5,030,Veracruz,104,56.0,2
+2010,0211,Náhuatl,residencia5,021,Puebla,208,56.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,999,54.0,5
+2010,0211,Náhuatl,residencia5,015,México,106,52.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,100,51.0,4
+2010,0211,Náhuatl,residencia5,020,Oaxaca,184,51.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,183,50.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,039,49.0,2
+2010,0211,Náhuatl,residencia5,015,México,099,47.0,3
+2010,0211,Náhuatl,residencia5,020,Oaxaca,277,45.0,1
+2010,0211,Náhuatl,residencia5,005,Coahuila,030,44.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,078,42.0,2
+2010,0211,Náhuatl,residencia5,015,México,058,42.0,3
+2010,0211,Náhuatl,residencia5,024,San Luis Potosí,054,41.0,2
+2010,0211,Náhuatl,residencia5,015,México,033,38.0,4
+2010,0211,Náhuatl,residencia5,014,Jalisco,039,38.0,2
+2010,0211,Náhuatl,residencia5,010,Durango,005,38.0,1
+2010,0211,Náhuatl,residencia5,016,Michoacán,999,37.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,156,36.0,2
+2010,0211,Náhuatl,residencia5,021,Puebla,167,34.0,2
+2010,0211,Náhuatl,residencia5,013,Hidalgo,011,33.0,1
+2010,0211,Náhuatl,residencia5,015,México,081,32.0,1
+2010,0211,Náhuatl,residencia5,019,Nuevo León,039,31.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,010,31.0,3
+2010,0211,Náhuatl,residencia5,030,Veracruz,160,31.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,043,31.0,1
+2010,0211,Náhuatl,residencia5,015,México,039,31.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,075,30.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,044,29.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,036,28.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,110,27.0,1
+2010,0211,Náhuatl,residencia5,020,Oaxaca,304,26.0,1
+2010,0211,Náhuatl,residencia5,030,Veracruz,143,25.0,1
+2010,0211,Náhuatl,residencia5,015,México,104,25.0,2
+2010,0211,Náhuatl,residencia5,012,Guerrero,075,25.0,1
+2010,0211,Náhuatl,residencia5,015,México,020,24.0,2
+2010,0211,Náhuatl,residencia5,021,Puebla,140,23.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,053,23.0,1
+2010,0211,Náhuatl,residencia5,017,Morelos,007,23.0,2
+2010,0211,Náhuatl,residencia5,013,Hidalgo,033,22.0,5
+2010,0211,Náhuatl,residencia5,020,Oaxaca,490,22.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,186,22.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,197,21.0,1
+2010,0211,Náhuatl,residencia5,015,México,999,20.0,2
+2010,0211,Náhuatl,residencia5,012,Guerrero,999,18.0,3
+2010,0211,Náhuatl,residencia5,015,México,031,17.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,058,16.0,1
+2010,0211,Náhuatl,residencia5,015,México,035,16.0,1
+2010,0211,Náhuatl,residencia5,015,México,013,16.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,003,16.0,2
+2010,0211,Náhuatl,residencia5,013,Hidalgo,027,14.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,049,14.0,2
+2010,0211,Náhuatl,residencia5,013,Hidalgo,030,14.0,1
+2010,0211,Náhuatl,residencia5,013,Hidalgo,002,14.0,1
+2010,0211,Náhuatl,residencia5,013,Hidalgo,062,12.0,1
+2010,0211,Náhuatl,residencia5,012,Guerrero,029,10.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,174,10.0,1
+2010,0211,Náhuatl,residencia5,011,Guanajuato,017,10.0,1
+2010,0211,Náhuatl,residencia5,015,México,025,9.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,017,9.0,2
+2010,0211,Náhuatl,residencia5,021,Puebla,083,9.0,3
+2010,0211,Náhuatl,residencia5,021,Puebla,013,8.0,2
+2010,0211,Náhuatl,residencia5,020,Oaxaca,278,8.0,1
+2010,0211,Náhuatl,residencia5,017,Morelos,008,8.0,1
+2010,0211,Náhuatl,residencia5,020,Oaxaca,545,7.0,1
+2010,0211,Náhuatl,residencia5,013,Hidalgo,018,6.0,1
+2010,0211,Náhuatl,residencia5,012,Guerrero,045,6.0,1
+2010,0211,Náhuatl,residencia5,030,Veracruz,175,6.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,006,5.0,1
+2010,0211,Náhuatl,residencia5,003,Baja California Sur,008,5.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,184,5.0,1
+2010,0211,Náhuatl,residencia5,015,México,037,4.0,1
+2010,0211,Náhuatl,residencia5,006,Colima,002,3.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,211,3.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,164,3.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,050,2.0,1
+2010,0211,Náhuatl,residencia5,030,Veracruz,027,2.0,1
+2010,0211,Náhuatl,residencia5,021,Puebla,086,2.0,1
+2010,0211,Náhuatl,residencia5,030,Veracruz,212,2.0,1
+2010,0211,Náhuatl,residencia5,030,Veracruz,076,1.0,1
+2010,0211,Náhuatl,residencia5,013,Hidalgo,019,1.0,1
+2010,0211,Náhuatl,residencia5,008,Chihuahua,008,1.0,1
+2010,0211,Náhuatl,residencia5,030,Veracruz,118,1.0,1
+2010,0501,Otomí,residencia5,015,México,106,155.0,8
+2010,0501,Otomí,residencia5,003,Baja California Sur,003,153.0,1
+2010,0501,Otomí,residencia5,027,Tabasco,006,153.0,1
+2010,0501,Otomí,residencia5,022,Querétaro,001,137.0,7
+2010,0501,Otomí,residencia5,013,Hidalgo,015,125.0,2
+2010,0501,Otomí,residencia5,022,Querétaro,016,62.0,1
+2010,0501,Otomí,residencia5,015,México,001,57.0,5
+2010,0501,Otomí,residencia5,013,Hidalgo,033,52.0,2
+2010,0501,Otomí,residencia5,013,Hidalgo,058,49.0,2
+2010,0501,Otomí,residencia5,013,Hidalgo,055,43.0,1
+2010,0501,Otomí,residencia5,015,México,056,34.0,4
+2010,0501,Otomí,residencia5,015,México,057,33.0,2
+2010,0501,Otomí,residencia5,022,Querétaro,999,27.0,1
+2010,0501,Otomí,residencia5,015,México,070,25.0,1
+2010,0501,Otomí,residencia5,015,México,020,22.0,1
+2010,0501,Otomí,residencia5,013,Hidalgo,043,18.0,3
+2010,0501,Otomí,residencia5,013,Hidalgo,999,18.0,1
+2010,0501,Otomí,residencia5,030,Veracruz,032,17.0,1
+2010,0501,Otomí,residencia5,022,Querétaro,014,16.0,1
+2010,0501,Otomí,residencia5,015,México,042,16.0,1
+2010,0501,Otomí,residencia5,013,Hidalgo,008,14.0,1
+2010,0501,Otomí,residencia5,015,México,005,13.0,1
+2010,0501,Otomí,residencia5,015,México,037,13.0,2
+2010,0501,Otomí,residencia5,013,Hidalgo,084,13.0,2
+2010,0501,Otomí,residencia5,013,Hidalgo,030,11.0,1
+2010,0501,Otomí,residencia5,025,Sinaloa,006,6.0,1
+2010,0501,Otomí,residencia5,015,México,060,6.0,1
+2010,0501,Otomí,residencia5,013,Hidalgo,048,6.0,2
+2010,0501,Otomí,residencia5,015,México,121,6.0,1
+2010,0501,Otomí,residencia5,007,Chiapas,101,2.0,1
+2010,0501,Otomí,residencia5,015,México,007,2.0,1
+2010,0501,Otomí,residencia5,015,México,058,2.0,1
+2010,0501,Otomí,residencia5,030,Veracruz,193,2.0,1
+2010,0501,Otomí,residencia5,015,México,087,2.0,1
+2010,0501,Otomí,residencia5,020,Oaxaca,999,2.0,1
+2010,0501,Otomí,residencia5,015,México,122,1.0,1
+2010,0501,Otomí,residencia5,022,Querétaro,007,1.0,1
+2010,0502,Mazahua,residencia5,015,México,106,214.0,7
+2010,0502,Mazahua,residencia5,016,Michoacán,112,181.0,8
+2010,0502,Mazahua,residencia5,016,Michoacán,999,144.0,4
+2010,0502,Mazahua,residencia5,015,México,074,95.0,12
+2010,0502,Mazahua,residencia5,015,México,042,73.0,6
+2010,0502,Mazahua,residencia5,015,México,999,68.0,9
+2010,0502,Mazahua,residencia5,015,México,114,39.0,1
+2010,0502,Mazahua,residencia5,015,México,048,39.0,1
+2010,0502,Mazahua,residencia5,016,Michoacán,110,38.0,1
+2010,0502,Mazahua,residencia5,015,México,014,36.0,3
+2010,0502,Mazahua,residencia5,015,México,032,36.0,3
+2010,0502,Mazahua,residencia5,016,Michoacán,093,32.0,1
+2010,0502,Mazahua,residencia5,020,Oaxaca,529,32.0,1
+2010,0502,Mazahua,residencia5,008,Chihuahua,037,29.0,1
+2010,0502,Mazahua,residencia5,015,México,113,26.0,2
+2010,0502,Mazahua,residencia5,015,México,124,25.0,2
+2010,0502,Mazahua,residencia5,015,México,111,20.0,1
+2010,0502,Mazahua,residencia5,015,México,025,19.0,1
+2010,0502,Mazahua,residencia5,015,México,104,11.0,1
+2010,0502,Mazahua,residencia5,016,Michoacán,017,8.0,1
+2010,0502,Mazahua,residencia5,019,Nuevo León,039,4.0,1
+2010,0502,Mazahua,residencia5,021,Puebla,207,2.0,1
+2010,0502,Mazahua,residencia5,015,México,039,2.0,1
+2010,0502,Mazahua,residencia5,023,Quintana Roo,005,1.0,1
+2010,0502,Mazahua,residencia5,015,México,037,1.0,1
+2010,0507,Chinanteco,residencia5,020,Oaxaca,067,349.0,9
+2010,0507,Chinanteco,residencia5,020,Oaxaca,205,235.0,9
+2010,0507,Chinanteco,residencia5,020,Oaxaca,166,168.0,3
+2010,0507,Chinanteco,residencia5,020,Oaxaca,232,67.0,4
+2010,0507,Chinanteco,residencia5,030,Veracruz,130,63.0,3
+2010,0507,Chinanteco,residencia5,030,Veracruz,193,54.0,2
+2010,0507,Chinanteco,residencia5,020,Oaxaca,468,52.0,3
+2010,0507,Chinanteco,residencia5,020,Oaxaca,334,40.0,1
+2010,0507,Chinanteco,residencia5,030,Veracruz,174,12.0,3
+2010,0507,Chinanteco,residencia5,020,Oaxaca,326,12.0,1
+2010,0507,Chinanteco,residencia5,020,Oaxaca,184,12.0,4
+2010,0507,Chinanteco,residencia5,029,Tlaxcala,013,11.0,1
+2010,0507,Chinanteco,residencia5,020,Oaxaca,999,11.0,1
+2010,0507,Chinanteco,residencia5,015,México,025,8.0,1
+2010,0507,Chinanteco,residencia5,030,Veracruz,212,4.0,1
+2010,0508,Tlapaneco,residencia5,012,Guerrero,041,57.0,4
+2010,0508,Tlapaneco,residencia5,012,Guerrero,999,54.0,2
+2010,0508,Tlapaneco,residencia5,012,Guerrero,058,37.0,1
+2010,0508,Tlapaneco,residencia5,012,Guerrero,035,30.0,2
+2010,0508,Tlapaneco,residencia5,012,Guerrero,063,22.0,1
+2010,0508,Tlapaneco,residencia5,012,Guerrero,003,21.0,1
+2010,0508,Tlapaneco,residencia5,015,México,033,20.0,1
+2010,0508,Tlapaneco,residencia5,015,México,057,11.0,1
+2010,0508,Tlapaneco,residencia5,012,Guerrero,033,6.0,1
+2010,0508,Tlapaneco,residencia5,012,Guerrero,029,1.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,134,550.0,8
+2010,0509,Mazateco,residencia5,020,Oaxaca,041,488.0,24
+2010,0509,Mazateco,residencia5,020,Oaxaca,067,339.0,13
+2010,0509,Mazateco,residencia5,020,Oaxaca,177,322.0,7
+2010,0509,Mazateco,residencia5,020,Oaxaca,171,168.0,7
+2010,0509,Mazateco,residencia5,020,Oaxaca,012,54.0,3
+2010,0509,Mazateco,residencia5,015,México,057,52.0,3
+2010,0509,Mazateco,residencia5,020,Oaxaca,066,42.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,546,36.0,1
+2010,0509,Mazateco,residencia5,015,México,025,36.0,1
+2010,0509,Mazateco,residencia5,015,México,104,34.0,2
+2010,0509,Mazateco,residencia5,020,Oaxaca,487,33.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,545,32.0,2
+2010,0509,Mazateco,residencia5,020,Oaxaca,270,31.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,184,31.0,2
+2010,0509,Mazateco,residencia5,020,Oaxaca,282,31.0,1
+2010,0509,Mazateco,residencia5,015,México,031,31.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,406,30.0,4
+2010,0509,Mazateco,residencia5,020,Oaxaca,309,26.0,2
+2010,0509,Mazateco,residencia5,020,Oaxaca,278,24.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,306,22.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,999,22.0,2
+2010,0509,Mazateco,residencia5,020,Oaxaca,059,18.0,2
+2010,0509,Mazateco,residencia5,020,Oaxaca,029,16.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,207,16.0,2
+2010,0509,Mazateco,residencia5,015,México,033,15.0,2
+2010,0509,Mazateco,residencia5,015,México,122,15.0,1
+2010,0509,Mazateco,residencia5,015,México,058,11.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,116,8.0,1
+2010,0509,Mazateco,residencia5,027,Tabasco,004,7.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,005,7.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,014,7.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,334,7.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,068,6.0,3
+2010,0509,Mazateco,residencia5,021,Puebla,114,4.0,1
+2010,0509,Mazateco,residencia5,023,Quintana Roo,005,4.0,1
+2010,0509,Mazateco,residencia5,020,Oaxaca,557,2.0,1
+2010,0511,Chocholteco,residencia5,021,Puebla,177,20.0,1
+2010,0512,Popoloca,residencia5,021,Puebla,177,20.0,1
+2010,0512,Popoloca,residencia5,021,Puebla,156,17.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,043,192.0,5
+2010,0513,Zapoteco,residencia5,020,Oaxaca,014,118.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,067,61.0,4
+2010,0513,Zapoteco,residencia5,013,Hidalgo,048,44.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,999,42.0,3
+2010,0513,Zapoteco,residencia5,004,Campeche,999,42.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,122,38.0,2
+2010,0513,Zapoteco,residencia5,020,Oaxaca,042,37.0,1
+2010,0513,Zapoteco,residencia5,021,Puebla,119,26.0,1
+2010,0513,Zapoteco,residencia5,030,Veracruz,212,25.0,2
+2010,0513,Zapoteco,residencia5,030,Veracruz,108,25.0,1
+2010,0513,Zapoteco,residencia5,019,Nuevo León,039,22.0,1
+2010,0513,Zapoteco,residencia5,015,México,106,21.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,059,20.0,4
+2010,0513,Zapoteco,residencia5,020,Oaxaca,365,20.0,1
+2010,0513,Zapoteco,residencia5,022,Querétaro,014,19.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,551,17.0,1
+2010,0513,Zapoteco,residencia5,029,Tlaxcala,033,12.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,232,11.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,515,10.0,1
+2010,0513,Zapoteco,residencia5,030,Veracruz,173,9.0,3
+2010,0513,Zapoteco,residencia5,017,Morelos,007,6.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,200,6.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,502,6.0,2
+2010,0513,Zapoteco,residencia5,021,Puebla,114,5.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,270,5.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,495,5.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,005,2.0,1
+2010,0513,Zapoteco,residencia5,015,México,121,2.0,1
+2010,0513,Zapoteco,residencia5,020,Oaxaca,039,1.0,1
+2010,0515,Amuzgo,residencia5,012,Guerrero,046,105.0,3
+2010,0515,Amuzgo,residencia5,012,Guerrero,071,5.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,067,250.0,10
+2010,0516,Mixteco,residencia5,015,México,104,165.0,3
+2010,0516,Mixteco,residencia5,020,Oaxaca,242,148.0,4
+2010,0516,Mixteco,residencia5,020,Oaxaca,467,125.0,5
+2010,0516,Mixteco,residencia5,020,Oaxaca,184,110.0,4
+2010,0516,Mixteco,residencia5,020,Oaxaca,046,104.0,4
+2010,0516,Mixteco,residencia5,020,Oaxaca,999,94.0,6
+2010,0516,Mixteco,residencia5,020,Oaxaca,446,76.0,4
+2010,0516,Mixteco,residencia5,020,Oaxaca,482,63.0,3
+2010,0516,Mixteco,residencia5,020,Oaxaca,006,60.0,2
+2010,0516,Mixteco,residencia5,020,Oaxaca,306,60.0,2
+2010,0516,Mixteco,residencia5,020,Oaxaca,397,45.0,2
+2010,0516,Mixteco,residencia5,015,México,025,39.0,2
+2010,0516,Mixteco,residencia5,015,México,999,39.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,278,37.0,2
+2010,0516,Mixteco,residencia5,020,Oaxaca,529,32.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,406,31.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,270,31.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,039,29.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,098,29.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,312,28.0,1
+2010,0516,Mixteco,residencia5,015,México,026,26.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,271,26.0,1
+2010,0516,Mixteco,residencia5,028,Tamaulipas,027,25.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,353,21.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,253,21.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,364,21.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,198,20.0,2
+2010,0516,Mixteco,residencia5,020,Oaxaca,320,18.0,1
+2010,0516,Mixteco,residencia5,015,México,122,17.0,1
+2010,0516,Mixteco,residencia5,021,Puebla,156,17.0,1
+2010,0516,Mixteco,residencia5,008,Chihuahua,037,14.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,221,14.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,269,14.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,537,13.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,024,11.0,1
+2010,0516,Mixteco,residencia5,015,México,106,10.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,116,9.0,1
+2010,0516,Mixteco,residencia5,015,México,031,7.0,1
+2010,0516,Mixteco,residencia5,026,Sonora,030,7.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,195,6.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,511,6.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,133,6.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,070,5.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,043,5.0,1
+2010,0516,Mixteco,residencia5,030,Veracruz,086,2.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,217,2.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,465,1.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,451,1.0,1
+2010,0516,Mixteco,residencia5,020,Oaxaca,005,1.0,1
+2010,0518,Triqui,residencia5,020,Oaxaca,107,46.0,2
+2010,0518,Triqui,residencia5,020,Oaxaca,073,11.0,2
+2010,0601,Huasteco,residencia5,019,Nuevo León,039,28.0,1
+2010,0601,Huasteco,residencia5,024,San Luis Potosí,037,17.0,1
+2010,0602,Maya,residencia5,004,Campeche,009,48.0,2
+2010,0602,Maya,residencia5,007,Chiapas,999,32.0,1
+2010,0602,Maya,residencia5,031,Yucatán,050,28.0,3
+2010,0602,Maya,residencia5,004,Campeche,001,24.0,1
+2010,0602,Maya,residencia5,031,Yucatán,999,20.0,1
+2010,0602,Maya,residencia5,023,Quintana Roo,005,11.0,1
+2010,0604,Ch'ol,residencia5,007,Chiapas,999,29.0,1
+2010,0604,Ch'ol,residencia5,007,Chiapas,065,20.0,1
+2010,0604,Ch'ol,residencia5,027,Tabasco,999,7.0,1
+2010,0606,Tseltal,residencia5,007,Chiapas,093,244.0,10
+2010,0606,Tseltal,residencia5,007,Chiapas,078,46.0,3
+2010,0606,Tseltal,residencia5,007,Chiapas,999,29.0,1
+2010,0606,Tseltal,residencia5,015,México,013,28.0,1
+2010,0606,Tseltal,residencia5,007,Chiapas,101,18.0,1
+2010,0606,Tseltal,residencia5,007,Chiapas,106,16.0,2
+2010,0606,Tseltal,residencia5,030,Veracruz,140,13.0,1
+2010,0606,Tseltal,residencia5,007,Chiapas,059,11.0,1
+2010,0606,Tseltal,residencia5,017,Morelos,007,1.0,1
+2010,0607,Tsotsil,residencia5,007,Chiapas,078,88.0,3
+2010,0607,Tsotsil,residencia5,007,Chiapas,101,45.0,1
+2010,0607,Tsotsil,residencia5,005,Coahuila,025,8.0,1
+2010,0607,Tsotsil,residencia5,017,Morelos,007,6.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,208,1103.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,114,110.0,3
+2010,0701,Totonaco,residencia5,021,Puebla,178,100.0,2
+2010,0701,Totonaco,residencia5,030,Veracruz,193,63.0,3
+2010,0701,Totonaco,residencia5,015,México,104,62.0,2
+2010,0701,Totonaco,residencia5,021,Puebla,006,61.0,1
+2010,0701,Totonaco,residencia5,030,Veracruz,087,61.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,111,57.0,2
+2010,0701,Totonaco,residencia5,030,Veracruz,124,47.0,1
+2010,0701,Totonaco,residencia5,030,Veracruz,131,43.0,1
+2010,0701,Totonaco,residencia5,030,Veracruz,051,32.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,162,32.0,2
+2010,0701,Totonaco,residencia5,015,México,058,30.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,089,30.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,001,20.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,107,16.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,209,12.0,1
+2010,0701,Totonaco,residencia5,015,México,057,11.0,1
+2010,0701,Totonaco,residencia5,015,México,033,10.0,1
+2010,0701,Totonaco,residencia5,028,Tamaulipas,038,9.0,1
+2010,0701,Totonaco,residencia5,030,Veracruz,032,6.0,1
+2010,0701,Totonaco,residencia5,021,Puebla,072,4.0,2
+2010,0701,Totonaco,residencia5,030,Veracruz,203,1.0,1
+2010,0701,Totonaco,residencia5,030,Veracruz,050,1.0,1
+2010,0702,Tepehua,residencia5,014,Jalisco,999,100.0,2
+2010,0801,Tarasco (purépecha),residencia5,016,Michoacán,032,63.0,1
+2010,0801,Tarasco (purépecha),residencia5,015,México,999,39.0,1
+2010,0801,Tarasco (purépecha),residencia5,016,Michoacán,112,28.0,1
+2010,0801,Tarasco (purépecha),residencia5,014,Jalisco,039,12.0,6
+2010,0801,Tarasco (purépecha),residencia5,016,Michoacán,102,6.0,6
+2010,0901,Mixe,residencia5,020,Oaxaca,067,348.0,8
+2010,0901,Mixe,residencia5,020,Oaxaca,437,254.0,11
+2010,0901,Mixe,residencia5,020,Oaxaca,198,142.0,5
+2010,0901,Mixe,residencia5,020,Oaxaca,551,87.0,1
+2010,0901,Mixe,residencia5,020,Oaxaca,406,80.0,2
+2010,0901,Mixe,residencia5,020,Oaxaca,057,72.0,7
+2010,0901,Mixe,residencia5,020,Oaxaca,184,21.0,1
+2010,0901,Mixe,residencia5,015,México,999,20.0,1
+2010,0901,Mixe,residencia5,015,México,057,17.0,1
+2010,0901,Mixe,residencia5,020,Oaxaca,502,16.0,1
+2010,0901,Mixe,residencia5,030,Veracruz,087,16.0,1
+2010,0901,Mixe,residencia5,015,México,037,12.0,1
+2010,0901,Mixe,residencia5,020,Oaxaca,315,9.0,1
+2010,0901,Mixe,residencia5,020,Oaxaca,190,4.0,1
+2010,0907,Zoque,residencia5,020,Oaxaca,407,11.0,1
+2010,0907,Zoque,residencia5,007,Chiapas,092,5.0,1
+2010,1001,Chontal de Oaxaca,residencia5,020,Oaxaca,410,30.0,1
+2010,1001,Chontal de Oaxaca,residencia5,020,Oaxaca,067,10.0,1
+2010,8000,Otras lenguas indígenas de América,residencia5,012,Guerrero,029,166.0,2
+2010,9000,No especificado,residencia5,030,Veracruz,118,35.0,1
+2010,9000,No especificado,residencia5,020,Oaxaca,306,32.0,1
+2010,9000,No especificado,residencia5,020,Oaxaca,999,31.0,2
+2010,9000,No especificado,residencia5,030,Veracruz,202,26.0,1
+2010,9000,No especificado,residencia5,015,México,057,24.0,2
+2010,9000,No especificado,residencia5,020,Oaxaca,057,24.0,2
+2010,9000,No especificado,residencia5,020,Oaxaca,067,21.0,2
+2010,9000,No especificado,residencia5,020,Oaxaca,041,21.0,1
+2010,9000,No especificado,residencia5,030,Veracruz,032,17.0,1
+2010,9000,No especificado,residencia5,024,San Luis Potosí,037,15.0,1
+2010,9000,No especificado,residencia5,015,México,999,7.0,1
+2010,9000,No especificado,residencia5,016,Michoacán,112,4.0,1
+2010,9010,Chontal insuficientemente especificado,residencia5,007,Chiapas,023,12.0,2
+2010,9010,Chontal insuficientemente especificado,residencia5,007,Chiapas,093,12.0,2
 2015,0204,Tepehuano del sur,nacimiento,010,Durango,,3.0,1
 2015,0205,Tarahumara,nacimiento,008,Chihuahua,,109.0,4
 2015,0205,Tarahumara,nacimiento,009,Ciudad de México,,37.0,2
@@ -30,19 +2277,19 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0211,Náhuatl,nacimiento,007,Chiapas,,73.0,3
 2015,0211,Náhuatl,nacimiento,010,Durango,,46.0,2
 2015,0211,Náhuatl,nacimiento,022,Querétaro,,41.0,3
-2015,0211,Náhuatl,nacimiento,216,Otro país,,40.0,2
 2015,0211,Náhuatl,nacimiento,019,Nuevo León,,40.0,4
+2015,0211,Náhuatl,nacimiento,216,Otro país,,40.0,2
 2015,0211,Náhuatl,nacimiento,011,Guanajuato,,37.0,3
 2015,0211,Náhuatl,nacimiento,028,Tamaulipas,,30.0,2
 2015,0211,Náhuatl,nacimiento,237,Otro país,,25.0,1
 2015,0211,Náhuatl,nacimiento,330,Otro país,,25.0,2
 2015,0211,Náhuatl,nacimiento,008,Chihuahua,,22.0,1
-2015,0211,Náhuatl,nacimiento,437,Otro país,,21.0,1
 2015,0211,Náhuatl,nacimiento,001,Aguascalientes,,21.0,1
+2015,0211,Náhuatl,nacimiento,437,Otro país,,21.0,1
 2015,0211,Náhuatl,nacimiento,004,Campeche,,16.0,1
 2015,0211,Náhuatl,nacimiento,018,Nayarit,,15.0,1
-2015,0211,Náhuatl,nacimiento,221,Otro país,,14.0,1
 2015,0211,Náhuatl,nacimiento,026,Sonora,,14.0,1
+2015,0211,Náhuatl,nacimiento,221,Otro país,,14.0,1
 2015,0211,Náhuatl,nacimiento,002,Baja California,,13.0,1
 2015,0211,Náhuatl,nacimiento,415,Otro país,,11.0,1
 2015,0211,Náhuatl,nacimiento,027,Tabasco,,8.0,1
@@ -151,8 +2398,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0602,Maya,nacimiento,014,Jalisco,,20.0,1
 2015,0602,Maya,nacimiento,007,Chiapas,,18.0,2
 2015,0602,Maya,nacimiento,020,Oaxaca,,15.0,1
-2015,0602,Maya,nacimiento,017,Morelos,,11.0,1
 2015,0602,Maya,nacimiento,109,Otro país,,11.0,1
+2015,0602,Maya,nacimiento,017,Morelos,,11.0,1
 2015,0604,Ch'ol,nacimiento,007,Chiapas,,154.0,10
 2015,0604,Ch'ol,nacimiento,009,Ciudad de México,,31.0,2
 2015,0604,Ch'ol,nacimiento,022,Querétaro,,13.0,1
@@ -226,8 +2473,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,9000,No especificado,nacimiento,998,Otro país,,31.0,1
 2015,9000,No especificado,nacimiento,014,Jalisco,,24.0,1
 2015,9000,No especificado,nacimiento,415,Otro país,,22.0,1
-2015,9000,No especificado,nacimiento,026,Sonora,,18.0,1
 2015,9000,No especificado,nacimiento,031,Yucatán,,18.0,1
+2015,9000,No especificado,nacimiento,026,Sonora,,18.0,1
 2015,9000,No especificado,nacimiento,011,Guanajuato,,16.0,3
 2015,9000,No especificado,nacimiento,018,Nayarit,,12.0,1
 2015,9000,No especificado,nacimiento,027,Tabasco,,9.0,1
@@ -268,10 +2515,10 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0211,Náhuatl,residencia5,012,Guerrero,029,49.0,2
 2015,0211,Náhuatl,residencia5,025,Sinaloa,017,47.0,1
 2015,0211,Náhuatl,residencia5,015,México,025,43.0,5
-2015,0211,Náhuatl,residencia5,015,México,021,42.0,2
 2015,0211,Náhuatl,residencia5,013,Hidalgo,078,42.0,1
-2015,0211,Náhuatl,residencia5,021,Puebla,071,41.0,4
+2015,0211,Náhuatl,residencia5,015,México,021,42.0,2
 2015,0211,Náhuatl,residencia5,021,Puebla,212,41.0,3
+2015,0211,Náhuatl,residencia5,021,Puebla,071,41.0,4
 2015,0211,Náhuatl,residencia5,021,Puebla,075,39.0,2
 2015,0211,Náhuatl,residencia5,015,México,099,38.0,2
 2015,0211,Náhuatl,residencia5,015,México,057,38.0,4
@@ -283,13 +2530,13 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0211,Náhuatl,residencia5,021,Puebla,210,23.0,1
 2015,0211,Náhuatl,residencia5,021,Puebla,078,23.0,1
 2015,0211,Náhuatl,residencia5,015,México,031,22.0,2
-2015,0211,Náhuatl,residencia5,021,Puebla,145,22.0,1
 2015,0211,Náhuatl,residencia5,017,Morelos,999,22.0,3
 2015,0211,Náhuatl,residencia5,013,Hidalgo,046,22.0,2
+2015,0211,Náhuatl,residencia5,021,Puebla,145,22.0,1
 2015,0211,Náhuatl,residencia5,030,Veracruz,173,21.0,1
 2015,0211,Náhuatl,residencia5,021,Puebla,167,20.0,2
-2015,0211,Náhuatl,residencia5,021,Puebla,217,19.0,2
 2015,0211,Náhuatl,residencia5,020,Oaxaca,091,19.0,1
+2015,0211,Náhuatl,residencia5,021,Puebla,217,19.0,2
 2015,0211,Náhuatl,residencia5,024,San Luis Potosí,028,18.0,2
 2015,0211,Náhuatl,residencia5,030,Veracruz,078,18.0,2
 2015,0211,Náhuatl,residencia5,028,Tamaulipas,999,18.0,1
@@ -297,56 +2544,56 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0211,Náhuatl,residencia5,021,Puebla,172,17.0,1
 2015,0211,Náhuatl,residencia5,030,Veracruz,147,17.0,1
 2015,0211,Náhuatl,residencia5,021,Puebla,182,17.0,3
-2015,0211,Náhuatl,residencia5,030,Veracruz,011,16.0,1
 2015,0211,Náhuatl,residencia5,015,México,087,16.0,1
+2015,0211,Náhuatl,residencia5,030,Veracruz,011,16.0,1
 2015,0211,Náhuatl,residencia5,030,Veracruz,083,15.0,3
+2015,0211,Náhuatl,residencia5,023,Quintana Roo,005,15.0,2
+2015,0211,Náhuatl,residencia5,012,Guerrero,075,15.0,1
 2015,0211,Náhuatl,residencia5,031,Yucatán,050,15.0,1
 2015,0211,Náhuatl,residencia5,015,México,014,15.0,1
-2015,0211,Náhuatl,residencia5,012,Guerrero,075,15.0,1
-2015,0211,Náhuatl,residencia5,023,Quintana Roo,005,15.0,2
-2015,0211,Náhuatl,residencia5,021,Puebla,203,14.0,2
-2015,0211,Náhuatl,residencia5,021,Puebla,174,14.0,3
-2015,0211,Náhuatl,residencia5,015,México,109,14.0,1
 2015,0211,Náhuatl,residencia5,021,Puebla,049,14.0,2
-2015,0211,Náhuatl,residencia5,021,Puebla,006,13.0,1
-2015,0211,Náhuatl,residencia5,016,Michoacán,999,13.0,1
+2015,0211,Náhuatl,residencia5,015,México,109,14.0,1
+2015,0211,Náhuatl,residencia5,021,Puebla,174,14.0,3
+2015,0211,Náhuatl,residencia5,021,Puebla,203,14.0,2
 2015,0211,Náhuatl,residencia5,021,Puebla,156,13.0,1
 2015,0211,Náhuatl,residencia5,015,México,121,13.0,1
 2015,0211,Náhuatl,residencia5,030,Veracruz,092,13.0,1
+2015,0211,Náhuatl,residencia5,016,Michoacán,999,13.0,1
+2015,0211,Náhuatl,residencia5,021,Puebla,006,13.0,1
 2015,0211,Náhuatl,residencia5,030,Veracruz,006,12.0,1
 2015,0211,Náhuatl,residencia5,030,Veracruz,160,12.0,1
 2015,0211,Náhuatl,residencia5,016,Michoacán,006,11.0,1
 2015,0211,Náhuatl,residencia5,032,Zacatecas,056,11.0,1
-2015,0211,Náhuatl,residencia5,019,Nuevo León,039,10.0,1
-2015,0211,Náhuatl,residencia5,021,Puebla,123,10.0,1
-2015,0211,Náhuatl,residencia5,013,Hidalgo,080,10.0,1
 2015,0211,Náhuatl,residencia5,003,Baja California Sur,999,10.0,1
+2015,0211,Náhuatl,residencia5,021,Puebla,123,10.0,1
+2015,0211,Náhuatl,residencia5,019,Nuevo León,039,10.0,1
+2015,0211,Náhuatl,residencia5,013,Hidalgo,080,10.0,1
 2015,0211,Náhuatl,residencia5,015,México,029,9.0,2
+2015,0211,Náhuatl,residencia5,013,Hidalgo,048,8.0,1
+2015,0211,Náhuatl,residencia5,007,Chiapas,089,8.0,1
 2015,0211,Náhuatl,residencia5,021,Puebla,091,8.0,1
 2015,0211,Náhuatl,residencia5,007,Chiapas,999,8.0,1
 2015,0211,Náhuatl,residencia5,025,Sinaloa,006,8.0,1
-2015,0211,Náhuatl,residencia5,007,Chiapas,089,8.0,1
-2015,0211,Náhuatl,residencia5,013,Hidalgo,048,8.0,1
 2015,0211,Náhuatl,residencia5,015,México,081,6.0,2
 2015,0211,Náhuatl,residencia5,030,Veracruz,087,6.0,3
 2015,0211,Náhuatl,residencia5,015,México,035,5.0,1
-2015,0211,Náhuatl,residencia5,030,Veracruz,128,4.0,1
 2015,0211,Náhuatl,residencia5,020,Oaxaca,044,4.0,2
-2015,0211,Náhuatl,residencia5,021,Puebla,109,4.0,1
 2015,0211,Náhuatl,residencia5,021,Puebla,184,4.0,2
-2015,0211,Náhuatl,residencia5,011,Guanajuato,015,3.0,1
-2015,0211,Náhuatl,residencia5,020,Oaxaca,434,3.0,1
-2015,0211,Náhuatl,residencia5,015,México,101,3.0,1
-2015,0211,Náhuatl,residencia5,017,Morelos,020,3.0,1
+2015,0211,Náhuatl,residencia5,021,Puebla,109,4.0,1
+2015,0211,Náhuatl,residencia5,030,Veracruz,128,4.0,1
 2015,0211,Náhuatl,residencia5,021,Puebla,016,3.0,1
-2015,0211,Náhuatl,residencia5,030,Veracruz,044,3.0,1
+2015,0211,Náhuatl,residencia5,015,México,101,3.0,1
 2015,0211,Náhuatl,residencia5,015,México,120,3.0,1
-2015,0211,Náhuatl,residencia5,021,Puebla,070,2.0,1
-2015,0211,Náhuatl,residencia5,020,Oaxaca,294,2.0,1
+2015,0211,Náhuatl,residencia5,030,Veracruz,044,3.0,1
+2015,0211,Náhuatl,residencia5,011,Guanajuato,015,3.0,1
+2015,0211,Náhuatl,residencia5,017,Morelos,020,3.0,1
+2015,0211,Náhuatl,residencia5,020,Oaxaca,434,3.0,1
 2015,0211,Náhuatl,residencia5,021,Puebla,100,2.0,2
 2015,0211,Náhuatl,residencia5,015,México,012,2.0,1
-2015,0211,Náhuatl,residencia5,030,Veracruz,027,1.0,1
+2015,0211,Náhuatl,residencia5,021,Puebla,070,2.0,1
+2015,0211,Náhuatl,residencia5,020,Oaxaca,294,2.0,1
 2015,0211,Náhuatl,residencia5,015,México,013,1.0,1
+2015,0211,Náhuatl,residencia5,030,Veracruz,027,1.0,1
 2015,0501,Otomí,residencia5,013,Hidalgo,999,264.0,14
 2015,0501,Otomí,residencia5,015,México,999,242.0,9
 2015,0501,Otomí,residencia5,015,México,104,96.0,4
@@ -363,36 +2610,36 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0501,Otomí,residencia5,021,Puebla,999,29.0,1
 2015,0501,Otomí,residencia5,015,México,039,28.0,2
 2015,0501,Otomí,residencia5,013,Hidalgo,066,28.0,1
-2015,0501,Otomí,residencia5,021,Puebla,114,25.0,2
 2015,0501,Otomí,residencia5,021,Puebla,154,25.0,1
+2015,0501,Otomí,residencia5,021,Puebla,114,25.0,2
 2015,0501,Otomí,residencia5,022,Querétaro,014,23.0,1
 2015,0501,Otomí,residencia5,013,Hidalgo,077,21.0,3
 2015,0501,Otomí,residencia5,012,Guerrero,001,20.0,1
 2015,0501,Otomí,residencia5,015,México,033,18.0,1
-2015,0501,Otomí,residencia5,015,México,064,16.0,1
 2015,0501,Otomí,residencia5,013,Hidalgo,030,16.0,2
+2015,0501,Otomí,residencia5,015,México,064,16.0,1
 2015,0501,Otomí,residencia5,015,México,025,12.0,1
 2015,0501,Otomí,residencia5,015,México,122,9.0,1
 2015,0501,Otomí,residencia5,013,Hidalgo,053,7.0,1
 2015,0501,Otomí,residencia5,021,Puebla,085,6.0,1
-2015,0501,Otomí,residencia5,021,Puebla,109,5.0,1
-2015,0501,Otomí,residencia5,022,Querétaro,001,5.0,1
 2015,0501,Otomí,residencia5,015,México,087,5.0,1
+2015,0501,Otomí,residencia5,022,Querétaro,001,5.0,1
+2015,0501,Otomí,residencia5,021,Puebla,109,5.0,1
 2015,0501,Otomí,residencia5,015,México,001,4.0,1
 2015,0501,Otomí,residencia5,015,México,051,4.0,1
-2015,0501,Otomí,residencia5,007,Chiapas,101,3.0,1
-2015,0501,Otomí,residencia5,015,México,031,3.0,1
 2015,0501,Otomí,residencia5,013,Hidalgo,028,3.0,1
-2015,0501,Otomí,residencia5,015,México,056,2.0,1
+2015,0501,Otomí,residencia5,015,México,031,3.0,1
+2015,0501,Otomí,residencia5,007,Chiapas,101,3.0,1
 2015,0501,Otomí,residencia5,030,Veracruz,065,2.0,1
+2015,0501,Otomí,residencia5,015,México,056,2.0,1
 2015,0502,Mazahua,residencia5,015,México,999,169.0,10
 2015,0502,Mazahua,residencia5,015,México,106,139.0,9
 2015,0502,Mazahua,residencia5,015,México,031,34.0,2
 2015,0502,Mazahua,residencia5,015,México,074,32.0,4
 2015,0502,Mazahua,residencia5,016,Michoacán,112,31.0,2
 2015,0502,Mazahua,residencia5,020,Oaxaca,067,18.0,1
-2015,0502,Mazahua,residencia5,015,México,058,16.0,2
 2015,0502,Mazahua,residencia5,015,México,064,16.0,1
+2015,0502,Mazahua,residencia5,015,México,058,16.0,2
 2015,0502,Mazahua,residencia5,015,México,076,13.0,1
 2015,0502,Mazahua,residencia5,015,México,029,10.0,1
 2015,0502,Mazahua,residencia5,015,México,014,9.0,1
@@ -444,8 +2691,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0509,Mazateco,residencia5,020,Oaxaca,184,24.0,1
 2015,0509,Mazateco,residencia5,021,Puebla,182,21.0,1
 2015,0509,Mazateco,residencia5,020,Oaxaca,190,18.0,1
-2015,0509,Mazateco,residencia5,020,Oaxaca,116,17.0,1
 2015,0509,Mazateco,residencia5,017,Morelos,007,17.0,1
+2015,0509,Mazateco,residencia5,020,Oaxaca,116,17.0,1
 2015,0509,Mazateco,residencia5,015,México,057,13.0,2
 2015,0509,Mazateco,residencia5,015,México,122,10.0,1
 2015,0509,Mazateco,residencia5,020,Oaxaca,413,8.0,2
@@ -464,16 +2711,16 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0513,Zapoteco,residencia5,020,Oaxaca,361,23.0,1
 2015,0513,Zapoteco,residencia5,030,Veracruz,212,22.0,1
 2015,0513,Zapoteco,residencia5,015,México,031,16.0,1
-2015,0513,Zapoteco,residencia5,015,México,104,15.0,1
 2015,0513,Zapoteco,residencia5,015,México,058,15.0,1
+2015,0513,Zapoteco,residencia5,015,México,104,15.0,1
 2015,0513,Zapoteco,residencia5,007,Chiapas,999,14.0,1
 2015,0513,Zapoteco,residencia5,021,Puebla,114,10.0,1
 2015,0513,Zapoteco,residencia5,020,Oaxaca,225,8.0,1
 2015,0513,Zapoteco,residencia5,012,Guerrero,999,7.0,1
 2015,0513,Zapoteco,residencia5,020,Oaxaca,222,7.0,1
 2015,0513,Zapoteco,residencia5,021,Puebla,156,4.0,1
-2015,0513,Zapoteco,residencia5,015,México,106,2.0,1
 2015,0513,Zapoteco,residencia5,020,Oaxaca,036,2.0,1
+2015,0513,Zapoteco,residencia5,015,México,106,2.0,1
 2015,0514,Chatino,residencia5,020,Oaxaca,067,21.0,3
 2015,0515,Amuzgo,residencia5,012,Guerrero,999,59.0,3
 2015,0515,Amuzgo,residencia5,015,México,057,52.0,2
@@ -489,25 +2736,25 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0516,Mixteco,residencia5,020,Oaxaca,549,39.0,3
 2015,0516,Mixteco,residencia5,015,México,025,33.0,3
 2015,0516,Mixteco,residencia5,020,Oaxaca,397,30.0,2
-2015,0516,Mixteco,residencia5,020,Oaxaca,482,14.0,1
 2015,0516,Mixteco,residencia5,021,Puebla,114,14.0,1
+2015,0516,Mixteco,residencia5,020,Oaxaca,482,14.0,1
 2015,0516,Mixteco,residencia5,020,Oaxaca,039,13.0,1
 2015,0516,Mixteco,residencia5,020,Oaxaca,006,12.0,2
 2015,0516,Mixteco,residencia5,020,Oaxaca,188,11.0,1
+2015,0516,Mixteco,residencia5,013,Hidalgo,048,10.0,1
 2015,0516,Mixteco,residencia5,022,Querétaro,999,10.0,1
 2015,0516,Mixteco,residencia5,020,Oaxaca,133,10.0,1
-2015,0516,Mixteco,residencia5,013,Hidalgo,048,10.0,1
-2015,0516,Mixteco,residencia5,030,Veracruz,193,10.0,1
 2015,0516,Mixteco,residencia5,020,Oaxaca,467,10.0,1
+2015,0516,Mixteco,residencia5,030,Veracruz,193,10.0,1
 2015,0516,Mixteco,residencia5,002,Baja California,001,10.0,1
 2015,0516,Mixteco,residencia5,015,México,122,8.0,1
 2015,0516,Mixteco,residencia5,012,Guerrero,001,7.0,1
 2015,0516,Mixteco,residencia5,020,Oaxaca,082,6.0,1
-2015,0516,Mixteco,residencia5,020,Oaxaca,029,5.0,1
-2015,0516,Mixteco,residencia5,020,Oaxaca,364,5.0,2
 2015,0516,Mixteco,residencia5,020,Oaxaca,395,5.0,1
-2015,0516,Mixteco,residencia5,020,Oaxaca,414,4.0,1
+2015,0516,Mixteco,residencia5,020,Oaxaca,364,5.0,2
+2015,0516,Mixteco,residencia5,020,Oaxaca,029,5.0,1
 2015,0516,Mixteco,residencia5,015,México,999,4.0,4
+2015,0516,Mixteco,residencia5,020,Oaxaca,414,4.0,1
 2015,0516,Mixteco,residencia5,020,Oaxaca,046,3.0,1
 2015,0516,Mixteco,residencia5,020,Oaxaca,269,1.0,1
 2015,0517,Cuicateco,residencia5,020,Oaxaca,067,15.0,3
@@ -517,8 +2764,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0601,Huasteco,residencia5,030,Veracruz,193,29.0,2
 2015,0601,Huasteco,residencia5,015,México,999,20.0,2
 2015,0601,Huasteco,residencia5,024,San Luis Potosí,028,12.0,2
-2015,0601,Huasteco,residencia5,030,Veracruz,063,6.0,2
 2015,0601,Huasteco,residencia5,030,Veracruz,034,6.0,1
+2015,0601,Huasteco,residencia5,030,Veracruz,063,6.0,2
 2015,0602,Maya,residencia5,023,Quintana Roo,005,76.0,4
 2015,0602,Maya,residencia5,031,Yucatán,050,66.0,5
 2015,0602,Maya,residencia5,031,Yucatán,999,52.0,3
@@ -535,12 +2782,12 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0604,Ch'ol,residencia5,007,Chiapas,999,13.0,1
 2015,0606,Tseltal,residencia5,007,Chiapas,999,183.0,14
 2015,0606,Tseltal,residencia5,007,Chiapas,093,146.0,8
-2015,0606,Tseltal,residencia5,007,Chiapas,064,27.0,1
 2015,0606,Tseltal,residencia5,007,Chiapas,112,27.0,1
+2015,0606,Tseltal,residencia5,007,Chiapas,064,27.0,1
 2015,0606,Tseltal,residencia5,023,Quintana Roo,999,18.0,1
 2015,0606,Tseltal,residencia5,007,Chiapas,059,17.0,1
-2015,0606,Tseltal,residencia5,007,Chiapas,004,17.0,1
 2015,0606,Tseltal,residencia5,007,Chiapas,106,17.0,1
+2015,0606,Tseltal,residencia5,007,Chiapas,004,17.0,1
 2015,0606,Tseltal,residencia5,022,Querétaro,014,14.0,1
 2015,0607,Tsotsil,residencia5,007,Chiapas,026,61.0,5
 2015,0607,Tsotsil,residencia5,007,Chiapas,999,26.0,8
@@ -575,16 +2822,16 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0701,Totonaco,residencia5,028,Tamaulipas,999,9.0,1
 2015,0701,Totonaco,residencia5,021,Puebla,156,6.0,2
 2015,0701,Totonaco,residencia5,015,México,081,6.0,2
-2015,0701,Totonaco,residencia5,012,Guerrero,999,3.0,1
 2015,0701,Totonaco,residencia5,021,Puebla,999,3.0,3
+2015,0701,Totonaco,residencia5,012,Guerrero,999,3.0,1
 2015,0701,Totonaco,residencia5,021,Puebla,111,3.0,1
 2015,0701,Totonaco,residencia5,030,Veracruz,051,2.0,1
 2015,0801,Tarasco (purépecha),residencia5,015,México,033,60.0,4
 2015,0801,Tarasco (purépecha),residencia5,016,Michoacán,999,27.0,4
 2015,0801,Tarasco (purépecha),residencia5,016,Michoacán,053,24.0,3
 2015,0801,Tarasco (purépecha),residencia5,013,Hidalgo,999,14.0,1
-2015,0801,Tarasco (purépecha),residencia5,015,México,099,10.0,1
 2015,0801,Tarasco (purépecha),residencia5,001,Aguascalientes,001,10.0,1
+2015,0801,Tarasco (purépecha),residencia5,015,México,099,10.0,1
 2015,0801,Tarasco (purépecha),residencia5,016,Michoacán,102,8.0,4
 2015,0801,Tarasco (purépecha),residencia5,016,Michoacán,090,6.0,1
 2015,0801,Tarasco (purépecha),residencia5,014,Jalisco,039,1.0,1
@@ -601,8 +2848,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,0901,Mixe,residencia5,020,Oaxaca,031,14.0,2
 2015,0901,Mixe,residencia5,027,Tabasco,999,12.0,1
 2015,0901,Mixe,residencia5,021,Puebla,094,12.0,1
-2015,0901,Mixe,residencia5,020,Oaxaca,184,7.0,1
 2015,0901,Mixe,residencia5,024,San Luis Potosí,035,7.0,1
+2015,0901,Mixe,residencia5,020,Oaxaca,184,7.0,1
 2015,0901,Mixe,residencia5,015,México,999,5.0,2
 2015,0901,Mixe,residencia5,015,México,104,4.0,1
 2015,0901,Mixe,residencia5,020,Oaxaca,298,1.0,1
@@ -615,24 +2862,24 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2015,8000,Otras lenguas indígenas de América,residencia5,025,Sinaloa,012,10.0,1
 2015,9000,No especificado,residencia5,015,México,058,74.0,1
 2015,9000,No especificado,residencia5,020,Oaxaca,067,56.0,4
-2015,9000,No especificado,residencia5,021,Puebla,999,24.0,1
 2015,9000,No especificado,residencia5,014,Jalisco,039,24.0,1
+2015,9000,No especificado,residencia5,021,Puebla,999,24.0,1
 2015,9000,No especificado,residencia5,021,Puebla,114,22.0,2
 2015,9000,No especificado,residencia5,012,Guerrero,028,20.0,1
 2015,9000,No especificado,residencia5,021,Puebla,154,20.0,1
-2015,9000,No especificado,residencia5,026,Sonora,999,18.0,1
 2015,9000,No especificado,residencia5,012,Guerrero,999,18.0,2
+2015,9000,No especificado,residencia5,026,Sonora,999,18.0,1
 2015,9000,No especificado,residencia5,030,Veracruz,193,17.0,1
 2015,9000,No especificado,residencia5,029,Tlaxcala,033,15.0,1
 2015,9000,No especificado,residencia5,018,Nayarit,017,12.0,1
 2015,9000,No especificado,residencia5,007,Chiapas,097,11.0,1
 2015,9000,No especificado,residencia5,020,Oaxaca,999,10.0,1
-2015,9000,No especificado,residencia5,015,México,031,9.0,1
 2015,9000,No especificado,residencia5,027,Tabasco,004,9.0,1
+2015,9000,No especificado,residencia5,015,México,031,9.0,1
 2015,9000,No especificado,residencia5,015,México,999,8.0,2
+2015,9000,No especificado,residencia5,023,Quintana Roo,005,8.0,1
 2015,9000,No especificado,residencia5,002,Baja California,004,8.0,1
 2015,9000,No especificado,residencia5,011,Guanajuato,015,8.0,1
-2015,9000,No especificado,residencia5,023,Quintana Roo,005,8.0,1
 2015,9000,No especificado,residencia5,015,México,057,4.0,1
 2015,9000,No especificado,residencia5,015,México,033,3.0,1
 2015,9000,No especificado,residencia5,015,México,025,2.0,1
@@ -709,8 +2956,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0513,Zapoteco,nacimiento,009,Ciudad de México,,1901.0,54
 2020,0513,Zapoteco,nacimiento,030,Veracruz,,387.0,12
 2020,0513,Zapoteco,nacimiento,007,Chiapas,,146.0,4
-2020,0513,Zapoteco,nacimiento,015,México,,85.0,4
 2020,0513,Zapoteco,nacimiento,024,San Luis Potosí,,85.0,1
+2020,0513,Zapoteco,nacimiento,015,México,,85.0,4
 2020,0513,Zapoteco,nacimiento,021,Puebla,,75.0,3
 2020,0513,Zapoteco,nacimiento,028,Tamaulipas,,43.0,1
 2020,0513,Zapoteco,nacimiento,439,Otro país,,37.0,1
@@ -788,8 +3035,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,8000,Otras lenguas indígenas de América,nacimiento,998,Otro país,,23.0,1
 2020,9000,No especificado,nacimiento,009,Ciudad de México,,788.0,33
 2020,9000,No especificado,nacimiento,020,Oaxaca,,320.0,14
-2020,9000,No especificado,nacimiento,015,México,,213.0,6
 2020,9000,No especificado,nacimiento,021,Puebla,,213.0,8
+2020,9000,No especificado,nacimiento,015,México,,213.0,6
 2020,9000,No especificado,nacimiento,029,Tlaxcala,,193.0,4
 2020,9000,No especificado,nacimiento,007,Chiapas,,124.0,3
 2020,9000,No especificado,nacimiento,030,Veracruz,,119.0,6
@@ -824,9 +3071,9 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0211,Náhuatl,residencia5,006,Colima,007,83.0,1
 2020,0211,Náhuatl,residencia5,013,Hidalgo,011,80.0,2
 2020,0211,Náhuatl,residencia5,012,Guerrero,048,79.0,1
+2020,0211,Náhuatl,residencia5,015,México,002,79.0,1
 2020,0211,Náhuatl,residencia5,012,Guerrero,069,79.0,1
 2020,0211,Náhuatl,residencia5,020,Oaxaca,434,79.0,1
-2020,0211,Náhuatl,residencia5,015,México,002,79.0,1
 2020,0211,Náhuatl,residencia5,021,Puebla,186,66.0,2
 2020,0211,Náhuatl,residencia5,030,Veracruz,058,60.0,1
 2020,0211,Náhuatl,residencia5,013,Hidalgo,080,59.0,1
@@ -838,30 +3085,30 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0211,Náhuatl,residencia5,030,Veracruz,025,43.0,1
 2020,0211,Náhuatl,residencia5,013,Hidalgo,052,40.0,1
 2020,0211,Náhuatl,residencia5,021,Puebla,035,40.0,1
-2020,0211,Náhuatl,residencia5,015,México,037,39.0,1
 2020,0211,Náhuatl,residencia5,021,Puebla,145,39.0,1
+2020,0211,Náhuatl,residencia5,015,México,037,39.0,1
 2020,0211,Náhuatl,residencia5,013,Hidalgo,028,38.0,1
-2020,0211,Náhuatl,residencia5,030,Veracruz,128,37.0,1
 2020,0211,Náhuatl,residencia5,030,Veracruz,027,37.0,1
+2020,0211,Náhuatl,residencia5,030,Veracruz,128,37.0,1
 2020,0211,Náhuatl,residencia5,015,México,058,36.0,2
-2020,0211,Náhuatl,residencia5,015,México,104,33.0,1
 2020,0211,Náhuatl,residencia5,030,Veracruz,080,33.0,1
-2020,0211,Náhuatl,residencia5,012,Guerrero,066,31.0,1
+2020,0211,Náhuatl,residencia5,015,México,104,33.0,1
 2020,0211,Náhuatl,residencia5,020,Oaxaca,043,31.0,1
+2020,0211,Náhuatl,residencia5,017,Morelos,999,31.0,1
+2020,0211,Náhuatl,residencia5,012,Guerrero,038,31.0,1
+2020,0211,Náhuatl,residencia5,012,Guerrero,066,31.0,1
 2020,0211,Náhuatl,residencia5,021,Puebla,174,31.0,1
 2020,0211,Náhuatl,residencia5,011,Guanajuato,028,31.0,1
-2020,0211,Náhuatl,residencia5,012,Guerrero,038,31.0,1
 2020,0211,Náhuatl,residencia5,012,Guerrero,004,31.0,1
-2020,0211,Náhuatl,residencia5,017,Morelos,999,31.0,1
-2020,0211,Náhuatl,residencia5,030,Veracruz,048,29.0,1
 2020,0211,Náhuatl,residencia5,021,Puebla,202,29.0,1
 2020,0211,Náhuatl,residencia5,015,México,031,29.0,1
 2020,0211,Náhuatl,residencia5,015,México,106,29.0,1
+2020,0211,Náhuatl,residencia5,030,Veracruz,048,29.0,1
 2020,0211,Náhuatl,residencia5,021,Puebla,006,24.0,1
 2020,0211,Náhuatl,residencia5,013,Hidalgo,002,24.0,1
-2020,0211,Náhuatl,residencia5,031,Yucatán,050,23.0,1
 2020,0211,Náhuatl,residencia5,030,Veracruz,044,23.0,1
 2020,0211,Náhuatl,residencia5,016,Michoacán,112,23.0,1
+2020,0211,Náhuatl,residencia5,031,Yucatán,050,23.0,1
 2020,0211,Náhuatl,residencia5,015,México,019,20.0,1
 2020,0211,Náhuatl,residencia5,019,Nuevo León,039,20.0,1
 2020,0211,Náhuatl,residencia5,021,Puebla,088,20.0,1
@@ -883,19 +3130,19 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0501,Otomí,residencia5,013,Hidalgo,030,42.0,1
 2020,0501,Otomí,residencia5,013,Hidalgo,006,35.0,1
 2020,0501,Otomí,residencia5,013,Hidalgo,055,34.0,1
-2020,0501,Otomí,residencia5,013,Hidalgo,999,31.0,1
-2020,0501,Otomí,residencia5,030,Veracruz,193,31.0,1
 2020,0501,Otomí,residencia5,013,Hidalgo,077,31.0,1
+2020,0501,Otomí,residencia5,030,Veracruz,193,31.0,1
+2020,0501,Otomí,residencia5,013,Hidalgo,999,31.0,1
 2020,0501,Otomí,residencia5,017,Morelos,011,28.0,1
-2020,0501,Otomí,residencia5,015,México,014,24.0,1
 2020,0501,Otomí,residencia5,013,Hidalgo,003,24.0,1
-2020,0501,Otomí,residencia5,021,Puebla,114,23.0,1
+2020,0501,Otomí,residencia5,015,México,014,24.0,1
 2020,0501,Otomí,residencia5,013,Hidalgo,060,23.0,1
+2020,0501,Otomí,residencia5,021,Puebla,114,23.0,1
 2020,0501,Otomí,residencia5,015,México,122,23.0,1
 2020,0501,Otomí,residencia5,015,México,058,20.0,1
 2020,0501,Otomí,residencia5,015,México,031,16.0,1
-2020,0501,Otomí,residencia5,021,Puebla,111,10.0,1
 2020,0501,Otomí,residencia5,015,México,007,10.0,1
+2020,0501,Otomí,residencia5,021,Puebla,111,10.0,1
 2020,0501,Otomí,residencia5,014,Jalisco,120,5.0,1
 2020,0502,Mazahua,residencia5,015,México,124,250.0,10
 2020,0502,Mazahua,residencia5,016,Michoacán,112,115.0,4
@@ -942,8 +3189,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0509,Mazateco,residencia5,020,Oaxaca,278,50.0,2
 2020,0509,Mazateco,residencia5,020,Oaxaca,184,50.0,2
 2020,0509,Mazateco,residencia5,020,Oaxaca,073,44.0,1
-2020,0509,Mazateco,residencia5,031,Yucatán,050,40.0,1
 2020,0509,Mazateco,residencia5,031,Yucatán,999,40.0,1
+2020,0509,Mazateco,residencia5,031,Yucatán,050,40.0,1
 2020,0509,Mazateco,residencia5,015,México,025,36.0,3
 2020,0509,Mazateco,residencia5,015,México,999,24.0,1
 2020,0509,Mazateco,residencia5,020,Oaxaca,027,23.0,1
@@ -956,14 +3203,14 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0513,Zapoteco,residencia5,020,Oaxaca,043,116.0,2
 2020,0513,Zapoteco,residencia5,020,Oaxaca,184,74.0,2
 2020,0513,Zapoteco,residencia5,015,México,999,72.0,3
-2020,0513,Zapoteco,residencia5,007,Chiapas,078,49.0,1
 2020,0513,Zapoteco,residencia5,020,Oaxaca,298,49.0,1
+2020,0513,Zapoteco,residencia5,007,Chiapas,078,49.0,1
 2020,0513,Zapoteco,residencia5,020,Oaxaca,030,48.0,2
 2020,0513,Zapoteco,residencia5,020,Oaxaca,042,40.0,2
 2020,0513,Zapoteco,residencia5,020,Oaxaca,482,40.0,1
-2020,0513,Zapoteco,residencia5,030,Veracruz,999,39.0,1
-2020,0513,Zapoteco,residencia5,021,Puebla,010,39.0,1
 2020,0513,Zapoteco,residencia5,015,México,002,39.0,1
+2020,0513,Zapoteco,residencia5,021,Puebla,010,39.0,1
+2020,0513,Zapoteco,residencia5,030,Veracruz,999,39.0,1
 2020,0513,Zapoteco,residencia5,015,México,058,37.0,1
 2020,0513,Zapoteco,residencia5,014,Jalisco,039,36.0,1
 2020,0513,Zapoteco,residencia5,020,Oaxaca,557,35.0,1
@@ -993,8 +3240,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0516,Mixteco,residencia5,015,México,106,30.0,1
 2020,0516,Mixteco,residencia5,012,Guerrero,066,26.0,1
 2020,0516,Mixteco,residencia5,020,Oaxaca,033,25.0,1
-2020,0516,Mixteco,residencia5,012,Guerrero,001,23.0,1
 2020,0516,Mixteco,residencia5,015,México,029,23.0,1
+2020,0516,Mixteco,residencia5,012,Guerrero,001,23.0,1
 2020,0516,Mixteco,residencia5,015,México,031,4.0,1
 2020,0517,Cuicateco,residencia5,020,Oaxaca,067,14.0,1
 2020,0518,Triqui,residencia5,020,Oaxaca,067,44.0,2
@@ -1027,8 +3274,8 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0701,Totonaco,residencia5,015,México,058,57.0,1
 2020,0701,Totonaco,residencia5,015,México,057,52.0,2
 2020,0701,Totonaco,residencia5,030,Veracruz,130,46.0,1
-2020,0701,Totonaco,residencia5,021,Puebla,210,43.0,1
 2020,0701,Totonaco,residencia5,021,Puebla,208,43.0,1
+2020,0701,Totonaco,residencia5,021,Puebla,210,43.0,1
 2020,0701,Totonaco,residencia5,021,Puebla,088,40.0,2
 2020,0701,Totonaco,residencia5,021,Puebla,074,38.0,1
 2020,0701,Totonaco,residencia5,021,Puebla,006,37.0,1
@@ -1036,13 +3283,13 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,0701,Totonaco,residencia5,030,Veracruz,064,31.0,3
 2020,0701,Totonaco,residencia5,015,México,033,26.0,1
 2020,0701,Totonaco,residencia5,007,Chiapas,999,26.0,2
-2020,0701,Totonaco,residencia5,015,México,070,23.0,1
 2020,0701,Totonaco,residencia5,030,Veracruz,203,23.0,3
+2020,0701,Totonaco,residencia5,015,México,070,23.0,1
 2020,0701,Totonaco,residencia5,030,Veracruz,124,22.0,1
 2020,0701,Totonaco,residencia5,021,Puebla,178,19.0,1
 2020,0701,Totonaco,residencia5,030,Veracruz,195,13.0,1
-2020,0701,Totonaco,residencia5,015,México,999,12.0,1
 2020,0701,Totonaco,residencia5,015,México,106,12.0,1
+2020,0701,Totonaco,residencia5,015,México,999,12.0,1
 2020,0701,Totonaco,residencia5,005,Coahuila,030,12.0,1
 2020,0701,Totonaco,residencia5,030,Veracruz,999,5.0,1
 2020,0801,Tarasco (purépecha),residencia5,016,Michoacán,999,185.0,5
@@ -1062,15 +3309,524 @@ anio,lengua,lengua_nombre,tipo,ent,ent_nombre,mun,num,casos
 2020,1001,Chontal de Oaxaca,residencia5,020,Oaxaca,067,79.0,1
 2020,8000,Otras lenguas indígenas de América,residencia5,015,México,106,24.0,1
 2020,9000,No especificado,residencia5,015,México,057,69.0,1
-2020,9000,No especificado,residencia5,021,Puebla,207,43.0,1
 2020,9000,No especificado,residencia5,021,Puebla,999,43.0,1
+2020,9000,No especificado,residencia5,021,Puebla,207,43.0,1
 2020,9000,No especificado,residencia5,003,Baja California Sur,003,42.0,1
 2020,9000,No especificado,residencia5,007,Chiapas,999,40.0,2
-2020,9000,No especificado,residencia5,015,México,001,32.0,1
 2020,9000,No especificado,residencia5,027,Tabasco,004,32.0,1
+2020,9000,No especificado,residencia5,015,México,001,32.0,1
 2020,9000,No especificado,residencia5,015,México,999,24.0,2
 2020,9000,No especificado,residencia5,020,Oaxaca,067,24.0,1
 2020,9000,No especificado,residencia5,021,Puebla,114,12.0,1
 2020,9000,No especificado,residencia5,021,Puebla,176,5.0,1
 2020,9010,Chontal insuficientemente especificado,residencia5,007,Chiapas,999,76.0,1
 2020,9010,Chontal insuficientemente especificado,residencia5,015,México,033,14.0,1
+2025,0205,Tarahumara,nacimiento,032,Zacatecas,,53.0,1
+2025,0205,Tarahumara,nacimiento,009,Ciudad de México,,22.0,1
+2025,0205,Tarahumara,nacimiento,008,Chihuahua,,21.0,1
+2025,0207,Yaqui,nacimiento,002,Baja California,,85.0,1
+2025,0207,Yaqui,nacimiento,026,Sonora,,14.0,1
+2025,0208,Mayo,nacimiento,026,Sonora,,19.0,1
+2025,0210,Huichol,nacimiento,024,San Luis Potosí,,31.0,1
+2025,0210,Huichol,nacimiento,014,Jalisco,,4.0,1
+2025,0210,Huichol,nacimiento,009,Ciudad de México,,4.0,1
+2025,0211,Náhuatl,nacimiento,021,Puebla,,11973.0,813
+2025,0211,Náhuatl,nacimiento,009,Ciudad de México,,9297.0,665
+2025,0211,Náhuatl,nacimiento,013,Hidalgo,,5154.0,265
+2025,0211,Náhuatl,nacimiento,030,Veracruz,,4819.0,351
+2025,0211,Náhuatl,nacimiento,020,Oaxaca,,2740.0,92
+2025,0211,Náhuatl,nacimiento,024,San Luis Potosí,,1411.0,94
+2025,0211,Náhuatl,nacimiento,012,Guerrero,,1024.0,81
+2025,0211,Náhuatl,nacimiento,015,México,,883.0,50
+2025,0211,Náhuatl,nacimiento,029,Tlaxcala,,232.0,12
+2025,0211,Náhuatl,nacimiento,017,Morelos,,214.0,13
+2025,0211,Náhuatl,nacimiento,011,Guanajuato,,157.0,4
+2025,0211,Náhuatl,nacimiento,016,Michoacán,,115.0,7
+2025,0211,Náhuatl,nacimiento,002,Baja California,,70.0,2
+2025,0211,Náhuatl,nacimiento,221,Otro país,,51.0,2
+2025,0211,Náhuatl,nacimiento,014,Jalisco,,40.0,2
+2025,0211,Náhuatl,nacimiento,247,Otro país,,31.0,1
+2025,0211,Náhuatl,nacimiento,028,Tamaulipas,,18.0,1
+2025,0211,Náhuatl,nacimiento,025,Sinaloa,,17.0,1
+2025,0211,Náhuatl,nacimiento,031,Yucatán,,15.0,1
+2025,0211,Náhuatl,nacimiento,032,Zacatecas,,15.0,1
+2025,0211,Náhuatl,nacimiento,027,Tabasco,,14.0,1
+2025,0211,Náhuatl,nacimiento,005,Coahuila,,12.0,1
+2025,0211,Náhuatl,nacimiento,008,Chihuahua,,1.0,1
+2025,0501,Otomí,nacimiento,013,Hidalgo,,3226.0,190
+2025,0501,Otomí,nacimiento,015,México,,2990.0,169
+2025,0501,Otomí,nacimiento,022,Querétaro,,2978.0,139
+2025,0501,Otomí,nacimiento,009,Ciudad de México,,2916.0,155
+2025,0501,Otomí,nacimiento,021,Puebla,,701.0,39
+2025,0501,Otomí,nacimiento,030,Veracruz,,399.0,39
+2025,0501,Otomí,nacimiento,020,Oaxaca,,234.0,14
+2025,0501,Otomí,nacimiento,017,Morelos,,154.0,2
+2025,0501,Otomí,nacimiento,029,Tlaxcala,,60.0,4
+2025,0501,Otomí,nacimiento,016,Michoacán,,55.0,2
+2025,0501,Otomí,nacimiento,019,Nuevo León,,54.0,2
+2025,0501,Otomí,nacimiento,018,Nayarit,,32.0,1
+2025,0501,Otomí,nacimiento,997,Otro país,,18.0,1
+2025,0501,Otomí,nacimiento,028,Tamaulipas,,14.0,1
+2025,0501,Otomí,nacimiento,024,San Luis Potosí,,10.0,1
+2025,0501,Otomí,nacimiento,221,Otro país,,4.0,1
+2025,0501,Otomí,nacimiento,012,Guerrero,,3.0,1
+2025,0502,Mazahua,nacimiento,015,México,,5379.0,323
+2025,0502,Mazahua,nacimiento,016,Michoacán,,1846.0,62
+2025,0502,Mazahua,nacimiento,009,Ciudad de México,,1362.0,77
+2025,0502,Mazahua,nacimiento,020,Oaxaca,,143.0,6
+2025,0502,Mazahua,nacimiento,022,Querétaro,,45.0,1
+2025,0502,Mazahua,nacimiento,021,Puebla,,23.0,2
+2025,0502,Mazahua,nacimiento,011,Guanajuato,,16.0,1
+2025,0502,Mazahua,nacimiento,019,Nuevo León,,3.0,1
+2025,0503,Matlatzinca,nacimiento,015,México,,185.0,5
+2025,0503,Matlatzinca,nacimiento,009,Ciudad de México,,66.0,3
+2025,0504,Tlahuica,nacimiento,015,México,,136.0,3
+2025,0504,Tlahuica,nacimiento,009,Ciudad de México,,24.0,2
+2025,0507,Chinanteco,nacimiento,020,Oaxaca,,2631.0,162
+2025,0507,Chinanteco,nacimiento,009,Ciudad de México,,221.0,13
+2025,0507,Chinanteco,nacimiento,030,Veracruz,,118.0,15
+2025,0507,Chinanteco,nacimiento,997,Otro país,,4.0,1
+2025,0507,Chinanteco,nacimiento,012,Guerrero,,4.0,1
+2025,0508,Tlapaneco,nacimiento,012,Guerrero,,1162.0,81
+2025,0508,Tlapaneco,nacimiento,009,Ciudad de México,,67.0,4
+2025,0509,Mazateco,nacimiento,020,Oaxaca,,14619.0,746
+2025,0509,Mazateco,nacimiento,009,Ciudad de México,,1561.0,90
+2025,0509,Mazateco,nacimiento,030,Veracruz,,290.0,14
+2025,0509,Mazateco,nacimiento,021,Puebla,,206.0,11
+2025,0509,Mazateco,nacimiento,015,México,,88.0,8
+2025,0509,Mazateco,nacimiento,024,San Luis Potosí,,52.0,1
+2025,0511,Chocholteco,nacimiento,020,Oaxaca,,61.0,5
+2025,0511,Chocholteco,nacimiento,009,Ciudad de México,,6.0,1
+2025,0512,Popoloca,nacimiento,021,Puebla,,133.0,14
+2025,0512,Popoloca,nacimiento,009,Ciudad de México,,14.0,2
+2025,0513,Zapoteco,nacimiento,020,Oaxaca,,6692.0,330
+2025,0513,Zapoteco,nacimiento,009,Ciudad de México,,1279.0,73
+2025,0513,Zapoteco,nacimiento,030,Veracruz,,283.0,17
+2025,0513,Zapoteco,nacimiento,007,Chiapas,,157.0,4
+2025,0513,Zapoteco,nacimiento,021,Puebla,,84.0,5
+2025,0513,Zapoteco,nacimiento,013,Hidalgo,,71.0,3
+2025,0513,Zapoteco,nacimiento,012,Guerrero,,54.0,2
+2025,0513,Zapoteco,nacimiento,005,Coahuila,,21.0,1
+2025,0513,Zapoteco,nacimiento,024,San Luis Potosí,,5.0,1
+2025,0513,Zapoteco,nacimiento,015,México,,4.0,1
+2025,0513,Zapoteco,nacimiento,026,Sonora,,2.0,1
+2025,0514,Chatino,nacimiento,020,Oaxaca,,39.0,3
+2025,0515,Amuzgo,nacimiento,012,Guerrero,,398.0,16
+2025,0515,Amuzgo,nacimiento,009,Ciudad de México,,15.0,1
+2025,0516,Mixteco,nacimiento,020,Oaxaca,,11629.0,643
+2025,0516,Mixteco,nacimiento,009,Ciudad de México,,1482.0,93
+2025,0516,Mixteco,nacimiento,021,Puebla,,592.0,29
+2025,0516,Mixteco,nacimiento,012,Guerrero,,402.0,32
+2025,0516,Mixteco,nacimiento,015,México,,115.0,6
+2025,0516,Mixteco,nacimiento,030,Veracruz,,73.0,6
+2025,0516,Mixteco,nacimiento,007,Chiapas,,30.0,3
+2025,0516,Mixteco,nacimiento,013,Hidalgo,,14.0,1
+2025,0516,Mixteco,nacimiento,001,Aguascalientes,,4.0,1
+2025,0516,Mixteco,nacimiento,003,Baja California Sur,,3.0,1
+2025,0516,Mixteco,nacimiento,028,Tamaulipas,,2.0,1
+2025,0517,Cuicateco,nacimiento,020,Oaxaca,,136.0,16
+2025,0518,Triqui,nacimiento,020,Oaxaca,,271.0,25
+2025,0518,Triqui,nacimiento,009,Ciudad de México,,106.0,14
+2025,0518,Triqui,nacimiento,015,México,,4.0,1
+2025,0601,Huasteco,nacimiento,024,San Luis Potosí,,230.0,11
+2025,0601,Huasteco,nacimiento,030,Veracruz,,212.0,16
+2025,0601,Huasteco,nacimiento,009,Ciudad de México,,129.0,9
+2025,0601,Huasteco,nacimiento,015,México,,20.0,1
+2025,0601,Huasteco,nacimiento,005,Coahuila,,15.0,1
+2025,0602,Maya,nacimiento,009,Ciudad de México,,671.0,32
+2025,0602,Maya,nacimiento,031,Yucatán,,548.0,27
+2025,0602,Maya,nacimiento,023,Quintana Roo,,111.0,6
+2025,0602,Maya,nacimiento,015,México,,53.0,3
+2025,0602,Maya,nacimiento,014,Jalisco,,49.0,3
+2025,0602,Maya,nacimiento,013,Hidalgo,,28.0,2
+2025,0602,Maya,nacimiento,008,Chihuahua,,22.0,1
+2025,0602,Maya,nacimiento,029,Tlaxcala,,22.0,1
+2025,0602,Maya,nacimiento,005,Coahuila,,19.0,1
+2025,0602,Maya,nacimiento,225,Otro país,,18.0,1
+2025,0602,Maya,nacimiento,017,Morelos,,17.0,1
+2025,0602,Maya,nacimiento,004,Campeche,,13.0,1
+2025,0602,Maya,nacimiento,027,Tabasco,,7.0,1
+2025,0602,Maya,nacimiento,204,Otro país,,7.0,1
+2025,0602,Maya,nacimiento,007,Chiapas,,4.0,1
+2025,0604,Ch'ol,nacimiento,007,Chiapas,,214.0,13
+2025,0604,Ch'ol,nacimiento,027,Tabasco,,62.0,1
+2025,0604,Ch'ol,nacimiento,012,Guerrero,,24.0,1
+2025,0604,Ch'ol,nacimiento,009,Ciudad de México,,21.0,2
+2025,0605,Chontal de Tabasco,nacimiento,027,Tabasco,,53.0,1
+2025,0606,Tseltal,nacimiento,007,Chiapas,,2323.0,130
+2025,0606,Tseltal,nacimiento,009,Ciudad de México,,163.0,11
+2025,0606,Tseltal,nacimiento,015,México,,23.0,1
+2025,0606,Tseltal,nacimiento,020,Oaxaca,,19.0,1
+2025,0607,Tsotsil,nacimiento,007,Chiapas,,333.0,24
+2025,0607,Tsotsil,nacimiento,009,Ciudad de México,,78.0,6
+2025,0607,Tsotsil,nacimiento,017,Morelos,,35.0,1
+2025,0607,Tsotsil,nacimiento,011,Guanajuato,,31.0,1
+2025,0607,Tsotsil,nacimiento,029,Tlaxcala,,15.0,1
+2025,0607,Tsotsil,nacimiento,028,Tamaulipas,,13.0,1
+2025,0613,Tojolabal,nacimiento,007,Chiapas,,22.0,1
+2025,0614,Q'eqchi',nacimiento,009,Ciudad de México,,20.0,1
+2025,0615,K'iche',nacimiento,225,Otro país,,45.0,4
+2025,0616,Kaqchikel,nacimiento,007,Chiapas,,6.0,1
+2025,0618,Mam,nacimiento,007,Chiapas,,35.0,5
+2025,0618,Mam,nacimiento,009,Ciudad de México,,14.0,1
+2025,0618,Mam,nacimiento,225,Otro país,,7.0,1
+2025,0701,Totonaco,nacimiento,021,Puebla,,2910.0,180
+2025,0701,Totonaco,nacimiento,030,Veracruz,,2310.0,160
+2025,0701,Totonaco,nacimiento,009,Ciudad de México,,417.0,33
+2025,0701,Totonaco,nacimiento,028,Tamaulipas,,21.0,1
+2025,0701,Totonaco,nacimiento,007,Chiapas,,19.0,1
+2025,0701,Totonaco,nacimiento,020,Oaxaca,,8.0,2
+2025,0701,Totonaco,nacimiento,015,México,,4.0,1
+2025,0702,Tepehua,nacimiento,030,Veracruz,,168.0,7
+2025,0702,Tepehua,nacimiento,013,Hidalgo,,68.0,4
+2025,0801,Tarasco (purépecha),nacimiento,016,Michoacán,,807.0,50
+2025,0801,Tarasco (purépecha),nacimiento,009,Ciudad de México,,252.0,17
+2025,0801,Tarasco (purépecha),nacimiento,002,Baja California,,19.0,1
+2025,0801,Tarasco (purépecha),nacimiento,014,Jalisco,,14.0,1
+2025,0801,Tarasco (purépecha),nacimiento,013,Hidalgo,,7.0,1
+2025,0901,Mixe,nacimiento,020,Oaxaca,,3595.0,196
+2025,0901,Mixe,nacimiento,009,Ciudad de México,,322.0,24
+2025,0901,Mixe,nacimiento,013,Hidalgo,,31.0,1
+2025,0901,Mixe,nacimiento,032,Zacatecas,,24.0,1
+2025,0901,Mixe,nacimiento,015,México,,13.0,1
+2025,0901,Mixe,nacimiento,017,Morelos,,4.0,1
+2025,0907,Zoque,nacimiento,020,Oaxaca,,180.0,11
+2025,0907,Zoque,nacimiento,007,Chiapas,,100.0,6
+2025,0907,Zoque,nacimiento,009,Ciudad de México,,7.0,2
+2025,1001,Chontal de Oaxaca,nacimiento,020,Oaxaca,,170.0,4
+2025,1001,Chontal de Oaxaca,nacimiento,021,Puebla,,1.0,1
+2025,1101,Huave,nacimiento,020,Oaxaca,,100.0,4
+2025,1101,Huave,nacimiento,009,Ciudad de México,,39.0,2
+2025,8000,Otras lenguas indígenas de América,nacimiento,210,Otro país,,81.0,4
+2025,8000,Otras lenguas indígenas de América,nacimiento,236,Otro país,,80.0,5
+2025,8000,Otras lenguas indígenas de América,nacimiento,250,Otro país,,66.0,2
+2025,8000,Otras lenguas indígenas de América,nacimiento,237,Otro país,,38.0,2
+2025,8000,Otras lenguas indígenas de América,nacimiento,020,Oaxaca,,30.0,1
+2025,8000,Otras lenguas indígenas de América,nacimiento,009,Ciudad de México,,22.0,2
+2025,8000,Otras lenguas indígenas de América,nacimiento,214,Otro país,,19.0,1
+2025,8000,Otras lenguas indígenas de América,nacimiento,215,Otro país,,17.0,1
+2025,8000,Otras lenguas indígenas de América,nacimiento,109,Otro país,,16.0,1
+2025,9000,No especificado,nacimiento,020,Oaxaca,,322.0,19
+2025,9000,No especificado,nacimiento,009,Ciudad de México,,212.0,11
+2025,9000,No especificado,nacimiento,123,Otro país,,156.0,3
+2025,9000,No especificado,nacimiento,235,Otro país,,87.0,2
+2025,9000,No especificado,nacimiento,021,Puebla,,60.0,2
+2025,9000,No especificado,nacimiento,027,Tabasco,,55.0,2
+2025,9000,No especificado,nacimiento,030,Veracruz,,22.0,2
+2025,9000,No especificado,nacimiento,225,Otro país,,21.0,1
+2025,9000,No especificado,nacimiento,013,Hidalgo,,21.0,1
+2025,9000,No especificado,nacimiento,113,Otro país,,19.0,1
+2025,9000,No especificado,nacimiento,028,Tamaulipas,,19.0,1
+2025,9000,No especificado,nacimiento,007,Chiapas,,10.0,1
+2025,9000,No especificado,nacimiento,029,Tlaxcala,,4.0,1
+2025,9000,No especificado,nacimiento,012,Guerrero,,4.0,1
+2025,9000,No especificado,nacimiento,122,Otro país,,4.0,1
+2025,9000,No especificado,nacimiento,010,Durango,,3.0,1
+2025,9000,No especificado,nacimiento,014,Jalisco,,2.0,1
+2025,9010,Chontal insuficientemente especificado,nacimiento,007,Chiapas,,28.0,7
+2025,9030,Popoluca insuficientemente especificado,nacimiento,030,Veracruz,,175.0,4
+2025,0211,Náhuatl,residencia5,021,Puebla,114,868.0,39
+2025,0211,Náhuatl,residencia5,013,Hidalgo,028,252.0,4
+2025,0211,Náhuatl,residencia5,020,Oaxaca,067,249.0,7
+2025,0211,Náhuatl,residencia5,015,México,033,167.0,8
+2025,0211,Náhuatl,residencia5,030,Veracruz,193,166.0,7
+2025,0211,Náhuatl,residencia5,013,Hidalgo,999,149.0,8
+2025,0211,Náhuatl,residencia5,021,Puebla,207,119.0,5
+2025,0211,Náhuatl,residencia5,021,Puebla,119,92.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,172,89.0,5
+2025,0211,Náhuatl,residencia5,012,Guerrero,029,80.0,5
+2025,0211,Náhuatl,residencia5,015,México,999,78.0,6
+2025,0211,Náhuatl,residencia5,020,Oaxaca,490,72.0,3
+2025,0211,Náhuatl,residencia5,030,Veracruz,003,70.0,2
+2025,0211,Náhuatl,residencia5,021,Puebla,071,70.0,5
+2025,0211,Náhuatl,residencia5,014,Jalisco,039,61.0,1
+2025,0211,Náhuatl,residencia5,013,Hidalgo,002,59.0,4
+2025,0211,Náhuatl,residencia5,012,Guerrero,999,56.0,3
+2025,0211,Náhuatl,residencia5,015,México,039,41.0,2
+2025,0211,Náhuatl,residencia5,013,Hidalgo,011,38.0,2
+2025,0211,Náhuatl,residencia5,022,Querétaro,014,36.0,1
+2025,0211,Náhuatl,residencia5,013,Hidalgo,069,35.0,1
+2025,0211,Náhuatl,residencia5,016,Michoacán,053,35.0,1
+2025,0211,Náhuatl,residencia5,029,Tlaxcala,022,35.0,1
+2025,0211,Náhuatl,residencia5,020,Oaxaca,434,32.0,2
+2025,0211,Náhuatl,residencia5,030,Veracruz,118,30.0,1
+2025,0211,Náhuatl,residencia5,024,San Luis Potosí,999,30.0,1
+2025,0211,Náhuatl,residencia5,030,Veracruz,149,26.0,1
+2025,0211,Náhuatl,residencia5,015,México,076,25.0,1
+2025,0211,Náhuatl,residencia5,023,Quintana Roo,003,25.0,1
+2025,0211,Náhuatl,residencia5,015,México,031,25.0,2
+2025,0211,Náhuatl,residencia5,015,México,057,24.0,1
+2025,0211,Náhuatl,residencia5,012,Guerrero,074,24.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,217,23.0,2
+2025,0211,Náhuatl,residencia5,030,Veracruz,129,20.0,1
+2025,0211,Náhuatl,residencia5,030,Veracruz,019,20.0,1
+2025,0211,Náhuatl,residencia5,030,Veracruz,076,18.0,3
+2025,0211,Náhuatl,residencia5,015,México,013,18.0,2
+2025,0211,Náhuatl,residencia5,030,Veracruz,028,18.0,1
+2025,0211,Náhuatl,residencia5,020,Oaxaca,318,18.0,1
+2025,0211,Náhuatl,residencia5,017,Morelos,007,17.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,043,17.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,078,17.0,1
+2025,0211,Náhuatl,residencia5,002,Baja California,004,16.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,049,16.0,3
+2025,0211,Náhuatl,residencia5,017,Morelos,011,15.0,1
+2025,0211,Náhuatl,residencia5,015,México,037,15.0,1
+2025,0211,Náhuatl,residencia5,029,Tlaxcala,033,14.0,1
+2025,0211,Náhuatl,residencia5,023,Quintana Roo,005,14.0,1
+2025,0211,Náhuatl,residencia5,030,Veracruz,999,14.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,036,13.0,1
+2025,0211,Náhuatl,residencia5,003,Baja California Sur,008,13.0,1
+2025,0211,Náhuatl,residencia5,015,México,023,13.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,182,13.0,1
+2025,0211,Náhuatl,residencia5,024,San Luis Potosí,053,13.0,1
+2025,0211,Náhuatl,residencia5,015,México,025,12.0,1
+2025,0211,Náhuatl,residencia5,014,Jalisco,067,12.0,1
+2025,0211,Náhuatl,residencia5,015,México,058,12.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,204,10.0,2
+2025,0211,Náhuatl,residencia5,030,Veracruz,110,10.0,1
+2025,0211,Náhuatl,residencia5,031,Yucatán,050,9.0,2
+2025,0211,Náhuatl,residencia5,021,Puebla,186,7.0,1
+2025,0211,Náhuatl,residencia5,030,Veracruz,083,7.0,1
+2025,0211,Náhuatl,residencia5,029,Tlaxcala,043,7.0,1
+2025,0211,Náhuatl,residencia5,024,San Luis Potosí,037,6.0,1
+2025,0211,Náhuatl,residencia5,024,San Luis Potosí,029,6.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,156,6.0,2
+2025,0211,Náhuatl,residencia5,020,Oaxaca,515,4.0,1
+2025,0211,Náhuatl,residencia5,030,Veracruz,147,4.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,101,4.0,1
+2025,0211,Náhuatl,residencia5,024,San Luis Potosí,028,4.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,148,4.0,1
+2025,0211,Náhuatl,residencia5,013,Hidalgo,051,4.0,1
+2025,0211,Náhuatl,residencia5,015,México,109,4.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,075,3.0,3
+2025,0211,Náhuatl,residencia5,015,México,024,3.0,1
+2025,0211,Náhuatl,residencia5,012,Guerrero,002,2.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,070,2.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,050,2.0,1
+2025,0211,Náhuatl,residencia5,020,Oaxaca,242,2.0,1
+2025,0211,Náhuatl,residencia5,030,Veracruz,027,1.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,107,1.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,197,1.0,1
+2025,0211,Náhuatl,residencia5,021,Puebla,212,1.0,1
+2025,0501,Otomí,residencia5,015,México,033,101.0,3
+2025,0501,Otomí,residencia5,022,Querétaro,001,67.0,3
+2025,0501,Otomí,residencia5,015,México,999,65.0,2
+2025,0501,Otomí,residencia5,015,México,087,54.0,1
+2025,0501,Otomí,residencia5,012,Guerrero,999,53.0,1
+2025,0501,Otomí,residencia5,015,México,058,42.0,2
+2025,0501,Otomí,residencia5,022,Querétaro,014,39.0,4
+2025,0501,Otomí,residencia5,030,Veracruz,999,31.0,1
+2025,0501,Otomí,residencia5,015,México,106,30.0,1
+2025,0501,Otomí,residencia5,013,Hidalgo,999,24.0,2
+2025,0501,Otomí,residencia5,010,Durango,007,19.0,1
+2025,0501,Otomí,residencia5,015,México,122,19.0,1
+2025,0501,Otomí,residencia5,030,Veracruz,170,19.0,1
+2025,0501,Otomí,residencia5,022,Querétaro,999,18.0,1
+2025,0501,Otomí,residencia5,015,México,111,17.0,1
+2025,0501,Otomí,residencia5,030,Veracruz,193,16.0,1
+2025,0501,Otomí,residencia5,021,Puebla,187,16.0,1
+2025,0501,Otomí,residencia5,013,Hidalgo,015,15.0,1
+2025,0501,Otomí,residencia5,015,México,115,15.0,1
+2025,0501,Otomí,residencia5,015,México,081,14.0,1
+2025,0501,Otomí,residencia5,026,Sonora,029,7.0,1
+2025,0501,Otomí,residencia5,007,Chiapas,083,7.0,1
+2025,0501,Otomí,residencia5,019,Nuevo León,039,6.0,1
+2025,0501,Otomí,residencia5,014,Jalisco,097,4.0,1
+2025,0501,Otomí,residencia5,015,México,003,4.0,1
+2025,0501,Otomí,residencia5,015,México,037,4.0,1
+2025,0501,Otomí,residencia5,015,México,075,4.0,1
+2025,0501,Otomí,residencia5,012,Guerrero,062,3.0,1
+2025,0501,Otomí,residencia5,020,Oaxaca,999,3.0,1
+2025,0501,Otomí,residencia5,006,Colima,007,3.0,1
+2025,0501,Otomí,residencia5,015,México,121,2.0,1
+2025,0502,Mazahua,residencia5,015,México,074,129.0,11
+2025,0502,Mazahua,residencia5,015,México,057,89.0,3
+2025,0502,Mazahua,residencia5,016,Michoacán,112,54.0,1
+2025,0502,Mazahua,residencia5,015,México,106,47.0,1
+2025,0502,Mazahua,residencia5,015,México,999,44.0,4
+2025,0502,Mazahua,residencia5,015,México,124,42.0,4
+2025,0502,Mazahua,residencia5,015,México,042,40.0,5
+2025,0502,Mazahua,residencia5,015,México,064,29.0,2
+2025,0502,Mazahua,residencia5,015,México,025,27.0,3
+2025,0502,Mazahua,residencia5,015,México,037,25.0,2
+2025,0502,Mazahua,residencia5,021,Puebla,058,19.0,1
+2025,0502,Mazahua,residencia5,015,México,031,19.0,1
+2025,0502,Mazahua,residencia5,015,México,058,12.0,1
+2025,0502,Mazahua,residencia5,016,Michoacán,999,12.0,3
+2025,0502,Mazahua,residencia5,015,México,014,6.0,3
+2025,0502,Mazahua,residencia5,019,Nuevo León,039,4.0,1
+2025,0507,Chinanteco,residencia5,020,Oaxaca,067,176.0,8
+2025,0507,Chinanteco,residencia5,020,Oaxaca,136,68.0,2
+2025,0507,Chinanteco,residencia5,021,Puebla,114,52.0,1
+2025,0507,Chinanteco,residencia5,020,Oaxaca,205,33.0,1
+2025,0507,Chinanteco,residencia5,020,Oaxaca,468,33.0,1
+2025,0507,Chinanteco,residencia5,020,Oaxaca,559,28.0,2
+2025,0507,Chinanteco,residencia5,020,Oaxaca,184,22.0,1
+2025,0507,Chinanteco,residencia5,020,Oaxaca,232,20.0,2
+2025,0507,Chinanteco,residencia5,020,Oaxaca,134,16.0,1
+2025,0507,Chinanteco,residencia5,007,Chiapas,999,14.0,2
+2025,0507,Chinanteco,residencia5,020,Oaxaca,326,7.0,1
+2025,0507,Chinanteco,residencia5,029,Tlaxcala,043,4.0,2
+2025,0507,Chinanteco,residencia5,030,Veracruz,045,4.0,2
+2025,0508,Tlapaneco,residencia5,012,Guerrero,081,48.0,2
+2025,0508,Tlapaneco,residencia5,012,Guerrero,041,38.0,2
+2025,0508,Tlapaneco,residencia5,012,Guerrero,999,27.0,3
+2025,0508,Tlapaneco,residencia5,020,Oaxaca,309,26.0,1
+2025,0508,Tlapaneco,residencia5,012,Guerrero,063,25.0,1
+2025,0508,Tlapaneco,residencia5,014,Jalisco,114,20.0,1
+2025,0508,Tlapaneco,residencia5,023,Quintana Roo,010,4.0,1
+2025,0509,Mazateco,residencia5,020,Oaxaca,134,381.0,8
+2025,0509,Mazateco,residencia5,020,Oaxaca,067,299.0,17
+2025,0509,Mazateco,residencia5,020,Oaxaca,406,294.0,8
+2025,0509,Mazateco,residencia5,015,México,999,265.0,5
+2025,0509,Mazateco,residencia5,020,Oaxaca,142,246.0,7
+2025,0509,Mazateco,residencia5,020,Oaxaca,041,230.0,9
+2025,0509,Mazateco,residencia5,020,Oaxaca,999,78.0,3
+2025,0509,Mazateco,residencia5,015,México,057,70.0,6
+2025,0509,Mazateco,residencia5,020,Oaxaca,278,64.0,4
+2025,0509,Mazateco,residencia5,020,Oaxaca,184,54.0,1
+2025,0509,Mazateco,residencia5,020,Oaxaca,116,53.0,1
+2025,0509,Mazateco,residencia5,020,Oaxaca,374,35.0,1
+2025,0509,Mazateco,residencia5,020,Oaxaca,234,27.0,2
+2025,0509,Mazateco,residencia5,015,México,122,26.0,1
+2025,0509,Mazateco,residencia5,020,Oaxaca,058,25.0,1
+2025,0509,Mazateco,residencia5,020,Oaxaca,232,23.0,1
+2025,0509,Mazateco,residencia5,020,Oaxaca,171,23.0,2
+2025,0509,Mazateco,residencia5,021,Puebla,156,19.0,1
+2025,0509,Mazateco,residencia5,015,México,070,19.0,1
+2025,0509,Mazateco,residencia5,021,Puebla,217,19.0,1
+2025,0509,Mazateco,residencia5,020,Oaxaca,413,15.0,1
+2025,0509,Mazateco,residencia5,015,México,031,12.0,1
+2025,0509,Mazateco,residencia5,017,Morelos,999,12.0,1
+2025,0509,Mazateco,residencia5,015,México,025,8.0,2
+2025,0509,Mazateco,residencia5,030,Veracruz,148,4.0,1
+2025,0509,Mazateco,residencia5,011,Guanajuato,015,2.0,1
+2025,0513,Zapoteco,residencia5,020,Oaxaca,067,181.0,9
+2025,0513,Zapoteco,residencia5,020,Oaxaca,441,97.0,4
+2025,0513,Zapoteco,residencia5,020,Oaxaca,043,60.0,3
+2025,0513,Zapoteco,residencia5,015,México,058,45.0,2
+2025,0513,Zapoteco,residencia5,020,Oaxaca,190,42.0,3
+2025,0513,Zapoteco,residencia5,030,Veracruz,131,35.0,1
+2025,0513,Zapoteco,residencia5,015,México,020,34.0,2
+2025,0513,Zapoteco,residencia5,020,Oaxaca,042,19.0,1
+2025,0513,Zapoteco,residencia5,030,Veracruz,193,19.0,1
+2025,0513,Zapoteco,residencia5,020,Oaxaca,184,19.0,1
+2025,0513,Zapoteco,residencia5,020,Oaxaca,107,18.0,1
+2025,0513,Zapoteco,residencia5,020,Oaxaca,515,18.0,1
+2025,0513,Zapoteco,residencia5,021,Puebla,114,17.0,1
+2025,0513,Zapoteco,residencia5,020,Oaxaca,124,15.0,1
+2025,0513,Zapoteco,residencia5,020,Oaxaca,118,13.0,1
+2025,0513,Zapoteco,residencia5,030,Veracruz,087,12.0,1
+2025,0513,Zapoteco,residencia5,020,Oaxaca,999,11.0,3
+2025,0513,Zapoteco,residencia5,015,México,035,10.0,1
+2025,0513,Zapoteco,residencia5,015,México,031,4.0,1
+2025,0513,Zapoteco,residencia5,015,México,057,4.0,1
+2025,0513,Zapoteco,residencia5,020,Oaxaca,143,3.0,1
+2025,0514,Chatino,residencia5,020,Oaxaca,526,19.0,1
+2025,0515,Amuzgo,residencia5,012,Guerrero,071,14.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,067,204.0,5
+2025,0516,Mixteco,residencia5,020,Oaxaca,397,120.0,5
+2025,0516,Mixteco,residencia5,020,Oaxaca,549,107.0,3
+2025,0516,Mixteco,residencia5,020,Oaxaca,482,104.0,4
+2025,0516,Mixteco,residencia5,020,Oaxaca,532,80.0,3
+2025,0516,Mixteco,residencia5,020,Oaxaca,184,54.0,1
+2025,0516,Mixteco,residencia5,015,México,070,52.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,385,35.0,1
+2025,0516,Mixteco,residencia5,012,Guerrero,066,24.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,406,22.0,1
+2025,0516,Mixteco,residencia5,015,México,031,19.0,4
+2025,0516,Mixteco,residencia5,015,México,025,18.0,1
+2025,0516,Mixteco,residencia5,013,Hidalgo,999,17.0,1
+2025,0516,Mixteco,residencia5,015,México,999,16.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,367,14.0,2
+2025,0516,Mixteco,residencia5,015,México,050,13.0,1
+2025,0516,Mixteco,residencia5,015,México,057,12.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,006,7.0,1
+2025,0516,Mixteco,residencia5,021,Puebla,149,7.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,127,5.0,1
+2025,0516,Mixteco,residencia5,017,Morelos,020,4.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,242,4.0,2
+2025,0516,Mixteco,residencia5,020,Oaxaca,999,3.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,264,3.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,039,3.0,1
+2025,0516,Mixteco,residencia5,015,México,039,2.0,1
+2025,0516,Mixteco,residencia5,020,Oaxaca,073,2.0,1
+2025,0517,Cuicateco,residencia5,020,Oaxaca,177,19.0,1
+2025,0518,Triqui,residencia5,020,Oaxaca,067,48.0,4
+2025,0601,Huasteco,residencia5,030,Veracruz,063,54.0,1
+2025,0601,Huasteco,residencia5,030,Veracruz,013,24.0,1
+2025,0601,Huasteco,residencia5,030,Veracruz,060,18.0,1
+2025,0602,Maya,residencia5,031,Yucatán,999,84.0,3
+2025,0602,Maya,residencia5,015,México,106,51.0,2
+2025,0602,Maya,residencia5,025,Sinaloa,017,35.0,1
+2025,0602,Maya,residencia5,023,Quintana Roo,005,24.0,2
+2025,0602,Maya,residencia5,023,Quintana Roo,999,23.0,1
+2025,0602,Maya,residencia5,026,Sonora,030,22.0,1
+2025,0602,Maya,residencia5,020,Oaxaca,413,22.0,1
+2025,0602,Maya,residencia5,023,Quintana Roo,009,18.0,1
+2025,0602,Maya,residencia5,007,Chiapas,999,18.0,1
+2025,0602,Maya,residencia5,031,Yucatán,091,16.0,1
+2025,0602,Maya,residencia5,031,Yucatán,050,12.0,1
+2025,0602,Maya,residencia5,027,Tabasco,009,7.0,1
+2025,0604,Ch'ol,residencia5,007,Chiapas,999,53.0,1
+2025,0604,Ch'ol,residencia5,030,Veracruz,069,19.0,1
+2025,0604,Ch'ol,residencia5,015,México,025,5.0,1
+2025,0605,Chontal de Tabasco,residencia5,027,Tabasco,013,53.0,1
+2025,0606,Tseltal,residencia5,007,Chiapas,999,167.0,14
+2025,0606,Tseltal,residencia5,007,Chiapas,059,95.0,5
+2025,0606,Tseltal,residencia5,007,Chiapas,064,66.0,3
+2025,0606,Tseltal,residencia5,007,Chiapas,078,33.0,2
+2025,0606,Tseltal,residencia5,025,Sinaloa,006,23.0,1
+2025,0606,Tseltal,residencia5,011,Guanajuato,007,23.0,1
+2025,0606,Tseltal,residencia5,007,Chiapas,093,12.0,1
+2025,0606,Tseltal,residencia5,007,Chiapas,112,6.0,1
+2025,0606,Tseltal,residencia5,015,México,031,4.0,1
+2025,0607,Tsotsil,residencia5,007,Chiapas,999,68.0,4
+2025,0607,Tsotsil,residencia5,015,México,106,13.0,1
+2025,0607,Tsotsil,residencia5,015,México,024,4.0,1
+2025,0701,Totonaco,residencia5,030,Veracruz,193,79.0,4
+2025,0701,Totonaco,residencia5,030,Veracruz,131,74.0,3
+2025,0701,Totonaco,residencia5,030,Veracruz,050,62.0,2
+2025,0701,Totonaco,residencia5,015,México,999,45.0,2
+2025,0701,Totonaco,residencia5,015,México,037,44.0,2
+2025,0701,Totonaco,residencia5,030,Veracruz,203,35.0,1
+2025,0701,Totonaco,residencia5,020,Oaxaca,390,26.0,2
+2025,0701,Totonaco,residencia5,015,México,058,26.0,2
+2025,0701,Totonaco,residencia5,030,Veracruz,067,21.0,1
+2025,0701,Totonaco,residencia5,030,Veracruz,087,19.0,1
+2025,0701,Totonaco,residencia5,030,Veracruz,103,19.0,1
+2025,0701,Totonaco,residencia5,021,Puebla,053,18.0,1
+2025,0701,Totonaco,residencia5,023,Quintana Roo,004,12.0,1
+2025,0701,Totonaco,residencia5,015,México,057,8.0,2
+2025,0701,Totonaco,residencia5,020,Oaxaca,999,4.0,1
+2025,0701,Totonaco,residencia5,019,Nuevo León,039,1.0,1
+2025,0701,Totonaco,residencia5,030,Veracruz,158,1.0,1
+2025,0702,Tepehua,residencia5,030,Veracruz,193,31.0,1
+2025,0702,Tepehua,residencia5,015,México,057,21.0,1
+2025,0801,Tarasco (purépecha),residencia5,016,Michoacán,025,132.0,3
+2025,0801,Tarasco (purépecha),residencia5,016,Michoacán,065,35.0,5
+2025,0801,Tarasco (purépecha),residencia5,016,Michoacán,066,24.0,2
+2025,0801,Tarasco (purépecha),residencia5,006,Colima,005,22.0,1
+2025,0801,Tarasco (purépecha),residencia5,016,Michoacán,999,7.0,1
+2025,0901,Mixe,residencia5,020,Oaxaca,067,131.0,5
+2025,0901,Mixe,residencia5,015,México,057,66.0,3
+2025,0901,Mixe,residencia5,020,Oaxaca,318,55.0,1
+2025,0901,Mixe,residencia5,020,Oaxaca,190,53.0,1
+2025,0901,Mixe,residencia5,013,Hidalgo,999,31.0,1
+2025,0901,Mixe,residencia5,020,Oaxaca,207,20.0,1
+2025,0901,Mixe,residencia5,020,Oaxaca,198,19.0,1
+2025,0901,Mixe,residencia5,015,México,023,18.0,1
+2025,0901,Mixe,residencia5,020,Oaxaca,060,9.0,1
+2025,0901,Mixe,residencia5,019,Nuevo León,039,3.0,1
+2025,0901,Mixe,residencia5,021,Puebla,180,2.0,1
+2025,0907,Zoque,residencia5,020,Oaxaca,407,38.0,2
+2025,0907,Zoque,residencia5,020,Oaxaca,999,28.0,2
+2025,0907,Zoque,residencia5,007,Chiapas,078,19.0,1
+2025,0907,Zoque,residencia5,007,Chiapas,999,18.0,1
+2025,0907,Zoque,residencia5,012,Guerrero,066,2.0,1
+2025,9000,No especificado,residencia5,020,Oaxaca,073,32.0,1
+2025,9000,No especificado,residencia5,030,Veracruz,193,19.0,1
+2025,9000,No especificado,residencia5,021,Puebla,999,4.0,1
+2025,9000,No especificado,residencia5,015,México,039,4.0,1
+2025,9010,Chontal insuficientemente especificado,residencia5,007,Chiapas,999,24.0,6
+2025,9030,Popoluca insuficientemente especificado,residencia5,030,Veracruz,149,26.0,1
