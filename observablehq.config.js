@@ -39,6 +39,7 @@ const DESCRIPCIONES = {
   "/encuestas/endutih/uso": "Quién usa internet, celular y computadora, con qué equipo y desde dónde, por condición indígena, según la ENDUTIH 2025.",
   "/encuestas/endutih/actividades": "Para qué usa internet la población indígena que se conecta: estudiar, trabajar, trámites, dinero y entretenimiento, según la ENDUTIH 2025.",
   "/encuestas/endutih/barreras": "Quién no usa internet, computadora ni celular y qué motivo declara, por condición indígena, según la ENDUTIH 2025.",
+  "/mapa": "Mapa de la población indígena de la Ciudad de México por alcaldía, AGEB y manzana: hablantes, hogares indígenas y autoadscripción de 2010 a 2025, con la lengua, sus variantes probables y el origen de quienes la hablan.",
   "/mapa-manzanas": "Mapa por manzana de la población en hogares indígenas de la Ciudad de México, con el Censo 2020, agregable a colonia y con los pueblos originarios señalados.",
   "/mapa-agebs": "Población en hogares indígenas, conectividad de las viviendas, marginación urbana y rezago social por AGEB de la Ciudad de México, con un umbral de presencia indígena a elección.",
   "/metodologia/fuentes": "Fuentes, cobertura y cautelas de cada encuesta usada en el tablero.",
@@ -70,8 +71,7 @@ export default {
     {name: "Inicio", path: "/"},
     // El mapa por manzana es la primera etapa del proyecto y la puerta de
     // entrada: va primero, fuera de los grupos por encuesta.
-    {name: "Mapa por manzana", path: "/mapa-manzanas"},
-    {name: "Mapa por AGEB", path: "/mapa-agebs"},
+    {name: "Mapa", path: "/mapa"},
     {
       name: "Censo 2020",
       open: true,
@@ -81,15 +81,6 @@ export default {
       name: "ENIGH 2020 - 2024",
       open: true,
       pages: [{name: "Acceso en el hogar", path: "/encuestas/enigh/hogar"}],
-    },
-    {
-      name: "ENDUTIH 2025",
-      open: true,
-      pages: [
-        {name: "Quién usa internet y con qué", path: "/encuestas/endutih/uso"},
-        {name: "Para qué se usa internet", path: "/encuestas/endutih/actividades"},
-        {name: "Quién no se conecta y por qué", path: "/encuestas/endutih/barreras"},
-      ],
     },
     {
       name: "Metodología",
@@ -185,11 +176,15 @@ export default {
     document.body.insertBefore(a, document.body.firstChild);
   };
   const botonTema = () => {
+    if (document.querySelector(".boton-tema")) return;
     const sidebar = document.querySelector("#observablehq-sidebar");
-    if (!sidebar || document.querySelector(".boton-tema")) return;
-    const marca = sidebar.querySelector("li:has(.sidebar-brand)") ??
-      sidebar.querySelector(".sidebar-brand")?.closest("li") ??
-      sidebar.firstElementChild;
+    // Sin sidebar (el mapa a pantalla completa) el boton va en la cabecera.
+    const cabecera = document.querySelector(".mapa-cabecera");
+    const marca = sidebar
+      ? (sidebar.querySelector("li:has(.sidebar-brand)") ??
+         sidebar.querySelector(".sidebar-brand")?.closest("li") ??
+         sidebar.firstElementChild)
+      : cabecera;
     if (!marca) return;
     const b = document.createElement("button");
     b.type = "button";
@@ -217,10 +212,11 @@ export default {
     });
     pintar();
     // <li> y no <div>: la marca vive dentro de un <ol>, que solo admite <li>.
-    const caja = document.createElement("li");
+    const caja = document.createElement(sidebar ? "li" : "span");
     caja.className = "boton-tema-caja";
     caja.appendChild(b);
-    marca.insertAdjacentElement("afterend", caja);
+    if (sidebar) marca.insertAdjacentElement("afterend", caja);
+    else marca.appendChild(caja);
   };
   const buscadorEnEspanol = () => {
     const input = document.querySelector("#observablehq-search input[type=search]");
@@ -309,8 +305,7 @@ export default {
     <div class="book-footer-col">
       <p class="book-footer-col-title">Explorar</p>
       <p class="book-footer-col-line"><a href="/">Inicio</a></p>
-      <p class="book-footer-col-line"><a href="/mapa-manzanas">Mapa por manzana</a></p>
-      <p class="book-footer-col-line"><a href="/mapa-agebs">Mapa por AGEB</a></p>
+      <p class="book-footer-col-line"><a href="/mapa">Mapa</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/censo/vivienda">Censo 2020</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/enigh/hogar">ENIGH 2020 - 2024</a></p>
       <p class="book-footer-col-line"><a href="/encuestas/endutih/uso">ENDUTIH 2025</a></p>

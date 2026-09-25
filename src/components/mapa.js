@@ -46,7 +46,7 @@ export const SIN_DATO = "#d9d9d9";
 let protocoloRegistrado = false;
 
 /** Registra el protocolo pmtiles:// una sola vez por página. */
-function registrarProtocolo() {
+export function registrarProtocolo() {
   if (protocoloRegistrado) return;
   const protocol = new Protocol();
   maplibregl.addProtocol("pmtiles", protocol.tile);
@@ -98,7 +98,12 @@ export function estiloBase() {
  * segundo se ve uniformemente vacío. Que el corte más oscuro caiga en el valor
  * más alto de la vista es la regla; lo que cambia es dónde está ese máximo.
  */
-export function expresionColor(campo, cortes, rampa = RAMPA_MORADA) {
+// `origen` dice de dónde sale el valor: "get" lo lee de los atributos de la
+// tesela (manzanas, AGEB) y "feature-state" del estado que la página escribe
+// con setFeatureState (alcaldías y entidades, cuyo valor cambia con el año y
+// la lengua sin regenerar el GeoJSON).
+export function expresionColor(campo, cortes, rampa = RAMPA_MORADA, origen = "get") {
+  const leer = [origen, campo];
   const escalones = [];
   for (let i = 1; i < cortes.length; i++) {
     escalones.push(cortes[i], rampa[Math.min(i, rampa.length - 1)]);
@@ -111,12 +116,12 @@ export function expresionColor(campo, cortes, rampa = RAMPA_MORADA) {
   // entero con "Expected at least 4 arguments, but found only 2": el mapa se
   // queda sin capa y solo se nota al cambiar de indicador.
   const porValor = escalones.length
-    ? ["step", ["to-number", ["get", campo]], rampa[0], ...escalones]
+    ? ["step", ["to-number", leer], rampa[0], ...escalones]
     : rampa[0];
 
   return [
     "case",
-    ["==", ["get", campo], null], SIN_DATO,
+    ["==", leer, null], SIN_DATO,
     porValor
   ];
 }

@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Mapa por manzana
 toc: false
 ---

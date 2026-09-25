@@ -50,7 +50,6 @@ display(secciones[2]);
 ```js
 display(verTambien([
   {ruta: "/encuestas/enigh/hogar", titulo: "Acceso en el hogar, 2020 - 2024", nota: "La misma pregunta en tres ediciones de la ENIGH, con decil de ingreso."},
-  {ruta: "/encuestas/endutih/uso", titulo: "Quién usa internet y con qué", nota: "Lo que cada persona usa, no solo lo que hay en su vivienda, con la ENDUTIH 2025."},
-  {ruta: "/mapa-manzanas", titulo: "Mapa por manzana de la Ciudad de México", nota: "Dónde vive la población en hogares indígenas de la ciudad, manzana por manzana."}
+  {ruta: "/mapa", titulo: "Mapa de la Ciudad de México", nota: "Dónde vive la población en hogares indígenas de la ciudad, manzana por manzana."}
 ]));
 ```

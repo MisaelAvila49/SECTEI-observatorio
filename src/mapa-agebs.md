@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Mapa por AGEB
 ---
 

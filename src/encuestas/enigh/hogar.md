@@ -45,6 +45,5 @@ display(secciones[1]);
 ```js
 display(verTambien([
   {ruta: "/encuestas/censo/vivienda", titulo: "Conectividad en la vivienda", nota: "La misma pregunta con la muestra ampliada del Censo 2020, que permite cortes más finos."},
-  {ruta: "/encuestas/endutih/uso", titulo: "Quién usa internet y con qué", nota: "Lo que cada persona usa, con la ENDUTIH 2025."}
 ]));
 ```

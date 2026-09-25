@@ -3723,3 +3723,282 @@ body:not(:has(#observablehq-toc)) #observablehq-main {
 .panel-aviso a {
   text-decoration: underline;
 }
+
+/* ---------------------------------------------------------------------------
+   Mapa unificado a pantalla completa (src/mapa.md). La página va sin sidebar,
+   índice, pie ni paginador (front matter), y aquí se quita el ancho máximo y
+   el relleno que Framework pone al contenido, para que el mapa ocupe la
+   ventana: mapa a la izquierda, panel de filtros a la derecha con su propio
+   scroll, y una cabecera fina con el enlace de regreso.
+--------------------------------------------------------------------------- */
+body:has(.mapa-pantalla) {
+  overflow: hidden;
+}
+body:has(.mapa-pantalla) #observablehq-center,
+body:has(.mapa-pantalla) #observablehq-main {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+body:has(.mapa-pantalla) #observablehq-main > * {
+  max-width: none;
+}
+/* El paginador de capitulos no aplica en el mapa: la cabecera ya enlaza. */
+body:has(.mapa-pantalla) #observablehq-footer {
+  display: none;
+}
+.mapa-cabecera .boton-tema-caja {
+  list-style: none;
+  margin: 0;
+}
+.mapa-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-3);
+}
+/* Con id para ganarle a la regla global de enlaces del contenido. */
+#observablehq-main .mapa-cabecera-marca,
+.mapa-cabecera-marca {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  font-weight: 700;
+  color: var(--brand-red-dark);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.mapa-cabecera-marca span {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.mapa-cabecera-titulo {
+  flex: 1;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 0;
+  padding: 0;
+  max-width: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mapa-cabecera-nav {
+  display: flex;
+  gap: 0.9rem;
+  font-size: 0.85rem;
+}
+.mapa-cabecera-nav a {
+  color: var(--theme-foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.mapa-pantalla {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24rem;
+  height: calc(100vh - 3rem);
+  margin: 0;
+  max-width: none;
+}
+.mapa-lienzo {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+}
+.mapa-lienzo .maplibregl-canvas-container,
+.mapa-lienzo .maplibregl-canvas {
+  height: 100%;
+}
+.mapa-lateral {
+  overflow: auto;
+  border-left: 1px solid var(--border-subtle);
+  background: var(--surface-3);
+  padding: 0.8rem 0.9rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.mapa-lateral .panel-filtros {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.mapa-lateral .panel-campos {
+  grid-template-columns: 1fr;
+}
+.mapa-resumen {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.7rem;
+}
+.mapa-titulo {
+  margin: 0 0 0.3rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  /* El tono oscuro del rojo: a 16 px el rojo base da 4.32:1 sobre fondo oscuro. */
+  color: var(--brand-red-dark);
+  border: 0;
+  padding: 0;
+  max-width: none;
+}
+.mapa-definicion {
+  margin: 0 0 0.6rem;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--theme-foreground);
+  max-width: none;
+}
+.mapa-fuente {
+  color: var(--text-muted);
+}
+.mapa-cifra {
+  margin: 0.2rem 0 0.7rem;
+}
+.mapa-cifra-valor {
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.mapa-cifra-error {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.mapa-cifra-nota {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.mapa-lateral .mapa-leyenda {
+  margin: 0.3rem 0 0.4rem;
+  max-width: none;
+}
+.mapa-aviso {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  border-left: 3px solid var(--brand-red);
+  background: var(--surface-2, var(--theme-background));
+  color: var(--theme-foreground);
+  max-width: none;
+}
+.mapa-boton-origen {
+  align-self: flex-start;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--brand-red);
+  color: var(--brand-red);
+  background: transparent;
+  cursor: pointer;
+}
+.mapa-boton-origen:hover,
+.mapa-boton-origen:focus-visible {
+  background: var(--brand-red);
+  color: #fff;
+}
+.mapa-variantes {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.7rem;
+}
+.mapa-variantes-titulo {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: 0;
+  padding: 0;
+  max-width: none;
+}
+.mapa-variantes-nota {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  max-width: none;
+}
+.mapa-variantes-lista,
+.mapa-variantes-leyenda {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  max-width: none;
+}
+.mapa-variantes-lista li {
+  display: grid;
+  grid-template-columns: 0.8rem 1fr;
+  column-gap: 0.45rem;
+  align-items: start;
+  padding: 0.3rem 0;
+  border-top: 1px solid var(--border-subtle);
+}
+.mapa-variantes-lista li:first-child {
+  border-top: 0;
+}
+.mapa-variante-chip {
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  margin-top: 0.2rem;
+  grid-row: span 3;
+}
+.mapa-variante-nombre {
+  font-weight: 600;
+}
+.mapa-variante-auto {
+  font-style: italic;
+  color: var(--text-muted);
+}
+.mapa-variante-donde {
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+.mapa-variantes-leyenda li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.15rem 0;
+}
+.mapa-variantes-leyenda-titulo {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.mapa-variantes-leyenda .mapa-variante-chip {
+  margin-top: 0;
+  grid-row: auto;
+}
+.panel-mapa .filtro[hidden] {
+  display: none !important;
+}
+/* Móvil: el mapa arriba y el panel debajo, nunca oculto (el mapa de referencia
+   del INIDE escondía los filtros en pantallas chicas). */
+@media (max-width: 991px) {
+  body:has(.mapa-pantalla) {
+    overflow: auto;
+  }
+  .mapa-pantalla {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60vh auto;
+    height: auto;
+  }
+  .mapa-lateral {
+    border-left: 0;
+    border-top: 1px solid var(--border-subtle);
+    overflow: visible;
+  }
+  .mapa-cabecera-nav {
+    display: none;
+  }
+}

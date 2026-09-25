@@ -9,8 +9,8 @@ toc: false
     <p class="book-hero-subtitle">El mapa por manzana de la Ciudad de México y el acceso a internet, celular y computadora en el país</p>
     <p class="book-hero-abstract">Este tablero reúne dos trabajos sobre la población indígena de México: el mapa por manzana de la Ciudad de México, con el Censo 2020, y el acceso a internet, celular y computadora comparado con el resto de la población, con el Censo, la ENIGH y la ENDUTIH.</p>
     <div class="book-hero-ctas">
-      <a class="book-cta book-cta-primary" href="./mapa-manzanas">Abrir el mapa por manzana</a>
-      <a class="book-cta" href="./encuestas/endutih/uso">Ver el acceso digital</a>
+      <a class="book-cta book-cta-primary" href="./mapa">Abrir el mapa</a>
+      <a class="book-cta" href="./encuestas/censo/vivienda">Ver el acceso digital</a>
     </div>
   </div>
 
@@ -209,12 +209,10 @@ display(seccion({numero: "02", titulo: "Explorar por fuente"}));
 {
   const t = html`<div class="grid grid-cols-2"></div>`;
   t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">01</span>
-    <h3><a href="./mapa-manzanas">Mapa por manzana de la Ciudad de México</a></h3>
-    <p>Dónde vive la población en hogares indígenas de la ciudad, manzana por manzana, con el Censo 2020 y los pueblos originarios señalados.</p></div>`);
-  t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">02</span>
-    <h3><a href="./mapa-agebs">Mapa por AGEB</a></h3>
-    <p>Presencia indígena, conectividad de las viviendas, marginación urbana y rezago social por AGEB, con un umbral a elección.</p></div>`);
-  ENCUESTAS.forEach((c, i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 3}</span>
+    <h3><a href="./mapa">Mapa de la Ciudad de México</a></h3>
+    <p>Hablantes, hogares indígenas y autoadscripción por alcaldía, AGEB y manzana, de 2010 a 2025; la lengua que se habla, sus variantes probables y de dónde vienen quienes la hablan.</p></div>`);
+  // La ENDUTIH queda fuera de esta etapa: sus páginas son borrador.
+  ENCUESTAS.filter((c) => !c.ruta.includes("endutih")).forEach((c, i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 2}</span>
     <h3><a href=".${c.ruta}">${c.nombre}</a></h3>
     <p>${c.resumen}</p></div>`));
   display(t);
