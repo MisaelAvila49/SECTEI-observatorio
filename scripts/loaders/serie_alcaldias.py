@@ -15,6 +15,7 @@ Poblaciones:
   autoads      se considera indígena, sobre la población (2015, 2020, 2025)
   todas        habla lengua indígena O se considera indígena (2015, 2020);
                una persona cuenta una sola vez
+  ambas        habla lengua indígena Y se considera indígena (2015, 2020)
 
 De dónde sale cada edición:
   1990, 1995, 2000, 2005  ITER (cuando esté en data-raw/iter/); hablantes 5+
@@ -54,6 +55,7 @@ UNIVERSO = {
     "hogares": "Población total",
     "autoads": "Población total",
     "todas": "Población total",
+    "ambas": "Población total",
 }
 
 # Nombres oficiales 2020 de las 16 alcaldías, por clave de municipio.
@@ -112,7 +114,7 @@ def leer_iter(anio):
 
 # ---------------------------------------------------------------- muestras (2015, 2020)
 FUENTE_MUESTRA = {2015: "Encuesta Intercensal 2015 (INEGI), microdatos", 2020: "Censo de Población y Vivienda 2020 (INEGI), cuestionario ampliado"}
-POB_MUESTRA = {2015: ["hablantes3", "monolingues", "autoads", "todas"], 2020: ["autoads", "todas"]}
+POB_MUESTRA = {2015: ["hablantes3", "monolingues", "autoads", "todas", "ambas"], 2020: ["autoads", "todas", "ambas"]}
 
 
 def leer_muestra(anio):
@@ -131,7 +133,8 @@ def leer_muestra(anio):
       hli AS y_hablantes3, (hli IS NOT NULL AND edad >= 3) AS u_hablantes3,
       monolingue AS y_monolingues, (monolingue IS NOT NULL) AS u_monolingues,
       autoads AS y_autoads, TRUE AS u_autoads,
-      (COALESCE(hli, FALSE) OR COALESCE(autoads, FALSE)) AS y_todas, TRUE AS u_todas
+      (COALESCE(hli, FALSE) OR COALESCE(autoads, FALSE)) AS y_todas, TRUE AS u_todas,
+      (COALESCE(hli, FALSE) AND COALESCE(autoads, FALSE)) AS y_ambas, TRUE AS u_ambas
     FROM m WHERE sexo IS NOT NULL
     """)
     # Con sexo 'Total' además de Mujeres/Hombres: dos pasadas, como en comun.agregar.

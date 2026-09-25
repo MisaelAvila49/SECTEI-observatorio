@@ -4002,3 +4002,132 @@ body:has(.mapa-pantalla) #observablehq-footer {
     display: none;
   }
 }
+
+/* Leyenda y tarjeta de lectura dentro del lienzo del mapa. */
+.mapa-tarjeta,
+.mapa-leyenda-caja {
+  position: absolute;
+  z-index: 5;
+  max-width: min(22rem, calc(100% - 4.5rem));
+  padding: 0.65rem 0.8rem;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface-1) 92%, transparent);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(6px);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--theme-foreground);
+}
+.mapa-tarjeta {
+  top: 0.75rem;
+  left: 0.75rem;
+  min-width: 15rem;
+}
+.mapa-tarjeta .globo-titulo {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.mapa-tarjeta .globo-sub {
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+.mapa-tarjeta .globo-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.3rem;
+}
+.mapa-tarjeta .globo-tabla th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0.12rem 0.6rem 0.12rem 0;
+}
+.mapa-tarjeta .globo-tabla td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.mapa-tarjeta .mapa-cifra-valor {
+  font-size: 1.5rem;
+  margin-top: 0.15rem;
+}
+.mapa-tarjeta-pista {
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.mapa-tarjeta.es-hover {
+  border-color: var(--brand-red);
+}
+.mapa-leyenda-caja {
+  right: 0.75rem;
+  bottom: 2rem;
+  min-width: 14rem;
+}
+.mapa-leyenda-caja .mapa-leyenda {
+  margin: 0;
+  max-width: none;
+}
+.mapa-leyenda-caja .mapa-variantes-leyenda {
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--border-subtle);
+}
+/* Panel: los grupos como tarjetas discretas y la unidad destacada. */
+.panel-mapa .panel-grupo {
+  padding: 0.55rem 0.7rem 0.7rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: var(--surface-1);
+}
+.panel-mapa .panel-grupo + .panel-grupo {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.55rem;
+  margin-top: 0.55rem;
+}
+.panel-mapa .panel-grupo-titulo {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.panel-mapa .panel-grupo-unidad {
+  border-left: 3px solid var(--brand-red);
+}
+.panel-mapa .panel-grupo-unidad select {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.panel-mapa .panel-campos {
+  gap: 0.65rem;
+}
+.panel-mapa .filtro-etiqueta {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+.panel-mapa select {
+  border-radius: 8px;
+  padding: 0.5rem 2rem 0.5rem 0.7rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.panel-mapa select:focus-visible {
+  outline: none;
+  border-color: var(--brand-red);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-red) 22%, transparent);
+}
+@media (max-width: 991px) {
+  .mapa-tarjeta {
+    max-width: calc(100% - 4.5rem);
+    min-width: 0;
+    padding: 0.45rem 0.6rem;
+  }
+  .mapa-leyenda-caja {
+    right: 0.5rem;
+    bottom: 1.8rem;
+    min-width: 0;
+  }
+}
+

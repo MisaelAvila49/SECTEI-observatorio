@@ -199,12 +199,16 @@ for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar"]) {
   const visible = (sel) => pg.$eval(sel, (e) => !e.hidden && e.getBoundingClientRect().height > 0).catch(() => false);
   console.log(`\n=== ${ruta} · mapa unificado ===`);
   const ok = (cond, texto) => { console.log(`  ${cond ? "ok   " : "FALLA"} ${texto}`); if (!cond) fallos.push(`${ruta}: ${texto}`); };
+  ok((await pg.$eval("#mapa-unidad", (s) => s.value)) === "ageb" && (await medir("agebs-relleno")).n >= 1000, "abre por AGEB con marcas pintadas");
+  await pg.selectOption("#mapa-unidad", "alcaldia"); await pg.waitForTimeout(2500);
   const alc0 = await medir("alcaldias-relleno"); const est0 = await estado();
   ok(alc0.n >= 16, `alcaldías pintadas: ${alc0.n} marcas`);
   await pg.selectOption("#mapa-anio", "2025"); await pg.waitForTimeout(1500);
   ok((await estado()) !== est0, "«Año» → 2025 cambia los valores de las alcaldías");
   await pg.selectOption("#mapa-poblacion", "autoads"); await pg.waitForTimeout(1500);
   ok(!(await visible('form[data-campo="lengua"]')), "con «Se consideran indígenas» el selector de lengua se oculta");
+  await pg.selectOption("#mapa-poblacion", "ambas"); await pg.waitForTimeout(1500);
+  ok((await estado()) !== est0 && /\d/.test(await pg.$eval(".mapa-tarjeta .mapa-cifra-valor", (e) => e.textContent)), "«Hablan una lengua y se consideran indígenas» pinta y da cifra en la tarjeta");
   await pg.selectOption("#mapa-poblacion", "hablantes"); await pg.selectOption("#mapa-lengua", "0211"); await pg.waitForTimeout(1500);
   const estN = await estado();
   ok(estN !== est0 && (await pg.$$eval(".mapa-variantes-lista li", (l) => l.length)) === 30, "«Lengua» → náhuatl cambia los valores y lista 30 variantes");

@@ -34,7 +34,7 @@ const ENTIDAD = {
   "028": ["MX-TAM", "TAMAULIPAS"], "029": ["MX-TLA", "TLAXCALA"], "030": ["MX-VER", "VERACRUZ DE IGNACIO DE LA LLAVE"],
   "031": ["MX-YUC", "YUCATÁN"], "032": ["MX-ZAC", "ZACATECAS"],
 };
-const POB_SERIE = {hablantes: "hablantes3", hogares: "hogares", autoads: "autoads", todas: "todas"};
+const POB_SERIE = {hablantes: "hablantes3", hogares: "hogares", autoads: "autoads", todas: "todas", ambas: "ambas"};
 const FUENTE_ANIO = {2010: "Censo 2010 (INEGI)", 2015: "Encuesta Intercensal 2015 (INEGI)", 2020: "Censo 2020 (INEGI)", 2025: "Encuesta Intercensal 2025 (INEGI)"};
 
 const normal = (s) => String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().trim();
@@ -91,6 +91,13 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
 
   const panel = panelMapa({lenguas: opcionesLengua, aniosDe});
   const contenedor = html`<div class="mapa-lienzo" role="region" aria-label="Mapa"></div>`;
+  // Dentro del lienzo: la leyenda abajo a la derecha y una tarjeta de lectura
+  // arriba a la izquierda, que muestra la cifra de la ciudad en reposo y la
+  // unidad bajo el cursor al pasar el mouse. Sustituye al globo que seguía al
+  // cursor y tapaba el mapa.
+  const tarjeta = html`<div class="mapa-tarjeta" role="status" aria-live="polite"></div>`;
+  const leyendaCaja = html`<div class="mapa-leyenda-caja"></div>`;
+  contenedor.append(tarjeta, leyendaCaja);
   const lateral = html`<aside class="mapa-lateral"></aside>`;
   const resumen = html`<div class="mapa-resumen"></div>`;
   const botonOrigen = html`<button type="button" class="mapa-boton-origen" hidden>Ver de dónde vienen</button>`;
@@ -116,7 +123,11 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
   }).observe(contenedor);
   contenedor.mapa = mapa;
   nodo.mapa = mapa;
-  const globo = new maplibregl.Popup({closeButton: false, closeOnClick: false, className: "mapa-globo"});
+  let enReposo = () => "";
+  const globo = {
+    mostrar(htmlTexto) { tarjeta.innerHTML = htmlTexto; tarjeta.classList.add("es-hover"); },
+    reposo() { tarjeta.innerHTML = enReposo(); tarjeta.classList.remove("es-hover"); },
+  };
 
   const cacheCortes = new Map();
   const CAPAS_UNIDAD = {manzana: "manzanas", ageb: "agebs", alcaldia: "alcaldias"};
@@ -181,9 +192,9 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
           activa = ref;
           mapa.setFeatureState(ref, {activa: true});
         }
-        globo.setLngLat(e.lngLat).setHTML(globoDe(capa, f)).addTo(mapa);
+        globo.mostrar(globoDe(capa, f));
       });
-      mapa.on("mouseleave", capa, () => { mapa.getCanvas().style.cursor = ""; apagarActiva(); globo.remove(); });
+      mapa.on("mouseleave", capa, () => { mapa.getCanvas().style.cursor = ""; apagarActiva(); globo.reposo(); });
     }
     estado.cargado = true;
     pintar();
@@ -324,17 +335,23 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
       formato: cruce?.categorias ? (x) => ORDEN_GRADO[x - 1] : (x) => x.toFixed(cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1) + " %",
       abierta: !cruce?.categorias,
       notaSinDato: cruce?.categorias ? "Sin grado publicado" : "Sin dato publicado (INEGI suprime la cifra por confidencialidad)"});
-    const cifra = ent ? html`<div class="mapa-cifra">
-      <div class="mapa-cifra-valor">${pct(100 * ent.num / ent.den)}${muestra && ent.ee ? html`<span class="mapa-cifra-error"> ± ${(100 * ent.ee * 1.96).toFixed(1)}</span>` : ""}</div>
-      <div class="mapa-cifra-nota">${entero(ent.num)} personas en la ciudad, ${e.anio}${muestra ? " (estimación de encuesta)" : ""}</div>
-    </div>` : "";
+    // La cifra de la ciudad vive en la tarjeta del mapa, como estado de reposo.
+    enReposo = () => ent
+      ? `<div class="globo-titulo">Ciudad de México · ${e.anio}</div><div class="globo-sub">${escapar(etiqueta)}</div>
+         <div class="mapa-cifra-valor">${pct(100 * ent.num / ent.den)}${muestra && ent.ee ? `<span class="mapa-cifra-error"> ± ${(100 * ent.ee * 1.96).toFixed(1)}</span>` : ""}</div>
+         <div class="mapa-cifra-nota">${entero(ent.num)} personas${muestra ? " · estimación de encuesta" : ""}</div>
+         <div class="mapa-tarjeta-pista">Pasa el cursor por una ${unidad.singular} para ver su cifra</div>`
+      : `<div class="globo-titulo">${escapar(etiqueta)}</div><div class="mapa-tarjeta-pista">Pasa el cursor por una ${unidad.singular} para ver su cifra</div>`;
+    globo.reposo();
+    const cifra = "";
     const fuente = e.unidad === "alcaldia" ? FUENTE_ANIO[e.anio] : "Censo 2020 (INEGI), resultados por AGEB y manzana";
     const definicion = cruce ? cruce.definicion : pob.definicion;
     const aviso = e.umbral > 0 && e.unidad === "manzana"
       ? html`<p class="mapa-aviso">Solo las manzanas con ${e.umbral} % o más: son manzanas sueltas, acerca el mapa para verlas o cambia a AGEB.</p>` : "";
     const avisoTodas = e.poblacion === "todas" ? html`<p class="mapa-aviso">Una persona cuenta una sola vez aunque hable una lengua y además se considere indígena.</p>` : "";
+    leyendaCaja.replaceChildren(ley);
     resumen.replaceChildren(html`<h2 class="mapa-titulo">${etiqueta}</h2>
-      <p class="mapa-definicion">${definicion} <span class="mapa-fuente">${fuente}.</span></p>${cifra}${ley}${aviso}${avisoTodas}`);
+      <p class="mapa-definicion">${definicion} <span class="mapa-fuente">${fuente}.</span></p>${cifra}${aviso}${avisoTodas}`);
   }
 
   // ---------------------------------------------------------------- origen
@@ -405,11 +422,15 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
     const total = filas.reduce((s, r) => s + r.num, 0);
     const enCiudad = origen.find((r) => r.anio === e.anio && r.lengua === e.lengua && r.tipo === "nacimiento" && r.ent === "009")?.num ?? 0;
     const chips = [...colores.entries()].map(([n, c]) => html`<li><span class="mapa-variante-chip" style="background:${c}" aria-hidden="true"></span>${n}</li>`);
+    enReposo = () => `<div class="globo-titulo">Hablantes de ${escapar(nombre)} en la ciudad · ${e.anio}</div>
+      <div class="mapa-cifra-valor">${entero(total)}</div><div class="mapa-cifra-nota">nacidos en otra entidad · ${entero(enCiudad)} nacidos en la ciudad</div>
+      <div class="mapa-tarjeta-pista">Pasa el cursor por una entidad</div>`;
+    globo.reposo();
+    leyendaCaja.replaceChildren(
+      leyenda({cortes, titulo: `Hablantes de ${nombre} nacidos en la entidad`, formato: (x) => punto(Math.round(x)), notaSinDato: "Sin hablantes en la muestra"}),
+      html`<ul class="mapa-variantes-leyenda"><li class="mapa-variantes-leyenda-titulo">Color de la línea: variante probable</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>Otras variantes o varias posibles</li></ul>`);
     resumen.replaceChildren(html`<h2 class="mapa-titulo">De dónde vienen quienes hablan ${nombre}</h2>
-      <p class="mapa-definicion">Hablantes de ${nombre} que viven en la Ciudad de México, según su entidad de nacimiento. Cada línea une la entidad con la ciudad y su grosor es el número de personas. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra.</span></p>
-      <div class="mapa-cifra"><div class="mapa-cifra-valor">${entero(total)}</div><div class="mapa-cifra-nota">nacidos en otra entidad · ${entero(enCiudad)} nacidos en la ciudad</div></div>
-      ${leyenda({cortes, titulo: `Hablantes de ${nombre} nacidos en la entidad`, formato: (x) => punto(Math.round(x)), notaSinDato: "Sin hablantes en la muestra"})}
-      <ul class="mapa-variantes-leyenda"><li class="mapa-variantes-leyenda-titulo">Color de la línea: variante probable</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>Otras variantes o varias posibles</li></ul>`);
+      <p class="mapa-definicion">Hablantes de ${nombre} que viven en la Ciudad de México, según su entidad de nacimiento. Cada línea une la entidad con la ciudad y su grosor es el número de personas. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra.</span></p>`);
   }
 
   botonOrigen.addEventListener("click", () => {

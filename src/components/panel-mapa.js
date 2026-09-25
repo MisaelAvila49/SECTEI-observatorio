@@ -23,6 +23,9 @@ export const POBLACIONES = [
   {clave: "todas", etiqueta: "Todas las poblaciones indígenas", corto: "Hablan una lengua indígena o se consideran indígenas",
    definicion: "Personas que hablan una lengua indígena o se consideran indígenas, sobre la población total. Cada persona cuenta una sola vez aunque cumpla las dos.",
    soloAlcaldia: true, porSexo: true},
+  {clave: "ambas", etiqueta: "Hablan una lengua y se consideran indígenas", corto: "Hablan una lengua indígena y además se consideran indígenas",
+   definicion: "Personas que cumplen las dos condiciones: hablan una lengua indígena y se consideran indígenas, sobre la población total. Solo lo preguntan las muestras: por alcaldía.",
+   soloAlcaldia: true, porSexo: true},
 ];
 
 export const UNIDADES = [
@@ -122,7 +125,7 @@ export function panelMapa({lenguas, aniosDe}) {
     poblacion: campo({id: "mapa-poblacion", nombre: "poblacion", etiqueta: "Población", opciones: POBLACIONES, valor: "hablantes"}),
     lengua: campo({id: "mapa-lengua", nombre: "lengua", etiqueta: "Lengua", opciones: [{clave: "todas", etiqueta: "Todas las lenguas"}, ...lenguas], valor: "todas"}),
     cruce: campo({id: "mapa-cruce", nombre: "cruce", etiqueta: "Cruzar con", opciones: [{clave: "sin", etiqueta: "Sin cruce"}], valor: "sin"}),
-    unidad: campo({id: "mapa-unidad", nombre: "unidad", etiqueta: "Unidad del mapa", opciones: UNIDADES, valor: "alcaldia"}),
+    unidad: campo({id: "mapa-unidad", nombre: "unidad", etiqueta: "Unidad del mapa", opciones: UNIDADES, valor: "ageb"}),
     anio: campo({id: "mapa-anio", nombre: "anio", etiqueta: "Año", opciones: [{clave: "2020", etiqueta: "2020"}], valor: "2020"}),
     sexo: campo({id: "mapa-sexo", nombre: "sexo", etiqueta: "Sexo", opciones: SEXOS, valor: "Total"}),
     ambito: campo({id: "mapa-ambito", nombre: "ambito", etiqueta: "Ámbito", opciones: [{clave: "ciudad", etiqueta: "Toda la ciudad"}, {clave: "pueblos", etiqueta: "Solo pueblos originarios"}], valor: "ciudad"}),
@@ -130,14 +133,19 @@ export function panelMapa({lenguas, aniosDe}) {
       opciones: PRESENCIA_MINIMA.map((p) => ({clave: String(p.valor), etiqueta: p.etiqueta})), valor: "0"}),
   };
 
+  // La unidad va hasta arriba y sola: decide qué controles existen debajo.
   const nodo = html`<div class="panel-filtros panel-mapa">
+    <fieldset class="panel-grupo panel-grupo-unidad">
+      <legend class="panel-grupo-titulo">Nivel del mapa</legend>
+      <div class="panel-campos">${c.unidad}</div>
+    </fieldset>
     <fieldset class="panel-grupo">
       <legend class="panel-grupo-titulo">Qué se pinta</legend>
       <div class="panel-campos">${c.poblacion}${c.lengua}${c.cruce}</div>
     </fieldset>
     <fieldset class="panel-grupo">
-      <legend class="panel-grupo-titulo">Dónde y cuándo</legend>
-      <div class="panel-campos">${c.unidad}${c.anio}${c.sexo}${c.ambito}${c.umbral}</div>
+      <legend class="panel-grupo-titulo">Cuándo y para quién</legend>
+      <div class="panel-campos">${c.anio}${c.sexo}${c.ambito}${c.umbral}</div>
     </fieldset>
   </div>`;
 
@@ -198,6 +206,12 @@ export function panelMapa({lenguas, aniosDe}) {
 
     ver("ambito", unidad === "manzana");
     if (unidad !== "manzana") c.ambito.value = "ciudad";
+
+    // Un grupo sin ningún control visible se oculta entero: por AGEB no hay
+    // año, sexo ni ámbito que elegir y la caja vacía confundía.
+    for (const grupo of nodo.querySelectorAll(".panel-grupo")) {
+      grupo.hidden = ![...grupo.querySelectorAll(".filtro")].some((f) => !f.hidden);
+    }
   }
 
   for (const [nombre, form] of Object.entries(c)) {
