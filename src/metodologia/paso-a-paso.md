@@ -114,9 +114,12 @@ Las manzanas y las AGEB se sirven como teselas vectoriales con las tasas de
 se escribe en el navegador con la serie, la lengua y el año elegidos. Los
 cortes de color por alcaldía son fijos a lo largo de los años, para que el
 mismo tono signifique lo mismo en 1990 y en 2025. La vista de origen dibuja
-una línea por entidad y variante, con el grosor por número de personas y el
-color por variante; solo las tres variantes con más hablantes reciben color,
-porque con cuatro tonos la paleta deja de distinguirse bajo deuteranopía.
+una flecha por entidad y variante, con el grosor por número de personas y el
+color por variante. Cada variante tiene un tono fijo, el mismo en la lista,
+en las flechas y en el mapa de la lengua; por entidad se dibujan hasta cinco
+flechas con color y una gris con las variantes menores sumadas. Con treinta
+tonos ningún esquema es seguro para daltonismo, por lo que el nombre de la
+variante acompaña siempre al color en el globo y en la leyenda.
 
 Con una lengua elegida hay dos vistas más: la de origen, con una línea por
 entidad de nacimiento y variante probable, y la del mapa de la lengua, que

@@ -311,9 +311,10 @@ cruce por municipio ordena las variantes como el cruce oficial por localidad.
 Es una inferencia sobre el lugar de origen y no un dato de la persona:
 alguien pudo nacer en una entidad y hablar la variante de otra, y quien
 nació en la ciudad no recibe variante alguna. El mapa lo rotula así en cada
-vista y el color solo distingue las tres variantes con más hablantes; las
-demás van en gris, porque con cuatro tonos la paleta deja de distinguirse
-bajo deuteranopía.
+vista. Cada variante lleva un tono fijo en las tres vistas (lista, flechas y
+mapa de la lengua); por entidad se dibujan hasta cinco flechas con color y
+una gris con las variantes menores sumadas. Con tantos tonos la paleta no es
+segura para daltonismo, así que el nombre acompaña siempre al color.
 
 ## Todas las poblaciones indígenas: la unión sin doble conteo
 

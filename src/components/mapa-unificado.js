@@ -13,7 +13,7 @@
 import maplibregl from "npm:maplibre-gl@5.24.0";
 import {html} from "npm:htl";
 import {registrarProtocolo, estiloBase, expresionColor, cortesPorCuantil, leyenda, RAMPA_MORADA, SIN_DATO, ROJO_IBERO} from "./mapa.js";
-import {PALETA_VARIANTES, GRIS_VARIANTE, ORDEN_GRADO, punto, alCambiarModo} from "./base.js";
+import {GRIS_VARIANTE, ORDEN_GRADO, punto, alCambiarModo} from "./base.js";
 import {panelMapa, POBLACIONES, CRUCES, UNIDADES, SEXOS} from "./panel-mapa.js";
 
 const CDMX = [[-99.37, 19.04], [-98.94, 19.60]];
@@ -579,19 +579,28 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   function asignacion(e) {
     return variantesCiudad.filter((r) => r.anio === e.anio && r.lengua === e.lengua);
   }
-  // Tres tonos para las tres variantes con más hablantes en la ciudad; el
-  // resto y lo no asignable van en gris.
-  function coloresVariantes(filas) {
-    const suma = new Map();
-    for (const r of filas) if (r.variante) suma.set(r.variante, (suma.get(r.variante) ?? 0) + r.num);
-    const top = [...suma.entries()].sort((a, b) => b[1] - a[1]).slice(0, PALETA_VARIANTES.length);
-    return new Map(top.map(([nombre], i) => [nombre, PALETA_VARIANTES[i]]));
+  // Paleta de N tonos para las variantes de una lengua: tonos repartidos en
+  // el círculo cromático, alternando dos luminosidades para que vecinos
+  // consecutivos se distingan también por claridad. Con treinta categorías
+  // ningún esquema es seguro para daltonismo; el nombre va siempre en el
+  // globo y en la leyenda, y la metodología lo dice. hsl y no oklch: MapLibre
+  // solo acepta nombres, hex, rgb y hsl.
+  function paletaVariantes(n) {
+    return Array.from({length: n}, (_, i) => `hsl(${Math.round((i * 360) / n + 20) % 360}, 58%, ${i % 2 ? 42 : 55}%)`);
+  }
+  // Un color por variante, fijo por su posición en el Catálogo, para que la
+  // misma variante tenga el mismo tono en la lista, en las flechas de origen
+  // y en el mapa de la lengua. Lo no asignable va en gris.
+  function coloresVariantes(lengua) {
+    const orden = variantesDe(lengua).map((r) => r.variante);
+    const paleta = paletaVariantes(orden.length);
+    return new Map(orden.map((v, i) => [v, paleta[i]]));
   }
 
   function pintarVariantes(e, destacar = null) {
     const lista = variantesDe(e.lengua);
     const filas = asignacion(e);
-    const colores = coloresVariantes(filas);
+    const colores = coloresVariantes(e.lengua);
     const nombre = catNombre.get(e.lengua)?.nombre ?? e.lengua;
     const porVariante = new Map();
     for (const r of filas) {
@@ -633,8 +642,14 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       for (const r of filas) porLengua.set(r.lengua, (porLengua.get(r.lengua) ?? 0) + r.num);
       colores = new Map([...porLengua.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k]) => [k, colorLengua(k)]));
     } else {
-      colores = coloresVariantes(filas);
+      colores = coloresVariantes(e.lengua);
     }
+    // Por entidad se dibuja una flecha con color por cada una de sus categorías
+    // mayores (hasta TOPE_FLECHAS) y una gris con el resto sumado: Oaxaca tiene
+    // 81 variantes del mixteco y una línea por cada una abría un abanico hasta
+    // el mar. La leyenda lista solo las variantes que recibieron flecha.
+    const TOPE_FLECHAS = 5;
+    const usadas = new Map();
     const porIso = new Map(geoEntidades.features.map((f) => [f.properties.id, f]));
     const cdmx = centro(porIso.get("MX-CMX"));
     const valores = new Map();
@@ -664,12 +679,11 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         : (vars.length ? vars.slice(0, 4).map(([v, n]) => `${v}: ${entero(n)} (variante probable)`) : ["Sin registro del catálogo en esta entidad"]);
       valores.set(iso, {num: d.num, detalle});
       if (!f) continue;
-      // Una línea por cada categoría CON color (las mayores) y una gris con el
-      // resto sumado: Oaxaca tiene 81 variantes del mixteco y una línea por
-      // cada una abría un abanico hasta el mar. La separación total se acota.
       const base = todas ? lens : vars;
-      const conColor = base.filter(([k]) => colores.has(k));
-      const resto = base.filter(([k]) => !colores.has(k)).reduce((s, [, n]) => s + n, 0);
+      const conColor = base.filter(([k]) => colores.has(k)).slice(0, TOPE_FLECHAS);
+      const elegidas = new Set(conColor.map(([k]) => k));
+      for (const [k, n] of conColor) usadas.set(k, (usadas.get(k) ?? 0) + n);
+      const resto = base.filter(([k]) => !elegidas.has(k)).reduce((s, [, n]) => s + n, 0);
       const trazos = [...conColor, ...(resto > 0 || !conColor.length ? [[null, resto || d.num]] : [])];
       const paso = Math.min(0.12, 0.5 / Math.max(trazos.length, 1));
       trazos.forEach(([k, n], idx) => {
@@ -689,37 +703,22 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const nombre = todas ? "lengua indígena" : (catNombre.get(e.lengua)?.nombre ?? e.lengua);
     const total = filas.reduce((s, r) => s + r.num, 0);
     const enCiudad = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && r.cve_ent === "009").reduce((s, r) => s + r.num, 0);
-    // Leyenda: por variante (tres tonos) o por lengua (las diez con más hablantes en la ciudad).
-    let chips;
-    if (todas) {
-      const porLengua = new Map();
-      for (const r of filas) porLengua.set(r.lengua, (porLengua.get(r.lengua) ?? 0) + r.num);
-      chips = [...colores.entries()].map(([k, c]) => html`<li><span class="mapa-variante-chip" style="background:${c}" aria-hidden="true"></span>${catNombre.get(k)?.nombre ?? k}</li>`);
-    } else {
-      chips = [...colores.entries()].map(([n, c]) => html`<li><span class="mapa-variante-chip" style="background:${c}" aria-hidden="true"></span>${n}</li>`);
-    }
+    // Leyenda: solo las categorías que recibieron flecha con color, de mayor a
+    // menor por hablantes; por lengua con "todas", por variante con una lengua.
+    const chips = [...usadas.entries()].sort((a, b) => b[1] - a[1])
+      .map(([k, ]) => html`<li><span class="mapa-variante-chip" style="background:${colores.get(k)}" aria-hidden="true"></span>${todas ? (catNombre.get(k)?.nombre ?? k) : k}</li>`);
     enReposo = () => `<div class="globo-titulo">Hablantes de ${escapar(nombre)} en la ciudad · ${e.anio}</div>
       <div class="mapa-cifra-valor">${entero(total)}</div><div class="mapa-cifra-nota">nacidos en otra entidad · ${entero(enCiudad)} nacidos en la ciudad</div>
       <div class="mapa-tarjeta-pista">Pasa el cursor por una entidad; haz clic para fijarla y comparar</div>`;
     globo.reposo();
     leyendaCaja.replaceChildren(
       leyenda({cortes, titulo: `Hablantes de ${nombre} nacidos en la entidad`, formato: (x) => punto(Math.round(x)), notaSinDato: "Sin hablantes en la muestra"}),
-      html`<ul class="mapa-variantes-leyenda"><li class="mapa-variantes-leyenda-titulo">${todas ? "Color de la línea: lengua (las diez mayores)" : "Color de la línea: variante probable"}</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>${todas ? "Otras lenguas" : "Otras variantes o sin registro"}</li></ul>`,
+      html`<ul class=${`mapa-variantes-leyenda${chips.length > 8 ? " mapa-variantes-leyenda-larga" : ""}`}><li class="mapa-variantes-leyenda-titulo">${todas ? "Color de la flecha: lengua (las diez mayores)" : "Color de la flecha: variante probable (hasta cinco por entidad)"}</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>${todas ? "Otras lenguas" : "Variantes menores de cada entidad o sin registro"}</li></ul>`,
       todas ? "" : glosarioCerteza());
     resumen.replaceChildren(html`<h2 class="mapa-titulo">De dónde vienen quienes hablan ${nombre}</h2>
       <p class="mapa-definicion">Hablantes que viven en la Ciudad de México, según su entidad de nacimiento. Cada flecha va de la entidad a la ciudad; su grosor es el número de personas y su color, ${todas ? "la lengua" : "la variante probable"}. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra; variantes según el Catálogo INALI 2008.</span></p>`);
   }
 
-  // Paleta de N tonos para las variantes del mapa de la lengua: tonos
-  // repartidos en el círculo cromático. Con treinta categorías
-  // ningún esquema es seguro para daltonismo; el nombre va siempre en el globo
-  // y en la lista, y la metodología lo dice.
-  function paletaVariantes(n) {
-    // hsl y no oklch: MapLibre solo acepta nombres, hex, rgb y hsl. Tonos
-    // repartidos en el círculo, alternando dos luminosidades para que vecinos
-    // consecutivos se distingan también por claridad.
-    return Array.from({length: n}, (_, i) => `hsl(${Math.round((i * 360) / n + 20) % 360}, 58%, ${i % 2 ? 42 : 55}%)`);
-  }
   let municipiosPintados = [];
   function pintarLengua(e) {
     const todas = e.lengua === "todas";
@@ -738,8 +737,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       orden = LENGUAS_CAT;
       colores = new Map(orden.map((k) => [k, colorLengua(k)]));
     } else {
-      orden = variantesDe(e.lengua).map((r) => r.variante);
-      colores = new Map(orden.map((v, i) => [v, paletaVariantes(orden.length)[i]]));
+      colores = coloresVariantes(e.lengua);
+      orden = [...colores.keys()];
     }
     // Con todas las lenguas, el municipio se pinta por la lengua con más
     // hablantes según el Censo 2020, y el globo lista las variantes del catálogo.

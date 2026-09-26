@@ -33,14 +33,10 @@ const PAR_AGEB_OSCURO = {"AGEB que alcanzan el umbral": "#EE4C7C", "Resto de las
 
 export const COLOR_SERIE = {...PAR_INDIGENA_CLARO, ...PAR_SEXO_CLARO, ...PAR_AGEB_CLARO};
 
-// Paleta categórica de TRES tonos para las variantes de una lengua en el mapa
-// de origen, más un gris para "las demás": con cuatro tonos el validador de la
-// skill dataviz falla en separación para deuteranopía (ΔE 3.8 con el verde),
-// así que el tope de tres más gris se queda (lección 63). Los tres son los
-// mismos hex ya validados por pares; validados juntos en verificar_paleta.mjs.
-const VARIANTES_CLARO = ["#C4101B", "#2166AC", "#B87709"];
-const VARIANTES_OSCURO = ["#EE4C7C", "#4A90D9", "#BE8700"];
-export const PALETA_VARIANTES = [...VARIANTES_CLARO];
+// Gris para lo no asignable en las vistas de variantes (flechas y lista).
+// El color de cada variante lo genera el componente del mapa (un tono hsl por
+// variante en el orden del Catálogo); con treinta categorías no hay paleta
+// segura para daltonismo y el nombre acompaña siempre al color.
 export const GRIS_VARIANTE = "#8a8a86";
 
 // Rojo de marca (kickers, títulos de figura, cifra destacada). Sobre
@@ -94,8 +90,6 @@ export function aplicarModo(oscuro) {
   RAMPA.push(...(oscuro ? RAMPA_OSCURO : RAMPA_CLARO));
   SECUENCIAL.length = 0;
   SECUENCIAL.push(...(oscuro ? SECUENCIAL_OSCURO : SECUENCIAL_CLARO));
-  PALETA_VARIANTES.length = 0;
-  PALETA_VARIANTES.push(...(oscuro ? VARIANTES_OSCURO : VARIANTES_CLARO));
   ROJO = oscuro ? ROJO_OSCURO : ROJO_CLARO;
   for (const fn of suscriptores) fn(oscuro);
 }
