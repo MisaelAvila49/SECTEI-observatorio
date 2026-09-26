@@ -627,9 +627,14 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const todas = e.lengua === "todas";
     const filas = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009");
     // Color de cada línea: por variante (una lengua) o por lengua (todas).
-    const colores = todas
-      ? new Map([...new Set(filas.map((r) => r.lengua))].map((k) => [k, colorLengua(k)]))
-      : coloresVariantes(filas);
+    let colores;
+    if (todas) {
+      const porLengua = new Map();
+      for (const r of filas) porLengua.set(r.lengua, (porLengua.get(r.lengua) ?? 0) + r.num);
+      colores = new Map([...porLengua.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k]) => [k, colorLengua(k)]));
+    } else {
+      colores = coloresVariantes(filas);
+    }
     const porIso = new Map(geoEntidades.features.map((f) => [f.properties.id, f]));
     const cdmx = centro(porIso.get("MX-CMX"));
     const valores = new Map();
@@ -659,11 +664,17 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         : (vars.length ? vars.slice(0, 4).map(([v, n]) => `${v}: ${entero(n)} (variante probable)`) : ["Sin registro del catálogo en esta entidad"]);
       valores.set(iso, {num: d.num, detalle});
       if (!f) continue;
-      // Una línea por lengua (todas) o por variante (una lengua), separadas.
-      const trazos = todas ? lens : (vars.length ? vars : [[null, d.num]]);
+      // Una línea por cada categoría CON color (las mayores) y una gris con el
+      // resto sumado: Oaxaca tiene 81 variantes del mixteco y una línea por
+      // cada una abría un abanico hasta el mar. La separación total se acota.
+      const base = todas ? lens : vars;
+      const conColor = base.filter(([k]) => colores.has(k));
+      const resto = base.filter(([k]) => !colores.has(k)).reduce((s, [, n]) => s + n, 0);
+      const trazos = [...conColor, ...(resto > 0 || !conColor.length ? [[null, resto || d.num]] : [])];
+      const paso = Math.min(0.12, 0.5 / Math.max(trazos.length, 1));
       trazos.forEach(([k, n], idx) => {
         const a = centro(f);
-        const desvio = (idx - (trazos.length - 1) / 2) * 0.12;
+        const desvio = (idx - (trazos.length - 1) / 2) * paso;
         features.push({type: "Feature", properties: {ent: iso, num: n, color: colores.get(k) ?? GRIS_VARIANTE,
           grosor: 1 + 8 * Math.sqrt(n / max)}, geometry: {type: "LineString", coordinates: arco([a[0] + desvio, a[1] + desvio], cdmx)}});
       });
@@ -683,7 +694,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     if (todas) {
       const porLengua = new Map();
       for (const r of filas) porLengua.set(r.lengua, (porLengua.get(r.lengua) ?? 0) + r.num);
-      chips = [...porLengua.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k]) => html`<li><span class="mapa-variante-chip" style="background:${colores.get(k)}" aria-hidden="true"></span>${catNombre.get(k)?.nombre ?? k}</li>`);
+      chips = [...colores.entries()].map(([k, c]) => html`<li><span class="mapa-variante-chip" style="background:${c}" aria-hidden="true"></span>${catNombre.get(k)?.nombre ?? k}</li>`);
     } else {
       chips = [...colores.entries()].map(([n, c]) => html`<li><span class="mapa-variante-chip" style="background:${c}" aria-hidden="true"></span>${n}</li>`);
     }
