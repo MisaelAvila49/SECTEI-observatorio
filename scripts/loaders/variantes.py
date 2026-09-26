@@ -28,7 +28,7 @@ repartir el resto. Guardia: por lengua y edición la suma de todas las filas
 es igual al total de hablantes con entidad de nacimiento.
 
 Salida: src/data/variantes_ciudad.csv con
-  anio, lengua, lengua_nombre, variante, cve_ent, certeza, num
+  anio, lengua, lengua_nombre, cve_alc, variante, cve_ent, certeza, num
 """
 import os
 import sys
@@ -45,7 +45,7 @@ SALIDA = os.path.join(D, "variantes_ciudad.csv")
 
 
 def main():
-    origen = pd.read_csv(os.path.join(D, "lenguas_origen.csv"), dtype={"lengua": str, "ent": str, "mun": str}).fillna({"mun": ""})
+    origen = pd.read_csv(os.path.join(D, "lenguas_origen.csv"), dtype={"lengua": str, "ent": str, "mun": str, "cve_alc": str}).fillna({"mun": ""})
     muni = pd.read_csv(os.path.join(D, "clin_municipios.csv"), dtype=str)
     pesos = pd.read_csv(os.path.join(D, "variantes_pesos.csv"), dtype={"lengua": str, "cve_ent": str})
     nombre = dict(zip(origen["lengua"], origen["lengua_nombre"]))
@@ -69,7 +69,8 @@ def main():
         return {v: cantidad * x / tot for v, x in w.items()}
 
     filas = []
-    for (anio, lengua), g in origen.groupby(["anio", "lengua"]):
+    # Por alcaldía de residencia: la ciudad es la suma de sus alcaldías.
+    for (anio, lengua, alc), g in origen.groupby(["anio", "lengua", "cve_alc"]):
         nac = g[g["tipo"] == "nacimiento"].groupby("ent")["num"].sum().to_dict()
         res = g[(g["tipo"] == "residencia5") & (g["mun"] != "")]
         asignado_ent = defaultdict(float)
@@ -112,9 +113,9 @@ def main():
         total = sum(nac.values())
         suma = sum(acum.values())
         if abs(total - suma) > 0.5:
-            raise SystemExit(f"Variantes {anio} {lengua}: la asignación suma {suma:,.0f} y los hablantes con origen son {total:,.0f}.")
+            raise SystemExit(f"Variantes {anio} {lengua} {alc}: la asignación suma {suma:,.0f} y los hablantes con origen son {total:,.0f}.")
         for (v, ent, certeza), n in acum.items():
-            filas.append({"anio": anio, "lengua": lengua, "lengua_nombre": nombre[lengua], "variante": v, "cve_ent": ent, "certeza": certeza, "num": round(n, 1)})
+            filas.append({"anio": anio, "lengua": lengua, "lengua_nombre": nombre[lengua], "cve_alc": alc, "variante": v, "cve_ent": ent, "certeza": certeza, "num": round(n, 1)})
 
     out = pd.DataFrame(filas).sort_values(["anio", "lengua", "certeza", "num"], ascending=[True, True, True, False])
     out.to_csv(SALIDA, index=False, encoding="utf-8")

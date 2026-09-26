@@ -135,6 +135,22 @@ porque es lo único que el tabulado del Censo publica a ese nivel; la lengua, la
 autoadscripción, la unión de poblaciones y la serie 2010-2025 existen solo por
 alcaldía, porque salen de muestras representativas hasta ahí.
 
+Al pasar el cursor por una unidad aparece su cifra en un globo; al hacer clic
+la unidad se fija en una tarjeta a la izquierda del mapa, para compararla con
+otras. Caben cinco: la sexta sustituye a la más antigua, y cualquier cambio de
+filtro o de vista borra la comparación, porque las cifras fijadas dejarían de
+corresponder a lo que el mapa pinta.
+
+Con una lengua elegida aparecen dos vistas más. "Ver de dónde vienen" pinta la
+República por entidad de nacimiento de los hablantes, con una línea por entidad
+y variante probable. "Ver el mapa de la lengua" pinta cada municipio del país con
+la variante que el Catálogo del INALI ubica ahí: es el territorio histórico de la
+lengua, no dónde vive hoy cada hablante. Como una lengua puede tener treinta
+variantes, esa vista usa un color por variante y ningún esquema de tantos tonos
+es seguro para daltonismo; por eso el nombre de la variante va siempre en el
+globo de cada municipio y en la lista de la leyenda. En la ciudad, el globo de
+cada alcaldía lista las tres variantes probables con más hablantes.
+
 Los cortes de color de cada indicador por alcaldía son fijos a lo largo de los
 años: se calculan sobre todas las alcaldías y ediciones de ese indicador, de
 modo que un mismo tono significa lo mismo en 2010 y en 2025. Por AGEB y manzana

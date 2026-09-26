@@ -9,12 +9,13 @@ pager: false
 ```js
 import {mapaUnificado} from "./components/mapa-unificado.js";
 
-const [serie, lenguas, origen, clin, variantesCiudad, catalogo, agebs, colonias, geoAlcaldias, geoLimite, geoEntidades] = await Promise.all([
+const [serie, lenguas, origen, clin, variantesCiudad, clinMunicipios, catalogo, agebs, colonias, geoAlcaldias, geoLimite, geoEntidades] = await Promise.all([
   FileAttachment("data/serie_alcaldias.csv").csv({typed: true}),
   FileAttachment("data/lenguas_alcaldia.csv").csv({typed: true}),
   FileAttachment("data/lenguas_origen.csv").csv({typed: true}),
   FileAttachment("data/clin_variantes.csv").csv(),
   FileAttachment("data/variantes_ciudad.csv").csv(),
+  FileAttachment("data/clin_municipios.csv").csv(),
   FileAttachment("data/catalogo_lenguas.csv").csv(),
   FileAttachment("data/agebs_resumen.csv").csv({typed: true}),
   FileAttachment("data/colonias_resumen.csv").csv({typed: true}),
@@ -31,11 +32,16 @@ const texto = (filas, campos) => filas.map((r) => Object.fromEntries(Object.entr
 const s = serie.map((r) => ({...r, cve: r.nivel === "entidad" ? "09" : String(r.cve).padStart(3, "0"), anio: Number(r.anio)}));
 const l = lenguas.map((r) => ({...r, cve: r.nivel === "entidad" ? "09" : String(r.cve).padStart(3, "0"), lengua: String(r.lengua).padStart(4, "0"), anio: Number(r.anio)}));
 const o = origen.map((r) => ({...r, lengua: String(r.lengua).padStart(4, "0"), ent: String(r.ent).padStart(3, "0"), mun: r.mun == null || r.mun === "" ? "" : String(r.mun).padStart(3, "0"), anio: Number(r.anio)}));
-const vc = variantesCiudad.map((r) => ({...r, anio: Number(r.anio), num: Number(r.num), lengua: String(r.lengua).padStart(4, "0"), cve_ent: String(r.cve_ent ?? "").padStart(r.cve_ent ? 3 : 0, "0")}));
+const vc = variantesCiudad.map((r) => ({...r, anio: Number(r.anio), num: Number(r.num), lengua: String(r.lengua).padStart(4, "0"), cve_alc: String(r.cve_alc ?? "").padStart(3, "0"), cve_ent: String(r.cve_ent ?? "").padStart(r.cve_ent ? 3 : 0, "0")}));
+const cm = clinMunicipios.map((r) => ({...r, lengua: String(r.lengua).padStart(4, "0"), cve_ent: String(r.cve_ent).padStart(3, "0"), cve_mun: String(r.cve_mun).padStart(3, "0")}));
+// Las teselas de municipios se publican cuando existen; si no, el botón del mapa de la lengua no aparece.
+let pmtilesMunicipios = null;
+try { pmtilesMunicipios = await FileAttachment("data/municipios.pmtiles").url(); } catch { pmtilesMunicipios = null; }
 const mapa = mapaUnificado({
-  serie: s, lenguas: l, origen: o, clin, variantesCiudad: vc, catalogo, agebs, colonias,
+  serie: s, lenguas: l, origen: o, clin, variantesCiudad: vc, clinMunicipios: cm, catalogo, agebs, colonias,
   pmtilesManzanas: await FileAttachment("data/manzanas.pmtiles").url(),
   pmtilesAgebs: await FileAttachment("data/agebs.pmtiles").url(),
+  pmtilesMunicipios,
   geoAlcaldias, geoLimite, geoEntidades,
 });
 ```

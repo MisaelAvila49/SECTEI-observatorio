@@ -4137,3 +4137,73 @@ body:has(.mapa-pantalla) #observablehq-footer {
   font-variant-numeric: tabular-nums;
 }
 
+/* Globo que sigue al cursor (MapLibre Popup) con la misma tabla que la tarjeta. */
+.mapa-globo .maplibregl-popup-content {
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  max-width: 18rem;
+}
+.mapa-globo .globo-titulo { font-weight: 700; }
+.mapa-globo .globo-sub { color: var(--text-muted); }
+.mapa-globo .globo-tabla { width: 100%; border-collapse: collapse; margin-top: 0.25rem; }
+.mapa-globo .globo-tabla th { text-align: left; font-weight: 500; color: var(--text-muted); padding: 0.08rem 0.5rem 0.08rem 0; }
+.mapa-globo .globo-tabla td { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+/* Pila de unidades fijadas con clic, debajo de la tarjeta de la ciudad. */
+.mapa-fijadas {
+  position: absolute;
+  z-index: 5;
+  top: 9.5rem;
+  left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: min(22rem, calc(100% - 4.5rem));
+  max-height: calc(100% - 12rem);
+  overflow: auto;
+}
+.mapa-fijadas[hidden] { display: none; }
+.mapa-fijada {
+  position: relative;
+  padding: 0.5rem 1.8rem 0.5rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--brand-red);
+  background: color-mix(in srgb, var(--surface-1) 94%, transparent);
+  font-size: 0.76rem;
+  line-height: 1.35;
+  color: var(--theme-foreground);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+.mapa-fijada .globo-titulo { font-weight: 700; font-size: 0.82rem; }
+.mapa-fijada .globo-sub { color: var(--text-muted); }
+.mapa-fijada .globo-tabla { width: 100%; border-collapse: collapse; margin-top: 0.2rem; }
+.mapa-fijada .globo-tabla th { text-align: left; font-weight: 500; color: var(--text-muted); padding: 0.06rem 0.5rem 0.06rem 0; }
+.mapa-fijada .globo-tabla td { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.mapa-fijada-quitar {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.3rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.mapa-fijada-quitar:hover, .mapa-fijada-quitar:focus-visible { background: var(--surface-3); color: var(--theme-foreground); }
+.mapa-tarjeta-pista { margin-top: 0.35rem; }
+
+.mapa-botones { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.mapa-boton-lengua { border-color: var(--theme-foreground); color: var(--theme-foreground); }
+.mapa-boton-lengua:hover, .mapa-boton-lengua:focus-visible { background: var(--theme-foreground); color: var(--theme-background); }
+.mapa-variantes-leyenda-larga { max-height: 38vh; overflow: auto; columns: 2; column-gap: 1rem; }
+.mapa-variantes-leyenda-larga li { break-inside: avoid; }
+.mapa-variantes-leyenda-larga .mapa-variantes-leyenda-titulo { column-span: all; }
+

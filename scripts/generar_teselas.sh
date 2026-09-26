@@ -68,6 +68,14 @@ echo "Generando agebs.pmtiles..."
 # las manzanas: el resaltado bajo el cursor usa feature-state.
 tippecanoe   -o "$SALIDA/agebs.pmtiles"   --force   --layer=agebs   --name="AGEB urbanas CDMX · Censo 2020"   --attribution="INEGI Censo 2020 · CONAPO · CONEVAL"   -z14 -Z8   --no-tile-size-limit   --generate-ids   "$ENTRADA/agebs_cdmx.geojson"
 
+echo "Generando municipios.pmtiles..."
+# Los 2,469 municipios del país, simplificados, para el mapa de variantes por
+# lengua: el valor (la variante) se escribe con feature-state por CVEGEO, así
+# que la tesela solo lleva claves y nombre. Zoom de país a estado.
+if [ -f "$ENTRADA/municipios_mx.geojson" ]; then
+tippecanoe   -o "$SALIDA/municipios.pmtiles"   --force   --layer=municipios   --name="Municipios de Mexico · Marco Geoestadistico 2020"   --attribution="INEGI"   -z10 -Z3   --no-tile-size-limit   --coalesce-densest-as-needed   "$ENTRADA/municipios_mx.geojson"
+fi
+
 echo
 ls -lh "$SALIDA"/*.pmtiles
 echo

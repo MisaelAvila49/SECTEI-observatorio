@@ -217,6 +217,21 @@ for (const ruta of []) {
   ok(flujos.n >= 20 && ents.n >= 20, `vista de origen: ${flujos.n} líneas y ${ents.n} entidades pintadas`);
   ok(!(await visible('form[data-campo="sexo"]')), "en la vista de origen el sexo se oculta");
   await pg.click(".mapa-boton-origen"); await pg.waitForTimeout(2500);
+  // Mapa de la lengua: municipios pintados por variante (si hay teselas).
+  if (await visible(".mapa-boton-lengua")) {
+    await pg.click(".mapa-boton-lengua"); await pg.waitForTimeout(5000);
+    const mun = await medir("municipios-relleno");
+    ok(mun.n >= 200, `mapa de la lengua: ${mun.n} municipios pintados`);
+    ok((await pg.$$eval(".mapa-variantes-leyenda-larga li", (l) => l.length)) >= 4, "leyenda de variantes con color por variante");
+    await pg.click(".mapa-boton-lengua"); await pg.waitForTimeout(2500);
+  }
+  // Clic fija hasta cinco unidades; el cambio de filtro las borra.
+  await pg.selectOption("#mapa-lengua", "todas"); await pg.waitForTimeout(1500);
+  for (const [x, y] of [[520, 430], [560, 470], [600, 520], [480, 560], [640, 400], [700, 450]]) { await pg.mouse.click(x, y); await pg.waitForTimeout(400); }
+  const fij = await pg.$$eval(".mapa-fijada", (l) => l.length);
+  ok(fij >= 1 && fij <= 5, `clic fija unidades para comparar (${fij}, tope 5)`);
+  await pg.selectOption("#mapa-anio", "2020"); await pg.waitForTimeout(1200);
+  ok((await pg.$$eval(".mapa-fijada", (l) => l.length)) === 0, "cambiar un filtro borra la comparación");
   await pg.selectOption("#mapa-unidad", "ageb"); await pg.waitForTimeout(6000);
   const ageb0 = await medir("agebs-relleno");
   ok(ageb0.n >= 1000, `AGEB pintadas: ${ageb0.n} marcas`);

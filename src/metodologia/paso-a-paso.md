@@ -118,6 +118,13 @@ una línea por entidad y variante, con el grosor por número de personas y el
 color por variante; solo las tres variantes con más hablantes reciben color,
 porque con cuatro tonos la paleta deja de distinguirse bajo deuteranopía.
 
+Con una lengua elegida hay dos vistas más: la de origen, con una línea por
+entidad de nacimiento y variante probable, y la del mapa de la lengua, que
+pinta cada municipio del país con la variante que el Catálogo ubica ahí,
+sobre los municipios del marco geoestadístico 2020 simplificados a unos
+300 metros. Al hacer clic en una unidad se fija a la izquierda para
+comparar hasta cinco; el cambio de filtro las borra.
+
 ## 8. Cotejos
 
 Cada cifra central se comparó con una publicada y el resultado está en el

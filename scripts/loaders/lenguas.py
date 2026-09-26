@@ -12,7 +12,7 @@ Salidas:
     (5 años y más hasta 2005, 3 años y más desde 2010). En 1990 y 2005 la
     muestra es autoponderada y el error queda vacío.
   src/data/lenguas_origen.csv
-    anio, lengua, lengua_nombre, tipo ('nacimiento' | 'residencia5'),
+    anio, lengua, lengua_nombre, cve_alc (alcaldía de residencia), tipo ('nacimiento' | 'residencia5'),
     ent (3 dígitos; > 032 es otro país, 999 no especificado), ent_nombre,
     mun (3 dígitos, solo residencia5), num, casos
 
@@ -91,18 +91,18 @@ def main():
 
         # Origen: entidad de nacimiento (no existe en 2005) y residencia cinco años antes.
         nac = con.execute("""
-          SELECT lengua, ent_nac AS ent, ROUND(SUM(w)) AS num, COUNT(*) AS casos
-          FROM m WHERE lengua IS NOT NULL AND ent_nac IS NOT NULL GROUP BY 1, 2 ORDER BY 1, 3 DESC""").df()
+          SELECT lengua, cve_mun AS alc, ent_nac AS ent, ROUND(SUM(w)) AS num, COUNT(*) AS casos
+          FROM m WHERE lengua IS NOT NULL AND ent_nac IS NOT NULL GROUP BY 1, 2, 3 ORDER BY 1, 2, 4 DESC""").df()
         res = con.execute("""
-          SELECT lengua, ent_res5 AS ent, COALESCE(mun_res5, '') AS mun, ROUND(SUM(w)) AS num, COUNT(*) AS casos
+          SELECT lengua, cve_mun AS alc, ent_res5 AS ent, COALESCE(mun_res5, '') AS mun, ROUND(SUM(w)) AS num, COUNT(*) AS casos
           FROM m WHERE lengua IS NOT NULL AND ent_res5 BETWEEN '001' AND '032' AND ent_res5 <> '009'
-          GROUP BY 1, 2, 3 ORDER BY 1, 4 DESC""").df()
+          GROUP BY 1, 2, 3, 4 ORDER BY 1, 2, 5 DESC""").df()
         for _, r in nac.iterrows():
-            ori.append({"anio": anio, "lengua": r["lengua"], "lengua_nombre": nombre[r["lengua"]], "tipo": "nacimiento",
+            ori.append({"anio": anio, "lengua": r["lengua"], "lengua_nombre": nombre[r["lengua"]], "cve_alc": r["alc"], "tipo": "nacimiento",
                         "ent": r["ent"], "ent_nombre": ent_nombre.get(r["ent"], "Otro país" if "032" < r["ent"] < "999" else "No especificado"),
                         "mun": "", "num": r["num"], "casos": int(r["casos"])})
         for _, r in res.iterrows():
-            ori.append({"anio": anio, "lengua": r["lengua"], "lengua_nombre": nombre[r["lengua"]], "tipo": "residencia5",
+            ori.append({"anio": anio, "lengua": r["lengua"], "lengua_nombre": nombre[r["lengua"]], "cve_alc": r["alc"], "tipo": "residencia5",
                         "ent": r["ent"], "ent_nombre": ent_nombre.get(r["ent"], ""), "mun": r["mun"], "num": r["num"], "casos": int(r["casos"])})
         if len(nac):
             fuera_cdmx = nac[nac["ent"] != "009"]["num"].sum() / nac["num"].sum() * 100
