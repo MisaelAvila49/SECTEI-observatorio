@@ -33,14 +33,6 @@ const PAGINAS = [
   // Los conteos son de la PÁGINA completa. Cada mínimo se fija por debajo de
   // lo que dibuja hoy, para detectar un desplome (una sección que dejó de
   // pintar) y no una variación chica.
-  {ruta: "/encuestas/censo/vivienda", esperado: [
-    {nombre: "puntos de los dumbbell", sel: 'g[aria-label="dot"] circle', minimo: 120},
-    {nombre: "segmentos de brecha", sel: 'g[aria-label="link"] path', minimo: 60},
-  ]},
-  {ruta: "/encuestas/enigh/hogar", esperado: [
-    {nombre: "puntos de los dumbbell", sel: 'g[aria-label="dot"] circle', minimo: 120},
-    {nombre: "segmentos de brecha", sel: 'g[aria-label="link"] path', minimo: 60},
-  ]},
   // El mapa dibuja en canvas (MapLibre), no en SVG: se cuentan los escalones
   // de la leyenda, que solo aparecen cuando los datos cargaron y se pintó.
   {ruta: "/mapa", espera: ".mapa-leyenda-paso", esperado: [
@@ -48,6 +40,7 @@ const PAGINAS = [
   ]},
   {ruta: "/index", esperado: [
     {nombre: "puntos y barras de la portada", sel: 'g[aria-label="dot"] circle, g[aria-label="rect"] rect', minimo: 30},
+    {nombre: "líneas de la serie", sel: 'g[aria-label="line"] path', minimo: 2},
   ]},
 ];
 
@@ -210,7 +203,7 @@ const muestras = {};
 for (const modo of ["claro", "oscuro"]) {
   const ctx = await contexto(modo, 1500, 1000);
   const page = await ctx.newPage();
-  await page.goto(`http://127.0.0.1:${PUERTO}/encuestas/censo/vivienda`, {waitUntil: "networkidle"});
+  await page.goto(`http://127.0.0.1:${PUERTO}/index`, {waitUntil: "networkidle"});
   await esperarDibujo(page);
   muestras[modo] = await page.evaluate(() => {
     const cuerpo = getComputedStyle(document.body);

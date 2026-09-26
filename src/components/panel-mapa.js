@@ -42,17 +42,11 @@ export const SEXOS = [
 
 // Cruces territoriales. `tesela` es el campo de la tasa en cada unidad; los
 // dos grados son categorías (cinco), no porcentajes, y solo existen por AGEB.
+// Cruces territoriales. Por ahora solo los de distribución (migración, salud,
+// marginación y rezago); los de conectividad de las viviendas se retiran hasta
+// la etapa de acceso digital. `tesela` es el campo de la tasa en cada unidad;
+// los dos grados son categorías (cinco), no porcentajes, y solo existen por AGEB.
 export const CRUCES = [
-  {clave: "inter", grupo: "Conectividad de las viviendas", etiqueta: "Viviendas con internet", tesela: {manzana: "tasa_vph_inter", ageb: "tasa_vph_inter"}, unidad: "viviendas",
-   definicion: "Viviendas particulares habitadas que disponen de internet, sobre las viviendas con características captadas."},
-  {clave: "pc", grupo: "Conectividad de las viviendas", etiqueta: "Viviendas con computadora", tesela: {manzana: "tasa_vph_pc", ageb: "tasa_vph_pc"}, unidad: "viviendas",
-   definicion: "Viviendas con computadora, laptop o tableta, sobre las viviendas con características captadas."},
-  {clave: "cel", grupo: "Conectividad de las viviendas", etiqueta: "Viviendas con celular", tesela: {manzana: "tasa_vph_cel", ageb: "tasa_vph_cel"}, unidad: "viviendas",
-   definicion: "Viviendas donde alguien dispone de teléfono celular, sobre las viviendas con características captadas."},
-  {clave: "radio", grupo: "Conectividad de las viviendas", etiqueta: "Viviendas con radio", tesela: {manzana: "tasa_vph_radio", ageb: "tasa_vph_radio"}, unidad: "viviendas",
-   definicion: "Viviendas que disponen de radio, sobre las viviendas con características captadas."},
-  {clave: "sintic", grupo: "Conectividad de las viviendas", etiqueta: "Viviendas sin ninguna tecnología", tesela: {manzana: "tasa_vph_sintic", ageb: "tasa_vph_sintic"}, unidad: "viviendas",
-   definicion: "Viviendas sin radio, televisor, computadora, teléfono, celular ni internet, sobre las viviendas con características captadas."},
   {clave: "nacoe", grupo: "Migración", etiqueta: "Nacidas en otra entidad", tesela: {manzana: "tasa_pnacoe"}, unidad: "personas",
    definicion: "Personas nacidas en otra entidad del país, sobre la población total."},
   {clave: "resoe", grupo: "Migración", etiqueta: "Vivían en otra entidad en 2015", tesela: {manzana: "tasa_presoe15"}, unidad: "personas",

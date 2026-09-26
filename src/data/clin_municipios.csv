@@ -1,0 +1,1492 @@
+lengua,agrupacion,variante,cve_ent,cve_mun,nom_mun,compartido,parte
+0101,Kickapoo,Kickapoo,005,020,Múzquiz,0,1.0
+0209,cora,cora de Rosarito,018,010,Rosamorada,1,0.5
+0209,cora,cora de Dolores,018,009,Del,1,0.2
+0209,cora,cora meseño,018,009,Del Nayar [El Nayar],1,0.2
+0209,cora,cora de Jesús María,018,009,Del Nayar [El Nayar],1,0.2
+0209,cora,cora francisqueño,018,009,Del,1,0.2
+0209,cora,cora tereseño,010,014,Mezquital,0,1.0
+0209,cora,cora tereseño,018,001,Acaponeta,0,1.0
+0209,cora,cora tereseño,018,009,Del Nayar [El Nayar],1,0.2
+0209,cora,cora presideño,018,011,Ruíz,0,1.0
+0209,cora,cora corapeño,018,010,Rosamorada,1,0.5
+0206,guarijío,guarijío del norte,008,020,Chínipas,0,1.0
+0206,guarijío,guarijío del norte,008,047,Moris,0,1.0
+0206,guarijío,guarijío del norte,008,066,Uruachi,0,1.0
+0206,guarijío,guarijío del sur,026,003,Álamos,0,1.0
+0206,guarijío,guarijío del sur,026,049,Quiriego,0,1.0
+0210,huichol,huichol del norte,018,009,Del Nayar [El Nayar],0,1.0
+0210,huichol,huichol del norte,018,019,La Yesca,0,1.0
+0210,huichol,huichol del norte,018,010,Rosamorada,0,1.0
+0210,huichol,huichol del norte,018,011,Ruíz,0,1.0
+0210,huichol,huichol del norte,018,012,San Blas,0,1.0
+0210,huichol,huichol del norte,018,015,Santiago Ixcuintla,0,1.0
+0210,huichol,huichol del norte,010,014,Mezquital,0,1.0
+0210,huichol,huichol del sur,014,019,Bolaños,0,1.0
+0210,huichol,huichol del sur,014,076,San Martín de Bolaños,0,1.0
+0210,huichol,huichol del sur,014,115,Villa Guerrero,0,1.0
+0210,huichol,huichol del este,014,061,Mezquitic,0,1.0
+0210,huichol,huichol del oeste,014,042,Huejuquilla el Alto,0,1.0
+0208,mayo,mayo,026,003,Álamos,0,1.0
+0208,mayo,mayo,026,071,Benito Juárez,0,1.0
+0208,mayo,mayo,026,018,Cajeme,0,1.0
+0208,mayo,mayo,026,026,Etchojoa,0,1.0
+0208,mayo,mayo,026,033,Huatabampo,0,1.0
+0208,mayo,mayo,026,042,Navojoa,0,1.0
+0208,mayo,mayo,026,072,San Ignacio Río Muerto,0,1.0
+0208,mayo,mayo,025,001,Ahome,0,1.0
+0208,mayo,mayo,025,002,Angostura,0,1.0
+0208,mayo,mayo,025,007,Choix,0,1.0
+0208,mayo,mayo,025,010,El Fuerte,0,1.0
+0208,mayo,mayo,025,011,Guasave,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,017,Atempan,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,025,Ayotoxco de Guerrero,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,039,Cuautempan,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,043,Cuetzalan del Progreso,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,054,Chignautla,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,075,Hueyapan,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,076,Hueytamalco,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,078,Huitzilán de Serdán,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,083,Ixtacamaxtitlán,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,088,Jonotla,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,101,Nauzontla,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,158,Tenampulco,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,172,Tetela de Ocampo,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,174,Teziutlán,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,186,Tlatlauquitepec,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,192,Tuzamapan de Galeana,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,199,Xiutetelco,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,200,Xochiapulco,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,202,Xochitlán de Vicente Suárez,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,204,Yaonáhuac,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,207,Zacapoaxtla,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,212,Zautla,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,210,Zapotitlán de Méndez,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,211,Zaragoza,0,1.0
+0211,náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,216,Zoquiapan,0,1.0
+0211,náhuatl,náhuatl del noroeste central,013,002,Acaxochitlán,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,049,Chiconcuautla,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,057,Honey,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,071,Huauchinango,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,089,Jopala,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,091,Juan Galindo,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,100,Naupan,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,109,Pahuatlán,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,183,Tlaola,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,184,Tlapacoya,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,197,Xicotepec,0,1.0
+0211,náhuatl,náhuatl del noroeste central,021,213,Zihuateutla,0,1.0
+0211,náhuatl,náhuatl del Istmo,030,048,Cosoleacaque,0,1.0
+0211,náhuatl,náhuatl del Istmo,030,104,Mecayapan,0,1.0
+0211,náhuatl,náhuatl del Istmo,030,122,Pajapan,0,1.0
+0211,náhuatl,náhuatl del Istmo,030,199,Zaragoza,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,027,Benito Juárez,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,157,Castillo de Teayo,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,055,Chalma,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,056,Chiconamel,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,058,Chicontepec,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,063,Chontla,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,035,Citlaltépetl,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,072,Huayacocotla,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,076,Ilamatlán,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,078,Ixcatepec,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,083,Ixhuatlán de Madero,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,123,Pánuco,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,129,Platón Sánchez,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,150,Tamalín,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,154,Tantima,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,155,Tantoyuca,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,167,Tepetzintla,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,170,Texcatepec,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,180,Tlachichilco,0,1.0
+0211,náhuatl,náhuatl de la Huasteca veracruzana,030,202,Zontecomatlán de López y Fuentes,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,003,Aquismón,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,053,Axtla de Terrazas,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,013,Ciudad Valles,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,014,Coxcatlán,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,016,Ébano,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,018,Huehuetlán,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,057,Matlapa,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,037,Tamazunchale,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,038,Tampacán,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,039,Tampamolón Corona,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,040,Tamuín,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,012,Tancanhuitz de Santos,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,042,Tanquián de Escobedo,0,1.0
+0211,náhuatl,náhuatl de la Huasteca potosina,024,054,Xilitla,0,1.0
+0211,náhuatl,náhuatl de Oaxaca,020,244,San Martín Toxpalan,0,1.0
+0211,náhuatl,náhuatl de Oaxaca,020,261,San Miguel Amatitlán,0,1.0
+0211,náhuatl,náhuatl de Oaxaca,020,434,Santa María Teopoxco,0,1.0
+0211,náhuatl,náhuatl de Oaxaca,020,490,Santiago Texcalcingo,0,1.0
+0211,náhuatl,náhuatl de Oaxaca,020,545,Teotitlán de Flores Magón,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, sur",021,013,Altepexi,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, sur",021,035,Coxcatlán,1,0.5
+0211,náhuatl,"náhuatl de la Sierra negra, sur",021,124,San Gabriel Chilac,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, sur",021,129,San José Miahuatlán,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, sur",021,214,Zinacatepec,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,010,Ajalpan,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,035,Coxcatlán,1,0.5
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,036,Coyomeapan,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,061,Eloxochitlán,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,103,Nicolás Bravo,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,120,San Antonio Cañada,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,145,San Sebastián Tlacotepec,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,149,Santiago Miahuatlán,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,156,Tehuacán,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,177,Tlacotepec de Benito Juárez,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,195,Vicente Guerrero,0,1.0
+0211,náhuatl,"náhuatl de la Sierra negra, norte",021,217,Zoquitlán,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,006,Acultzingo,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,020,Atlahuilco,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,030,Camerino Z. Mendoza,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,041,Coetzala,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,081,Ixhuatlancillo,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,085,Ixtaczoquitlán,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,137,Los Reyes,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,098,Magdalena,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,110,Mixtla de Altamirano,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,115,Nogales,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,117,Omealca,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,135,Rafael Delgado,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,140,San Andrés Tenejapan,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,147,Soledad Atzompa,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,168,Tequila,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,171,Texhuacán,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,173,Tezonapa,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,184,Tlaquilpa,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,185,Tlilapan,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,195,Xoxocotla,0,1.0
+0211,náhuatl,náhuatl central de Veracruz,030,201,Zongolica,0,1.0
+0211,náhuatl,náhuatl de la Sierra oeste de Puebla,021,006,Ahuacatlán,0,1.0
+0211,náhuatl,náhuatl de la Sierra oeste de Puebla,021,016,Aquixtla,0,1.0
+0211,náhuatl,náhuatl de la Sierra oeste de Puebla,021,053,Chignahuapan,0,1.0
+0211,náhuatl,náhuatl de la Sierra oeste de Puebla,021,167,Tepetzintla,0,1.0
+0211,náhuatl,náhuatl de la Sierra oeste de Puebla,021,208,Zacatlán,0,1.0
+0211,náhuatl,náhuatl alto del norte de Puebla,021,064,Francisco Z. Mena,0,1.0
+0211,náhuatl,náhuatl alto del norte de Puebla,021,194,Venustiano Carranza,0,1.0
+0211,náhuatl,náhuatl del Istmo bajo,030,149,Soteapan,0,1.0
+0211,náhuatl,náhuatl del Istmo bajo,030,209,Tatahuicapan,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,001,Acajete,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,005,Acteopan,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,019,Atlixco,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,020,Atoyatempan,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,026,Calpan,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,033,Cohuecán,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,069,Huaquechula,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,074,Huejotzingo,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,102,Nealticán,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,106,Ocoyucan,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,114,Puebla,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,119,San Andrés Cholula,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,131,San Juan Atzompa,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,159,Teopantlán,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,163,Tepatlaxco de Hidalgo,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,166,Tepeojuma,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,175,Tianguismanalco,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,185,Tlapanalá,0,1.0
+0211,náhuatl,náhuatl del centro de Puebla,021,188,Tochimilco,0,1.0
+0211,náhuatl,mexicano bajo de occidente,006,001,Armería,0,1.0
+0211,náhuatl,mexicano bajo de occidente,006,005,Cuauhtémoc,0,1.0
+0211,náhuatl,mexicano bajo de occidente,006,006,Ixtlahuacán,0,1.0
+0211,náhuatl,mexicano bajo de occidente,006,007,Manzanillo,0,1.0
+0211,náhuatl,mexicano bajo de occidente,006,009,Tecomán,0,1.0
+0211,náhuatl,mexicano del noroeste,010,014,Mezquital,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,002,Ahuacuotzingo,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,005,Alpoyeca,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,008,Atenango del Río,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,010,Atlixtac,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,019,Copalillo,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,020,Copanatoyac,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,024,Cualac,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,028,Chilapa de Álvarez,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,075,Eduardo Neri,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,033,Huamuxtitlán,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,034,Huitzuco de los Figueroa,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,042,Mártir de Cuilapan,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,045,Olinala,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,055,Taxco de Alarcón,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,058,Teloloapan,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,059,Tepecoacuilco de Trujano,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,061,Tixtla de Guerrero,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,066,Tlapa de Comonfort,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,069,Xalpatlahuac,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,072,Zapotitlán Tablas,0,1.0
+0211,náhuatl,mexicano de Guerrero,012,074,Zitlala,0,1.0
+0211,náhuatl,mexicano de Guerrero,021,087,Jolalpan,0,1.0
+0211,náhuatl,mexicano de occidente,014,027,Cuautitlán de García Barragán,0,1.0
+0211,náhuatl,mexicano central de occidente,016,008,Aquila,0,1.0
+0211,náhuatl,mexicano central de occidente,016,026,Chinicuila,0,1.0
+0211,náhuatl,mexicano central de occidente,016,014,Coahuayana,0,1.0
+0211,náhuatl,mexicano central de occidente,016,015,Coalcomán de Vázquez Pallares,0,1.0
+0211,náhuatl,mexicano central bajo,017,004,Ayala,0,1.0
+0211,náhuatl,mexicano central bajo,017,012,Jojutla,0,1.0
+0211,náhuatl,mexicano de Temixco,017,017,Puente de Ixtla,0,1.0
+0211,náhuatl,mexicano de Temixco,017,018,Temixco,0,1.0
+0211,náhuatl,mexicano de Puente de Ixtla,017,006,Cuautla,0,1.0
+0211,náhuatl,mexicano de Tetela del Volcán,017,022,Tetela del Volcán,0,1.0
+0211,náhuatl,mexicano alto de occidente,018,001,Acaponeta,0,1.0
+0211,náhuatl,mexicano alto de occidente,018,009,Del Nayar [El Nayar],0,1.0
+0211,náhuatl,mexicano del oriente,027,002,Cárdenas,0,1.0
+0211,náhuatl,mexicano del oriente,027,005,Comalcalco,0,1.0
+0211,náhuatl,mexicano del oriente central,029,010,Chiautempán,0,1.0
+0211,náhuatl,mexicano del oriente central,029,018,Contla de Juan Cuamatzi,0,1.0
+0211,náhuatl,mexicano del oriente central,029,017,Mazatecochco de José María Morelos,0,1.0
+0211,náhuatl,mexicano del oriente central,029,050,San Francisco Tetlanohcan,0,1.0
+0211,náhuatl,mexicano del oriente central,029,025,San Pablo del Monte,0,1.0
+0211,náhuatl,mexicano del oriente central,029,026,Santa Cruz Tlaxcala,0,1.0
+0211,náhuatl,mexicano del oriente central,029,027,Tenancingo,0,1.0
+0211,náhuatl,mexicano del oriente central,029,028,Teolocholco,0,1.0
+0211,náhuatl,mexicano del centro bajo,015,086,Temascaltepec,0,1.0
+0211,náhuatl,mexicano del centro alto,009,009,Milpa Alta,0,1.0
+0211,náhuatl,mexicano del centro alto,015,002,Acolman,0,1.0
+0211,náhuatl,mexicano del centro alto,015,023,Coyotepec,0,1.0
+0211,náhuatl,mexicano del centro alto,015,035,Huehuetoca,0,1.0
+0211,náhuatl,mexicano del centro alto,015,059,Nextlalpan,0,1.0
+0211,náhuatl,mexicano del centro alto,015,081,Tecámac,0,1.0
+0211,náhuatl,mexicano del centro alto,015,091,Teoloyucan,0,1.0
+0211,náhuatl,mexicano del centro alto,015,099,Texcoco,0,1.0
+0211,náhuatl,mexicano del centro alto,015,100,Tezoyuca,0,1.0
+0211,náhuatl,mexicano del centro alto,015,108,Tultepec,0,1.0
+0211,náhuatl,mexicano del centro,015,060,Nicolás Romero,0,1.0
+0211,náhuatl,mexicano del centro,015,101,Tianguistenco,0,1.0
+0211,náhuatl,mexicano del centro,015,043,Xalatlaco,0,1.0
+0211,náhuatl,mexicano del oriente de Puebla,021,050,Chichiquila,0,1.0
+0211,náhuatl,mexicano del oriente de Puebla,021,058,Chilchotla,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,011,Atlapexco,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,014,Calnali,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,018,Chapulhuacán,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,025,Huautla,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,026,Huazalingo,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,028,Huejutla de Reyes,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,032,Jaltocan,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,034,Lolotla,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,046,San Felipe Orizatlán,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,062,Tepehuacán de Guerrero,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,068,Tianguistengo,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,073,Tlanchinol,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,078,Xochiatipan,0,1.0
+0211,náhuatl,mexicano de la Huasteca hidalguense,013,080,Yahualica,0,1.0
+0201,pápago,pápago,026,004,Altar,0,1.0
+0201,pápago,pápago,026,017,Caborca,0,1.0
+0201,pápago,pápago,026,070,General Plutarco Elías Calles,0,1.0
+0202,pima,pima del norte,008,040,Madera,0,1.0
+0202,pima,pima del norte,008,047,Moris,0,1.0
+0202,pima,pima del sur,008,051,Ocampo,0,1.0
+0202,pima,pima del este,026,069,Yécora,0,1.0
+0205,tarahumara,tarahumara del oeste,008,020,Chínipas,0,1.0
+0205,tarahumara,tarahumara del oeste,008,030,Guazapares,0,1.0
+0205,tarahumara,tarahumara del oeste,008,041,Maguarichi,0,1.0
+0205,tarahumara,tarahumara del oeste,008,065,Urique,1,0.5
+0205,tarahumara,tarahumara del oeste,008,066,Uruachi,0,1.0
+0205,tarahumara,tarahumara del norte,008,009,Bocoyna,0,1.0
+0205,tarahumara,tarahumara del norte,008,012,Carichi,0,1.0
+0205,tarahumara,tarahumara del norte,008,017,Cuauhtémoc,0,1.0
+0205,tarahumara,tarahumara del norte,008,031,Guerrero,0,1.0
+0205,tarahumara,tarahumara del norte,008,049,Nonoava,0,1.0
+0205,tarahumara,tarahumara del norte,008,057,San Francisco de Borja,0,1.0
+0205,tarahumara,tarahumara de Cumbres,008,027,Guachochi,1,0.5
+0205,tarahumara,tarahumara de Cumbres,008,065,Urique,1,0.5
+0205,tarahumara,tarahumara del centro,008,007,Balleza,0,1.0
+0205,tarahumara,tarahumara del centro,008,008,Batopilas,0,1.0
+0205,tarahumara,tarahumara del centro,008,064,El Tule,0,1.0
+0205,tarahumara,tarahumara del centro,008,027,Guachochi,1,0.5
+0205,tarahumara,tarahumara del centro,008,046,Morelos,0,1.0
+0205,tarahumara,tarahumara del sur,008,029,Guadalupe y Calvo,0,1.0
+0203,tepehuano del norte,tepehuano del norte,008,029,Guadalupe y Calvo,0,1.0
+0203,tepehuano del norte,tepehuano del norte,008,027,Guachochi,0,1.0
+0204,tepehuano del sur,tepehuano del sur alto,010,023,Pueblo Nuevo,0,1.0
+0204,tepehuano del sur,tepehuano del sur alto,018,001,Acaponeta,0,1.0
+0204,tepehuano del sur,tepehuano del sur alto,018,005,Huajicori,0,1.0
+0204,tepehuano del sur,tepehuano del sur alto,025,009,Escuinapa,0,1.0
+0204,tepehuano del sur,tepehuano del sur bajo,010,014,Mezquital,1,0.5
+0204,tepehuano del sur,tepehuano del sur bajo,010,033,Súchil,0,1.0
+0204,tepehuano del sur,tepehuano del sur bajo,032,049,Valparaíso,0,1.0
+0204,tepehuano del sur,tepehuano del sur central,010,014,Mezquital,1,0.5
+0207,yaqui,yaqui,026,012,Bácum,0,1.0
+0207,yaqui,yaqui,026,018,Cajeme,0,1.0
+0207,yaqui,yaqui,026,025,Empalme,0,1.0
+0207,yaqui,yaqui,026,029,Guaymas,0,1.0
+0207,yaqui,yaqui,026,072,San Ignacio Río Muerto,0,1.0
+0303,cucapá,cucapá,002,002,Mexicali,0,1.0
+0303,cucapá,cucapá,026,055,San Luis Río Colorado,0,1.0
+0305,kiliwa,kiliwa,002,001,Ensenada,0,1.0
+0304,kumiai,kumiai,002,001,Ensenada,0,1.0
+0304,kumiai,kumiai,002,003,Tecate,0,1.0
+0302,ku'ahl,ku'ahl,002,001,Ensenada,0,1.0
+0301,paipai,paipai,002,001,Ensenada,0,1.0
+0401,seri,seri,026,030,Hermosillo,0,1.0
+0401,seri,seri,026,047,Pitiquito,0,1.0
+0515,amuzgo,amuzgo del norte,012,062,Tlacoachistlahuaca,0,1.0
+0515,amuzgo,amuzgo del norte,012,071,Xochistlahuaca,0,1.0
+0515,amuzgo,amuzgo del sur,012,013,Azoyú,0,1.0
+0515,amuzgo,amuzgo del sur,012,023,Cuajinicuilapa,0,1.0
+0515,amuzgo,amuzgo del sur,012,046,Ometepec,0,1.0
+0515,amuzgo,amuzgo bajo del este,020,415,Santa María Ipalapa,0,1.0
+0515,amuzgo,amuzgo alto del este,020,300,San Pedro Amuzgos,0,1.0
+0517,cuicateco,cuicateco del centro,020,019,Concepción Pápalo,0,1.0
+0517,cuicateco,cuicateco del centro,020,098,San Andrés Teotilalpam,1,0.3333333333333333
+0517,cuicateco,cuicateco del centro,020,139,San Francisco Chapulapa,1,0.3333333333333333
+0517,cuicateco,cuicateco del centro,020,177,San Juan Bautista Cuicatlán,0,1.0
+0517,cuicateco,cuicateco del centro,020,220,San Juan Tepeuxila,0,1.0
+0517,cuicateco,cuicateco del centro,020,326,San Pedro Sochiapam,0,1.0
+0517,cuicateco,cuicateco del centro,020,425,Santa María Pápalo,0,1.0
+0517,cuicateco,cuicateco del centro,020,438,Santa María Tlalixtac,1,0.3333333333333333
+0517,cuicateco,cuicateco del centro,020,527,Santos Reyes Pápalo,0,1.0
+0517,cuicateco,cuicateco del centro,020,558,Valerio Trujano,0,1.0
+0517,cuicateco,cuicateco del norte,020,098,San Andrés Teotilalpam,1,0.3333333333333333
+0517,cuicateco,cuicateco del norte,020,139,San Francisco Chapulapa,1,0.3333333333333333
+0517,cuicateco,cuicateco del norte,020,330,San Pedro Teutila,1,0.5
+0517,cuicateco,cuicateco del norte,020,438,Santa María Tlalixtac,1,0.3333333333333333
+0517,cuicateco,cuicateco del oriente,020,098,San Andrés Teotilalpam,1,0.3333333333333333
+0517,cuicateco,cuicateco del oriente,020,139,San Francisco Chapulapa,1,0.3333333333333333
+0517,cuicateco,cuicateco del oriente,020,330,San Pedro Teutila,1,0.5
+0517,cuicateco,cuicateco del oriente,020,438,Santa María Tlalixtac,1,0.3333333333333333
+0514,chatino,chatino occidental alto,020,158,San Jacinto Tlacotepec,0,1.0
+0514,chatino,chatino occidental alto,020,386,Santa Cruz Zenzontepec,0,1.0
+0514,chatino,chatino occidental alto,020,466,Santiago Ixtayutla,0,1.0
+0514,chatino,chatino occidental bajo,020,319,San Pedro Mixtepec Distrito 22,0,1.0
+0514,chatino,chatino occidental bajo,020,543,Tataltepec de Valdés,1,0.5
+0514,chatino,chatino occidental bajo,020,334,Villa de Tututepec de Melchor Ocampo,0,1.0
+0514,chatino,chatino central,020,213,San Juan Quiahije,0,1.0
+0514,chatino,chatino central,020,272,San Miguel Panixtlahuaca,0,1.0
+0514,chatino,chatino central,020,314,San Pedro Juchatengo,0,1.0
+0514,chatino,chatino central,020,364,Santa Catarina Juquila,1,0.3333333333333333
+0514,chatino,chatino central,020,489,Santiago Tetepec,0,1.0
+0514,chatino,chatino central,020,497,Santiago Yaitepec,0,1.0
+0514,chatino,chatino central,020,543,Tataltepec de Valdés,1,0.5
+0514,chatino,chatino central,020,277,Villa Sola de Vega,0,1.0
+0514,chatino,chatino oriental bajo,020,153,San Gabriel Mixtepec,1,0.5
+0514,chatino,chatino oriental bajo,020,364,Santa Catarina Juquila,1,0.3333333333333333
+0514,chatino,chatino oriental bajo,020,433,Santa María Temaxcaltepec,0,1.0
+0514,chatino,chatino oriental bajo,020,526,Santos Reyes Nopala,0,1.0
+0514,chatino,chatino oriental alto,020,153,San Gabriel Mixtepec,1,0.5
+0514,chatino,chatino oriental alto,020,202,San Juan Lachao,0,1.0
+0514,chatino,chatino de Zacatepec,020,364,Santa Catarina Juquila,1,0.3333333333333333
+0506,chichimeco jonaz,chichimeco jonaz,011,033,San Luis de la Paz,0,1.0
+0507,chinanteco,chinanteco del norte,020,134,San Felipe Jalapa de Díaz,0,1.0
+0507,chinanteco,chinanteco del norte,020,136,San Felipe Usila,1,0.25
+0507,chinanteco,chinanteco del norte,020,166,San José Chiltepec,1,0.5
+0507,chinanteco,chinanteco del norte,020,190,San Juan Cotzocón,0,1.0
+0507,chinanteco,chinanteco del norte,020,232,San Lucas Ojitlán,0,1.0
+0507,chinanteco,chinanteco del norte,020,184,San Juan Bautista Tuxtepec,0,1.0
+0507,chinanteco,chinanteco del norte,030,045,Cosamaloapan,0,1.0
+0507,chinanteco,chinanteco del norte,030,077,Isla,0,1.0
+0507,chinanteco,chinanteco del norte,030,094,Juan Rodríguez Clara,0,1.0
+0507,chinanteco,chinanteco del norte,030,174,Tierra Blanca,0,1.0
+0507,chinanteco,chinanteco del norte,030,207,Tres Valles,0,1.0
+0507,chinanteco,chinanteco del norte,030,210,Uxpanapa,0,1.0
+0507,chinanteco,chinanteco central bajo,020,559,San Juan Bautista Valle Nacional,1,0.3333333333333333
+0507,chinanteco,chinanteco del sureste alto,020,009,Ayotzintepec,1,0.5
+0507,chinanteco,chinanteco del sureste bajo,020,205,San Juan Lalana,0,1.0
+0507,chinanteco,chinanteco del oeste central alto,020,136,San Felipe Usila,1,0.25
+0507,chinanteco,chinanteco de la Sierra,020,175,San Juan Bautista Atatlahuca,0,1.0
+0507,chinanteco,chinanteco de la Sierra,020,559,San Juan Bautista Valle Nacional,1,0.3333333333333333
+0507,chinanteco,chinanteco de la Sierra,020,214,San Juan Quiotepec,0,1.0
+0507,chinanteco,chinanteco de la Sierra,020,336,San Pedro Yolox,0,1.0
+0507,chinanteco,chinanteco de la Sierra,020,458,Santiago Comaltepec,0,1.0
+0507,chinanteco,chinanteco del noroeste,020,098,San Andrés Teotilalpam,0,1.0
+0507,chinanteco,chinanteco del noroeste,020,182,San Juan Bautista Tlacoatzintepec,0,1.0
+0507,chinanteco,chinanteco del oeste,020,326,San Pedro Sochiapám,0,1.0
+0507,chinanteco,chianateco del oeste central bajo,020,136,San Felipe Usila,1,0.25
+0507,chinanteco,chinanteco del sureste medio,020,212,San Juan Petlapa,0,1.0
+0507,chinanteco,chinanteco del sureste medio,020,460,Santiago Choapam,0,1.0
+0507,chinanteco,chinanteco del sureste medio,020,468,Santiago Jocotepec,1,0.5
+0507,chinanteco,chinanteco del sureste medio,030,130,Playa Vicente,0,1.0
+0507,chinanteco,chinanteco central,020,009,Ayotzintepec,1,0.5
+0507,chinanteco,chinanteco central,020,136,San Felipe Usila,1,0.25
+0507,chinanteco,chinanteco central,020,166,San José Chiltepec,1,0.5
+0507,chinanteco,chinanteco central,020,559,San Juan Bautista Valle Nacional,1,0.3333333333333333
+0507,chinanteco,chinanteco central,020,417,Santa María Jacatepec,0,1.0
+0507,chinanteco,chinanteco central,020,468,Santiago Jocotepec,1,0.5
+0511,chocholteco,chocholteco del oeste,020,068,Ocotlán,0,1.0
+0511,chocholteco,chocholteco del oeste,020,151,San Francisco Teopan,0,1.0
+0511,chocholteco,chocholteco del oeste,020,283,San Miguel Tequixtepec,0,1.0
+0511,chocholteco,chocholteco del oeste,020,287,San Miguel Tulancingo,0,1.0
+0511,chocholteco,chocholteco del oeste,020,321,San Pedro Nopala,0,1.0
+0511,chocholteco,chocholteco del oeste,020,047,Santa Magdalena Jicotlán,0,1.0
+0511,chocholteco,chocholteco del oeste,020,547,Teotongo,0,1.0
+0511,chocholteco,chocholteco del sur,020,270,San Miguel Huautla,0,1.0
+0511,chocholteco,chocholteco del sur,020,422,Santa María Nativitas,0,1.0
+0511,chocholteco,chocholteco del este,020,176,San Juan Bautista Coixtlahuaca,0,1.0
+0511,chocholteco,chocholteco del este,020,264,San Miguel Chicahua,0,1.0
+0510,ixcateco,ixcateco,020,416,Santa María Ixcatlán,0,1.0
+0503,matlatzinca,matlatzinca,015,086,Temascaltepec,0,1.0
+0502,mazahua,mazahua de oriente,015,005,Almoloya de Juárez,0,1.0
+0502,mazahua,mazahua de oriente,015,014,Atlacomulco,1,0.5
+0502,mazahua,mazahua de oriente,015,032,Donato Guerra,0,1.0
+0502,mazahua,mazahua de oriente,015,064,El Oro,0,1.0
+0502,mazahua,mazahua de oriente,015,041,Ixtapan del Oro,0,1.0
+0502,mazahua,mazahua de oriente,015,042,Ixtlahuaca,0,1.0
+0502,mazahua,mazahua de oriente,015,047,Jiquipilco,0,1.0
+0502,mazahua,mazahua de oriente,015,048,Jocotitlán,0,1.0
+0502,mazahua,mazahua de oriente,015,056,Morelos,0,1.0
+0502,mazahua,mazahua de oriente,015,074,San Felipe del Progreso,0,1.0
+0502,mazahua,mazahua de oriente,015,110,Valle de Bravo,0,1.0
+0502,mazahua,mazahua de oriente,015,111,Villa de Allende,1,0.5
+0502,mazahua,mazahua de oriente,015,114,Villa Victoria,0,1.0
+0502,mazahua,mazahua de oriente,016,005,Angangueo,0,1.0
+0502,mazahua,mazahua de oriente,016,061,Ocampo,0,1.0
+0502,mazahua,mazahua de oriente,016,081,Susupuato,0,1.0
+0502,mazahua,mazahua de oriente,016,112,Zitácuaro,1,0.5
+0502,mazahua,mazahua de occidente,015,014,Atlacomulco,1,0.5
+0502,mazahua,mazahua de occidente,015,085,Temascalcingo,0,1.0
+0502,mazahua,mazahua de occidente,015,111,Villa de Allende,1,0.5
+0502,mazahua,mazahua de occidente,016,112,Zitácuaro,1,0.5
+0509,mazateco,mazateco del noreste,020,002,Acatlán de Pérez Figueroa,0,1.0
+0509,mazateco,mazateco del noreste,020,278,San Miguel Soyaltepec,0,1.0
+0509,mazateco,mazateco de la presa bajo,020,309,San Pedro Ixcatlán,0,1.0
+0509,mazateco,mazateco del este bajo,020,134,San Felipe Jalapa de Díaz,0,1.0
+0509,mazateco,mazateco del este bajo,020,330,San Pedro Teutila,0,1.0
+0509,mazateco,mazateco del sur,020,027,Chiquihuitlán de Benito Juárez,0,1.0
+0509,mazateco,mazateco del sureste,020,116,San Bartolomé Ayautla,0,1.0
+0509,mazateco,mazateco de Eloxochitlán,020,029,Eloxochitlán de Flores Magón,0,1.0
+0509,mazateco,mazateco del centro,020,040,Huautepec,0,1.0
+0509,mazateco,mazateco del centro,020,041,Huautla de Jiménez,0,1.0
+0509,mazateco,mazateco del centro,020,396,Santa María la Asunción,0,1.0
+0509,mazateco,mazateco del suroeste,020,058,Mazatlán Villa de Flores,0,1.0
+0509,mazateco,mazateco del suroeste,020,206,San Juan de los Cues,0,1.0
+0509,mazateco,mazateco del suroeste,020,431,Santa María Tecomavaca,0,1.0
+0509,mazateco,mazateco de Huehuetlán,020,142,San Francisco Huehuetlán,0,1.0
+0509,mazateco,mazateco de Tecóatl,020,163,San Jerónimo Tecóatl,0,1.0
+0509,mazateco,mazateco de la presa alto,020,169,San José Independencia,0,1.0
+0509,mazateco,mazateco de la presa alto,020,171,San José Tenango,0,1.0
+0509,mazateco,mazateco del oeste,020,234,San Lucas Zoquiapam,0,1.0
+0509,mazateco,mazateco del oeste,020,244,San Martín Toxpalan,0,1.0
+0509,mazateco,mazateco del norte,020,249,San Mateo Yoloxochitlán,0,1.0
+0509,mazateco,mazateco del norte,020,406,Santa María Chilchotla,0,1.0
+0509,mazateco,mazateco del norte,030,173,Tezonapa,0,1.0
+0509,mazateco,mazateco de Ocopetatillo,020,322,San Pedro Ocopetatillo,0,1.0
+0509,mazateco,mazateco de Acatepec,020,374,Santa Cruz Acatepec,0,1.0
+0509,mazateco,mazateco de Puebla,021,145,San Sebastián Tlacotepec,0,1.0
+0516,mixteco,mixteco de Guerrero del noreste central,012,004,Alcozáuca de Guerrero,1,0.25
+0516,mixteco,mixteco de Atlamajalcingo,012,009,Atlamajalcingo del Monte,0,1.0
+0516,mixteco,mixteco de Chochoapa,012,043,Metlatónoc,1,0.5
+0516,mixteco,mixteco de Coapanatoyac,012,020,Copanatoyac,0,1.0
+0516,mixteco,mixteco de Igualapa,012,036,Igualapa,0,1.0
+0516,mixteco,mixteco central de Guerrero,012,041,Malinaltepec,1,0.5
+0516,mixteco,mixteco de Guerrero del este medio,012,043,Metlatónoc,1,0.5
+0516,mixteco,mixteco de Tlacoachistlahuaca,012,062,Tlacoachistlahuaca,0,1.0
+0516,mixteco,mixteco de Tlalixtaquilla de Maldonado,012,065,Tlalixtaquilla de Maldonado,0,1.0
+0516,mixteco,mixteco de Guerrero del norte,012,005,Alpoyeca,0,1.0
+0516,mixteco,mixteco de Guerrero del norte,012,066,Tlapa de Comonfort,0,1.0
+0516,mixteco,mixteco de Guerrero del norte central,012,069,Xalpatláhuac,1,0.5
+0516,mixteco,mixteco de Xochistlahuaca,012,071,Xochistlahuaca,0,1.0
+0516,mixteco,mixteco de Tlahuapa,012,004,Alcozáuca de Guerrero,1,0.25
+0516,mixteco,mixteco de Guerrero central alto,012,041,Malinaltepec,1,0.5
+0516,mixteco,mixteco de Guerrero central alto,012,069,Xalpatláhuac,1,0.5
+0516,mixteco,mixteco de Xochapa,012,004,Alcozáuca de Guerrero,1,0.25
+0516,mixteco,mixteco de Xonacatlán,012,004,Alcozáuca de Guerrero,1,0.25
+0516,mixteco,mixteco de Ayutla,012,012,Ayutla de los Libres,0,1.0
+0516,mixteco,mixteco de San Luis Acatlán,012,052,San Luis Acatlán,0,1.0
+0516,mixteco,mixteco de Guerrero de la costa este,012,013,Azoyú,0,1.0
+0516,mixteco,mixteco de Guerrero de la costa este,012,023,Cuajinicuilapa,0,1.0
+0516,mixteco,mixteco de Guerrero de la costa este,012,046,Ometepec,0,1.0
+0516,mixteco,mixteco de Guerrero de la costa occidental,012,039,Juan R. Escudero,0,1.0
+0516,mixteco,mixteco de Guerrero de la costa occidental,012,053,San Marcos,0,1.0
+0516,mixteco,mixteco de Guerrero de la costa occidental,012,056,Tecoanapa,0,1.0
+0516,mixteco,mixteco de Guerrero de la costa central,012,018,Copala,0,1.0
+0516,mixteco,mixteco de Guerrero de la costa central,012,025,Cuautepec,0,1.0
+0516,mixteco,mixteco de Villa de Tututepec,020,334,Villa de Tututepec de Melchor Ocampo,0,1.0
+0516,mixteco,mixteco de Santa María Huazolotitlán,020,414,Santa María Huazolotitlán,0,1.0
+0516,mixteco,mixteco de Ixtayutla,020,466,Santiago Ixtayutla,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa central,020,082,San Agustín Chayuco,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa central,020,090,San Andrés Huaxpaltepec,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa central,020,225,San Lorenzo,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa central,020,285,San Miguel Tlacamama,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa central,020,312,San Pedro Jicayán,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa central,020,367,Santa Catarina Mechoacán,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa central,020,489,Santiago Tetepec,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa noroeste,020,188,San Juan Colorado,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa noroeste,020,345,San Sebastián Ixcapa,0,1.0
+0516,mixteco,mixteco de Oaxaca de costa central baja,020,302,San Pedro Atoyac,0,1.0
+0516,mixteco,mixteco de Oaxaca de costa central baja,020,467,Santiago Jamiltepec,0,1.0
+0516,mixteco,mixteco de Sierra sur oeste,020,185,San Juan Cacahuatepec,0,1.0
+0516,mixteco,mixteco de Sierra sur oeste,020,447,Santa María Zacatepec,0,1.0
+0516,mixteco,mixteco de Santiago Amoltepec,020,450,Santiago Amoltepec,0,1.0
+0516,mixteco,mixteco de Santa Cruz Itundujia,020,377,Santa Cruz Itundujia,0,1.0
+0516,mixteco,mixteco de Yosondúa,020,500,Santiago Yosondúa,0,1.0
+0516,mixteco,mixteco de Santa Lucía Monteverde,020,392,Santa Lucía Monteverde,0,1.0
+0516,mixteco,mixteco del sur bajo,020,026,Chalcatongo de Hidalgo,0,1.0
+0516,mixteco,mixteco del sur bajo,020,269,San Miguel El Grande,0,1.0
+0516,mixteco,mixteco del sur bajo,020,444,Santa María Yolotepec,0,1.0
+0516,mixteco,mixteco de Yosonotú,020,372,Santa Catarina Yosonotú,0,1.0
+0516,mixteco,mixteco del sur medio,020,133,San Esteban Atatlahuca,0,1.0
+0516,mixteco,mixteco del sur medio,020,382,Santa Cruz Tacahua,0,1.0
+0516,mixteco,mixteco del sur medio,020,510,Santo Domingo Ixcatlán,0,1.0
+0516,mixteco,mixteco de San Pedro Molinos,020,320,San Pedro Molinos,0,1.0
+0516,mixteco,mixteco de Santa María Yosoyúa,020,445,Santa María Yosoyúa,0,1.0
+0516,mixteco,mixteco de San Mateo Peñasco,020,252,San Mateo Peñasco,0,1.0
+0516,mixteco,mixteco de San Agustín Tlacotepec,020,086,San Agustín Tlacotepec,0,1.0
+0516,mixteco,mixteco de San Antonio Sinicahua,020,110,San Antonio Sinicahua,0,1.0
+0516,mixteco,mixteco del sureste central,020,119,San Bartolomé Yucuañe,0,1.0
+0516,mixteco,mixteco del sureste central,020,371,Santa Catarina Ticuá,0,1.0
+0516,mixteco,mixteco central,020,050,Magdalena Peñasco,0,1.0
+0516,mixteco,mixteco central,020,127,San Cristóbal Amoltepec,0,1.0
+0516,mixteco,mixteco central,020,258,San Miguel Achiutla,0,1.0
+0516,mixteco,mixteco central,020,370,Santa Catarina Tayata,0,1.0
+0516,mixteco,mixteco del suroeste central,020,397,Heroica Ciudad de Tlaxiaco,0,1.0
+0516,mixteco,mixteco del suroeste central,020,379,Santa Cruz Nundaco,0,1.0
+0516,mixteco,mixteco del suroeste,020,446,Santa María Yucuhiti,0,1.0
+0516,mixteco,mixteco del suroeste,020,481,Santiago Nuyoó,0,1.0
+0516,mixteco,mixteco de Ñumi,020,210,San Juan Ñumi,0,1.0
+0516,mixteco,mixteco de oeste central,020,209,San Juan Mixtepec,0,1.0
+0516,mixteco,mixteco de oeste central,020,240,San Martín Itunyoso,0,1.0
+0516,mixteco,mixteco de oeste central,020,480,Santiago Nundiche,0,1.0
+0516,mixteco,mixteco del oeste,020,016,Coicoyán de las Flores,0,1.0
+0516,mixteco,mixteco del oeste,020,242,San Martín Peras,0,1.0
+0516,mixteco,mixteco del oeste,020,348,San Sebastián Tecomaxtlahuaca,0,1.0
+0516,mixteco,mixteco del norte bajo,020,105,San Antonino Monte Verde,0,1.0
+0516,mixteco,mixteco del norte bajo,020,339,San Pedro y San Pablo Teposcolula,0,1.0
+0516,mixteco,mixteco del norte bajo,020,346,San Sebastián Nicananduta,0,1.0
+0516,mixteco,mixteco del norte bajo,020,499,Santiago Yolomecatl,0,1.0
+0516,mixteco,mixteco del norte bajo,020,486,Villa Tejupam de la Unión,0,1.0
+0516,mixteco,mixteco del norte bajo,020,405,Villa de Chilapa de Díaz,0,1.0
+0516,mixteco,mixteco del norte bajo,020,540,Villa de Tamazulápam del Progreso,0,1.0
+0516,mixteco,mixteco de San Miguel Piedras,020,274,San Miguel Piedras,0,1.0
+0516,mixteco,mixteco de San Antonio Huitepec,020,108,San Antonio Huitepec,0,1.0
+0516,mixteco,mixteco de Santa María Peñoles,020,426,Santa María Peñoles,0,1.0
+0516,mixteco,mixteco bajo de Valles,020,023,Cuilapam de Guerrero,0,1.0
+0516,mixteco,mixteco bajo de Valles,020,092,San Andrés Ixtlahuaca,0,1.0
+0516,mixteco,mixteco bajo de Valles,020,273,San Miguel Peras,0,1.0
+0516,mixteco,mixteco bajo de Valles,020,310,San Pedro Ixtlahuaca,0,1.0
+0516,mixteco,mixteco bajo de Valles,020,385,Santa Cruz Xoxocotlán,0,1.0
+0516,mixteco,mixteco bajo de Valles,020,399,Santa María Atzompa,0,1.0
+0516,mixteco,mixteco bajo de Valles,020,494,Santiago Tlazoyaltepec,0,1.0
+0516,mixteco,mixteco alto de Valles,020,094,San Andrés Nuxiño,0,1.0
+0516,mixteco,mixteco alto de Valles,020,150,San Francisco Telixtlahuaca,0,1.0
+0516,mixteco,mixteco alto de Valles,020,294,San Pablo Huitzo,0,1.0
+0516,mixteco,mixteco del este,020,006,Asunción Nochixtlán,1,0.3333333333333333
+0516,mixteco,mixteco del este,020,304,San Pedro Coxcaltepec Cántaros,0,1.0
+0516,mixteco,mixteco del este,020,511,Santo Domingo Nuxaá,0,1.0
+0516,mixteco,mixteco de Santa Inés de Zaragoza,020,569,Santa Inés de Zaragoza,0,1.0
+0516,mixteco,mixteco del este central,020,144,San Francisco Jaltepetongo,0,1.0
+0516,mixteco,mixteco del este central,020,195,San Juan Diuxi,0,1.0
+0516,mixteco,mixteco del este central,020,492,Santiago Tilantongo,0,1.0
+0516,mixteco,mixteco del noroeste medio,020,039,Heroica Ciudad de Huajuapan de León,0,1.0
+0516,mixteco,mixteco del noroeste medio,020,537,Silacayoapam,1,0.5
+0516,mixteco,mixteco del oeste alto,020,011,Calihuala,0,1.0
+0516,mixteco,mixteco del oeste alto,020,065,Ixpantepec Nieves,0,1.0
+0516,mixteco,mixteco del oeste alto,020,081,San Agustín Atenango,0,1.0
+0516,mixteco,mixteco del oeste alto,020,152,San Francisco Tlapancingo,0,1.0
+0516,mixteco,mixteco del oeste alto,020,164,San Jorge Nuchita,0,1.0
+0516,mixteco,mixteco del oeste alto,020,183,San Juan Bautista Tlachichilco,0,1.0
+0516,mixteco,mixteco del oeste alto,020,199,San Juan Ihualtepec,0,1.0
+0516,mixteco,mixteco del oeste alto,020,251,San Mateo Nejapam,0,1.0
+0516,mixteco,mixteco del oeste alto,020,259,San Miguel Ahuehuetitlán,0,1.0
+0516,mixteco,mixteco del oeste alto,020,286,San Miguel Tlacotepec,0,1.0
+0516,mixteco,mixteco del oeste alto,020,456,Santiago Cacaloxtepec,0,1.0
+0516,mixteco,mixteco del oeste alto,020,469,Santiago Juxtlahuaca,0,1.0
+0516,mixteco,mixteco del oeste alto,020,484,Santiago Tamazola,0,1.0
+0516,mixteco,mixteco del oeste alto,020,501,Santiago Yucuyachi,0,1.0
+0516,mixteco,mixteco del oeste alto,020,461,Santiago del Río,0,1.0
+0516,mixteco,mixteco del oeste alto,020,528,Santos Reyes Tepejillo,0,1.0
+0516,mixteco,mixteco del oeste alto,020,537,Silacayoapam,1,0.5
+0516,mixteco,mixteco del oeste alto,020,568,Zapotitlán Palmas,0,1.0
+0516,mixteco,mixteco de Santo Domingo Tonalá,020,520,Santo Domingo Tonalá,0,1.0
+0516,mixteco,mixteco de San Juan Tamazola,020,217,San Juan Tamazola,0,1.0
+0516,mixteco,mixteco del noreste,020,006,Asunción Nochixtlán,1,0.3333333333333333
+0516,mixteco,mixteco del noreste,020,176,San Juan Bautista Coixtlahuaca,0,1.0
+0516,mixteco,mixteco del noreste,020,264,San Miguel Chicahua,0,1.0
+0516,mixteco,mixteco del noreste,020,270,San Miguel Huautla,0,1.0
+0516,mixteco,mixteco del noreste,020,395,Santa María Apazco,0,1.0
+0516,mixteco,mixteco del noreste,020,451,Santiago Apoala,0,1.0
+0516,mixteco,mixteco de San Pedro Tidaá,020,331,San Pedro Tidaá,0,1.0
+0516,mixteco,mixteco de Mitlatongo,020,006,Asunción Nochixtlán,1,0.3333333333333333
+0516,mixteco,mixteco de Coatzóspam,020,187,San Juan Coatzóspam,0,1.0
+0516,mixteco,mixteco de Sierra sur noroeste,020,037,Mesones Hidalgo,0,1.0
+0516,mixteco,mixteco de Sierra sur noroeste,020,073,Putla Villa de Guerrero,0,1.0
+0516,mixteco,mixteco de Sierra sur noroeste,020,532,Santo Tomás Ocotepec,0,1.0
+0516,mixteco,mixteco de San Pablo Tijaltepec,020,297,San Pablo Tijaltepec,0,1.0
+0516,mixteco,mixteco del oeste de la costa,020,111,San Antonio Tepetlapa,0,1.0
+0516,mixteco,mixteco del oeste de la costa,020,482,Santiago Pinotepa Nacional,1,0.5
+0516,mixteco,mixteco del oeste de la costa,020,485,Santiago Tapextla,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa oeste central,020,070,Pinotepa de Don Luis,0,1.0
+0516,mixteco,mixteco de Oaxaca de la costa oeste central,020,482,Santiago Pinotepa Nacional,1,0.5
+0516,mixteco,mixteco del noroeste,020,160,San Jerónimo Silacayoapilla,0,1.0
+0516,mixteco,mixteco del noroeste,020,261,San Miguel Amatitlán,0,1.0
+0516,mixteco,mixteco del noroeste,020,352,San Simón Zahuatlán,0,1.0
+0516,mixteco,mixteco del noroeste,020,529,Santos Reyes Yucuná,0,1.0
+0516,mixteco,mixteco de Cañada bajo,020,177,San Juan Bautista Cuicatlán,0,1.0
+0516,mixteco,mixteco de Cañada bajo,020,311,San Pedro Jaltepetongo,0,1.0
+0516,mixteco,mixteco de Cañada bajo,020,313,San Pedro Jocotipac,0,1.0
+0516,mixteco,mixteco de Cañada bajo,020,436,Santa María Texcatitlán,0,1.0
+0516,mixteco,mixteco de Cañada bajo,020,558,Valerio Trujano,0,1.0
+0516,mixteco,mixteco de Cañada central,020,027,Chiquihuitlán de Benito Juárez,0,1.0
+0516,mixteco,mixteco de Cañada central,020,024,Cuyamecalco Villa de Zaragoza,0,1.0
+0516,mixteco,mixteco de Cañada central,020,276,San Miguel Santa Flor,0,1.0
+0516,mixteco,mixteco de Cañada central,020,355,Santa Ana Cuauhtémoc,0,1.0
+0516,mixteco,mixteco de Yutanduchi de Guerrero,020,564,Yutanduchi de Guerrero,0,1.0
+0516,mixteco,mixteco del noreste bajo,020,121,San Bartolo Soyaltepec,0,1.0
+0516,mixteco,mixteco del noreste bajo,020,404,Santa María Chachoápam,0,1.0
+0516,mixteco,mixteco del noreste bajo,020,521,Santo Domingo Tonaltepec,0,1.0
+0516,mixteco,mixteco del noreste bajo,020,523,Santo Domingo Yanhuitlán,0,1.0
+0516,mixteco,mixteco de San Juan Teita,020,218,San Juan Teita,0,1.0
+0516,mixteco,mixteco de la frontera Puebla-Oaxaca,020,022,Cosoltepec,0,1.0
+0516,mixteco,mixteco de la frontera Puebla-Oaxaca,020,340,San Pedro y San Pablo Tequixtepec,0,1.0
+0516,mixteco,mixteco de la frontera Puebla-Oaxaca,021,112,Petlalcingo,0,1.0
+0516,mixteco,mixteco de la frontera Puebla-Oaxaca,021,127,San Jerónimo Xayacatlán,0,1.0
+0516,mixteco,mixteco de la frontera Puebla-Oaxaca,021,190,Totoltepec de Guerrero,0,1.0
+0516,mixteco,mixteco de la frontera Puebla-Oaxaca,021,196,Xayacatlán de Bravo,0,1.0
+0516,mixteco,mixteco del suroeste de Puebla,021,003,Acatlán,0,1.0
+0516,mixteco,mixteco del suroeste de Puebla,021,052,Chigmecatitlán,0,1.0
+0516,mixteco,mixteco de Tlaltempan,021,146,Santa Catarina Tlaltempan,0,1.0
+0516,mixteco,mixteco de Zapotitlán,021,209,Zapotitlán,0,1.0
+0501,otomí,otomí de la Sierra,013,002,Acaxochitlán,0,1.0
+0501,otomí,otomí de la Sierra,013,027,Huehuetla,0,1.0
+0501,otomí,otomí de la Sierra,013,060,Tenango de Doria,0,1.0
+0501,otomí,otomí de la Sierra,013,077,Tulancingo de Bravo,0,1.0
+0501,otomí,otomí de la Sierra,021,053,Chignahuapan,0,1.0
+0501,otomí,otomí de la Sierra,021,064,Francisco Z. Mena,0,1.0
+0501,otomí,otomí de la Sierra,021,057,Honey,0,1.0
+0501,otomí,otomí de la Sierra,021,086,Jalpan,0,1.0
+0501,otomí,otomí de la Sierra,021,071,Huauchinango,0,1.0
+0501,otomí,otomí de la Sierra,021,109,Pahuatlán,0,1.0
+0501,otomí,otomí de la Sierra,021,111,Pantepec,0,1.0
+0501,otomí,otomí de la Sierra,021,178,Tlacuilotepec,0,1.0
+0501,otomí,otomí de la Sierra,021,187,Tlaxco,0,1.0
+0501,otomí,otomí de la Sierra,021,194,Venustiano Carranza,0,1.0
+0501,otomí,otomí de la Sierra,021,197,Xicotepec,0,1.0
+0501,otomí,otomí de la Sierra,021,213,Zihuateutla,0,1.0
+0501,otomí,otomí de la Sierra,030,157,Castillo de Teayo,0,1.0
+0501,otomí,otomí de la Sierra,030,058,Chicontepec,0,1.0
+0501,otomí,otomí de la Sierra,030,040,Coatzintla,0,1.0
+0501,otomí,otomí de la Sierra,030,051,Coyutla,0,1.0
+0501,otomí,otomí de la Sierra,030,072,Huayacocotla,0,1.0
+0501,otomí,otomí de la Sierra,030,083,Ixhuatlán de Madero,0,1.0
+0501,otomí,otomí de la Sierra,030,170,Texcatepec,0,1.0
+0501,otomí,otomí de la Sierra,030,175,Tihuatlán,0,1.0
+0501,otomí,otomí de la Sierra,030,180,Tlachichilco,0,1.0
+0501,otomí,otomí de la Sierra,030,198,Zacualpan,0,1.0
+0501,otomí,otomí de la Sierra,030,202,Zontecomatlán de López y Fuentes,0,1.0
+0501,otomí,otomí bajo del noroeste,022,001,Amealco de Bonfil,1,0.5
+0501,otomí,otomí del oeste,016,112,Zitácuaro,0,1.0
+0501,otomí,otomí del oeste del Valle del Mezquital,013,029,Huichapan,0,1.0
+0501,otomí,otomí del oeste del Valle del Mezquital,013,059,Tecozautla,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,003,Actopan,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,005,Ajacuba,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,006,Alfajayucan,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,007,Almoloya,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,010,Atitalaquia,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,012,Atotonilco el Grande,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,014,Calnali,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,015,Cardonal,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,018,Chapulhuacán,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,019,Chilcuautla,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,016,Cuautepec de Hinojosa,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,020,Eloxochitlán,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,023,Francisco I. Madero,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,024,Huasca de Ocampo,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,030,Ixmiquilpan,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,031,Jacala de Ledezma,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,035,Metepec,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,037,Metztitlán,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,041,Mixquiahuala de Juárez,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,043,Nicolás Flores,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,047,Pacula,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,050,Progreso de Obregón,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,052,San Agustín Tlaxiaca,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,053,San Bartolo Tutotepec,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,054,San Salvador,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,058,Tasquillo,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,061,Tepeapulco,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,062,Tepehuacán de Guerrero,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,063,Tepeji del Río de Ocampo,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,064,Tepetitlán,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,067,Tezontepec de Aldama,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,071,Tlahuiltepa,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,076,Tula de Allende,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,083,Zempoala,0,1.0
+0501,otomí,otomí del Valle del Mezquital,013,084,Zimapan,0,1.0
+0501,otomí,otomí de Ixtenco,029,016,Ixtenco,0,1.0
+0501,otomí,otomí del noroeste,011,004,Apaseo el Alto,0,1.0
+0501,otomí,otomí del noroeste,011,009,Comonfort,0,1.0
+0501,otomí,otomí del noroeste,011,011,Cortazar,0,1.0
+0501,otomí,otomí del noroeste,011,014,Dolores Hidalgo Cuna de la Independencia,0,1.0
+0501,otomí,otomí del noroeste,011,040,Tierra Blanca,0,1.0
+0501,otomí,otomí del noroeste,022,001,Amealco de Bonfil,1,0.5
+0501,otomí,otomí del noroeste,022,004,Cadereyta de Montes,0,1.0
+0501,otomí,otomí del noroeste,022,005,Colón,0,1.0
+0501,otomí,otomí del noroeste,022,011,El,0,1.0
+0501,otomí,otomí del noroeste,022,007,Ezequiel,0,1.0
+0501,otomí,otomí del noroeste,022,014,Querétaro,0,1.0
+0501,otomí,otomí del noroeste,022,016,San Juan del Río,0,1.0
+0501,otomí,otomí del noroeste,022,017,Tequisquiapan,0,1.0
+0501,otomí,otomí del noroeste,022,018,Tolimán,0,1.0
+0501,otomí,otomí del centro,015,001,Acambay,0,1.0
+0501,otomí,otomí del centro,015,003,Aculco,0,1.0
+0501,otomí,otomí del centro,015,007,Amanalco de Becerra,0,1.0
+0501,otomí,otomí del centro,015,014,Atlacomulco,0,1.0
+0501,otomí,otomí del centro,015,016,Axapusco,0,1.0
+0501,otomí,otomí del centro,015,018,Calimaya,0,1.0
+0501,otomí,otomí del centro,015,026,Chapa de Mota,0,1.0
+0501,otomí,otomí del centro,015,037,Huixquilucan,0,1.0
+0501,otomí,otomí del centro,015,045,Jilotepec,0,1.0
+0501,otomí,otomí del centro,015,046,Jilotzingo,0,1.0
+0501,otomí,otomí del centro,015,047,Jiquipilco,0,1.0
+0501,otomí,otomí del centro,015,051,Lerma,0,1.0
+0501,otomí,otomí del centro,015,056,Morelos,0,1.0
+0501,otomí,otomí del centro,015,057,Naucalpan de Juárez,0,1.0
+0501,otomí,otomí del centro,015,060,Nicolás Romero,0,1.0
+0501,otomí,otomí del centro,015,062,Ocoyoacac,0,1.0
+0501,otomí,otomí del centro,015,067,Otzolotepec,0,1.0
+0501,otomí,otomí del centro,015,074,San Felipe del Progreso,0,1.0
+0501,otomí,otomí del centro,015,085,Temascalcingo,0,1.0
+0501,otomí,otomí del centro,015,086,Temascaltepec,0,1.0
+0501,otomí,otomí del centro,015,087,Temoaya,0,1.0
+0501,otomí,otomí del centro,015,101,Tianguistenco,0,1.0
+0501,otomí,otomí del centro,015,102,Timilpan,0,1.0
+0501,otomí,otomí del centro,015,106,Toluca,0,1.0
+0501,otomí,otomí del centro,015,112,Villa del Carbón,0,1.0
+0501,otomí,otomí del centro,015,115,Xonacatlán,0,1.0
+0501,otomí,otomí del centro,015,118,Zinacantepec,0,1.0
+0505,pame,pame del norte,024,003,Aquismón,0,1.0
+0505,pame,pame del norte,024,005,Cárdenas,0,1.0
+0505,pame,pame del norte,024,010,Ciudad del Maíz,0,1.0
+0505,pame,pame del centro,024,019,Lagunillas,0,1.0
+0505,pame,pame del centro,024,023,Rayón,0,1.0
+0505,pame,pame del centro,024,031,Santa Catarina,0,1.0
+0505,pame,pame del centro,024,036,Tamasopo,0,1.0
+0512,popoloca,popoloca del norte,021,177,Tlacotepec de Benito Juárez,0,1.0
+0512,popoloca,popoloca del centro,021,169,Tepexi de Rodríguez,1,0.5
+0512,popoloca,popoloca de oriente,021,124,San Gabriel Chilac,0,1.0
+0512,popoloca,popoloca de oriente,021,161,Tepanco de López,0,1.0
+0512,popoloca,popoloca de oriente,021,169,Tepexi de Rodríguez,1,0.5
+0512,popoloca,popoloca de oriente,021,209,Zapotitlán Salinas,0,1.0
+0512,popoloca,popoloca del poniente,021,147,Santa Inés Ahuatempan,0,1.0
+0504,tlahuica,tlahuica,015,063,Ocuilán,0,1.0
+0508,tlapaneco,tlapaneco del sur,012,013,Azoyú,0,1.0
+0508,tlapaneco,tlapaneco del sur,012,077,Marquelia,0,1.0
+0508,tlapaneco,tlapaneco del oeste,012,051,Quechultenango,0,1.0
+0508,tlapaneco,tlapaneco central bajo,012,081,Iliatenco,0,1.0
+0508,tlapaneco,tlapaneco central bajo,012,041,Malinaltepec,0,1.0
+0508,tlapaneco,tlapaneco central bajo,012,052,San Luis Acatlán,1,0.5
+0508,tlapaneco,tlapaneco del suroeste,012,076,Acatepec,1,0.5
+0508,tlapaneco,tlapaneco del suroeste,012,012,Ayutla de los Libres,0,1.0
+0508,tlapaneco,tlapaneco del suroeste,012,052,San Luis Acatlán,1,0.5
+0508,tlapaneco,tlapaneco del suroeste,012,063,Tlacoapa,1,0.5
+0508,tlapaneco,tlapaneco del suroeste,012,072,Zapotitlán Tablas,1,0.5
+0508,tlapaneco,tlapaneco del este,012,001,Acapulco,0,1.0
+0508,tlapaneco,tlapaneco del este,012,009,Atlamajalcingo del Monte,0,1.0
+0508,tlapaneco,tlapaneco del este,012,043,Metlatónoc,0,1.0
+0508,tlapaneco,tlapaneco del este,012,066,Tlapa de Comonfort,1,0.5
+0508,tlapaneco,tlapaneco del centro,012,063,Tlacoapa,1,0.5
+0508,tlapaneco,tlapaneco del norte,012,076,Acatepec,1,0.5
+0508,tlapaneco,tlapaneco del norte,012,020,Copanatoyac,0,1.0
+0508,tlapaneco,tlapaneco del norte,012,066,Tlapa de Comonfort,1,0.5
+0508,tlapaneco,tlapaneco del norte,012,072,Zapotitlán Tablas,1,0.5
+0508,tlapaneco,tlapaneco del noroeste alto,012,010,Atlixtac,1,0.5
+0508,tlapaneco,tlapaneco del noroeste bajo,012,010,Atlixtac,1,0.5
+0518,triqui,triqui de San Juan Copala,020,469,Santiago Juxtlahuaca,0,1.0
+0518,triqui,triqui de la media,020,240,San Martín Itunyoso,0,1.0
+0518,triqui,triqui de la alta,020,073,Putla Villa de Guerrero,1,0.5
+0518,triqui,triqui de la baja,020,020,Constancia del Rosario,0,1.0
+0518,triqui,triqui de la baja,020,073,Putla Villa de Guerrero,1,0.5
+0513,zapoteco,zapoteco de Texmelucan,020,229,San Lorenzo Texmelucan,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste bajo",020,277,Villa Sola de Vega,1,0.5
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste",020,448,Santa María Zaniza,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste",020,491,Santiago Textitlán,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste",020,277,Villa Sola de Vega,1,0.5
+0513,zapoteco,zapoteco de San Antonino el Alto,020,104,San Antonino el Alto,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, oeste bajo",020,271,San Miguel Mixtepec,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, oeste bajo",020,378,Santa Cruz Mixtepec,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste alto",020,420,Santa María Lachixío,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste alto",020,535,San Vicente Lachixío,0,1.0
+0513,zapoteco,zapoteco de San Miguel Aloápam,020,260,San Miguel Aloápam,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste",020,001,Abejones,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste",020,419,Santa María Jaltianguis,0,1.0
+0513,zapoteco,"zapoteco serrano, del oeste",020,504,Nuevo Zoquiápam,0,1.0
+0513,zapoteco,"zapoteco serrano, del oeste",020,173,San Juan Atepec,0,1.0
+0513,zapoteco,"zapoteco serrano, del oeste",020,196,San Juan Evangelista Analco,0,1.0
+0513,zapoteco,"zapoteco serrano, del oeste",020,267,San Miguel del Río,0,1.0
+0513,zapoteco,"zapoteco serrano, del oeste",020,296,San Pablo Macuiltianguis,0,1.0
+0513,zapoteco,"zapoteco serrano, del oeste",020,363,Santa Catarina Ixtepeji,0,1.0
+0513,zapoteco,"zapoteco serrano, bajo",020,247,Capulálpam de Méndez,0,1.0
+0513,zapoteco,"zapoteco serrano, bajo",020,035,Guelatao de Juárez,0,1.0
+0513,zapoteco,"zapoteco serrano, bajo",020,042,Ixtlán de Juárez,1,0.5
+0513,zapoteco,"zapoteco serrano, bajo",020,062,Natividad,0,1.0
+0513,zapoteco,"zapoteco serrano, bajo",020,191,San Juan Chicomezúchil,0,1.0
+0513,zapoteco,"zapoteco serrano, bajo",020,262,San Miguel Amatlán,0,1.0
+0513,zapoteco,"zapoteco serrano, bajo",020,365,Santa Catarina Lachatao,0,1.0
+0513,zapoteco,"zapoteco serrano, bajo",020,443,Santa María Yavesía,0,1.0
+0513,zapoteco,"zapoteco serrano, bajo",020,496,Santiago Xiacuí,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,042,Ixtlán de Juárez,1,0.5
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,222,San Juan Yaeé,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,223,San Juan Yatzona,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,288,San Miguel Yotao,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,335,San Pedro Yaneri,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,457,Santiago Camotlán,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,471,Santiago Lalopa,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,514,Santo Domingo Roayaga,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,280,Villa Talea de Castro,0,1.0
+0513,zapoteco,"zapoteco serrano, del noroeste bajo",020,541,Tanetze de Zaragoza,0,1.0
+0513,zapoteco,zapoteco de Santa María Temaxcalapa,020,432,Santa María Temaxcalapa,0,1.0
+0513,zapoteco,zapoteco del oeste de Tuxtepec,020,189,San Juan Comaltepec,0,1.0
+0513,zapoteco,zapoteco del oeste de Tuxtepec,020,205,San Juan Lalana,0,1.0
+0513,zapoteco,zapoteco del oeste de Tuxtepec,020,460,Santiago Choápam,0,1.0
+0513,zapoteco,zapoteco de Santiago Yaveo,020,498,Santiago Yaveo,0,1.0
+0513,zapoteco,"zapoteco serrano, del este",020,156,San Ildefonso Villa Alta,1,0.5
+0513,zapoteco,"zapoteco serrano, del sureste",020,100,San Andrés Yaá,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste",020,114,San Baltazar Yatzachi el Bajo,1,0.5
+0513,zapoteco,"zapoteco serrano, del sureste",020,156,San Ildefonso Villa Alta,1,0.5
+0513,zapoteco,"zapoteco serrano, del sureste",020,257,San Melchor Betaza,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste",020,038,Villa Hidalgo Yalálag,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste medio",020,097,San Andrés Solaga,1,0.5
+0513,zapoteco,"zapoteco serrano, del sureste medio",020,120,San Bartolomé Zoogocho,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste medio",020,114,San Baltazar Yatzachi el Bajo,1,0.5
+0513,zapoteco,"zapoteco serrano, del sureste medio",020,503,Santiago Zoochila,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste medio",020,442,Santa María Yalina,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste alto",020,216,San Juan Tabaá,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste alto",020,097,San Andrés Solaga,1,0.5
+0513,zapoteco,zapoteco de Santiago Laxopa,020,473,Santiago Laxopa,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste bajo",020,138,San Francisco Cajonos,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste bajo",020,246,San Mateo Cajonos,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste bajo",020,299,San Pablo Yaganiza,0,1.0
+0513,zapoteco,"zapoteco serrano, del sureste bajo",020,303,San Pedro Cajonos,0,1.0
+0513,zapoteco,"zapoteco serrano, del oeste medio",020,359,Santa Ana Yareni,0,1.0
+0513,zapoteco,"zapoteco serrano, del oeste medio",020,544,Teococuilco de Marcos Pérez,0,1.0
+0513,zapoteco,zapoteco de Valles del sur,020,015,Coatecas Altas,0,1.0
+0513,zapoteco,zapoteco de Valles del sur,020,028,Heróica Ciudad de Ejutla de Crespo,0,1.0
+0513,zapoteco,zapoteco de Valles del sur,020,072,San José del Progreso,0,1.0
+0513,zapoteco,zapoteco de San Vicente Coatlán,020,534,San Vicente Coatlán,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, del este bajo",020,059,Miahuatlán de Porfirio Díaz,1,0.5
+0513,zapoteco,"zapoteco de la Sierra sur, del este bajo",020,159,San Jerónimo Coatlán,1,0.5
+0513,zapoteco,"zapoteco de la Sierra sur, del este bajo",020,263,San Miguel Coatlán,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, del este bajo",020,291,San Pablo Coatlán,0,1.0
+0513,zapoteco,zapoteco de la costa oeste,020,113,San Baltazar Loxicha,0,1.0
+0513,zapoteco,zapoteco de la costa oeste,020,159,San Jerónimo Coatlán,1,0.5
+0513,zapoteco,zapoteco de la costa oeste,020,439,Santa María Tonameca,1,0.5
+0513,zapoteco,zapoteco de la costa oeste,020,509,Santo Domingo de Morelos,0,1.0
+0513,zapoteco,zapoteco de la costa central,020,012,Candelaria Loxicha,0,1.0
+0513,zapoteco,zapoteco de la costa central,020,071,Pluma Hidalgo,0,1.0
+0513,zapoteco,zapoteco de la costa central,020,085,San Agustín Loxicha,0,1.0
+0513,zapoteco,zapoteco de la costa central,020,117,San Bartolomé Loxicha,0,1.0
+0513,zapoteco,zapoteco de la costa central,020,324,San Pedro Pochutla,0,1.0
+0513,zapoteco,zapoteco de la costa central,020,401,Santa María Colotepec,0,1.0
+0513,zapoteco,zapoteco de la costa central,020,413,Santa María Huatulco,0,1.0
+0513,zapoteco,zapoteco de la costa central,020,439,Santa María Tonameca,1,0.5
+0513,zapoteco,"zapoteco de la Sierra sur, central",020,059,Miahuatlán de Porfirio Díaz,1,0.5
+0513,zapoteco,"zapoteco de la Sierra sur, central",020,095,San Andrés Paxtlán,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, central",020,384,Santa Cruz Xitla,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, central",020,362,Santa Catarina Cuixtla,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, central",020,391,Santa Lucía Miahuatlán,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, central",020,533,Santo Tomás Tamazulapan,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noreste",020,125,San Carlos Yautepec,1,0.25
+0513,zapoteco,"zapoteco de la Sierra sur, noreste",020,126,San Cristóbal Amatlán,1,0.3333333333333333
+0513,zapoteco,"zapoteco de la Sierra sur, noreste",020,170,San José Lachiguiri,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noreste",020,209,San Juan Mixtepec Distrito 26,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noreste",020,319,San Pedro Mixtepec Distrito 26,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noreste",020,316,San Pedro Mártir Quiéchapa,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,125,San Carlos Yautepec,1,0.25
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,361,Santa Catalina Quierí,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,074,Santa Catarina Quioquitani,0,1.0
+0513,zapoteco,zapoteco de Quiavicuzas,020,125,San Carlos Yautepec,1,0.25
+0513,zapoteco,"zapoteco de la Sierra sur, del norte",020,126,San Cristóbal Amatlán,1,0.3333333333333333
+0513,zapoteco,"zapoteco de la Sierra sur, del norte",020,154,San Ildefonso Amatlán,0,1.0
+0513,zapoteco,"zapoteco de la Sierra sur, del norte",020,235,San Luis Amatlán,0,1.0
+0513,zapoteco,zapoteco de la costa noreste,020,211,San Juan Ozolotepec,1,0.3333333333333333
+0513,zapoteco,zapoteco de la costa noreste,020,236,San Marcial Ozolotepec,0,1.0
+0513,zapoteco,zapoteco de la costa noreste,020,253,San Mateo Piñas,0,1.0
+0513,zapoteco,zapoteco de la costa noreste,020,279,San Miguel Suchixtepec,0,1.0
+0513,zapoteco,zapoteco de la costa noreste,020,306,San Pedro El Alto,0,1.0
+0513,zapoteco,zapoteco de la costa noreste,020,347,San Sebastián Río Hondo,0,1.0
+0513,zapoteco,zapoteco de la costa noreste,020,424,Santa María Ozolotepec,0,1.0
+0513,zapoteco,zapoteco de la costa noreste,020,512,Santo Domingo Ozolotepec,0,1.0
+0513,zapoteco,zapoteco de Mixtepec,020,126,San Cristóbal Amatlán,1,0.3333333333333333
+0513,zapoteco,"zapoteco de la Sierra sur, del sureste bajo",020,495,Santiago Xánica,1,0.5
+0513,zapoteco,"zapoteco de la Sierra sur, del sureste alto",020,148,San Francisco Ozolotepec,1,0.5
+0513,zapoteco,"zapoteco de la Sierra sur, del sureste alto",020,211,San Juan Ozolotepec,1,0.3333333333333333
+0513,zapoteco,zapoteco de Santa María Quiegolani,020,428,Santa María Quiegolani,0,1.0
+0513,zapoteco,zapoteco de San Bartolo Yautepec,020,122,San Bartolo Yautepec,0,1.0
+0513,zapoteco,zapoteco de Asunción Tlacolulita,020,008,Asunción Tlacolulita,0,1.0
+0513,zapoteco,zapoteco de la costa este,020,148,San Francisco Ozolotepec,1,0.5
+0513,zapoteco,zapoteco de la costa este,020,211,San Juan Ozolotepec,1,0.3333333333333333
+0513,zapoteco,zapoteco de la costa este,020,266,San Miguel del Puerto,0,1.0
+0513,zapoteco,zapoteco de la costa este,020,495,Santiago Xánica,1,0.5
+0513,zapoteco,"zapoteco de Valles, oeste",020,048,Magdalena Mixtepec,0,1.0
+0513,zapoteco,"zapoteco de Valles, oeste",020,123,San Bernardo Mixtepec,0,1.0
+0513,zapoteco,"zapoteco de Valles, oeste",020,292,San Pablo Cuatro Venados,0,1.0
+0513,zapoteco,"zapoteco de Valles, oeste",020,295,San Pablo Huixtepec,0,1.0
+0513,zapoteco,zapoteco de San Felipe Tejalápam,020,135,San Felipe Tejalápam,0,1.0
+0513,zapoteco,"zapoteco de Valles, noroeste",020,084,San Agustín Etla,0,1.0
+0513,zapoteco,"zapoteco de Valles, noroeste",020,102,San Andrés Zautla,0,1.0
+0513,zapoteco,"zapoteco de Valles, noroeste",020,293,San Pablo Etla,0,1.0
+0513,zapoteco,"zapoteco de Valles, noroeste",020,399,Santa María Atzompa,0,1.0
+0513,zapoteco,"zapoteco de Valles, noroeste",020,531,Santo Tomás Mazaltepec,0,1.0
+0513,zapoteco,"zapoteco de Valles, noroeste",020,338,Villa de Etla,0,1.0
+0513,zapoteco,"zapoteco de Valles, norte",020,091,San Andrés Huayápam,0,1.0
+0513,zapoteco,"zapoteco de Valles, norte",020,521,Santo Domingo Tonaltepec,0,1.0
+0513,zapoteco,"zapoteco de Valles, norte",020,553,Tlalixtac de Cabrera,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste medio",020,067,Oaxaca de Juárez,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste medio",020,107,San Antonio de la Cal,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste medio",020,350,San Sebastián Tutla,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste medio",020,385,Santa Cruz Xoxocotlán,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste medio",020,390,Santa Lucía del Camino,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste medio",020,411,Santa María Guelacé,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste medio",020,409,Santa María del Tule,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste bajo",020,115,San Bartolo Coyotepec,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste bajo",020,403,Santa María Coyotepec,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noroeste bajo",020,565,Villa de Zaachila,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste medio",020,007,Asunción Ocotlán,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste medio",020,049,Magdalena Ocotlán,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste medio",020,315,San Pedro Mártir,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste medio",020,301,San Pedro Apóstol,0,1.0
+0513,zapoteco,zapoteco de Zimatlán de Álvarez,020,570,Zimatlán de Álvarez,0,1.0
+0513,zapoteco,"zapoteco de Valles, del oeste central",020,360,Santa Ana Zegache,0,1.0
+0513,zapoteco,"zapoteco de Valles, del oeste central",020,389,Santa Inés Yatzeche,0,1.0
+0513,zapoteco,"zapoteco de Valles, del centro",020,530,Santo Tomás Jalieza,1,0.5
+0513,zapoteco,"zapoteco de Valles, de suroeste alto",020,452,Santiago Apóstol,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste central",020,068,Ocotlán de Morelos,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste central",020,103,San Antonino Castillo Velasco,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste central",020,162,San Jerónimo Taviche,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste central",020,238,San Martín de los Cansecos,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste central",020,368,Santa Catarina Minas,0,1.0
+0513,zapoteco,"zapoteco de Valles, del suroeste central",020,393,Santa Lucía Ocotlán,0,1.0
+0513,zapoteco,"zapoteco de Valles, del centro bajo",020,284,San Miguel Tilquiápam,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,051,Magdalena Teitipac,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,118,San Bartolomé Quialana,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,145,San Francisco Lachigoló,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,550,San Jerónimo Tlacochahuaya,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,219,San Juan Teitipac,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,233,San Lucas Quiavini,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,243,San Martín Tilcajete,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,343,San Sebastián Abasolo,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,349,San Sebastián Teitipac,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,356,Santa Ana del Valle,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,380,Santa Cruz Papalutla,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,530,Santo Tomás Jalieza,1,0.5
+0513,zapoteco,"zapoteco de Valles, del norte central",020,546,Teotitlán del Valle,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,551,Tlacolula de Matamoros,0,1.0
+0513,zapoteco,"zapoteco de Valles, del norte central",020,560,Villa Díaz Ordaz,1,0.5
+0513,zapoteco,"zapoteco de Valles, del este central",020,131,San Dionisio Ocotepec,1,0.5
+0513,zapoteco,"zapoteco de Valles, del este central",020,475,Santiago Matatlán,1,0.5
+0513,zapoteco,zapoteco de San Baltazar Chichicapam,020,112,San Baltazar Chichicapam,0,1.0
+0513,zapoteco,"zapoteco de Valles, del este medio",020,131,San Dionisio Ocotepec,1,0.5
+0513,zapoteco,"zapoteco de Valles, del este medio",020,194,San Juan del Río,0,1.0
+0513,zapoteco,"zapoteco de Valles, del este medio",020,226,San Lorenzo Albarradas,1,0.5
+0513,zapoteco,"zapoteco de Valles, del este medio",020,298,San Pablo Villa de Mitla,1,0.5
+0513,zapoteco,"zapoteco de Valles, del este medio",020,475,Santiago Matatlán,1,0.5
+0513,zapoteco,"zapoteco de Sierra sur, del noreste alto",020,064,Nejapa de Madero,0,1.0
+0513,zapoteco,"zapoteco de Sierra sur, del noreste alto",020,125,San Carlos Yautepec,1,0.25
+0513,zapoteco,"zapoteco de Valles, del noreste",020,226,San Lorenzo Albarradas,1,0.5
+0513,zapoteco,"zapoteco de Valles, del noreste",020,298,San Pablo Villa de Mitla,1,0.5
+0513,zapoteco,"zapoteco de Valles, del noreste",020,506,Santo Domingo Albarradas,0,1.0
+0513,zapoteco,"zapoteco de Valles, del noreste",020,560,Villa Díaz Ordaz,1,0.5
+0513,zapoteco,"zapoteco de la montaña del Istmo, alto",020,440,Santa María Totolapilla,0,1.0
+0513,zapoteco,"zapoteco de la montaña del Istmo, alto",020,470,Santiago Lachiguiri,0,1.0
+0513,zapoteco,"zapoteco de la montaña del Istmo, bajo",020,036,Guevea de Humboldt,0,1.0
+0513,zapoteco,"zapoteco de la montaña del Istmo, bajo",020,412,Santa María Guienagati,0,1.0
+0513,zapoteco,zapoteco de Petapa,020,427,Santa María Petapa,0,1.0
+0513,zapoteco,zapoteco de Petapa,020,513,Santo Domingo Petapa,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,005,Asunción Ixtaltepec,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,025,Chahuites,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,014,Ciudad Ixtepec,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,030,El Espinal,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,043,Juchitán de Zaragoza,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,053,Magdalena Tlacotepec,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,075,Reforma de Pineda,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,079,Salina Cruz,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,124,San Blas Atempa,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,143,San Francisco Ixhuatán,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,198,San Juan Guichicovi,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,305,San Pedro Comitancillo,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,308,San Pedro Huilotepec,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,327,San Pedro Tapanatepec,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,418,Santa María Jalapa del Marqués,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,421,Santa María Mixtequilla,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,441,Santa María Xadani,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,472,Santiago Laollaga,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,508,Santo Domingo Chihuitán,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,505,Santo Domingo Ingenio,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,515,Santo Domingo Tehuantepec,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,525,Santo Domingo Zanatepec,0,1.0
+0513,zapoteco,zapoteco de la planicie costera,020,557,Unión Hidalgo,0,1.0
+0609,Akateko,Akateko,004,004,Champotón,0,1.0
+0609,Akateko,Akateko,007,034,Frontera Comalapa,0,1.0
+0609,Akateko,Akateko,007,099,La Trinitaria,0,1.0
+0609,Akateko,Akateko,023,004,Othón P. Blanco,0,1.0
+0619,Awakateko,Awakateko,004,004,Champotón,0,1.0
+0605,chontal de Tabasco,chontal de Tabasco central,027,010,Jalpa de Méndez,0,1.0
+0605,chontal de Tabasco,chontal de Tabasco central,027,013,Nacajuca,0,1.0
+0605,chontal de Tabasco,chontal de Tabasco del este,027,004,Centro,0,1.0
+0605,chontal de Tabasco,chontal de Tabasco del sureste,027,012,Macuspana,0,1.0
+0605,chontal de Tabasco,chontal de Tabasco del norte,027,003,Centla,0,1.0
+0612,Chuj,Chuj,004,002,Campeche,0,1.0
+0612,Chuj,Chuj,004,004,Champotón,0,1.0
+0612,Chuj,Chuj,023,004,Othón P. Blanco,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,005,Amatán,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,039,Huitiupán,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,052,Las Margaritas,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,115,Maravilla Tenejapa,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,064,Oxchuc,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,065,Palenque,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,076,Sabanilla,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,077,Salto de Agua,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,096,Tila,0,1.0
+0604,ch'ol,ch'ol del noroeste,007,109,Yajalón,0,1.0
+0604,ch'ol,ch'ol del noroeste,027,012,Macuspana,0,1.0
+0604,ch'ol,ch'ol del noroeste,027,015,Tacotalpa,0,1.0
+0604,ch'ol,ch'ol del sureste,004,010,Calakmul,0,1.0
+0604,ch'ol,ch'ol del sureste,007,114,Benemérito de las Américas,0,1.0
+0604,ch'ol,ch'ol del sureste,007,016,Catazajá,0,1.0
+0604,ch'ol,ch'ol del sureste,007,031,Chilón,0,1.0
+0604,ch'ol,ch'ol del sureste,007,116,Marqués de Comillas,0,1.0
+0604,ch'ol,ch'ol del sureste,007,059,Ocosingo,0,1.0
+0604,ch'ol,ch'ol del sureste,007,100,Tumbalá,0,1.0
+0604,ch'ol,ch'ol del sureste,027,001,Balancán,0,1.0
+0604,ch'ol,ch'ol del sureste,027,017,Tenosique,0,1.0
+0601,huasteco,huasteco del occidente,024,003,Aquismón,0,1.0
+0601,huasteco,huasteco del occidente,024,013,Ciudad Valles,0,1.0
+0601,huasteco,huasteco del occidente,024,014,Coxcatlán,0,1.0
+0601,huasteco,huasteco del occidente,024,016,Ébano,0,1.0
+0601,huasteco,huasteco del occidente,024,018,Huehuetlán,0,1.0
+0601,huasteco,huasteco del occidente,024,026,San Antonio,0,1.0
+0601,huasteco,huasteco del occidente,024,034,San Vicente Tancuayalab,0,1.0
+0601,huasteco,huasteco del occidente,024,039,Tampamolón Corona,0,1.0
+0601,huasteco,huasteco del occidente,024,040,Tamuín,0,1.0
+0601,huasteco,huasteco del occidente,024,012,Tancanhuitz de Santos,0,1.0
+0601,huasteco,huasteco del occidente,024,041,Tanlajás,0,1.0
+0601,huasteco,huasteco del occidente,024,042,Tanquián de Escobedo,0,1.0
+0601,huasteco,huasteco del occidente,024,054,Xilitla,0,1.0
+0601,huasteco,huasteco del centro,030,129,Platón Sánchez,0,1.0
+0601,huasteco,huasteco del centro,030,155,Tantoyuca,0,1.0
+0601,huasteco,huasteco del centro,030,161,Tempoal,0,1.0
+0601,huasteco,huasteco de oriente,030,034,Cerro Azul,0,1.0
+0601,huasteco,huasteco de oriente,030,058,Chicontepec,0,1.0
+0601,huasteco,huasteco de oriente,030,060,Chinampa de Gorostiza,0,1.0
+0601,huasteco,huasteco de oriente,030,063,Chontla,0,1.0
+0601,huasteco,huasteco de oriente,030,035,Citlaltépetl,0,1.0
+0601,huasteco,huasteco de oriente,030,078,Ixcatepec,0,1.0
+0601,huasteco,huasteco de oriente,030,013,Naranjos Amatlán,0,1.0
+0601,huasteco,huasteco de oriente,030,150,Tamalín,0,1.0
+0601,huasteco,huasteco de oriente,030,153,Tancoco,0,1.0
+0601,huasteco,huasteco de oriente,030,154,Tantima,0,1.0
+0601,huasteco,huasteco de oriente,030,167,Tepetzintla,0,1.0
+0620,Ixil,Ixil chajuleño,004,002,Campeche,0,1.0
+0620,Ixil,Ixil chajuleño,023,004,Othón P. Blanco,1,0.5
+0620,Ixil,Ixil nebajeño,023,004,Othón P. Blanco,1,0.5
+0610,Jakalteko,Jakalteko,004,002,Campeche,0,1.0
+0610,Jakalteko,Jakalteko,004,004,Champotón,0,1.0
+0610,Jakalteko,Jakalteko,007,006,Amatenango de la Frontera,0,1.0
+0610,Jakalteko,Jakalteko,007,011,Bella Vista,0,1.0
+0610,Jakalteko,Jakalteko,007,034,Frontera Comalapa,0,1.0
+0610,Jakalteko,Jakalteko,007,099,La Trinitaria,0,1.0
+0610,Jakalteko,Jakalteko,023,004,Othón P. Blanco,0,1.0
+0616,Kaqchikel,Kaqchikel,004,002,Campeche,0,1.0
+0616,Kaqchikel,Kaqchikel,004,004,Champotón,0,1.0
+0616,Kaqchikel,Kaqchikel,023,004,Othón P. Blanco,0,1.0
+0615,K'iche',K'iche' (oriental),004,002,Campeche,0,1.0
+0615,K'iche',K'iche' (oriental),004,004,Champotón,1,0.3333333333333333
+0615,K'iche',K'iche' (oriental),007,052,Las Margaritas,0,1.0
+0615,K'iche',K'iche' (oriental),007,116,Marqués de Comillas,0,1.0
+0615,K'iche',K'iche' (oriental),023,004,Othón P. Blanco,0,1.0
+0615,K'iche',K'iche' (occidental),004,004,Champotón,1,0.3333333333333333
+0615,K'iche',K'iche' (central),004,004,Champotón,1,0.3333333333333333
+0603,lacandón,lacandón,007,059,Ocosingo,0,1.0
+0618,Mam,Mam de la frontera,007,006,Amatenango de la Frontera,0,1.0
+0618,Mam,Mam de la frontera,007,010,Bejucal de Ocampo,0,1.0
+0618,Mam,Mam de la frontera,007,034,Frontera Comalapa,0,1.0
+0618,Mam,Mam de la frontera,007,041,La Independencia,0,1.0
+0618,Mam,Mam de la frontera,007,052,Las Margaritas,0,1.0
+0618,Mam,Mam de la frontera,007,115,Maravilla Tenejapa,0,1.0
+0618,Mam,Mam del norte,004,002,Campeche,1,0.5
+0618,Mam,Mam del norte,004,004,Champotón,1,0.5
+0618,Mam,Mam del norte,023,004,Othón P. Blanco,1,0.5
+0618,Mam,Mam del sur,004,002,Campeche,1,0.5
+0618,Mam,Mam del sur,004,004,Champotón,1,0.5
+0618,Mam,Mam del sur,023,004,Othón P. Blanco,1,0.5
+0618,Mam,Mam de la Sierra,007,011,Bella Vista,0,1.0
+0618,Mam,Mam de la Sierra,007,070,El Porvenir,0,1.0
+0618,Mam,Mam de la Sierra,007,036,La Grandeza,0,1.0
+0618,Mam,Mam de la Sierra,007,053,Mazapa de Madero,0,1.0
+0618,Mam,Mam de la Sierra,007,057,Motozintla,0,1.0
+0618,Mam,Mam de la Sierra,007,080,Siltepec,0,1.0
+0618,Mam,Mam del Soconusco,007,015,Cacahoatán,0,1.0
+0618,Mam,Mam del Soconusco,007,037,Huehuetán,0,1.0
+0618,Mam,Mam del Soconusco,007,040,Huixtla,0,1.0
+0618,Mam,Mam del Soconusco,007,089,Tapachula,0,1.0
+0618,Mam,Mam del Soconusco,007,102,Tuxtla Chico,0,1.0
+0618,Mam,Mam del Soconusco,007,103,Tuzantán,0,1.0
+0618,Mam,Mam del Soconusco,007,105,Unión Juárez,0,1.0
+0602,maya,maya,004,010,Calakmul,0,1.0
+0602,maya,maya,004,001,Calkiní,0,1.0
+0602,maya,maya,004,002,Campeche,0,1.0
+0602,maya,maya,004,011,Candelaria,0,1.0
+0602,maya,maya,004,004,Champotón,0,1.0
+0602,maya,maya,004,009,Escárcega,0,1.0
+0602,maya,maya,004,005,Hecelchakán,0,1.0
+0602,maya,maya,004,006,Hopelchén,0,1.0
+0602,maya,maya,004,008,Tenabo,0,1.0
+0602,maya,maya,023,005,Benito Juárez,0,1.0
+0602,maya,maya,023,002,Felipe Carrillo Puerto,0,1.0
+0602,maya,maya,023,006,José María Morelos,0,1.0
+0602,maya,maya,023,007,Lázaro Cárdenas,0,1.0
+0602,maya,maya,023,004,Othón P. Blanco,0,1.0
+0602,maya,maya,023,008,Solidaridad,0,1.0
+0602,maya,maya,031,001,Abalá,0,1.0
+0602,maya,maya,031,002,Acanceh,0,1.0
+0602,maya,maya,031,003,Akil Baca,0,1.0
+0602,maya,maya,031,005,Bokobá,0,1.0
+0602,maya,maya,031,006,Buctzotz,0,1.0
+0602,maya,maya,031,007,Cacalchén,0,1.0
+0602,maya,maya,031,008,Calotmul,0,1.0
+0602,maya,maya,031,009,Cansahcab,0,1.0
+0602,maya,maya,031,010,Cantamayec,0,1.0
+0602,maya,maya,031,011,Celestún,0,1.0
+0602,maya,maya,031,012,Cenotillo,0,1.0
+0602,maya,maya,031,016,Chacsinkín,0,1.0
+0602,maya,maya,031,017,Chankom,0,1.0
+0602,maya,maya,031,018,Chapab,0,1.0
+0602,maya,maya,031,019,Chemax,0,1.0
+0602,maya,maya,031,021,Chichimilá,0,1.0
+0602,maya,maya,031,020,Chicxulub Pueblo,0,1.0
+0602,maya,maya,031,022,Chikindzonot,0,1.0
+0602,maya,maya,031,023,Chocholá,0,1.0
+0602,maya,maya,031,024,Chumayel,0,1.0
+0602,maya,maya,031,013,Conkal,0,1.0
+0602,maya,maya,031,014,Cuncunul,0,1.0
+0602,maya,maya,031,015,Cuzamá,0,1.0
+0602,maya,maya,031,025,Dzan,0,1.0
+0602,maya,maya,031,026,Dzemul,0,1.0
+0602,maya,maya,031,027,Dzidzantún,0,1.0
+0602,maya,maya,031,029,Dzilam González,0,1.0
+0602,maya,maya,031,028,Dzilam de Bravo,0,1.0
+0602,maya,maya,031,030,Dzitás,0,1.0
+0602,maya,maya,031,031,Dzoncauich,0,1.0
+0602,maya,maya,031,032,Espita,0,1.0
+0602,maya,maya,031,033,Halachó,0,1.0
+0602,maya,maya,031,034,Hocabá,0,1.0
+0602,maya,maya,031,035,Hoctún,0,1.0
+0602,maya,maya,031,036,Homún,0,1.0
+0602,maya,maya,031,037,Huhí,0,1.0
+0602,maya,maya,031,038,Hunucmá,0,1.0
+0602,maya,maya,031,039,Ixil,0,1.0
+0602,maya,maya,031,040,Izamal,0,1.0
+0602,maya,maya,031,041,Kanasín,0,1.0
+0602,maya,maya,031,042,Kantunil,0,1.0
+0602,maya,maya,031,043,Kaua,0,1.0
+0602,maya,maya,031,044,Kinchil,0,1.0
+0602,maya,maya,031,045,Kopomá,0,1.0
+0602,maya,maya,031,046,Mama,0,1.0
+0602,maya,maya,031,047,Maní,0,1.0
+0602,maya,maya,031,048,Maxcanú,0,1.0
+0602,maya,maya,031,049,Mayapán,0,1.0
+0602,maya,maya,031,050,Mérida,0,1.0
+0602,maya,maya,031,051,Mocochá,0,1.0
+0602,maya,maya,031,052,Motul,0,1.0
+0602,maya,maya,031,053,Muna,0,1.0
+0602,maya,maya,031,054,Muxupip,0,1.0
+0602,maya,maya,031,055,Opichén,0,1.0
+0602,maya,maya,031,056,Oxkutzcab,0,1.0
+0602,maya,maya,031,057,Panabá,0,1.0
+0602,maya,maya,031,058,Peto,0,1.0
+0602,maya,maya,031,059,Progreso,0,1.0
+0602,maya,maya,031,060,Quintana Roo,0,1.0
+0602,maya,maya,031,061,Río Lagartos,0,1.0
+0602,maya,maya,031,062,Sacalum,0,1.0
+0602,maya,maya,031,063,Samahil,0,1.0
+0602,maya,maya,031,065,San Felipe,0,1.0
+0602,maya,maya,031,064,Sanahcat,0,1.0
+0602,maya,maya,031,066,Santa Elena,0,1.0
+0602,maya,maya,031,067,Seyé,0,1.0
+0602,maya,maya,031,068,Sinanché,0,1.0
+0602,maya,maya,031,069,Sotuta,0,1.0
+0602,maya,maya,031,070,Sucilá,0,1.0
+0602,maya,maya,031,071,Sudzal,0,1.0
+0602,maya,maya,031,072,Suma,0,1.0
+0602,maya,maya,031,073,Tahdziú,0,1.0
+0602,maya,maya,031,074,Tahmek,0,1.0
+0602,maya,maya,031,075,Teabo,0,1.0
+0602,maya,maya,031,076,Tecoh,0,1.0
+0602,maya,maya,031,077,Tekal de Venegas,0,1.0
+0602,maya,maya,031,078,Tekantó,0,1.0
+0602,maya,maya,031,079,Tekax,0,1.0
+0602,maya,maya,031,080,Tekit,0,1.0
+0602,maya,maya,031,081,Tekom,0,1.0
+0602,maya,maya,031,082,Telchac Pueblo,0,1.0
+0602,maya,maya,031,083,Telchac Puerto,0,1.0
+0602,maya,maya,031,084,Temax,0,1.0
+0602,maya,maya,031,085,Temozón,0,1.0
+0602,maya,maya,031,086,Tepakán,0,1.0
+0602,maya,maya,031,087,Tetiz,0,1.0
+0602,maya,maya,031,088,Teya,0,1.0
+0602,maya,maya,031,089,Ticul,0,1.0
+0602,maya,maya,031,090,Timucuy,0,1.0
+0602,maya,maya,031,091,Tinum,0,1.0
+0602,maya,maya,031,092,Tixcacalcupul,0,1.0
+0602,maya,maya,031,093,Tixkokob,0,1.0
+0602,maya,maya,031,094,Tixméhuac,0,1.0
+0602,maya,maya,031,095,Tixpehual,0,1.0
+0602,maya,maya,031,096,Tizimín,0,1.0
+0602,maya,maya,031,097,Tunkás,0,1.0
+0602,maya,maya,031,098,Tzucacab,0,1.0
+0602,maya,maya,031,099,Uayma,0,1.0
+0602,maya,maya,031,105,Yaxkukul,0,1.0
+0602,maya,maya,031,106,Yobaín,0,1.0
+0611,qato'k,mocho',007,057,Motozintla,0,1.0
+0611,qato'k,tuzanteco,007,103,Tuzantán,0,1.0
+0608,Q'anjob'al,Q'anjob'al,004,002,Campeche,0,1.0
+0608,Q'anjob'al,Q'anjob'al,004,004,Champotón,0,1.0
+0608,Q'anjob'al,Q'anjob'al,007,006,Amatenango de la Frontera,0,1.0
+0608,Q'anjob'al,Q'anjob'al,007,016,Catazajá,0,1.0
+0608,Q'anjob'al,Q'anjob'al,007,011,Bella Vista,0,1.0
+0608,Q'anjob'al,Q'anjob'al,007,034,Frontera Comalapa,0,1.0
+0608,Q'anjob'al,Q'anjob'al,007,041,La Independencia,0,1.0
+0608,Q'anjob'al,Q'anjob'al,007,099,La Trinitaria,0,1.0
+0608,Q'anjob'al,Q'anjob'al,007,052,Las Margaritas,0,1.0
+0608,Q'anjob'al,Q'anjob'al,007,115,Maravilla Tenejapa,0,1.0
+0608,Q'anjob'al,Q'anjob'al,023,004,Othón P. Blanco,0,1.0
+0614,Q'eqchi',Q'eqchi',004,002,Campeche,0,1.0
+0614,Q'eqchi',Q'eqchi',004,004,Champotón,0,1.0
+0614,Q'eqchi',Q'eqchi',023,004,Othón P. Blanco,0,1.0
+0617,Teko,Teko,007,006,Amatenango de la Frontera,0,1.0
+0617,Teko,Teko,007,034,Frontera Comalapa,0,1.0
+0617,Teko,Teko,007,053,Mazapa de Madero,0,1.0
+0613,tojolabal,tojolabal,007,004,Altamirano,0,1.0
+0613,tojolabal,tojolabal,007,019,Comitán de Domínguez,0,1.0
+0613,tojolabal,tojolabal,007,099,La Trinitaria,0,1.0
+0613,tojolabal,tojolabal,007,052,Las Margaritas,0,1.0
+0613,tojolabal,tojolabal,007,115,Maravilla Tenejapa,0,1.0
+0613,tojolabal,tojolabal,007,059,Ocosingo,0,1.0
+0606,tseltal,tseltal del occidente,007,002,Acala,0,1.0
+0606,tseltal,tseltal del occidente,007,113,Aldama,0,1.0
+0606,tseltal,tseltal del occidente,007,007,Amatenango del Valle,0,1.0
+0606,tseltal,tseltal del occidente,007,013,Bochil,0,1.0
+0606,tseltal,tseltal del occidente,007,022,Chalchihuitán,0,1.0
+0606,tseltal,tseltal del occidente,007,023,Chamula,0,1.0
+0606,tseltal,tseltal del occidente,007,024,Chanal,0,1.0
+0606,tseltal,tseltal del occidente,007,026,Chenalhó,0,1.0
+0606,tseltal,tseltal del occidente,007,027,Chiapa de Corzo,0,1.0
+0606,tseltal,tseltal del occidente,007,028,Chiapilla,0,1.0
+0606,tseltal,tseltal del occidente,007,019,Comitán de Domínguez,0,1.0
+0606,tseltal,tseltal del occidente,007,039,Huitiupán,0,1.0
+0606,tseltal,tseltal del occidente,007,038,Huixtán,0,1.0
+0606,tseltal,tseltal del occidente,007,044,Ixtapa,0,1.0
+0606,tseltal,tseltal del occidente,007,047,Jitotol,0,1.0
+0606,tseltal,tseltal del occidente,007,049,Larráinzar,0,1.0
+0606,tseltal,tseltal del occidente,007,063,Osumacinta,0,1.0
+0606,tseltal,tseltal del occidente,007,064,Oxchuc,0,1.0
+0606,tseltal,tseltal del occidente,007,066,Pantelhó,0,1.0
+0606,tseltal,tseltal del occidente,007,072,Pueblo Nuevo Solistahuacán,0,1.0
+0606,tseltal,tseltal del occidente,007,078,San Cristóbal de las Casas,0,1.0
+0606,tseltal,tseltal del occidente,007,112,San Juan Cancuc,0,1.0
+0606,tseltal,tseltal del occidente,007,110,San Lucas,0,1.0
+0606,tseltal,tseltal del occidente,007,081,Simojovel,0,1.0
+0606,tseltal,tseltal del occidente,007,085,Soyaló,0,1.0
+0606,tseltal,tseltal del occidente,007,093,Tenejapa,0,1.0
+0606,tseltal,tseltal del occidente,007,094,Teopisca,0,1.0
+0606,tseltal,tseltal del occidente,007,098,Totolapa,0,1.0
+0606,tseltal,tseltal del occidente,007,101,Tuxtla Gutiérrez,0,1.0
+0606,tseltal,tseltal del occidente,007,111,Zinacantán,0,1.0
+0606,tseltal,tseltal del norte,007,016,Catazajá,0,1.0
+0606,tseltal,tseltal del norte,007,031,Chilón,0,1.0
+0606,tseltal,tseltal del norte,007,050,La Libertad,0,1.0
+0606,tseltal,tseltal del norte,007,059,Ocosingo,1,0.5
+0606,tseltal,tseltal del norte,007,065,Palenque,0,1.0
+0606,tseltal,tseltal del norte,007,076,Sabanilla,0,1.0
+0606,tseltal,tseltal del norte,007,077,Salto de Agua,0,1.0
+0606,tseltal,tseltal del norte,007,082,Sitalá,0,1.0
+0606,tseltal,tseltal del norte,007,096,Tila,0,1.0
+0606,tseltal,tseltal del norte,007,100,Tumbalá,0,1.0
+0606,tseltal,tseltal del norte,007,109,Yajalón,0,1.0
+0606,tseltal,tseltal del norte,027,007,Emiliano Zapata,0,1.0
+0606,tseltal,tseltal del oriente,007,004,Altamirano,0,1.0
+0606,tseltal,tseltal del oriente,007,114,Benemérito de las Américas,0,1.0
+0606,tseltal,tseltal del oriente,007,052,Las Margaritas,0,1.0
+0606,tseltal,tseltal del oriente,007,115,Maravilla Tenejapa,0,1.0
+0606,tseltal,tseltal del oriente,007,116,Marqués de Comillas,0,1.0
+0606,tseltal,tseltal del oriente,007,059,Ocosingo,1,0.5
+0606,tseltal,tseltal del oriente,027,001,Balancán,0,1.0
+0606,tseltal,tseltal del oriente,027,017,Tenosique,0,1.0
+0606,tseltal,tseltal del sur,007,008,Ángel Albino Corzo,0,1.0
+0606,tseltal,tseltal del sur,007,030,Chicomuselo,0,1.0
+0606,tseltal,tseltal del sur,007,017,Cintalapa,0,1.0
+0606,tseltal,tseltal del sur,007,034,Frontera Comalapa,0,1.0
+0606,tseltal,tseltal del sur,007,020,La Concordia,0,1.0
+0606,tseltal,tseltal del sur,007,075,Las Rosas,0,1.0
+0606,tseltal,tseltal del sur,007,099,La Trinitaria,0,1.0
+0606,tseltal,tseltal del sur,007,117,Montecristo de Guerrero,0,1.0
+0606,tseltal,tseltal del sur,007,083,Socoltenango,0,1.0
+0606,tseltal,tseltal del sur,007,104,Tzimol,0,1.0
+0606,tseltal,tseltal del sur,007,106,Venustiano Carranza,0,1.0
+0607,tsotsil,tsotsil del este alto,007,038,Huixtán,0,1.0
+0607,tsotsil,tsotsil del este alto,007,052,Las Margaritas,1,0.5
+0607,tsotsil,tsotsil del noroeste,007,113,Aldama,0,1.0
+0607,tsotsil,tsotsil del noroeste,007,022,Chalchihuitán,0,1.0
+0607,tsotsil,tsotsil del noroeste,007,026,Chenalhó,0,1.0
+0607,tsotsil,tsotsil del noroeste,007,056,Mitontic,0,1.0
+0607,tsotsil,tsotsil del noroeste,007,066,Pantelhó,0,1.0
+0607,tsotsil,tsotsil del norte bajo,007,002,Acala,0,1.0
+0607,tsotsil,tsotsil del norte bajo,007,098,Totolapa,0,1.0
+0607,tsotsil,tsotsil del norte bajo,007,106,Venustiano Carranza,0,1.0
+0607,tsotsil,tsotsil del centro,007,023,Chamula,0,1.0
+0607,tsotsil,tsotsil del centro,007,052,Las Margaritas,1,0.5
+0607,tsotsil,tsotsil del centro,007,094,Teopisca,0,1.0
+0607,tsotsil,tsotsil del este bajo,007,012,Berriozabal,0,1.0
+0607,tsotsil,tsotsil del este bajo,007,044,Ixtapa,0,1.0
+0607,tsotsil,tsotsil del este bajo,007,110,San Lucas,0,1.0
+0607,tsotsil,tsotsil del este bajo,007,111,Zinacantán,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,005,Amatán,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,013,Bochil,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,014,El Bosque,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,039,Huitiupán,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,042,Ixhuatán,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,047,Jitotol,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,049,Larráinzar,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,061,Ocozocoautla de Espinosa,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,072,Pueblo Nuevo Solistahuacán,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,076,Sabanilla,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,118,San Andrés Duraznal,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,119,Santiago el Pinar,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,081,Simojovel,0,1.0
+0607,tsotsil,tsotsil del norte alto,007,085,Soyaló,0,1.0
+0607,tsotsil,tsotsil de los Altos,007,078,San Cristóbal de las Casas,0,1.0
+0702,tepehua,tepehua del sur,013,027,Huehuetla,0,1.0
+0702,tepehua,tepehua del sur,021,111,Pantepec,0,1.0
+0702,tepehua,tepehua del norte,030,083,Ixhuatlán de Madero,0,1.0
+0702,tepehua,tepehua del oeste,030,180,Tlachichilco,0,1.0
+0702,tepehua,tepehua del oeste,030,202,Zontecomatlán de López y Fuentes,0,1.0
+0701,totonaco,totonaco del sureste,030,057,Chiconquiaco,0,1.0
+0701,totonaco,totonaco del sureste,030,093,Jilotepec,0,1.0
+0701,totonaco,totonaco del sureste,030,096,Landero y Coss,0,1.0
+0701,totonaco,totonaco del sureste,030,109,Misantla,0,1.0
+0701,totonaco,totonaco del sureste,030,112,Naolinco,0,1.0
+0701,totonaco,totonaco del sureste,030,197,Yecuatla,0,1.0
+0701,totonaco,totonaco central del norte,021,064,Francisco Z. Mena,0,1.0
+0701,totonaco,totonaco central del norte,021,071,Huauchinango,1,0.5
+0701,totonaco,totonaco central del norte,021,086,Jalpan,0,1.0
+0701,totonaco,totonaco central del norte,021,100,Naupan,0,1.0
+0701,totonaco,totonaco central del norte,021,111,Pantepec,0,1.0
+0701,totonaco,totonaco central del norte,021,178,Tlacuilotepec,0,1.0
+0701,totonaco,totonaco central del norte,021,183,Tlaola,0,1.0
+0701,totonaco,totonaco central del norte,021,187,Tlaxco,0,1.0
+0701,totonaco,totonaco central del norte,021,194,Venustiano Carranza,0,1.0
+0701,totonaco,totonaco central del norte,021,197,Xicotepec,0,1.0
+0701,totonaco,totonaco central del norte,021,213,Zihuateutla,1,0.5
+0701,totonaco,totonaco central del norte,030,083,Ixhuatlán de Madero,0,1.0
+0701,totonaco,totonaco del cerro Xinolatépetl,021,071,Huauchinango,1,0.5
+0701,totonaco,totonaco central alto,030,067,Filomeno Mata,0,1.0
+0701,totonaco,totonaco de la costa,030,033,Cazones,0,1.0
+0701,totonaco,totonaco de la costa,030,040,Coatzintla,0,1.0
+0701,totonaco,totonaco de la costa,030,066,Espinal,0,1.0
+0701,totonaco,totonaco de la costa,030,069,Gutiérrez Zamora,0,1.0
+0701,totonaco,totonaco de la costa,030,102,Martínez de la Torre,0,1.0
+0701,totonaco,totonaco de la costa,030,124,Papantla,0,1.0
+0701,totonaco,totonaco de la costa,030,131,Poza Rica de Hidalgo,0,1.0
+0701,totonaco,totonaco de la costa,030,158,Tecolutla,0,1.0
+0701,totonaco,totonaco de la costa,030,175,Tihuatlán,0,1.0
+0701,totonaco,totonaco del río Necaxa,021,089,Jopala,1,0.5
+0701,totonaco,totonaco del río Necaxa,021,213,Zihuateutla,1,0.5
+0701,totonaco,totonaco central del sur,021,006,Ahuacatlán,0,1.0
+0701,totonaco,totonaco central del sur,021,014,Amixtlán,0,1.0
+0701,totonaco,totonaco central del sur,021,080,Atlequizayán,0,1.0
+0701,totonaco,totonaco central del sur,021,028,Camocuautla,0,1.0
+0701,totonaco,totonaco central del sur,021,029,Caxhuacan,0,1.0
+0701,totonaco,totonaco central del sur,021,030,Coatepec,0,1.0
+0701,totonaco,totonaco central del sur,021,043,Cuetzalan del Progreso,0,1.0
+0701,totonaco,totonaco central del sur,021,068,Hermenegildo,0,1.0
+0701,totonaco,totonaco central del sur,021,072,Huehuetla,0,1.0
+0701,totonaco,totonaco central del sur,021,076,Hueytamalco,0,1.0
+0701,totonaco,totonaco central del sur,021,077,Hueytlalpan,0,1.0
+0701,totonaco,totonaco central del sur,021,078,Huitzilan de Serdán,0,1.0
+0701,totonaco,totonaco central del sur,021,084,Ixtepec,0,1.0
+0701,totonaco,totonaco central del sur,021,088,Jonotla,0,1.0
+0701,totonaco,totonaco central del sur,021,089,Jopala,1,0.5
+0701,totonaco,totonaco central del sur,021,101,Nauzontla,0,1.0
+0701,totonaco,totonaco central del sur,021,107,Olintla,0,1.0
+0701,totonaco,totonaco central del sur,021,123,San Felipe Tepatlán,0,1.0
+0701,totonaco,totonaco central del sur,021,162,Tepango de Rodríguez,0,1.0
+0701,totonaco,totonaco central del sur,021,167,Tepetzintla,0,1.0
+0701,totonaco,totonaco central del sur,021,192,Tuzamapan de Galeana,0,1.0
+0701,totonaco,totonaco central del sur,021,207,Zacapoaxtla,0,1.0
+0701,totonaco,totonaco central del sur,021,210,Zapotitlán de Méndez,0,1.0
+0701,totonaco,totonaco central del sur,021,215,Zongozotla,0,1.0
+0701,totonaco,totonaco central del sur,030,064,Chumatlán,0,1.0
+0701,totonaco,totonaco central del sur,030,037,Coahuitlán,0,1.0
+0701,totonaco,totonaco central del sur,030,050,Coxquihui,0,1.0
+0701,totonaco,totonaco central del sur,030,051,Coyutla,0,1.0
+0701,totonaco,totonaco central del sur,030,103,Mecatlán,0,1.0
+0701,totonaco,totonaco central del sur,030,203,Zozocolco de Hidalgo,0,1.0
+0801,tarasco,purépecha,016,016,Coeneo,0,1.0
+0801,tarasco,purépecha,016,021,Charapan,0,1.0
+0801,tarasco,purépecha,016,024,Cherán,0,1.0
+0801,tarasco,purépecha,016,025,Chilchota,0,1.0
+0801,tarasco,purépecha,016,032,Erongarícuaro,0,1.0
+0801,tarasco,purépecha,016,075,Los Reyes,0,1.0
+0801,tarasco,purépecha,016,053,Morelia,0,1.0
+0801,tarasco,purépecha,016,056,Nahuatzen,0,1.0
+0801,tarasco,purépecha,016,058,Nuevo Parangaricutiro,0,1.0
+0801,tarasco,purépecha,016,065,Paracho,0,1.0
+0801,tarasco,purépecha,016,066,Pátzcuaro,0,1.0
+0801,tarasco,purépecha,016,073,Quiroga,0,1.0
+0801,tarasco,purépecha,016,084,Tangamandapio,0,1.0
+0801,tarasco,purépecha,016,085,Tangancícuaro,0,1.0
+0801,tarasco,purépecha,016,090,Tingambato,0,1.0
+0801,tarasco,purépecha,016,091,Tinguindín,0,1.0
+0801,tarasco,purépecha,016,100,Tzintzuntzan,0,1.0
+0801,tarasco,purépecha,016,102,Uruapan,0,1.0
+0801,tarasco,purépecha,016,107,Zacapu,0,1.0
+0905,ayapaneco,ayapaneco,027,010,Jalpa de Méndez,0,1.0
+0901,mixe,mixe alto del norte,020,437,Santa María Tlahuitoltepec,1,0.5
+0901,mixe,mixe alto del norte,020,514,Santo Domingo Roayaga,0,1.0
+0901,mixe,mixe alto del norte,020,554,Totontepec Villa de Morelos,0,1.0
+0901,mixe,mixe alto del centro,020,337,San Pedro y San Pablo Ayutla,0,1.0
+0901,mixe,mixe alto del centro,020,437,Santa María Tlahuitoltepec,1,0.5
+0901,mixe,mixe alto del centro,020,031,Tamazulapam del Espíritu Santo,0,1.0
+0901,mixe,mixe alto del sur,020,060,Mixistlán de la Reforma,0,1.0
+0901,mixe,mixe alto del sur,020,435,Santa María Tepantlali,0,1.0
+0901,mixe,mixe alto del sur,020,517,Santo Domingo Tepuxtepec,0,1.0
+0901,mixe,mixe medio del este,020,190,San Juan Cotzocón,0,1.0
+0901,mixe,mixe medio del este,020,200,San Juan Juquila Mixes,0,1.0
+0901,mixe,mixe medio del este,020,275,San Miguel Quetzaltepec,0,1.0
+0901,mixe,mixe medio del este,020,323,San Pedro Ocotepec,0,1.0
+0901,mixe,mixe medio del este,020,394,Santa María Alotepec,1,0.5
+0901,mixe,mixe medio del este,020,454,Santiago Atitlán,0,1.0
+0901,mixe,mixe medio del este,020,502,Santiago Zacatepec,0,1.0
+0901,mixe,mixe medio del oeste,020,003,Asunción Cacalotepec,0,1.0
+0901,mixe,mixe medio del oeste,020,394,Santa María Alotepec,1,0.5
+0901,mixe,mixe bajo,020,057,Matías Romero,0,1.0
+0901,mixe,mixe bajo,020,058,Mazatlán,0,1.0
+0901,mixe,mixe bajo,020,198,San Juan Guichicovi,0,1.0
+0901,mixe,mixe bajo,020,513,Santo Domingo Petapa,0,1.0
+0901,mixe,mixe bajo,020,515,Santo Domingo Tehuantepec,0,1.0
+0903,oluteco,oluteco,030,116,Oluta,0,1.0
+0906,popoluca de la sierra,popoluca de la Sierra,030,073,Hueyapan de Ocampo,0,1.0
+0906,popoluca de la sierra,popoluca de la Sierra,030,149,Soteapan,0,1.0
+0906,popoluca de la sierra,popoluca de la Sierra,030,209,Tatahuicapan de Juárez,0,1.0
+0902,sayulteco,sayulteco,030,144,Sayula de Alemán,0,1.0
+0904,texistepequeño,texistepequeño,030,172,Texistepec,0,1.0
+0907,zoque,zoque del centro,007,021,Copainalá,0,1.0
+0907,zoque,zoque del centro,007,062,Ostuacán,0,1.0
+0907,zoque,zoque del centro,007,092,Tecpatán,0,1.0
+0907,zoque,zoque del sur,007,101,Tuxtla Gutiérrez,0,1.0
+0907,zoque,zoque del este,007,042,Ixhuatán,0,1.0
+0907,zoque,zoque del este,007,060,Ocotepec,1,0.5
+0907,zoque,zoque del este,007,091,Tapilula,0,1.0
+0907,zoque,zoque del norte alto,007,005,Amatán,0,1.0
+0907,zoque,zoque del norte alto,007,025,Chapultenango,0,1.0
+0907,zoque,zoque del norte alto,007,043,Ixtacomitán,0,1.0
+0907,zoque,zoque del norte alto,007,048,Juárez,0,1.0
+0907,zoque,zoque del norte alto,007,068,Pichucalco,0,1.0
+0907,zoque,zoque del norte alto,007,074,Reforma,0,1.0
+0907,zoque,zoque del norte alto,007,084,Solosuchiapa,0,1.0
+0907,zoque,zoque del norte bajo,007,060,Ocotepec,1,0.5
+0907,zoque,zoque del norte bajo,007,067,Pantepec,0,1.0
+0907,zoque,zoque del norte bajo,007,073,Rayón,0,1.0
+0907,zoque,zoque del norte bajo,007,090,Tapalapa,0,1.0
+0907,zoque,zoque del noroeste,007,033,Francisco León,0,1.0
+0907,zoque,zoque del sureste,007,047,Jitotol,0,1.0
+1001,chontal de Oaxaca,chontal de Oaxaca alto,020,008,Asunción Tlacolulita,0,1.0
+1001,chontal de Oaxaca,chontal de Oaxaca alto,020,052,Magdalena Tequisistlán,0,1.0
+1001,chontal de Oaxaca,chontal de Oaxaca alto,020,125,San Carlos Yautepec,0,1.0
+1001,chontal de Oaxaca,chontal de Oaxaca alto,020,282,San Miguel Tenango,0,1.0
+1001,chontal de Oaxaca,chontal de Oaxaca alto,020,410,Santa María Ecatepec,1,0.5
+1001,chontal de Oaxaca,chontal de Oaxaca alto,020,428,Santa María Quiegolani,0,1.0
+1001,chontal de Oaxaca,chontal de Oaxaca alto,020,515,Santo Domingo Tehuantepec,1,0.5
+1001,chontal de Oaxaca,chontal de Oaxaca bajo,020,410,Santa María Ecatepec,1,0.5
+1001,chontal de Oaxaca,chontal de Oaxaca de la costa,020,307,San Pedro Huamelula,0,1.0
+1001,chontal de Oaxaca,chontal de Oaxaca de la costa,020,453,Santiago Astata,0,1.0
+1001,chontal de Oaxaca,chontal de Oaxaca de la costa,020,515,Santo Domingo Tehuantepec,1,0.5
+1101,huave,huave del oeste,020,043,Juchitán de Zaragoza,0,1.0
+1101,huave,huave del oeste,020,248,San Mateo del Mar,0,1.0
+1101,huave,huave del este,020,130,San Dionisio del Mar,0,1.0
+1101,huave,huave del este,020,141,San Francisco del Mar,0,1.0

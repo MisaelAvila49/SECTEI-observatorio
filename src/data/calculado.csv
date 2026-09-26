@@ -102,3 +102,11 @@ serie,union_2015,835437.0000,personas que hablan lengua indígena o se considera
 serie,union_2020,852286.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
 serie,union_2025,652398.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
 serie,word_tabla2_celdas_iguales,32.0000,"celdas de la tabla 2 del documento de la Secretaría de Cultura (16 alcaldías x sexo, 2015) que reproduce la serie"
+variantes,ciudad_estimada_2025,83034.9000,"hablantes de la ciudad con variante estimada, edición 2025"
+variantes,ciudad_exacta_2025,5464.0000,"hablantes de la ciudad con variante exacta, edición 2025"
+variantes,ciudad_sin_2025,25395.0000,"hablantes de la ciudad con variante sin, edición 2025"
+variantes,ciudad_unica_2025,11896.0000,"hablantes de la ciudad con variante unica, edición 2025"
+variantes,hli_ampliado_nacional_2020,7522745.0000,"hablantes de 3+ ponderados del cuestionario ampliado 2020, nacional"
+variantes,inali2000_misma_variante_mayor,77.1429,% de lenguas con varias variantes cuya variante mayor coincide con la del INALI 2000
+variantes,inali2000_top5,93.7143,% medio de coincidencia entre las cinco variantes mayores del INALI 2000 y las de aquí
+variantes,referencias_sin_clave,61.0000,referencias entidad:municipio del Catálogo que no casaron con el marco 2020

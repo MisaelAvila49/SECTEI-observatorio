@@ -73,7 +73,7 @@ function arco(a, b, n = 24) {
   return pts;
 }
 
-export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, colonias,
+export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [], catalogo, agebs, colonias,
     pmtilesManzanas, pmtilesAgebs, geoAlcaldias, geoLimite, geoEntidades}) {
   registrarProtocolo();
   const catNombre = new Map(catalogo.map((c) => [c.clave, c]));
@@ -192,7 +192,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
     mapa.addLayer({id: "entidades-hover", type: "line", source: "entidades", layout: {visibility: "none"},
       paint: {"line-color": ROJO_IBERO, "line-width": 2.5, "line-opacity": ["case", ["boolean", ["feature-state", "activa"], false], 1, 0]}});
     mapa.addLayer({id: "flujos-linea", type: "line", source: "flujos", layout: {visibility: "none", "line-cap": "round"},
-      paint: {"line-color": ["get", "color"], "line-width": ["get", "grosor"], "line-opacity": 0.85}});
+      paint: {"line-color": ["get", "color"], "line-width": ["get", "grosor"], "line-opacity": ["coalesce", ["get", "opacidad"], 0.85]}});
 
     for (const capa of ["manzanas-relleno", "agebs-relleno", "alcaldias-relleno", "entidades-relleno"]) {
       mapa.on("mousemove", capa, (e) => {
@@ -372,21 +372,20 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
   }
 
   // ---------------------------------------------------------------- origen
+  // La variante viene ya asignada por scripts/loaders/variantes.py con tres
+  // niveles de certeza (exacta por municipio, única en la entidad, estimada
+  // por reparto) y "sin" para nacidos en la ciudad o sin registro. Aquí solo
+  // se agrupa y se pinta.
+  const CERTEZA = {exacta: "exacta (por municipio)", unica: "única en la entidad", estimada: "estimada (reparto)", sin: "sin variante"};
   function variantesDe(lengua) {
     const nombreClin = catNombre.get(lengua)?.clin;
     return clin.filter((r) => normal(r.agrupacion) === normal(nombreClin));
   }
-  function varianteProbable(lengua, ent) {
-    const nombreEnt = normal(ENTIDAD[ent]?.[1]);
-    const cands = variantesDe(lengua).filter((r) => r.entidades.split("|").map(normal).includes(nombreEnt));
-    if (cands.length === 1) return {texto: cands[0].variante, variante: cands[0].variante};
-    if (!cands.length) return {texto: "sin registro del catálogo en esta entidad", variante: null};
-    return {texto: `una de ${cands.length} variantes de la entidad`, variante: null};
+  function asignacion(e) {
+    return variantesCiudad.filter((r) => r.anio === e.anio && r.lengua === e.lengua);
   }
-  function datosOrigen(e) {
-    const filas = origen.filter((r) => r.anio === e.anio && r.lengua === e.lengua && r.tipo === "nacimiento" && ENTIDAD[r.ent] && r.ent !== "009");
-    return filas.map((r) => ({...r, ...varianteProbable(e.lengua, r.ent)}));
-  }
+  // Tres tonos para las tres variantes con más hablantes en la ciudad; el
+  // resto y lo no asignable van en gris.
   function coloresVariantes(filas) {
     const suma = new Map();
     for (const r of filas) if (r.variante) suma.set(r.variante, (suma.get(r.variante) ?? 0) + r.num);
@@ -396,48 +395,84 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
 
   function pintarVariantes(e) {
     const lista = variantesDe(e.lengua);
-    const filas = datosOrigen(e);
+    const filas = asignacion(e);
     const colores = coloresVariantes(filas);
     const nombre = catNombre.get(e.lengua)?.nombre ?? e.lengua;
-    const nacidos = new Map();
-    for (const r of filas) if (r.variante) nacidos.set(r.variante, (nacidos.get(r.variante) ?? 0) + r.num);
-    variantes.replaceChildren(html`<h3 class="mapa-variantes-titulo">Variantes del ${nombre}</h3>
-      <p class="mapa-variantes-nota">El Catálogo INALI 2008 registra ${lista.length} ${lista.length === 1 ? "variante" : "variantes"}. El Censo no pregunta cuál habla cada persona: la <strong>variante probable</strong> es la que el catálogo ubica en su entidad de nacimiento, cuando ahí hay una sola.</p>
-      <ul class="mapa-variantes-lista">${lista.map((r) => html`<li>
-        <span class="mapa-variante-chip" style="background:${colores.get(r.variante) ?? GRIS_VARIANTE}" aria-hidden="true"></span>
-        <span class="mapa-variante-nombre">${r.variante}</span>
-        <span class="mapa-variante-auto">${r.autodenominacion.split("|")[0].trim()}</span>
-        <span class="mapa-variante-donde">${r.entidades.split("|").map((x) => x.trim().toLowerCase()).join(", ")}${nacidos.has(r.variante) ? ` · ${entero(nacidos.get(r.variante))} hablantes en la ciudad nacidos ahí` : ""}</span>
-      </li>`)}</ul>`);
+    const porVariante = new Map();
+    for (const r of filas) {
+      if (!r.variante) continue;
+      const d = porVariante.get(r.variante) ?? {exacta: 0, unica: 0, estimada: 0};
+      d[r.certeza] = (d[r.certeza] ?? 0) + r.num;
+      porVariante.set(r.variante, d);
+    }
+    const sin = filas.filter((r) => r.certeza === "sin").reduce((s, r) => s + r.num, 0);
+    const enCiudad = filas.filter((r) => r.certeza === "sin" && r.cve_ent === "009").reduce((s, r) => s + r.num, 0);
+    const orden = lista.slice().sort((a, b) => {
+      const ta = porVariante.get(a.variante), tb = porVariante.get(b.variante);
+      return ((tb ? tb.exacta + tb.unica + tb.estimada : 0) - (ta ? ta.exacta + ta.unica + ta.estimada : 0));
+    });
+    variantes.replaceChildren(html`<h3 class="mapa-variantes-titulo">Variantes del ${nombre} en la ciudad, ${e.anio}</h3>
+      <p class="mapa-variantes-nota">El Catálogo INALI 2008 registra ${lista.length} ${lista.length === 1 ? "variante" : "variantes"}; el Censo no pregunta cuál habla cada persona. La variante se infiere por el lugar de origen con el método del INALI: <strong>exacta</strong> si se conoce el municipio y ahí hay una sola variante, <strong>única</strong> si la entidad de nacimiento tiene una sola, <strong>estimada</strong> si tiene varias (reparto por los hablantes de cada una). ${entero(sin)} hablantes quedan sin variante (${entero(enCiudad)} nacidos en la ciudad).</p>
+      <ul class="mapa-variantes-lista">${orden.map((r) => {
+        const d = porVariante.get(r.variante);
+        const total = d ? d.exacta + d.unica + d.estimada : 0;
+        const partes = d ? [["exacta", d.exacta], ["unica", d.unica], ["estimada", d.estimada]].filter(([, n]) => n >= 0.5).map(([k, n]) => `${entero(n)} ${CERTEZA[k].split(" ")[0]}`).join(" · ") : "";
+        return html`<li>
+          <span class="mapa-variante-chip" style="background:${colores.get(r.variante) ?? GRIS_VARIANTE}" aria-hidden="true"></span>
+          <span class="mapa-variante-nombre">${r.variante}${total >= 0.5 ? html` <span class="mapa-variante-total">${entero(total)}</span>` : ""}</span>
+          <span class="mapa-variante-auto">${r.autodenominacion.split("|")[0].trim()}</span>
+          <span class="mapa-variante-donde">${r.entidades.split("|").map((x) => x.trim().toLowerCase()).join(", ")}${partes ? ` · ${partes}` : " · sin hablantes asignados"}</span>
+        </li>`;
+      })}</ul>`);
   }
 
   function pintarOrigen(e, etiqueta) {
-    const filas = datosOrigen(e);
+    const filas = asignacion(e).filter((r) => r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009");
     const colores = coloresVariantes(filas);
     const porIso = new Map(geoEntidades.features.map((f) => [f.properties.id, f]));
     const cdmx = centro(porIso.get("MX-CMX"));
     const valores = new Map();
     for (const f of geoEntidades.features) mapa.setFeatureState({source: "entidades", id: f.properties.id}, {valor: null});
-    const max = Math.max(...filas.map((r) => r.num), 1);
-    const features = [];
+    // Entidad: total de hablantes nacidos ahí y sus variantes.
+    const porEnt = new Map();
     for (const r of filas) {
-      const iso = ENTIDAD[r.ent][0];
-      valores.set(iso, {num: r.num, variante: r.texto});
-      mapa.setFeatureState({source: "entidades", id: iso}, {valor: r.num});
-      const f = porIso.get(iso);
-      if (!f) continue;
-      features.push({type: "Feature", properties: {ent: iso, num: r.num, color: colores.get(r.variante) ?? GRIS_VARIANTE,
-        grosor: 1 + 8 * Math.sqrt(r.num / max)}, geometry: {type: "LineString", coordinates: arco(centro(f), cdmx)}});
+      const d = porEnt.get(r.cve_ent) ?? {num: 0, variantes: new Map()};
+      d.num += r.num;
+      if (r.variante) d.variantes.set(r.variante, (d.variantes.get(r.variante) ?? 0) + r.num);
+      porEnt.set(r.cve_ent, d);
     }
-    features.sort((a, b) => b.properties.num - a.properties.num);
+    const max = Math.max(...[...porEnt.values()].map((d) => d.num), 1);
+    const features = [];
+    for (const [ent, d] of porEnt) {
+      const iso = ENTIDAD[ent][0];
+      const f = porIso.get(iso);
+      mapa.setFeatureState({source: "entidades", id: iso}, {valor: d.num});
+      const lista = [...d.variantes.entries()].sort((a, b) => b[1] - a[1]);
+      valores.set(iso, {num: d.num, variante: lista.length ? lista.slice(0, 3).map(([v, n]) => `${v} (${entero(n)})`).join("; ") + (lista.length > 3 ? "…" : "") : "sin registro del catálogo en esta entidad"});
+      if (!f) continue;
+      // Una línea por variante (las tres coloreadas y el resto en gris),
+      // ligeramente separadas para que no se encimen.
+      const trazos = lista.length ? lista : [[null, d.num]];
+      trazos.forEach(([v, n], k) => {
+        const a = centro(f);
+        const desvio = (k - (trazos.length - 1) / 2) * 0.12;
+        features.push({type: "Feature", properties: {ent: iso, num: n, color: colores.get(v) ?? GRIS_VARIANTE,
+          grosor: 1 + 8 * Math.sqrt(n / max)}, geometry: {type: "LineString", coordinates: arco([a[0] + desvio, a[1] + desvio], cdmx)}});
+      });
+    }
+    // Las grises primero y las coloreadas al final: MapLibre dibuja en orden y
+    // las líneas de las tres variantes con color no deben quedar tapadas.
+    features.sort((a, b) => (a.properties.color === GRIS_VARIANTE) - (b.properties.color === GRIS_VARIANTE) || a.properties.num - b.properties.num).reverse();
+    features.sort((a, b) => (a.properties.color === GRIS_VARIANTE ? 0 : 1) - (b.properties.color === GRIS_VARIANTE ? 0 : 1));
+    for (const f of features) f.properties.opacidad = f.properties.color === GRIS_VARIANTE ? 0.45 : 0.9;
     mapa.getSource("flujos").setData({type: "FeatureCollection", features});
-    const cortes = cortesPorCuantil(filas.map((r) => r.num), 5);
+    const cortes = cortesPorCuantil([...porEnt.values()].map((d) => d.num), 5);
     mapa.setPaintProperty("entidades-relleno", "fill-color", expresionColor("valor", cortes, RAMPA_MORADA, "feature-state"));
     visibles(["entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea"]);
     vistaActual = {unidad: "entidad", etiqueta, valores, cruce: null, poblacion: e.poblacion, campo: null};
     const nombre = catNombre.get(e.lengua)?.nombre ?? e.lengua;
     const total = filas.reduce((s, r) => s + r.num, 0);
-    const enCiudad = origen.find((r) => r.anio === e.anio && r.lengua === e.lengua && r.tipo === "nacimiento" && r.ent === "009")?.num ?? 0;
+    const enCiudad = asignacion(e).filter((r) => r.cve_ent === "009").reduce((s, r) => s + r.num, 0);
     const chips = [...colores.entries()].map(([n, c]) => html`<li><span class="mapa-variante-chip" style="background:${c}" aria-hidden="true"></span>${n}</li>`);
     enReposo = () => `<div class="globo-titulo">Hablantes de ${escapar(nombre)} en la ciudad · ${e.anio}</div>
       <div class="mapa-cifra-valor">${entero(total)}</div><div class="mapa-cifra-nota">nacidos en otra entidad · ${entero(enCiudad)} nacidos en la ciudad</div>
@@ -445,9 +480,9 @@ export function mapaUnificado({serie, lenguas, origen, clin, catalogo, agebs, co
     globo.reposo();
     leyendaCaja.replaceChildren(
       leyenda({cortes, titulo: `Hablantes de ${nombre} nacidos en la entidad`, formato: (x) => punto(Math.round(x)), notaSinDato: "Sin hablantes en la muestra"}),
-      html`<ul class="mapa-variantes-leyenda"><li class="mapa-variantes-leyenda-titulo">Color de la línea: variante probable</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>Otras variantes o varias posibles</li></ul>`);
+      html`<ul class="mapa-variantes-leyenda"><li class="mapa-variantes-leyenda-titulo">Color de la línea: variante probable</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>Otras variantes o sin registro</li></ul>`);
     resumen.replaceChildren(html`<h2 class="mapa-titulo">De dónde vienen quienes hablan ${nombre}</h2>
-      <p class="mapa-definicion">Hablantes de ${nombre} que viven en la Ciudad de México, según su entidad de nacimiento. Cada línea une la entidad con la ciudad y su grosor es el número de personas. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra.</span></p>`);
+      <p class="mapa-definicion">Hablantes de ${nombre} que viven en la Ciudad de México, según su entidad de nacimiento. Cada línea une la entidad con la ciudad; su grosor es el número de personas y su color, la variante probable. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra; variantes según el Catálogo INALI 2008.</span></p>`);
   }
 
   botonOrigen.addEventListener("click", () => {

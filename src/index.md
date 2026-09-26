@@ -5,12 +5,12 @@ toc: false
 <div class="book-hero">
   <div class="book-hero-content">
     <span class="book-hero-eyebrow">Tablero de datos de Social Data Ibero</span>
-    <h1 class="book-hero-title">Grupos originarios: dónde viven y cómo se conectan</h1>
-    <p class="book-hero-subtitle">El mapa por manzana de la Ciudad de México y el acceso a internet, celular y computadora en el país</p>
-    <p class="book-hero-abstract">Este tablero reúne dos trabajos sobre la población indígena de México: el mapa por manzana de la Ciudad de México, con el Censo 2020, y el acceso a internet, celular y computadora comparado con el resto de la población, con el Censo, la ENIGH y la ENDUTIH.</p>
+    <h1 class="book-hero-title">Grupos originarios: dónde vive la población indígena de la Ciudad de México</h1>
+    <p class="book-hero-subtitle">Hablantes, hogares indígenas y autoadscripción por alcaldía, AGEB y manzana, de 1990 a 2025; las lenguas, sus variantes probables y de dónde vienen quienes las hablan</p>
+    <p class="book-hero-abstract">Este tablero reúne los censos, conteos y encuestas intercensales del INEGI de 1990 a 2025 para describir la distribución de la población indígena en la Ciudad de México: cuánta es según tres definiciones, dónde vive, qué lenguas habla, de qué entidades llegó y qué variante es probable que hable según el Catálogo del INALI.</p>
     <div class="book-hero-ctas">
       <a class="book-cta book-cta-primary" href="./mapa">Abrir el mapa</a>
-      <a class="book-cta" href="./encuestas/censo/vivienda">Ver el acceso digital</a>
+      <a class="book-cta" href="./metodologia/paso-a-paso">Cómo se hizo, paso a paso</a>
     </div>
   </div>
 
@@ -22,7 +22,7 @@ toc: false
   <div class="book-cover-text">
   <span class="book-cover-eyebrow">Social Data Ibero</span>
   <span class="book-cover-title">Grupos originarios</span>
-  <span class="book-cover-subtitle">Población indígena de México: dónde vive y cómo se conecta</span>
+  <span class="book-cover-subtitle">Población indígena de la Ciudad de México: dónde vive y qué lenguas habla</span>
 </div>
   <span class="book-cover-year">MMXXVI · 2026</span>
   <img class="book-cover-logo" src="./images/social_data_blanco.svg" alt="Social Data Ibero">
@@ -55,8 +55,8 @@ toc: false
   </div>
   <div class="book-meta-field">
     <span class="book-meta-label">Fuentes</span>
-    <span class="book-meta-value">INEGI</span>
-    <span class="book-meta-sub">Censo 2020 · ENIGH 2020 - 2024 · ENDUTIH 2025 · Marco Geoestadístico</span>
+    <span class="book-meta-value">INEGI · INALI · CONAPO · CONEVAL</span>
+    <span class="book-meta-sub">Censos 1990 - 2020 · Conteos 1995 y 2005 · Intercensales 2015 y 2025 · Catálogo de Lenguas 2008</span>
   </div>
   <div class="book-meta-field">
     <span class="book-meta-label">DOI</span>
@@ -81,23 +81,23 @@ toc: false
   </div>
 
   <div class="book-citation-panel is-active" id="cite-apa" role="tabpanel" aria-labelledby="tab-apa">
-    <div class="book-citation-text">Avila López, M. S., &amp; Gómez Arias, W. (2026). <em>Grupos originarios: el acceso digital de la población indígena de México</em>. Social Data Ibero, Universidad Iberoamericana.</div>
+    <div class="book-citation-text">Avila López, M. S., &amp; Gómez Arias, W. (2026). <em>Grupos originarios: la población indígena de la Ciudad de México, 1990 - 2025</em>. Social Data Ibero, Universidad Iberoamericana.</div>
     <button type="button" class="book-citation-copy" data-copy-target="#cite-apa .book-citation-text" aria-label="Copiar cita en formato APA 7">Copiar</button>
   </div>
 
   <div class="book-citation-panel" id="cite-chicago" role="tabpanel" aria-labelledby="tab-chicago" hidden>
-    <div class="book-citation-text">Avila López, Misael Saúl y Wilfrido Gómez Arias. <em>Grupos originarios: el acceso digital de la población indígena de México</em>. Ciudad de México: Social Data Ibero, Universidad Iberoamericana, 2026.</div>
+    <div class="book-citation-text">Avila López, Misael Saúl y Wilfrido Gómez Arias. <em>Grupos originarios: la población indígena de la Ciudad de México, 1990 - 2025</em>. Ciudad de México: Social Data Ibero, Universidad Iberoamericana, 2026.</div>
     <button type="button" class="book-citation-copy" data-copy-target="#cite-chicago .book-citation-text" aria-label="Copiar cita en formato Chicago">Copiar</button>
   </div>
 
   <div class="book-citation-panel" id="cite-ieee" role="tabpanel" aria-labelledby="tab-ieee" hidden>
-    <div class="book-citation-text">M. S. Avila López y W. Gómez Arias, <em>Grupos originarios: el acceso digital de la población indígena de México</em>. Ciudad de México: Social Data Ibero, Universidad Iberoamericana, 2026. [En línea].</div>
+    <div class="book-citation-text">M. S. Avila López y W. Gómez Arias, <em>Grupos originarios: la población indígena de la Ciudad de México, 1990 - 2025</em>. Ciudad de México: Social Data Ibero, Universidad Iberoamericana, 2026. [En línea].</div>
     <button type="button" class="book-citation-copy" data-copy-target="#cite-ieee .book-citation-text" aria-label="Copiar cita en formato IEEE">Copiar</button>
   </div>
 
   <div class="book-citation-panel book-citation-panel--code" id="cite-bibtex" role="tabpanel" aria-labelledby="tab-bibtex" hidden>
     <pre class="book-citation-bibtex"><code>@misc{avila2026gruposoriginarios,
-  title     = {Grupos originarios: el acceso digital de la poblaci{\'o}n ind{\'i}gena de M{\'e}xico},
+  title     = {Grupos originarios: la poblaci{\'o}n ind{\'i}gena de la Ciudad de M{\'e}xico, 1990 - 2025},
   author    = {Avila L{\'o}pez, Misael Sa{\'u}l and G{\'o}mez Arias, Wilfrido},
   year      = {2026},
   publisher = {Social Data Ibero, Universidad Iberoamericana},
@@ -111,110 +111,97 @@ toc: false
 </section>
 
 ```js
-import {materializar} from "./components/agregar.js";
-import {prepararSeries, brechaDe} from "./components/filtros.js";
-import {dumbbell, kpis, figura, explicacion, tablaDatos, seccion} from "./components/graficas.js";
+import {kpis, seccion, figura, explicacion} from "./components/graficas.js";
 import {conDescarga} from "./components/descargar.js";
-import {anchoActual, alCambiarAncho, alCambiarModo, formatear, TODOS} from "./components/base.js";
-import {ENCUESTAS} from "./components/catalogo.js";
+import {punto, COLOR_SERIE, alCambiarModo, alCambiarAncho, anchoActual} from "./components/base.js";
+import * as Plot from "npm:@observablehq/plot";
 
-const censo = materializar(await FileAttachment("./data/indicadores/censo-vivienda.parquet").parquet());
-const enigh = materializar(await FileAttachment("./data/indicadores/enigh-hogar.parquet").parquet());
-const endutih = materializar(await FileAttachment("./data/indicadores/endutih-uso.parquet").parquet());
+const serie = (await FileAttachment("./data/serie_alcaldias.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
+const lenguas = (await FileAttachment("./data/lenguas_alcaldia.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio), lengua: String(r.lengua).padStart(4, "0")}));
+const ciudad = (pob, anio) => serie.find((r) => r.nivel === "entidad" && r.sexo === "Total" && r.poblacion === pob && r.anio === anio);
+const pct = (r) => (r ? `${(100 * r.num / r.den).toFixed(1)} %` : "s/d");
 ```
 
 ```js
-// Resumen nacional de cada indicador clave, bajo el criterio de lengua, con
-// todas las entidades, edades y localidades juntas. La capa principal de cada
-// archivo trae decil y escolaridad en "Todos".
-const nacional = (filas, indicador) => prepararSeries(
-  filas.filter((d) => d.indicador === indicador && d.decil === TODOS && d.escolaridad === TODOS),
-  {comparacion: "indigena", criterio: "lengua", dims: []});
-
-const CLAVE = [
-  {fuente: "Censo 2020", filas: censo, indicador: "Vive en una vivienda con internet", corto: "Vive en una vivienda con internet (Censo 2020)"},
-  {fuente: "ENIGH 2024", filas: enigh.filter((d) => d.anio === 2024), indicador: "Vive en un hogar con conexión a internet", corto: "Vive en un hogar con internet (ENIGH 2024)"},
-  {fuente: "ENIGH 2024", filas: enigh.filter((d) => d.anio === 2024), indicador: "Vive en un hogar con computadora o laptop", corto: "Vive en un hogar con computadora (ENIGH 2024)"},
-  {fuente: "ENDUTIH 2025", filas: endutih, indicador: "Usa internet", corto: "Usa internet (ENDUTIH 2025)"},
-  {fuente: "ENDUTIH 2025", filas: endutih, indicador: "Usa celular", corto: "Usa celular (ENDUTIH 2025)"},
-  {fuente: "ENDUTIH 2025", filas: endutih, indicador: "Usa computadora, laptop o tableta", corto: "Usa computadora (ENDUTIH 2025)"},
-  {fuente: "ENDUTIH 2025", filas: endutih, indicador: "Vive en un hogar con internet", corto: "Vive en un hogar con internet (ENDUTIH 2025)"},
-];
-const resumen = CLAVE.flatMap((c) => nacional(c.filas, c.indicador).map((s) => ({...s, indicador: c.corto})));
-const usa = nacional(endutih, "Usa internet");
-const brechaUsa = brechaDe(usa, "indigena");
-const viv = nacional(censo, "Vive en una vivienda con internet");
-const brechaViv = brechaDe(viv, "indigena");
-const serie2020 = nacional(enigh.filter((d) => d.anio === 2020), "Vive en un hogar con conexión a internet");
-const serie2024 = nacional(enigh.filter((d) => d.anio === 2024), "Vive en un hogar con conexión a internet");
-const ind20 = serie2020.find((s) => s.serie === "Población indígena")?.pct;
-const ind24 = serie2024.find((s) => s.serie === "Población indígena")?.pct;
-const b20 = brechaDe(serie2020, "indigena"), b24 = brechaDe(serie2024, "indigena");
-```
-
-```js
-display(kpis([
-  {etiqueta: "Brecha en uso de internet", cifra: brechaUsa ? brechaUsa.texto : "s/d",
-   nota: "ENDUTIH 2025, personas de 6 años o más, criterio de lengua"},
-  {etiqueta: "Brecha en internet en la vivienda", cifra: brechaViv ? brechaViv.texto : "s/d",
-   nota: "Censo 2020, personas de 6 años o más, criterio de lengua"},
-  {etiqueta: "Brecha en internet en el hogar", cifra: b24 ? b24.texto : "s/d",
-   nota: "ENIGH 2024, personas de 6 años o más, criterio de lengua"},
-]));
-```
-
----
-
-<h2 id="brecha" class="toc-anchor">La brecha en cada fuente</h2>
-
-```js
-display(seccion({numero: "01", titulo: "La brecha en cada fuente"}));
-```
-
-```js
+// Tarjetas: las tres definiciones de población indígena en la edición más
+// reciente, y cuántas lenguas registró la muestra. La nota dice solo el universo.
 {
-  const cuerpo = html`<div class="seccion-cuerpo"></div>`;
-  let ancho = anchoActual();
-  const pintar = () => {
-    cuerpo.replaceChildren(
-      conDescarga(figura({
-        titulo: "Población indígena y resto de la población en los indicadores centrales",
-        subtitulo: "Habla lengua indígena. Todo el país, todas las edades. Cada fuente con su propia edición y su propia unidad.",
-        pie: "INEGI (Censo 2020, ENIGH 2024, ENDUTIH 2025): cada fila es un indicador, los dos puntos las proporciones de cada grupo y el segmento la brecha.",
-      }, [dumbbell(resumen, {comparacion: "indigena", filas: "indicador", etiquetaFilas: "Indicador", ordenarPorBrecha: true, width: ancho, alturaFila: 36})])),
-      explicacion(`Cada indicador se calcula sobre las personas de 6 años o más de cada grupo, con el
-        criterio de lengua: población indígena es quien declaró hablar alguna lengua indígena. El
-        Censo y la ENIGH miden lo que hay en la vivienda o el hogar; la ENDUTIH lo que la persona
-        usa. Las páginas de cada fuente permiten cambiar el criterio a autoadscripción y desglosar
-        por entidad, sexo, edad, localidad, ingreso y escolaridad.`),
-      tablaDatos(resumen, {dims: ["indicador"]}),
-    );
-  };
-  alCambiarAncho((n) => { ancho = n; pintar(); });
-  alCambiarModo(() => pintar());
-  pintar();
-  display(cuerpo);
+  const h = ciudad("hablantes3", 2025), a = ciudad("autoads", 2025), g = ciudad("hogares", 2025);
+  const nLenguas = new Set(lenguas.filter((r) => r.anio === 2025 && r.nivel === "entidad" && r.lengua < "8000").map((r) => r.lengua)).size;
+  display(kpis([
+    {etiqueta: "Hablan una lengua indígena", cifra: pct(h), nota: `${punto(Math.round(h?.num ?? 0))} personas de 3 años y más, 2025`},
+    {etiqueta: "Se consideran indígenas", cifra: pct(a), nota: `${punto(Math.round(a?.num ?? 0))} personas, 2025`},
+    {etiqueta: "Viven en hogares indígenas", cifra: pct(g), nota: `${punto(Math.round(g?.num ?? 0))} personas, 2025`},
+    {etiqueta: "Lenguas con hablantes en la ciudad", cifra: String(nLenguas), nota: "agrupaciones lingüísticas, Encuesta Intercensal 2025"},
+  ]));
 }
 ```
 
 ---
 
-<h2 id="explorar" class="toc-anchor">Explorar por fuente</h2>
+<h2 id="serie" class="toc-anchor">Treinta y cinco años de hablantes</h2>
 
 ```js
-display(seccion({numero: "02", titulo: "Explorar por fuente"}));
+display(seccion({numero: "01", titulo: "Treinta y cinco años de hablantes"}));
+```
+
+```js
+{
+  // Serie larga en 5 años y más (1990-2020) y 3 años y más (2010-2025), con
+  // el conteo censal y las encuestas marcadas distinto: no se promedian ni se
+  // empalman, se dibujan las dos.
+  const filas = serie.filter((r) => r.nivel === "entidad" && r.sexo === "Total" && ["hablantes5", "hablantes3"].includes(r.poblacion))
+    .map((r) => ({anio: r.anio, universo: r.poblacion === "hablantes5" ? "5 años y más" : "3 años y más", pct: 100 * r.num / r.den, num: r.num, cota: r.cota}));
+  const cuerpo = html`<div class="seccion-cuerpo"></div>`;
+  let ancho = anchoActual();
+  const pintar = () => cuerpo.replaceChildren(conDescarga(figura({
+    titulo: "Hablantes de lengua indígena en la Ciudad de México, 1990 - 2025",
+    subtitulo: "Porcentaje de la población del universo de cada pregunta. Los puntos huecos son estimaciones de encuesta.",
+    pie: "INEGI, censos, conteos e intercensales: cada punto es una edición y cada línea un universo de edad.",
+  }, [Plot.plot({
+    width: Math.min(ancho, 980), height: 280, style: {fontSize: "13px"}, marginLeft: 48,
+    x: {label: null, tickFormat: (d) => String(d), ticks: [1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025]},
+    y: {label: "% de hablantes", grid: true, domain: [0, 2.2]},
+    // Colores de la paleta del sitio, que aplicarModo reescribe al cambiar el tema.
+    color: {legend: true, domain: ["5 años y más", "3 años y más"], range: [COLOR_SERIE["Resto de la población"], COLOR_SERIE["Población indígena"]]},
+    marks: [
+      Plot.line(filas, {x: "anio", y: "pct", stroke: "universo", strokeWidth: 2}),
+      Plot.dot(filas, {x: "anio", y: "pct", stroke: "universo", fill: (d) => (d.cota === "censo" ? undefined : "white"), r: 4.5,
+        channels: {Universo: "universo", Personas: (d) => punto(Math.round(d.num)), Fuente: (d) => (d.cota === "censo" ? "conteo censal" : "encuesta")},
+        tip: {format: {x: (d) => String(d), y: (d) => `${d.toFixed(2)} %`, stroke: false, fill: false}}}),
+      Plot.ruleY([0]),
+    ],
+  })])));
+  alCambiarModo(() => pintar());
+  alCambiarAncho((n) => { ancho = n; pintar(); });
+  pintar();
+  display(cuerpo);
+  display(explicacion(`El universo de la pregunta de habla fue de 5 años y más hasta 2005 y de 3 años y más desde 2010;
+    los censos de 2010 y 2020 publican los dos. Las intercensales de 2015 y 2025 son encuestas y sus puntos van
+    huecos. El ITER de 1990 no publica el total de hablantes ni la población de 5 años y más: su punto suma a
+    quienes hablan y no hablan español y estima el denominador con la muestra del 10 %.`));
+}
+```
+
+---
+
+<h2 id="explorar" class="toc-anchor">Explorar</h2>
+
+```js
+display(seccion({numero: "02", titulo: "Explorar"}));
 ```
 
 ```js
 {
   const t = html`<div class="grid grid-cols-2"></div>`;
-  t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">01</span>
-    <h3><a href="./mapa">Mapa de la Ciudad de México</a></h3>
-    <p>Hablantes, hogares indígenas y autoadscripción por alcaldía, AGEB y manzana, de 2010 a 2025; la lengua que se habla, sus variantes probables y de dónde vienen quienes la hablan.</p></div>`);
-  // La ENDUTIH queda fuera de esta etapa: sus páginas son borrador.
-  ENCUESTAS.filter((c) => !c.ruta.includes("endutih")).forEach((c, i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 2}</span>
-    <h3><a href=".${c.ruta}">${c.nombre}</a></h3>
-    <p>${c.resumen}</p></div>`));
+  const tarjetas = [
+    ["./mapa", "Mapa de la Ciudad de México", "Hablantes, hogares indígenas y autoadscripción por alcaldía, AGEB y manzana; la lengua que se habla, sus variantes probables y de dónde vienen quienes la hablan."],
+    ["./metodologia/paso-a-paso", "Cómo se hizo, paso a paso", "De los archivos del INEGI y del INALI a cada cifra del mapa: qué se descargó, qué se calculó, qué se cotejó y qué no se pudo saber."],
+    ["./metodologia/definiciones", "Definiciones", "Qué mide cada población indígena, cómo se lee el mapa y qué cambia entre ediciones."],
+    ["./metodologia/fuentes", "Fuentes y cobertura", "Cada archivo con su liga, su alcance y sus cautelas; los cotejos contra las cifras oficiales."],
+  ];
+  tarjetas.forEach(([ruta, titulo, texto], i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 1}</span>
+    <h3><a href="${ruta}">${titulo}</a></h3><p>${texto}</p></div>`));
   display(t);
 }
 ```
@@ -232,12 +219,8 @@ display(seccion({numero: "03", titulo: "La Ciudad de México, colonia por coloni
 // propiedades, y las geometrías costaban 5.4 MB de descarga para no dibujarse.
 const props = (await FileAttachment("./data/colonias_resumen.csv").csv({typed: true}))
   .filter((p) => p.POBTOT >= 500);
-import * as Plot from "npm:@observablehq/plot";
-import {resize} from "observablehq:stdlib";
 // Promedio de la ciudad: la fila de TOTAL DE LA ENTIDAD del tabulado del Censo
-// (289,139 personas en hogares indígenas de 9,209,944 habitantes). Antes se
-// usaba la suma de las manzanas con cifra publicada (273,851 de 9,145,155),
-// que deja fuera lo suprimido por confidencialidad y lo rural.
+// (289,139 personas en hogares indígenas de 9,209,944 habitantes).
 const pobTotal = 9209944;
 const indTotal = 289139;
 ```
@@ -246,49 +229,65 @@ const indTotal = 289139;
 <div class="bloque-indicador">
 
 ```js
-display(conDescarga(figura({
+{
+  const cuerpo = html`<div></div>`;
+  let ancho = anchoActual();
+  const pintar = () => cuerpo.replaceChildren(conDescarga(figura({
   titulo: "Cuántas colonias tienen cada porcentaje de población en hogares indígenas",
   subtitulo: "Colonias de 500 habitantes o más. La línea marca el promedio de la ciudad.",
   pie: "Censo 2020, tabulado por manzana: cada barra cuenta colonias con ese porcentaje de su población en hogares censales indígenas.",
-}, [resize((width) => Plot.plot({
-  width, height: 260, style: {fontSize: "13px"}, marginLeft: 55,
+}, [Plot.plot({
+  width: Math.min(ancho / 2 - 24, 560), height: 260, style: {fontSize: "13px"}, marginLeft: 55,
   x: {label: "% de la población de la colonia en hogares indígenas", grid: true},
   y: {label: "colonias", grid: true},
   marks: [
-    Plot.rectY(props, Plot.binX({y: "count"}, {x: "tasa_phog_ind", fill: "#2166AC", thresholds: 40, rx2: 3,
+    Plot.rectY(props, Plot.binX({y: "count"}, {x: "tasa_phog_ind", fill: COLOR_SERIE["Resto de la población"], thresholds: 40, rx2: 3,
       tip: true})),
-    Plot.ruleX([indTotal / pobTotal * 100], {stroke: "#C4101B", strokeWidth: 2}),
+    Plot.ruleX([indTotal / pobTotal * 100], {stroke: COLOR_SERIE["Población indígena"], strokeWidth: 2}),
     Plot.ruleY([0]),
   ],
-}))])));
+})])));
+  alCambiarModo(() => pintar());
+  alCambiarAncho((n) => { ancho = n; pintar(); });
+  pintar();
+  display(cuerpo);
+}
 ```
 
 <details class="explica-analisis">
 <summary>¿Qué quiere decir este análisis?</summary>
-<p>Cada barra cuenta cuántas colonias tienen determinado porcentaje de su población en hogares censales indígenas. El denominador es la población total de cada colonia, y se excluyen las de menos de 500 habitantes. La línea roja marca el promedio de la ciudad. El detalle vive en el mapa por manzana.</p>
+<p>Cada barra cuenta cuántas colonias tienen determinado porcentaje de su población en hogares censales indígenas. El denominador es la población total de cada colonia, y se excluyen las de menos de 500 habitantes. La línea roja marca el promedio de la ciudad. El detalle vive en el mapa.</p>
 </details>
 
 </div>
 <div class="bloque-indicador">
 
 ```js
-display(conDescarga(figura({
+{
+  const cuerpo = html`<div></div>`;
+  let ancho = anchoActual();
+  const pintar = () => cuerpo.replaceChildren(conDescarga(figura({
   titulo: "Pueblos originarios y resto de la ciudad",
   subtitulo: "Cada punto es una colonia de 500 habitantes o más; la línea punteada es el promedio de la ciudad.",
   pie: "Censo 2020 y padrón de la SEPI: población de la colonia (escala logarítmica) contra su porcentaje en hogares indígenas.",
-}, [resize((width) => Plot.plot({
-  width, height: 260, style: {fontSize: "13px"}, marginLeft: 60,
+}, [Plot.plot({
+  width: Math.min(ancho / 2 - 24, 560), height: 260, style: {fontSize: "13px"}, marginLeft: 60,
   x: {label: "población de la colonia", type: "log", grid: true},
   y: {label: "% en hogares indígenas", grid: true},
-  color: {legend: true, domain: ["Pueblo o barrio originario", "Resto de la ciudad"], range: ["#C4101B", "#2166AC"]},
+  color: {legend: true, domain: ["Pueblo o barrio originario", "Resto de la ciudad"], range: [COLOR_SERIE["Población indígena"], COLOR_SERIE["Resto de la población"]]},
   marks: [
     Plot.dot(props, {x: "POBTOT", y: "tasa_phog_ind",
       fill: (d) => (d.pueblo_originario ? "Pueblo o barrio originario" : "Resto de la ciudad"),
       r: 3, fillOpacity: 0.7, tip: true, channels: {Colonia: "colonia", Alcaldía: "alcaldia_col"}}),
-    Plot.ruleY([indTotal / pobTotal * 100], {stroke: "#C4101B", strokeWidth: 1.5, strokeDasharray: "4 3"}),
+    Plot.ruleY([indTotal / pobTotal * 100], {stroke: COLOR_SERIE["Población indígena"], strokeWidth: 1.5, strokeDasharray: "4 3"}),
     Plot.ruleY([0]),
   ],
-}))])));
+})])));
+  alCambiarModo(() => pintar());
+  alCambiarAncho((n) => { ancho = n; pintar(); });
+  pintar();
+  display(cuerpo);
+}
 ```
 
 <details class="explica-analisis">

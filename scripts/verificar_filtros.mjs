@@ -47,7 +47,7 @@ const HUELLA = (s) => {
 };
 
 const fallos=[];
-for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar"]) {
+for (const ruta of []) {
   await pg.goto(`http://127.0.0.1:8838${ruta}`,{waitUntil:"networkidle"});
   // La página de la ENIGH carga 4 MB de parquet: se espera a la primera
   // sección real en vez de un tiempo fijo.
@@ -221,7 +221,7 @@ for (const ruta of ["/encuestas/censo/vivienda","/encuestas/enigh/hogar"]) {
   const ageb0 = await medir("agebs-relleno");
   ok(ageb0.n >= 1000, `AGEB pintadas: ${ageb0.n} marcas`);
   ok(!(await visible('form[data-campo="lengua"]')) && (await visible('form[data-campo="cruce"]')), "por AGEB: sin lengua y con «Cruzar con»");
-  await pg.selectOption("#mapa-cruce", "inter"); await pg.waitForTimeout(4000);
+  await pg.selectOption("#mapa-cruce", "salud"); await pg.waitForTimeout(4000);
   const ageb1 = await medir("agebs-relleno");
   ok(ageb1.n < ageb0.n && ageb1.color !== ageb0.color, `«Cruzar con» → internet recorta (${ageb0.n} → ${ageb1.n}) y cambia lo que pinta`);
   await pg.selectOption("#mapa-umbral", "0"); await pg.waitForTimeout(4000);

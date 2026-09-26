@@ -39,6 +39,7 @@ const DESCRIPCIONES = {
   "/encuestas/endutih/uso": "Quién usa internet, celular y computadora, con qué equipo y desde dónde, por condición indígena, según la ENDUTIH 2025.",
   "/encuestas/endutih/actividades": "Para qué usa internet la población indígena que se conecta: estudiar, trabajar, trámites, dinero y entretenimiento, según la ENDUTIH 2025.",
   "/encuestas/endutih/barreras": "Quién no usa internet, computadora ni celular y qué motivo declara, por condición indígena, según la ENDUTIH 2025.",
+  "/metodologia/paso-a-paso": "Cómo se construyó el tablero paso a paso: descargas, cálculos, cotejos y lo que ninguna fuente permite saber.",
   "/mapa": "Mapa de la población indígena de la Ciudad de México por alcaldía, AGEB y manzana: hablantes, hogares indígenas y autoadscripción de 2010 a 2025, con la lengua, sus variantes probables y el origen de quienes la hablan.",
   "/mapa-manzanas": "Mapa por manzana de la población en hogares indígenas de la Ciudad de México, con el Censo 2020, agregable a colonia y con los pueblos originarios señalados.",
   "/mapa-agebs": "Población en hogares indígenas, conectividad de las viviendas, marginación urbana y rezago social por AGEB de la Ciudad de México, con un umbral de presencia indígena a elección.",
@@ -73,20 +74,12 @@ export default {
     // entrada: va primero, fuera de los grupos por encuesta.
     {name: "Mapa", path: "/mapa"},
     {
-      name: "Censo 2020",
-      open: true,
-      pages: [{name: "Conectividad en la vivienda", path: "/encuestas/censo/vivienda"}],
-    },
-    {
-      name: "ENIGH 2020 - 2024",
-      open: true,
-      pages: [{name: "Acceso en el hogar", path: "/encuestas/enigh/hogar"}],
-    },
-    {
       name: "Metodología",
+      open: true,
       pages: [
-        {name: "Fuentes y cobertura", path: "/metodologia/fuentes"},
+        {name: "Paso a paso", path: "/metodologia/paso-a-paso"},
         {name: "Definiciones", path: "/metodologia/definiciones"},
+        {name: "Fuentes y cobertura", path: "/metodologia/fuentes"},
       ],
     },
   ],

@@ -279,16 +279,41 @@ INALI (una por agrupación y una por sus variantes) y se guardó en
 `clin_variantes.csv` con 364 filas; el script que lo genera aborta si el conteo
 por familia o por agrupación no cuadra con el publicado.
 
-Con eso, la **variante probable** de un hablante es la que el catálogo ubica en
-su entidad de nacimiento, y solo cuando ahí hay una sola variante de esa lengua.
-Si la entidad tiene varias (Puebla registra nueve variantes del náhuatl) la
-línea se pinta en gris y el globo dice "una de N variantes"; si no tiene ninguna
-registrada, también. Es una inferencia sobre el lugar de nacimiento y no un
-dato de la persona: alguien pudo nacer en una entidad y hablar la variante de
-otra, y una persona nacida en la ciudad no recibe variante alguna. El mapa lo
-rotula así en cada vista y el color solo distingue las tres variantes con más
-hablantes; las demás van en gris, porque con cuatro tonos la paleta deja de
-distinguirse bajo deuteranopía.
+El INALI es la única institución que ha estimado hablantes por variante, y
+lo hizo cruzando los hablantes del Censo 2000 por localidad con la referencia
+geoestadística de cada variante; su pie de cuadro marca con asterisco las
+variantes que comparten localidades, "por lo que existe una sobreestimación".
+Aquí se aplicó ese mismo cruce, a nivel municipio, al lugar de origen de los
+hablantes que viven en la ciudad, en tres niveles de certeza que el mapa
+rotula. La asignación es **exacta** cuando se conoce el municipio donde la
+persona vivía cinco años antes y el catálogo ubica ahí una sola variante de
+su lengua; **única** cuando solo se conoce la entidad de nacimiento y en ella
+hay una sola variante; y **estimada** cuando la entidad tiene varias, caso en
+que los hablantes nacidos ahí se reparten entre ellas en proporción a los
+hablantes de esa lengua que el cuestionario ampliado del Censo 2020 registra
+en los municipios de cada variante. Quienes nacieron en la ciudad, en otro
+país o en una entidad sin registro de la lengua quedan **sin variante**. Lo
+asignado por municipio se descuenta de la entidad antes de repartir el
+resto, y una guardia comprueba que la suma de las asignaciones iguale al
+total de hablantes con origen conocido. En 2025, de 125 790 hablantes, 5 464
+tienen variante exacta, 11 896 única, 83 035 estimada y 25 395 ninguna.
+
+Para casar el catálogo con el marco geoestadístico se buscaron sus 1 196
+referencias de entidad y municipio por nombre; 61 no casaron (cambios de
+nombre y localidades listadas como municipio) y quedan fuera del cruce, lo
+que se anota en el archivo de cifras calculadas. Como contraste externo se
+comparó el orden de las variantes de cada lengua, con los pesos de 2020 por
+municipio, contra los cuadros del INALI de 2000 por localidad: en 27 de las
+35 lenguas con varias variantes la variante mayor es la misma y las cinco
+mayores coinciden en un 94 por ciento en promedio, lo que confirma que el
+cruce por municipio ordena las variantes como el cruce oficial por localidad.
+
+Es una inferencia sobre el lugar de origen y no un dato de la persona:
+alguien pudo nacer en una entidad y hablar la variante de otra, y quien
+nació en la ciudad no recibe variante alguna. El mapa lo rotula así en cada
+vista y el color solo distingue las tres variantes con más hablantes; las
+demás van en gris, porque con cuatro tonos la paleta deja de distinguirse
+bajo deuteranopía.
 
 ## Todas las poblaciones indígenas: la unión sin doble conteo
 

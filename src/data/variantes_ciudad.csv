@@ -1,0 +1,3189 @@
+anio,lengua,lengua_nombre,variante,cve_ent,certeza,num
+1990,0205,Tarahumara,tarahumara del centro,008,estimada,20.3
+1990,0205,Tarahumara,tarahumara de Cumbres,008,estimada,11.9
+1990,0205,Tarahumara,tarahumara del norte,008,estimada,9.1
+1990,0205,Tarahumara,tarahumara del oeste,008,estimada,5.1
+1990,0205,Tarahumara,tarahumara del sur,008,estimada,3.5
+1990,0205,Tarahumara,,009,sin,50.0
+1990,0205,Tarahumara,,011,sin,10.0
+1990,0205,Tarahumara,,016,sin,10.0
+1990,0205,Tarahumara,,021,sin,10.0
+1990,0205,Tarahumara,,026,sin,10.0
+1990,0205,Tarahumara,,032,sin,10.0
+1990,0205,Tarahumara,,219,sin,10.0
+1990,0207,Yaqui,,014,sin,10.0
+1990,0207,Yaqui,,025,sin,10.0
+1990,0207,Yaqui,yaqui,026,unica,30.0
+1990,0208,Mayo,mayo,025,unica,10.0
+1990,0208,Mayo,mayo,026,unica,10.0
+1990,0209,Cora,cora tereseño,018,estimada,1.7
+1990,0209,Cora,cora de Dolores,018,estimada,1.6
+1990,0209,Cora,cora de Jesús María,018,estimada,1.6
+1990,0209,Cora,cora francisqueño,018,estimada,1.6
+1990,0209,Cora,cora meseño,018,estimada,1.6
+1990,0209,Cora,cora corapeño,018,estimada,0.8
+1990,0209,Cora,cora de Rosarito,018,estimada,0.8
+1990,0209,Cora,cora presideño,018,estimada,0.4
+1990,0209,Cora,,115,sin,60.0
+1990,0209,Cora,,009,sin,10.0
+1990,0209,Cora,,021,sin,10.0
+1990,0209,Cora,,029,sin,10.0
+1990,0210,Huichol,huichol del este,014,estimada,52.0
+1990,0210,Huichol,huichol del sur,014,estimada,14.3
+1990,0210,Huichol,huichol del oeste,014,estimada,3.8
+1990,0210,Huichol,,020,sin,10.0
+1990,0210,Huichol,,030,sin,10.0
+1990,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,estimada,3826.5
+1990,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,estimada,2218.1
+1990,0211,Náhuatl,náhuatl central de Veracruz,030,estimada,1941.0
+1990,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,estimada,1768.1
+1990,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,estimada,1454.2
+1990,0211,Náhuatl,náhuatl del noroeste central,021,estimada,1031.4
+1990,0211,Náhuatl,náhuatl del centro de Puebla,021,estimada,866.7
+1990,0211,Náhuatl,"náhuatl de la Sierra negra, sur",021,estimada,564.1
+1990,0211,Náhuatl,mexicano del centro alto,015,estimada,543.7
+1990,0211,Náhuatl,náhuatl del Istmo,030,estimada,363.1
+1990,0211,Náhuatl,náhuatl del noroeste central,013,estimada,293.5
+1990,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,estimada,254.1
+1990,0211,Náhuatl,mexicano del centro,015,estimada,235.5
+1990,0211,Náhuatl,mexicano de Puente de Ixtla,017,estimada,129.3
+1990,0211,Náhuatl,náhuatl del Istmo bajo,030,estimada,121.7
+1990,0211,Náhuatl,mexicano de Temixco,017,estimada,83.9
+1990,0211,Náhuatl,mexicano del oriente de Puebla,021,estimada,60.5
+1990,0211,Náhuatl,náhuatl alto del norte de Puebla,021,estimada,25.4
+1990,0211,Náhuatl,mexicano central bajo,017,estimada,24.0
+1990,0211,Náhuatl,mexicano de Tetela del Volcán,017,estimada,12.8
+1990,0211,Náhuatl,mexicano de Guerrero,021,estimada,11.7
+1990,0211,Náhuatl,mexicano del centro bajo,015,estimada,0.8
+1990,0211,Náhuatl,,009,sin,4390.0
+1990,0211,Náhuatl,,007,sin,40.0
+1990,0211,Náhuatl,,005,sin,30.0
+1990,0211,Náhuatl,,011,sin,30.0
+1990,0211,Náhuatl,,001,sin,20.0
+1990,0211,Náhuatl,,028,sin,20.0
+1990,0211,Náhuatl,,999,sin,20.0
+1990,0211,Náhuatl,,002,sin,10.0
+1990,0211,Náhuatl,,004,sin,10.0
+1990,0211,Náhuatl,,008,sin,10.0
+1990,0211,Náhuatl,,032,sin,10.0
+1990,0211,Náhuatl,,215,sin,10.0
+1990,0211,Náhuatl,,416,sin,10.0
+1990,0211,Náhuatl,náhuatl de la Huasteca potosina,024,unica,2190.0
+1990,0211,Náhuatl,mexicano de Guerrero,012,unica,1300.0
+1990,0211,Náhuatl,náhuatl de Oaxaca,020,unica,600.0
+1990,0211,Náhuatl,mexicano del oriente central,029,unica,310.0
+1990,0211,Náhuatl,mexicano central de occidente,016,unica,70.0
+1990,0211,Náhuatl,mexicano de occidente,014,unica,20.0
+1990,0211,Náhuatl,mexicano del noroeste,010,unica,10.0
+1990,0501,Otomí,otomí del Valle del Mezquital,013,estimada,5336.2
+1990,0501,Otomí,otomí de la Sierra,013,estimada,1020.3
+1990,0501,Otomí,otomí del noroeste,022,estimada,731.0
+1990,0501,Otomí,otomí bajo del noroeste,022,estimada,249.0
+1990,0501,Otomí,otomí del oeste del Valle del Mezquital,013,estimada,213.5
+1990,0501,Otomí,,009,sin,1840.0
+1990,0501,Otomí,,020,sin,340.0
+1990,0501,Otomí,,024,sin,70.0
+1990,0501,Otomí,,007,sin,50.0
+1990,0501,Otomí,,012,sin,30.0
+1990,0501,Otomí,,017,sin,30.0
+1990,0501,Otomí,,999,sin,30.0
+1990,0501,Otomí,,028,sin,20.0
+1990,0501,Otomí,,014,sin,10.0
+1990,0501,Otomí,otomí del centro,015,unica,6050.0
+1990,0501,Otomí,otomí de la Sierra,021,unica,500.0
+1990,0501,Otomí,otomí de la Sierra,030,unica,490.0
+1990,0501,Otomí,otomí del oeste,016,unica,130.0
+1990,0501,Otomí,otomí de Ixtenco,029,unica,90.0
+1990,0501,Otomí,otomí del noroeste,011,unica,20.0
+1990,0502,Mazahua,mazahua de oriente,015,estimada,4866.0
+1990,0502,Mazahua,mazahua de occidente,015,estimada,1194.0
+1990,0502,Mazahua,mazahua de oriente,016,estimada,413.6
+1990,0502,Mazahua,mazahua de occidente,016,estimada,386.4
+1990,0502,Mazahua,,009,sin,1020.0
+1990,0502,Mazahua,,021,sin,60.0
+1990,0502,Mazahua,,020,sin,30.0
+1990,0502,Mazahua,,070,sin,30.0
+1990,0502,Mazahua,,012,sin,20.0
+1990,0502,Mazahua,,025,sin,20.0
+1990,0502,Mazahua,,007,sin,10.0
+1990,0502,Mazahua,,010,sin,10.0
+1990,0502,Mazahua,,013,sin,10.0
+1990,0502,Mazahua,,022,sin,10.0
+1990,0502,Mazahua,,027,sin,10.0
+1990,0502,Mazahua,,029,sin,10.0
+1990,0502,Mazahua,,999,sin,10.0
+1990,0503,Matlatzinca,,009,sin,40.0
+1990,0503,Matlatzinca,,020,sin,10.0
+1990,0503,Matlatzinca,matlatzinca,015,unica,150.0
+1990,0506,Chichimeco jonaz,,007,sin,10.0
+1990,0506,Chichimeco jonaz,,030,sin,10.0
+1990,0507,Chinanteco,chinanteco del norte,020,estimada,344.7
+1990,0507,Chinanteco,chinanteco central,020,estimada,166.7
+1990,0507,Chinanteco,chinanteco del sureste bajo,020,estimada,114.1
+1990,0507,Chinanteco,chinanteco del sureste medio,020,estimada,85.7
+1990,0507,Chinanteco,chinanteco de la Sierra,020,estimada,74.6
+1990,0507,Chinanteco,chinanteco del norte,030,estimada,46.7
+1990,0507,Chinanteco,chinanteco del oeste,020,estimada,39.5
+1990,0507,Chinanteco,chinanteco central bajo,020,estimada,35.2
+1990,0507,Chinanteco,chianateco del oeste central bajo,020,estimada,24.1
+1990,0507,Chinanteco,chinanteco del oeste central alto,020,estimada,24.1
+1990,0507,Chinanteco,chinanteco del sureste alto,020,estimada,16.0
+1990,0507,Chinanteco,chinanteco del noroeste,020,estimada,15.4
+1990,0507,Chinanteco,chinanteco del sureste medio,030,estimada,3.3
+1990,0507,Chinanteco,,002,sin,10.0
+1990,0507,Chinanteco,,009,sin,10.0
+1990,0508,Tlapaneco,tlapaneco central bajo,012,estimada,355.7
+1990,0508,Tlapaneco,tlapaneco del suroeste,012,estimada,330.5
+1990,0508,Tlapaneco,tlapaneco del norte,012,estimada,275.7
+1990,0508,Tlapaneco,tlapaneco del este,012,estimada,110.4
+1990,0508,Tlapaneco,tlapaneco del noroeste alto,012,estimada,68.9
+1990,0508,Tlapaneco,tlapaneco del noroeste bajo,012,estimada,68.9
+1990,0508,Tlapaneco,tlapaneco del centro,012,estimada,42.9
+1990,0508,Tlapaneco,tlapaneco del sur,012,estimada,4.7
+1990,0508,Tlapaneco,tlapaneco del oeste,012,estimada,2.4
+1990,0508,Tlapaneco,,009,sin,30.0
+1990,0509,Mazateco,mazateco del centro,020,estimada,854.5
+1990,0509,Mazateco,mazateco del noreste,020,estimada,752.2
+1990,0509,Mazateco,mazateco del este bajo,020,estimada,597.0
+1990,0509,Mazateco,mazateco del norte,020,estimada,533.2
+1990,0509,Mazateco,mazateco de la presa alto,020,estimada,510.1
+1990,0509,Mazateco,mazateco del suroeste,020,estimada,268.9
+1990,0509,Mazateco,mazateco de la presa bajo,020,estimada,206.6
+1990,0509,Mazateco,mazateco del oeste,020,estimada,167.3
+1990,0509,Mazateco,mazateco del sureste,020,estimada,96.7
+1990,0509,Mazateco,mazateco de Eloxochitlán,020,estimada,89.5
+1990,0509,Mazateco,mazateco de Acatepec,020,estimada,33.7
+1990,0509,Mazateco,mazateco del sur,020,estimada,27.4
+1990,0509,Mazateco,mazateco de Tecóatl,020,estimada,27.0
+1990,0509,Mazateco,mazateco de Huehuetlán,020,estimada,18.2
+1990,0509,Mazateco,mazateco de Ocopetatillo,020,estimada,17.4
+1990,0509,Mazateco,,009,sin,80.0
+1990,0509,Mazateco,,007,sin,20.0
+1990,0509,Mazateco,,015,sin,10.0
+1990,0509,Mazateco,mazateco del norte,030,unica,120.0
+1990,0509,Mazateco,mazateco de Puebla,021,unica,10.0
+1990,0511,Chocholteco,chocholteco del sur,020,estimada,51.8
+1990,0511,Chocholteco,chocholteco del este,020,estimada,41.9
+1990,0511,Chocholteco,chocholteco del oeste,020,estimada,16.3
+1990,0511,Chocholteco,,021,sin,90.0
+1990,0511,Chocholteco,,009,sin,20.0
+1990,0513,Zapoteco,zapoteco de la planicie costera,020,estimada,3633.2
+1990,0513,Zapoteco,zapoteco de la costa central,020,estimada,1240.1
+1990,0513,Zapoteco,"zapoteco de Valles, del norte central",020,estimada,769.6
+1990,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,estimada,688.4
+1990,0513,Zapoteco,zapoteco de la costa oeste,020,estimada,444.4
+1990,0513,Zapoteco,"zapoteco de Valles, del este medio",020,estimada,388.9
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, central",020,estimada,364.7
+1990,0513,Zapoteco,"zapoteco serrano, del noroeste bajo",020,estimada,344.5
+1990,0513,Zapoteco,"zapoteco de Valles, del este central",020,estimada,283.4
+1990,0513,Zapoteco,zapoteco de la costa noreste,020,estimada,261.0
+1990,0513,Zapoteco,zapoteco de Texmelucan,020,estimada,258.3
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, noreste",020,estimada,241.4
+1990,0513,Zapoteco,"zapoteco de Valles, del noreste",020,estimada,167.9
+1990,0513,Zapoteco,"zapoteco de Valles, del suroeste central",020,estimada,150.7
+1990,0513,Zapoteco,zapoteco de Petapa,020,estimada,149.4
+1990,0513,Zapoteco,"zapoteco de Valles, noroeste",020,estimada,137.9
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste alto",020,estimada,137.1
+1990,0513,Zapoteco,"zapoteco serrano, del sureste",020,estimada,113.9
+1990,0513,Zapoteco,zapoteco de Valles del sur,020,estimada,107.5
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, oeste bajo",020,estimada,107.2
+1990,0513,Zapoteco,"zapoteco serrano, bajo",020,estimada,102.1
+1990,0513,Zapoteco,"zapoteco de Valles, del noroeste bajo",020,estimada,96.2
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, del este bajo",020,estimada,96.1
+1990,0513,Zapoteco,zapoteco de San Vicente Coatlán,020,estimada,95.4
+1990,0513,Zapoteco,"zapoteco de la montaña del Istmo, bajo",020,estimada,92.7
+1990,0513,Zapoteco,"zapoteco de Valles, del suroeste medio",020,estimada,89.1
+1990,0513,Zapoteco,"zapoteco de Valles, de suroeste alto",020,estimada,86.2
+1990,0513,Zapoteco,"zapoteco de Valles, del centro bajo",020,estimada,83.1
+1990,0513,Zapoteco,zapoteco de la costa este,020,estimada,81.8
+1990,0513,Zapoteco,"zapoteco de Sierra sur, del noreste alto",020,estimada,79.9
+1990,0513,Zapoteco,"zapoteco serrano, del oeste",020,estimada,79.9
+1990,0513,Zapoteco,"zapoteco de la montaña del Istmo, alto",020,estimada,77.2
+1990,0513,Zapoteco,"zapoteco serrano, del sureste bajo",020,estimada,72.2
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, del norte",020,estimada,71.4
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,estimada,70.2
+1990,0513,Zapoteco,zapoteco de San Baltazar Chichicapam,020,estimada,66.8
+1990,0513,Zapoteco,zapoteco de San Miguel Aloápam,020,estimada,63.0
+1990,0513,Zapoteco,"zapoteco serrano, del sureste alto",020,estimada,56.7
+1990,0513,Zapoteco,"zapoteco de Valles, del oeste central",020,estimada,56.4
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste",020,estimada,55.1
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste alto",020,estimada,50.8
+1990,0513,Zapoteco,"zapoteco serrano, del sureste medio",020,estimada,50.8
+1990,0513,Zapoteco,zapoteco de Santa María Quiegolani,020,estimada,49.9
+1990,0513,Zapoteco,zapoteco de Mixtepec,020,estimada,47.8
+1990,0513,Zapoteco,zapoteco del oeste de Tuxtepec,020,estimada,43.6
+1990,0513,Zapoteco,"zapoteco serrano, del oeste medio",020,estimada,40.3
+1990,0513,Zapoteco,zapoteco de Santiago Yaveo,020,estimada,36.0
+1990,0513,Zapoteco,zapoteco de Quiavicuzas,020,estimada,34.6
+1990,0513,Zapoteco,"zapoteco de Valles, norte",020,estimada,33.9
+1990,0513,Zapoteco,"zapoteco serrano, del este",020,estimada,33.2
+1990,0513,Zapoteco,"zapoteco serrano, del noroeste",020,estimada,31.9
+1990,0513,Zapoteco,zapoteco de Santiago Laxopa,020,estimada,31.2
+1990,0513,Zapoteco,zapoteco de San Antonino el Alto,020,estimada,29.2
+1990,0513,Zapoteco,zapoteco de Santa María Temaxcalapa,020,estimada,26.2
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste bajo",020,estimada,20.4
+1990,0513,Zapoteco,zapoteco de Zimatlán de Álvarez,020,estimada,14.3
+1990,0513,Zapoteco,"zapoteco de Valles, oeste",020,estimada,10.4
+1990,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste bajo",020,estimada,9.1
+1990,0513,Zapoteco,"zapoteco de Valles, del centro",020,estimada,6.7
+1990,0513,Zapoteco,zapoteco de San Bartolo Yautepec,020,estimada,4.9
+1990,0513,Zapoteco,zapoteco de San Felipe Tejalápam,020,estimada,2.5
+1990,0513,Zapoteco,zapoteco de Asunción Tlacolulita,020,estimada,1.4
+1990,0513,Zapoteco,,009,sin,700.0
+1990,0513,Zapoteco,,030,sin,380.0
+1990,0513,Zapoteco,,021,sin,120.0
+1990,0513,Zapoteco,,015,sin,100.0
+1990,0513,Zapoteco,,007,sin,80.0
+1990,0513,Zapoteco,,012,sin,40.0
+1990,0513,Zapoteco,,999,sin,40.0
+1990,0513,Zapoteco,,013,sin,30.0
+1990,0513,Zapoteco,,004,sin,20.0
+1990,0513,Zapoteco,,005,sin,10.0
+1990,0513,Zapoteco,,011,sin,10.0
+1990,0513,Zapoteco,,016,sin,10.0
+1990,0513,Zapoteco,,019,sin,10.0
+1990,0513,Zapoteco,,023,sin,10.0
+1990,0513,Zapoteco,,032,sin,10.0
+1990,0514,Chatino,chatino central,020,estimada,17.4
+1990,0514,Chatino,chatino occidental alto,020,estimada,14.2
+1990,0514,Chatino,chatino oriental bajo,020,estimada,11.5
+1990,0514,Chatino,chatino occidental bajo,020,estimada,3.8
+1990,0514,Chatino,chatino oriental alto,020,estimada,2.1
+1990,0514,Chatino,chatino de Zacatepec,020,estimada,1.0
+1990,0515,Amuzgo,amuzgo del norte,012,estimada,55.1
+1990,0515,Amuzgo,amuzgo del sur,012,estimada,34.9
+1990,0515,Amuzgo,amuzgo alto del este,020,estimada,8.7
+1990,0515,Amuzgo,amuzgo bajo del este,020,estimada,1.3
+1990,0515,Amuzgo,,021,sin,20.0
+1990,0515,Amuzgo,,009,sin,10.0
+1990,0515,Amuzgo,,999,sin,10.0
+1990,0516,Mixteco,mixteco de Oaxaca de la costa central,020,estimada,1118.1
+1990,0516,Mixteco,mixteco del oeste,020,estimada,1103.8
+1990,0516,Mixteco,mixteco del oeste alto,020,estimada,785.3
+1990,0516,Mixteco,mixteco del suroeste central,020,estimada,762.3
+1990,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,021,estimada,674.0
+1990,0516,Mixteco,mixteco de Ixtayutla,020,estimada,511.2
+1990,0516,Mixteco,mixteco bajo de Valles,020,estimada,454.3
+1990,0516,Mixteco,mixteco de Oaxaca de la costa oeste central,020,estimada,451.2
+1990,0516,Mixteco,mixteco del norte bajo,020,estimada,397.2
+1990,0516,Mixteco,mixteco del oeste de la costa,020,estimada,391.1
+1990,0516,Mixteco,mixteco de Santa María Peñoles,020,estimada,372.2
+1990,0516,Mixteco,mixteco de Sierra sur noroeste,020,estimada,369.2
+1990,0516,Mixteco,mixteco de Santiago Amoltepec,020,estimada,358.8
+1990,0516,Mixteco,mixteco del suroeste,020,estimada,344.9
+1990,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,estimada,324.1
+1990,0516,Mixteco,mixteco de Oaxaca de la costa noroeste,020,estimada,320.8
+1990,0516,Mixteco,mixteco del suroeste de Puebla,021,estimada,317.6
+1990,0516,Mixteco,mixteco del noroeste,020,estimada,296.8
+1990,0516,Mixteco,mixteco del sur bajo,020,estimada,280.3
+1990,0516,Mixteco,mixteco de Ñumi,020,estimada,261.4
+1990,0516,Mixteco,mixteco del noreste,020,estimada,241.4
+1990,0516,Mixteco,mixteco central,020,estimada,213.4
+1990,0516,Mixteco,mixteco del noroeste medio,020,estimada,197.5
+1990,0516,Mixteco,mixteco del sur medio,020,estimada,170.2
+1990,0516,Mixteco,mixteco de Santa María Huazolotitlán,020,estimada,160.9
+1990,0516,Mixteco,mixteco de Santa Lucía Monteverde,020,estimada,158.4
+1990,0516,Mixteco,mixteco de Sierra sur oeste,020,estimada,154.4
+1990,0516,Mixteco,mixteco de San Pablo Tijaltepec,020,estimada,125.9
+1990,0516,Mixteco,mixteco del este,020,estimada,124.6
+1990,0516,Mixteco,mixteco de Tlaltempan,021,estimada,120.9
+1990,0516,Mixteco,mixteco de Zapotitlán,021,estimada,117.5
+1990,0516,Mixteco,mixteco de Cañada bajo,020,estimada,110.6
+1990,0516,Mixteco,mixteco del este central,020,estimada,106.6
+1990,0516,Mixteco,mixteco de Yosondúa,020,estimada,91.2
+1990,0516,Mixteco,mixteco de San Mateo Peñasco,020,estimada,88.1
+1990,0516,Mixteco,mixteco de Coatzóspam,020,estimada,72.5
+1990,0516,Mixteco,mixteco de San Antonio Sinicahua,020,estimada,72.5
+1990,0516,Mixteco,mixteco de Santo Domingo Tonalá,020,estimada,71.4
+1990,0516,Mixteco,mixteco de Santa María Yosoyúa,020,estimada,68.7
+1990,0516,Mixteco,mixteco de San Juan Tamazola,020,estimada,67.4
+1990,0516,Mixteco,mixteco de Cañada central,020,estimada,67.3
+1990,0516,Mixteco,mixteco de Villa de Tututepec,020,estimada,66.0
+1990,0516,Mixteco,mixteco de oeste central,020,estimada,64.1
+1990,0516,Mixteco,mixteco de San Antonio Huitepec,020,estimada,52.1
+1990,0516,Mixteco,mixteco de Santa Cruz Itundujia,020,estimada,52.1
+1990,0516,Mixteco,mixteco de Yosonotú,020,estimada,50.6
+1990,0516,Mixteco,mixteco del sureste central,020,estimada,49.8
+1990,0516,Mixteco,mixteco de Yutanduchi de Guerrero,020,estimada,46.6
+1990,0516,Mixteco,mixteco de Mitlatongo,020,estimada,44.3
+1990,0516,Mixteco,mixteco de Guerrero del norte,012,estimada,41.2
+1990,0516,Mixteco,mixteco de San Miguel Piedras,020,estimada,35.4
+1990,0516,Mixteco,mixteco alto de Valles,020,estimada,31.5
+1990,0516,Mixteco,mixteco de San Luis Acatlán,012,estimada,30.2
+1990,0516,Mixteco,mixteco de San Agustín Tlacotepec,020,estimada,29.1
+1990,0516,Mixteco,mixteco de Ayutla,012,estimada,26.8
+1990,0516,Mixteco,mixteco de Santa Inés de Zaragoza,020,estimada,24.6
+1990,0516,Mixteco,mixteco de Tlacoachistlahuaca,012,estimada,22.6
+1990,0516,Mixteco,mixteco de San Pedro Molinos,020,estimada,21.9
+1990,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,020,estimada,21.5
+1990,0516,Mixteco,mixteco de Coapanatoyac,012,estimada,20.3
+1990,0516,Mixteco,mixteco de San Pedro Tidaá,020,estimada,15.7
+1990,0516,Mixteco,mixteco de Chochoapa,012,estimada,15.6
+1990,0516,Mixteco,mixteco de Guerrero del este medio,012,estimada,15.6
+1990,0516,Mixteco,mixteco de San Juan Teita,020,estimada,15.1
+1990,0516,Mixteco,mixteco del noreste bajo,020,estimada,13.6
+1990,0516,Mixteco,mixteco de Guerrero del noreste central,012,estimada,9.2
+1990,0516,Mixteco,mixteco de Tlahuapa,012,estimada,9.2
+1990,0516,Mixteco,mixteco de Xochapa,012,estimada,9.2
+1990,0516,Mixteco,mixteco de Xonacatlán,012,estimada,9.2
+1990,0516,Mixteco,mixteco de Guerrero central alto,012,estimada,8.6
+1990,0516,Mixteco,mixteco de Guerrero de la costa este,012,estimada,6.5
+1990,0516,Mixteco,mixteco de Atlamajalcingo,012,estimada,5.3
+1990,0516,Mixteco,mixteco de Guerrero del norte central,012,estimada,5.0
+1990,0516,Mixteco,mixteco central de Guerrero,012,estimada,3.6
+1990,0516,Mixteco,mixteco de Xochistlahuaca,012,estimada,3.3
+1990,0516,Mixteco,mixteco de Igualapa,012,estimada,3.1
+1990,0516,Mixteco,mixteco de Tlalixtaquilla de Maldonado,012,estimada,2.8
+1990,0516,Mixteco,mixteco de Guerrero de la costa occidental,012,estimada,2.6
+1990,0516,Mixteco,mixteco de Guerrero de la costa central,012,estimada,0.4
+1990,0516,Mixteco,,009,sin,630.0
+1990,0516,Mixteco,,015,sin,100.0
+1990,0516,Mixteco,,030,sin,80.0
+1990,0516,Mixteco,,013,sin,20.0
+1990,0516,Mixteco,,016,sin,20.0
+1990,0516,Mixteco,,008,sin,10.0
+1990,0516,Mixteco,,014,sin,10.0
+1990,0516,Mixteco,,017,sin,10.0
+1990,0516,Mixteco,,024,sin,10.0
+1990,0516,Mixteco,,029,sin,10.0
+1990,0516,Mixteco,,999,sin,10.0
+1990,0517,Cuicateco,cuicateco del centro,020,estimada,245.4
+1990,0517,Cuicateco,cuicateco del norte,020,estimada,27.3
+1990,0517,Cuicateco,cuicateco del oriente,020,estimada,27.3
+1990,0517,Cuicateco,,012,sin,10.0
+1990,0518,Triqui,triqui de San Juan Copala,020,estimada,98.7
+1990,0518,Triqui,triqui de la baja,020,estimada,25.3
+1990,0518,Triqui,triqui de la alta,020,estimada,20.4
+1990,0518,Triqui,triqui de la media,020,estimada,15.6
+1990,0518,Triqui,,009,sin,10.0
+1990,0601,Huasteco,huasteco del centro,030,estimada,361.5
+1990,0601,Huasteco,huasteco de oriente,030,estimada,28.5
+1990,0601,Huasteco,,020,sin,100.0
+1990,0601,Huasteco,,013,sin,60.0
+1990,0601,Huasteco,,012,sin,20.0
+1990,0601,Huasteco,,021,sin,20.0
+1990,0601,Huasteco,,009,sin,10.0
+1990,0601,Huasteco,huasteco del occidente,024,unica,350.0
+1990,0602,Maya,,009,sin,310.0
+1990,0602,Maya,,007,sin,50.0
+1990,0602,Maya,,030,sin,40.0
+1990,0602,Maya,,021,sin,30.0
+1990,0602,Maya,,027,sin,30.0
+1990,0602,Maya,,224,sin,30.0
+1990,0602,Maya,,005,sin,20.0
+1990,0602,Maya,,016,sin,20.0
+1990,0602,Maya,,017,sin,20.0
+1990,0602,Maya,,019,sin,20.0
+1990,0602,Maya,,029,sin,20.0
+1990,0602,Maya,,208,sin,20.0
+1990,0602,Maya,,012,sin,10.0
+1990,0602,Maya,,014,sin,10.0
+1990,0602,Maya,,020,sin,10.0
+1990,0602,Maya,,025,sin,10.0
+1990,0602,Maya,,026,sin,10.0
+1990,0602,Maya,,028,sin,10.0
+1990,0602,Maya,,214,sin,10.0
+1990,0602,Maya,maya,031,unica,1610.0
+1990,0602,Maya,maya,004,unica,190.0
+1990,0602,Maya,maya,023,unica,30.0
+1990,0604,Ch'ol,ch'ol del noroeste,027,estimada,36.5
+1990,0604,Ch'ol,ch'ol del noroeste,007,estimada,32.1
+1990,0604,Ch'ol,ch'ol del sureste,007,estimada,7.9
+1990,0604,Ch'ol,ch'ol del sureste,027,estimada,3.5
+1990,0604,Ch'ol,,009,sin,10.0
+1990,0606,Tseltal,tseltal del norte,007,estimada,113.3
+1990,0606,Tseltal,tseltal del occidente,007,estimada,73.5
+1990,0606,Tseltal,tseltal del oriente,007,estimada,39.4
+1990,0606,Tseltal,tseltal del sur,007,estimada,13.8
+1990,0606,Tseltal,,009,sin,70.0
+1990,0606,Tseltal,,005,sin,10.0
+1990,0606,Tseltal,,014,sin,10.0
+1990,0606,Tseltal,,030,sin,10.0
+1990,0606,Tseltal,,249,sin,10.0
+1990,0607,Tsotsil,tsotsil del norte alto,007,estimada,62.6
+1990,0607,Tsotsil,tsotsil del centro,007,estimada,42.1
+1990,0607,Tsotsil,tsotsil del noroeste,007,estimada,35.3
+1990,0607,Tsotsil,tsotsil de los Altos,007,estimada,21.4
+1990,0607,Tsotsil,tsotsil del este bajo,007,estimada,20.1
+1990,0607,Tsotsil,tsotsil del este alto,007,estimada,5.1
+1990,0607,Tsotsil,tsotsil del norte bajo,007,estimada,3.3
+1990,0607,Tsotsil,,009,sin,30.0
+1990,0607,Tsotsil,,002,sin,10.0
+1990,0607,Tsotsil,,011,sin,10.0
+1990,0607,Tsotsil,,020,sin,10.0
+1990,0607,Tsotsil,,423,sin,10.0
+1990,0608,Q'anjob'al,,012,sin,10.0
+1990,0611,Qato'k,,012,sin,10.0
+1990,0613,Tojolabal,,402,sin,20.0
+1990,0613,Tojolabal,,009,sin,10.0
+1990,0613,Tojolabal,tojolabal,007,unica,10.0
+1990,0614,Q'eqchi',,218,sin,20.0
+1990,0614,Q'eqchi',,224,sin,20.0
+1990,0614,Q'eqchi',,209,sin,10.0
+1990,0614,Q'eqchi',,236,sin,10.0
+1990,0615,K'iche',,001,sin,10.0
+1990,0618,Mam,,224,sin,20.0
+1990,0701,Totonaco,totonaco central del sur,021,estimada,1118.0
+1990,0701,Totonaco,totonaco de la costa,030,estimada,520.8
+1990,0701,Totonaco,totonaco central del sur,030,estimada,514.3
+1990,0701,Totonaco,totonaco central alto,030,estimada,166.3
+1990,0701,Totonaco,totonaco central del norte,021,estimada,134.5
+1990,0701,Totonaco,totonaco del río Necaxa,021,estimada,63.0
+1990,0701,Totonaco,totonaco central del norte,030,estimada,25.7
+1990,0701,Totonaco,totonaco del cerro Xinolatépetl,021,estimada,4.5
+1990,0701,Totonaco,totonaco del sureste,030,estimada,2.9
+1990,0701,Totonaco,,009,sin,100.0
+1990,0701,Totonaco,,020,sin,60.0
+1990,0701,Totonaco,,029,sin,40.0
+1990,0701,Totonaco,,013,sin,30.0
+1990,0701,Totonaco,,012,sin,20.0
+1990,0701,Totonaco,,016,sin,10.0
+1990,0701,Totonaco,,022,sin,10.0
+1990,0702,Tepehua,tepehua del oeste,030,estimada,21.0
+1990,0702,Tepehua,tepehua del norte,030,estimada,19.0
+1990,0702,Tepehua,,249,sin,10.0
+1990,0702,Tepehua,tepehua del sur,013,unica,100.0
+1990,0702,Tepehua,tepehua del sur,021,unica,10.0
+1990,0801,Tarasco (purépecha),,009,sin,70.0
+1990,0801,Tarasco (purépecha),,011,sin,40.0
+1990,0801,Tarasco (purépecha),,020,sin,20.0
+1990,0801,Tarasco (purépecha),,021,sin,20.0
+1990,0801,Tarasco (purépecha),,012,sin,10.0
+1990,0801,Tarasco (purépecha),,024,sin,10.0
+1990,0801,Tarasco (purépecha),,029,sin,10.0
+1990,0801,Tarasco (purépecha),,030,sin,10.0
+1990,0801,Tarasco (purépecha),purépecha,016,unica,1210.0
+1990,0901,Mixe,mixe bajo,020,estimada,638.7
+1990,0901,Mixe,mixe medio del este,020,estimada,517.7
+1990,0901,Mixe,mixe alto del centro,020,estimada,303.0
+1990,0901,Mixe,mixe alto del sur,020,estimada,221.3
+1990,0901,Mixe,mixe alto del norte,020,estimada,187.7
+1990,0901,Mixe,mixe medio del oeste,020,estimada,71.7
+1990,0901,Mixe,,009,sin,40.0
+1990,0901,Mixe,,021,sin,30.0
+1990,0901,Mixe,,013,sin,20.0
+1990,0901,Mixe,,016,sin,10.0
+1990,0901,Mixe,,030,sin,10.0
+1990,0907,Zoque,zoque del norte bajo,007,estimada,13.3
+1990,0907,Zoque,zoque del norte alto,007,estimada,9.1
+1990,0907,Zoque,zoque del este,007,estimada,6.2
+1990,0907,Zoque,zoque del centro,007,estimada,5.1
+1990,0907,Zoque,zoque del noroeste,007,estimada,3.4
+1990,0907,Zoque,zoque del sureste,007,estimada,2.1
+1990,0907,Zoque,zoque del sur,007,estimada,0.9
+1990,0907,Zoque,,020,sin,20.0
+1990,1101,Huave,huave del oeste,020,estimada,8.0
+1990,1101,Huave,huave del este,020,estimada,2.0
+1990,1101,Huave,,213,sin,10.0
+1990,9000,No especificado,,009,sin,8770.0
+1990,9000,No especificado,,020,sin,1820.0
+1990,9000,No especificado,,021,sin,880.0
+1990,9000,No especificado,,015,sin,600.0
+1990,9000,No especificado,,013,sin,500.0
+1990,9000,No especificado,,030,sin,480.0
+1990,9000,No especificado,,016,sin,420.0
+1990,9000,No especificado,,012,sin,360.0
+1990,9000,No especificado,,011,sin,340.0
+1990,9000,No especificado,,007,sin,170.0
+1990,9000,No especificado,,024,sin,130.0
+1990,9000,No especificado,,029,sin,130.0
+1990,9000,No especificado,,014,sin,110.0
+1990,9000,No especificado,,413,sin,110.0
+1990,9000,No especificado,,022,sin,90.0
+1990,9000,No especificado,,017,sin,60.0
+1990,9000,No especificado,,031,sin,60.0
+1990,9000,No especificado,,005,sin,40.0
+1990,9000,No especificado,,115,sin,40.0
+1990,9000,No especificado,,209,sin,40.0
+1990,9000,No especificado,,010,sin,30.0
+1990,9000,No especificado,,220,sin,30.0
+1990,9000,No especificado,,999,sin,30.0
+1990,9000,No especificado,,018,sin,20.0
+1990,9000,No especificado,,025,sin,20.0
+1990,9000,No especificado,,026,sin,20.0
+1990,9000,No especificado,,234,sin,20.0
+1990,9000,No especificado,,236,sin,20.0
+1990,9000,No especificado,,002,sin,10.0
+1990,9000,No especificado,,004,sin,10.0
+1990,9000,No especificado,,027,sin,10.0
+1990,9000,No especificado,,128,sin,10.0
+1990,9000,No especificado,,204,sin,10.0
+1990,9000,No especificado,,208,sin,10.0
+1990,9000,No especificado,,224,sin,10.0
+1990,9000,No especificado,,233,sin,10.0
+1990,9000,No especificado,,246,sin,10.0
+1990,9000,No especificado,,345,sin,10.0
+1990,9010,Chontal insuficientemente especificado,,020,sin,50.0
+1990,9010,Chontal insuficientemente especificado,,027,sin,30.0
+1990,9010,Chontal insuficientemente especificado,,009,sin,10.0
+1990,9010,Chontal insuficientemente especificado,,016,sin,10.0
+1990,9020,Tepehuano insuficientemente especificado,,028,sin,10.0
+1990,9020,Tepehuano insuficientemente especificado,,030,sin,10.0
+2000,0205,Tarahumara,tarahumara del centro,008,estimada,52.5
+2000,0205,Tarahumara,tarahumara de Cumbres,008,estimada,30.7
+2000,0205,Tarahumara,tarahumara del norte,008,estimada,23.5
+2000,0205,Tarahumara,tarahumara del oeste,008,estimada,13.2
+2000,0205,Tarahumara,tarahumara del sur,008,estimada,9.1
+2000,0205,Tarahumara,,009,sin,58.0
+2000,0205,Tarahumara,,030,sin,18.0
+2000,0207,Yaqui,yaqui,026,exacta,6.0
+2000,0207,Yaqui,,009,sin,20.0
+2000,0207,Yaqui,,015,sin,8.0
+2000,0207,Yaqui,yaqui,026,unica,21.0
+2000,0208,Mayo,mayo,026,exacta,12.0
+2000,0208,Mayo,,012,sin,8.0
+2000,0208,Mayo,mayo,026,unica,11.0
+2000,0209,Cora,cora tereseño,018,estimada,1.7
+2000,0209,Cora,cora de Dolores,018,estimada,1.6
+2000,0209,Cora,cora de Jesús María,018,estimada,1.6
+2000,0209,Cora,cora francisqueño,018,estimada,1.6
+2000,0209,Cora,cora meseño,018,estimada,1.6
+2000,0209,Cora,cora corapeño,018,estimada,0.8
+2000,0209,Cora,cora de Rosarito,018,estimada,0.8
+2000,0209,Cora,cora presideño,018,estimada,0.4
+2000,0209,Cora,,020,sin,14.0
+2000,0210,Huichol,huichol del este,014,estimada,6.7
+2000,0210,Huichol,huichol del sur,014,estimada,1.8
+2000,0210,Huichol,huichol del oeste,014,estimada,0.5
+2000,0210,Huichol,,415,sin,8.0
+2000,0210,Huichol,,009,sin,3.0
+2000,0210,Huichol,huichol del norte,018,unica,20.0
+2000,0210,Huichol,huichol del norte,010,unica,19.0
+2000,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,estimada,6082.5
+2000,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,estimada,3688.8
+2000,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,estimada,2940.4
+2000,0211,Náhuatl,náhuatl central de Veracruz,030,estimada,2755.4
+2000,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,estimada,2064.4
+2000,0211,Náhuatl,náhuatl del noroeste central,021,estimada,1715.3
+2000,0211,Náhuatl,náhuatl del centro de Puebla,021,estimada,1441.5
+2000,0211,Náhuatl,"náhuatl de la Sierra negra, sur",021,estimada,938.2
+2000,0211,Náhuatl,mexicano del centro alto,015,estimada,739.5
+2000,0211,Náhuatl,náhuatl del Istmo,030,estimada,515.4
+2000,0211,Náhuatl,náhuatl del noroeste central,013,estimada,466.5
+2000,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,estimada,422.5
+2000,0211,Náhuatl,mexicano del centro,015,estimada,320.4
+2000,0211,Náhuatl,náhuatl del Istmo bajo,030,estimada,172.8
+2000,0211,Náhuatl,mexicano del oriente de Puebla,021,estimada,100.6
+2000,0211,Náhuatl,mexicano de Puente de Ixtla,017,estimada,64.1
+2000,0211,Náhuatl,náhuatl alto del norte de Puebla,021,estimada,42.2
+2000,0211,Náhuatl,mexicano de Temixco,017,estimada,41.6
+2000,0211,Náhuatl,mexicano de Guerrero,021,estimada,19.5
+2000,0211,Náhuatl,mexicano central bajo,017,estimada,11.9
+2000,0211,Náhuatl,mexicano de Tetela del Volcán,017,estimada,6.4
+2000,0211,Náhuatl,mexicano del centro bajo,015,estimada,1.1
+2000,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,exacta,830.0
+2000,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,exacta,816.0
+2000,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,exacta,727.0
+2000,0211,Náhuatl,náhuatl del centro de Puebla,021,exacta,416.0
+2000,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,exacta,400.0
+2000,0211,Náhuatl,náhuatl del noroeste central,021,exacta,381.0
+2000,0211,Náhuatl,náhuatl de la Huasteca potosina,024,exacta,296.0
+2000,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,exacta,225.0
+2000,0211,Náhuatl,mexicano de Guerrero,012,exacta,164.0
+2000,0211,Náhuatl,náhuatl de Oaxaca,020,exacta,77.0
+2000,0211,Náhuatl,"náhuatl de la Sierra negra, sur",021,exacta,72.0
+2000,0211,Náhuatl,náhuatl central de Veracruz,030,exacta,70.0
+2000,0211,Náhuatl,náhuatl del noroeste central,013,exacta,37.0
+2000,0211,Náhuatl,mexicano del oriente de Puebla,021,exacta,25.0
+2000,0211,Náhuatl,mexicano de Guerrero,021,exacta,13.0
+2000,0211,Náhuatl,mexicano del centro alto,015,exacta,10.0
+2000,0211,Náhuatl,mexicano de Tetela del Volcán,017,exacta,2.0
+2000,0211,Náhuatl,mexicano del centro bajo,015,exacta,1.0
+2000,0211,Náhuatl,,009,sin,6337.0
+2000,0211,Náhuatl,,999,sin,158.0
+2000,0211,Náhuatl,,011,sin,113.0
+2000,0211,Náhuatl,,007,sin,41.0
+2000,0211,Náhuatl,,028,sin,39.0
+2000,0211,Náhuatl,,005,sin,35.0
+2000,0211,Náhuatl,,419,sin,31.0
+2000,0211,Náhuatl,,032,sin,25.0
+2000,0211,Náhuatl,,217,sin,16.0
+2000,0211,Náhuatl,,002,sin,15.0
+2000,0211,Náhuatl,,031,sin,14.0
+2000,0211,Náhuatl,,402,sin,9.0
+2000,0211,Náhuatl,,335,sin,6.0
+2000,0211,Náhuatl,,440,sin,3.0
+2000,0211,Náhuatl,,019,sin,2.0
+2000,0211,Náhuatl,,220,sin,1.0
+2000,0211,Náhuatl,náhuatl de la Huasteca potosina,024,unica,2721.0
+2000,0211,Náhuatl,mexicano de Guerrero,012,unica,1569.0
+2000,0211,Náhuatl,náhuatl de Oaxaca,020,unica,1152.0
+2000,0211,Náhuatl,mexicano del oriente central,029,unica,697.0
+2000,0211,Náhuatl,mexicano central de occidente,016,unica,60.0
+2000,0211,Náhuatl,mexicano de occidente,014,unica,46.0
+2000,0211,Náhuatl,mexicano del oriente,027,unica,10.0
+2000,0501,Otomí,otomí del Valle del Mezquital,013,estimada,4226.7
+2000,0501,Otomí,otomí del noroeste,022,estimada,2150.5
+2000,0501,Otomí,otomí de la Sierra,013,estimada,808.2
+2000,0501,Otomí,otomí bajo del noroeste,022,estimada,732.5
+2000,0501,Otomí,otomí del oeste del Valle del Mezquital,013,estimada,169.1
+2000,0501,Otomí,otomí del centro,015,exacta,907.0
+2000,0501,Otomí,otomí del Valle del Mezquital,013,exacta,341.0
+2000,0501,Otomí,otomí del noroeste,022,exacta,83.0
+2000,0501,Otomí,otomí de la Sierra,013,exacta,46.0
+2000,0501,Otomí,otomí de la Sierra,030,exacta,40.0
+2000,0501,Otomí,otomí de la Sierra,021,exacta,32.0
+2000,0501,Otomí,otomí del oeste del Valle del Mezquital,013,exacta,18.0
+2000,0501,Otomí,,009,sin,1987.0
+2000,0501,Otomí,,020,sin,230.0
+2000,0501,Otomí,,012,sin,110.0
+2000,0501,Otomí,,017,sin,52.0
+2000,0501,Otomí,,999,sin,50.0
+2000,0501,Otomí,,024,sin,20.0
+2000,0501,Otomí,,014,sin,19.0
+2000,0501,Otomí,,007,sin,11.0
+2000,0501,Otomí,otomí del centro,015,unica,5582.0
+2000,0501,Otomí,otomí de la Sierra,021,unica,697.0
+2000,0501,Otomí,otomí de la Sierra,030,unica,351.0
+2000,0501,Otomí,otomí de Ixtenco,029,unica,66.0
+2000,0501,Otomí,otomí del noroeste,011,unica,47.0
+2000,0501,Otomí,otomí del oeste,016,unica,24.0
+2000,0502,Mazahua,mazahua de oriente,015,estimada,7220.4
+2000,0502,Mazahua,mazahua de occidente,015,estimada,1771.6
+2000,0502,Mazahua,mazahua de oriente,016,estimada,447.2
+2000,0502,Mazahua,mazahua de occidente,016,estimada,417.8
+2000,0502,Mazahua,mazahua de oriente,015,exacta,687.0
+2000,0502,Mazahua,mazahua de occidente,015,exacta,108.0
+2000,0502,Mazahua,,009,sin,827.0
+2000,0502,Mazahua,,999,sin,99.0
+2000,0502,Mazahua,,013,sin,78.0
+2000,0502,Mazahua,,020,sin,45.0
+2000,0502,Mazahua,,021,sin,25.0
+2000,0502,Mazahua,,011,sin,14.0
+2000,0502,Mazahua,,006,sin,11.0
+2000,0502,Mazahua,,012,sin,10.0
+2000,0502,Mazahua,,022,sin,8.0
+2000,0503,Matlatzinca,matlatzinca,015,exacta,16.0
+2000,0503,Matlatzinca,,009,sin,40.0
+2000,0503,Matlatzinca,matlatzinca,015,unica,349.0
+2000,0507,Chinanteco,chinanteco del norte,020,estimada,841.9
+2000,0507,Chinanteco,chinanteco central,020,estimada,428.0
+2000,0507,Chinanteco,chinanteco del sureste bajo,020,estimada,257.4
+2000,0507,Chinanteco,chinanteco del sureste medio,020,estimada,199.6
+2000,0507,Chinanteco,chinanteco de la Sierra,020,estimada,169.0
+2000,0507,Chinanteco,chinanteco del norte,030,estimada,150.4
+2000,0507,Chinanteco,chinanteco del oeste,020,estimada,89.0
+2000,0507,Chinanteco,chinanteco central bajo,020,estimada,79.7
+2000,0507,Chinanteco,chinanteco del oeste central alto,020,estimada,54.9
+2000,0507,Chinanteco,chianateco del oeste central bajo,020,estimada,54.9
+2000,0507,Chinanteco,chinanteco del sureste alto,020,estimada,36.7
+2000,0507,Chinanteco,chinanteco del noroeste,020,estimada,34.8
+2000,0507,Chinanteco,chinanteco del sureste medio,030,estimada,10.6
+2000,0507,Chinanteco,chinanteco del norte,020,exacta,239.0
+2000,0507,Chinanteco,chinanteco del sureste medio,030,exacta,40.0
+2000,0507,Chinanteco,chinanteco central,020,exacta,23.0
+2000,0507,Chinanteco,chinanteco del sureste bajo,020,exacta,14.0
+2000,0507,Chinanteco,chinanteco del sureste medio,020,exacta,13.0
+2000,0507,Chinanteco,chinanteco del norte,030,exacta,12.0
+2000,0507,Chinanteco,,009,sin,50.0
+2000,0507,Chinanteco,,015,sin,18.0
+2000,0507,Chinanteco,,999,sin,9.0
+2000,0507,Chinanteco,,012,sin,8.0
+2000,0508,Tlapaneco,tlapaneco central bajo,012,estimada,458.4
+2000,0508,Tlapaneco,tlapaneco del suroeste,012,estimada,448.7
+2000,0508,Tlapaneco,tlapaneco del norte,012,estimada,377.4
+2000,0508,Tlapaneco,tlapaneco del este,012,estimada,146.2
+2000,0508,Tlapaneco,tlapaneco del noroeste alto,012,estimada,90.5
+2000,0508,Tlapaneco,tlapaneco del noroeste bajo,012,estimada,90.5
+2000,0508,Tlapaneco,tlapaneco del centro,012,estimada,55.5
+2000,0508,Tlapaneco,tlapaneco del sur,012,estimada,5.9
+2000,0508,Tlapaneco,tlapaneco del oeste,012,estimada,3.0
+2000,0508,Tlapaneco,tlapaneco central bajo,012,exacta,269.0
+2000,0508,Tlapaneco,tlapaneco del sur,012,exacta,13.0
+2000,0508,Tlapaneco,tlapaneco del este,012,exacta,5.0
+2000,0508,Tlapaneco,,009,sin,10.0
+2000,0508,Tlapaneco,,014,sin,7.0
+2000,0509,Mazateco,mazateco del centro,020,estimada,1807.6
+2000,0509,Mazateco,mazateco del noreste,020,estimada,1591.1
+2000,0509,Mazateco,mazateco del este bajo,020,estimada,1262.8
+2000,0509,Mazateco,mazateco del norte,020,estimada,1127.8
+2000,0509,Mazateco,mazateco de la presa alto,020,estimada,1079.0
+2000,0509,Mazateco,mazateco del suroeste,020,estimada,568.9
+2000,0509,Mazateco,mazateco de la presa bajo,020,estimada,437.0
+2000,0509,Mazateco,mazateco del oeste,020,estimada,354.0
+2000,0509,Mazateco,mazateco del sureste,020,estimada,204.5
+2000,0509,Mazateco,mazateco de Eloxochitlán,020,estimada,189.4
+2000,0509,Mazateco,mazateco de Acatepec,020,estimada,71.4
+2000,0509,Mazateco,mazateco del sur,020,estimada,57.9
+2000,0509,Mazateco,mazateco de Tecóatl,020,estimada,57.2
+2000,0509,Mazateco,mazateco de Huehuetlán,020,estimada,38.6
+2000,0509,Mazateco,mazateco de Ocopetatillo,020,estimada,36.9
+2000,0509,Mazateco,mazateco del centro,020,exacta,320.0
+2000,0509,Mazateco,mazateco de la presa alto,020,exacta,220.0
+2000,0509,Mazateco,mazateco del oeste,020,exacta,98.0
+2000,0509,Mazateco,mazateco del norte,020,exacta,77.0
+2000,0509,Mazateco,mazateco del este bajo,020,exacta,77.0
+2000,0509,Mazateco,mazateco del suroeste,020,exacta,49.0
+2000,0509,Mazateco,mazateco de la presa bajo,020,exacta,40.0
+2000,0509,Mazateco,mazateco del noreste,020,exacta,9.0
+2000,0509,Mazateco,mazateco de Tecóatl,020,exacta,9.0
+2000,0509,Mazateco,,009,sin,365.0
+2000,0509,Mazateco,,015,sin,42.0
+2000,0509,Mazateco,,999,sin,38.0
+2000,0509,Mazateco,,024,sin,22.0
+2000,0509,Mazateco,,017,sin,17.0
+2000,0509,Mazateco,,014,sin,1.0
+2000,0509,Mazateco,mazateco de Puebla,021,unica,267.0
+2000,0509,Mazateco,mazateco del norte,030,unica,240.0
+2000,0511,Chocholteco,chocholteco del sur,020,estimada,41.9
+2000,0511,Chocholteco,chocholteco del este,020,estimada,33.9
+2000,0511,Chocholteco,chocholteco del oeste,020,estimada,13.2
+2000,0511,Chocholteco,chocholteco del oeste,020,exacta,11.0
+2000,0511,Chocholteco,,021,sin,18.0
+2000,0511,Chocholteco,,007,sin,16.0
+2000,0511,Chocholteco,,009,sin,8.0
+2000,0512,Popoloca,popoloca de oriente,021,estimada,121.7
+2000,0512,Popoloca,popoloca del norte,021,estimada,89.2
+2000,0512,Popoloca,popoloca del centro,021,estimada,12.0
+2000,0512,Popoloca,popoloca del poniente,021,estimada,5.1
+2000,0512,Popoloca,,030,sin,14.0
+2000,0513,Zapoteco,zapoteco de la planicie costera,020,estimada,3324.2
+2000,0513,Zapoteco,zapoteco de la costa central,020,estimada,1134.6
+2000,0513,Zapoteco,"zapoteco de Valles, del norte central",020,estimada,717.3
+2000,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,estimada,629.8
+2000,0513,Zapoteco,zapoteco de la costa oeste,020,estimada,406.6
+2000,0513,Zapoteco,"zapoteco de Valles, del este medio",020,estimada,360.0
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, central",020,estimada,333.7
+2000,0513,Zapoteco,"zapoteco serrano, del noroeste bajo",020,estimada,325.2
+2000,0513,Zapoteco,"zapoteco de Valles, del este central",020,estimada,259.3
+2000,0513,Zapoteco,zapoteco de la costa noreste,020,estimada,238.8
+2000,0513,Zapoteco,zapoteco de Texmelucan,020,estimada,236.3
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, noreste",020,estimada,224.8
+2000,0513,Zapoteco,"zapoteco de Valles, del noreste",020,estimada,158.3
+2000,0513,Zapoteco,"zapoteco de Valles, del suroeste central",020,estimada,137.9
+2000,0513,Zapoteco,zapoteco de Petapa,020,estimada,136.7
+2000,0513,Zapoteco,"zapoteco de Valles, noroeste",020,estimada,126.2
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste alto",020,estimada,125.5
+2000,0513,Zapoteco,"zapoteco serrano, del sureste",020,estimada,104.2
+2000,0513,Zapoteco,zapoteco de Valles del sur,020,estimada,98.3
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, oeste bajo",020,estimada,98.1
+2000,0513,Zapoteco,"zapoteco serrano, bajo",020,estimada,96.4
+2000,0513,Zapoteco,"zapoteco de Valles, del noroeste bajo",020,estimada,88.0
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, del este bajo",020,estimada,87.9
+2000,0513,Zapoteco,zapoteco de San Vicente Coatlán,020,estimada,87.3
+2000,0513,Zapoteco,"zapoteco de la montaña del Istmo, bajo",020,estimada,84.8
+2000,0513,Zapoteco,"zapoteco de Valles, del suroeste medio",020,estimada,81.5
+2000,0513,Zapoteco,"zapoteco de Valles, de suroeste alto",020,estimada,78.8
+2000,0513,Zapoteco,"zapoteco de Valles, del centro bajo",020,estimada,76.0
+2000,0513,Zapoteco,zapoteco de la costa este,020,estimada,74.8
+2000,0513,Zapoteco,"zapoteco de Sierra sur, del noreste alto",020,estimada,74.4
+2000,0513,Zapoteco,"zapoteco serrano, del oeste",020,estimada,73.1
+2000,0513,Zapoteco,"zapoteco de la montaña del Istmo, alto",020,estimada,70.6
+2000,0513,Zapoteco,"zapoteco serrano, del sureste bajo",020,estimada,66.1
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,estimada,65.4
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, del norte",020,estimada,65.3
+2000,0513,Zapoteco,zapoteco de San Baltazar Chichicapam,020,estimada,61.1
+2000,0513,Zapoteco,zapoteco de San Miguel Aloápam,020,estimada,57.6
+2000,0513,Zapoteco,"zapoteco serrano, del sureste alto",020,estimada,51.9
+2000,0513,Zapoteco,"zapoteco de Valles, del oeste central",020,estimada,51.6
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste",020,estimada,50.4
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste alto",020,estimada,46.5
+2000,0513,Zapoteco,"zapoteco serrano, del sureste medio",020,estimada,46.5
+2000,0513,Zapoteco,zapoteco de Santa María Quiegolani,020,estimada,45.6
+2000,0513,Zapoteco,zapoteco de Mixtepec,020,estimada,43.7
+2000,0513,Zapoteco,zapoteco del oeste de Tuxtepec,020,estimada,39.9
+2000,0513,Zapoteco,"zapoteco serrano, del oeste medio",020,estimada,36.9
+2000,0513,Zapoteco,zapoteco de Santiago Yaveo,020,estimada,32.9
+2000,0513,Zapoteco,zapoteco de Quiavicuzas,020,estimada,32.2
+2000,0513,Zapoteco,"zapoteco de Valles, norte",020,estimada,31.0
+2000,0513,Zapoteco,"zapoteco serrano, del este",020,estimada,30.4
+2000,0513,Zapoteco,"zapoteco serrano, del noroeste",020,estimada,29.2
+2000,0513,Zapoteco,zapoteco de Santiago Laxopa,020,estimada,28.6
+2000,0513,Zapoteco,zapoteco de San Antonino el Alto,020,estimada,26.7
+2000,0513,Zapoteco,zapoteco de Santa María Temaxcalapa,020,estimada,24.0
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste bajo",020,estimada,18.7
+2000,0513,Zapoteco,zapoteco de Zimatlán de Álvarez,020,estimada,13.0
+2000,0513,Zapoteco,"zapoteco de Valles, oeste",020,estimada,9.5
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste bajo",020,estimada,8.3
+2000,0513,Zapoteco,"zapoteco de Valles, del centro",020,estimada,6.2
+2000,0513,Zapoteco,zapoteco de San Bartolo Yautepec,020,estimada,4.5
+2000,0513,Zapoteco,zapoteco de San Felipe Tejalápam,020,estimada,2.3
+2000,0513,Zapoteco,zapoteco de Asunción Tlacolulita,020,estimada,1.3
+2000,0513,Zapoteco,zapoteco de la planicie costera,020,exacta,310.0
+2000,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,exacta,290.0
+2000,0513,Zapoteco,"zapoteco de Valles, del norte central",020,exacta,82.0
+2000,0513,Zapoteco,"zapoteco serrano, del oeste",020,exacta,40.0
+2000,0513,Zapoteco,zapoteco de la costa central,020,exacta,19.0
+2000,0513,Zapoteco,"zapoteco de la Sierra sur, central",020,exacta,14.0
+2000,0513,Zapoteco,"zapoteco de Valles, del suroeste medio",020,exacta,12.0
+2000,0513,Zapoteco,zapoteco de Petapa,020,exacta,8.0
+2000,0513,Zapoteco,zapoteco de la costa noreste,020,exacta,8.0
+2000,0513,Zapoteco,"zapoteco serrano, del sureste alto",020,exacta,7.0
+2000,0513,Zapoteco,"zapoteco de Valles, del noreste",020,exacta,2.0
+2000,0513,Zapoteco,,030,sin,831.0
+2000,0513,Zapoteco,,009,sin,784.0
+2000,0513,Zapoteco,,015,sin,190.0
+2000,0513,Zapoteco,,021,sin,108.0
+2000,0513,Zapoteco,,007,sin,69.0
+2000,0513,Zapoteco,,013,sin,58.0
+2000,0513,Zapoteco,,016,sin,35.0
+2000,0513,Zapoteco,,999,sin,35.0
+2000,0513,Zapoteco,,012,sin,33.0
+2000,0513,Zapoteco,,032,sin,29.0
+2000,0513,Zapoteco,,025,sin,19.0
+2000,0513,Zapoteco,,022,sin,15.0
+2000,0513,Zapoteco,,011,sin,14.0
+2000,0513,Zapoteco,,024,sin,13.0
+2000,0513,Zapoteco,,031,sin,11.0
+2000,0513,Zapoteco,,335,sin,3.0
+2000,0513,Zapoteco,,313,sin,1.0
+2000,0514,Chatino,chatino central,020,estimada,109.7
+2000,0514,Chatino,chatino occidental alto,020,estimada,75.1
+2000,0514,Chatino,chatino oriental bajo,020,estimada,72.8
+2000,0514,Chatino,chatino occidental bajo,020,estimada,20.2
+2000,0514,Chatino,chatino oriental alto,020,estimada,11.1
+2000,0514,Chatino,chatino de Zacatepec,020,estimada,6.1
+2000,0514,Chatino,chatino central,020,exacta,15.0
+2000,0515,Amuzgo,amuzgo del norte,012,estimada,117.0
+2000,0515,Amuzgo,amuzgo alto del este,020,estimada,115.9
+2000,0515,Amuzgo,amuzgo del sur,012,estimada,74.0
+2000,0515,Amuzgo,amuzgo bajo del este,020,estimada,17.1
+2000,0515,Amuzgo,amuzgo del norte,012,exacta,47.0
+2000,0515,Amuzgo,amuzgo del sur,012,exacta,10.0
+2000,0515,Amuzgo,,009,sin,16.0
+2000,0515,Amuzgo,,026,sin,10.0
+2000,0516,Mixteco,mixteco de Oaxaca de la costa central,020,estimada,1188.5
+2000,0516,Mixteco,mixteco del oeste,020,estimada,1173.3
+2000,0516,Mixteco,mixteco del oeste alto,020,estimada,834.7
+2000,0516,Mixteco,mixteco del suroeste central,020,estimada,810.3
+2000,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,021,estimada,661.4
+2000,0516,Mixteco,mixteco de Ixtayutla,020,estimada,543.4
+2000,0516,Mixteco,mixteco de Oaxaca de la costa oeste central,020,estimada,511.2
+2000,0516,Mixteco,mixteco bajo de Valles,020,estimada,482.9
+2000,0516,Mixteco,mixteco del oeste de la costa,020,estimada,443.1
+2000,0516,Mixteco,mixteco del norte bajo,020,estimada,422.2
+2000,0516,Mixteco,mixteco de Santa María Peñoles,020,estimada,395.6
+2000,0516,Mixteco,mixteco de Sierra sur noroeste,020,estimada,392.4
+2000,0516,Mixteco,mixteco de Santiago Amoltepec,020,estimada,381.4
+2000,0516,Mixteco,mixteco del suroeste,020,estimada,366.7
+2000,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,estimada,344.5
+2000,0516,Mixteco,mixteco de Oaxaca de la costa noroeste,020,estimada,341.0
+2000,0516,Mixteco,mixteco del noreste,020,estimada,338.9
+2000,0516,Mixteco,mixteco del noroeste,020,estimada,315.5
+2000,0516,Mixteco,mixteco del suroeste de Puebla,021,estimada,311.6
+2000,0516,Mixteco,mixteco del sur bajo,020,estimada,297.9
+2000,0516,Mixteco,mixteco de Ñumi,020,estimada,277.8
+2000,0516,Mixteco,mixteco central,020,estimada,226.8
+2000,0516,Mixteco,mixteco del noroeste medio,020,estimada,209.9
+2000,0516,Mixteco,mixteco del sur medio,020,estimada,180.9
+2000,0516,Mixteco,mixteco del este,020,estimada,174.9
+2000,0516,Mixteco,mixteco de Santa María Huazolotitlán,020,estimada,171.0
+2000,0516,Mixteco,mixteco de Santa Lucía Monteverde,020,estimada,168.4
+2000,0516,Mixteco,mixteco de Sierra sur oeste,020,estimada,164.1
+2000,0516,Mixteco,mixteco de San Pablo Tijaltepec,020,estimada,133.9
+2000,0516,Mixteco,mixteco de Tlaltempan,021,estimada,118.7
+2000,0516,Mixteco,mixteco de Cañada bajo,020,estimada,117.6
+2000,0516,Mixteco,mixteco de Zapotitlán,021,estimada,115.3
+2000,0516,Mixteco,mixteco del este central,020,estimada,113.3
+2000,0516,Mixteco,mixteco de Yosondúa,020,estimada,96.9
+2000,0516,Mixteco,mixteco de San Mateo Peñasco,020,estimada,93.7
+2000,0516,Mixteco,mixteco de Guerrero del norte,012,estimada,80.8
+2000,0516,Mixteco,mixteco de Coatzóspam,020,estimada,77.1
+2000,0516,Mixteco,mixteco de San Antonio Sinicahua,020,estimada,77.1
+2000,0516,Mixteco,mixteco de Santo Domingo Tonalá,020,estimada,75.9
+2000,0516,Mixteco,mixteco de Santa María Yosoyúa,020,estimada,73.0
+2000,0516,Mixteco,mixteco de San Juan Tamazola,020,estimada,71.6
+2000,0516,Mixteco,mixteco de Cañada central,020,estimada,71.5
+2000,0516,Mixteco,mixteco de Villa de Tututepec,020,estimada,70.2
+2000,0516,Mixteco,mixteco de oeste central,020,estimada,68.1
+2000,0516,Mixteco,mixteco de Mitlatongo,020,estimada,62.2
+2000,0516,Mixteco,mixteco de San Luis Acatlán,012,estimada,59.3
+2000,0516,Mixteco,mixteco de San Antonio Huitepec,020,estimada,55.4
+2000,0516,Mixteco,mixteco de Santa Cruz Itundujia,020,estimada,55.4
+2000,0516,Mixteco,mixteco de Yosonotú,020,estimada,53.8
+2000,0516,Mixteco,mixteco del sureste central,020,estimada,53.0
+2000,0516,Mixteco,mixteco de Ayutla,012,estimada,52.5
+2000,0516,Mixteco,mixteco de Yutanduchi de Guerrero,020,estimada,49.5
+2000,0516,Mixteco,mixteco de Tlacoachistlahuaca,012,estimada,44.2
+2000,0516,Mixteco,mixteco de Coapanatoyac,012,estimada,39.8
+2000,0516,Mixteco,mixteco de San Miguel Piedras,020,estimada,37.6
+2000,0516,Mixteco,mixteco alto de Valles,020,estimada,33.4
+2000,0516,Mixteco,mixteco de San Agustín Tlacotepec,020,estimada,31.0
+2000,0516,Mixteco,mixteco de Chochoapa,012,estimada,30.5
+2000,0516,Mixteco,mixteco de Guerrero del este medio,012,estimada,30.5
+2000,0516,Mixteco,mixteco de Santa Inés de Zaragoza,020,estimada,26.1
+2000,0516,Mixteco,mixteco de San Pedro Molinos,020,estimada,23.2
+2000,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,020,estimada,22.9
+2000,0516,Mixteco,mixteco de Guerrero del noreste central,012,estimada,18.0
+2000,0516,Mixteco,mixteco de Tlahuapa,012,estimada,18.0
+2000,0516,Mixteco,mixteco de Xochapa,012,estimada,18.0
+2000,0516,Mixteco,mixteco de Xonacatlán,012,estimada,18.0
+2000,0516,Mixteco,mixteco de Guerrero central alto,012,estimada,16.8
+2000,0516,Mixteco,mixteco de San Pedro Tidaá,020,estimada,16.7
+2000,0516,Mixteco,mixteco de San Juan Teita,020,estimada,16.0
+2000,0516,Mixteco,mixteco del noreste bajo,020,estimada,14.5
+2000,0516,Mixteco,mixteco de Guerrero de la costa este,012,estimada,12.7
+2000,0516,Mixteco,mixteco de Atlamajalcingo,012,estimada,10.4
+2000,0516,Mixteco,mixteco de Guerrero del norte central,012,estimada,9.7
+2000,0516,Mixteco,mixteco central de Guerrero,012,estimada,7.0
+2000,0516,Mixteco,mixteco de Xochistlahuaca,012,estimada,6.5
+2000,0516,Mixteco,mixteco de Igualapa,012,estimada,6.0
+2000,0516,Mixteco,mixteco de Tlalixtaquilla de Maldonado,012,estimada,5.4
+2000,0516,Mixteco,mixteco de Guerrero de la costa occidental,012,estimada,5.1
+2000,0516,Mixteco,mixteco de Guerrero de la costa central,012,estimada,0.8
+2000,0516,Mixteco,mixteco del suroeste central,020,exacta,249.0
+2000,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,exacta,119.0
+2000,0516,Mixteco,mixteco de Santa María Huazolotitlán,020,exacta,80.0
+2000,0516,Mixteco,mixteco del sur medio,020,exacta,69.0
+2000,0516,Mixteco,mixteco de Yosondúa,020,exacta,62.0
+2000,0516,Mixteco,mixteco del noreste,020,exacta,60.0
+2000,0516,Mixteco,mixteco de Guerrero del norte,012,exacta,36.0
+2000,0516,Mixteco,mixteco del suroeste,020,exacta,36.0
+2000,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,021,exacta,35.0
+2000,0516,Mixteco,mixteco central,020,exacta,26.0
+2000,0516,Mixteco,mixteco bajo de Valles,020,exacta,26.0
+2000,0516,Mixteco,mixteco de Santa Lucía Monteverde,020,exacta,22.0
+2000,0516,Mixteco,mixteco del noroeste,020,exacta,22.0
+2000,0516,Mixteco,mixteco de Oaxaca de la costa central,020,exacta,22.0
+2000,0516,Mixteco,mixteco de Cañada central,020,exacta,20.0
+2000,0516,Mixteco,mixteco de San Pedro Molinos,020,exacta,20.0
+2000,0516,Mixteco,mixteco de Oaxaca de la costa noroeste,020,exacta,18.0
+2000,0516,Mixteco,mixteco de Cañada bajo,020,exacta,17.0
+2000,0516,Mixteco,mixteco de Oaxaca de la costa oeste central,020,exacta,13.0
+2000,0516,Mixteco,mixteco del este,020,exacta,10.0
+2000,0516,Mixteco,mixteco de San Juan Tamazola,020,exacta,9.0
+2000,0516,Mixteco,mixteco del oeste de la costa,020,exacta,8.0
+2000,0516,Mixteco,mixteco del este central,020,exacta,7.0
+2000,0516,Mixteco,mixteco de oeste central,020,exacta,6.0
+2000,0516,Mixteco,mixteco del sur bajo,020,exacta,3.0
+2000,0516,Mixteco,mixteco de Santa Cruz Itundujia,020,exacta,1.0
+2000,0516,Mixteco,,009,sin,542.0
+2000,0516,Mixteco,,015,sin,348.0
+2000,0516,Mixteco,,030,sin,113.0
+2000,0516,Mixteco,,013,sin,39.0
+2000,0516,Mixteco,,024,sin,24.0
+2000,0516,Mixteco,,436,sin,22.0
+2000,0516,Mixteco,,999,sin,22.0
+2000,0516,Mixteco,,016,sin,11.0
+2000,0516,Mixteco,,017,sin,11.0
+2000,0516,Mixteco,,415,sin,8.0
+2000,0517,Cuicateco,cuicateco del centro,020,estimada,383.6
+2000,0517,Cuicateco,cuicateco del norte,020,estimada,42.7
+2000,0517,Cuicateco,cuicateco del oriente,020,estimada,42.7
+2000,0517,Cuicateco,cuicateco del centro,020,exacta,60.0
+2000,0518,Triqui,triqui de San Juan Copala,020,estimada,149.3
+2000,0518,Triqui,triqui de la baja,020,estimada,38.3
+2000,0518,Triqui,triqui de la alta,020,estimada,30.9
+2000,0518,Triqui,triqui de la media,020,estimada,23.6
+2000,0518,Triqui,,009,sin,27.0
+2000,0601,Huasteco,huasteco del centro,030,estimada,440.2
+2000,0601,Huasteco,huasteco de oriente,030,estimada,34.8
+2000,0601,Huasteco,huasteco del occidente,024,exacta,60.0
+2000,0601,Huasteco,huasteco del centro,030,exacta,40.0
+2000,0601,Huasteco,huasteco de oriente,030,exacta,16.0
+2000,0601,Huasteco,,009,sin,27.0
+2000,0601,Huasteco,,016,sin,19.0
+2000,0601,Huasteco,,020,sin,18.0
+2000,0601,Huasteco,,013,sin,14.0
+2000,0601,Huasteco,,028,sin,7.0
+2000,0601,Huasteco,huasteco del occidente,024,unica,565.0
+2000,0602,Maya,maya,031,exacta,34.0
+2000,0602,Maya,maya,004,exacta,3.0
+2000,0602,Maya,maya,023,exacta,1.0
+2000,0602,Maya,,009,sin,327.0
+2000,0602,Maya,,007,sin,23.0
+2000,0602,Maya,,017,sin,14.0
+2000,0602,Maya,,020,sin,14.0
+2000,0602,Maya,,008,sin,13.0
+2000,0602,Maya,,030,sin,13.0
+2000,0602,Maya,,225,sin,13.0
+2000,0602,Maya,,999,sin,12.0
+2000,0602,Maya,,019,sin,11.0
+2000,0602,Maya,,027,sin,10.0
+2000,0602,Maya,,013,sin,9.0
+2000,0602,Maya,,005,sin,8.0
+2000,0602,Maya,,011,sin,7.0
+2000,0602,Maya,,025,sin,7.0
+2000,0602,Maya,,015,sin,4.0
+2000,0602,Maya,maya,031,unica,1149.0
+2000,0602,Maya,maya,004,unica,153.0
+2000,0604,Ch'ol,ch'ol del noroeste,007,estimada,144.6
+2000,0604,Ch'ol,ch'ol del sureste,007,estimada,35.4
+2000,0604,Ch'ol,ch'ol del noroeste,007,exacta,91.0
+2000,0604,Ch'ol,,015,sin,25.0
+2000,0606,Tseltal,tseltal del norte,007,estimada,196.0
+2000,0606,Tseltal,tseltal del occidente,007,estimada,127.1
+2000,0606,Tseltal,tseltal del oriente,007,estimada,68.1
+2000,0606,Tseltal,tseltal del sur,007,estimada,23.8
+2000,0606,Tseltal,tseltal del occidente,007,exacta,32.0
+2000,0606,Tseltal,tseltal del oriente,007,exacta,14.0
+2000,0606,Tseltal,tseltal del sur,007,exacta,7.0
+2000,0606,Tseltal,,009,sin,65.0
+2000,0606,Tseltal,,015,sin,18.0
+2000,0606,Tseltal,,029,sin,14.0
+2000,0606,Tseltal,,005,sin,10.0
+2000,0606,Tseltal,,014,sin,10.0
+2000,0606,Tseltal,,030,sin,7.0
+2000,0607,Tsotsil,tsotsil del norte alto,007,estimada,109.1
+2000,0607,Tsotsil,tsotsil del centro,007,estimada,73.4
+2000,0607,Tsotsil,tsotsil del noroeste,007,estimada,61.4
+2000,0607,Tsotsil,tsotsil de los Altos,007,estimada,37.4
+2000,0607,Tsotsil,tsotsil del este bajo,007,estimada,35.1
+2000,0607,Tsotsil,tsotsil del este alto,007,estimada,8.9
+2000,0607,Tsotsil,tsotsil del norte bajo,007,estimada,5.7
+2000,0607,Tsotsil,tsotsil de los Altos,007,exacta,13.0
+2000,0607,Tsotsil,,009,sin,93.0
+2000,0607,Tsotsil,,015,sin,8.0
+2000,0608,Q'anjob'al,,001,sin,6.0
+2000,0608,Q'anjob'al,Q'anjob'al,007,unica,19.0
+2000,0612,Chuj,,007,sin,14.0
+2000,0613,Tojolabal,tojolabal,007,unica,35.0
+2000,0614,Q'eqchi',,225,sin,20.0
+2000,0614,Q'eqchi',,237,sin,7.0
+2000,0618,Mam,Mam de la Sierra,007,estimada,4.7
+2000,0618,Mam,Mam del Soconusco,007,estimada,4.7
+2000,0618,Mam,Mam de la frontera,007,estimada,4.5
+2000,0701,Totonaco,totonaco central del sur,021,estimada,2204.6
+2000,0701,Totonaco,totonaco de la costa,030,estimada,896.0
+2000,0701,Totonaco,totonaco central del sur,030,estimada,884.8
+2000,0701,Totonaco,totonaco central alto,030,estimada,286.0
+2000,0701,Totonaco,totonaco central del norte,021,estimada,267.5
+2000,0701,Totonaco,totonaco del río Necaxa,021,estimada,126.1
+2000,0701,Totonaco,totonaco central del norte,030,estimada,44.3
+2000,0701,Totonaco,totonaco del cerro Xinolatépetl,021,estimada,8.9
+2000,0701,Totonaco,totonaco del sureste,030,estimada,5.0
+2000,0701,Totonaco,totonaco de la costa,030,exacta,245.0
+2000,0701,Totonaco,totonaco central del sur,021,exacta,109.0
+2000,0701,Totonaco,totonaco central del norte,021,exacta,85.0
+2000,0701,Totonaco,totonaco central del sur,030,exacta,82.0
+2000,0701,Totonaco,,009,sin,173.0
+2000,0701,Totonaco,,015,sin,55.0
+2000,0701,Totonaco,,029,sin,24.0
+2000,0701,Totonaco,,020,sin,23.0
+2000,0701,Totonaco,,012,sin,9.0
+2000,0701,Totonaco,,016,sin,8.0
+2000,0701,Totonaco,,005,sin,7.0
+2000,0701,Totonaco,,013,sin,7.0
+2000,0702,Tepehua,tepehua del oeste,030,estimada,48.2
+2000,0702,Tepehua,tepehua del norte,030,estimada,43.8
+2000,0702,Tepehua,tepehua del sur,013,exacta,52.0
+2000,0702,Tepehua,,009,sin,1.0
+2000,0702,Tepehua,tepehua del sur,013,unica,97.0
+2000,0702,Tepehua,tepehua del sur,021,unica,3.0
+2000,0801,Tarasco (purépecha),purépecha,016,exacta,139.0
+2000,0801,Tarasco (purépecha),,009,sin,95.0
+2000,0801,Tarasco (purépecha),,021,sin,22.0
+2000,0801,Tarasco (purépecha),,012,sin,21.0
+2000,0801,Tarasco (purépecha),,015,sin,20.0
+2000,0801,Tarasco (purépecha),,026,sin,13.0
+2000,0801,Tarasco (purépecha),,032,sin,10.0
+2000,0801,Tarasco (purépecha),,030,sin,6.0
+2000,0801,Tarasco (purépecha),purépecha,016,unica,1985.0
+2000,0901,Mixe,mixe bajo,020,estimada,880.3
+2000,0901,Mixe,mixe medio del este,020,estimada,725.9
+2000,0901,Mixe,mixe alto del centro,020,estimada,444.8
+2000,0901,Mixe,mixe alto del sur,020,estimada,305.0
+2000,0901,Mixe,mixe alto del norte,020,estimada,275.5
+2000,0901,Mixe,mixe medio del oeste,020,estimada,100.5
+2000,0901,Mixe,mixe alto del centro,020,exacta,87.0
+2000,0901,Mixe,mixe bajo,020,exacta,74.0
+2000,0901,Mixe,mixe medio del este,020,exacta,60.0
+2000,0901,Mixe,mixe alto del norte,020,exacta,6.0
+2000,0901,Mixe,,009,sin,125.0
+2000,0901,Mixe,,021,sin,31.0
+2000,0901,Mixe,,030,sin,16.0
+2000,0901,Mixe,,999,sin,13.0
+2000,0907,Zoque,zoque del norte bajo,007,estimada,11.6
+2000,0907,Zoque,zoque del norte alto,007,estimada,8.0
+2000,0907,Zoque,zoque del este,007,estimada,5.4
+2000,0907,Zoque,zoque del centro,007,estimada,4.4
+2000,0907,Zoque,zoque del noroeste,007,estimada,3.0
+2000,0907,Zoque,zoque del sureste,007,estimada,1.8
+2000,0907,Zoque,zoque del sur,007,estimada,0.8
+2000,0907,Zoque,,020,sin,12.0
+2000,0907,Zoque,,009,sin,7.0
+2000,1101,Huave,huave del oeste,020,estimada,63.3
+2000,1101,Huave,huave del este,020,estimada,15.7
+2000,9000,No especificado,,009,sin,27787.0
+2000,9000,No especificado,,011,sin,618.0
+2000,9000,No especificado,,999,sin,248.0
+2000,9000,No especificado,,014,sin,232.0
+2000,9000,No especificado,,030,sin,170.0
+2000,9000,No especificado,,017,sin,134.0
+2000,9000,No especificado,,415,sin,121.0
+2000,9000,No especificado,,015,sin,120.0
+2000,9000,No especificado,,020,sin,87.0
+2000,9000,No especificado,,210,sin,72.0
+2000,9000,No especificado,,027,sin,63.0
+2000,9000,No especificado,,221,sin,59.0
+2000,9000,No especificado,,022,sin,57.0
+2000,9000,No especificado,,013,sin,56.0
+2000,9000,No especificado,,026,sin,44.0
+2000,9000,No especificado,,439,sin,34.0
+2000,9000,No especificado,,021,sin,30.0
+2000,9000,No especificado,,016,sin,27.0
+2000,9000,No especificado,,010,sin,25.0
+2000,9000,No especificado,,402,sin,23.0
+2000,9000,No especificado,,012,sin,21.0
+2000,9000,No especificado,,225,sin,20.0
+2000,9000,No especificado,,025,sin,19.0
+2000,9000,No especificado,,208,sin,19.0
+2000,9000,No especificado,,311,sin,19.0
+2000,9000,No especificado,,236,sin,18.0
+2000,9000,No especificado,,330,sin,17.0
+2000,9000,No especificado,,314,sin,14.0
+2000,9000,No especificado,,214,sin,13.0
+2000,9000,No especificado,,002,sin,12.0
+2000,9000,No especificado,,211,sin,12.0
+2000,9000,No especificado,,024,sin,11.0
+2000,9000,No especificado,,004,sin,10.0
+2000,9000,No especificado,,229,sin,10.0
+2000,9000,No especificado,,217,sin,9.0
+2000,9000,No especificado,,237,sin,2.0
+2000,9000,No especificado,,028,sin,1.0
+2000,9000,No especificado,,220,sin,1.0
+2000,9010,Chontal insuficientemente especificado,,020,sin,98.0
+2000,9010,Chontal insuficientemente especificado,,027,sin,24.0
+2000,9010,Chontal insuficientemente especificado,,007,sin,20.0
+2000,9020,Tepehuano insuficientemente especificado,,010,sin,15.0
+2000,9020,Tepehuano insuficientemente especificado,,013,sin,13.0
+2000,9020,Tepehuano insuficientemente especificado,,030,sin,8.0
+2010,0205,Tarahumara,tarahumara del centro,008,estimada,41.9
+2010,0205,Tarahumara,tarahumara de Cumbres,008,estimada,24.5
+2010,0205,Tarahumara,tarahumara del norte,008,estimada,18.8
+2010,0205,Tarahumara,tarahumara del oeste,008,estimada,10.5
+2010,0205,Tarahumara,tarahumara del sur,008,estimada,7.3
+2010,0205,Tarahumara,,012,sin,78.0
+2010,0205,Tarahumara,,009,sin,65.0
+2010,0207,Yaqui,yaqui,026,exacta,11.0
+2010,0207,Yaqui,yaqui,026,unica,10.0
+2010,0208,Mayo,mayo,026,unica,49.0
+2010,0208,Mayo,mayo,025,unica,46.0
+2010,0209,Cora,cora tereseño,018,estimada,5.4
+2010,0209,Cora,cora de Dolores,018,estimada,5.0
+2010,0209,Cora,cora de Jesús María,018,estimada,5.0
+2010,0209,Cora,cora francisqueño,018,estimada,5.0
+2010,0209,Cora,cora meseño,018,estimada,5.0
+2010,0209,Cora,cora corapeño,018,estimada,2.7
+2010,0209,Cora,cora de Rosarito,018,estimada,2.7
+2010,0209,Cora,cora presideño,018,estimada,1.3
+2010,0210,Huichol,,007,sin,29.0
+2010,0210,Huichol,,013,sin,29.0
+2010,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,estimada,5584.6
+2010,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,estimada,4960.0
+2010,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,estimada,3953.7
+2010,0211,Náhuatl,náhuatl central de Veracruz,030,estimada,2804.0
+2010,0211,Náhuatl,náhuatl del noroeste central,021,estimada,2306.4
+2010,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,estimada,2100.7
+2010,0211,Náhuatl,náhuatl del centro de Puebla,021,estimada,1938.2
+2010,0211,Náhuatl,"náhuatl de la Sierra negra, sur",021,estimada,1261.4
+2010,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,estimada,568.2
+2010,0211,Náhuatl,náhuatl del Istmo,030,estimada,524.5
+2010,0211,Náhuatl,náhuatl del noroeste central,013,estimada,428.4
+2010,0211,Náhuatl,mexicano del centro alto,015,estimada,276.0
+2010,0211,Náhuatl,náhuatl del Istmo bajo,030,estimada,175.8
+2010,0211,Náhuatl,mexicano de Puente de Ixtla,017,estimada,161.4
+2010,0211,Náhuatl,mexicano del oriente de Puebla,021,estimada,135.3
+2010,0211,Náhuatl,mexicano del centro,015,estimada,119.6
+2010,0211,Náhuatl,mexicano de Temixco,017,estimada,104.7
+2010,0211,Náhuatl,náhuatl alto del norte de Puebla,021,estimada,56.7
+2010,0211,Náhuatl,mexicano central bajo,017,estimada,30.0
+2010,0211,Náhuatl,mexicano de Guerrero,021,estimada,26.2
+2010,0211,Náhuatl,mexicano de Tetela del Volcán,017,estimada,16.0
+2010,0211,Náhuatl,mexicano del centro bajo,015,estimada,0.4
+2010,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,exacta,853.0
+2010,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,exacta,580.0
+2010,0211,Náhuatl,náhuatl del noroeste central,021,exacta,513.0
+2010,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,exacta,376.0
+2010,0211,Náhuatl,náhuatl central de Veracruz,030,exacta,268.0
+2010,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,exacta,256.0
+2010,0211,Náhuatl,náhuatl del centro de Puebla,021,exacta,246.0
+2010,0211,Náhuatl,náhuatl de Oaxaca,020,exacta,230.0
+2010,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,exacta,118.0
+2010,0211,Náhuatl,mexicano del centro alto,015,exacta,95.0
+2010,0211,Náhuatl,náhuatl del Istmo,030,exacta,56.0
+2010,0211,Náhuatl,náhuatl de la Huasteca potosina,024,exacta,41.0
+2010,0211,Náhuatl,mexicano de Guerrero,012,exacta,31.0
+2010,0211,Náhuatl,mexicano del oriente de Puebla,021,exacta,18.0
+2010,0211,Náhuatl,náhuatl del noroeste central,013,exacta,14.0
+2010,0211,Náhuatl,"náhuatl de la Sierra negra, sur",021,exacta,8.0
+2010,0211,Náhuatl,,009,sin,8294.0
+2010,0211,Náhuatl,,011,sin,129.0
+2010,0211,Náhuatl,,025,sin,32.0
+2010,0211,Náhuatl,,002,sin,22.0
+2010,0211,Náhuatl,,900,sin,21.0
+2010,0211,Náhuatl,,008,sin,17.0
+2010,0211,Náhuatl,,007,sin,12.0
+2010,0211,Náhuatl,,028,sin,11.0
+2010,0211,Náhuatl,,032,sin,10.0
+2010,0211,Náhuatl,,019,sin,9.0
+2010,0211,Náhuatl,mexicano de Guerrero,012,unica,1961.0
+2010,0211,Náhuatl,náhuatl de la Huasteca potosina,024,unica,1493.0
+2010,0211,Náhuatl,náhuatl de Oaxaca,020,unica,1290.0
+2010,0211,Náhuatl,mexicano del oriente central,029,unica,414.0
+2010,0211,Náhuatl,mexicano de occidente,014,unica,168.0
+2010,0211,Náhuatl,mexicano central de occidente,016,unica,131.0
+2010,0211,Náhuatl,mexicano del oriente,027,unica,48.0
+2010,0211,Náhuatl,mexicano bajo de occidente,006,unica,3.0
+2010,0305,Kiliwa,,900,sin,15.0
+2010,0501,Otomí,otomí del Valle del Mezquital,013,estimada,3840.1
+2010,0501,Otomí,otomí del noroeste,022,estimada,1703.0
+2010,0501,Otomí,otomí de la Sierra,013,estimada,734.3
+2010,0501,Otomí,otomí bajo del noroeste,022,estimada,580.0
+2010,0501,Otomí,otomí del oeste del Valle del Mezquital,013,estimada,153.6
+2010,0501,Otomí,otomí del centro,015,exacta,302.0
+2010,0501,Otomí,otomí del Valle del Mezquital,013,exacta,216.0
+2010,0501,Otomí,otomí del noroeste,022,exacta,79.0
+2010,0501,Otomí,,009,sin,2224.0
+2010,0501,Otomí,,020,sin,736.0
+2010,0501,Otomí,,024,sin,61.0
+2010,0501,Otomí,,017,sin,48.0
+2010,0501,Otomí,,010,sin,25.0
+2010,0501,Otomí,,007,sin,18.0
+2010,0501,Otomí,,900,sin,6.0
+2010,0501,Otomí,,012,sin,5.0
+2010,0501,Otomí,otomí del centro,015,unica,4411.0
+2010,0501,Otomí,otomí de la Sierra,030,unica,614.0
+2010,0501,Otomí,otomí de la Sierra,021,unica,538.0
+2010,0501,Otomí,otomí de Ixtenco,029,unica,119.0
+2010,0501,Otomí,otomí del noroeste,011,unica,46.0
+2010,0501,Otomí,otomí del oeste,016,unica,42.0
+2010,0502,Mazahua,mazahua de oriente,015,estimada,5052.3
+2010,0502,Mazahua,mazahua de occidente,015,estimada,1239.7
+2010,0502,Mazahua,mazahua de oriente,016,estimada,656.0
+2010,0502,Mazahua,mazahua de occidente,016,estimada,613.0
+2010,0502,Mazahua,mazahua de oriente,015,exacta,282.0
+2010,0502,Mazahua,,009,sin,1149.0
+2010,0502,Mazahua,,020,sin,117.0
+2010,0502,Mazahua,,022,sin,86.0
+2010,0502,Mazahua,,021,sin,60.0
+2010,0502,Mazahua,,010,sin,29.0
+2010,0502,Mazahua,,900,sin,25.0
+2010,0502,Mazahua,,013,sin,21.0
+2010,0503,Matlatzinca,,009,sin,13.0
+2010,0503,Matlatzinca,matlatzinca,015,unica,203.0
+2010,0506,Chichimeco jonaz,,020,sin,10.0
+2010,0507,Chinanteco,chinanteco del norte,020,estimada,1115.8
+2010,0507,Chinanteco,chinanteco central,020,estimada,574.1
+2010,0507,Chinanteco,chinanteco del sureste bajo,020,estimada,332.0
+2010,0507,Chinanteco,chinanteco del sureste medio,020,estimada,266.8
+2010,0507,Chinanteco,chinanteco de la Sierra,020,estimada,216.9
+2010,0507,Chinanteco,chinanteco del oeste,020,estimada,114.8
+2010,0507,Chinanteco,chinanteco central bajo,020,estimada,102.3
+2010,0507,Chinanteco,chianateco del oeste central bajo,020,estimada,70.0
+2010,0507,Chinanteco,chinanteco del oeste central alto,020,estimada,70.0
+2010,0507,Chinanteco,chinanteco del norte,030,estimada,70.0
+2010,0507,Chinanteco,chinanteco del sureste alto,020,estimada,46.5
+2010,0507,Chinanteco,chinanteco del noroeste,020,estimada,44.9
+2010,0507,Chinanteco,chinanteco del sureste medio,030,estimada,5.0
+2010,0507,Chinanteco,chinanteco del sureste bajo,020,exacta,235.0
+2010,0507,Chinanteco,chinanteco del norte,020,exacta,79.0
+2010,0507,Chinanteco,chinanteco del sureste medio,030,exacta,63.0
+2010,0507,Chinanteco,chinanteco del norte,030,exacta,12.0
+2010,0507,Chinanteco,chinanteco del oeste,020,exacta,12.0
+2010,0507,Chinanteco,,009,sin,10.0
+2010,0508,Tlapaneco,tlapaneco central bajo,012,estimada,446.8
+2010,0508,Tlapaneco,tlapaneco del suroeste,012,estimada,434.7
+2010,0508,Tlapaneco,tlapaneco del norte,012,estimada,346.4
+2010,0508,Tlapaneco,tlapaneco del este,012,estimada,138.7
+2010,0508,Tlapaneco,tlapaneco del noroeste alto,012,estimada,86.5
+2010,0508,Tlapaneco,tlapaneco del noroeste bajo,012,estimada,86.5
+2010,0508,Tlapaneco,tlapaneco del centro,012,estimada,56.4
+2010,0508,Tlapaneco,tlapaneco del sur,012,estimada,5.9
+2010,0508,Tlapaneco,tlapaneco del oeste,012,estimada,3.0
+2010,0508,Tlapaneco,tlapaneco central bajo,012,exacta,57.0
+2010,0508,Tlapaneco,,009,sin,83.0
+2010,0508,Tlapaneco,,015,sin,61.0
+2010,0508,Tlapaneco,,900,sin,22.0
+2010,0509,Mazateco,mazateco del centro,020,estimada,2343.7
+2010,0509,Mazateco,mazateco del noreste,020,estimada,2063.1
+2010,0509,Mazateco,mazateco del este bajo,020,estimada,1637.4
+2010,0509,Mazateco,mazateco del norte,020,estimada,1462.3
+2010,0509,Mazateco,mazateco de la presa alto,020,estimada,1399.0
+2010,0509,Mazateco,mazateco del suroeste,020,estimada,737.6
+2010,0509,Mazateco,mazateco de la presa bajo,020,estimada,566.6
+2010,0509,Mazateco,mazateco del oeste,020,estimada,458.9
+2010,0509,Mazateco,mazateco del sureste,020,estimada,265.1
+2010,0509,Mazateco,mazateco de Eloxochitlán,020,estimada,245.6
+2010,0509,Mazateco,mazateco de Acatepec,020,estimada,92.6
+2010,0509,Mazateco,mazateco del sur,020,estimada,75.1
+2010,0509,Mazateco,mazateco de Tecóatl,020,estimada,74.2
+2010,0509,Mazateco,mazateco de Huehuetlán,020,estimada,50.0
+2010,0509,Mazateco,mazateco de Ocopetatillo,020,estimada,47.8
+2010,0509,Mazateco,mazateco del este bajo,020,exacta,550.0
+2010,0509,Mazateco,mazateco del centro,020,exacta,488.0
+2010,0509,Mazateco,mazateco de la presa alto,020,exacta,168.0
+2010,0509,Mazateco,mazateco del norte,020,exacta,30.0
+2010,0509,Mazateco,mazateco de la presa bajo,020,exacta,26.0
+2010,0509,Mazateco,mazateco del noreste,020,exacta,24.0
+2010,0509,Mazateco,mazateco de Eloxochitlán,020,exacta,16.0
+2010,0509,Mazateco,mazateco del sureste,020,exacta,8.0
+2010,0509,Mazateco,,009,sin,844.0
+2010,0509,Mazateco,,015,sin,25.0
+2010,0509,Mazateco,,012,sin,8.0
+2010,0509,Mazateco,mazateco del norte,030,unica,438.0
+2010,0509,Mazateco,mazateco de Puebla,021,unica,67.0
+2010,0511,Chocholteco,chocholteco del sur,020,estimada,25.9
+2010,0511,Chocholteco,chocholteco del este,020,estimada,20.9
+2010,0511,Chocholteco,chocholteco del oeste,020,estimada,8.2
+2010,0511,Chocholteco,,021,sin,20.0
+2010,0512,Popoloca,popoloca del norte,021,estimada,128.2
+2010,0512,Popoloca,popoloca de oriente,021,estimada,95.1
+2010,0512,Popoloca,popoloca del centro,021,estimada,9.4
+2010,0512,Popoloca,popoloca del poniente,021,estimada,7.3
+2010,0512,Popoloca,popoloca del norte,021,exacta,20.0
+2010,0513,Zapoteco,zapoteco de la planicie costera,020,estimada,2709.3
+2010,0513,Zapoteco,zapoteco de la costa central,020,estimada,924.7
+2010,0513,Zapoteco,"zapoteco de Valles, del norte central",020,estimada,573.9
+2010,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,estimada,513.3
+2010,0513,Zapoteco,zapoteco de la costa oeste,020,estimada,331.3
+2010,0513,Zapoteco,"zapoteco de Valles, del este medio",020,estimada,290.0
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, central",020,estimada,287.8
+2010,0513,Zapoteco,"zapoteco serrano, del noroeste bajo",020,estimada,285.4
+2010,0513,Zapoteco,"zapoteco de Valles, del este central",020,estimada,211.3
+2010,0513,Zapoteco,zapoteco de la costa noreste,020,estimada,194.7
+2010,0513,Zapoteco,zapoteco de Texmelucan,020,estimada,192.6
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, noreste",020,estimada,180.0
+2010,0513,Zapoteco,"zapoteco de Valles, del noreste",020,estimada,125.2
+2010,0513,Zapoteco,"zapoteco de Valles, del suroeste central",020,estimada,112.4
+2010,0513,Zapoteco,zapoteco de Petapa,020,estimada,111.4
+2010,0513,Zapoteco,"zapoteco de Valles, noroeste",020,estimada,102.8
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste alto",020,estimada,102.2
+2010,0513,Zapoteco,"zapoteco serrano, del sureste",020,estimada,84.9
+2010,0513,Zapoteco,"zapoteco serrano, bajo",020,estimada,84.6
+2010,0513,Zapoteco,zapoteco de Valles del sur,020,estimada,80.2
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, oeste bajo",020,estimada,80.0
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, del este bajo",020,estimada,75.8
+2010,0513,Zapoteco,"zapoteco de Valles, del noroeste bajo",020,estimada,71.7
+2010,0513,Zapoteco,zapoteco de San Vicente Coatlán,020,estimada,71.2
+2010,0513,Zapoteco,"zapoteco de la montaña del Istmo, bajo",020,estimada,69.1
+2010,0513,Zapoteco,"zapoteco de Valles, del suroeste medio",020,estimada,66.5
+2010,0513,Zapoteco,zapoteco de la costa este,020,estimada,65.0
+2010,0513,Zapoteco,"zapoteco de Valles, de suroeste alto",020,estimada,64.3
+2010,0513,Zapoteco,"zapoteco de Valles, del centro bajo",020,estimada,62.0
+2010,0513,Zapoteco,"zapoteco de Sierra sur, del noreste alto",020,estimada,59.6
+2010,0513,Zapoteco,"zapoteco serrano, del oeste",020,estimada,59.6
+2010,0513,Zapoteco,"zapoteco de la montaña del Istmo, alto",020,estimada,57.6
+2010,0513,Zapoteco,"zapoteco serrano, del sureste bajo",020,estimada,53.8
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, del norte",020,estimada,53.2
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,estimada,52.3
+2010,0513,Zapoteco,zapoteco de San Baltazar Chichicapam,020,estimada,49.8
+2010,0513,Zapoteco,zapoteco de San Miguel Aloápam,020,estimada,47.0
+2010,0513,Zapoteco,"zapoteco serrano, del sureste alto",020,estimada,42.3
+2010,0513,Zapoteco,"zapoteco de Valles, del oeste central",020,estimada,42.1
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste",020,estimada,41.1
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste alto",020,estimada,37.9
+2010,0513,Zapoteco,"zapoteco serrano, del sureste medio",020,estimada,37.9
+2010,0513,Zapoteco,zapoteco de Santa María Quiegolani,020,estimada,37.2
+2010,0513,Zapoteco,zapoteco de Mixtepec,020,estimada,35.6
+2010,0513,Zapoteco,zapoteco del oeste de Tuxtepec,020,estimada,32.5
+2010,0513,Zapoteco,"zapoteco serrano, del oeste medio",020,estimada,30.1
+2010,0513,Zapoteco,zapoteco de Santiago Yaveo,020,estimada,26.8
+2010,0513,Zapoteco,zapoteco de Quiavicuzas,020,estimada,25.8
+2010,0513,Zapoteco,"zapoteco de Valles, norte",020,estimada,25.3
+2010,0513,Zapoteco,"zapoteco serrano, del este",020,estimada,24.8
+2010,0513,Zapoteco,"zapoteco serrano, del noroeste",020,estimada,23.8
+2010,0513,Zapoteco,zapoteco de Santiago Laxopa,020,estimada,23.3
+2010,0513,Zapoteco,zapoteco de San Antonino el Alto,020,estimada,21.8
+2010,0513,Zapoteco,zapoteco de Santa María Temaxcalapa,020,estimada,19.6
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste bajo",020,estimada,16.2
+2010,0513,Zapoteco,zapoteco de Zimatlán de Álvarez,020,estimada,10.6
+2010,0513,Zapoteco,"zapoteco de Valles, oeste",020,estimada,7.8
+2010,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste bajo",020,estimada,6.8
+2010,0513,Zapoteco,"zapoteco de Valles, del centro",020,estimada,5.0
+2010,0513,Zapoteco,zapoteco de San Bartolo Yautepec,020,estimada,3.7
+2010,0513,Zapoteco,zapoteco de San Felipe Tejalápam,020,estimada,1.9
+2010,0513,Zapoteco,zapoteco de Asunción Tlacolulita,020,estimada,1.1
+2010,0513,Zapoteco,zapoteco de la planicie costera,020,exacta,322.0
+2010,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,exacta,61.0
+2010,0513,Zapoteco,zapoteco de San Bartolo Yautepec,020,exacta,38.0
+2010,0513,Zapoteco,"zapoteco serrano, bajo",020,exacta,20.0
+2010,0513,Zapoteco,"zapoteco de Valles, del norte central",020,exacta,17.0
+2010,0513,Zapoteco,,009,sin,1124.0
+2010,0513,Zapoteco,,030,sin,294.0
+2010,0513,Zapoteco,,900,sin,68.0
+2010,0513,Zapoteco,,021,sin,66.0
+2010,0513,Zapoteco,,007,sin,47.0
+2010,0513,Zapoteco,,013,sin,44.0
+2010,0513,Zapoteco,,008,sin,19.0
+2010,0513,Zapoteco,,016,sin,10.0
+2010,0513,Zapoteco,,015,sin,8.0
+2010,0514,Chatino,chatino central,020,estimada,14.6
+2010,0514,Chatino,chatino occidental alto,020,estimada,11.9
+2010,0514,Chatino,chatino oriental bajo,020,estimada,9.7
+2010,0514,Chatino,chatino occidental bajo,020,estimada,3.2
+2010,0514,Chatino,chatino oriental alto,020,estimada,1.8
+2010,0514,Chatino,chatino de Zacatepec,020,estimada,0.8
+2010,0515,Amuzgo,amuzgo del norte,012,estimada,39.2
+2010,0515,Amuzgo,amuzgo del sur,012,estimada,24.8
+2010,0515,Amuzgo,amuzgo del sur,012,exacta,105.0
+2010,0515,Amuzgo,amuzgo del norte,012,exacta,5.0
+2010,0516,Mixteco,mixteco de Oaxaca de la costa central,020,estimada,1240.2
+2010,0516,Mixteco,mixteco del oeste,020,estimada,1224.4
+2010,0516,Mixteco,mixteco del oeste alto,020,estimada,881.4
+2010,0516,Mixteco,mixteco del suroeste central,020,estimada,845.6
+2010,0516,Mixteco,mixteco de Ixtayutla,020,estimada,567.1
+2010,0516,Mixteco,mixteco de Oaxaca de la costa oeste central,020,estimada,534.3
+2010,0516,Mixteco,mixteco bajo de Valles,020,estimada,504.0
+2010,0516,Mixteco,mixteco del oeste de la costa,020,estimada,463.1
+2010,0516,Mixteco,mixteco del norte bajo,020,estimada,440.5
+2010,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,021,estimada,440.0
+2010,0516,Mixteco,mixteco de Santa María Peñoles,020,estimada,412.9
+2010,0516,Mixteco,mixteco de Sierra sur noroeste,020,estimada,409.5
+2010,0516,Mixteco,mixteco de Santiago Amoltepec,020,estimada,398.0
+2010,0516,Mixteco,mixteco del suroeste,020,estimada,382.6
+2010,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,estimada,359.5
+2010,0516,Mixteco,mixteco de Oaxaca de la costa noroeste,020,estimada,355.9
+2010,0516,Mixteco,mixteco del noroeste,020,estimada,329.2
+2010,0516,Mixteco,mixteco del sur bajo,020,estimada,310.9
+2010,0516,Mixteco,mixteco del noreste,020,estimada,303.0
+2010,0516,Mixteco,mixteco de Ñumi,020,estimada,289.9
+2010,0516,Mixteco,mixteco central,020,estimada,236.7
+2010,0516,Mixteco,mixteco del noroeste medio,020,estimada,221.6
+2010,0516,Mixteco,mixteco del suroeste de Puebla,021,estimada,207.3
+2010,0516,Mixteco,mixteco del sur medio,020,estimada,188.8
+2010,0516,Mixteco,mixteco de Santa María Huazolotitlán,020,estimada,178.5
+2010,0516,Mixteco,mixteco de Santa Lucía Monteverde,020,estimada,175.7
+2010,0516,Mixteco,mixteco de Sierra sur oeste,020,estimada,171.3
+2010,0516,Mixteco,mixteco del este,020,estimada,156.4
+2010,0516,Mixteco,mixteco de San Pablo Tijaltepec,020,estimada,139.7
+2010,0516,Mixteco,mixteco de Cañada bajo,020,estimada,122.7
+2010,0516,Mixteco,mixteco del este central,020,estimada,118.2
+2010,0516,Mixteco,mixteco de Yosondúa,020,estimada,101.1
+2010,0516,Mixteco,mixteco de San Mateo Peñasco,020,estimada,97.8
+2010,0516,Mixteco,mixteco de Coatzóspam,020,estimada,80.4
+2010,0516,Mixteco,mixteco de San Antonio Sinicahua,020,estimada,80.4
+2010,0516,Mixteco,mixteco de Santo Domingo Tonalá,020,estimada,79.2
+2010,0516,Mixteco,mixteco de Tlaltempan,021,estimada,79.0
+2010,0516,Mixteco,mixteco de Zapotitlán,021,estimada,76.7
+2010,0516,Mixteco,mixteco de Santa María Yosoyúa,020,estimada,76.2
+2010,0516,Mixteco,mixteco de San Juan Tamazola,020,estimada,74.8
+2010,0516,Mixteco,mixteco de Cañada central,020,estimada,74.6
+2010,0516,Mixteco,mixteco de Villa de Tututepec,020,estimada,73.2
+2010,0516,Mixteco,mixteco de oeste central,020,estimada,71.1
+2010,0516,Mixteco,mixteco de San Antonio Huitepec,020,estimada,57.8
+2010,0516,Mixteco,mixteco de Santa Cruz Itundujia,020,estimada,57.8
+2010,0516,Mixteco,mixteco de Yosonotú,020,estimada,56.1
+2010,0516,Mixteco,mixteco de Mitlatongo,020,estimada,55.6
+2010,0516,Mixteco,mixteco del sureste central,020,estimada,55.3
+2010,0516,Mixteco,mixteco de Yutanduchi de Guerrero,020,estimada,51.7
+2010,0516,Mixteco,mixteco de San Miguel Piedras,020,estimada,39.2
+2010,0516,Mixteco,mixteco alto de Valles,020,estimada,34.9
+2010,0516,Mixteco,mixteco de Guerrero del norte,012,estimada,34.8
+2010,0516,Mixteco,mixteco de San Agustín Tlacotepec,020,estimada,32.3
+2010,0516,Mixteco,mixteco de Santa Inés de Zaragoza,020,estimada,27.3
+2010,0516,Mixteco,mixteco de San Luis Acatlán,012,estimada,25.5
+2010,0516,Mixteco,mixteco de San Pedro Molinos,020,estimada,24.2
+2010,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,020,estimada,23.9
+2010,0516,Mixteco,mixteco de Ayutla,012,estimada,22.6
+2010,0516,Mixteco,mixteco de Tlacoachistlahuaca,012,estimada,19.0
+2010,0516,Mixteco,mixteco de San Pedro Tidaá,020,estimada,17.5
+2010,0516,Mixteco,mixteco de Coapanatoyac,012,estimada,17.1
+2010,0516,Mixteco,mixteco de San Juan Teita,020,estimada,16.7
+2010,0516,Mixteco,mixteco del noreste bajo,020,estimada,15.1
+2010,0516,Mixteco,mixteco de Chochoapa,012,estimada,13.1
+2010,0516,Mixteco,mixteco de Guerrero del este medio,012,estimada,13.1
+2010,0516,Mixteco,mixteco de Guerrero del noreste central,012,estimada,7.7
+2010,0516,Mixteco,mixteco de Tlahuapa,012,estimada,7.7
+2010,0516,Mixteco,mixteco de Xochapa,012,estimada,7.7
+2010,0516,Mixteco,mixteco de Xonacatlán,012,estimada,7.7
+2010,0516,Mixteco,mixteco de Guerrero central alto,012,estimada,7.2
+2010,0516,Mixteco,mixteco de Guerrero de la costa este,012,estimada,5.5
+2010,0516,Mixteco,mixteco de Atlamajalcingo,012,estimada,4.5
+2010,0516,Mixteco,mixteco de Guerrero del norte central,012,estimada,4.2
+2010,0516,Mixteco,mixteco central de Guerrero,012,estimada,3.0
+2010,0516,Mixteco,mixteco de Xochistlahuaca,012,estimada,2.8
+2010,0516,Mixteco,mixteco de Igualapa,012,estimada,2.6
+2010,0516,Mixteco,mixteco de Tlalixtaquilla de Maldonado,012,estimada,2.3
+2010,0516,Mixteco,mixteco de Guerrero de la costa occidental,012,estimada,2.2
+2010,0516,Mixteco,mixteco de Guerrero de la costa central,012,estimada,0.3
+2010,0516,Mixteco,mixteco del oeste,020,exacta,148.0
+2010,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,exacta,125.0
+2010,0516,Mixteco,mixteco del suroeste,020,exacta,76.0
+2010,0516,Mixteco,mixteco del suroeste central,020,exacta,45.0
+2010,0516,Mixteco,mixteco del noroeste,020,exacta,32.0
+2010,0516,Mixteco,mixteco del noreste,020,exacta,32.0
+2010,0516,Mixteco,mixteco del noroeste medio,020,exacta,29.0
+2010,0516,Mixteco,mixteco de Oaxaca de la costa central,020,exacta,28.0
+2010,0516,Mixteco,mixteco de San Pedro Molinos,020,exacta,18.0
+2010,0516,Mixteco,mixteco del sur bajo,020,exacta,14.0
+2010,0516,Mixteco,mixteco de Cañada central,020,exacta,11.0
+2010,0516,Mixteco,mixteco del este central,020,exacta,6.0
+2010,0516,Mixteco,mixteco del este,020,exacta,6.0
+2010,0516,Mixteco,mixteco del sur medio,020,exacta,6.0
+2010,0516,Mixteco,mixteco de Oaxaca de la costa oeste central,020,exacta,5.0
+2010,0516,Mixteco,mixteco de San Juan Tamazola,020,exacta,2.0
+2010,0516,Mixteco,,009,sin,496.0
+2010,0516,Mixteco,,015,sin,334.0
+2010,0516,Mixteco,,007,sin,24.0
+2010,0516,Mixteco,,030,sin,11.0
+2010,0516,Mixteco,,017,sin,2.0
+2010,0517,Cuicateco,cuicateco del centro,020,estimada,112.1
+2010,0517,Cuicateco,cuicateco del norte,020,estimada,12.5
+2010,0517,Cuicateco,cuicateco del oriente,020,estimada,12.5
+2010,0518,Triqui,triqui de San Juan Copala,020,estimada,134.5
+2010,0518,Triqui,triqui de la baja,020,estimada,40.6
+2010,0518,Triqui,triqui de la alta,020,estimada,32.7
+2010,0518,Triqui,triqui de la media,020,estimada,21.2
+2010,0518,Triqui,,009,sin,7.0
+2010,0601,Huasteco,huasteco del centro,030,estimada,160.3
+2010,0601,Huasteco,huasteco de oriente,030,estimada,12.7
+2010,0601,Huasteco,,020,sin,45.0
+2010,0601,Huasteco,,009,sin,29.0
+2010,0601,Huasteco,,028,sin,14.0
+2010,0601,Huasteco,,013,sin,1.0
+2010,0601,Huasteco,huasteco del occidente,024,unica,357.0
+2010,0602,Maya,maya,004,exacta,72.0
+2010,0602,Maya,maya,031,exacta,28.0
+2010,0602,Maya,,009,sin,547.0
+2010,0602,Maya,,030,sin,122.0
+2010,0602,Maya,,015,sin,77.0
+2010,0602,Maya,,900,sin,67.0
+2010,0602,Maya,,008,sin,36.0
+2010,0602,Maya,,027,sin,16.0
+2010,0602,Maya,,026,sin,15.0
+2010,0602,Maya,,020,sin,12.0
+2010,0602,Maya,,017,sin,1.0
+2010,0602,Maya,maya,031,unica,853.0
+2010,0602,Maya,maya,004,unica,158.0
+2010,0604,Ch'ol,ch'ol del noroeste,007,estimada,57.8
+2010,0604,Ch'ol,ch'ol del sureste,007,estimada,14.2
+2010,0604,Ch'ol,ch'ol del noroeste,007,exacta,20.0
+2010,0606,Tseltal,tseltal del norte,007,estimada,985.6
+2010,0606,Tseltal,tseltal del occidente,007,estimada,634.1
+2010,0606,Tseltal,tseltal del oriente,007,estimada,342.6
+2010,0606,Tseltal,tseltal del sur,007,estimada,118.8
+2010,0606,Tseltal,tseltal del occidente,007,exacta,308.0
+2010,0606,Tseltal,tseltal del sur,007,exacta,16.0
+2010,0606,Tseltal,,009,sin,117.0
+2010,0606,Tseltal,,025,sin,38.0
+2010,0607,Tsotsil,tsotsil del norte alto,007,estimada,34.6
+2010,0607,Tsotsil,tsotsil del centro,007,estimada,23.3
+2010,0607,Tsotsil,tsotsil del noroeste,007,estimada,19.5
+2010,0607,Tsotsil,tsotsil de los Altos,007,estimada,11.9
+2010,0607,Tsotsil,tsotsil del este bajo,007,estimada,11.1
+2010,0607,Tsotsil,tsotsil del este alto,007,estimada,2.8
+2010,0607,Tsotsil,tsotsil del norte bajo,007,estimada,1.8
+2010,0607,Tsotsil,tsotsil de los Altos,007,exacta,88.0
+2010,0607,Tsotsil,,009,sin,142.0
+2010,0607,Tsotsil,,004,sin,43.0
+2010,0607,Tsotsil,,017,sin,15.0
+2010,0607,Tsotsil,,005,sin,8.0
+2010,0608,Q'anjob'al,,020,sin,16.0
+2010,0611,Qato'k,mocho',007,estimada,21.0
+2010,0611,Qato'k,tuzanteco,007,estimada,0.0
+2010,0612,Chuj,,007,sin,50.0
+2010,0612,Chuj,,021,sin,50.0
+2010,0613,Tojolabal,,900,sin,39.0
+2010,0613,Tojolabal,tojolabal,007,unica,11.0
+2010,0614,Q'eqchi',,900,sin,62.0
+2010,0615,K'iche',,900,sin,37.0
+2010,0618,Mam,Mam de la Sierra,007,estimada,2.0
+2010,0618,Mam,Mam del Soconusco,007,estimada,2.0
+2010,0618,Mam,Mam de la frontera,007,estimada,1.9
+2010,0618,Mam,,009,sin,11.0
+2010,0701,Totonaco,totonaco central del sur,021,estimada,2643.0
+2010,0701,Totonaco,totonaco de la costa,030,estimada,723.2
+2010,0701,Totonaco,totonaco central del sur,030,estimada,714.2
+2010,0701,Totonaco,totonaco central del norte,021,estimada,314.6
+2010,0701,Totonaco,totonaco central alto,030,estimada,230.9
+2010,0701,Totonaco,totonaco del río Necaxa,021,estimada,148.8
+2010,0701,Totonaco,totonaco central del norte,030,estimada,35.7
+2010,0701,Totonaco,totonaco del cerro Xinolatépetl,021,estimada,10.6
+2010,0701,Totonaco,totonaco del sureste,030,estimada,4.0
+2010,0701,Totonaco,totonaco central del norte,021,exacta,157.0
+2010,0701,Totonaco,totonaco central del sur,021,exacta,113.0
+2010,0701,Totonaco,totonaco de la costa,030,exacta,90.0
+2010,0701,Totonaco,totonaco central del sur,030,exacta,34.0
+2010,0701,Totonaco,,009,sin,230.0
+2010,0701,Totonaco,,015,sin,93.0
+2010,0701,Totonaco,,013,sin,30.0
+2010,0701,Totonaco,,005,sin,26.0
+2010,0701,Totonaco,,900,sin,20.0
+2010,0702,Tepehua,tepehua del oeste,030,estimada,207.1
+2010,0702,Tepehua,tepehua del norte,030,estimada,187.9
+2010,0702,Tepehua,tepehua del sur,013,unica,47.0
+2010,0801,Tarasco (purépecha),purépecha,016,exacta,69.0
+2010,0801,Tarasco (purépecha),,009,sin,225.0
+2010,0801,Tarasco (purépecha),,020,sin,39.0
+2010,0801,Tarasco (purépecha),,006,sin,28.0
+2010,0801,Tarasco (purépecha),,011,sin,10.0
+2010,0801,Tarasco (purépecha),,015,sin,5.0
+2010,0801,Tarasco (purépecha),,014,sin,2.0
+2010,0801,Tarasco (purépecha),,900,sin,1.0
+2010,0801,Tarasco (purépecha),purépecha,016,unica,881.0
+2010,0901,Mixe,mixe bajo,020,estimada,1075.8
+2010,0901,Mixe,mixe medio del este,020,estimada,872.1
+2010,0901,Mixe,mixe alto del centro,020,estimada,667.2
+2010,0901,Mixe,mixe alto del norte,020,estimada,413.3
+2010,0901,Mixe,mixe alto del sur,020,estimada,372.7
+2010,0901,Mixe,mixe medio del oeste,020,estimada,120.8
+2010,0901,Mixe,mixe bajo,020,exacta,214.0
+2010,0901,Mixe,mixe medio del este,020,exacta,20.0
+2010,0901,Mixe,,009,sin,394.0
+2010,0901,Mixe,,030,sin,50.0
+2010,0901,Mixe,,021,sin,48.0
+2010,0901,Mixe,,012,sin,44.0
+2010,0901,Mixe,,016,sin,28.0
+2010,0901,Mixe,,015,sin,2.0
+2010,0907,Zoque,zoque del norte bajo,007,estimada,10.3
+2010,0907,Zoque,zoque del norte alto,007,estimada,7.1
+2010,0907,Zoque,zoque del este,007,estimada,4.8
+2010,0907,Zoque,zoque del centro,007,estimada,3.9
+2010,0907,Zoque,zoque del noroeste,007,estimada,2.6
+2010,0907,Zoque,zoque del sureste,007,estimada,1.6
+2010,0907,Zoque,zoque del sur,007,estimada,0.7
+2010,0907,Zoque,zoque del centro,007,exacta,5.0
+2010,0907,Zoque,,020,sin,47.0
+2010,1001,Chontal de Oaxaca,chontal de Oaxaca alto,020,estimada,26.8
+2010,1001,Chontal de Oaxaca,chontal de Oaxaca bajo,020,estimada,8.8
+2010,1001,Chontal de Oaxaca,chontal de Oaxaca de la costa,020,estimada,4.4
+2010,1101,Huave,huave del oeste,020,estimada,102.5
+2010,1101,Huave,huave del este,020,estimada,25.5
+2010,8000,Otras lenguas indígenas de América,,900,sin,618.0
+2010,8000,Otras lenguas indígenas de América,,009,sin,24.0
+2010,9000,No especificado,,009,sin,3205.0
+2010,9000,No especificado,,020,sin,981.0
+2010,9000,No especificado,,021,sin,456.0
+2010,9000,No especificado,,030,sin,418.0
+2010,9000,No especificado,,015,sin,354.0
+2010,9000,No especificado,,900,sin,170.0
+2010,9000,No especificado,,013,sin,164.0
+2010,9000,No especificado,,016,sin,138.0
+2010,9000,No especificado,,011,sin,117.0
+2010,9000,No especificado,,029,sin,71.0
+2010,9000,No especificado,,012,sin,69.0
+2010,9000,No especificado,,007,sin,66.0
+2010,9000,No especificado,,031,sin,46.0
+2010,9000,No especificado,,022,sin,40.0
+2010,9000,No especificado,,026,sin,23.0
+2010,9000,No especificado,,024,sin,18.0
+2010,9000,No especificado,,014,sin,5.0
+2010,9000,No especificado,,017,sin,5.0
+2010,9010,Chontal insuficientemente especificado,,020,sin,68.0
+2010,9010,Chontal insuficientemente especificado,,007,sin,30.0
+2010,9020,Tepehuano insuficientemente especificado,,010,sin,31.0
+2015,0204,Tepehuano del sur,tepehuano del sur bajo,010,estimada,1.4
+2015,0204,Tepehuano del sur,tepehuano del sur central,010,estimada,1.3
+2015,0204,Tepehuano del sur,tepehuano del sur alto,010,estimada,0.3
+2015,0205,Tarahumara,tarahumara del centro,008,estimada,44.3
+2015,0205,Tarahumara,tarahumara de Cumbres,008,estimada,25.9
+2015,0205,Tarahumara,tarahumara del norte,008,estimada,19.9
+2015,0205,Tarahumara,tarahumara del oeste,008,estimada,11.2
+2015,0205,Tarahumara,tarahumara del sur,008,estimada,7.7
+2015,0205,Tarahumara,,009,sin,37.0
+2015,0205,Tarahumara,,025,sin,32.0
+2015,0205,Tarahumara,,015,sin,17.0
+2015,0205,Tarahumara,,005,sin,16.0
+2015,0207,Yaqui,,019,sin,42.0
+2015,0207,Yaqui,,009,sin,12.0
+2015,0207,Yaqui,,002,sin,9.0
+2015,0207,Yaqui,yaqui,026,unica,101.0
+2015,0208,Mayo,,009,sin,15.0
+2015,0208,Mayo,mayo,025,unica,18.0
+2015,0208,Mayo,mayo,026,unica,18.0
+2015,0210,Huichol,,009,sin,78.0
+2015,0210,Huichol,,013,sin,27.0
+2015,0210,Huichol,,007,sin,8.0
+2015,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,estimada,4246.3
+2015,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,estimada,3415.5
+2015,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,estimada,2722.5
+2015,0211,Náhuatl,náhuatl central de Veracruz,030,estimada,2480.8
+2015,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,estimada,1858.6
+2015,0211,Náhuatl,náhuatl del noroeste central,021,estimada,1588.2
+2015,0211,Náhuatl,náhuatl del centro de Puebla,021,estimada,1334.6
+2015,0211,Náhuatl,"náhuatl de la Sierra negra, sur",021,estimada,868.6
+2015,0211,Náhuatl,mexicano del centro alto,015,estimada,800.2
+2015,0211,Náhuatl,náhuatl del Istmo,030,estimada,464.0
+2015,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,estimada,391.2
+2015,0211,Náhuatl,mexicano del centro,015,estimada,346.6
+2015,0211,Náhuatl,náhuatl del noroeste central,013,estimada,325.7
+2015,0211,Náhuatl,náhuatl del Istmo bajo,030,estimada,155.6
+2015,0211,Náhuatl,mexicano de Puente de Ixtla,017,estimada,113.3
+2015,0211,Náhuatl,mexicano del oriente de Puebla,021,estimada,93.1
+2015,0211,Náhuatl,mexicano de Temixco,017,estimada,73.5
+2015,0211,Náhuatl,náhuatl alto del norte de Puebla,021,estimada,39.1
+2015,0211,Náhuatl,mexicano central bajo,017,estimada,21.1
+2015,0211,Náhuatl,mexicano de Guerrero,021,estimada,18.1
+2015,0211,Náhuatl,mexicano de Tetela del Volcán,017,estimada,11.2
+2015,0211,Náhuatl,mexicano del centro bajo,015,estimada,1.2
+2015,0211,Náhuatl,náhuatl del centro de Puebla,021,exacta,971.0
+2015,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,exacta,343.0
+2015,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,exacta,167.0
+2015,0211,Náhuatl,náhuatl del noroeste central,013,exacta,159.0
+2015,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,exacta,143.0
+2015,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,exacta,124.0
+2015,0211,Náhuatl,náhuatl del noroeste central,021,exacta,73.0
+2015,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,exacta,67.0
+2015,0211,Náhuatl,náhuatl central de Veracruz,030,exacta,50.0
+2015,0211,Náhuatl,mexicano del centro alto,015,exacta,49.0
+2015,0211,Náhuatl,mexicano de Guerrero,012,exacta,15.0
+2015,0211,Náhuatl,mexicano del centro,015,exacta,3.0
+2015,0211,Náhuatl,náhuatl de Oaxaca,020,exacta,3.0
+2015,0211,Náhuatl,,009,sin,8718.0
+2015,0211,Náhuatl,,999,sin,136.0
+2015,0211,Náhuatl,,007,sin,73.0
+2015,0211,Náhuatl,,022,sin,41.0
+2015,0211,Náhuatl,,019,sin,40.0
+2015,0211,Náhuatl,,216,sin,40.0
+2015,0211,Náhuatl,,011,sin,37.0
+2015,0211,Náhuatl,,028,sin,30.0
+2015,0211,Náhuatl,,237,sin,25.0
+2015,0211,Náhuatl,,330,sin,25.0
+2015,0211,Náhuatl,,008,sin,22.0
+2015,0211,Náhuatl,,001,sin,21.0
+2015,0211,Náhuatl,,437,sin,21.0
+2015,0211,Náhuatl,,004,sin,16.0
+2015,0211,Náhuatl,,026,sin,14.0
+2015,0211,Náhuatl,,221,sin,14.0
+2015,0211,Náhuatl,,002,sin,13.0
+2015,0211,Náhuatl,,415,sin,11.0
+2015,0211,Náhuatl,náhuatl de Oaxaca,020,unica,1885.0
+2015,0211,Náhuatl,náhuatl de la Huasteca potosina,024,unica,1884.0
+2015,0211,Náhuatl,mexicano de Guerrero,012,unica,1554.0
+2015,0211,Náhuatl,mexicano del oriente central,029,unica,217.0
+2015,0211,Náhuatl,mexicano central de occidente,016,unica,107.0
+2015,0211,Náhuatl,mexicano del noroeste,010,unica,46.0
+2015,0211,Náhuatl,mexicano alto de occidente,018,unica,15.0
+2015,0211,Náhuatl,mexicano del oriente,027,unica,8.0
+2015,0501,Otomí,otomí del Valle del Mezquital,013,estimada,3518.5
+2015,0501,Otomí,otomí del noroeste,022,estimada,1120.4
+2015,0501,Otomí,otomí de la Sierra,013,estimada,672.8
+2015,0501,Otomí,otomí bajo del noroeste,022,estimada,381.6
+2015,0501,Otomí,otomí del oeste del Valle del Mezquital,013,estimada,140.8
+2015,0501,Otomí,otomí del centro,015,exacta,120.0
+2015,0501,Otomí,otomí de la Sierra,021,exacta,84.0
+2015,0501,Otomí,otomí de la Sierra,013,exacta,79.0
+2015,0501,Otomí,otomí del Valle del Mezquital,013,exacta,67.0
+2015,0501,Otomí,otomí del noroeste,022,exacta,52.0
+2015,0501,Otomí,otomí de la Sierra,030,exacta,36.0
+2015,0501,Otomí,,009,sin,1828.0
+2015,0501,Otomí,,020,sin,200.0
+2015,0501,Otomí,,999,sin,79.0
+2015,0501,Otomí,,012,sin,53.0
+2015,0501,Otomí,,032,sin,49.0
+2015,0501,Otomí,,007,sin,48.0
+2015,0501,Otomí,,017,sin,32.0
+2015,0501,Otomí,,024,sin,14.0
+2015,0501,Otomí,otomí del centro,015,unica,4204.0
+2015,0501,Otomí,otomí de la Sierra,021,unica,447.0
+2015,0501,Otomí,otomí de la Sierra,030,unica,396.0
+2015,0501,Otomí,otomí de Ixtenco,029,unica,98.0
+2015,0501,Otomí,otomí del oeste,016,unica,39.0
+2015,0501,Otomí,otomí del noroeste,011,unica,5.0
+2015,0502,Mazahua,mazahua de oriente,015,estimada,5009.8
+2015,0502,Mazahua,mazahua de occidente,015,estimada,1229.2
+2015,0502,Mazahua,mazahua de oriente,016,estimada,432.2
+2015,0502,Mazahua,mazahua de occidente,016,estimada,403.8
+2015,0502,Mazahua,mazahua de oriente,015,exacta,48.0
+2015,0502,Mazahua,,009,sin,827.0
+2015,0502,Mazahua,,999,sin,149.0
+2015,0502,Mazahua,,013,sin,114.0
+2015,0502,Mazahua,,011,sin,30.0
+2015,0502,Mazahua,,022,sin,28.0
+2015,0502,Mazahua,,021,sin,19.0
+2015,0502,Mazahua,,029,sin,16.0
+2015,0502,Mazahua,,020,sin,8.0
+2015,0502,Mazahua,,012,sin,7.0
+2015,0503,Matlatzinca,,009,sin,48.0
+2015,0503,Matlatzinca,matlatzinca,015,unica,184.0
+2015,0505,Pame,,013,sin,6.0
+2015,0506,Chichimeco jonaz,,012,sin,15.0
+2015,0507,Chinanteco,chinanteco del norte,020,estimada,1075.7
+2015,0507,Chinanteco,chinanteco central,020,estimada,532.2
+2015,0507,Chinanteco,chinanteco del sureste bajo,020,estimada,350.1
+2015,0507,Chinanteco,chinanteco del sureste medio,020,estimada,268.8
+2015,0507,Chinanteco,chinanteco de la Sierra,020,estimada,228.8
+2015,0507,Chinanteco,chinanteco del norte,030,estimada,204.5
+2015,0507,Chinanteco,chinanteco del oeste,020,estimada,121.0
+2015,0507,Chinanteco,chinanteco central bajo,020,estimada,107.9
+2015,0507,Chinanteco,chinanteco del oeste central alto,020,estimada,75.1
+2015,0507,Chinanteco,chianateco del oeste central bajo,020,estimada,75.1
+2015,0507,Chinanteco,chinanteco del sureste alto,020,estimada,49.0
+2015,0507,Chinanteco,chinanteco del noroeste,020,estimada,47.4
+2015,0507,Chinanteco,chinanteco del sureste medio,030,estimada,14.5
+2015,0507,Chinanteco,chinanteco del norte,020,exacta,81.0
+2015,0507,Chinanteco,chinanteco del sureste bajo,020,exacta,45.0
+2015,0507,Chinanteco,chinanteco del norte,030,exacta,34.0
+2015,0507,Chinanteco,chinanteco del sureste medio,030,exacta,11.0
+2015,0507,Chinanteco,chinanteco del sureste medio,020,exacta,6.0
+2015,0507,Chinanteco,,009,sin,86.0
+2015,0507,Chinanteco,,015,sin,22.0
+2015,0507,Chinanteco,,017,sin,16.0
+2015,0508,Tlapaneco,tlapaneco central bajo,012,estimada,418.9
+2015,0508,Tlapaneco,tlapaneco del suroeste,012,estimada,389.3
+2015,0508,Tlapaneco,tlapaneco del norte,012,estimada,324.7
+2015,0508,Tlapaneco,tlapaneco del este,012,estimada,130.0
+2015,0508,Tlapaneco,tlapaneco del noroeste alto,012,estimada,81.1
+2015,0508,Tlapaneco,tlapaneco del noroeste bajo,012,estimada,81.1
+2015,0508,Tlapaneco,tlapaneco del centro,012,estimada,50.5
+2015,0508,Tlapaneco,tlapaneco del sur,012,estimada,5.5
+2015,0508,Tlapaneco,tlapaneco del oeste,012,estimada,2.8
+2015,0508,Tlapaneco,tlapaneco central bajo,012,exacta,60.0
+2015,0508,Tlapaneco,tlapaneco del este,012,exacta,13.0
+2015,0508,Tlapaneco,,009,sin,58.0
+2015,0509,Mazateco,mazateco del centro,020,estimada,1880.0
+2015,0509,Mazateco,mazateco del noreste,020,estimada,1654.9
+2015,0509,Mazateco,mazateco del este bajo,020,estimada,1313.4
+2015,0509,Mazateco,mazateco del norte,020,estimada,1173.0
+2015,0509,Mazateco,mazateco de la presa alto,020,estimada,1122.2
+2015,0509,Mazateco,mazateco del suroeste,020,estimada,591.7
+2015,0509,Mazateco,mazateco de la presa bajo,020,estimada,454.5
+2015,0509,Mazateco,mazateco del oeste,020,estimada,368.1
+2015,0509,Mazateco,mazateco del sureste,020,estimada,212.7
+2015,0509,Mazateco,mazateco de Eloxochitlán,020,estimada,197.0
+2015,0509,Mazateco,mazateco de Acatepec,020,estimada,74.2
+2015,0509,Mazateco,mazateco del sur,020,estimada,60.2
+2015,0509,Mazateco,mazateco de Tecóatl,020,estimada,59.5
+2015,0509,Mazateco,mazateco de Huehuetlán,020,estimada,40.1
+2015,0509,Mazateco,mazateco de Ocopetatillo,020,estimada,38.3
+2015,0509,Mazateco,mazateco de la presa alto,020,exacta,257.0
+2015,0509,Mazateco,mazateco del centro,020,exacta,182.0
+2015,0509,Mazateco,mazateco del este bajo,020,exacta,50.0
+2015,0509,Mazateco,mazateco del sureste,020,exacta,17.0
+2015,0509,Mazateco,mazateco del oeste,020,exacta,7.0
+2015,0509,Mazateco,,009,sin,889.0
+2015,0509,Mazateco,,015,sin,61.0
+2015,0509,Mazateco,,999,sin,48.0
+2015,0509,Mazateco,mazateco del norte,030,unica,280.0
+2015,0509,Mazateco,mazateco de Puebla,021,unica,45.0
+2015,0511,Chocholteco,chocholteco del sur,020,estimada,31.6
+2015,0511,Chocholteco,chocholteco del este,020,estimada,25.5
+2015,0511,Chocholteco,chocholteco del oeste,020,estimada,9.9
+2015,0511,Chocholteco,,009,sin,1.0
+2015,0512,Popoloca,popoloca del norte,021,estimada,37.4
+2015,0512,Popoloca,popoloca de oriente,021,estimada,27.7
+2015,0512,Popoloca,popoloca del centro,021,estimada,2.7
+2015,0512,Popoloca,popoloca del poniente,021,estimada,2.1
+2015,0512,Popoloca,,015,sin,18.0
+2015,0512,Popoloca,,009,sin,9.0
+2015,0513,Zapoteco,zapoteco de la planicie costera,020,estimada,2251.0
+2015,0513,Zapoteco,zapoteco de la costa central,020,estimada,768.3
+2015,0513,Zapoteco,"zapoteco de Valles, del norte central",020,estimada,476.8
+2015,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,estimada,426.5
+2015,0513,Zapoteco,zapoteco de la costa oeste,020,estimada,275.3
+2015,0513,Zapoteco,"zapoteco de Valles, del este medio",020,estimada,240.9
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, central",020,estimada,226.0
+2015,0513,Zapoteco,"zapoteco serrano, del noroeste bajo",020,estimada,213.4
+2015,0513,Zapoteco,"zapoteco de Valles, del este central",020,estimada,175.6
+2015,0513,Zapoteco,zapoteco de la costa noreste,020,estimada,161.7
+2015,0513,Zapoteco,zapoteco de Texmelucan,020,estimada,160.0
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, noreste",020,estimada,149.6
+2015,0513,Zapoteco,"zapoteco de Valles, del noreste",020,estimada,104.0
+2015,0513,Zapoteco,"zapoteco de Valles, del suroeste central",020,estimada,93.4
+2015,0513,Zapoteco,zapoteco de Petapa,020,estimada,92.5
+2015,0513,Zapoteco,"zapoteco de Valles, noroeste",020,estimada,85.4
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste alto",020,estimada,84.9
+2015,0513,Zapoteco,"zapoteco serrano, del sureste",020,estimada,70.5
+2015,0513,Zapoteco,zapoteco de Valles del sur,020,estimada,66.6
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, oeste bajo",020,estimada,66.4
+2015,0513,Zapoteco,"zapoteco serrano, bajo",020,estimada,63.2
+2015,0513,Zapoteco,"zapoteco de Valles, del noroeste bajo",020,estimada,59.6
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, del este bajo",020,estimada,59.5
+2015,0513,Zapoteco,zapoteco de San Vicente Coatlán,020,estimada,59.1
+2015,0513,Zapoteco,"zapoteco de la montaña del Istmo, bajo",020,estimada,57.4
+2015,0513,Zapoteco,"zapoteco de Valles, del suroeste medio",020,estimada,55.2
+2015,0513,Zapoteco,"zapoteco de Valles, de suroeste alto",020,estimada,53.4
+2015,0513,Zapoteco,"zapoteco de Valles, del centro bajo",020,estimada,51.5
+2015,0513,Zapoteco,zapoteco de la costa este,020,estimada,50.7
+2015,0513,Zapoteco,"zapoteco de Sierra sur, del noreste alto",020,estimada,49.5
+2015,0513,Zapoteco,"zapoteco serrano, del oeste",020,estimada,49.5
+2015,0513,Zapoteco,"zapoteco de la montaña del Istmo, alto",020,estimada,47.8
+2015,0513,Zapoteco,"zapoteco serrano, del sureste bajo",020,estimada,44.7
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, del norte",020,estimada,44.2
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,estimada,43.5
+2015,0513,Zapoteco,zapoteco de San Baltazar Chichicapam,020,estimada,41.4
+2015,0513,Zapoteco,zapoteco de San Miguel Aloápam,020,estimada,39.0
+2015,0513,Zapoteco,"zapoteco serrano, del sureste alto",020,estimada,35.1
+2015,0513,Zapoteco,"zapoteco de Valles, del oeste central",020,estimada,35.0
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste",020,estimada,34.1
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste alto",020,estimada,31.5
+2015,0513,Zapoteco,"zapoteco serrano, del sureste medio",020,estimada,31.5
+2015,0513,Zapoteco,zapoteco de Santa María Quiegolani,020,estimada,30.9
+2015,0513,Zapoteco,zapoteco de Mixtepec,020,estimada,29.6
+2015,0513,Zapoteco,zapoteco del oeste de Tuxtepec,020,estimada,27.0
+2015,0513,Zapoteco,"zapoteco serrano, del oeste medio",020,estimada,25.0
+2015,0513,Zapoteco,zapoteco de Santiago Yaveo,020,estimada,22.3
+2015,0513,Zapoteco,zapoteco de Quiavicuzas,020,estimada,21.4
+2015,0513,Zapoteco,"zapoteco de Valles, norte",020,estimada,21.0
+2015,0513,Zapoteco,"zapoteco serrano, del este",020,estimada,20.6
+2015,0513,Zapoteco,"zapoteco serrano, del noroeste",020,estimada,19.8
+2015,0513,Zapoteco,zapoteco de Santiago Laxopa,020,estimada,19.3
+2015,0513,Zapoteco,zapoteco de San Antonino el Alto,020,estimada,18.1
+2015,0513,Zapoteco,zapoteco de Santa María Temaxcalapa,020,estimada,16.2
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste bajo",020,estimada,12.6
+2015,0513,Zapoteco,zapoteco de Zimatlán de Álvarez,020,estimada,8.8
+2015,0513,Zapoteco,"zapoteco de Valles, oeste",020,estimada,6.5
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste bajo",020,estimada,5.6
+2015,0513,Zapoteco,"zapoteco de Valles, del centro",020,estimada,4.2
+2015,0513,Zapoteco,zapoteco de San Bartolo Yautepec,020,estimada,3.1
+2015,0513,Zapoteco,zapoteco de San Felipe Tejalápam,020,estimada,1.6
+2015,0513,Zapoteco,zapoteco de Asunción Tlacolulita,020,estimada,0.9
+2015,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,exacta,402.0
+2015,0513,Zapoteco,zapoteco de la costa noreste,020,exacta,24.0
+2015,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,exacta,23.0
+2015,0513,Zapoteco,"zapoteco serrano, del noroeste bajo",020,exacta,7.0
+2015,0513,Zapoteco,"zapoteco de la montaña del Istmo, bajo",020,exacta,2.0
+2015,0513,Zapoteco,,009,sin,1703.0
+2015,0513,Zapoteco,,030,sin,374.0
+2015,0513,Zapoteco,,021,sin,105.0
+2015,0513,Zapoteco,,007,sin,87.0
+2015,0513,Zapoteco,,013,sin,73.0
+2015,0513,Zapoteco,,016,sin,45.0
+2015,0513,Zapoteco,,012,sin,33.0
+2015,0513,Zapoteco,,999,sin,30.0
+2015,0513,Zapoteco,,122,sin,29.0
+2015,0513,Zapoteco,,335,sin,29.0
+2015,0513,Zapoteco,,015,sin,28.0
+2015,0513,Zapoteco,,011,sin,20.0
+2015,0513,Zapoteco,,014,sin,18.0
+2015,0513,Zapoteco,,027,sin,12.0
+2015,0513,Zapoteco,,221,sin,9.0
+2015,0514,Chatino,chatino central,020,estimada,34.1
+2015,0514,Chatino,chatino occidental alto,020,estimada,27.8
+2015,0514,Chatino,chatino oriental bajo,020,estimada,22.6
+2015,0514,Chatino,chatino occidental bajo,020,estimada,7.5
+2015,0514,Chatino,chatino oriental alto,020,estimada,4.1
+2015,0514,Chatino,chatino de Zacatepec,020,estimada,1.9
+2015,0515,Amuzgo,amuzgo del norte,012,estimada,239.5
+2015,0515,Amuzgo,amuzgo del sur,012,estimada,151.5
+2015,0515,Amuzgo,amuzgo alto del este,020,estimada,7.8
+2015,0515,Amuzgo,amuzgo bajo del este,020,estimada,1.2
+2015,0515,Amuzgo,amuzgo del norte,012,exacta,26.0
+2015,0515,Amuzgo,amuzgo del sur,012,exacta,17.0
+2015,0516,Mixteco,mixteco de Oaxaca de la costa central,020,estimada,1170.3
+2015,0516,Mixteco,mixteco del oeste,020,estimada,1155.4
+2015,0516,Mixteco,mixteco del oeste alto,020,estimada,821.9
+2015,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,021,estimada,802.2
+2015,0516,Mixteco,mixteco del suroeste central,020,estimada,798.0
+2015,0516,Mixteco,mixteco de Ixtayutla,020,estimada,535.1
+2015,0516,Mixteco,mixteco de Oaxaca de la costa oeste central,020,estimada,479.8
+2015,0516,Mixteco,mixteco bajo de Valles,020,estimada,475.6
+2015,0516,Mixteco,mixteco del oeste de la costa,020,estimada,415.9
+2015,0516,Mixteco,mixteco del norte bajo,020,estimada,415.7
+2015,0516,Mixteco,mixteco de Santa María Peñoles,020,estimada,389.6
+2015,0516,Mixteco,mixteco de Sierra sur noroeste,020,estimada,386.4
+2015,0516,Mixteco,mixteco del suroeste de Puebla,021,estimada,378.0
+2015,0516,Mixteco,mixteco de Santiago Amoltepec,020,estimada,375.6
+2015,0516,Mixteco,mixteco del suroeste,020,estimada,361.1
+2015,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,estimada,339.2
+2015,0516,Mixteco,mixteco de Oaxaca de la costa noroeste,020,estimada,335.8
+2015,0516,Mixteco,mixteco del noroeste,020,estimada,310.6
+2015,0516,Mixteco,mixteco del sur bajo,020,estimada,293.4
+2015,0516,Mixteco,mixteco de Ñumi,020,estimada,273.6
+2015,0516,Mixteco,mixteco del noreste,020,estimada,259.7
+2015,0516,Mixteco,mixteco central,020,estimada,223.4
+2015,0516,Mixteco,mixteco del noroeste medio,020,estimada,206.7
+2015,0516,Mixteco,mixteco del sur medio,020,estimada,178.1
+2015,0516,Mixteco,mixteco de Santa María Huazolotitlán,020,estimada,168.4
+2015,0516,Mixteco,mixteco de Santa Lucía Monteverde,020,estimada,165.8
+2015,0516,Mixteco,mixteco de Sierra sur oeste,020,estimada,161.6
+2015,0516,Mixteco,mixteco de Tlaltempan,021,estimada,143.9
+2015,0516,Mixteco,mixteco de Zapotitlán,021,estimada,139.8
+2015,0516,Mixteco,mixteco del este,020,estimada,134.0
+2015,0516,Mixteco,mixteco de San Pablo Tijaltepec,020,estimada,131.8
+2015,0516,Mixteco,mixteco de Cañada bajo,020,estimada,115.8
+2015,0516,Mixteco,mixteco del este central,020,estimada,111.6
+2015,0516,Mixteco,mixteco de Yosondúa,020,estimada,95.4
+2015,0516,Mixteco,mixteco de San Mateo Peñasco,020,estimada,92.3
+2015,0516,Mixteco,mixteco de Coatzóspam,020,estimada,75.9
+2015,0516,Mixteco,mixteco de San Antonio Sinicahua,020,estimada,75.9
+2015,0516,Mixteco,mixteco de Santo Domingo Tonalá,020,estimada,74.7
+2015,0516,Mixteco,mixteco de Santa María Yosoyúa,020,estimada,71.9
+2015,0516,Mixteco,mixteco de San Juan Tamazola,020,estimada,70.5
+2015,0516,Mixteco,mixteco de Cañada central,020,estimada,70.4
+2015,0516,Mixteco,mixteco de Villa de Tututepec,020,estimada,69.1
+2015,0516,Mixteco,mixteco de oeste central,020,estimada,67.1
+2015,0516,Mixteco,mixteco de San Antonio Huitepec,020,estimada,54.5
+2015,0516,Mixteco,mixteco de Santa Cruz Itundujia,020,estimada,54.5
+2015,0516,Mixteco,mixteco de Yosonotú,020,estimada,53.0
+2015,0516,Mixteco,mixteco del sureste central,020,estimada,52.2
+2015,0516,Mixteco,mixteco de Yutanduchi de Guerrero,020,estimada,48.8
+2015,0516,Mixteco,mixteco de Mitlatongo,020,estimada,47.7
+2015,0516,Mixteco,mixteco de Guerrero del norte,012,estimada,42.7
+2015,0516,Mixteco,mixteco de San Miguel Piedras,020,estimada,37.0
+2015,0516,Mixteco,mixteco alto de Valles,020,estimada,32.9
+2015,0516,Mixteco,mixteco de San Luis Acatlán,012,estimada,31.3
+2015,0516,Mixteco,mixteco de San Agustín Tlacotepec,020,estimada,30.5
+2015,0516,Mixteco,mixteco de Ayutla,012,estimada,27.7
+2015,0516,Mixteco,mixteco de Santa Inés de Zaragoza,020,estimada,25.7
+2015,0516,Mixteco,mixteco de Tlacoachistlahuaca,012,estimada,23.4
+2015,0516,Mixteco,mixteco de San Pedro Molinos,020,estimada,22.9
+2015,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,020,estimada,22.5
+2015,0516,Mixteco,mixteco de Coapanatoyac,012,estimada,21.0
+2015,0516,Mixteco,mixteco de San Pedro Tidaá,020,estimada,16.5
+2015,0516,Mixteco,mixteco de Chochoapa,012,estimada,16.1
+2015,0516,Mixteco,mixteco de Guerrero del este medio,012,estimada,16.1
+2015,0516,Mixteco,mixteco de San Juan Teita,020,estimada,15.8
+2015,0516,Mixteco,mixteco del noreste bajo,020,estimada,14.2
+2015,0516,Mixteco,mixteco de Guerrero del noreste central,012,estimada,9.5
+2015,0516,Mixteco,mixteco de Tlahuapa,012,estimada,9.5
+2015,0516,Mixteco,mixteco de Xochapa,012,estimada,9.5
+2015,0516,Mixteco,mixteco de Xonacatlán,012,estimada,9.5
+2015,0516,Mixteco,mixteco de Guerrero central alto,012,estimada,8.9
+2015,0516,Mixteco,mixteco de Guerrero de la costa este,012,estimada,6.7
+2015,0516,Mixteco,mixteco de Atlamajalcingo,012,estimada,5.5
+2015,0516,Mixteco,mixteco de Guerrero del norte central,012,estimada,5.2
+2015,0516,Mixteco,mixteco central de Guerrero,012,estimada,3.7
+2015,0516,Mixteco,mixteco de Xochistlahuaca,012,estimada,3.4
+2015,0516,Mixteco,mixteco de Igualapa,012,estimada,3.2
+2015,0516,Mixteco,mixteco de Tlalixtaquilla de Maldonado,012,estimada,2.9
+2015,0516,Mixteco,mixteco de Guerrero de la costa occidental,012,estimada,2.7
+2015,0516,Mixteco,mixteco de Guerrero de la costa central,012,estimada,0.4
+2015,0516,Mixteco,mixteco del noroeste,020,exacta,256.0
+2015,0516,Mixteco,mixteco del suroeste central,020,exacta,30.0
+2015,0516,Mixteco,mixteco del noroeste medio,020,exacta,13.0
+2015,0516,Mixteco,mixteco de Oaxaca de la costa noroeste,020,exacta,11.0
+2015,0516,Mixteco,mixteco del sur medio,020,exacta,10.0
+2015,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,exacta,10.0
+2015,0516,Mixteco,mixteco de Oaxaca de la costa central,020,exacta,6.0
+2015,0516,Mixteco,mixteco del noreste,020,exacta,5.0
+2015,0516,Mixteco,mixteco de Santa María Huazolotitlán,020,exacta,4.0
+2015,0516,Mixteco,mixteco del sur bajo,020,exacta,1.0
+2015,0516,Mixteco,,009,sin,948.0
+2015,0516,Mixteco,,030,sin,138.0
+2015,0516,Mixteco,,999,sin,114.0
+2015,0516,Mixteco,,016,sin,72.0
+2015,0516,Mixteco,,007,sin,58.0
+2015,0516,Mixteco,,015,sin,32.0
+2015,0516,Mixteco,,028,sin,4.0
+2015,0516,Mixteco,,003,sin,2.0
+2015,0516,Mixteco,,022,sin,1.0
+2015,0517,Cuicateco,cuicateco del centro,020,estimada,184.9
+2015,0517,Cuicateco,cuicateco del norte,020,estimada,20.6
+2015,0517,Cuicateco,cuicateco del oriente,020,estimada,20.6
+2015,0518,Triqui,triqui de San Juan Copala,020,estimada,151.7
+2015,0518,Triqui,triqui de la baja,020,estimada,38.9
+2015,0518,Triqui,triqui de la alta,020,estimada,31.4
+2015,0518,Triqui,triqui de la media,020,estimada,24.0
+2015,0518,Triqui,triqui de San Juan Copala,020,exacta,21.0
+2015,0518,Triqui,,009,sin,20.0
+2015,0601,Huasteco,huasteco del centro,030,estimada,405.9
+2015,0601,Huasteco,huasteco de oriente,030,estimada,32.1
+2015,0601,Huasteco,huasteco de oriente,030,exacta,12.0
+2015,0601,Huasteco,,020,sin,33.0
+2015,0601,Huasteco,,009,sin,23.0
+2015,0601,Huasteco,,021,sin,19.0
+2015,0601,Huasteco,,007,sin,14.0
+2015,0601,Huasteco,,013,sin,9.0
+2015,0601,Huasteco,huasteco del occidente,024,unica,96.0
+2015,0602,Maya,maya,023,exacta,80.0
+2015,0602,Maya,maya,031,exacta,66.0
+2015,0602,Maya,maya,004,exacta,47.0
+2015,0602,Maya,,009,sin,606.0
+2015,0602,Maya,,027,sin,99.0
+2015,0602,Maya,,225,sin,90.0
+2015,0602,Maya,,999,sin,55.0
+2015,0602,Maya,,015,sin,34.0
+2015,0602,Maya,,247,sin,31.0
+2015,0602,Maya,,030,sin,28.0
+2015,0602,Maya,,425,sin,26.0
+2015,0602,Maya,,011,sin,22.0
+2015,0602,Maya,,014,sin,20.0
+2015,0602,Maya,,007,sin,18.0
+2015,0602,Maya,,020,sin,15.0
+2015,0602,Maya,,017,sin,11.0
+2015,0602,Maya,,109,sin,11.0
+2015,0602,Maya,maya,031,unica,694.0
+2015,0602,Maya,maya,004,unica,121.0
+2015,0604,Ch'ol,ch'ol del noroeste,007,estimada,123.7
+2015,0604,Ch'ol,ch'ol del sureste,007,estimada,30.3
+2015,0604,Ch'ol,,009,sin,31.0
+2015,0604,Ch'ol,,022,sin,13.0
+2015,0606,Tseltal,tseltal del norte,007,estimada,605.7
+2015,0606,Tseltal,tseltal del occidente,007,estimada,384.7
+2015,0606,Tseltal,tseltal del oriente,007,estimada,210.5
+2015,0606,Tseltal,tseltal del sur,007,estimada,72.1
+2015,0606,Tseltal,tseltal del occidente,007,exacta,200.0
+2015,0606,Tseltal,tseltal del sur,007,exacta,17.0
+2015,0606,Tseltal,tseltal del oriente,007,exacta,17.0
+2015,0606,Tseltal,,009,sin,142.0
+2015,0606,Tseltal,,015,sin,72.0
+2015,0606,Tseltal,,012,sin,51.0
+2015,0606,Tseltal,,999,sin,36.0
+2015,0607,Tsotsil,tsotsil del norte alto,007,estimada,204.6
+2015,0607,Tsotsil,tsotsil del centro,007,estimada,137.7
+2015,0607,Tsotsil,tsotsil del noroeste,007,estimada,115.3
+2015,0607,Tsotsil,tsotsil de los Altos,007,estimada,70.1
+2015,0607,Tsotsil,tsotsil del este bajo,007,estimada,65.8
+2015,0607,Tsotsil,tsotsil del este alto,007,estimada,16.8
+2015,0607,Tsotsil,tsotsil del norte bajo,007,estimada,10.7
+2015,0607,Tsotsil,tsotsil del noroeste,007,exacta,71.0
+2015,0607,Tsotsil,tsotsil del este alto,007,exacta,11.0
+2015,0607,Tsotsil,tsotsil del centro,007,exacta,2.0
+2015,0607,Tsotsil,,009,sin,143.0
+2015,0607,Tsotsil,,021,sin,28.0
+2015,0607,Tsotsil,,005,sin,12.0
+2015,0607,Tsotsil,,030,sin,6.0
+2015,0607,Tsotsil,,015,sin,1.0
+2015,0608,Q'anjob'al,Q'anjob'al,007,unica,3.0
+2015,0612,Chuj,,007,sin,48.0
+2015,0612,Chuj,,009,sin,9.0
+2015,0613,Tojolabal,tojolabal,007,exacta,20.0
+2015,0613,Tojolabal,,009,sin,9.0
+2015,0613,Tojolabal,tojolabal,007,unica,64.0
+2015,0618,Mam,Mam de la Sierra,007,estimada,1.7
+2015,0618,Mam,Mam del Soconusco,007,estimada,1.7
+2015,0618,Mam,Mam de la frontera,007,estimada,1.6
+2015,0701,Totonaco,totonaco central del sur,021,estimada,2237.6
+2015,0701,Totonaco,totonaco de la costa,030,estimada,887.9
+2015,0701,Totonaco,totonaco central del sur,030,estimada,876.9
+2015,0701,Totonaco,totonaco central alto,030,estimada,283.4
+2015,0701,Totonaco,totonaco central del norte,021,estimada,265.7
+2015,0701,Totonaco,totonaco del río Necaxa,021,estimada,130.2
+2015,0701,Totonaco,totonaco central del norte,030,estimada,43.9
+2015,0701,Totonaco,totonaco del cerro Xinolatépetl,021,estimada,8.6
+2015,0701,Totonaco,totonaco del sureste,030,estimada,4.9
+2015,0701,Totonaco,totonaco central del sur,021,exacta,65.0
+2015,0701,Totonaco,totonaco de la costa,030,exacta,42.0
+2015,0701,Totonaco,totonaco central alto,030,exacta,20.0
+2015,0701,Totonaco,totonaco central del norte,021,exacta,3.0
+2015,0701,Totonaco,totonaco central del sur,030,exacta,2.0
+2015,0701,Totonaco,,009,sin,448.0
+2015,0701,Totonaco,,999,sin,51.0
+2015,0701,Totonaco,,011,sin,17.0
+2015,0701,Totonaco,,031,sin,10.0
+2015,0701,Totonaco,,004,sin,7.0
+2015,0701,Totonaco,,020,sin,6.0
+2015,0702,Tepehua,tepehua del oeste,030,estimada,43.5
+2015,0702,Tepehua,tepehua del norte,030,estimada,39.5
+2015,0702,Tepehua,,009,sin,32.0
+2015,0702,Tepehua,tepehua del sur,021,unica,15.0
+2015,0702,Tepehua,tepehua del sur,013,unica,12.0
+2015,0801,Tarasco (purépecha),purépecha,016,exacta,38.0
+2015,0801,Tarasco (purépecha),,009,sin,101.0
+2015,0801,Tarasco (purépecha),,012,sin,39.0
+2015,0801,Tarasco (purépecha),,419,sin,22.0
+2015,0801,Tarasco (purépecha),,013,sin,20.0
+2015,0801,Tarasco (purépecha),,015,sin,10.0
+2015,0801,Tarasco (purépecha),purépecha,016,unica,1118.0
+2015,0901,Mixe,mixe bajo,020,estimada,869.8
+2015,0901,Mixe,mixe medio del este,020,estimada,705.1
+2015,0901,Mixe,mixe alto del centro,020,estimada,412.6
+2015,0901,Mixe,mixe alto del sur,020,estimada,301.3
+2015,0901,Mixe,mixe alto del norte,020,estimada,255.6
+2015,0901,Mixe,mixe medio del oeste,020,estimada,97.6
+2015,0901,Mixe,mixe alto del centro,020,exacta,74.0
+2015,0901,Mixe,mixe bajo,020,exacta,68.0
+2015,0901,Mixe,mixe medio del este,020,exacta,18.0
+2015,0901,Mixe,,009,sin,291.0
+2015,0901,Mixe,,015,sin,76.0
+2015,0901,Mixe,,999,sin,29.0
+2015,0901,Mixe,,019,sin,20.0
+2015,0901,Mixe,,021,sin,9.0
+2015,0901,Mixe,,030,sin,7.0
+2015,0907,Zoque,zoque del norte bajo,007,estimada,41.8
+2015,0907,Zoque,zoque del norte alto,007,estimada,28.7
+2015,0907,Zoque,zoque del este,007,estimada,19.6
+2015,0907,Zoque,zoque del centro,007,estimada,15.9
+2015,0907,Zoque,zoque del noroeste,007,estimada,10.7
+2015,0907,Zoque,zoque del sureste,007,estimada,6.5
+2015,0907,Zoque,zoque del sur,007,estimada,2.8
+2015,0907,Zoque,,020,sin,90.0
+2015,0907,Zoque,,030,sin,21.0
+2015,0907,Zoque,,009,sin,8.0
+2015,1001,Chontal de Oaxaca,chontal de Oaxaca de la costa,020,estimada,10.7
+2015,1001,Chontal de Oaxaca,chontal de Oaxaca alto,020,estimada,10.0
+2015,1001,Chontal de Oaxaca,chontal de Oaxaca bajo,020,estimada,3.3
+2015,1001,Chontal de Oaxaca,chontal de Oaxaca alto,020,exacta,14.0
+2015,1101,Huave,huave del oeste,020,estimada,75.3
+2015,1101,Huave,huave del este,020,estimada,18.7
+2015,8000,Otras lenguas indígenas de América,,237,sin,47.0
+2015,8000,Otras lenguas indígenas de América,,210,sin,34.0
+2015,8000,Otras lenguas indígenas de América,,250,sin,17.0
+2015,8000,Otras lenguas indígenas de América,,022,sin,10.0
+2015,8000,Otras lenguas indígenas de América,,236,sin,7.0
+2015,8000,Otras lenguas indígenas de América,,009,sin,3.0
+2015,9000,No especificado,,009,sin,3928.0
+2015,9000,No especificado,,020,sin,979.0
+2015,9000,No especificado,,015,sin,459.0
+2015,9000,No especificado,,021,sin,441.0
+2015,9000,No especificado,,030,sin,436.0
+2015,9000,No especificado,,012,sin,382.0
+2015,9000,No especificado,,013,sin,201.0
+2015,9000,No especificado,,022,sin,123.0
+2015,9000,No especificado,,016,sin,105.0
+2015,9000,No especificado,,007,sin,76.0
+2015,9000,No especificado,,029,sin,73.0
+2015,9000,No especificado,,999,sin,71.0
+2015,9000,No especificado,,024,sin,45.0
+2015,9000,No especificado,,998,sin,31.0
+2015,9000,No especificado,,014,sin,24.0
+2015,9000,No especificado,,415,sin,22.0
+2015,9000,No especificado,,026,sin,18.0
+2015,9000,No especificado,,031,sin,18.0
+2015,9000,No especificado,,011,sin,16.0
+2015,9000,No especificado,,018,sin,12.0
+2015,9000,No especificado,,027,sin,9.0
+2015,9000,No especificado,,005,sin,8.0
+2015,9000,No especificado,,221,sin,7.0
+2015,9000,No especificado,,204,sin,1.0
+2015,9010,Chontal insuficientemente especificado,,020,sin,87.0
+2015,9010,Chontal insuficientemente especificado,,009,sin,16.0
+2015,9010,Chontal insuficientemente especificado,,007,sin,3.0
+2015,9020,Tepehuano insuficientemente especificado,,013,sin,17.0
+2015,9020,Tepehuano insuficientemente especificado,,010,sin,14.0
+2015,9030,Popoluca insuficientemente especificado,,030,sin,24.0
+2020,0205,Tarahumara,,009,sin,47.0
+2020,0207,Yaqui,yaqui,026,unica,149.0
+2020,0208,Mayo,,009,sin,24.0
+2020,0208,Mayo,mayo,025,unica,40.0
+2020,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,estimada,4835.1
+2020,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,estimada,3053.4
+2020,0211,Náhuatl,náhuatl central de Veracruz,030,estimada,2555.3
+2020,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,estimada,2464.3
+2020,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,estimada,1914.4
+2020,0211,Náhuatl,náhuatl del noroeste central,021,estimada,1419.8
+2020,0211,Náhuatl,náhuatl del centro de Puebla,021,estimada,1193.2
+2020,0211,Náhuatl,"náhuatl de la Sierra negra, sur",021,estimada,786.2
+2020,0211,Náhuatl,mexicano del centro alto,015,estimada,518.6
+2020,0211,Náhuatl,náhuatl del Istmo,030,estimada,478.0
+2020,0211,Náhuatl,náhuatl del noroeste central,013,estimada,370.9
+2020,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,estimada,349.8
+2020,0211,Náhuatl,mexicano del centro,015,estimada,224.6
+2020,0211,Náhuatl,náhuatl del Istmo bajo,030,estimada,160.2
+2020,0211,Náhuatl,mexicano del oriente de Puebla,021,estimada,83.3
+2020,0211,Náhuatl,mexicano de Puente de Ixtla,017,estimada,62.1
+2020,0211,Náhuatl,mexicano de Temixco,017,estimada,40.3
+2020,0211,Náhuatl,náhuatl alto del norte de Puebla,021,estimada,34.9
+2020,0211,Náhuatl,mexicano de Guerrero,021,estimada,16.1
+2020,0211,Náhuatl,mexicano central bajo,017,estimada,11.5
+2020,0211,Náhuatl,mexicano de Tetela del Volcán,017,estimada,6.1
+2020,0211,Náhuatl,mexicano del centro bajo,015,estimada,0.8
+2020,0211,Náhuatl,náhuatl del centro de Puebla,021,exacta,645.0
+2020,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,exacta,348.0
+2020,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,exacta,254.0
+2020,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,exacta,190.0
+2020,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,exacta,168.0
+2020,0211,Náhuatl,náhuatl de Oaxaca,020,exacta,167.0
+2020,0211,Náhuatl,mexicano de Guerrero,012,exacta,155.0
+2020,0211,Náhuatl,náhuatl central de Veracruz,030,exacta,136.0
+2020,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,exacta,134.0
+2020,0211,Náhuatl,mexicano del centro alto,015,exacta,79.0
+2020,0211,Náhuatl,náhuatl de la Huasteca potosina,024,exacta,58.0
+2020,0211,Náhuatl,náhuatl del Istmo,030,exacta,29.0
+2020,0211,Náhuatl,náhuatl del noroeste central,013,exacta,24.0
+2020,0211,Náhuatl,mexicano de Guerrero,021,exacta,12.0
+2020,0211,Náhuatl,,009,sin,9931.0
+2020,0211,Náhuatl,,402,sin,69.0
+2020,0211,Náhuatl,,028,sin,64.0
+2020,0211,Náhuatl,,008,sin,62.0
+2020,0211,Náhuatl,,011,sin,47.0
+2020,0211,Náhuatl,,204,sin,43.0
+2020,0211,Náhuatl,,007,sin,41.0
+2020,0211,Náhuatl,,425,sin,32.0
+2020,0211,Náhuatl,,997,sin,31.0
+2020,0211,Náhuatl,,025,sin,30.0
+2020,0211,Náhuatl,náhuatl de la Huasteca potosina,024,unica,1865.0
+2020,0211,Náhuatl,náhuatl de Oaxaca,020,unica,1384.0
+2020,0211,Náhuatl,mexicano de Guerrero,012,unica,1079.0
+2020,0211,Náhuatl,mexicano del oriente central,029,unica,371.0
+2020,0211,Náhuatl,mexicano central de occidente,016,unica,147.0
+2020,0211,Náhuatl,mexicano de occidente,014,unica,138.0
+2020,0211,Náhuatl,mexicano del oriente,027,unica,26.0
+2020,0501,Otomí,otomí del noroeste,022,estimada,3261.2
+2020,0501,Otomí,otomí del Valle del Mezquital,013,estimada,3243.1
+2020,0501,Otomí,otomí bajo del noroeste,022,estimada,1110.8
+2020,0501,Otomí,otomí de la Sierra,013,estimada,620.1
+2020,0501,Otomí,otomí del oeste del Valle del Mezquital,013,estimada,129.7
+2020,0501,Otomí,otomí del centro,015,exacta,192.0
+2020,0501,Otomí,otomí del noroeste,022,exacta,176.0
+2020,0501,Otomí,otomí del Valle del Mezquital,013,exacta,101.0
+2020,0501,Otomí,otomí de la Sierra,013,exacta,54.0
+2020,0501,Otomí,otomí de la Sierra,021,exacta,10.0
+2020,0501,Otomí,,009,sin,3502.0
+2020,0501,Otomí,,020,sin,230.0
+2020,0501,Otomí,,017,sin,95.0
+2020,0501,Otomí,,012,sin,69.0
+2020,0501,Otomí,,221,sin,38.0
+2020,0501,Otomí,,008,sin,24.0
+2020,0501,Otomí,,024,sin,22.0
+2020,0501,Otomí,otomí del centro,015,unica,3386.0
+2020,0501,Otomí,otomí de la Sierra,030,unica,522.0
+2020,0501,Otomí,otomí de la Sierra,021,unica,445.0
+2020,0501,Otomí,otomí de Ixtenco,029,unica,146.0
+2020,0502,Mazahua,mazahua de oriente,015,estimada,6414.2
+2020,0502,Mazahua,mazahua de occidente,015,estimada,1573.8
+2020,0502,Mazahua,mazahua de oriente,016,estimada,403.2
+2020,0502,Mazahua,mazahua de occidente,016,estimada,376.8
+2020,0502,Mazahua,mazahua de oriente,015,exacta,181.0
+2020,0502,Mazahua,,009,sin,1434.0
+2020,0502,Mazahua,,021,sin,217.0
+2020,0502,Mazahua,,020,sin,40.0
+2020,0502,Mazahua,,997,sin,23.0
+2020,0502,Mazahua,,022,sin,18.0
+2020,0503,Matlatzinca,,020,sin,23.0
+2020,0503,Matlatzinca,matlatzinca,015,unica,137.0
+2020,0507,Chinanteco,chinanteco del norte,020,estimada,1226.2
+2020,0507,Chinanteco,chinanteco central,020,estimada,618.2
+2020,0507,Chinanteco,chinanteco del sureste bajo,020,estimada,397.1
+2020,0507,Chinanteco,chinanteco del sureste medio,020,estimada,310.9
+2020,0507,Chinanteco,chinanteco de la Sierra,020,estimada,259.5
+2020,0507,Chinanteco,chinanteco del oeste,020,estimada,137.2
+2020,0507,Chinanteco,chinanteco central bajo,020,estimada,122.3
+2020,0507,Chinanteco,chinanteco del oeste central alto,020,estimada,85.6
+2020,0507,Chinanteco,chianateco del oeste central bajo,020,estimada,85.6
+2020,0507,Chinanteco,chinanteco del norte,030,estimada,85.0
+2020,0507,Chinanteco,chinanteco del sureste alto,020,estimada,55.6
+2020,0507,Chinanteco,chinanteco del noroeste,020,estimada,53.7
+2020,0507,Chinanteco,chinanteco del sureste medio,030,estimada,6.0
+2020,0507,Chinanteco,chinanteco del sureste bajo,020,exacta,301.0
+2020,0507,Chinanteco,chinanteco del sureste medio,030,exacta,51.0
+2020,0507,Chinanteco,chinanteco del norte,020,exacta,43.0
+2020,0507,Chinanteco,,009,sin,342.0
+2020,0507,Chinanteco,,015,sin,40.0
+2020,0507,Chinanteco,,022,sin,4.0
+2020,0508,Tlapaneco,tlapaneco central bajo,012,estimada,510.6
+2020,0508,Tlapaneco,tlapaneco del suroeste,012,estimada,474.6
+2020,0508,Tlapaneco,tlapaneco del norte,012,estimada,391.1
+2020,0508,Tlapaneco,tlapaneco del este,012,estimada,156.5
+2020,0508,Tlapaneco,tlapaneco del noroeste alto,012,estimada,97.7
+2020,0508,Tlapaneco,tlapaneco del noroeste bajo,012,estimada,97.7
+2020,0508,Tlapaneco,tlapaneco del centro,012,estimada,60.8
+2020,0508,Tlapaneco,tlapaneco del sur,012,estimada,6.6
+2020,0508,Tlapaneco,tlapaneco del oeste,012,estimada,3.4
+2020,0508,Tlapaneco,tlapaneco central bajo,012,exacta,24.0
+2020,0508,Tlapaneco,,009,sin,132.0
+2020,0508,Tlapaneco,,015,sin,73.0
+2020,0509,Mazateco,mazateco del centro,020,estimada,2774.8
+2020,0509,Mazateco,mazateco del noreste,020,estimada,2442.6
+2020,0509,Mazateco,mazateco del este bajo,020,estimada,1938.6
+2020,0509,Mazateco,mazateco del norte,020,estimada,1731.3
+2020,0509,Mazateco,mazateco de la presa alto,020,estimada,1656.3
+2020,0509,Mazateco,mazateco del suroeste,020,estimada,873.3
+2020,0509,Mazateco,mazateco de la presa bajo,020,estimada,670.9
+2020,0509,Mazateco,mazateco del oeste,020,estimada,543.4
+2020,0509,Mazateco,mazateco del sureste,020,estimada,313.9
+2020,0509,Mazateco,mazateco de Eloxochitlán,020,estimada,290.8
+2020,0509,Mazateco,mazateco de Acatepec,020,estimada,109.6
+2020,0509,Mazateco,mazateco del sur,020,estimada,88.9
+2020,0509,Mazateco,mazateco de Tecóatl,020,estimada,87.8
+2020,0509,Mazateco,mazateco de Huehuetlán,020,estimada,59.2
+2020,0509,Mazateco,mazateco de Ocopetatillo,020,estimada,56.6
+2020,0509,Mazateco,mazateco del centro,020,exacta,310.0
+2020,0509,Mazateco,mazateco del norte,020,exacta,133.0
+2020,0509,Mazateco,mazateco de la presa alto,020,exacta,126.0
+2020,0509,Mazateco,mazateco del este bajo,020,exacta,110.0
+2020,0509,Mazateco,mazateco del suroeste,020,exacta,69.0
+2020,0509,Mazateco,mazateco del noreste,020,exacta,50.0
+2020,0509,Mazateco,mazateco del sur,020,exacta,23.0
+2020,0509,Mazateco,,009,sin,1644.0
+2020,0509,Mazateco,,013,sin,46.0
+2020,0509,Mazateco,,015,sin,44.0
+2020,0509,Mazateco,,999,sin,23.0
+2020,0509,Mazateco,,017,sin,20.0
+2020,0509,Mazateco,,022,sin,12.0
+2020,0509,Mazateco,mazateco de Puebla,021,unica,182.0
+2020,0509,Mazateco,mazateco del norte,030,unica,60.0
+2020,0511,Chocholteco,chocholteco del sur,020,estimada,34.4
+2020,0511,Chocholteco,chocholteco del este,020,estimada,27.8
+2020,0511,Chocholteco,chocholteco del oeste,020,estimada,10.8
+2020,0512,Popoloca,popoloca del norte,021,estimada,264.3
+2020,0512,Popoloca,popoloca de oriente,021,estimada,206.2
+2020,0512,Popoloca,popoloca del centro,021,estimada,20.4
+2020,0512,Popoloca,popoloca del poniente,021,estimada,15.1
+2020,0512,Popoloca,,009,sin,139.0
+2020,0513,Zapoteco,zapoteco de la planicie costera,020,estimada,2543.3
+2020,0513,Zapoteco,zapoteco de la costa central,020,estimada,868.0
+2020,0513,Zapoteco,"zapoteco de Valles, del norte central",020,estimada,538.7
+2020,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,estimada,481.9
+2020,0513,Zapoteco,zapoteco de la costa oeste,020,estimada,311.0
+2020,0513,Zapoteco,"zapoteco de Valles, del este medio",020,estimada,306.4
+2020,0513,Zapoteco,"zapoteco serrano, del noroeste bajo",020,estimada,272.0
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, central",020,estimada,255.3
+2020,0513,Zapoteco,"zapoteco de Valles, del este central",020,estimada,198.4
+2020,0513,Zapoteco,zapoteco de la costa noreste,020,estimada,182.7
+2020,0513,Zapoteco,zapoteco de Texmelucan,020,estimada,180.8
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, noreste",020,estimada,169.0
+2020,0513,Zapoteco,"zapoteco de Valles, del noreste",020,estimada,132.3
+2020,0513,Zapoteco,"zapoteco de Valles, del suroeste central",020,estimada,105.5
+2020,0513,Zapoteco,zapoteco de Petapa,020,estimada,104.6
+2020,0513,Zapoteco,"zapoteco de Valles, noroeste",020,estimada,96.5
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste alto",020,estimada,96.0
+2020,0513,Zapoteco,"zapoteco serrano, bajo",020,estimada,80.6
+2020,0513,Zapoteco,"zapoteco serrano, del sureste",020,estimada,79.7
+2020,0513,Zapoteco,zapoteco de Valles del sur,020,estimada,75.2
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, oeste bajo",020,estimada,75.1
+2020,0513,Zapoteco,"zapoteco de Valles, del noroeste bajo",020,estimada,67.3
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, del este bajo",020,estimada,67.2
+2020,0513,Zapoteco,zapoteco de San Vicente Coatlán,020,estimada,66.8
+2020,0513,Zapoteco,"zapoteco de la montaña del Istmo, bajo",020,estimada,64.9
+2020,0513,Zapoteco,"zapoteco de Valles, del suroeste medio",020,estimada,62.4
+2020,0513,Zapoteco,"zapoteco de Valles, de suroeste alto",020,estimada,60.3
+2020,0513,Zapoteco,"zapoteco de Valles, del centro bajo",020,estimada,58.2
+2020,0513,Zapoteco,zapoteco de la costa este,020,estimada,57.2
+2020,0513,Zapoteco,"zapoteco de Sierra sur, del noreste alto",020,estimada,55.9
+2020,0513,Zapoteco,"zapoteco serrano, del oeste",020,estimada,55.9
+2020,0513,Zapoteco,"zapoteco de la montaña del Istmo, alto",020,estimada,54.0
+2020,0513,Zapoteco,"zapoteco serrano, del sureste bajo",020,estimada,50.5
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, del norte",020,estimada,50.0
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,estimada,49.1
+2020,0513,Zapoteco,zapoteco de San Baltazar Chichicapam,020,estimada,46.8
+2020,0513,Zapoteco,zapoteco de San Miguel Aloápam,020,estimada,44.1
+2020,0513,Zapoteco,"zapoteco serrano, del sureste alto",020,estimada,39.7
+2020,0513,Zapoteco,"zapoteco de Valles, del oeste central",020,estimada,39.5
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste",020,estimada,38.5
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste alto",020,estimada,35.6
+2020,0513,Zapoteco,"zapoteco serrano, del sureste medio",020,estimada,35.6
+2020,0513,Zapoteco,zapoteco de Santa María Quiegolani,020,estimada,34.9
+2020,0513,Zapoteco,zapoteco de Mixtepec,020,estimada,33.5
+2020,0513,Zapoteco,zapoteco del oeste de Tuxtepec,020,estimada,30.5
+2020,0513,Zapoteco,"zapoteco serrano, del oeste medio",020,estimada,28.2
+2020,0513,Zapoteco,zapoteco de Santiago Yaveo,020,estimada,25.2
+2020,0513,Zapoteco,zapoteco de Quiavicuzas,020,estimada,24.2
+2020,0513,Zapoteco,"zapoteco de Valles, norte",020,estimada,23.7
+2020,0513,Zapoteco,"zapoteco serrano, del este",020,estimada,23.3
+2020,0513,Zapoteco,"zapoteco serrano, del noroeste",020,estimada,22.3
+2020,0513,Zapoteco,zapoteco de Santiago Laxopa,020,estimada,21.9
+2020,0513,Zapoteco,zapoteco de San Antonino el Alto,020,estimada,20.4
+2020,0513,Zapoteco,zapoteco de Santa María Temaxcalapa,020,estimada,18.4
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste bajo",020,estimada,14.3
+2020,0513,Zapoteco,zapoteco de Zimatlán de Álvarez,020,estimada,10.0
+2020,0513,Zapoteco,"zapoteco de Valles, oeste",020,estimada,7.3
+2020,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste bajo",020,estimada,6.4
+2020,0513,Zapoteco,"zapoteco de Valles, del centro",020,estimada,4.7
+2020,0513,Zapoteco,zapoteco de San Bartolo Yautepec,020,estimada,3.5
+2020,0513,Zapoteco,zapoteco de San Felipe Tejalápam,020,estimada,1.8
+2020,0513,Zapoteco,zapoteco de Asunción Tlacolulita,020,estimada,1.0
+2020,0513,Zapoteco,zapoteco de la planicie costera,020,exacta,199.0
+2020,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,exacta,127.0
+2020,0513,Zapoteco,"zapoteco serrano, del sureste medio",020,exacta,29.0
+2020,0513,Zapoteco,zapoteco de la costa central,020,exacta,12.0
+2020,0513,Zapoteco,zapoteco de la costa oeste,020,exacta,11.0
+2020,0513,Zapoteco,,009,sin,1901.0
+2020,0513,Zapoteco,,030,sin,387.0
+2020,0513,Zapoteco,,007,sin,146.0
+2020,0513,Zapoteco,,015,sin,85.0
+2020,0513,Zapoteco,,024,sin,85.0
+2020,0513,Zapoteco,,021,sin,75.0
+2020,0513,Zapoteco,,028,sin,43.0
+2020,0513,Zapoteco,,439,sin,37.0
+2020,0513,Zapoteco,,012,sin,34.0
+2020,0513,Zapoteco,,017,sin,33.0
+2020,0513,Zapoteco,,013,sin,10.0
+2020,0515,Amuzgo,amuzgo del norte,012,estimada,88.2
+2020,0515,Amuzgo,amuzgo del sur,012,estimada,55.8
+2020,0515,Amuzgo,,009,sin,57.0
+2020,0516,Mixteco,mixteco de Oaxaca de la costa central,020,estimada,1164.1
+2020,0516,Mixteco,mixteco del oeste,020,estimada,1149.3
+2020,0516,Mixteco,mixteco del oeste alto,020,estimada,817.6
+2020,0516,Mixteco,mixteco del suroeste central,020,estimada,793.7
+2020,0516,Mixteco,mixteco de Ixtayutla,020,estimada,532.3
+2020,0516,Mixteco,mixteco de Oaxaca de la costa oeste central,020,estimada,496.6
+2020,0516,Mixteco,mixteco bajo de Valles,020,estimada,473.0
+2020,0516,Mixteco,mixteco del oeste de la costa,020,estimada,430.5
+2020,0516,Mixteco,mixteco del norte bajo,020,estimada,413.5
+2020,0516,Mixteco,mixteco de Santa María Peñoles,020,estimada,387.5
+2020,0516,Mixteco,mixteco de Sierra sur noroeste,020,estimada,384.4
+2020,0516,Mixteco,mixteco de Santiago Amoltepec,020,estimada,373.6
+2020,0516,Mixteco,mixteco del suroeste,020,estimada,359.1
+2020,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,021,estimada,346.3
+2020,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,estimada,337.4
+2020,0516,Mixteco,mixteco de Oaxaca de la costa noroeste,020,estimada,334.0
+2020,0516,Mixteco,mixteco del noroeste,020,estimada,309.0
+2020,0516,Mixteco,mixteco del sur bajo,020,estimada,291.8
+2020,0516,Mixteco,mixteco del noreste,020,estimada,280.1
+2020,0516,Mixteco,mixteco de Ñumi,020,estimada,272.1
+2020,0516,Mixteco,mixteco central,020,estimada,222.2
+2020,0516,Mixteco,mixteco del noroeste medio,020,estimada,205.6
+2020,0516,Mixteco,mixteco del sur medio,020,estimada,177.2
+2020,0516,Mixteco,mixteco de Santa María Huazolotitlán,020,estimada,167.5
+2020,0516,Mixteco,mixteco de Santa Lucía Monteverde,020,estimada,164.9
+2020,0516,Mixteco,mixteco del suroeste de Puebla,021,estimada,163.2
+2020,0516,Mixteco,mixteco de Sierra sur oeste,020,estimada,160.8
+2020,0516,Mixteco,mixteco del este,020,estimada,144.6
+2020,0516,Mixteco,mixteco de San Pablo Tijaltepec,020,estimada,131.1
+2020,0516,Mixteco,mixteco de Guerrero del norte,012,estimada,120.4
+2020,0516,Mixteco,mixteco de Cañada bajo,020,estimada,115.2
+2020,0516,Mixteco,mixteco del este central,020,estimada,111.0
+2020,0516,Mixteco,mixteco de Yosondúa,020,estimada,94.9
+2020,0516,Mixteco,mixteco de San Mateo Peñasco,020,estimada,91.8
+2020,0516,Mixteco,mixteco de San Luis Acatlán,012,estimada,88.3
+2020,0516,Mixteco,mixteco de Ayutla,012,estimada,78.2
+2020,0516,Mixteco,mixteco de Coatzóspam,020,estimada,75.5
+2020,0516,Mixteco,mixteco de San Antonio Sinicahua,020,estimada,75.5
+2020,0516,Mixteco,mixteco de Santo Domingo Tonalá,020,estimada,74.3
+2020,0516,Mixteco,mixteco de Santa María Yosoyúa,020,estimada,71.5
+2020,0516,Mixteco,mixteco de San Juan Tamazola,020,estimada,70.2
+2020,0516,Mixteco,mixteco de Cañada central,020,estimada,70.1
+2020,0516,Mixteco,mixteco de Villa de Tututepec,020,estimada,68.7
+2020,0516,Mixteco,mixteco de oeste central,020,estimada,66.7
+2020,0516,Mixteco,mixteco de Tlacoachistlahuaca,012,estimada,65.9
+2020,0516,Mixteco,mixteco de Tlaltempan,021,estimada,62.1
+2020,0516,Mixteco,mixteco de Zapotitlán,021,estimada,60.4
+2020,0516,Mixteco,mixteco de Coapanatoyac,012,estimada,59.3
+2020,0516,Mixteco,mixteco de San Antonio Huitepec,020,estimada,54.3
+2020,0516,Mixteco,mixteco de Santa Cruz Itundujia,020,estimada,54.3
+2020,0516,Mixteco,mixteco de Yosonotú,020,estimada,52.7
+2020,0516,Mixteco,mixteco del sureste central,020,estimada,51.9
+2020,0516,Mixteco,mixteco de Mitlatongo,020,estimada,51.4
+2020,0516,Mixteco,mixteco de Yutanduchi de Guerrero,020,estimada,48.5
+2020,0516,Mixteco,mixteco de Chochoapa,012,estimada,45.4
+2020,0516,Mixteco,mixteco de Guerrero del este medio,012,estimada,45.4
+2020,0516,Mixteco,mixteco de San Miguel Piedras,020,estimada,36.8
+2020,0516,Mixteco,mixteco alto de Valles,020,estimada,32.8
+2020,0516,Mixteco,mixteco de San Agustín Tlacotepec,020,estimada,30.3
+2020,0516,Mixteco,mixteco de Guerrero del noreste central,012,estimada,26.8
+2020,0516,Mixteco,mixteco de Tlahuapa,012,estimada,26.8
+2020,0516,Mixteco,mixteco de Xochapa,012,estimada,26.8
+2020,0516,Mixteco,mixteco de Xonacatlán,012,estimada,26.8
+2020,0516,Mixteco,mixteco de Santa Inés de Zaragoza,020,estimada,25.6
+2020,0516,Mixteco,mixteco de Guerrero central alto,012,estimada,25.0
+2020,0516,Mixteco,mixteco de San Pedro Molinos,020,estimada,22.8
+2020,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,020,estimada,22.4
+2020,0516,Mixteco,mixteco de Guerrero de la costa este,012,estimada,18.9
+2020,0516,Mixteco,mixteco de San Pedro Tidaá,020,estimada,16.4
+2020,0516,Mixteco,mixteco de San Juan Teita,020,estimada,15.7
+2020,0516,Mixteco,mixteco de Atlamajalcingo,012,estimada,15.6
+2020,0516,Mixteco,mixteco de Guerrero del norte central,012,estimada,14.5
+2020,0516,Mixteco,mixteco del noreste bajo,020,estimada,14.2
+2020,0516,Mixteco,mixteco central de Guerrero,012,estimada,10.5
+2020,0516,Mixteco,mixteco de Xochistlahuaca,012,estimada,9.6
+2020,0516,Mixteco,mixteco de Igualapa,012,estimada,9.0
+2020,0516,Mixteco,mixteco de Tlalixtaquilla de Maldonado,012,estimada,8.1
+2020,0516,Mixteco,mixteco de Guerrero de la costa occidental,012,estimada,7.7
+2020,0516,Mixteco,mixteco de Guerrero de la costa central,012,estimada,1.1
+2020,0516,Mixteco,mixteco de Oaxaca de la costa central,020,exacta,116.0
+2020,0516,Mixteco,mixteco del sur medio,020,exacta,80.0
+2020,0516,Mixteco,mixteco de Cañada bajo,020,exacta,79.0
+2020,0516,Mixteco,mixteco del suroeste central,020,exacta,54.0
+2020,0516,Mixteco,mixteco de Guerrero del norte,012,exacta,26.0
+2020,0516,Mixteco,,009,sin,1770.0
+2020,0516,Mixteco,,015,sin,184.0
+2020,0516,Mixteco,,030,sin,71.0
+2020,0516,Mixteco,,013,sin,41.0
+2020,0516,Mixteco,,029,sin,12.0
+2020,0517,Cuicateco,cuicateco del centro,020,estimada,135.0
+2020,0517,Cuicateco,cuicateco del norte,020,estimada,15.0
+2020,0517,Cuicateco,cuicateco del oriente,020,estimada,15.0
+2020,0518,Triqui,triqui de San Juan Copala,020,estimada,629.8
+2020,0518,Triqui,triqui de la baja,020,estimada,161.6
+2020,0518,Triqui,triqui de la alta,020,estimada,130.2
+2020,0518,Triqui,triqui de la media,020,estimada,99.5
+2020,0518,Triqui,triqui de San Juan Copala,020,exacta,22.0
+2020,0518,Triqui,,009,sin,632.0
+2020,0518,Triqui,,015,sin,22.0
+2020,0601,Huasteco,huasteco del centro,030,estimada,367.0
+2020,0601,Huasteco,huasteco de oriente,030,estimada,29.0
+2020,0601,Huasteco,,009,sin,83.0
+2020,0601,Huasteco,,013,sin,59.0
+2020,0601,Huasteco,huasteco del occidente,024,unica,182.0
+2020,0602,Maya,maya,031,exacta,55.0
+2020,0602,Maya,maya,023,exacta,10.0
+2020,0602,Maya,,009,sin,538.0
+2020,0602,Maya,,225,sin,48.0
+2020,0602,Maya,,017,sin,29.0
+2020,0602,Maya,,030,sin,26.0
+2020,0602,Maya,,016,sin,20.0
+2020,0602,Maya,,229,sin,10.0
+2020,0602,Maya,maya,031,unica,607.0
+2020,0602,Maya,maya,004,unica,79.0
+2020,0602,Maya,maya,023,unica,42.0
+2020,0604,Ch'ol,ch'ol del noroeste,007,estimada,224.9
+2020,0604,Ch'ol,ch'ol del sureste,007,estimada,55.1
+2020,0604,Ch'ol,ch'ol del noroeste,007,exacta,231.0
+2020,0606,Tseltal,tseltal del norte,007,estimada,676.6
+2020,0606,Tseltal,tseltal del occidente,007,estimada,438.9
+2020,0606,Tseltal,tseltal del oriente,007,estimada,235.2
+2020,0606,Tseltal,tseltal del sur,007,estimada,82.2
+2020,0606,Tseltal,tseltal del occidente,007,exacta,755.0
+2020,0606,Tseltal,,009,sin,269.0
+2020,0606,Tseltal,,030,sin,21.0
+2020,0606,Tseltal,,015,sin,4.0
+2020,0607,Tsotsil,tsotsil del norte alto,007,estimada,98.8
+2020,0607,Tsotsil,tsotsil del centro,007,estimada,66.5
+2020,0607,Tsotsil,tsotsil del noroeste,007,estimada,55.7
+2020,0607,Tsotsil,tsotsil de los Altos,007,estimada,33.9
+2020,0607,Tsotsil,tsotsil del este bajo,007,estimada,31.8
+2020,0607,Tsotsil,tsotsil del este alto,007,estimada,8.1
+2020,0607,Tsotsil,tsotsil del norte bajo,007,estimada,5.2
+2020,0607,Tsotsil,tsotsil de los Altos,007,exacta,49.0
+2020,0607,Tsotsil,tsotsil del noroeste,007,exacta,5.0
+2020,0607,Tsotsil,,009,sin,234.0
+2020,0607,Tsotsil,,030,sin,49.0
+2020,0607,Tsotsil,,013,sin,23.0
+2020,0608,Q'anjob'al,Q'anjob'al,007,unica,58.0
+2020,0610,Jakalteko,,009,sin,24.0
+2020,0612,Chuj,,007,sin,50.0
+2020,0613,Tojolabal,,009,sin,40.0
+2020,0613,Tojolabal,tojolabal,007,unica,62.0
+2020,0615,K'iche',,012,sin,38.0
+2020,0618,Mam,,225,sin,39.0
+2020,0701,Totonaco,totonaco central del sur,021,estimada,2529.0
+2020,0701,Totonaco,totonaco de la costa,030,estimada,1148.3
+2020,0701,Totonaco,totonaco central del sur,030,estimada,1134.0
+2020,0701,Totonaco,totonaco central alto,030,estimada,366.6
+2020,0701,Totonaco,totonaco central del norte,021,estimada,366.2
+2020,0701,Totonaco,totonaco del río Necaxa,021,estimada,142.4
+2020,0701,Totonaco,totonaco central del norte,030,estimada,56.7
+2020,0701,Totonaco,totonaco del cerro Xinolatépetl,021,estimada,12.3
+2020,0701,Totonaco,totonaco del sureste,030,estimada,6.4
+2020,0701,Totonaco,totonaco central del sur,021,exacta,120.0
+2020,0701,Totonaco,totonaco central del sur,030,exacta,88.0
+2020,0701,Totonaco,totonaco de la costa,030,exacta,22.0
+2020,0701,Totonaco,totonaco central del norte,021,exacta,19.0
+2020,0701,Totonaco,,009,sin,1052.0
+2020,0701,Totonaco,,007,sin,125.0
+2020,0701,Totonaco,,015,sin,53.0
+2020,0702,Tepehua,tepehua del oeste,030,estimada,5.2
+2020,0702,Tepehua,tepehua del norte,030,estimada,4.8
+2020,0702,Tepehua,tepehua del sur,013,unica,109.0
+2020,0801,Tarasco (purépecha),purépecha,016,exacta,11.0
+2020,0801,Tarasco (purépecha),,009,sin,300.0
+2020,0801,Tarasco (purépecha),,020,sin,23.0
+2020,0801,Tarasco (purépecha),,015,sin,13.0
+2020,0801,Tarasco (purépecha),purépecha,016,unica,1033.0
+2020,0901,Mixe,mixe bajo,020,estimada,1084.4
+2020,0901,Mixe,mixe medio del este,020,estimada,879.1
+2020,0901,Mixe,mixe alto del centro,020,estimada,534.8
+2020,0901,Mixe,mixe alto del sur,020,estimada,375.7
+2020,0901,Mixe,mixe alto del norte,020,estimada,331.3
+2020,0901,Mixe,mixe medio del oeste,020,estimada,121.7
+2020,0901,Mixe,mixe alto del centro,020,exacta,136.0
+2020,0901,Mixe,mixe medio del este,020,exacta,37.0
+2020,0901,Mixe,mixe bajo,020,exacta,31.0
+2020,0901,Mixe,,009,sin,134.0
+2020,0901,Mixe,,013,sin,64.0
+2020,0901,Mixe,,030,sin,20.0
+2020,0907,Zoque,zoque del norte bajo,007,estimada,13.3
+2020,0907,Zoque,zoque del norte alto,007,estimada,9.1
+2020,0907,Zoque,zoque del este,007,estimada,6.2
+2020,0907,Zoque,zoque del centro,007,estimada,5.1
+2020,0907,Zoque,zoque del noroeste,007,estimada,3.4
+2020,0907,Zoque,zoque del sureste,007,estimada,2.1
+2020,0907,Zoque,zoque del sur,007,estimada,0.9
+2020,0907,Zoque,,020,sin,27.0
+2020,1001,Chontal de Oaxaca,chontal de Oaxaca de la costa,020,estimada,37.3
+2020,1001,Chontal de Oaxaca,chontal de Oaxaca alto,020,estimada,35.1
+2020,1001,Chontal de Oaxaca,chontal de Oaxaca bajo,020,estimada,11.6
+2020,1001,Chontal de Oaxaca,,009,sin,5.0
+2020,8000,Otras lenguas indígenas de América,,210,sin,140.0
+2020,8000,Otras lenguas indígenas de América,,237,sin,99.0
+2020,8000,Otras lenguas indígenas de América,,009,sin,97.0
+2020,8000,Otras lenguas indígenas de América,,236,sin,66.0
+2020,8000,Otras lenguas indígenas de América,,219,sin,38.0
+2020,8000,Otras lenguas indígenas de América,,229,sin,24.0
+2020,8000,Otras lenguas indígenas de América,,998,sin,23.0
+2020,9000,No especificado,,009,sin,788.0
+2020,9000,No especificado,,020,sin,320.0
+2020,9000,No especificado,,015,sin,213.0
+2020,9000,No especificado,,021,sin,213.0
+2020,9000,No especificado,,029,sin,193.0
+2020,9000,No especificado,,007,sin,124.0
+2020,9000,No especificado,,030,sin,119.0
+2020,9000,No especificado,,016,sin,88.0
+2020,9000,No especificado,,014,sin,62.0
+2020,9000,No especificado,,221,sin,42.0
+2020,9000,No especificado,,027,sin,32.0
+2020,9000,No especificado,,999,sin,20.0
+2020,9000,No especificado,,013,sin,15.0
+2020,9010,Chontal insuficientemente especificado,,007,sin,90.0
+2020,9010,Chontal insuficientemente especificado,,009,sin,79.0
+2020,9010,Chontal insuficientemente especificado,,020,sin,24.0
+2020,9030,Popoluca insuficientemente especificado,,021,sin,42.0
+2020,9030,Popoluca insuficientemente especificado,,030,sin,12.0
+2025,0205,Tarahumara,tarahumara del centro,008,estimada,8.5
+2025,0205,Tarahumara,tarahumara de Cumbres,008,estimada,5.0
+2025,0205,Tarahumara,tarahumara del norte,008,estimada,3.8
+2025,0205,Tarahumara,tarahumara del oeste,008,estimada,2.2
+2025,0205,Tarahumara,tarahumara del sur,008,estimada,1.5
+2025,0205,Tarahumara,,032,sin,53.0
+2025,0205,Tarahumara,,009,sin,22.0
+2025,0207,Yaqui,,002,sin,85.0
+2025,0207,Yaqui,yaqui,026,unica,14.0
+2025,0208,Mayo,mayo,026,unica,19.0
+2025,0210,Huichol,huichol del este,014,estimada,3.0
+2025,0210,Huichol,huichol del sur,014,estimada,0.8
+2025,0210,Huichol,huichol del oeste,014,estimada,0.2
+2025,0210,Huichol,,024,sin,31.0
+2025,0210,Huichol,,009,sin,4.0
+2025,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,estimada,4462.7
+2025,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,estimada,3462.5
+2025,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,estimada,2760.0
+2025,0211,Náhuatl,náhuatl central de Veracruz,030,estimada,2367.7
+2025,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,estimada,1773.9
+2025,0211,Náhuatl,náhuatl del noroeste central,021,estimada,1610.0
+2025,0211,Náhuatl,náhuatl del centro de Puebla,021,estimada,1353.0
+2025,0211,Náhuatl,"náhuatl de la Sierra negra, sur",021,estimada,880.6
+2025,0211,Náhuatl,mexicano del centro alto,015,estimada,606.4
+2025,0211,Náhuatl,náhuatl del Istmo,030,estimada,442.9
+2025,0211,Náhuatl,náhuatl de la Sierra oeste de Puebla,021,estimada,396.6
+2025,0211,Náhuatl,náhuatl del noroeste central,013,estimada,342.3
+2025,0211,Náhuatl,mexicano del centro,015,estimada,262.7
+2025,0211,Náhuatl,náhuatl del Istmo bajo,030,estimada,148.5
+2025,0211,Náhuatl,mexicano de Puente de Ixtla,017,estimada,110.7
+2025,0211,Náhuatl,mexicano del oriente de Puebla,021,estimada,94.4
+2025,0211,Náhuatl,mexicano de Temixco,017,estimada,71.8
+2025,0211,Náhuatl,náhuatl alto del norte de Puebla,021,estimada,39.6
+2025,0211,Náhuatl,mexicano central bajo,017,estimada,20.6
+2025,0211,Náhuatl,mexicano de Guerrero,021,estimada,18.3
+2025,0211,Náhuatl,mexicano de Tetela del Volcán,017,estimada,11.0
+2025,0211,Náhuatl,mexicano del centro bajo,015,estimada,0.9
+2025,0211,Náhuatl,náhuatl del centro de Puebla,021,exacta,960.0
+2025,0211,Náhuatl,mexicano de la Huasteca hidalguense,013,exacta,290.0
+2025,0211,Náhuatl,"náhuatl de la Sierra, noreste de Puebla",021,exacta,267.0
+2025,0211,Náhuatl,náhuatl de Oaxaca,020,exacta,104.0
+2025,0211,Náhuatl,náhuatl del noroeste central,021,exacta,87.0
+2025,0211,Náhuatl,náhuatl del noroeste central,013,exacta,59.0
+2025,0211,Náhuatl,náhuatl de la Huasteca veracruzana,030,exacta,46.0
+2025,0211,Náhuatl,"náhuatl de la Sierra negra, norte",021,exacta,42.0
+2025,0211,Náhuatl,náhuatl del Istmo bajo,030,exacta,26.0
+2025,0211,Náhuatl,mexicano de Guerrero,012,exacta,26.0
+2025,0211,Náhuatl,náhuatl de la Huasteca potosina,024,exacta,19.0
+2025,0211,Náhuatl,náhuatl central de Veracruz,030,exacta,14.0
+2025,0211,Náhuatl,mexicano del centro alto,015,exacta,13.0
+2025,0211,Náhuatl,mexicano del oriente de Puebla,021,exacta,2.0
+2025,0211,Náhuatl,,009,sin,9297.0
+2025,0211,Náhuatl,,011,sin,157.0
+2025,0211,Náhuatl,,002,sin,70.0
+2025,0211,Náhuatl,,221,sin,51.0
+2025,0211,Náhuatl,,247,sin,31.0
+2025,0211,Náhuatl,,028,sin,18.0
+2025,0211,Náhuatl,,025,sin,17.0
+2025,0211,Náhuatl,,031,sin,15.0
+2025,0211,Náhuatl,,032,sin,15.0
+2025,0211,Náhuatl,,005,sin,12.0
+2025,0211,Náhuatl,,008,sin,1.0
+2025,0211,Náhuatl,náhuatl de Oaxaca,020,unica,2636.0
+2025,0211,Náhuatl,náhuatl de la Huasteca potosina,024,unica,1392.0
+2025,0211,Náhuatl,mexicano de Guerrero,012,unica,998.0
+2025,0211,Náhuatl,mexicano del oriente central,029,unica,232.0
+2025,0211,Náhuatl,mexicano central de occidente,016,unica,115.0
+2025,0211,Náhuatl,mexicano de occidente,014,unica,40.0
+2025,0211,Náhuatl,mexicano del oriente,027,unica,14.0
+2025,0501,Otomí,otomí del Valle del Mezquital,013,estimada,2608.0
+2025,0501,Otomí,otomí del noroeste,022,estimada,2192.3
+2025,0501,Otomí,otomí bajo del noroeste,022,estimada,746.7
+2025,0501,Otomí,otomí de la Sierra,013,estimada,498.7
+2025,0501,Otomí,otomí del oeste del Valle del Mezquital,013,estimada,104.3
+2025,0501,Otomí,otomí del centro,015,exacta,107.0
+2025,0501,Otomí,otomí del noroeste,022,exacta,39.0
+2025,0501,Otomí,otomí de la Sierra,030,exacta,19.0
+2025,0501,Otomí,otomí de la Sierra,021,exacta,16.0
+2025,0501,Otomí,otomí del Valle del Mezquital,013,exacta,15.0
+2025,0501,Otomí,,009,sin,2916.0
+2025,0501,Otomí,,020,sin,234.0
+2025,0501,Otomí,,017,sin,154.0
+2025,0501,Otomí,,019,sin,54.0
+2025,0501,Otomí,,018,sin,32.0
+2025,0501,Otomí,,997,sin,18.0
+2025,0501,Otomí,,028,sin,14.0
+2025,0501,Otomí,,024,sin,10.0
+2025,0501,Otomí,,221,sin,4.0
+2025,0501,Otomí,,012,sin,3.0
+2025,0501,Otomí,otomí del centro,015,unica,2883.0
+2025,0501,Otomí,otomí de la Sierra,021,unica,685.0
+2025,0501,Otomí,otomí de la Sierra,030,unica,380.0
+2025,0501,Otomí,otomí de Ixtenco,029,unica,60.0
+2025,0501,Otomí,otomí del oeste,016,unica,55.0
+2025,0502,Mazahua,mazahua de oriente,015,estimada,4160.2
+2025,0502,Mazahua,mazahua de occidente,015,estimada,1020.8
+2025,0502,Mazahua,mazahua de oriente,016,estimada,954.3
+2025,0502,Mazahua,mazahua de occidente,016,estimada,891.7
+2025,0502,Mazahua,mazahua de oriente,015,exacta,198.0
+2025,0502,Mazahua,,009,sin,1362.0
+2025,0502,Mazahua,,020,sin,143.0
+2025,0502,Mazahua,,022,sin,45.0
+2025,0502,Mazahua,,021,sin,23.0
+2025,0502,Mazahua,,011,sin,16.0
+2025,0502,Mazahua,,019,sin,3.0
+2025,0503,Matlatzinca,,009,sin,66.0
+2025,0503,Matlatzinca,matlatzinca,015,unica,185.0
+2025,0504,Tlahuica,,009,sin,24.0
+2025,0504,Tlahuica,tlahuica,015,unica,136.0
+2025,0507,Chinanteco,chinanteco del norte,020,estimada,923.5
+2025,0507,Chinanteco,chinanteco central,020,estimada,485.4
+2025,0507,Chinanteco,chinanteco del sureste bajo,020,estimada,291.9
+2025,0507,Chinanteco,chinanteco del sureste medio,020,estimada,230.3
+2025,0507,Chinanteco,chinanteco de la Sierra,020,estimada,198.3
+2025,0507,Chinanteco,chinanteco del norte,030,estimada,106.5
+2025,0507,Chinanteco,chinanteco del oeste,020,estimada,100.9
+2025,0507,Chinanteco,chinanteco central bajo,020,estimada,93.5
+2025,0507,Chinanteco,chinanteco del oeste central alto,020,estimada,64.4
+2025,0507,Chinanteco,chianateco del oeste central bajo,020,estimada,64.4
+2025,0507,Chinanteco,chinanteco del sureste alto,020,estimada,40.9
+2025,0507,Chinanteco,chinanteco del noroeste,020,estimada,39.5
+2025,0507,Chinanteco,chinanteco del sureste medio,030,estimada,7.5
+2025,0507,Chinanteco,chinanteco del norte,020,exacta,58.0
+2025,0507,Chinanteco,chinanteco del sureste bajo,020,exacta,33.0
+2025,0507,Chinanteco,chinanteco del oeste,020,exacta,7.0
+2025,0507,Chinanteco,chinanteco del norte,030,exacta,4.0
+2025,0507,Chinanteco,,009,sin,221.0
+2025,0507,Chinanteco,,012,sin,4.0
+2025,0507,Chinanteco,,997,sin,4.0
+2025,0508,Tlapaneco,tlapaneco del suroeste,012,estimada,297.8
+2025,0508,Tlapaneco,tlapaneco central bajo,012,estimada,296.7
+2025,0508,Tlapaneco,tlapaneco del norte,012,estimada,230.0
+2025,0508,Tlapaneco,tlapaneco del este,012,estimada,92.1
+2025,0508,Tlapaneco,tlapaneco del noroeste alto,012,estimada,57.4
+2025,0508,Tlapaneco,tlapaneco del noroeste bajo,012,estimada,57.4
+2025,0508,Tlapaneco,tlapaneco del centro,012,estimada,38.7
+2025,0508,Tlapaneco,tlapaneco del sur,012,estimada,3.9
+2025,0508,Tlapaneco,tlapaneco del oeste,012,estimada,2.0
+2025,0508,Tlapaneco,tlapaneco central bajo,012,exacta,86.0
+2025,0508,Tlapaneco,,009,sin,67.0
+2025,0509,Mazateco,mazateco del centro,020,estimada,2694.1
+2025,0509,Mazateco,mazateco del noreste,020,estimada,2371.5
+2025,0509,Mazateco,mazateco del este bajo,020,estimada,1882.1
+2025,0509,Mazateco,mazateco del norte,020,estimada,1680.9
+2025,0509,Mazateco,mazateco de la presa alto,020,estimada,1608.1
+2025,0509,Mazateco,mazateco del suroeste,020,estimada,847.9
+2025,0509,Mazateco,mazateco de la presa bajo,020,estimada,651.3
+2025,0509,Mazateco,mazateco del oeste,020,estimada,527.6
+2025,0509,Mazateco,mazateco del sureste,020,estimada,304.8
+2025,0509,Mazateco,mazateco de Eloxochitlán,020,estimada,282.3
+2025,0509,Mazateco,mazateco de Acatepec,020,estimada,106.4
+2025,0509,Mazateco,mazateco del sur,020,estimada,86.3
+2025,0509,Mazateco,mazateco de Tecóatl,020,estimada,85.3
+2025,0509,Mazateco,mazateco de Huehuetlán,020,estimada,57.5
+2025,0509,Mazateco,mazateco de Ocopetatillo,020,estimada,54.9
+2025,0509,Mazateco,mazateco del este bajo,020,exacta,381.0
+2025,0509,Mazateco,mazateco del norte,020,exacta,294.0
+2025,0509,Mazateco,mazateco de Huehuetlán,020,exacta,246.0
+2025,0509,Mazateco,mazateco del centro,020,exacta,230.0
+2025,0509,Mazateco,mazateco del noreste,020,exacta,64.0
+2025,0509,Mazateco,mazateco del sureste,020,exacta,53.0
+2025,0509,Mazateco,mazateco de Acatepec,020,exacta,35.0
+2025,0509,Mazateco,mazateco del oeste,020,exacta,27.0
+2025,0509,Mazateco,mazateco del suroeste,020,exacta,25.0
+2025,0509,Mazateco,mazateco de la presa alto,020,exacta,23.0
+2025,0509,Mazateco,,009,sin,1561.0
+2025,0509,Mazateco,,015,sin,88.0
+2025,0509,Mazateco,,024,sin,52.0
+2025,0509,Mazateco,mazateco del norte,030,unica,290.0
+2025,0509,Mazateco,mazateco de Puebla,021,unica,206.0
+2025,0511,Chocholteco,chocholteco del sur,020,estimada,28.7
+2025,0511,Chocholteco,chocholteco del este,020,estimada,23.2
+2025,0511,Chocholteco,chocholteco del oeste,020,estimada,9.0
+2025,0511,Chocholteco,,009,sin,6.0
+2025,0512,Popoloca,popoloca del norte,021,estimada,71.0
+2025,0512,Popoloca,popoloca de oriente,021,estimada,52.7
+2025,0512,Popoloca,popoloca del centro,021,estimada,5.2
+2025,0512,Popoloca,popoloca del poniente,021,estimada,4.1
+2025,0512,Popoloca,,009,sin,14.0
+2025,0513,Zapoteco,zapoteco de la planicie costera,020,estimada,1871.3
+2025,0513,Zapoteco,zapoteco de la costa central,020,estimada,638.7
+2025,0513,Zapoteco,"zapoteco de Valles, del norte central",020,estimada,396.4
+2025,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,estimada,354.5
+2025,0513,Zapoteco,zapoteco de la costa oeste,020,estimada,228.9
+2025,0513,Zapoteco,"zapoteco de Valles, del este medio",020,estimada,200.3
+2025,0513,Zapoteco,"zapoteco serrano, del noroeste bajo",020,estimada,192.1
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, central",020,estimada,187.8
+2025,0513,Zapoteco,"zapoteco de Valles, del este central",020,estimada,146.0
+2025,0513,Zapoteco,zapoteco de la costa noreste,020,estimada,134.4
+2025,0513,Zapoteco,zapoteco de Texmelucan,020,estimada,133.0
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, noreste",020,estimada,124.3
+2025,0513,Zapoteco,"zapoteco de Valles, del noreste",020,estimada,86.5
+2025,0513,Zapoteco,"zapoteco de Valles, del suroeste central",020,estimada,77.6
+2025,0513,Zapoteco,zapoteco de Petapa,020,estimada,76.9
+2025,0513,Zapoteco,"zapoteco de Valles, noroeste",020,estimada,71.0
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste alto",020,estimada,70.6
+2025,0513,Zapoteco,"zapoteco serrano, del sureste",020,estimada,58.6
+2025,0513,Zapoteco,"zapoteco serrano, bajo",020,estimada,56.9
+2025,0513,Zapoteco,zapoteco de Valles del sur,020,estimada,55.4
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, oeste bajo",020,estimada,55.2
+2025,0513,Zapoteco,"zapoteco de Valles, del noroeste bajo",020,estimada,49.5
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, del este bajo",020,estimada,49.5
+2025,0513,Zapoteco,zapoteco de San Vicente Coatlán,020,estimada,49.1
+2025,0513,Zapoteco,"zapoteco de la montaña del Istmo, bajo",020,estimada,47.7
+2025,0513,Zapoteco,"zapoteco de Valles, del suroeste medio",020,estimada,45.9
+2025,0513,Zapoteco,"zapoteco de Valles, de suroeste alto",020,estimada,44.4
+2025,0513,Zapoteco,"zapoteco de Valles, del centro bajo",020,estimada,42.8
+2025,0513,Zapoteco,zapoteco de la costa este,020,estimada,42.1
+2025,0513,Zapoteco,"zapoteco serrano, del oeste",020,estimada,41.2
+2025,0513,Zapoteco,"zapoteco de Sierra sur, del noreste alto",020,estimada,41.1
+2025,0513,Zapoteco,"zapoteco de la montaña del Istmo, alto",020,estimada,39.8
+2025,0513,Zapoteco,"zapoteco serrano, del sureste bajo",020,estimada,37.2
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, del norte",020,estimada,36.8
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste medio",020,estimada,36.1
+2025,0513,Zapoteco,zapoteco de San Baltazar Chichicapam,020,estimada,34.4
+2025,0513,Zapoteco,zapoteco de San Miguel Aloápam,020,estimada,32.4
+2025,0513,Zapoteco,"zapoteco serrano, del sureste alto",020,estimada,29.2
+2025,0513,Zapoteco,"zapoteco de Valles, del oeste central",020,estimada,29.1
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste",020,estimada,28.4
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste alto",020,estimada,26.2
+2025,0513,Zapoteco,"zapoteco serrano, del sureste medio",020,estimada,26.2
+2025,0513,Zapoteco,zapoteco de Santa María Quiegolani,020,estimada,25.7
+2025,0513,Zapoteco,zapoteco de Mixtepec,020,estimada,24.6
+2025,0513,Zapoteco,zapoteco del oeste de Tuxtepec,020,estimada,22.5
+2025,0513,Zapoteco,"zapoteco serrano, del oeste medio",020,estimada,20.8
+2025,0513,Zapoteco,zapoteco de Santiago Yaveo,020,estimada,18.5
+2025,0513,Zapoteco,zapoteco de Quiavicuzas,020,estimada,17.8
+2025,0513,Zapoteco,"zapoteco de Valles, norte",020,estimada,17.5
+2025,0513,Zapoteco,"zapoteco serrano, del este",020,estimada,17.1
+2025,0513,Zapoteco,"zapoteco serrano, del noroeste",020,estimada,16.4
+2025,0513,Zapoteco,zapoteco de Santiago Laxopa,020,estimada,16.1
+2025,0513,Zapoteco,zapoteco de San Antonino el Alto,020,estimada,15.0
+2025,0513,Zapoteco,zapoteco de Santa María Temaxcalapa,020,estimada,13.5
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, del sureste bajo",020,estimada,10.5
+2025,0513,Zapoteco,zapoteco de Zimatlán de Álvarez,020,estimada,7.3
+2025,0513,Zapoteco,"zapoteco de Valles, oeste",020,estimada,5.4
+2025,0513,Zapoteco,"zapoteco de la Sierra sur, noroeste bajo",020,estimada,4.7
+2025,0513,Zapoteco,"zapoteco de Valles, del centro",020,estimada,3.5
+2025,0513,Zapoteco,zapoteco de San Bartolo Yautepec,020,estimada,2.5
+2025,0513,Zapoteco,zapoteco de San Felipe Tejalápam,020,estimada,1.3
+2025,0513,Zapoteco,zapoteco de Asunción Tlacolulita,020,estimada,0.7
+2025,0513,Zapoteco,"zapoteco de Valles, del noroeste medio",020,exacta,199.0
+2025,0513,Zapoteco,zapoteco de la planicie costera,020,exacta,193.0
+2025,0513,Zapoteco,"zapoteco de Valles, del norte central",020,exacta,13.0
+2025,0513,Zapoteco,,009,sin,1279.0
+2025,0513,Zapoteco,,030,sin,283.0
+2025,0513,Zapoteco,,007,sin,157.0
+2025,0513,Zapoteco,,021,sin,84.0
+2025,0513,Zapoteco,,013,sin,71.0
+2025,0513,Zapoteco,,012,sin,54.0
+2025,0513,Zapoteco,,005,sin,21.0
+2025,0513,Zapoteco,,024,sin,5.0
+2025,0513,Zapoteco,,015,sin,4.0
+2025,0513,Zapoteco,,026,sin,2.0
+2025,0514,Chatino,chatino central,020,estimada,7.0
+2025,0514,Chatino,chatino occidental alto,020,estimada,5.7
+2025,0514,Chatino,chatino oriental bajo,020,estimada,4.6
+2025,0514,Chatino,chatino occidental bajo,020,estimada,1.5
+2025,0514,Chatino,chatino oriental alto,020,estimada,0.8
+2025,0514,Chatino,chatino de Zacatepec,020,estimada,0.4
+2025,0514,Chatino,chatino oriental bajo,020,exacta,19.0
+2025,0515,Amuzgo,amuzgo del norte,012,estimada,235.3
+2025,0515,Amuzgo,amuzgo del sur,012,estimada,148.7
+2025,0515,Amuzgo,amuzgo del norte,012,exacta,14.0
+2025,0515,Amuzgo,,009,sin,15.0
+2025,0516,Mixteco,mixteco de Oaxaca de la costa central,020,estimada,1057.2
+2025,0516,Mixteco,mixteco del oeste,020,estimada,1043.7
+2025,0516,Mixteco,mixteco del oeste alto,020,estimada,742.5
+2025,0516,Mixteco,mixteco del suroeste central,020,estimada,720.8
+2025,0516,Mixteco,mixteco de Ixtayutla,020,estimada,483.4
+2025,0516,Mixteco,mixteco de Oaxaca de la costa oeste central,020,estimada,482.4
+2025,0516,Mixteco,mixteco bajo de Valles,020,estimada,429.6
+2025,0516,Mixteco,mixteco del oeste de la costa,020,estimada,418.1
+2025,0516,Mixteco,mixteco del norte bajo,020,estimada,375.5
+2025,0516,Mixteco,mixteco de Santa María Peñoles,020,estimada,351.9
+2025,0516,Mixteco,mixteco de Sierra sur noroeste,020,estimada,349.1
+2025,0516,Mixteco,mixteco de Santiago Amoltepec,020,estimada,339.3
+2025,0516,Mixteco,mixteco del suroeste,020,estimada,326.2
+2025,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,021,estimada,324.4
+2025,0516,Mixteco,mixteco de Oaxaca de costa central baja,020,estimada,306.4
+2025,0516,Mixteco,mixteco de Oaxaca de la costa noroeste,020,estimada,303.3
+2025,0516,Mixteco,mixteco del noroeste,020,estimada,280.6
+2025,0516,Mixteco,mixteco del sur bajo,020,estimada,265.0
+2025,0516,Mixteco,mixteco de Ñumi,020,estimada,247.1
+2025,0516,Mixteco,mixteco del noreste,020,estimada,232.4
+2025,0516,Mixteco,mixteco central,020,estimada,201.8
+2025,0516,Mixteco,mixteco del noroeste medio,020,estimada,186.7
+2025,0516,Mixteco,mixteco del sur medio,020,estimada,160.9
+2025,0516,Mixteco,mixteco del suroeste de Puebla,021,estimada,152.9
+2025,0516,Mixteco,mixteco de Santa María Huazolotitlán,020,estimada,152.1
+2025,0516,Mixteco,mixteco de Santa Lucía Monteverde,020,estimada,149.8
+2025,0516,Mixteco,mixteco de Sierra sur oeste,020,estimada,146.0
+2025,0516,Mixteco,mixteco del este,020,estimada,119.9
+2025,0516,Mixteco,mixteco de San Pablo Tijaltepec,020,estimada,119.1
+2025,0516,Mixteco,mixteco de Cañada bajo,020,estimada,104.6
+2025,0516,Mixteco,mixteco del este central,020,estimada,100.8
+2025,0516,Mixteco,mixteco de Yosondúa,020,estimada,86.2
+2025,0516,Mixteco,mixteco de San Mateo Peñasco,020,estimada,83.3
+2025,0516,Mixteco,mixteco de Coatzóspam,020,estimada,68.6
+2025,0516,Mixteco,mixteco de San Antonio Sinicahua,020,estimada,68.6
+2025,0516,Mixteco,mixteco de Santo Domingo Tonalá,020,estimada,67.5
+2025,0516,Mixteco,mixteco de Santa María Yosoyúa,020,estimada,64.9
+2025,0516,Mixteco,mixteco de San Juan Tamazola,020,estimada,63.7
+2025,0516,Mixteco,mixteco de Cañada central,020,estimada,63.6
+2025,0516,Mixteco,mixteco de Guerrero del norte,012,estimada,62.4
+2025,0516,Mixteco,mixteco de Villa de Tututepec,020,estimada,62.4
+2025,0516,Mixteco,mixteco de oeste central,020,estimada,60.6
+2025,0516,Mixteco,mixteco de Tlaltempan,021,estimada,58.2
+2025,0516,Mixteco,mixteco de Zapotitlán,021,estimada,56.5
+2025,0516,Mixteco,mixteco de San Antonio Huitepec,020,estimada,49.3
+2025,0516,Mixteco,mixteco de Santa Cruz Itundujia,020,estimada,49.3
+2025,0516,Mixteco,mixteco de Yosonotú,020,estimada,47.8
+2025,0516,Mixteco,mixteco del sureste central,020,estimada,47.1
+2025,0516,Mixteco,mixteco de San Luis Acatlán,012,estimada,45.7
+2025,0516,Mixteco,mixteco de Yutanduchi de Guerrero,020,estimada,44.1
+2025,0516,Mixteco,mixteco de Mitlatongo,020,estimada,42.7
+2025,0516,Mixteco,mixteco de Ayutla,012,estimada,40.5
+2025,0516,Mixteco,mixteco de Tlacoachistlahuaca,012,estimada,34.1
+2025,0516,Mixteco,mixteco de San Miguel Piedras,020,estimada,33.4
+2025,0516,Mixteco,mixteco de Coapanatoyac,012,estimada,30.7
+2025,0516,Mixteco,mixteco alto de Valles,020,estimada,29.8
+2025,0516,Mixteco,mixteco de San Agustín Tlacotepec,020,estimada,27.6
+2025,0516,Mixteco,mixteco de Chochoapa,012,estimada,23.5
+2025,0516,Mixteco,mixteco de Guerrero del este medio,012,estimada,23.5
+2025,0516,Mixteco,mixteco de Santa Inés de Zaragoza,020,estimada,23.2
+2025,0516,Mixteco,mixteco de San Pedro Molinos,020,estimada,20.7
+2025,0516,Mixteco,mixteco de la frontera Puebla-Oaxaca,020,estimada,20.3
+2025,0516,Mixteco,mixteco de San Pedro Tidaá,020,estimada,14.9
+2025,0516,Mixteco,mixteco de San Juan Teita,020,estimada,14.3
+2025,0516,Mixteco,mixteco de Guerrero del noreste central,012,estimada,13.9
+2025,0516,Mixteco,mixteco de Tlahuapa,012,estimada,13.9
+2025,0516,Mixteco,mixteco de Xochapa,012,estimada,13.9
+2025,0516,Mixteco,mixteco de Xonacatlán,012,estimada,13.9
+2025,0516,Mixteco,mixteco de Guerrero central alto,012,estimada,12.9
+2025,0516,Mixteco,mixteco del noreste bajo,020,estimada,12.9
+2025,0516,Mixteco,mixteco de Guerrero de la costa este,012,estimada,9.8
+2025,0516,Mixteco,mixteco de Atlamajalcingo,012,estimada,8.1
+2025,0516,Mixteco,mixteco de Guerrero del norte central,012,estimada,7.5
+2025,0516,Mixteco,mixteco central de Guerrero,012,estimada,5.4
+2025,0516,Mixteco,mixteco de Xochistlahuaca,012,estimada,5.0
+2025,0516,Mixteco,mixteco de Igualapa,012,estimada,4.7
+2025,0516,Mixteco,mixteco de Tlalixtaquilla de Maldonado,012,estimada,4.2
+2025,0516,Mixteco,mixteco de Guerrero de la costa occidental,012,estimada,4.0
+2025,0516,Mixteco,mixteco de Guerrero de la costa central,012,estimada,0.6
+2025,0516,Mixteco,mixteco del suroeste central,020,exacta,120.0
+2025,0516,Mixteco,mixteco de Sierra sur noroeste,020,exacta,82.0
+2025,0516,Mixteco,mixteco bajo de Valles,020,exacta,35.0
+2025,0516,Mixteco,mixteco de Guerrero del norte,012,exacta,24.0
+2025,0516,Mixteco,mixteco de Oaxaca de la costa central,020,exacta,14.0
+2025,0516,Mixteco,mixteco central,020,exacta,5.0
+2025,0516,Mixteco,mixteco del oeste,020,exacta,4.0
+2025,0516,Mixteco,mixteco del noreste,020,exacta,3.0
+2025,0516,Mixteco,mixteco del noroeste medio,020,exacta,3.0
+2025,0516,Mixteco,,009,sin,1482.0
+2025,0516,Mixteco,,015,sin,115.0
+2025,0516,Mixteco,,030,sin,73.0
+2025,0516,Mixteco,,007,sin,30.0
+2025,0516,Mixteco,,013,sin,14.0
+2025,0516,Mixteco,,001,sin,4.0
+2025,0516,Mixteco,,003,sin,3.0
+2025,0516,Mixteco,,028,sin,2.0
+2025,0517,Cuicateco,cuicateco del centro,020,estimada,95.7
+2025,0517,Cuicateco,cuicateco del norte,020,estimada,10.6
+2025,0517,Cuicateco,cuicateco del oriente,020,estimada,10.6
+2025,0517,Cuicateco,cuicateco del centro,020,exacta,19.0
+2025,0518,Triqui,triqui de San Juan Copala,020,estimada,167.2
+2025,0518,Triqui,triqui de la baja,020,estimada,42.9
+2025,0518,Triqui,triqui de la alta,020,estimada,34.6
+2025,0518,Triqui,triqui de la media,020,estimada,26.4
+2025,0518,Triqui,,009,sin,106.0
+2025,0518,Triqui,,015,sin,4.0
+2025,0601,Huasteco,huasteco del centro,030,estimada,107.5
+2025,0601,Huasteco,huasteco de oriente,030,estimada,8.5
+2025,0601,Huasteco,huasteco de oriente,030,exacta,96.0
+2025,0601,Huasteco,,009,sin,129.0
+2025,0601,Huasteco,,015,sin,20.0
+2025,0601,Huasteco,,005,sin,15.0
+2025,0601,Huasteco,huasteco del occidente,024,unica,230.0
+2025,0602,Maya,maya,031,exacta,28.0
+2025,0602,Maya,maya,023,exacta,24.0
+2025,0602,Maya,,009,sin,671.0
+2025,0602,Maya,,015,sin,53.0
+2025,0602,Maya,,014,sin,49.0
+2025,0602,Maya,,013,sin,28.0
+2025,0602,Maya,,008,sin,22.0
+2025,0602,Maya,,029,sin,22.0
+2025,0602,Maya,,005,sin,19.0
+2025,0602,Maya,,225,sin,18.0
+2025,0602,Maya,,017,sin,17.0
+2025,0602,Maya,,027,sin,7.0
+2025,0602,Maya,,204,sin,7.0
+2025,0602,Maya,,007,sin,4.0
+2025,0602,Maya,maya,031,unica,520.0
+2025,0602,Maya,maya,023,unica,87.0
+2025,0602,Maya,maya,004,unica,13.0
+2025,0604,Ch'ol,ch'ol del noroeste,007,estimada,171.9
+2025,0604,Ch'ol,ch'ol del noroeste,027,estimada,56.6
+2025,0604,Ch'ol,ch'ol del sureste,007,estimada,42.1
+2025,0604,Ch'ol,ch'ol del sureste,027,estimada,5.4
+2025,0604,Ch'ol,,012,sin,24.0
+2025,0604,Ch'ol,,009,sin,21.0
+2025,0605,Chontal de Tabasco,chontal de Tabasco central,027,exacta,53.0
+2025,0606,Tseltal,tseltal del norte,007,estimada,1067.3
+2025,0606,Tseltal,tseltal del occidente,007,estimada,646.6
+2025,0606,Tseltal,tseltal del oriente,007,estimada,371.0
+2025,0606,Tseltal,tseltal del sur,007,estimada,121.1
+2025,0606,Tseltal,tseltal del occidente,007,exacta,117.0
+2025,0606,Tseltal,,009,sin,163.0
+2025,0606,Tseltal,,015,sin,23.0
+2025,0606,Tseltal,,020,sin,19.0
+2025,0607,Tsotsil,tsotsil del norte alto,007,estimada,109.7
+2025,0607,Tsotsil,tsotsil del centro,007,estimada,73.8
+2025,0607,Tsotsil,tsotsil del noroeste,007,estimada,61.8
+2025,0607,Tsotsil,tsotsil de los Altos,007,estimada,37.6
+2025,0607,Tsotsil,tsotsil del este bajo,007,estimada,35.3
+2025,0607,Tsotsil,tsotsil del este alto,007,estimada,9.0
+2025,0607,Tsotsil,tsotsil del norte bajo,007,estimada,5.7
+2025,0607,Tsotsil,,009,sin,78.0
+2025,0607,Tsotsil,,017,sin,35.0
+2025,0607,Tsotsil,,011,sin,31.0
+2025,0607,Tsotsil,,029,sin,15.0
+2025,0607,Tsotsil,,028,sin,13.0
+2025,0613,Tojolabal,tojolabal,007,unica,22.0
+2025,0614,Q'eqchi',,009,sin,20.0
+2025,0615,K'iche',,225,sin,45.0
+2025,0616,Kaqchikel,,007,sin,6.0
+2025,0618,Mam,Mam de la Sierra,007,estimada,11.8
+2025,0618,Mam,Mam del Soconusco,007,estimada,11.8
+2025,0618,Mam,Mam de la frontera,007,estimada,11.3
+2025,0618,Mam,,009,sin,14.0
+2025,0618,Mam,,225,sin,7.0
+2025,0701,Totonaco,totonaco central del sur,021,estimada,2464.7
+2025,0701,Totonaco,totonaco de la costa,030,estimada,888.3
+2025,0701,Totonaco,totonaco central del sur,030,estimada,877.3
+2025,0701,Totonaco,totonaco central del norte,021,estimada,296.5
+2025,0701,Totonaco,totonaco central alto,030,estimada,283.6
+2025,0701,Totonaco,totonaco del río Necaxa,021,estimada,138.8
+2025,0701,Totonaco,totonaco central del norte,030,estimada,43.9
+2025,0701,Totonaco,totonaco del cerro Xinolatépetl,021,estimada,10.0
+2025,0701,Totonaco,totonaco del sureste,030,estimada,4.9
+2025,0701,Totonaco,totonaco central del sur,030,exacta,116.0
+2025,0701,Totonaco,totonaco de la costa,030,exacta,75.0
+2025,0701,Totonaco,totonaco central alto,030,exacta,21.0
+2025,0701,Totonaco,,009,sin,417.0
+2025,0701,Totonaco,,028,sin,21.0
+2025,0701,Totonaco,,007,sin,19.0
+2025,0701,Totonaco,,020,sin,8.0
+2025,0701,Totonaco,,015,sin,4.0
+2025,0702,Tepehua,tepehua del oeste,030,estimada,88.1
+2025,0702,Tepehua,tepehua del norte,030,estimada,79.9
+2025,0702,Tepehua,tepehua del sur,013,unica,68.0
+2025,0801,Tarasco (purépecha),purépecha,016,exacta,191.0
+2025,0801,Tarasco (purépecha),,009,sin,252.0
+2025,0801,Tarasco (purépecha),,002,sin,19.0
+2025,0801,Tarasco (purépecha),,014,sin,14.0
+2025,0801,Tarasco (purépecha),,013,sin,7.0
+2025,0801,Tarasco (purépecha),purépecha,016,unica,616.0
+2025,0901,Mixe,mixe bajo,020,estimada,1156.8
+2025,0901,Mixe,mixe medio del este,020,estimada,937.8
+2025,0901,Mixe,mixe alto del centro,020,estimada,548.8
+2025,0901,Mixe,mixe alto del sur,020,estimada,400.8
+2025,0901,Mixe,mixe alto del norte,020,estimada,340.0
+2025,0901,Mixe,mixe medio del oeste,020,estimada,129.9
+2025,0901,Mixe,mixe medio del este,020,exacta,53.0
+2025,0901,Mixe,mixe bajo,020,exacta,19.0
+2025,0901,Mixe,mixe alto del sur,020,exacta,9.0
+2025,0901,Mixe,,009,sin,322.0
+2025,0901,Mixe,,013,sin,31.0
+2025,0901,Mixe,,032,sin,24.0
+2025,0901,Mixe,,015,sin,13.0
+2025,0901,Mixe,,017,sin,4.0
+2025,0907,Zoque,zoque del norte bajo,007,estimada,33.2
+2025,0907,Zoque,zoque del norte alto,007,estimada,22.8
+2025,0907,Zoque,zoque del este,007,estimada,15.5
+2025,0907,Zoque,zoque del centro,007,estimada,12.6
+2025,0907,Zoque,zoque del noroeste,007,estimada,8.5
+2025,0907,Zoque,zoque del sureste,007,estimada,5.1
+2025,0907,Zoque,zoque del sur,007,estimada,2.2
+2025,0907,Zoque,,020,sin,180.0
+2025,0907,Zoque,,009,sin,7.0
+2025,1001,Chontal de Oaxaca,chontal de Oaxaca de la costa,020,estimada,75.5
+2025,1001,Chontal de Oaxaca,chontal de Oaxaca alto,020,estimada,71.1
+2025,1001,Chontal de Oaxaca,chontal de Oaxaca bajo,020,estimada,23.4
+2025,1001,Chontal de Oaxaca,,021,sin,1.0
+2025,1101,Huave,huave del oeste,020,estimada,80.1
+2025,1101,Huave,huave del este,020,estimada,19.9
+2025,1101,Huave,,009,sin,39.0
+2025,8000,Otras lenguas indígenas de América,,210,sin,81.0
+2025,8000,Otras lenguas indígenas de América,,236,sin,80.0
+2025,8000,Otras lenguas indígenas de América,,250,sin,66.0
+2025,8000,Otras lenguas indígenas de América,,237,sin,38.0
+2025,8000,Otras lenguas indígenas de América,,020,sin,30.0
+2025,8000,Otras lenguas indígenas de América,,009,sin,22.0
+2025,8000,Otras lenguas indígenas de América,,214,sin,19.0
+2025,8000,Otras lenguas indígenas de América,,215,sin,17.0
+2025,8000,Otras lenguas indígenas de América,,109,sin,16.0
+2025,9000,No especificado,,020,sin,322.0
+2025,9000,No especificado,,009,sin,212.0
+2025,9000,No especificado,,123,sin,156.0
+2025,9000,No especificado,,235,sin,87.0
+2025,9000,No especificado,,021,sin,60.0
+2025,9000,No especificado,,027,sin,55.0
+2025,9000,No especificado,,030,sin,22.0
+2025,9000,No especificado,,013,sin,21.0
+2025,9000,No especificado,,225,sin,21.0
+2025,9000,No especificado,,028,sin,19.0
+2025,9000,No especificado,,113,sin,19.0
+2025,9000,No especificado,,007,sin,10.0
+2025,9000,No especificado,,012,sin,4.0
+2025,9000,No especificado,,029,sin,4.0
+2025,9000,No especificado,,122,sin,4.0
+2025,9000,No especificado,,010,sin,3.0
+2025,9000,No especificado,,014,sin,2.0
+2025,9010,Chontal insuficientemente especificado,,007,sin,28.0
+2025,9030,Popoluca insuficientemente especificado,,030,sin,175.0

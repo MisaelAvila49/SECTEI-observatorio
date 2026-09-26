@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Acceso en el hogar, 2020 - 2024
 ---
 

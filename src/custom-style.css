@@ -4131,3 +4131,9 @@ body:has(.mapa-pantalla) #observablehq-footer {
   }
 }
 
+.mapa-variante-total {
+  font-weight: 500;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
