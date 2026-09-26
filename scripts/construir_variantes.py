@@ -135,6 +135,14 @@ def main():
       FROM read_csv('{p}', all_varchar=true, header=true)
       WHERE HLENGUA = '1' GROUP BY 1, 2, 3""").df()
     total = h["hablantes"].sum()
+    # Hablantes por municipio y lengua (10 o más ponderados), para pintar el
+    # país por lengua dominante cuando el mapa está en "todas las lenguas".
+    ml = h[h["hablantes"] >= 10].copy()
+    ml["hablantes"] = ml["hablantes"].round(0).astype(int)
+    ml["cve"] = ml["cve_ent"].str[-2:] + ml["cve_mun"]
+    ml[["cve", "lengua", "hablantes"]].sort_values(["cve", "hablantes"], ascending=[True, False]).to_csv(
+        os.path.join(RAIZ, "src", "data", "municipios_lenguas.csv"), index=False, encoding="utf-8")
+    print(f"[ok] municipios_lenguas.csv: {len(ml):,} filas municipio-lengua", file=sys.stderr)
     print(f"[ok] hablantes 3+ del ampliado 2020: {total:,.0f} (oficial del básico: 7 364 645)", file=sys.stderr)
     anotar_calculado("variantes", "hli_ampliado_nacional_2020", total, "hablantes de 3+ ponderados del cuestionario ampliado 2020, nacional")
 

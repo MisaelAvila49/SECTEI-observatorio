@@ -9,13 +9,14 @@ pager: false
 ```js
 import {mapaUnificado} from "./components/mapa-unificado.js";
 
-const [serie, lenguas, origen, clin, variantesCiudad, clinMunicipios, catalogo, agebs, colonias, geoAlcaldias, geoLimite, geoEntidades] = await Promise.all([
+const [serie, lenguas, origen, clin, variantesCiudad, clinMunicipios, municipiosLenguas, catalogo, agebs, colonias, geoAlcaldias, geoLimite, geoEntidades] = await Promise.all([
   FileAttachment("data/serie_alcaldias.csv").csv({typed: true}),
   FileAttachment("data/lenguas_alcaldia.csv").csv({typed: true}),
   FileAttachment("data/lenguas_origen.csv").csv({typed: true}),
   FileAttachment("data/clin_variantes.csv").csv(),
   FileAttachment("data/variantes_ciudad.csv").csv(),
   FileAttachment("data/clin_municipios.csv").csv(),
+  FileAttachment("data/municipios_lenguas.csv").csv(),
   FileAttachment("data/catalogo_lenguas.csv").csv(),
   FileAttachment("data/agebs_resumen.csv").csv({typed: true}),
   FileAttachment("data/colonias_resumen.csv").csv({typed: true}),
@@ -38,7 +39,9 @@ const cm = clinMunicipios.map((r) => ({...r, lengua: String(r.lengua).padStart(4
 let pmtilesMunicipios = null;
 try { pmtilesMunicipios = await FileAttachment("data/municipios.pmtiles").url(); } catch { pmtilesMunicipios = null; }
 const mapa = mapaUnificado({
-  serie: s, lenguas: l, origen: o, clin, variantesCiudad: vc, clinMunicipios: cm, catalogo, agebs, colonias,
+  serie: s, lenguas: l, origen: o, clin, variantesCiudad: vc, clinMunicipios: cm,
+  municipiosLenguas: municipiosLenguas.map((r) => ({cve: String(r.cve).padStart(5, "0"), lengua: String(r.lengua).padStart(4, "0"), hablantes: Number(r.hablantes)})),
+  catalogo, agebs, colonias,
   pmtilesManzanas: await FileAttachment("data/manzanas.pmtiles").url(),
   pmtilesAgebs: await FileAttachment("data/agebs.pmtiles").url(),
   pmtilesMunicipios,

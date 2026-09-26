@@ -4208,3 +4208,14 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .mapa-variantes-leyenda-larga .mapa-variantes-leyenda-titulo { column-span: all; }
 .mapa-variantes-leyenda-larga { max-height: 30vh; columns: 1; }
 .panel-mapa select:disabled { opacity: 0.7; cursor: default; }
+
+.mapa-globo .maplibregl-popup-content { max-width: 20rem; }
+.mapa-globo .globo-tabla td, .mapa-fijada .globo-tabla td { white-space: normal; text-align: right; }
+.mapa-globo .globo-tabla th, .mapa-fijada .globo-tabla th { white-space: nowrap; vertical-align: top; }
+.globo-lista { margin: 0.3rem 0 0; padding-left: 1rem; font-size: 0.76rem; line-height: 1.35; }
+.globo-lista li { margin: 0.1rem 0; }
+.mapa-glosario { margin: 0.4rem 0 0.6rem; font-size: 0.76rem; line-height: 1.35; }
+.mapa-glosario div { display: grid; grid-template-columns: 5.2rem 1fr; gap: 0.4rem; padding: 0.15rem 0; border-top: 1px solid var(--border-subtle); }
+.mapa-glosario dt { font-weight: 700; margin: 0; }
+.mapa-glosario dd { margin: 0; color: var(--text-muted); }
+

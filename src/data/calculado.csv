@@ -109,4 +109,5 @@ variantes,ciudad_unica_2025,11896.0000,"hablantes de la ciudad con variante unic
 variantes,hli_ampliado_nacional_2020,7522745.0000,"hablantes de 3+ ponderados del cuestionario ampliado 2020, nacional"
 variantes,inali2000_misma_variante_mayor,77.1429,% de lenguas con varias variantes cuya variante mayor coincide con la del INALI 2000
 variantes,inali2000_top5,93.7143,% medio de coincidencia entre las cinco variantes mayores del INALI 2000 y las de aquí
+variantes,nahuatl_variante_mayor_pct,17.3132,"% de hablantes de náhuatl en los municipios de la variante mayor (mexicano de la Huasteca hidalguense), ampliado 2020"
 variantes,referencias_sin_clave,61.0000,referencias entidad:municipio del Catálogo que no casaron con el marco 2020

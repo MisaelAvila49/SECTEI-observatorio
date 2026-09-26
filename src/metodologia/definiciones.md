@@ -148,8 +148,14 @@ la variante que el Catálogo del INALI ubica ahí: es el territorio histórico d
 lengua, no dónde vive hoy cada hablante. Como una lengua puede tener treinta
 variantes, esa vista usa un color por variante y ningún esquema de tantos tonos
 es seguro para daltonismo; por eso el nombre de la variante va siempre en el
-globo de cada municipio y en la lista de la leyenda. En la ciudad, el globo de
-cada alcaldía lista las tres variantes probables con más hablantes.
+globo de cada municipio y en la lista de la leyenda. Con "Todas las lenguas"
+las dos vistas también funcionan: el mapa de la lengua pinta cada municipio
+con la lengua indígena que más se habla en él según el Censo 2020 y el globo
+lista las variantes que el Catálogo ubica ahí, y la vista de origen dibuja una
+flecha por entidad y lengua, con las variantes probables en el globo. En la
+ciudad, el globo de cada alcaldía lista las tres variantes probables con más
+hablantes. Al elegir una lengua, la tarjeta de variantes trae el glosario de
+los niveles de certeza (exacta, única, estimada, sin variante).
 
 Los cortes de color de cada indicador por alcaldía son fijos a lo largo de los
 años: se calculan sobre todas las alcaldías y ediciones de ese indicador, de

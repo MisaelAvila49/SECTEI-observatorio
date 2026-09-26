@@ -74,7 +74,7 @@ function arco(a, b, n = 24) {
   return pts;
 }
 
-export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [], clinMunicipios = [], catalogo, agebs, colonias,
+export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [], clinMunicipios = [], municipiosLenguas = [], catalogo, agebs, colonias,
     pmtilesManzanas, pmtilesAgebs, pmtilesMunicipios = null, geoAlcaldias, geoLimite, geoEntidades}) {
   registrarProtocolo();
   const catNombre = new Map(catalogo.map((c) => [c.clave, c]));
@@ -199,7 +199,17 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       paint: {"line-color": ROJO_IBERO, "line-width": 2, "line-opacity": ["case", ["boolean", ["feature-state", "activa"], false], 1, 0]}});
   }
 
+  // Punta de flecha para las líneas de origen: un triángulo SDF que toma el
+  // color de cada línea y sigue su dirección (hacia la ciudad).
+  function imagenFlecha() {
+    const n = 32, c = document.createElement("canvas");
+    c.width = n; c.height = n;
+    const g = c.getContext("2d");
+    g.fillStyle = "#000"; g.beginPath(); g.moveTo(4, 6); g.lineTo(28, 16); g.lineTo(4, 26); g.lineTo(10, 16); g.closePath(); g.fill();
+    return g.getImageData(0, 0, n, n);
+  }
   mapa.on("load", () => {
+    mapa.addImage("flecha", imagenFlecha(), {sdf: true});
     mapa.addSource("manzanas", {type: "vector", url: `pmtiles://${pmtilesManzanas}`});
     mapa.addSource("agebs", {type: "vector", url: `pmtiles://${pmtilesAgebs}`});
     mapa.addSource("alcaldias", {type: "geojson", data: geoAlcaldias, promoteId: "CVEGEO"});
@@ -240,6 +250,10 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     }
     mapa.addLayer({id: "flujos-linea", type: "line", source: "flujos", layout: {visibility: "none", "line-cap": "round"},
       paint: {"line-color": ["get", "color"], "line-width": ["get", "grosor"], "line-opacity": ["coalesce", ["get", "opacidad"], 0.85]}});
+    mapa.addLayer({id: "flujos-flecha", type: "symbol", source: "flujos",
+      layout: {visibility: "none", "symbol-placement": "line", "symbol-spacing": 160, "icon-image": "flecha", "icon-allow-overlap": true, "icon-ignore-placement": true,
+        "icon-rotation-alignment": "map", "icon-size": ["interpolate", ["linear"], ["get", "grosor"], 1, 0.35, 9, 0.7]},
+      paint: {"icon-color": ["get", "color"], "icon-opacity": ["coalesce", ["get", "opacidad"], 0.85]}});
 
     for (const capa of ["manzanas-relleno", "agebs-relleno", "alcaldias-relleno", "entidades-relleno", ...(pmtilesMunicipios ? ["municipios-relleno"] : [])]) {
       mapa.on("mousemove", capa, (e) => {
@@ -314,15 +328,14 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const e = vistaActual;
     if (capa === "entidades-relleno") {
       const d = e.valores.get(f.id);
-      if (!d) return `<div class="globo-titulo">${escapar(p.name)}</div><div class="globo-sub">Sin hablantes de esta lengua nacidos aquí en la muestra</div>`;
-      return `<div class="globo-titulo">${escapar(p.name)}</div>
-        <table class="globo-tabla"><tr><th>Hablantes nacidos aquí</th><td>${entero(d.num)}</td></tr>
-        <tr><th>Variante probable</th><td>${escapar(d.variante)}</td></tr></table>`;
+      if (!d) return `<div class="globo-titulo">${escapar(p.name)}</div><div class="globo-sub">Sin hablantes nacidos aquí en la muestra</div>`;
+      return `<div class="globo-titulo">${escapar(p.name)}</div><div class="globo-sub">${entero(d.num)} hablantes de la ciudad nacieron aquí</div>
+        <ul class="globo-lista">${d.detalle.map((t) => `<li>${escapar(t)}</li>`).join("")}</ul>`;
     }
     if (capa === "municipios-relleno") {
       const d = e.valores.get(f.id);
       return `<div class="globo-titulo">${escapar(p.NOMGEO)}</div><div class="globo-sub">${escapar(nombreEntidad(String(p.CVEGEO ?? "").slice(0, 2)))}</div>
-        <table class="globo-tabla"><tr><th>Variante</th><td>${d ? escapar(d.variante) : "sin registro del catálogo"}</td></tr></table>`;
+        ${d ? `<ul class="globo-lista">${d.detalle.map((t) => `<li>${escapar(t)}</li>`).join("")}</ul>` : `<div class="globo-sub">Sin registro del catálogo</div>`}`;
     }
     if (capa === "alcaldias-relleno") {
       const d = e.valores.get(f.id);
@@ -345,7 +358,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   function visibles(ids) {
     const todas = ["manzanas-relleno", "manzanas-borde", "manzanas-hover", "agebs-relleno", "agebs-borde", "agebs-hover",
       "alcaldias-relleno", "alcaldias-halo", "alcaldias-linea", "alcaldias-hover", "cdmx-limite-halo", "cdmx-limite",
-      "entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea", "municipios-relleno", "municipios-linea", "municipios-hover"];
+      "entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea", "flujos-flecha", "municipios-relleno", "municipios-linea", "municipios-hover"];
     for (const id of todas) if (mapa.getLayer(id)) mapa.setLayoutProperty(id, "visibility", ids.includes(id) ? "visible" : "none");
   }
 
@@ -354,7 +367,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const pob = poblacionDe(e.poblacion);
     const cruce = e.cruce ? cruceDe(e.cruce) : null;
     const etiqueta = cruce ? cruce.etiqueta : e.lengua !== "todas" ? `Hablan ${catNombre.get(e.lengua)?.nombre ?? e.lengua}` : pob.corto;
-    const conOrigen = e.unidad === "alcaldia" && e.lengua !== "todas";
+    // Las dos vistas nacionales existen con una lengua concreta o con todas.
+    const conOrigen = e.unidad === "alcaldia" && e.poblacion === "hablantes";
     botonOrigen.hidden = !conOrigen;
     botonLengua.hidden = !conOrigen || !pmtilesMunicipios;
     if (!conOrigen) { estado.origen = false; estado.lengua = false; }
@@ -362,8 +376,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     botonLengua.textContent = estado.lengua ? "Volver a la ciudad" : "Ver el mapa de la lengua";
     botonOrigen.hidden = botonOrigen.hidden || estado.lengua;
     botonLengua.hidden = botonLengua.hidden || estado.origen;
-    variantes.hidden = !conOrigen;
-    if (conOrigen) pintarVariantes(e);
+    variantes.hidden = !(conOrigen && e.lengua !== "todas");
+    if (conOrigen && e.lengua !== "todas") pintarVariantes(e);
     // En la vista de origen el sexo no aplica (los flujos no lo desglosan).
     panel.mostrar("sexo", !estado.origen && !estado.lengua && panel.aplica("sexo"));
     if (!estado.cargado) return;
@@ -453,6 +467,16 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   // por reparto) y "sin" para nacidos en la ciudad o sin registro. Aquí solo
   // se agrupa y se pinta.
   const CERTEZA = {exacta: "exacta (por municipio)", unica: "única en la entidad", estimada: "estimada (reparto)", sin: "sin variante"};
+  const glosarioCerteza = () => html`<dl class="mapa-glosario">
+    <div><dt>Exacta</dt><dd>se conoce el municipio donde vivía cinco años antes y el Catálogo INALI ubica ahí una sola variante de su lengua.</dd></div>
+    <div><dt>Única</dt><dd>solo se conoce la entidad de nacimiento y en ella el Catálogo registra una sola variante.</dd></div>
+    <div><dt>Estimada</dt><dd>la entidad tiene varias variantes: sus hablantes se reparten en proporción a los hablantes de cada variante en sus municipios (Censo 2020).</dd></div>
+    <div><dt>Sin variante</dt><dd>nacidos en la ciudad, en otro país o en una entidad sin registro de la lengua.</dd></div>
+  </dl>`;
+  // Paleta por lengua para el modo "todas las lenguas": tono fijo por posición
+  // en el catálogo, para que cada lengua conserve su color en las dos vistas.
+  const LENGUAS_CAT = catalogo.filter((c) => c.clave < "8000").map((c) => c.clave);
+  const colorLengua = (clave) => { const i = LENGUAS_CAT.indexOf(clave); return i < 0 ? GRIS_VARIANTE : `hsl(${Math.round((i * 360) / LENGUAS_CAT.length + 20) % 360}, 58%, ${i % 2 ? 42 : 55}%)`; };
   function variantesDe(lengua) {
     const nombreClin = catNombre.get(lengua)?.clin;
     return clin.filter((r) => normal(r.agrupacion) === normal(nombreClin));
@@ -489,6 +513,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     });
     variantes.replaceChildren(html`<h3 class="mapa-variantes-titulo">Variantes del ${nombre} en la ciudad, ${e.anio}</h3>
       <p class="mapa-variantes-nota">El Catálogo INALI 2008 registra ${lista.length} ${lista.length === 1 ? "variante" : "variantes"}; el Censo no pregunta cuál habla cada persona. La variante se infiere por el lugar de origen con el método del INALI: <strong>exacta</strong> si se conoce el municipio y ahí hay una sola variante, <strong>única</strong> si la entidad de nacimiento tiene una sola, <strong>estimada</strong> si tiene varias (reparto por los hablantes de cada una). ${entero(sin)} hablantes quedan sin variante (${entero(enCiudad)} nacidos en la ciudad).</p>
+      ${glosarioCerteza()}
       <ul class="mapa-variantes-lista">${orden.map((r) => {
         const d = porVariante.get(r.variante);
         const total = d ? d.exacta + d.unica + d.estimada : 0;
@@ -503,18 +528,26 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   }
 
   function pintarOrigen(e, etiqueta) {
-    const filas = asignacion(e).filter((r) => r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009");
-    const colores = coloresVariantes(filas);
+    const todas = e.lengua === "todas";
+    const filas = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009");
+    // Color de cada línea: por variante (una lengua) o por lengua (todas).
+    const colores = todas
+      ? new Map([...new Set(filas.map((r) => r.lengua))].map((k) => [k, colorLengua(k)]))
+      : coloresVariantes(filas);
     const porIso = new Map(geoEntidades.features.map((f) => [f.properties.id, f]));
     const cdmx = centro(porIso.get("MX-CMX"));
     const valores = new Map();
     for (const f of geoEntidades.features) mapa.setFeatureState({source: "entidades", id: f.properties.id}, {valor: null});
-    // Entidad: total de hablantes nacidos ahí y sus variantes.
+    // Por entidad: total, y desglose por lengua y por variante.
     const porEnt = new Map();
     for (const r of filas) {
-      const d = porEnt.get(r.cve_ent) ?? {num: 0, variantes: new Map()};
+      const d = porEnt.get(r.cve_ent) ?? {num: 0, lenguas: new Map(), variantes: new Map()};
       d.num += r.num;
-      if (r.variante) d.variantes.set(r.variante, (d.variantes.get(r.variante) ?? 0) + r.num);
+      d.lenguas.set(r.lengua, (d.lenguas.get(r.lengua) ?? 0) + r.num);
+      if (r.variante) {
+        const k = todas ? `${catNombre.get(r.lengua)?.nombre ?? r.lengua}: ${r.variante}` : r.variante;
+        d.variantes.set(k, (d.variantes.get(k) ?? 0) + r.num);
+      }
       porEnt.set(r.cve_ent, d);
     }
     const max = Math.max(...[...porEnt.values()].map((d) => d.num), 1);
@@ -523,42 +556,51 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       const iso = ENTIDAD[ent][0];
       const f = porIso.get(iso);
       mapa.setFeatureState({source: "entidades", id: iso}, {valor: d.num});
-      const lista = [...d.variantes.entries()].sort((a, b) => b[1] - a[1]);
-      valores.set(iso, {num: d.num, variante: lista.length ? lista.slice(0, 3).map(([v, n]) => `${v} (${entero(n)})`).join("; ") + (lista.length > 3 ? "…" : "") : "sin registro del catálogo en esta entidad"});
+      const vars = [...d.variantes.entries()].sort((a, b) => b[1] - a[1]);
+      const lens = [...d.lenguas.entries()].sort((a, b) => b[1] - a[1]);
+      const detalle = todas
+        ? [...lens.slice(0, 3).map(([k, n]) => `${catNombre.get(k)?.nombre ?? k}: ${entero(n)} hablantes`), ...(vars.length ? [`Variantes probables: ${vars.slice(0, 3).map(([v, n]) => `${v} (${entero(n)})`).join("; ")}`] : [])]
+        : (vars.length ? vars.slice(0, 4).map(([v, n]) => `${v}: ${entero(n)} (variante probable)`) : ["Sin registro del catálogo en esta entidad"]);
+      valores.set(iso, {num: d.num, detalle});
       if (!f) continue;
-      // Una línea por variante (las tres coloreadas y el resto en gris),
-      // ligeramente separadas para que no se encimen.
-      const trazos = lista.length ? lista : [[null, d.num]];
-      trazos.forEach(([v, n], k) => {
+      // Una línea por lengua (todas) o por variante (una lengua), separadas.
+      const trazos = todas ? lens : (vars.length ? vars : [[null, d.num]]);
+      trazos.forEach(([k, n], idx) => {
         const a = centro(f);
-        const desvio = (k - (trazos.length - 1) / 2) * 0.12;
-        features.push({type: "Feature", properties: {ent: iso, num: n, color: colores.get(v) ?? GRIS_VARIANTE,
+        const desvio = (idx - (trazos.length - 1) / 2) * 0.12;
+        features.push({type: "Feature", properties: {ent: iso, num: n, color: colores.get(k) ?? GRIS_VARIANTE,
           grosor: 1 + 8 * Math.sqrt(n / max)}, geometry: {type: "LineString", coordinates: arco([a[0] + desvio, a[1] + desvio], cdmx)}});
       });
     }
-    // Las grises primero y las coloreadas al final: MapLibre dibuja en orden y
-    // las líneas de las tres variantes con color no deben quedar tapadas.
-    features.sort((a, b) => (a.properties.color === GRIS_VARIANTE) - (b.properties.color === GRIS_VARIANTE) || a.properties.num - b.properties.num).reverse();
     features.sort((a, b) => (a.properties.color === GRIS_VARIANTE ? 0 : 1) - (b.properties.color === GRIS_VARIANTE ? 0 : 1));
     for (const f of features) f.properties.opacidad = f.properties.color === GRIS_VARIANTE ? 0.45 : 0.9;
     mapa.getSource("flujos").setData({type: "FeatureCollection", features});
     const cortes = cortesPorCuantil([...porEnt.values()].map((d) => d.num), 5);
     mapa.setPaintProperty("entidades-relleno", "fill-color", expresionColor("valor", cortes, RAMPA_MORADA, "feature-state"));
-    visibles(["entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea"]);
+    visibles(["entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea", "flujos-flecha"]);
     vistaActual = {unidad: "entidad", etiqueta, valores, cruce: null, poblacion: e.poblacion, campo: null};
-    const nombre = catNombre.get(e.lengua)?.nombre ?? e.lengua;
+    const nombre = todas ? "lengua indígena" : (catNombre.get(e.lengua)?.nombre ?? e.lengua);
     const total = filas.reduce((s, r) => s + r.num, 0);
-    const enCiudad = asignacion(e).filter((r) => r.cve_ent === "009").reduce((s, r) => s + r.num, 0);
-    const chips = [...colores.entries()].map(([n, c]) => html`<li><span class="mapa-variante-chip" style="background:${c}" aria-hidden="true"></span>${n}</li>`);
+    const enCiudad = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && r.cve_ent === "009").reduce((s, r) => s + r.num, 0);
+    // Leyenda: por variante (tres tonos) o por lengua (las diez con más hablantes en la ciudad).
+    let chips;
+    if (todas) {
+      const porLengua = new Map();
+      for (const r of filas) porLengua.set(r.lengua, (porLengua.get(r.lengua) ?? 0) + r.num);
+      chips = [...porLengua.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k]) => html`<li><span class="mapa-variante-chip" style="background:${colores.get(k)}" aria-hidden="true"></span>${catNombre.get(k)?.nombre ?? k}</li>`);
+    } else {
+      chips = [...colores.entries()].map(([n, c]) => html`<li><span class="mapa-variante-chip" style="background:${c}" aria-hidden="true"></span>${n}</li>`);
+    }
     enReposo = () => `<div class="globo-titulo">Hablantes de ${escapar(nombre)} en la ciudad · ${e.anio}</div>
       <div class="mapa-cifra-valor">${entero(total)}</div><div class="mapa-cifra-nota">nacidos en otra entidad · ${entero(enCiudad)} nacidos en la ciudad</div>
       <div class="mapa-tarjeta-pista">Pasa el cursor por una entidad; haz clic para fijarla y comparar</div>`;
     globo.reposo();
     leyendaCaja.replaceChildren(
       leyenda({cortes, titulo: `Hablantes de ${nombre} nacidos en la entidad`, formato: (x) => punto(Math.round(x)), notaSinDato: "Sin hablantes en la muestra"}),
-      html`<ul class="mapa-variantes-leyenda"><li class="mapa-variantes-leyenda-titulo">Color de la línea: variante probable</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>Otras variantes o sin registro</li></ul>`);
+      html`<ul class="mapa-variantes-leyenda"><li class="mapa-variantes-leyenda-titulo">${todas ? "Color de la línea: lengua (las diez mayores)" : "Color de la línea: variante probable"}</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>${todas ? "Otras lenguas" : "Otras variantes o sin registro"}</li></ul>`,
+      todas ? "" : glosarioCerteza());
     resumen.replaceChildren(html`<h2 class="mapa-titulo">De dónde vienen quienes hablan ${nombre}</h2>
-      <p class="mapa-definicion">Hablantes de ${nombre} que viven en la Ciudad de México, según su entidad de nacimiento. Cada línea une la entidad con la ciudad; su grosor es el número de personas y su color, la variante probable. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra; variantes según el Catálogo INALI 2008.</span></p>`);
+      <p class="mapa-definicion">Hablantes que viven en la Ciudad de México, según su entidad de nacimiento. Cada flecha va de la entidad a la ciudad; su grosor es el número de personas y su color, ${todas ? "la lengua" : "la variante probable"}. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra; variantes según el Catálogo INALI 2008.</span></p>`);
   }
 
   // Paleta de N tonos para las variantes del mapa de la lengua: tonos
@@ -573,39 +615,68 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   }
   let municipiosPintados = [];
   function pintarLengua(e) {
-    const nombre = catNombre.get(e.lengua)?.nombre ?? e.lengua;
-    const filas = clinMunicipios.filter((r) => r.lengua === e.lengua);
-    const lista = variantesDe(e.lengua);
-    const orden = lista.map((r) => r.variante);
-    const colores = new Map(orden.map((v, i) => [v, paletaVariantes(orden.length)[i]]));
-    // Un municipio con varias variantes de la lengua se pinta con la primera del catálogo y el globo lista todas.
-    const porMun = new Map();
-    for (const r of filas) {
+    const todas = e.lengua === "todas";
+    const nombre = todas ? "las lenguas indígenas" : (catNombre.get(e.lengua)?.nombre ?? e.lengua);
+    // Catálogo: variantes por municipio (de la lengua elegida, o de todas).
+    const catMun = new Map();
+    for (const r of clinMunicipios) {
+      if (!todas && r.lengua !== e.lengua) continue;
       const k = `${r.cve_ent.slice(-2)}${r.cve_mun}`;
-      const m = porMun.get(k) ?? [];
-      if (!m.includes(r.variante)) m.push(r.variante);
-      porMun.set(k, m);
+      const m = catMun.get(k) ?? [];
+      m.push({lengua: r.lengua, variante: r.variante});
+      catMun.set(k, m);
     }
+    let colores, orden;
+    if (todas) {
+      orden = LENGUAS_CAT;
+      colores = new Map(orden.map((k) => [k, colorLengua(k)]));
+    } else {
+      orden = variantesDe(e.lengua).map((r) => r.variante);
+      colores = new Map(orden.map((v, i) => [v, paletaVariantes(orden.length)[i]]));
+    }
+    // Con todas las lenguas, el municipio se pinta por la lengua con más
+    // hablantes según el Censo 2020, y el globo lista las variantes del catálogo.
+    const dominante = new Map();
+    if (todas) for (const r of municipiosLenguas) if (!dominante.has(r.cve)) dominante.set(r.cve, r);
     for (const k of municipiosPintados) mapa.setFeatureState({source: "municipios", sourceLayer: "municipios", id: k}, {color: null});
     const valores = new Map();
-    for (const [k, vs] of porMun) {
-      mapa.setFeatureState({source: "municipios", sourceLayer: "municipios", id: k}, {color: colores.get(vs[0])});
-      valores.set(k, {variante: vs.join("; ")});
+    const claves = new Set([...catMun.keys(), ...(todas ? dominante.keys() : [])]);
+    for (const k of claves) {
+      const cat = catMun.get(k) ?? [];
+      let color, detalle;
+      if (todas) {
+        const d = dominante.get(k);
+        const lenguaColor = d?.lengua ?? cat[0]?.lengua;
+        color = lenguaColor ? colores.get(lenguaColor) : null;
+        detalle = [
+          ...(d ? [`Lengua con más hablantes: ${catNombre.get(d.lengua)?.nombre ?? d.lengua} (${entero(d.hablantes)})`] : []),
+          ...(cat.length ? [`Variantes del catálogo: ${cat.map((c) => `${c.variante}`).join("; ")}`] : []),
+        ];
+      } else {
+        color = colores.get(cat[0].variante);
+        detalle = cat.map((c) => `Variante: ${c.variante}`);
+      }
+      if (color) mapa.setFeatureState({source: "municipios", sourceLayer: "municipios", id: k}, {color});
+      valores.set(k, {detalle});
     }
-    municipiosPintados = [...porMun.keys()];
+    municipiosPintados = [...claves];
     visibles(["municipios-relleno", "municipios-linea", "municipios-hover", "entidades-linea"]);
     vistaActual = {unidad: "municipio", etiqueta: nombre, valores, cruce: null, poblacion: e.poblacion, campo: null};
-    const enCiudad = asignacion(e);
-    const totalCiudad = enCiudad.reduce((s, r) => s + r.num, 0);
-    enReposo = () => `<div class="globo-titulo">Dónde se habla el ${escapar(nombre)}</div>
-      <div class="mapa-cifra-nota">${orden.length} variantes en ${porMun.size} municipios, según el Catálogo INALI 2008</div>
+    const totalCiudad = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua)).reduce((s, r) => s + r.num, 0);
+    enReposo = () => `<div class="globo-titulo">Dónde se ${todas ? "hablan las lenguas indígenas" : `habla el ${escapar(nombre)}`}</div>
+      <div class="mapa-cifra-nota">${todas ? `${claves.size} municipios` : `${orden.length} variantes en ${claves.size} municipios`}, según el Catálogo INALI 2008${todas ? " y el Censo 2020" : ""}</div>
       <div class="mapa-cifra-valor">${entero(totalCiudad)}</div><div class="mapa-cifra-nota">hablantes en la Ciudad de México, ${e.anio}</div>
-      <div class="mapa-tarjeta-pista">Pasa el cursor por un municipio para ver su variante</div>`;
+      <div class="mapa-tarjeta-pista">Pasa el cursor por un municipio para ver su ${todas ? "lengua y sus variantes" : "variante"}</div>`;
     globo.reposo();
-    leyendaCaja.replaceChildren(html`<ul class="mapa-variantes-leyenda mapa-variantes-leyenda-larga"><li class="mapa-variantes-leyenda-titulo">Variantes del ${nombre} (color por variante)</li>
-      ${orden.map((v) => html`<li><span class="mapa-variante-chip" style="background:${colores.get(v)}" aria-hidden="true"></span>${v}</li>`)}</ul>`);
-    resumen.replaceChildren(html`<h2 class="mapa-titulo">El mapa del ${nombre}</h2>
-      <p class="mapa-definicion">Cada municipio se pinta con la variante que el Catálogo de las Lenguas Indígenas Nacionales ubica ahí; donde el catálogo registra varias, se pinta la primera y el globo las lista todas. Es el territorio histórico de la lengua, no dónde vive hoy cada hablante. <span class="mapa-fuente">INALI, Catálogo 2008; marco geoestadístico 2020 del INEGI.</span></p>`);
+    const listaLeyenda = todas
+      ? [...new Set([...dominante.values()].map((r) => r.lengua))].map((k) => [k, catNombre.get(k)?.nombre ?? k]).sort((a, b) => a[1].localeCompare(b[1], "es"))
+      : orden.map((v) => [v, v]);
+    leyendaCaja.replaceChildren(html`<ul class="mapa-variantes-leyenda mapa-variantes-leyenda-larga"><li class="mapa-variantes-leyenda-titulo">${todas ? "Lengua con más hablantes en el municipio (color por lengua)" : `Variantes del ${nombre} (color por variante)`}</li>
+      ${listaLeyenda.map(([k, t]) => html`<li><span class="mapa-variante-chip" style="background:${colores.get(k)}" aria-hidden="true"></span>${t}</li>`)}</ul>`);
+    resumen.replaceChildren(html`<h2 class="mapa-titulo">${todas ? "El mapa de las lenguas indígenas" : `El mapa del ${nombre}`}</h2>
+      <p class="mapa-definicion">${todas
+        ? "Cada municipio se pinta con la lengua indígena que más se habla en él según el Censo 2020, y el globo lista las variantes que el Catálogo del INALI ubica ahí."
+        : "Cada municipio se pinta con la variante que el Catálogo de las Lenguas Indígenas Nacionales ubica ahí; donde el catálogo registra varias, se pinta la primera y el globo las lista todas."} Es el territorio de la lengua, no dónde vive hoy cada hablante. <span class="mapa-fuente">INALI, Catálogo 2008; INEGI, Censo 2020 y marco geoestadístico 2020.</span></p>`);
   }
   botonLengua.addEventListener("click", () => {
     limpiarFijadas();
@@ -623,7 +694,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   });
   panel.addEventListener("input", () => {
     limpiarFijadas();
-    if ((estado.origen || estado.lengua) && (v().unidad !== "alcaldia" || v().lengua === "todas")) {
+    if ((estado.origen || estado.lengua) && (v().unidad !== "alcaldia" || v().poblacion !== "hablantes")) {
       estado.origen = false;
       estado.lengua = false;
       mapa.fitBounds(CDMX, {padding: 12, duration: 600});
