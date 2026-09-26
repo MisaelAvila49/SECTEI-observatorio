@@ -93,9 +93,12 @@ serie,cdmx_phog_2020,3.1394,"% de hogares en la CDMX, 2020"
 serie,cdmx_phog_2020_n,289139.0000,"personas (hogares) en la CDMX, 2020"
 serie,cdmx_phog_2025,3.0872,"% de hogares en la CDMX, 2025"
 serie,cdmx_phog_2025_n,282966.0000,"personas (hogares) en la CDMX, 2025"
+serie,eic2025_alcaldias_iguales,16.0000,alcaldías cuyo % de hablantes 2025 coincide con el tabulado 105
 serie,iztapalapa_parte_2015,24.2240,"% de los hablantes de la CDMX que viven en Iztapalapa, 2015"
+serie,sepi_monolingues_alcaldia_iguales,4.0000,alcaldías de la tabla 1 de la SEPI (monolingües 2020) que reproduce la serie
 serie,union_2000,196107.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
 serie,union_2010,474099.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
 serie,union_2015,835437.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
 serie,union_2020,852286.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
 serie,union_2025,652398.0000,personas que hablan lengua indígena o se consideran indígenas (una sola vez)
+serie,word_tabla2_celdas_iguales,32.0000,"celdas de la tabla 2 del documento de la Secretaría de Cultura (16 alcaldías x sexo, 2015) que reproduce la serie"

@@ -39,4 +39,7 @@ cdmx_hli5_2010_n,serie,2010,hablantes de lengua indígena de 5 años y más en l
 cdmx_hli5_2020_n,serie,2020,hablantes de lengua indígena de 5 años y más en la CDMX,124540,1,D-ITER-2020,2026-09-24,verificado,"ITER 2020 (P5_HLI); coincide con la serie de la SEPI."
 cdmx_phog_2005_n,serie,2005,población en hogares indígenas en la CDMX,247208,1,D-ITER-2005,2026-09-24,verificado,"ITER 2005 (P_HOG_IND), total de la entidad; definición jefe o cónyuge."
 cdmx_autoads_2010,serie,2010,% de población de 3 años y más que se considera indígena en la CDMX,,1.0,D-CENSO-2010-AMP,2026-09-24,pendiente,"La muestra da 5.0 %. Falta transcribir la cifra del tabulado oficial de la muestra del Censo 2010 (población que se considera indígena, Distrito Federal)."
+word_tabla2_celdas_iguales,serie,2015,celdas iguales a la tabla 2 del documento (hablantes por sexo y alcaldía),32,0,R-SECULT-LENGUAS,2026-09-26,verificado,"Cotejo masivo: las 32 celdas (16 alcaldías x mujeres/hombres) de la EIC 2015 coinciden exactas con la tabla del documento."
+sepi_monolingues_alcaldia_iguales,serie,2020,alcaldías con monolingües iguales a la tabla 1 de la SEPI,4,0,R-SEPI-2024-DIV,2026-09-26,verificado,"Iztapalapa 305, Gustavo A. Madero 109, Xochimilco 91 y Tlalpan 87: las cuatro que publica la SEPI coinciden con el ITER 2020."
+eic2025_alcaldias_iguales,serie,2025,alcaldías con % de hablantes igual al tabulado 105,16,0,D-EIC-2025-105,2026-09-26,verificado,"Las 16 alcaldías reproducen PCN_P3YM_HLI del conjunto 105 (a dos decimales)."
 
