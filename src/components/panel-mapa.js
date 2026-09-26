@@ -190,7 +190,11 @@ export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
     // Año por omisión: el último censo (2020) si existe; si no, el más reciente.
     const anioPref = anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
     c.anio.rellenar(anios.map((a) => ({clave: String(a), etiqueta: String(a)})), anioPref);
-    ver("anio", anios.length > 1);
+    // Con un solo año el selector se deja a la vista pero deshabilitado, para
+    // que se entienda que no hay otro (por AGEB y manzana solo hay 2020).
+    ver("anio", true);
+    c.anio.select.disabled = anios.length <= 1;
+    c.anio.querySelector("label").textContent = anios.length <= 1 ? "Año (único publicado a este nivel)" : "Año";
 
     // Sexo: no para hogares, no con cruce, no por AGEB (las teselas de AGEB
     // no traen el desglose).

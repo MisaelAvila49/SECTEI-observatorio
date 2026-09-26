@@ -116,7 +116,10 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   const MAX_FIJADAS = 5;
   let pila = [];
   const leyendaCaja = html`<div class="mapa-leyenda-caja"></div>`;
-  contenedor.append(tarjeta, fijadas, leyendaCaja);
+  // Una sola columna en la esquina: tarjeta de la ciudad, leyenda debajo (a la
+  // vista, junto a la cifra) y las tarjetas fijadas al final, sin encimarse.
+  const esquina = html`<div class="mapa-esquina">${tarjeta}${leyendaCaja}${fijadas}</div>`;
+  contenedor.append(esquina);
   const lateral = html`<aside class="mapa-lateral"></aside>`;
   const resumen = html`<div class="mapa-resumen"></div>`;
   const botonOrigen = html`<button type="button" class="mapa-boton-origen" hidden>Ver de dónde vienen</button>`;

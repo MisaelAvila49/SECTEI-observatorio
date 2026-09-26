@@ -4004,11 +4004,23 @@ body:has(.mapa-pantalla) #observablehq-footer {
 }
 
 /* Leyenda y tarjeta de lectura dentro del lienzo del mapa. */
-.mapa-tarjeta,
-.mapa-leyenda-caja {
+.mapa-esquina {
   position: absolute;
   z-index: 5;
-  max-width: min(22rem, calc(100% - 4.5rem));
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: min(22rem, calc(100% - 4.5rem));
+  max-height: calc(100% - 3rem);
+  overflow: auto;
+}
+.mapa-tarjeta,
+.mapa-leyenda-caja {
+  position: static;
+  z-index: 5;
+  max-width: none;
   padding: 0.65rem 0.8rem;
   border-radius: 10px;
   background: color-mix(in srgb, var(--surface-1) 92%, transparent);
@@ -4020,9 +4032,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
   color: var(--theme-foreground);
 }
 .mapa-tarjeta {
-  top: 0.75rem;
-  left: 0.75rem;
-  min-width: 15rem;
+  min-width: 0;
 }
 .mapa-tarjeta .globo-titulo {
   font-weight: 700;
@@ -4062,9 +4072,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
   border-color: var(--brand-red);
 }
 .mapa-leyenda-caja {
-  right: 0.75rem;
-  bottom: 2rem;
-  min-width: 14rem;
+  min-width: 0;
 }
 .mapa-leyenda-caja .mapa-leyenda {
   margin: 0;
@@ -4119,15 +4127,12 @@ body:has(.mapa-pantalla) #observablehq-footer {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-red) 22%, transparent);
 }
 @media (max-width: 991px) {
-  .mapa-tarjeta {
-    max-width: calc(100% - 4.5rem);
-    min-width: 0;
-    padding: 0.45rem 0.6rem;
+  .mapa-esquina {
+    width: calc(100% - 4.5rem);
+    max-height: 55%;
   }
-  .mapa-leyenda-caja {
-    right: 0.5rem;
-    bottom: 1.8rem;
-    min-width: 0;
+  .mapa-tarjeta {
+    padding: 0.45rem 0.6rem;
   }
 }
 
@@ -4153,16 +4158,11 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .mapa-globo .globo-tabla td { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
 /* Pila de unidades fijadas con clic, debajo de la tarjeta de la ciudad. */
 .mapa-fijadas {
-  position: absolute;
-  z-index: 5;
-  top: 9.5rem;
-  left: 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  max-width: min(22rem, calc(100% - 4.5rem));
-  max-height: calc(100% - 12rem);
-  overflow: auto;
+  padding-top: 0.35rem;
+  border-top: 2px dashed var(--border-subtle);
 }
 .mapa-fijadas[hidden] { display: none; }
 .mapa-fijada {
@@ -4206,4 +4206,5 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .mapa-variantes-leyenda-larga { max-height: 38vh; overflow: auto; columns: 2; column-gap: 1rem; }
 .mapa-variantes-leyenda-larga li { break-inside: avoid; }
 .mapa-variantes-leyenda-larga .mapa-variantes-leyenda-titulo { column-span: all; }
-
+.mapa-variantes-leyenda-larga { max-height: 30vh; columns: 1; }
+.panel-mapa select:disabled { opacity: 0.7; cursor: default; }
