@@ -126,7 +126,29 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   const botonLengua = html`<button type="button" class="mapa-boton-origen mapa-boton-lengua" hidden>Ver el mapa de la lengua</button>`;
   const botones = html`<div class="mapa-botones">${botonOrigen}${botonLengua}</div>`;
   const variantes = html`<div class="mapa-variantes" hidden></div>`;
-  lateral.append(panel, resumen, botones, variantes);
+  // El lateral tiene dos pestañas: Filtros (el panel y los botones de vista) e
+  // Información (definición, detalle de la unidad fijada con clic y variantes).
+  // El clic en el mapa abre Información; "Volver a filtros" regresa.
+  const seleccion = html`<div class="mapa-seleccion" hidden></div>`;
+  const tabFiltros = html`<button type="button" role="tab" id="mapa-tab-filtros" aria-selected="true" aria-controls="mapa-vista-filtros">Filtros</button>`;
+  const tabInfo = html`<button type="button" role="tab" id="mapa-tab-info" aria-selected="false" aria-controls="mapa-vista-info">Información</button>`;
+  const pestanas = html`<div class="mapa-pestanas" role="tablist" aria-label="Panel del mapa">${tabFiltros}${tabInfo}</div>`;
+  const vistaFiltros = html`<div id="mapa-vista-filtros" role="tabpanel" aria-labelledby="mapa-tab-filtros">${panel}${botones}</div>`;
+  const volver = html`<button type="button" class="mapa-volver">← Volver a los filtros</button>`;
+  const vistaInfo = html`<div id="mapa-vista-info" role="tabpanel" aria-labelledby="mapa-tab-info" hidden>${volver}${seleccion}${resumen}${variantes}</div>`;
+  lateral.append(pestanas, vistaFiltros, vistaInfo);
+  function mostrarPestana(nombre) {
+    const info = nombre === "info";
+    vistaFiltros.hidden = info;
+    vistaInfo.hidden = !info;
+    tabFiltros.setAttribute("aria-selected", String(!info));
+    tabInfo.setAttribute("aria-selected", String(info));
+    lateral.scrollTop = 0;
+  }
+  tabFiltros.addEventListener("click", () => mostrarPestana("filtros"));
+  tabInfo.addEventListener("click", () => mostrarPestana("info"));
+  volver.addEventListener("click", () => mostrarPestana("filtros"));
+  let seleccionada = null;
   const nodo = html`<div class="mapa-pantalla">${contenedor}${lateral}</div>`;
 
   const estado = {origen: false, lengua: false, cargado: false};
@@ -178,7 +200,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     if (pila.length > MAX_FIJADAS) pila.shift();
     pintarFijadas();
   }
-  function limpiarFijadas() { pila = []; pintarFijadas(); }
+  function limpiarFijadas() { pila = []; pintarFijadas(); seleccionada = null; seleccion.hidden = true; seleccion.replaceChildren(); }
 
   const cacheCortes = new Map();
   const CAPAS_UNIDAD = {manzana: "manzanas", ageb: "agebs", alcaldia: "alcaldias"};
@@ -273,6 +295,9 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         const f = e.features?.[0];
         if (!f || f.id == null) return;
         fijar(`${f.source}:${f.id}`, globoDe(capa, f));
+        seleccionada = {capa, id: f.id, propiedades: f.properties};
+        pintarSeleccion();
+        mostrarPestana("info");
       });
     }
     estado.cargado = true;
@@ -461,6 +486,76 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       <p class="mapa-definicion">${definicion} <span class="mapa-fuente">${fuente}.</span></p>${cifra}${aviso}${avisoTodas}`);
   }
 
+  // ---------------------------------------------------------------- selección
+  // Detalle de la unidad fijada con clic, en la pestaña Información. Cada capa
+  // trae lo que sus datos permiten: la alcaldía su serie y sus variantes; la
+  // AGEB o manzana sus indicadores de 2020; la entidad sus lenguas y variantes de
+  // origen; el municipio su lengua dominante y las variantes del catálogo.
+  const tablaDetalle = (filas) => html`<table class="mapa-detalle-tabla">${filas.map(([k, v]) => html`<tr><th>${k}</th><td>${v}</td></tr>`)}</table>`;
+  function pintarSeleccion() {
+    if (!seleccionada) { seleccion.hidden = true; seleccion.replaceChildren(); return; }
+    const e = v();
+    const {capa, id, propiedades: p} = seleccionada;
+    const nodos = [];
+    let destacar = null;
+    if (capa === "alcaldias-relleno") {
+      const cve = String(id).slice(2);
+      nodos.push(html`<h3 class="mapa-seleccion-titulo">${p.alcaldia}</h3>`);
+      // Serie de la alcaldía para lo que está pintado.
+      const filas = (e.lengua !== "todas"
+        ? lenguas.filter((r) => r.lengua === e.lengua && r.cve === cve && r.nivel === "alcaldia" && r.sexo === e.sexo)
+        : serie.filter((r) => r.poblacion === pobSerie(e.poblacion, r.anio) && r.cve === cve && r.nivel === "alcaldia" && r.sexo === e.sexo))
+        .sort((a, b) => a.anio - b.anio);
+      nodos.push(html`<p class="mapa-seleccion-sub">${vistaActual.etiqueta}, por edición</p>`,
+        tablaDetalle(filas.map((r) => [String(r.anio) + (r.anio === e.anio ? " ◂" : ""), `${pct(100 * r.num / r.den)} · ${entero(r.num)}`])));
+      if (e.lengua !== "todas") {
+        const porV = new Map();
+        for (const r of variantesCiudad.filter((r) => r.anio === e.anio && r.lengua === e.lengua && r.cve_alc === cve && r.variante)) porV.set(r.variante, (porV.get(r.variante) ?? 0) + r.num);
+        const lista = [...porV.entries()].sort((a, b) => b[1] - a[1]);
+        destacar = new Set(lista.slice(0, 5).map(([k]) => k));
+        nodos.push(html`<p class="mapa-seleccion-sub">Variantes probables en ${p.alcaldia}, ${e.anio}</p>`,
+          lista.length ? tablaDetalle(lista.slice(0, 8).map(([k, n]) => [k, entero(n)])) : html`<p class="mapa-seleccion-nota">Sin hablantes con origen conocido.</p>`);
+      } else {
+        const top = lenguas.filter((r) => r.anio === e.anio && r.cve === cve && r.nivel === "alcaldia" && r.sexo === "Total" && r.lengua < "8000").sort((a, b) => b.num - a.num).slice(0, 8);
+        if (top.length) nodos.push(html`<p class="mapa-seleccion-sub">Lenguas más habladas en ${p.alcaldia}, ${e.anio}</p>`, tablaDetalle(top.map((r) => [r.lengua_nombre, entero(r.num)])));
+      }
+    } else if (capa === "agebs-relleno" || capa === "manzanas-relleno") {
+      const esMza = capa === "manzanas-relleno";
+      nodos.push(html`<h3 class="mapa-seleccion-titulo">${esMza ? (p.colonia ?? "Sin colonia") : `AGEB ${String(p.cve_ageb ?? "").slice(-4)}`}</h3><p class="mapa-seleccion-sub">${p.alcaldia} · Censo 2020</p>`);
+      const filas = [["Población", entero(p.POBTOT)]];
+      for (const pob of POBLACIONES.filter((x) => x.tesela?.[e.unidad])) filas.push([pob.corto, pct(p[pob.tesela[e.unidad]])]);
+      for (const c of CRUCES.filter((x) => x.tesela[e.unidad])) filas.push([c.etiqueta, c.categorias ? (p[c.texto] ?? "sin grado") : pct(p[c.tesela[e.unidad]])]);
+      if (esMza && p.pueblo_originario != null) filas.push(["Pueblo originario", String(p.pueblo_originario) === "True" ? "Sí" : "No"]);
+      nodos.push(tablaDetalle(filas));
+    } else if (capa === "entidades-relleno") {
+      const ent = Object.entries(ENTIDAD).find(([, [iso]]) => iso === id)?.[0];
+      const todas = e.lengua === "todas";
+      const filas = variantesCiudad.filter((r) => r.anio === e.anio && r.cve_ent === ent && (todas || r.lengua === e.lengua));
+      nodos.push(html`<h3 class="mapa-seleccion-titulo">${p.name}</h3><p class="mapa-seleccion-sub">Hablantes de la ciudad nacidos aquí, ${e.anio}: ${entero(filas.reduce((s, r) => s + r.num, 0))}</p>`);
+      if (todas) {
+        const porL = new Map();
+        for (const r of filas) porL.set(r.lengua, (porL.get(r.lengua) ?? 0) + r.num);
+        nodos.push(html`<p class="mapa-seleccion-sub">Por lengua</p>`, tablaDetalle([...porL.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k, n]) => [catNombre.get(k)?.nombre ?? k, entero(n)])));
+      }
+      const porV = new Map();
+      for (const r of filas) if (r.variante) porV.set(todas ? `${catNombre.get(r.lengua)?.nombre ?? r.lengua}: ${r.variante}` : r.variante, (porV.get(todas ? `${catNombre.get(r.lengua)?.nombre ?? r.lengua}: ${r.variante}` : r.variante) ?? 0) + r.num);
+      const lista = [...porV.entries()].sort((a, b) => b[1] - a[1]);
+      if (!todas) destacar = new Set(lista.map(([k]) => k));
+      nodos.push(html`<p class="mapa-seleccion-sub">Variantes probables</p>`, lista.length ? tablaDetalle(lista.slice(0, 10).map(([k, n]) => [k, entero(n)])) : html`<p class="mapa-seleccion-nota">Sin registro del catálogo en esta entidad.</p>`);
+    } else if (capa === "municipios-relleno") {
+      const cve = String(id);
+      const cat = clinMunicipios.filter((r) => `${r.cve_ent.slice(-2)}${r.cve_mun}` === cve && (e.lengua === "todas" || r.lengua === e.lengua));
+      const hab = municipiosLenguas.filter((r) => r.cve === cve).sort((a, b) => b.hablantes - a.hablantes);
+      nodos.push(html`<h3 class="mapa-seleccion-titulo">${p.NOMGEO}</h3><p class="mapa-seleccion-sub">${nombreEntidad(cve.slice(0, 2))}</p>`);
+      if (hab.length) nodos.push(html`<p class="mapa-seleccion-sub">Hablantes en el municipio (Censo 2020)</p>`, tablaDetalle(hab.slice(0, 8).map((r) => [catNombre.get(r.lengua)?.nombre ?? r.lengua, entero(r.hablantes)])));
+      if (e.lengua !== "todas") destacar = new Set(cat.map((r) => r.variante));
+      nodos.push(html`<p class="mapa-seleccion-sub">Variantes según el Catálogo INALI</p>`, cat.length ? tablaDetalle(cat.map((r) => [catNombre.get(r.lengua)?.nombre ?? r.lengua, r.variante])) : html`<p class="mapa-seleccion-nota">Sin registro del catálogo.</p>`);
+    }
+    seleccion.replaceChildren(html`<div class="mapa-seleccion-caja">${nodos}</div>`);
+    seleccion.hidden = false;
+    if (e.lengua !== "todas" && e.unidad === "alcaldia") pintarVariantes(e, destacar);
+  }
+
   // ---------------------------------------------------------------- origen
   // La variante viene ya asignada por scripts/loaders/variantes.py con tres
   // niveles de certeza (exacta por municipio, única en la entidad, estimada
@@ -493,7 +588,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     return new Map(top.map(([nombre], i) => [nombre, PALETA_VARIANTES[i]]));
   }
 
-  function pintarVariantes(e) {
+  function pintarVariantes(e, destacar = null) {
     const lista = variantesDe(e.lengua);
     const filas = asignacion(e);
     const colores = coloresVariantes(filas);
@@ -518,7 +613,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         const d = porVariante.get(r.variante);
         const total = d ? d.exacta + d.unica + d.estimada : 0;
         const partes = d ? [["exacta", d.exacta], ["unica", d.unica], ["estimada", d.estimada]].filter(([, n]) => n >= 0.5).map(([k, n]) => `${entero(n)} ${CERTEZA[k].split(" ")[0]}`).join(" · ") : "";
-        return html`<li>
+        const clase = destacar ? (destacar.has(r.variante) ? "es-destacada" : "es-tenue") : "";
+        return html`<li class=${clase}>
           <span class="mapa-variante-chip" style="background:${colores.get(r.variante) ?? GRIS_VARIANTE}" aria-hidden="true"></span>
           <span class="mapa-variante-nombre">${r.variante}${total >= 0.5 ? html` <span class="mapa-variante-total">${entero(total)}</span>` : ""}</span>
           <span class="mapa-variante-auto">${r.autodenominacion.split("|")[0].trim()}</span>

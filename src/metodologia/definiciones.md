@@ -135,9 +135,16 @@ porque es lo único que el tabulado del Censo publica a ese nivel; la lengua, la
 autoadscripción, la unión de poblaciones y la serie 2010-2025 existen solo por
 alcaldía, porque salen de muestras representativas hasta ahí.
 
-Al pasar el cursor por una unidad aparece su cifra en un globo; al hacer clic
-la unidad se fija en una tarjeta a la izquierda del mapa, para compararla con
-otras. Caben cinco: la sexta sustituye a la más antigua, y cualquier cambio de
+El panel de la derecha tiene dos pestañas. "Filtros" es el panel de controles y
+los botones de vista; "Información" trae la definición de lo pintado, el detalle
+de la unidad elegida con clic y, con una lengua, la tarjeta de variantes con
+el glosario de certeza. Al pasar el cursor por una unidad aparece su cifra en
+un globo; al hacer clic la unidad se fija en una tarjeta a la izquierda del
+mapa, para compararla con otras, y se abre Información con su detalle: por
+alcaldía, su serie por edición y sus variantes probables (que se resaltan en la
+lista); por AGEB o manzana, todos sus indicadores de 2020; por entidad, las
+lenguas y variantes de quienes nacieron ahí; por municipio, sus hablantes por
+lengua y las variantes del catálogo. "Volver a los filtros" regresa. Caben cinco: la sexta sustituye a la más antigua, y cualquier cambio de
 filtro o de vista borra la comparación, porque las cifras fijadas dejarían de
 corresponder a lo que el mapa pinta.
 

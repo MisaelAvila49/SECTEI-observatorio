@@ -229,6 +229,9 @@ for (const ruta of []) {
   await pg.selectOption("#mapa-lengua", "todas"); await pg.waitForTimeout(1500);
   for (const [x, y] of [[520, 430], [560, 470], [600, 520], [480, 560], [640, 400], [700, 450]]) { await pg.mouse.click(x, y); await pg.waitForTimeout(400); }
   const fij = await pg.$$eval(".mapa-fijada", (l) => l.length);
+  // El clic abre la pestaña Información: se vuelve a Filtros antes de seguir.
+  ok(await pg.$eval("#mapa-tab-info", (e) => e.getAttribute("aria-selected") === "true"), "el clic abre la pestaña Información con el detalle");
+  await pg.click(".mapa-volver"); await pg.waitForTimeout(300);
   ok(fij >= 1 && fij <= 5, `clic fija unidades para comparar (${fij}, tope 5)`);
   await pg.selectOption("#mapa-anio", "2020"); await pg.waitForTimeout(1200);
   ok((await pg.$$eval(".mapa-fijada", (l) => l.length)) === 0, "cambiar un filtro borra la comparación");

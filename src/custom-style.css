@@ -4219,3 +4219,63 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .mapa-glosario dt { font-weight: 700; margin: 0; }
 .mapa-glosario dd { margin: 0; color: var(--text-muted); }
 
+/* Pestañas del lateral: Filtros / Información. */
+.mapa-pestanas {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.15rem;
+  border-radius: 10px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+}
+.mapa-pestanas [role="tab"] {
+  flex: 1;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 0.45rem 0.6rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+/* Tinta y fondo invertidos: contrasta en los dos temas (el rojo claro del
+   modo oscuro con texto blanco se queda en 3.85:1). */
+.mapa-pestanas [role="tab"][aria-selected="true"] {
+  background: var(--theme-foreground);
+  color: var(--theme-background);
+}
+.mapa-pestanas [role="tab"]:focus-visible { outline: 2px solid var(--brand-red); outline-offset: 2px; }
+.mapa-volver {
+  align-self: flex-start;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-1);
+  color: var(--theme-foreground);
+  cursor: pointer;
+  margin-bottom: 0.4rem;
+}
+.mapa-volver:hover, .mapa-volver:focus-visible { border-color: var(--brand-red); color: var(--brand-red); }
+#mapa-vista-info { display: flex; flex-direction: column; gap: 0.6rem; }
+#mapa-vista-info[hidden], #mapa-vista-filtros[hidden] { display: none; }
+.mapa-seleccion-caja {
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--brand-red);
+  background: var(--surface-1);
+}
+.mapa-seleccion-titulo { margin: 0 0 0.15rem; font-size: 1rem; font-weight: 700; border: 0; padding: 0; max-width: none; }
+.mapa-seleccion-sub { margin: 0.5rem 0 0.2rem; font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); max-width: none; }
+.mapa-seleccion-nota { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
+.mapa-detalle-tabla { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.mapa-detalle-tabla th { text-align: left; font-weight: 500; padding: 0.18rem 0.5rem 0.18rem 0; border-top: 1px solid var(--border-subtle); color: var(--theme-foreground); }
+.mapa-detalle-tabla td { text-align: right; padding: 0.18rem 0; border-top: 1px solid var(--border-subtle); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mapa-variantes-lista li.es-destacada { background: color-mix(in srgb, var(--brand-red) 8%, transparent); border-radius: 6px; padding-left: 0.3rem; padding-right: 0.3rem; }
+.mapa-variantes-lista li.es-tenue { opacity: 0.45; }
+
