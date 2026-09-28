@@ -96,11 +96,11 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
   const geo = {nivel: "entidad", cveEnt: null, cveMun: null, cveAgeb: null, seleccion: null};
   const aplica = {};
   const ver = (nombre, visible) => { aplica[nombre] = visible; c[nombre].hidden = !visible; };
-  let anios = [];
+  let anios = [], poblaciones = [];
 
   function leer() {
     return {...geo, vista: c.vista.value, poblacion: c.poblacion.value, anio: c.anio.value === SEPARADO ? SEPARADO : Number(c.anio.value), sexo: c.sexo.value, edad: c.edad.value,
-      anios: anios.slice()};
+      anios: anios.slice(), poblaciones: poblaciones.slice()};
   }
 
   // Qué acota y qué selecciona cada control según el nivel:
@@ -114,7 +114,7 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
     if (enCiudad) geo.cveEnt = "09";
     const enMapa = c.vista.value === "mapa";
     // El mapa no faceta: si se pide el mapa, las categorías vuelven al total.
-    if (enMapa) { if (c.sexo.value === SEPARADO) c.sexo.value = "Total"; if (c.edad.value === SEPARADO) c.edad.value = "Todas"; if (c.anio.value === SEPARADO) c.anio.value = "2020"; }
+    if (enMapa) { if (c.sexo.value === SEPARADO) c.sexo.value = "Total"; if (c.edad.value === SEPARADO) c.edad.value = "Todas"; if (c.anio.value === SEPARADO) c.anio.value = "2020"; if (c.poblacion.value === SEPARADO) c.poblacion.value = fuente.poblaciones[0].clave; }
     c.nivel.value = geo.nivel;
 
     const ent = geo.cveEnt ? catalogo.de("entidad", geo.cveEnt) : null;
@@ -143,13 +143,15 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
 
     // Población, año y cortes: lo que la fuente publica para ESTE nivel.
     const pobs = fuente.poblaciones.filter((p) => fuente.poblacionesDe(geo).includes(p.clave));
-    c.poblacion.rellenar(pobs, c.poblacion.value);
-    anios = fuente.aniosDe({geo, poblacion: c.poblacion.value});
+    c.poblacion.rellenar([...pobs, ...(pobs.length > 1 && !enMapa ? [{clave: SEPARADO, etiqueta: "Por separado (comparar poblaciones)"}] : [])], c.poblacion.value);
+    poblaciones = pobs.map((p) => p.clave);
+    const pobBase = c.poblacion.value === SEPARADO ? poblaciones[0] : c.poblacion.value;
+    anios = fuente.aniosDe({geo, poblacion: pobBase});
     const pref = (c.anio.value === SEPARADO && anios.length > 1 && !enMapa) ? SEPARADO : anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
     c.anio.rellenar([...anios.map((a) => ({clave: String(a), etiqueta: String(a)})), ...(anios.length > 1 && !enMapa ? [{clave: SEPARADO, etiqueta: "Comparar todas las ediciones"}] : [])], pref);
     c.anio.select.disabled = anios.length <= 1;
     c.anio.rotular(anios.length <= 1 ? "Año (único publicado a este nivel)" : "Año");
-    const ctx = {geo, poblacion: c.poblacion.value, anio: c.anio.value === SEPARADO ? anios.at(-1) : Number(c.anio.value)};
+    const ctx = {geo, poblacion: pobBase, anio: c.anio.value === SEPARADO ? anios.at(-1) : Number(c.anio.value)};
     const conSexo = fuente.sexoDe(ctx);
     ver("sexo", conSexo); if (!conSexo) c.sexo.value = "Total";
     const conEdad = fuente.edadDe(ctx);

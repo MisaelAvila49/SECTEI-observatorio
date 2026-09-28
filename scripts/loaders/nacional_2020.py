@@ -28,7 +28,7 @@ que publica el INEGI).
 
 Salida: src/data/hablantes_nacional_2020.csv con
   anio, nivel (nacional|entidad|municipio), cve (00 | 2 | 5 dígitos), nombre,
-  poblacion (hablantes|hogares|autoads), sexo (Total|Mujeres|Hombres),
+  poblacion (hablantes|hogares|autoads|todas|ambas), sexo (Total|Mujeres|Hombres),
   edad (Todas|3-14|15-29|30-59|60+), num, den, casos, ee, cota
 
 Guardias: el ITER nacional da 7 364 645 hablantes de 3 y más (cifra oficial)
@@ -99,13 +99,20 @@ def muestra(ent_nombre, nombres):
              WHEN TRY_CAST(EDAD AS INTEGER) BETWEEN 60 AND 130 THEN '60+' END AS grupo,
         HLENGUA = '1' AS y_hli, TRY_CAST(EDAD AS INTEGER) >= 3 AS u_hli,
         PERTE_INDIGENA = '1' AS y_autoads, TRY_CAST(EDAD AS INTEGER) >= 3 AS u_autoads,
+        (HLENGUA = '1' OR PERTE_INDIGENA = '1') AS y_todas, TRY_CAST(EDAD AS INTEGER) >= 3 AS u_todas,
+        (HLENGUA = '1' AND PERTE_INDIGENA = '1') AS y_ambas, TRY_CAST(EDAD AS INTEGER) >= 3 AS u_ambas,
         CAST(FACTOR AS DOUBLE) AS w, UPM AS upm, ESTRATO AS est
       FROM read_csv('{PERSONAS}', all_varchar=true, header=true)
       WHERE SEXO IN ('1', '3') AND TRY_CAST(EDAD AS INTEGER) < 999""")
     n = con.execute("SELECT COUNT(*), ROUND(SUM(w)) FROM m").fetchone()
     print(f"[ok] muestra 2020: {n[0]:,} personas, {n[1]:,.0f} expandidas", file=sys.stderr)
+    # todas = habla la lengua O se considera indígena (una persona cuenta una
+    # vez); ambas = habla Y se considera. Los hogares indígenas no entran en la
+    # unión: la muestra no trae la marca de hogar por persona.
     ind = [{"clave": "hli", "tema": "nacional", "indicador": "hablantes", "universo": "Población de 3 años y más"},
-           {"clave": "autoads", "tema": "nacional", "indicador": "autoads", "universo": "Población de 3 años y más"}]
+           {"clave": "autoads", "tema": "nacional", "indicador": "autoads", "universo": "Población de 3 años y más"},
+           {"clave": "todas", "tema": "nacional", "indicador": "todas", "universo": "Población de 3 años y más"},
+           {"clave": "ambas", "tema": "nacional", "indicador": "ambas", "universo": "Población de 3 años y más"}]
     partes = []
     for nivel, cve in (("nacional", "'00'"), ("entidad", "ent"), ("municipio", "mun")):
         for sexo in ("sexo", "'Total'"):
@@ -113,7 +120,7 @@ def muestra(ent_nombre, nombres):
                 filtro = "WHERE grupo IS NOT NULL" if edad == "grupo" else ""
                 con.execute(f"""CREATE OR REPLACE VIEW v AS
                   SELECT '{nivel}' AS nivel, {cve} AS cve, {sexo} AS sexo, {edad} AS edad,
-                    y_hli, u_hli, y_autoads, u_autoads, w, upm, est FROM m {filtro}""")
+                    y_hli, u_hli, y_autoads, u_autoads, y_todas, u_todas, y_ambas, u_ambas, w, upm, est FROM m {filtro}""")
                 partes.append(agregar(con, "v", ["nivel", "cve", "sexo", "edad"], ind))
     out = pd.concat(partes, ignore_index=True).rename(columns={"indicador": "poblacion"})
     out["anio"] = 2020
@@ -154,7 +161,7 @@ def main():
 
     # Se publican: todo el conteo; de la muestra, los grupos de edad y la
     # autoadscripción (que el conteo no tiene).
-    m_pub = m[(m.edad != "Todas") | (m.poblacion == "autoads")]
+    m_pub = m[(m.edad != "Todas") | (m.poblacion.isin(["autoads", "todas", "ambas"]))]
     out = pd.concat([c, m_pub], ignore_index=True)
     out = out[out["den"] > 0]
     out = out[["anio", "nivel", "cve", "nombre", "poblacion", "sexo", "edad", "num", "den", "casos", "ee", "cota"]]

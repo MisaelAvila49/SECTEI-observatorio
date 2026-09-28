@@ -13,7 +13,9 @@ resaltan una unidad dentro del nivel. El análisis es la vista por omisión y
 de nivel y las migas suben. Cada filtro aparece solo donde su fuente lo
 publica: el grupo de edad existe en 2020 por país, entidad y municipio
 (muestra del Censo), el sexo no existe para los hogares indígenas ni por AGEB,
-y la serie 1990 - 2025 solo por alcaldía de la ciudad.
+y la serie 1990 - 2025 solo por alcaldía de la ciudad. La población admite
+cinco formas de contar (hablan, viven en hogar indígena, se consideran,
+hablan o se consideran, hablan y se consideran) y "por separado" las compara.
 
 ```js
 import * as Plot from "npm:@observablehq/plot";
@@ -59,7 +61,12 @@ const POBLACIONES = [
    definicion: "Personas en hogares donde la jefa o el jefe, su cónyuge o (desde 2020) alguno de sus ascendientes habla lengua indígena, sobre la población total."},
   {clave: "autoads", etiqueta: "Se consideran indígenas", corto: "Se consideran indígenas", tesela: null, num: null, den: null, serie: () => "autoads",
    definicion: "Personas de 3 años y más que se consideran indígenas de acuerdo con su cultura, sobre la población de 3 años y más. Estimación de la muestra del Censo."},
+  {clave: "todas", etiqueta: "Cualquier forma: hablan o se consideran", corto: "Hablan o se consideran indígenas", tesela: null, num: null, den: null, serie: () => "todas",
+   definicion: "Personas de 3 años y más que hablan una lengua indígena o se consideran indígenas; una persona cuenta una sola vez. Los hogares indígenas no entran en esta unión porque la muestra no trae esa marca por persona. Estimación de la muestra del Censo."},
+  {clave: "ambas", etiqueta: "Hablan y se consideran indígenas", corto: "Hablan y se consideran indígenas", tesela: null, num: null, den: null, serie: () => "ambas",
+   definicion: "Personas de 3 años y más que hablan una lengua indígena y además se consideran indígenas, sobre la población de 3 años y más. Estimación de la muestra del Censo."},
 ];
+const MUESTRA = new Set(["autoads", "todas", "ambas"]);
 const pobDe = (k) => POBLACIONES.find((p) => p.clave === k);
 const enCiudad = (geo) => geo.cveEnt === "09";
 const aniosSerie = (cve, poblacion) => [...new Set(ser.filter((r) => r.cve === cve && r.poblacion === pobDe(poblacion).serie(r.anio) && r.sexo === "Total").map((r) => r.anio))].sort();
@@ -68,7 +75,7 @@ const aniosSerie = (cve, poblacion) => [...new Set(ser.filter((r) => r.cve === c
 const fuente = {
   poblaciones: POBLACIONES.map((p) => ({clave: p.clave, etiqueta: p.etiqueta})),
   nivelMax: (geo) => (geo.cveEnt === "09" ? "manzana" : "municipio"),
-  poblacionesDe: (geo) => (geo.nivel === "ageb" || geo.nivel === "manzana" ? ["hablantes", "hogares"] : ["hablantes", "hogares", "autoads"]),
+  poblacionesDe: (geo) => (geo.nivel === "ageb" || geo.nivel === "manzana" ? ["hablantes", "hogares"] : POBLACIONES.map((p) => p.clave)),
   aniosDe: ({geo, poblacion}) => {
     if (geo.nivel === "ageb" || geo.nivel === "manzana") return pmtilesAgebs2010 ? [2010, 2020] : [2020];
     if (geo.nivel === "municipio" && enCiudad(geo)) return aniosSerie("09", poblacion);
@@ -96,7 +103,7 @@ function cortesFijos(clave, valores) {
 // un recorrido por cada uno de los 2,478 municipios (eso tardaba segundos).
 const INDICE_NAC = new Map(nac.map((r) => [`${r.nivel}|${r.cve}|${r.poblacion}|${r.sexo}|${r.edad}|${r.cota}`, r]));
 function filaNac(nivel, cve, v) {
-  const cota = v.poblacion === "autoads" || v.edad !== "Todas" ? "muestra" : "censo";
+  const cota = MUESTRA.has(v.poblacion) || v.edad !== "Todas" ? "muestra" : "censo";
   return INDICE_NAC.get(`${nivel}|${cve}|${v.poblacion}|${v.sexo}|${v.edad}|${cota}`) ?? null;
 }
 const aValor = (r) => (r && r.den > 0 ? {valor: 100 * r.num / r.den, num: r.num, den: r.den, ee: r.ee, cota: r.cota, nombre: r.nombre} : null);
@@ -163,10 +170,10 @@ const etiquetaEdad = (c) => EDADES.find((e) => e.clave === c)?.etiqueta ?? c;
 
 function pintar() {
   const v0 = panel.value;
-  const pob = pobDe(v0.poblacion);
+  const pob = pobDe(v0.poblacion === SEPARADO ? v0.poblaciones[0] : v0.poblacion);
   // Para el mapa y las tarjetas las categorías "por separado" vuelven al
   // total; la gráfica las reparte en facetas más abajo.
-  const v = {...v0, sexo: v0.sexo === SEPARADO ? "Total" : v0.sexo, edad: v0.edad === SEPARADO ? "Todas" : v0.edad, anio: v0.anio === SEPARADO ? (v0.anios.includes(2020) ? 2020 : v0.anios.at(-1)) : v0.anio};
+  const v = {...v0, poblacion: v0.poblacion === SEPARADO ? v0.poblaciones[0] : v0.poblacion, sexo: v0.sexo === SEPARADO ? "Total" : v0.sexo, edad: v0.edad === SEPARADO ? "Todas" : v0.edad, anio: v0.anio === SEPARADO ? (v0.anios.includes(2020) ? 2020 : v0.anios.at(-1)) : v0.anio};
   const valores = valoresDe(v);
   const nivelCapa = v.nivel === "nacional" ? "entidad" : v.nivel;
   const sufijo = v.sexo === "Mujeres" ? "_f" : v.sexo === "Hombres" ? "_m" : "";
@@ -180,7 +187,7 @@ function pintar() {
   const colorDe = (x) => (x == null ? "#d9d9d9" : RAMPA_MORADA[Math.min(RAMPA_MORADA.length - 1, cortes.filter((c, i) => i > 0 && x >= c).length)]);
   const formatoLeyenda = (x) => x.toFixed(cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1) + " %";
   const etiqueta = `${pob.corto}${v.sexo !== "Total" ? `, ${v.sexo.toLowerCase()}` : ""}${v.edad !== "Todas" ? `, ${etiquetaEdad(v.edad).toLowerCase()}` : ""}`;
-  const tituloLeyenda = `${etiqueta} (% de la población de cada ${nivelDe(nivelCapa).singular})`;
+  const tituloLeyenda = v.nivel === "nacional" ? "Formas de ser indígena (% de la población de 3 años y más; los cortes son los de hablantes por entidad)" : `${etiqueta} (% de la población de cada ${nivelDe(nivelCapa).singular})`;
 
   // Tarjeta: la unidad resaltada si la hay; si no, el contenedor.
   const cont = contenedorDe(v);
@@ -204,6 +211,7 @@ function pintar() {
   const unidadDe = (cve, d) => d?.nombre ?? catalogo.de(nivelCapa, cve)?.nombre ?? cve;
   const aFilas = (m, cat) => [...m.entries()].filter(([, d]) => d).map(([cve, d]) => ({cve, nombre: unidadDe(cve, d), pct: d.valor, num: d.num, den: d.den, ee: d.ee, cota: d.cota, ...cat}));
   const dims = [];
+  if (v0.poblacion === SEPARADO && v.nivel !== "nacional") dims.push({campo: "poblacion", cats: v0.poblaciones, rotulo: "población", etiqueta: (c) => pobDe(c).corto});
   if (v0.sexo === SEPARADO) dims.push({campo: "sexo", cats: ["Mujeres", "Hombres"], rotulo: "sexo", etiqueta: (c) => c});
   if (v0.edad === SEPARADO) dims.push({campo: "edad", cats: EDADES.filter((e) => e.clave !== "Todas" && e.clave !== SEPARADO).map((e) => e.clave), rotulo: "grupo de edad", etiqueta: etiquetaEdad});
   if (v0.anio === SEPARADO) dims.push({campo: "anio", cats: v0.anios, rotulo: "edición", etiqueta: String});
@@ -228,23 +236,43 @@ function pintar() {
   if (v.nivel === "manzana") {
     nodos.push(html`<p class="beta-nota">Las manzanas solo se dibujan en el mapa: el navegador no carga la tabla de 66 mil manzanas. Cambia "Ver como" a Mapa y pasa el cursor por una para ver su cifra.</p>`);
   } else if (v.nivel === "nacional") {
-    // El país como una sola unidad: su perfil por grupo de edad (y por sexo
-    // si se pide), que es lo que la muestra permite a este nivel.
-    const cats = EDADES.filter((e) => e.clave !== "Todas" && e.clave !== SEPARADO).map((e) => e.clave);
-    const sexos = v0.sexo === SEPARADO ? ["Mujeres", "Hombres"] : [v.sexo];
-    const perfil = v0.poblacion === "hogares" ? [] : sexos.flatMap((sx) => cats.map((ed) => { const d = aValor(filaNac("nacional", "00", {...v, sexo: sx, edad: ed})); return d ? {nombre: etiquetaEdad(ed), categoria: sx, pct: d.valor, num: d.num, den: d.den, ee: d.ee, cota: d.cota, cve: ed} : null; }).filter(Boolean));
-    const selEdad = v.edad !== "Todas" ? v.edad : null;
-    if (perfil.length) nodos.push(figura({titulo: `México: ${pob.corto.toLowerCase()} por grupo de edad`, subtitulo: `${v.anio}${sexos.length > 1 ? " · un panel por sexo" : v.sexo !== "Total" ? ` · ${v.sexo}` : ""}${selEdad ? ` · resaltado: ${etiquetaEdad(selEdad)}, ${cifra.d ? pct(cifra.d.valor) : ""}` : ""}`, pie: "Censo 2020, cuestionario ampliado · cada barra es un grupo de edad; el intervalo es de 95 %"},
-      [Plot.plot({marginLeft: 120, marginRight: 60, height: 200, width: anchoGrafica(), ...(sexos.length > 1 ? {fx: {label: null, domain: sexos}} : {}),
-        x: {label: "% de la población", grid: true, domain: [0, Math.max(1, ...perfil.map((r) => r.pct + 196 * (r.ee ?? 0))) * 1.1]}, y: {label: null, domain: perfil.slice(0, cats.length).map((r) => r.nombre)},
-        marks: [
-          Plot.barX(perfil, {x: "pct", y: "nombre", fill: (r) => colorDe(r.pct), stroke: (r) => (r.cve === selEdad ? ROJO_IBERO : "none"), strokeWidth: 2, ...(sexos.length > 1 ? {fx: "categoria"} : {})}),
-          Plot.ruleX(perfil.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "nombre", stroke: "currentColor", strokeOpacity: 0.55, ...(sexos.length > 1 ? {fx: "categoria"} : {})}),
-          Plot.text(perfil, {x: "pct", y: "nombre", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, textAnchor: "start", fontSize: 11.5, fontWeight: (r) => (r.cve === selEdad ? "bold" : "normal"), ...(sexos.length > 1 ? {fx: "categoria"} : {})}),
-          Plot.tip(perfil, Plot.pointerY({x: "pct", y: "nombre", maxRadius: Infinity, ...(sexos.length > 1 ? {fx: "categoria"} : {}), title: titulo})),
-          Plot.ruleX([0]),
-        ]})]));
-    else nodos.push(html`<p class="beta-nota">Para los hogares indígenas la fuente no publica grupos de edad: la cifra del país es la de la tarjeta.</p>`);
+    // El país como una sola unidad: se comparan las FORMAS de ser indígena
+    // (una barra por población); sexo y edad "por separado" las facetan.
+    const dimsN = dims.filter((d) => d.campo !== "poblacion");
+    const combos = dimsN.reduce((acc, d) => acc.flatMap((c) => d.cats.map((cat) => [...c, cat])), [[]]);
+    const filasPais = combos.flatMap((combo) => {
+      const vc = {...v}; const etiquetas = [];
+      dimsN.forEach((d, i) => { vc[d.campo] = combo[i]; etiquetas.push(d.etiqueta(combo[i])); });
+      return v0.poblaciones.map((k) => { const d = aValor(filaNac("nacional", "00", {...vc, poblacion: k})); return d ? {cve: k, nombre: pobDe(k).corto, pct: d.valor, num: d.num, den: d.den, ee: d.ee, cota: d.cota, categoria: etiquetas.join(" · "), c0: etiquetas[0] ?? "", c1: etiquetas[1] ?? ""} : null; }).filter(Boolean);
+    });
+    const selPob = v0.poblacion !== SEPARADO ? v0.poblacion : null;
+    const esSelPob = (r) => r.cve === selPob;
+    const marcasPais = (opciones = {}) => [
+      Plot.barX(filasPais, {x: "pct", y: "nombre", fill: (r) => colorDe(r.pct), stroke: (r) => (esSelPob(r) ? ROJO_IBERO : "none"), strokeWidth: 2, ...opciones}),
+      Plot.ruleX(filasPais.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "nombre", stroke: "currentColor", strokeOpacity: 0.55, ...opciones}),
+      Plot.text(filasPais, {x: "pct", y: "nombre", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, textAnchor: "start", fontSize: 11.5, fontWeight: (r) => (esSelPob(r) ? "bold" : "normal"), ...opciones}),
+      Plot.tip(filasPais, Plot.pointerY({x: "pct", y: "nombre", maxRadius: Infinity, ...opciones, title: titulo})),
+      Plot.ruleX([0]),
+    ];
+    // Solo las poblaciones con dato en este corte (los hogares no tienen sexo ni edad).
+    const ordenPob = v0.poblaciones.filter((k) => filasPais.some((r) => r.cve === k)).map((k) => pobDe(k).corto);
+    const maxP = Math.max(1, ...filasPais.map((r) => r.pct + 196 * (r.ee ?? 0))) * 1.1;
+    const notaHog = (v.sexo !== "Total" || v.edad !== "Todas" || dimsN.length) && v0.poblaciones.includes("hogares") ? " Los hogares indígenas no se publican por sexo ni por edad y quedan fuera de este corte." : "";
+    const sub = `${v.anio}${v.sexo !== "Total" ? ` · ${v.sexo}` : ""}${v.edad !== "Todas" ? ` · ${etiquetaEdad(v.edad)}` : ""}${selPob ? ` · resaltado: ${pob.corto}` : ""}${dimsN.length ? ` · un panel por ${dimsN.map((d) => d.rotulo).join(" y ")}` : ""}`;
+    const pieP = `Censo 2020: conteo (ITER) para hablantes y hogares; cuestionario ampliado para el resto, con intervalo de 95 % · cada barra es una forma de ser indígena.${notaHog}`;
+    if (!dimsN.length) {
+      nodos.push(figura({titulo: "México: formas de ser indígena", subtitulo: sub, pie: pieP},
+        [leyendaChica(), Plot.plot({marginLeft: 220, marginRight: 60, height: 60 + 26 * ordenPob.length, width: anchoGrafica(),
+          x: {label: "% de la población de 3 años y más", grid: true, domain: [0, maxP]}, y: {label: null, domain: ordenPob}, marks: marcasPais()})]));
+    } else if (dimsN.length === 1) {
+      nodos.push(figura({titulo: `México: formas de ser indígena por ${dimsN[0].rotulo}`, subtitulo: sub, pie: pieP},
+        [leyendaChica(), Plot.plot({marginLeft: 220, marginRight: 50, height: 60 + 26 * ordenPob.length, width: anchoGrafica(),
+          fx: {label: null, domain: dimsN[0].cats.map(dimsN[0].etiqueta)}, x: {label: "% de la población de 3 años y más", grid: true, domain: [0, maxP]}, y: {label: null, domain: ordenPob}, marks: marcasPais({fx: "categoria"})})]));
+    } else {
+      nodos.push(figura({titulo: `México: formas de ser indígena por ${dimsN.map((d) => d.rotulo).join(" y ")}`, subtitulo: sub, pie: pieP},
+        [leyendaChica(), Plot.plot({marginLeft: 220, marginRight: 110, height: (50 + 24 * ordenPob.length) * dimsN[1].cats.length, width: anchoGrafica(),
+          fx: {label: null, domain: dimsN[0].cats.map(dimsN[0].etiqueta)}, fy: {label: null, domain: dimsN[1].cats.map(dimsN[1].etiqueta)}, x: {label: "% de la población de 3 años y más", grid: true, domain: [0, maxP]}, y: {label: null, domain: ordenPob}, marks: marcasPais({fx: "c0", fy: "c1"})})]));
+    }
   } else if (!dims.length) {
     const top = conSeleccion(filas, 25);
     nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()}`, subtitulo: `${subtituloBase}${filas.length > 25 ? ` · las 25 con mayor proporción de ${filas.length}` : ""}${notaSel}`, pie: pieBase},
@@ -263,7 +291,9 @@ function pintar() {
     });
     const rotulos = dims.map((d) => d.rotulo).join(" y ");
     const maxX = Math.max(1, ...porCat.map((r) => r.pct + (r.ee ? 196 * r.ee : 0))) * 1.08;
-    const tituloFig = `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()} por ${rotulos}`;
+    const conPob = dims.some((d) => d.campo === "poblacion");
+    const otras = dims.filter((d) => d.campo !== "poblacion").map((d) => d.rotulo).join(" y ");
+    const tituloFig = conPob ? `${etiquetaGeo(v, catalogo)}: formas de ser indígena${otras ? ` por ${otras}` : ""}` : `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()} por ${rotulos}`;
     if (nCombos <= 4) {
       nodos.push(figura({titulo: tituloFig, subtitulo: `${subtituloBase} · un panel por ${rotulos}, las ${orden.length} unidades con mayor proporción`, pie: pieBase},
         [leyendaChica(), Plot.plot({marginLeft: 200, marginRight: 50, height: Math.max(240, 22 * orden.length + 70), width: anchoGrafica(),
@@ -301,7 +331,7 @@ function pintar() {
           Plot.tip(s, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, title: (r) => `${r.anio}\n${pob.corto}: ${r.pct.toFixed(1)} %\nPersonas: ${entero(r.num)} de ${entero(r.den)}\n${r.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
           Plot.ruleY([0])]})]));
   }
-  nodos.push(explicacion(`${pob.definicion} ${["nacional", "entidad", "municipio"].includes(v.nivel) ? "Las cifras por sexo y las de hogares vienen del conteo censal (ITER); las de grupo de edad y las de autoadscripción, de la muestra del cuestionario ampliado, con su intervalo de 95 %." : "Las cifras por AGEB y manzana vienen del tabulado del Censo; las celdas suprimidas por confidencialidad se dejan sin dato."}`));
+  nodos.push(explicacion(`${v0.poblacion === SEPARADO ? "Cada población es una forma distinta de contar a la población indígena; se comparan una junto a otra sin sumarlas. " : pob.definicion + " "}${["nacional", "entidad", "municipio"].includes(v.nivel) ? "Las cifras por sexo y las de hogares vienen del conteo censal (ITER); las de grupo de edad, la autoadscripción, la unión y la intersección, de la muestra del cuestionario ampliado, con su intervalo de 95 %." : "Las cifras por AGEB y manzana vienen del tabulado del Censo; las celdas suprimidas por confidencialidad se dejan sin dato."}`));
   if (filas.length && v.nivel !== "manzana" && v.nivel !== "nacional") nodos.push(tablaColumnas(filas, [
     {etiqueta: "Unidad", valor: (r) => r.nombre}, {etiqueta: "Clave", valor: (r) => r.cve}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(2)},
     {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Población", num: true, valor: (r) => entero(r.den)},
