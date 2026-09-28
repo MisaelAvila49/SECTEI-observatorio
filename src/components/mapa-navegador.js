@@ -111,6 +111,7 @@ export function mapaNavegador({panel, catalogo, fuente, geoEntidades, pmtilesMun
         const cve = claveDe(c, f);
         const r = bajarA(panel.geo(), cve, fuente.nivelMax);
         apagar(); popup.remove();
+        panel.verMapa?.();
         panel.set({...r.geo, seleccion: r.bajo ? null : cve});
       });
     }

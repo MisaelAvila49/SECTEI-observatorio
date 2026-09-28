@@ -34,27 +34,33 @@ function campo({id, etiqueta, opciones, valor, nombre}) {
   return form;
 }
 
-// Buscador con lista de sugerencias, chip con la unidad resuelta y aviso
-// cuando no hay coincidencia o hay varias.
+// Buscador con lista de sugerencias. La unidad resuelta queda ESCRITA en la
+// caja, con una × dentro para quitarla; el aviso de "ninguna" o "varias"
+// coincidencias se superpone debajo sin ocupar sitio, para que nada se mueva.
 function buscador({id, etiqueta, nombre, marcador}) {
   const input = document.createElement("input");
-  input.type = "search"; input.id = id; input.setAttribute("list", `${id}-lista`); input.placeholder = marcador; input.autocomplete = "off";
+  input.type = "text"; input.id = id; input.setAttribute("list", `${id}-lista`); input.placeholder = marcador; input.autocomplete = "off";
   const lista = document.createElement("datalist"); lista.id = `${id}-lista`;
-  const aviso = document.createElement("span"); aviso.className = "filtro-aviso"; aviso.hidden = true;
-  const chip = document.createElement("span"); chip.className = "filtro-chip"; chip.hidden = true;
+  const quitar = document.createElement("button"); quitar.type = "button"; quitar.className = "filtro-quitar"; quitar.textContent = "×"; quitar.hidden = true;
+  const aviso = document.createElement("span"); aviso.className = "filtro-aviso"; aviso.setAttribute("role", "status"); aviso.hidden = true;
+  const caja = document.createElement("div"); caja.className = "filtro-caja"; caja.append(input, quitar, lista, aviso);
   const form = document.createElement("form"); form.className = "filtro filtro-buscador"; form.dataset.campo = nombre;
   const rotulo = document.createElement("label"); rotulo.className = "filtro-etiqueta"; rotulo.textContent = etiqueta; rotulo.htmlFor = id;
-  form.append(rotulo, input, lista, chip, aviso);
+  form.append(rotulo, caja);
   form.addEventListener("submit", (e) => e.preventDefault());
   form.rellenar = (unidades) => { lista.replaceChildren(...unidades.map((u) => { const o = document.createElement("option"); o.value = u.nombre; return o; })); };
-  form.mostrarChip = (texto, alQuitar) => {
-    chip.replaceChildren();
-    if (!texto) { chip.hidden = true; return; }
-    const quitar = document.createElement("button"); quitar.type = "button"; quitar.className = "filtro-chip-quitar"; quitar.setAttribute("aria-label", `Quitar ${texto}`); quitar.textContent = "×";
-    quitar.addEventListener("click", alQuitar);
-    chip.append(document.createTextNode(texto), quitar); chip.hidden = false;
+  let alQuitar = null;
+  form.fijar = (texto, fn) => {
+    alQuitar = fn;
+    input.value = texto ?? "";
+    input.classList.toggle("es-resuelta", Boolean(texto));
+    quitar.hidden = !texto;
+    quitar.setAttribute("aria-label", texto ? `Quitar ${texto}` : "Quitar");
   };
+  quitar.addEventListener("click", () => { if (alQuitar) alQuitar(); });
+  input.addEventListener("focus", () => { if (input.classList.contains("es-resuelta")) input.select(); });
   form.avisar = (texto) => { aviso.textContent = texto ?? ""; aviso.hidden = !texto; };
+  input.addEventListener("input", () => form.avisar(""));
   form.input = input;
   Object.defineProperty(form, "value", {get: () => input.value, set: (v) => { input.value = v; }});
   return form;
@@ -62,7 +68,8 @@ function buscador({id, etiqueta, nombre, marcador}) {
 
 export function panelSeccion({fuente, catalogo, id = "sec"}) {
   const c = {
-    nivel: campo({id: `${id}-nivel`, nombre: "nivel", etiqueta: "Nivel del mapa", opciones: [{clave: "entidad", etiqueta: "Entidades del país"}], valor: "entidad"}),
+    vista: campo({id: `${id}-vista`, nombre: "vista", etiqueta: "Ver como", opciones: [{clave: "grafica", etiqueta: "Gráfica"}, {clave: "mapa", etiqueta: "Mapa"}], valor: "grafica"}),
+    nivel: campo({id: `${id}-nivel`, nombre: "nivel", etiqueta: "Nivel", opciones: [{clave: "entidad", etiqueta: "Entidades del país"}], valor: "entidad"}),
     entidad: buscador({id: `${id}-entidad`, nombre: "entidad", etiqueta: "Entidad", marcador: "Escribe una entidad"}),
     municipio: buscador({id: `${id}-municipio`, nombre: "municipio", etiqueta: "Municipio o alcaldía", marcador: "Escribe un municipio"}),
     ageb: campo({id: `${id}-ageb`, nombre: "ageb", etiqueta: "AGEB", opciones: [{clave: "", etiqueta: "Todas las AGEB"}], valor: ""}),
@@ -73,7 +80,7 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
   };
   const nodo = html`<div class="panel-filtros panel-seccion">
     <fieldset class="panel-grupo"><legend class="panel-grupo-titulo">Qué se compara y dónde</legend>
-      <div class="panel-campos">${c.nivel}${c.entidad}${c.municipio}${c.ageb}${c.poblacion}${c.anio}</div></fieldset>
+      <div class="panel-campos">${c.vista}${c.nivel}${c.entidad}${c.municipio}${c.ageb}${c.poblacion}${c.anio}</div></fieldset>
     <fieldset class="panel-grupo"><legend class="panel-grupo-titulo">Entre quiénes</legend>
       <div class="panel-campos">${c.sexo}${c.edad}</div></fieldset>
   </div>`;
@@ -85,7 +92,7 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
   c.entidad.rellenar(catalogo.todos("entidad"));
 
   function leer() {
-    return {...geo, poblacion: c.poblacion.value, anio: Number(c.anio.value), sexo: c.sexo.value, edad: c.edad.value};
+    return {...geo, vista: c.vista.value, poblacion: c.poblacion.value, anio: Number(c.anio.value), sexo: c.sexo.value, edad: c.edad.value};
   }
 
   // Reconcilia opciones y visibilidad a partir de la geografía y los valores.
@@ -103,12 +110,10 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
     // municipio y donde la fuente llega a AGEB.
     const ent = geo.cveEnt ? catalogo.de("entidad", geo.cveEnt) : null;
     const mun = geo.cveMun ? catalogo.de("municipio", geo.cveMun) : null;
-    c.entidad.mostrarChip(ent?.nombre ?? null, () => set({cveEnt: null, cveMun: null, cveAgeb: null, nivel: "entidad"}));
-    c.entidad.value = "";
+    c.entidad.fijar(ent?.nombre ?? null, () => set({cveEnt: null, cveMun: null, cveAgeb: null, nivel: "entidad"}));
     ver("municipio", Boolean(geo.cveEnt) && puede("municipio"));
     c.municipio.rellenar(geo.cveEnt ? catalogo.hijos("municipio", geo.cveEnt) : []);
-    c.municipio.mostrarChip(mun?.nombre ?? null, () => set({cveMun: null, cveAgeb: null, nivel: "municipio"}));
-    c.municipio.value = "";
+    c.municipio.fijar(mun?.nombre ?? null, () => set({cveMun: null, cveAgeb: null, nivel: "municipio"}));
     const conAgeb = Boolean(geo.cveMun) && puede("ageb");
     ver("ageb", conAgeb);
     if (conAgeb) {
@@ -148,14 +153,16 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
   c.nivel.select.addEventListener("change", () => set({nivel: c.nivel.value}));
   c.entidad.input.addEventListener("change", () => {
     const r = buscarUnidad(catalogo.todos("entidad"), c.entidad.value);
-    if (!r) { c.entidad.avisar(c.entidad.value ? "Ninguna entidad con ese nombre" : ""); return; }
+    if (!c.entidad.value.trim()) { if (geo.cveEnt) set({cveEnt: null, cveMun: null, cveAgeb: null, nivel: "entidad"}); return; }
+    if (!r) { c.entidad.avisar("Ninguna entidad con ese nombre"); return; }
     if (r.varias) { c.entidad.avisar(`Varias coincidencias: ${r.varias.slice(0, 4).map((u) => u.nombre).join(", ")}`); return; }
     c.entidad.avisar("");
     set({cveEnt: r.cve, cveMun: null, cveAgeb: null, nivel: ORDEN_NIVEL.indexOf(fuente.nivelMax({cveEnt: r.cve})) >= 1 ? "municipio" : "entidad", seleccion: r.cve});
   });
   c.municipio.input.addEventListener("change", () => {
     const r = buscarUnidad(catalogo.hijos("municipio", geo.cveEnt), c.municipio.value);
-    if (!r) { c.municipio.avisar(c.municipio.value ? "Ningún municipio con ese nombre en esta entidad" : ""); return; }
+    if (!c.municipio.value.trim()) { if (geo.cveMun) set({cveMun: null, cveAgeb: null, nivel: "municipio"}); return; }
+    if (!r) { c.municipio.avisar("Ningún municipio con ese nombre en esta entidad"); return; }
     if (r.varias) { c.municipio.avisar(`Varias coincidencias: ${r.varias.slice(0, 4).map((u) => u.nombre).join(", ")}`); return; }
     c.municipio.avisar("");
     const tope = fuente.nivelMax({cveEnt: geo.cveEnt, cveMun: r.cve});
@@ -165,7 +172,9 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
     const v = c.ageb.value || null;
     set({cveAgeb: v, nivel: v ? "manzana" : "ageb", seleccion: v});
   });
-  for (const k of ["poblacion", "anio", "sexo", "edad"]) c[k].select.addEventListener("change", () => { configurar(); avisar(); });
+  for (const k of ["vista", "poblacion", "anio", "sexo", "edad"]) c[k].select.addEventListener("change", () => { configurar(); avisar(); });
+  // Un clic en el mapa que baja de nivel deja la vista en mapa; el resto no la toca.
+  nodo.verMapa = () => { c.vista.value = "mapa"; };
 
   configurar();
   nodo.set = set;

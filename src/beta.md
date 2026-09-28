@@ -6,9 +6,9 @@ toc: false
 # Beta: geografía y filtros en una sola sección
 
 Prueba de la arquitectura de filtros del libro con datos reales: el panel de la
-sección decide la geografía y los cortes, el mapa baja de nivel con un clic
-sobre la unidad y las migas suben; la gráfica y la tarjeta siguen la misma
-selección. Los niveles son las entidades del país, los municipios de una
+sección decide la geografía y los cortes; el análisis es la vista por omisión y
+"Ver como: Mapa" abre el mapa en su lugar, donde un clic sobre la unidad baja
+de nivel y las migas suben. Gráfica, mapa y tarjeta siguen la misma selección. Los niveles son las entidades del país, los municipios de una
 entidad y, dentro de la Ciudad de México, las AGEB de una alcaldía y las
 manzanas de una AGEB. Cada filtro aparece solo donde su fuente lo publica: el
 grupo de edad existe en 2020 por entidad y municipio (muestra del Censo), el
@@ -175,7 +175,7 @@ function pintar() {
   const top = filas.slice(0, 25);
   const nodos = [];
   if (v.nivel === "manzana") {
-    nodos.push(html`<p class="beta-nota">Las manzanas solo se dibujan en el mapa: el navegador no carga la tabla de 66 mil manzanas. Pasa el cursor por una para ver su cifra.</p>`);
+    nodos.push(html`<p class="beta-nota">Las manzanas solo se dibujan en el mapa: el navegador no carga la tabla de 66 mil manzanas. Cambia "Ver como" a Mapa y pasa el cursor por una para ver su cifra.</p>`);
   } else {
     nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()}`, subtitulo: `${v.anio}${v.sexo !== "Total" ? ` · ${v.sexo}` : ""}${v.edad !== "Todas" ? ` · ${EDADES.find((e) => e.clave === v.edad).etiqueta}` : ""}${filas.length > 25 ? ` · las 25 con mayor proporción de ${filas.length}` : ""}`,
       pie: `${top.some((r) => r.cota === "muestra") ? "Censo 2020, cuestionario ampliado (estimación con intervalo)" : "Censo (INEGI)"} · cada barra es una ${nivelDe(v.nivel).singular}`},
@@ -200,6 +200,10 @@ function pintar() {
         marks: [Plot.line(s, {x: "anio", y: "pct", stroke: COLOR_SERIE[0], strokeWidth: 2}), Plot.dot(s, {x: "anio", y: "pct", fill: (r) => (r.cota === "censo" ? COLOR_SERIE[0] : "white"), stroke: COLOR_SERIE[0], r: 4.5}),
           Plot.text(s, {x: "anio", y: "pct", text: (r) => `${r.pct.toFixed(1)}`, dy: -10, fontSize: 11}), Plot.ruleY([0])]})]));
   }
+  // Vista: análisis por omisión; el mapa la sustituye cuando se pide.
+  const enMapa = v.vista === "mapa";
+  mapa.hidden = !enMapa;
+  cuerpo.hidden = enMapa;
   nodos.push(explicacion(`${pob.definicion} ${v.nivel === "entidad" || v.nivel === "municipio" ? "Las cifras por sexo y las de hogares vienen del conteo censal (ITER); las de grupo de edad y las de autoadscripción, de la muestra del cuestionario ampliado, con su intervalo de 95 %." : "Las cifras por AGEB y manzana vienen del tabulado del Censo; las celdas suprimidas por confidencialidad se dejan sin dato."}`));
   if (filas.length) nodos.push(tablaColumnas(filas, [
     {etiqueta: "Unidad", valor: (r) => r.nombre}, {etiqueta: "Clave", valor: (r) => r.cve}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(2)},
@@ -210,12 +214,12 @@ function pintar() {
 }
 panel.addEventListener("input", pintar);
 pintar();
-display(html`<section class="beta-seccion">${panel}<div class="beta-rejilla">${mapa}${cuerpo}</div></section>`);
+display(html`<section class="beta-seccion">${panel}<div class="beta-vista">${mapa}${cuerpo}</div></section>`);
 ```
 
 ## Qué probar
 
-Haz clic en Oaxaca para ver sus municipios, después en cualquiera: la fuente no
+Cambia "Ver como" a Mapa. Haz clic en Oaxaca para ver sus municipios, después en cualquiera: la fuente no
 llega más abajo fuera de la ciudad, así que el municipio se contornea y la
 tarjeta lo dice. Vuelve a México con la miga. Haz clic en la Ciudad de México,
 luego en Iztapalapa: aparecen sus AGEB y el año ofrece 2010 y 2020; un clic en

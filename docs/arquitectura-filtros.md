@@ -197,6 +197,11 @@ municipio, de alcaldía a AGEB y de AGEB a manzana, que las migas suben, que
 los buscadores resuelven sin acentos y avisan, y que el año, el sexo y la edad
 aparecen solo donde su fuente los publica. La tarjeta y la leyenda van debajo
 del lienzo, no encima: un panel flotante tapaba unidades y se tragaba el clic.
+Tras revisarla se fijaron dos reglas más: el análisis es la vista por omisión
+de toda sección y el mapa la sustituye con "Ver como: Mapa" (mapa y gráfica
+lado a lado no cabían en una pantalla), y el buscador escribe la unidad
+resuelta dentro de su caja, con la × dentro y el aviso superpuesto, porque un
+chip debajo del campo movía toda la página al aparecer.
 
 Primero `geografia.js` y `panelSeccion.js` con sus pruebas, porque todo lo demás
 depende de ellos. Después `mapaNavegador.js` sobre el mapa unificado, añadiendo
