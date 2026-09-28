@@ -148,9 +148,11 @@ hablantes y autoadscritos de 2020 y los monolingües por alcaldía; con el
 tabulado de la Intercensal 2025, las 16 alcaldías; con la fila de total del
 tabulado 2010, la suma por AGEB de hablantes y de población en hogares
 indígenas de ese año, y con su cartografía de cierre, que cada AGEB y cada
-manzana del tabulado tenga polígono. Quedan pendientes, sin
-cifra oficial localizada, la autoadscripción de 2010 y el porcentaje de
-hogares con internet de la ENIGH 2024.
+manzana del tabulado tenga polígono; y con el tabulado del cuestionario
+ampliado de 2010, la autoadscripción de ese año en la ciudad. Queda
+pendiente el porcentaje de hogares con internet de la ENIGH 2024: sus
+tabulados no lo publican, y la cifra de la ENDUTIH 2024 no es equivalente
+porque cambia la encuesta, el universo y la pregunta.
 
 ## 9. Lo que no se puede saber con estas fuentes
 
