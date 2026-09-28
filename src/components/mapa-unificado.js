@@ -60,12 +60,73 @@ function centro(f) {
   return [(x0 + x1) / 2, (y0 + y1) / 2];
 }
 
+// Punto INTERIOR de un polígono, para que las flechas salgan de tierra: el
+// centro de la caja de Veracruz cae en el Golfo y el de Baja California Sur
+// en el mar. Se toma el anillo exterior más grande; si su centroide queda
+// fuera, se muestrea una rejilla y se elige el punto interior más alejado del
+// contorno (polo de inaccesibilidad aproximado).
+function anillos(f) {
+  const g = f.geometry;
+  return g.type === "Polygon" ? [g.coordinates[0]] : g.coordinates.map((p) => p[0]);
+}
+function areaAnillo(r) {
+  let a = 0;
+  for (let i = 0, j = r.length - 1; i < r.length; j = i++) a += (r[j][0] + r[i][0]) * (r[j][1] - r[i][1]);
+  return Math.abs(a / 2);
+}
+function dentro(p, r) {
+  let d = false;
+  for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+    const [xi, yi] = r[i], [xj, yj] = r[j];
+    if ((yi > p[1]) !== (yj > p[1]) && p[0] < ((xj - xi) * (p[1] - yi)) / (yj - yi) + xi) d = !d;
+  }
+  return d;
+}
+function distContorno(p, r) {
+  let m = Infinity;
+  for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+    const [x1, y1] = r[j], [x2, y2] = r[i];
+    const dx = x2 - x1, dy = y2 - y1, l2 = dx * dx + dy * dy;
+    const t = l2 ? Math.max(0, Math.min(1, ((p[0] - x1) * dx + (p[1] - y1) * dy) / l2)) : 0;
+    const ex = x1 + t * dx - p[0], ey = y1 + t * dy - p[1];
+    m = Math.min(m, ex * ex + ey * ey);
+  }
+  return Math.sqrt(m);
+}
+const interiorCache = new WeakMap();
+function puntoInterior(f) {
+  if (interiorCache.has(f)) return interiorCache.get(f);
+  const r = anillos(f).sort((a, b) => areaAnillo(b) - areaAnillo(a))[0];
+  let cx = 0, cy = 0, a = 0;
+  for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+    const w = r[j][0] * r[i][1] - r[i][0] * r[j][1];
+    cx += (r[j][0] + r[i][0]) * w; cy += (r[j][1] + r[i][1]) * w; a += w;
+  }
+  let p = a ? [cx / (3 * a), cy / (3 * a)] : centro(f);
+  if (!dentro(p, r) || distContorno(p, r) < 0.15) {
+    const xs = r.map((q) => q[0]), ys = r.map((q) => q[1]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    let mejor = null, dm = -1;
+    for (let i = 1; i < 30; i++) for (let j = 1; j < 30; j++) {
+      const q = [x0 + ((x1 - x0) * i) / 30, y0 + ((y1 - y0) * j) / 30];
+      if (!dentro(q, r)) continue;
+      const d = distContorno(q, r);
+      if (d > dm) { dm = d; mejor = q; }
+    }
+    if (mejor) p = mejor;
+  }
+  interiorCache.set(f, p);
+  return p;
+}
+
 // Arco suave entre dos puntos (curva cuadrática), para que las líneas de
 // distintas entidades no se encimen en una sola recta al llegar a la ciudad.
-function arco(a, b, n = 24) {
+// `curva` regula cuánto se comba: varias líneas de la misma entidad se
+// separan por curvatura, no moviendo el origen, que debe seguir en tierra.
+function arco(a, b, curva = 0.18, n = 24) {
   const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
   const dx = b[0] - a[0], dy = b[1] - a[1];
-  const cx = mx - dy * 0.18, cy = my + dx * 0.18;
+  const cx = mx - dy * curva, cy = my + dx * curva;
   const pts = [];
   for (let i = 0; i <= n; i++) {
     const t = i / n, u = 1 - t;
@@ -651,7 +712,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const TOPE_FLECHAS = 5;
     const usadas = new Map();
     const porIso = new Map(geoEntidades.features.map((f) => [f.properties.id, f]));
-    const cdmx = centro(porIso.get("MX-CMX"));
+    const cdmx = puntoInterior(porIso.get("MX-CMX"));
     const valores = new Map();
     for (const f of geoEntidades.features) mapa.setFeatureState({source: "entidades", id: f.properties.id}, {valor: null});
     // Por entidad: total, y desglose por lengua y por variante.
@@ -685,12 +746,13 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       for (const [k, n] of conColor) usadas.set(k, (usadas.get(k) ?? 0) + n);
       const resto = base.filter(([k]) => !elegidas.has(k)).reduce((s, [, n]) => s + n, 0);
       const trazos = [...conColor, ...(resto > 0 || !conColor.length ? [[null, resto || d.num]] : [])];
-      const paso = Math.min(0.12, 0.5 / Math.max(trazos.length, 1));
+      // Las líneas de una misma entidad comparten origen y destino y se
+      // separan por curvatura (abanico en el tramo medio, no en el origen).
+      const a = puntoInterior(f);
       trazos.forEach(([k, n], idx) => {
-        const a = centro(f);
-        const desvio = (idx - (trazos.length - 1) / 2) * paso;
+        const curva = 0.18 + (idx - (trazos.length - 1) / 2) * 0.07;
         features.push({type: "Feature", properties: {ent: iso, num: n, color: colores.get(k) ?? GRIS_VARIANTE,
-          grosor: 1 + 8 * Math.sqrt(n / max)}, geometry: {type: "LineString", coordinates: arco([a[0] + desvio, a[1] + desvio], cdmx)}});
+          grosor: 1 + 8 * Math.sqrt(n / max)}, geometry: {type: "LineString", coordinates: arco(a, cdmx, curva)}});
       });
     }
     features.sort((a, b) => (a.properties.color === GRIS_VARIANTE ? 0 : 1) - (b.properties.color === GRIS_VARIANTE ? 0 : 1));
