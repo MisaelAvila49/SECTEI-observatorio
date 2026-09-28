@@ -7,7 +7,7 @@
 // Ver docs/arquitectura-filtros.md, §3 y §7.
 import maplibregl from "npm:maplibre-gl@5.24.0";
 import {registrarProtocolo, estiloBase, expresionColor, leyenda, RAMPA_MORADA, SIN_DATO, ROJO_IBERO} from "./mapa.js";
-import {CVE_A_ISO, ISO_A_CVE, bajarA, contenedorDe, migasDe} from "./geografia.js";
+import {CVE_A_ISO, ISO_A_CVE, bajarA, capaDeNivel, contenedorDe, migasDe} from "./geografia.js";
 
 const MEXICO = [[-118.5, 14.4], [-86.6, 32.8]];
 
@@ -112,7 +112,7 @@ export function mapaNavegador({panel, catalogo, fuente, geoEntidades, pmtilesMun
         const r = bajarA(panel.geo(), cve, fuente.nivelMax);
         apagar(); popup.remove();
         panel.verMapa?.();
-        panel.set({...r.geo, seleccion: r.bajo ? null : cve});
+        panel.set(r.geo);
       });
     }
     cargado = true;
@@ -155,23 +155,27 @@ export function mapaNavegador({panel, catalogo, fuente, geoEntidades, pmtilesMun
   function pintar(p) {
     if (!cargado) { pendiente = p; return; }
     const {v, valores = new Map(), campo = null, cortes, titulo, formato, notaSinDato, tarjeta: htmlTarjeta = ""} = p;
-    const c = capaDe(v.nivel, v.anio);
-    vista = {v, nivel: v.nivel, capa: c, valores, campo};
+    const nivel = capaDeNivel(v.nivel);
+    const c = capaDe(nivel, v.anio);
+    vista = {v, nivel, capa: c, valores, campo};
     apagar(); popup.remove();
     const relleno = `${c.id}-relleno`;
     if (c.porEstado) {
       // Estado de todas las unidades del nivel: valor o nulo.
-      if (v.nivel === "entidad") {
+      if (nivel === "entidad") {
         for (const f of geoEntidades.features) mapa.setFeatureState({source: "entidades", id: f.properties.id}, {valor: valores.get(ISO_A_CVE.get(f.properties.id))?.valor ?? null});
         mapa.setFilter(relleno, null); mapa.setFilter(`${c.id}-borde`, null); mapa.setFilter(`${c.id}-hover`, null);
       } else {
+        // Sin entidad que acote se pintan los 2,469 municipios del país.
         for (const u of catalogo.hijos("municipio", v.cveEnt)) mapa.setFeatureState({source: "municipios", sourceLayer: "municipios", id: u.cve}, {valor: valores.get(u.cve)?.valor ?? null});
-        const filtro = prefijo(c, v.cveEnt, 2);
+        const filtro = v.cveEnt ? prefijo(c, v.cveEnt, 2) : null;
         for (const suf of ["relleno", "borde", "hover"]) mapa.setFilter(`${c.id}-${suf}`, filtro);
       }
       mapa.setPaintProperty(relleno, "fill-color", expresionColor("valor", cortes, RAMPA_MORADA, "feature-state"));
     } else {
-      const filtro = v.nivel === "ageb" ? prefijo(c, v.cveMun, 5) : prefijo(c, v.cveAgeb, 13);
+      // Sin alcaldía o AGEB que acote, toda la ciudad (prefijo "09").
+      const pref = nivel === "ageb" ? (v.cveMun ?? "09") : (v.cveAgeb ?? v.cveMun ?? "09");
+      const filtro = prefijo(c, pref, pref.length);
       for (const suf of ["relleno", "borde", "hover"]) mapa.setFilter(`${c.id}-${suf}`, filtro);
       mapa.setPaintProperty(relleno, "fill-color", expresionColor(campo, cortes, RAMPA_MORADA, "get"));
     }

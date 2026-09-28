@@ -4320,3 +4320,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
 /* La beta usa el ancho completo: el mapa y la gráfica caben lado a lado. */
 body:has(.beta-seccion) #observablehq-center, body:has(.beta-seccion) #observablehq-main { max-width: none; }
 body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
+/* Tarjeta de cifra en la vista de gráfica y aire entre figuras. */
+.beta-tarjeta { display: inline-block; min-width: 18rem; margin: 0.25rem 0 0.5rem; padding: 0.6rem 0.9rem; border-radius: 10px; border: 1px solid var(--border-subtle); background: var(--surface-1); font-size: 0.8rem; }
+.beta-cuerpo > figure + figure { margin-top: 1.6rem; }
+.beta-cuerpo figure[class^="grafica-"] svg { max-width: 100%; height: auto; }

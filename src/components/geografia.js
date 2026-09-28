@@ -1,24 +1,25 @@
-// Modelo de geografía del libro: niveles, llaves, modo y etiquetas.
+// Modelo de geografía del libro: niveles, llaves, contenedor, migas y etiquetas.
 //
 // La geografía de una sección es un solo objeto que viaja con su panel:
-//   {nivel, cveEnt, cveMun, cveAgeb}
-// `nivel` es el nivel de las unidades que se dibujan y comparan (las
-// entidades del país, los municipios de un estado, las AGEB de una alcaldía,
-// las manzanas de una AGEB); las claves dicen dentro de qué unidad. Cada
-// fuente declara hasta qué nivel llega y el panel no ofrece uno más abajo.
-// Ver docs/arquitectura-filtros.md.
+//   {nivel, cveEnt, cveMun, cveAgeb, seleccion}
+// `nivel` es lo que se dibuja y compara: el país como una sola unidad, las
+// entidades, los municipios, las AGEB o las manzanas. Las claves acotan
+// (los municipios DE Oaxaca, las AGEB DE Iztapalapa) y son opcionales: sin
+// ellas se comparan todas las unidades del nivel. `seleccion` es la unidad
+// resaltada dentro del nivel sin bajar. Ver docs/arquitectura-filtros.md.
 
 export const NIVELES = [
-  {clave: "entidad", singular: "entidad", plural: "entidades", padre: null, longitud: 2},
-  {clave: "municipio", singular: "municipio", plural: "municipios", padre: "entidad", longitud: 5},
-  {clave: "ageb", singular: "AGEB", plural: "AGEB", padre: "municipio", longitud: 13},
-  {clave: "manzana", singular: "manzana", plural: "manzanas", padre: "ageb", longitud: 16},
+  {clave: "nacional", singular: "país", plural: "país", etiqueta: "País (una sola cifra)", longitud: 2},
+  {clave: "entidad", singular: "entidad", plural: "entidades", etiqueta: "Entidades del país", longitud: 2},
+  {clave: "municipio", singular: "municipio", plural: "municipios", etiqueta: "Municipios", longitud: 5},
+  {clave: "ageb", singular: "AGEB", plural: "AGEB", etiqueta: "AGEB (Ciudad de México)", longitud: 13},
+  {clave: "manzana", singular: "manzana", plural: "manzanas", etiqueta: "Manzanas (Ciudad de México)", longitud: 16},
 ];
 export const ORDEN_NIVEL = NIVELES.map((n) => n.clave);
 export const nivelDe = (clave) => NIVELES.find((n) => n.clave === clave);
-export const masProfundo = (a, b) => ORDEN_NIVEL.indexOf(a) >= ORDEN_NIVEL.indexOf(b) ? a : b;
+// La capa del mapa que dibuja cada nivel: el país se ve sobre las entidades.
+export const capaDeNivel = (nivel) => (nivel === "nacional" ? "entidad" : nivel);
 
-// Clave de dos dígitos -> ISO del geojson de entidades y nombre corto.
 export const ENTIDADES = [
   ["01", "MX-AGU", "Aguascalientes"], ["02", "MX-BCN", "Baja California"], ["03", "MX-BCS", "Baja California Sur"],
   ["04", "MX-CAM", "Campeche"], ["05", "MX-COA", "Coahuila"], ["06", "MX-COL", "Colima"], ["07", "MX-CHP", "Chiapas"],
@@ -72,43 +73,49 @@ export function buscarUnidad(lista, texto) {
   return null;
 }
 
-// La unidad contenedora de lo que se dibuja: el país, la entidad, el
-// municipio o la AGEB, según el nivel.
+// La unidad que contiene lo que se dibuja. Sin clave que acote, el
+// contenedor es el país (o la ciudad, en AGEB y manzanas).
 export function contenedorDe(geo) {
-  if (geo.nivel === "entidad") return {nivel: "nacional", cve: "00"};
-  if (geo.nivel === "municipio") return {nivel: "entidad", cve: geo.cveEnt};
-  if (geo.nivel === "ageb") return {nivel: "municipio", cve: geo.cveMun};
-  return {nivel: "ageb", cve: geo.cveAgeb};
+  if (geo.nivel === "nacional" || geo.nivel === "entidad") return {nivel: "nacional", cve: "00"};
+  if (geo.nivel === "municipio") return geo.cveEnt ? {nivel: "entidad", cve: geo.cveEnt} : {nivel: "nacional", cve: "00"};
+  if (geo.nivel === "ageb") return geo.cveMun ? {nivel: "municipio", cve: geo.cveMun} : {nivel: "entidad", cve: "09"};
+  if (geo.cveAgeb) return {nivel: "ageb", cve: geo.cveAgeb};
+  return geo.cveMun ? {nivel: "municipio", cve: geo.cveMun} : {nivel: "entidad", cve: "09"};
 }
 
-// Migas: del país hasta el contenedor actual, cada una con la geografía a la
-// que sube.
+// Migas: del país al contenedor actual; cada una lleva la geografía a la que
+// sube (el nivel de los hijos de esa unidad).
 export function migasDe(geo, catalogo) {
   const migas = [{etiqueta: "México", geo: {nivel: "entidad", cveEnt: null, cveMun: null, cveAgeb: null}}];
-  if (geo.cveEnt && geo.nivel !== "entidad") migas.push({etiqueta: catalogo.de("entidad", geo.cveEnt)?.nombre ?? geo.cveEnt, geo: {nivel: "municipio", cveEnt: geo.cveEnt, cveMun: null, cveAgeb: null}});
-  if (geo.cveMun && (geo.nivel === "ageb" || geo.nivel === "manzana")) migas.push({etiqueta: catalogo.de("municipio", geo.cveMun)?.nombre ?? geo.cveMun, geo: {nivel: "ageb", cveEnt: geo.cveEnt, cveMun: geo.cveMun, cveAgeb: null}});
-  if (geo.cveAgeb && geo.nivel === "manzana") migas.push({etiqueta: `AGEB ${geo.cveAgeb.slice(-4)}`, geo: {...geo}});
+  const enCiudad = geo.nivel === "ageb" || geo.nivel === "manzana";
+  const ent = enCiudad ? "09" : geo.cveEnt;
+  if (ent && (geo.nivel === "municipio" || enCiudad)) migas.push({etiqueta: catalogo.de("entidad", ent)?.nombre ?? ent, geo: {nivel: "municipio", cveEnt: ent, cveMun: null, cveAgeb: null}});
+  if (geo.cveMun && enCiudad) migas.push({etiqueta: catalogo.de("municipio", geo.cveMun)?.nombre ?? geo.cveMun, geo: {nivel: "ageb", cveEnt: "09", cveMun: geo.cveMun, cveAgeb: null}});
+  if (geo.cveAgeb && geo.nivel === "manzana") migas.push({etiqueta: `AGEB ${geo.cveAgeb.slice(-4)}`, geo: {nivel: "manzana", cveEnt: "09", cveMun: geo.cveMun, cveAgeb: geo.cveAgeb}});
   return migas;
 }
 
 export function etiquetaGeo(geo, catalogo) {
+  if (geo.nivel === "nacional") return "El país";
   const n = nivelDe(geo.nivel);
   const c = contenedorDe(geo);
-  if (c.nivel === "nacional") return "Entidades del país";
+  const plural = `${n.plural[0].toUpperCase()}${n.plural.slice(1)}`;
+  if (c.nivel === "nacional") return `${plural} del país`;
   const nombre = c.nivel === "ageb" ? `la AGEB ${c.cve.slice(-4)}` : (catalogo.de(c.nivel, c.cve)?.nombre ?? c.cve);
-  return `${n.plural[0].toUpperCase()}${n.plural.slice(1)} de ${nombre}`;
+  return `${plural} de ${nombre}`;
 }
 
-// Geografía que resulta de hacer clic en una unidad del nivel actual: baja al
-// siguiente nivel que la fuente publica para esa unidad, o se queda donde está
-// y solo la selecciona.
+// Geografía que resulta de hacer clic en una unidad del nivel dibujado: baja
+// al siguiente nivel que la fuente publica para esa unidad, o se queda donde
+// está y solo la selecciona.
 export function bajarA(geo, cve, nivelMaxDe) {
-  const siguiente = {entidad: "municipio", municipio: "ageb", ageb: "manzana", manzana: null}[geo.nivel];
-  const claves = {...geo};
-  if (geo.nivel === "entidad") claves.cveEnt = cve;
-  if (geo.nivel === "municipio") claves.cveMun = cve;
-  if (geo.nivel === "ageb") claves.cveAgeb = cve;
+  const nivel = capaDeNivel(geo.nivel);
+  const siguiente = {entidad: "municipio", municipio: "ageb", ageb: "manzana", manzana: null}[nivel];
+  const claves = {...geo, nivel};
+  if (nivel === "entidad") { claves.cveEnt = cve; claves.cveMun = null; claves.cveAgeb = null; }
+  if (nivel === "municipio") { claves.cveEnt = cve.slice(0, 2); claves.cveMun = cve; claves.cveAgeb = null; }
+  if (nivel === "ageb") { claves.cveEnt = "09"; claves.cveMun = cve.slice(0, 5); claves.cveAgeb = cve; }
   const tope = nivelMaxDe(claves);
   const puede = siguiente && ORDEN_NIVEL.indexOf(siguiente) <= ORDEN_NIVEL.indexOf(tope);
-  return {geo: puede ? {...claves, nivel: siguiente} : geo, bajo: Boolean(puede), seleccion: cve};
+  return {geo: puede ? {...claves, nivel: siguiente, seleccion: null} : {...geo, seleccion: cve}, bajo: Boolean(puede), seleccion: cve};
 }

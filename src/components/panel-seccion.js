@@ -1,13 +1,14 @@
-// Panel de una sección del libro: geografía primero, después los cortes.
+// Panel de una sección del libro: el NIVEL manda; entidad, municipio y AGEB
+// acotan o seleccionan; después vienen los cortes.
 //
 // Se construye a partir de la DECLARACIÓN de la fuente (hasta qué nivel llega,
 // qué poblaciones identifica, qué años y cortes publica en cada nivel) y
-// expone `value`, `set(parcial)`, `aplica(nombre)` y `mostrar(nombre, bool)`,
-// como el panel del mapa. Los clics del mapa y las migas escriben en el mismo
-// panel con `set`, así que las gráficas no distinguen por dónde llegó la
-// selección. Ver docs/arquitectura-filtros.md, §3 y §4.
+// expone `value`, `set(parcial)`, `aplica(nombre)` y `mostrar(nombre, bool)`.
+// Los clics del mapa y las migas escriben en el mismo panel con `set`, así
+// que las gráficas no distinguen por dónde llegó la selección.
+// Ver docs/arquitectura-filtros.md, §3 y §4.
 import {html} from "npm:htl";
-import {ORDEN_NIVEL, buscarUnidad, contenedorDe, nivelDe} from "./geografia.js";
+import {NIVELES, ORDEN_NIVEL, buscarUnidad, nivelDe} from "./geografia.js";
 
 // "separado" pide una faceta por categoría (comparar dentro de la misma
 // categoría); solo existe en la vista de gráfica.
@@ -34,6 +35,7 @@ function campo({id, etiqueta, opciones, valor, nombre}) {
   form.rellenar(opciones, valor);
   Object.defineProperty(form, "value", {get: () => select.value, set: (v) => { select.value = v; }});
   form.select = select;
+  form.rotular = (t) => { rotulo.textContent = t; };
   return form;
 }
 
@@ -65,6 +67,8 @@ function buscador({id, etiqueta, nombre, marcador}) {
   form.avisar = (texto) => { aviso.textContent = texto ?? ""; aviso.hidden = !texto; };
   input.addEventListener("input", () => form.avisar(""));
   form.input = input;
+  form.rotular = (t) => { rotulo.textContent = t; };
+  form.marcador = (t) => { input.placeholder = t; };
   Object.defineProperty(form, "value", {get: () => input.value, set: (v) => { input.value = v; }});
   return form;
 }
@@ -72,9 +76,9 @@ function buscador({id, etiqueta, nombre, marcador}) {
 export function panelSeccion({fuente, catalogo, id = "sec"}) {
   const c = {
     vista: campo({id: `${id}-vista`, nombre: "vista", etiqueta: "Ver como", opciones: [{clave: "grafica", etiqueta: "Gráfica"}, {clave: "mapa", etiqueta: "Mapa"}], valor: "grafica"}),
-    nivel: campo({id: `${id}-nivel`, nombre: "nivel", etiqueta: "Nivel", opciones: [{clave: "entidad", etiqueta: "Entidades del país"}], valor: "entidad"}),
-    entidad: buscador({id: `${id}-entidad`, nombre: "entidad", etiqueta: "Entidad", marcador: "Escribe una entidad"}),
-    municipio: buscador({id: `${id}-municipio`, nombre: "municipio", etiqueta: "Municipio o alcaldía", marcador: "Escribe un municipio"}),
+    nivel: campo({id: `${id}-nivel`, nombre: "nivel", etiqueta: "Nivel", opciones: NIVELES.map((n) => ({clave: n.clave, etiqueta: n.etiqueta})), valor: "entidad"}),
+    entidad: buscador({id: `${id}-entidad`, nombre: "entidad", etiqueta: "Entidad", marcador: "Todas las entidades"}),
+    municipio: buscador({id: `${id}-municipio`, nombre: "municipio", etiqueta: "Municipio", marcador: "Todos los municipios"}),
     ageb: campo({id: `${id}-ageb`, nombre: "ageb", etiqueta: "AGEB", opciones: [{clave: "", etiqueta: "Todas las AGEB"}], valor: ""}),
     poblacion: campo({id: `${id}-poblacion`, nombre: "poblacion", etiqueta: "Población", opciones: fuente.poblaciones, valor: fuente.poblaciones[0].clave}),
     anio: campo({id: `${id}-anio`, nombre: "anio", etiqueta: "Año", opciones: [{clave: "2020", etiqueta: "2020"}], valor: "2020"}),
@@ -88,54 +92,63 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
       <div class="panel-campos">${c.sexo}${c.edad}</div></fieldset>
   </div>`;
 
-  // La geografía vive aquí; los buscadores solo la escriben.
+  // La geografía vive aquí; los controles solo la escriben.
   const geo = {nivel: "entidad", cveEnt: null, cveMun: null, cveAgeb: null, seleccion: null};
   const aplica = {};
   const ver = (nombre, visible) => { aplica[nombre] = visible; c[nombre].hidden = !visible; };
-  c.entidad.rellenar(catalogo.todos("entidad"));
+  let anios = [];
 
   function leer() {
     return {...geo, vista: c.vista.value, poblacion: c.poblacion.value, anio: c.anio.value === SEPARADO ? SEPARADO : Number(c.anio.value), sexo: c.sexo.value, edad: c.edad.value,
       anios: anios.slice()};
   }
 
-  // Reconcilia opciones y visibilidad a partir de la geografía y los valores.
-  let anios = [];
+  // Qué acota y qué selecciona cada control según el nivel:
+  //   nacional  nada
+  //   entidad   entidad = selección (resalta una)
+  //   municipio entidad = acota; municipio = selección
+  //   ageb      municipio (alcaldía) = acota; AGEB = selección
+  //   manzana   municipio y AGEB acotan
   function configurar() {
-    const tope = fuente.nivelMax(geo);
-    // El mapa no faceta: si se pide el mapa, las categorías vuelven al total.
+    const enCiudad = geo.nivel === "ageb" || geo.nivel === "manzana";
+    if (enCiudad) geo.cveEnt = "09";
     const enMapa = c.vista.value === "mapa";
+    // El mapa no faceta: si se pide el mapa, las categorías vuelven al total.
     if (enMapa) { if (c.sexo.value === SEPARADO) c.sexo.value = "Total"; if (c.edad.value === SEPARADO) c.edad.value = "Todas"; if (c.anio.value === SEPARADO) c.anio.value = "2020"; }
-    const puede = (n) => ORDEN_NIVEL.indexOf(n) <= ORDEN_NIVEL.indexOf(tope);
-    const ops = [{clave: "entidad", etiqueta: "Entidades del país"}];
-    if (geo.cveEnt && puede("municipio")) ops.push({clave: "municipio", etiqueta: `Municipios de ${catalogo.de("entidad", geo.cveEnt)?.nombre ?? geo.cveEnt}`});
-    if (geo.cveMun && puede("ageb")) ops.push({clave: "ageb", etiqueta: `AGEB de ${catalogo.de("municipio", geo.cveMun)?.nombre ?? geo.cveMun}`});
-    if (geo.cveAgeb && puede("manzana")) ops.push({clave: "manzana", etiqueta: `Manzanas de la AGEB ${geo.cveAgeb.slice(-4)}`});
-    if (!ops.some((o) => o.clave === geo.nivel)) geo.nivel = ops.at(-1).clave;
-    c.nivel.rellenar(ops, geo.nivel);
+    c.nivel.value = geo.nivel;
 
-    // Buscadores: el de municipio solo con entidad; el de AGEB solo con
-    // municipio y donde la fuente llega a AGEB.
     const ent = geo.cveEnt ? catalogo.de("entidad", geo.cveEnt) : null;
     const mun = geo.cveMun ? catalogo.de("municipio", geo.cveMun) : null;
-    c.entidad.fijar(ent?.nombre ?? null, () => set({cveEnt: null, cveMun: null, cveAgeb: null, nivel: "entidad"}));
-    ver("municipio", Boolean(geo.cveEnt) && puede("municipio"));
-    c.municipio.rellenar(geo.cveEnt ? catalogo.hijos("municipio", geo.cveEnt) : []);
-    c.municipio.fijar(mun?.nombre ?? null, () => set({cveMun: null, cveAgeb: null, nivel: "municipio"}));
-    const conAgeb = Boolean(geo.cveMun) && puede("ageb");
-    ver("ageb", conAgeb);
-    if (conAgeb) {
-      c.ageb.rellenar([{clave: "", etiqueta: "Todas las AGEB de la alcaldía"}, ...catalogo.hijos("ageb", geo.cveMun).map((u) => ({clave: u.cve, etiqueta: `AGEB ${u.cve.slice(-4)}`}))], geo.cveAgeb ?? "");
+    ver("entidad", geo.nivel === "entidad" || geo.nivel === "municipio");
+    c.entidad.rellenar(catalogo.todos("entidad"));
+    c.entidad.rotular(geo.nivel === "entidad" ? "Entidad a resaltar" : "Entidad");
+    c.entidad.marcador(geo.nivel === "entidad" ? "Ninguna resaltada" : "Todas las entidades");
+    const entTexto = geo.nivel === "entidad" ? (geo.seleccion ? catalogo.de("entidad", geo.seleccion)?.nombre : null) : ent?.nombre;
+    c.entidad.fijar(entTexto ?? null, () => (geo.nivel === "entidad" ? set({seleccion: null}) : set({cveEnt: null, cveMun: null, cveAgeb: null, seleccion: null})));
+
+    ver("municipio", geo.nivel === "municipio" || enCiudad);
+    c.municipio.rellenar(catalogo.hijos("municipio", geo.cveEnt));
+    c.municipio.rotular(enCiudad ? "Alcaldía" : "Municipio a resaltar");
+    c.municipio.marcador(enCiudad ? "Toda la ciudad" : "Ninguno resaltado");
+    const munTexto = geo.nivel === "municipio" ? (geo.seleccion ? catalogo.de("municipio", geo.seleccion)?.nombre : null) : mun?.nombre;
+    c.municipio.fijar(munTexto ?? null, () => (geo.nivel === "municipio" ? set({seleccion: null}) : set({cveMun: null, cveAgeb: null, seleccion: null})));
+
+    ver("ageb", enCiudad);
+    if (enCiudad) {
+      const lista = catalogo.hijos("ageb", geo.cveMun);
+      c.ageb.rotular(geo.nivel === "ageb" ? "AGEB a resaltar" : "AGEB");
+      c.ageb.rellenar([{clave: "", etiqueta: geo.nivel === "ageb" ? "Ninguna resaltada" : (geo.cveMun ? "Todas las AGEB de la alcaldía" : "Toda la ciudad")},
+        ...lista.map((u) => ({clave: u.cve, etiqueta: geo.cveMun ? `AGEB ${u.cve.slice(-4)}` : u.nombre}))], geo.nivel === "ageb" ? (geo.seleccion ?? "") : (geo.cveAgeb ?? ""));
     }
 
-    // Población, año y cortes: lo que la fuente publica para ESTA geografía.
+    // Población, año y cortes: lo que la fuente publica para ESTE nivel.
     const pobs = fuente.poblaciones.filter((p) => fuente.poblacionesDe(geo).includes(p.clave));
     c.poblacion.rellenar(pobs, c.poblacion.value);
     anios = fuente.aniosDe({geo, poblacion: c.poblacion.value});
     const pref = (c.anio.value === SEPARADO && anios.length > 1 && !enMapa) ? SEPARADO : anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
     c.anio.rellenar([...anios.map((a) => ({clave: String(a), etiqueta: String(a)})), ...(anios.length > 1 && !enMapa ? [{clave: SEPARADO, etiqueta: "Comparar todas las ediciones"}] : [])], pref);
     c.anio.select.disabled = anios.length <= 1;
-    c.anio.querySelector("label").textContent = anios.length <= 1 ? "Año (único publicado a este nivel)" : "Año";
+    c.anio.rotular(anios.length <= 1 ? "Año (único publicado a este nivel)" : "Año");
     const ctx = {geo, poblacion: c.poblacion.value, anio: c.anio.value === SEPARADO ? anios.at(-1) : Number(c.anio.value)};
     const conSexo = fuente.sexoDe(ctx);
     ver("sexo", conSexo); if (!conSexo) c.sexo.value = "Total";
@@ -146,39 +159,51 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
   }
 
   function avisar() { nodo.dispatchEvent(new Event("input", {bubbles: true})); }
-  // Escribe una geografía parcial (clic en el mapa, miga, buscador) y avisa.
+  // Escribe una geografía parcial (clic en el mapa, miga, control) y avisa.
   function set(parcial) {
     Object.assign(geo, parcial);
+    if (parcial.seleccion === undefined) geo.seleccion = null;
     if (!geo.cveEnt) { geo.cveMun = null; geo.cveAgeb = null; }
     if (!geo.cveMun) geo.cveAgeb = null;
-    const contenedor = contenedorDe(geo);
-    if (parcial.seleccion === undefined) geo.seleccion = null;
     configurar();
     avisar();
-    return contenedor;
+  }
+  // Cambiar de nivel conserva solo las claves que acotan ese nivel: volver a
+  // "Entidades del país" suelta la entidad; "Municipios" suelta el municipio.
+  function cambiarNivel(nivel) {
+    const p = {nivel, seleccion: null};
+    if (nivel === "nacional" || nivel === "entidad") { p.cveEnt = null; p.cveMun = null; p.cveAgeb = null; }
+    if (nivel === "municipio") { p.cveMun = null; p.cveAgeb = null; if (geo.cveEnt === "09" && (geo.nivel === "ageb" || geo.nivel === "manzana")) p.cveEnt = "09"; }
+    if (nivel === "ageb") { p.cveEnt = "09"; p.cveMun = geo.cveEnt === "09" ? geo.cveMun : null; p.cveAgeb = null; }
+    if (nivel === "manzana") { p.cveEnt = "09"; p.cveMun = geo.cveEnt === "09" ? geo.cveMun : null; }
+    set(p);
   }
 
-  c.nivel.select.addEventListener("change", () => set({nivel: c.nivel.value}));
+  c.nivel.select.addEventListener("change", () => cambiarNivel(c.nivel.value));
   c.entidad.input.addEventListener("change", () => {
-    const r = buscarUnidad(catalogo.todos("entidad"), c.entidad.value);
-    if (!c.entidad.value.trim()) { if (geo.cveEnt) set({cveEnt: null, cveMun: null, cveAgeb: null, nivel: "entidad"}); return; }
+    const texto = c.entidad.value.trim();
+    if (!texto) { if (geo.nivel === "entidad" ? geo.seleccion : geo.cveEnt) set(geo.nivel === "entidad" ? {seleccion: null} : {cveEnt: null, cveMun: null, cveAgeb: null}); return; }
+    const r = buscarUnidad(catalogo.todos("entidad"), texto);
     if (!r) { c.entidad.avisar("Ninguna entidad con ese nombre"); return; }
     if (r.varias) { c.entidad.avisar(`Varias coincidencias: ${r.varias.slice(0, 4).map((u) => u.nombre).join(", ")}`); return; }
     c.entidad.avisar("");
-    set({cveEnt: r.cve, cveMun: null, cveAgeb: null, nivel: ORDEN_NIVEL.indexOf(fuente.nivelMax({cveEnt: r.cve})) >= 1 ? "municipio" : "entidad", seleccion: r.cve});
+    if (geo.nivel === "entidad") set({seleccion: r.cve});
+    else set({cveEnt: r.cve, cveMun: null, cveAgeb: null});
   });
   c.municipio.input.addEventListener("change", () => {
-    const r = buscarUnidad(catalogo.hijos("municipio", geo.cveEnt), c.municipio.value);
-    if (!c.municipio.value.trim()) { if (geo.cveMun) set({cveMun: null, cveAgeb: null, nivel: "municipio"}); return; }
-    if (!r) { c.municipio.avisar("Ningún municipio con ese nombre en esta entidad"); return; }
+    const texto = c.municipio.value.trim();
+    if (!texto) { if (geo.nivel === "municipio" ? geo.seleccion : geo.cveMun) set(geo.nivel === "municipio" ? {seleccion: null} : {cveMun: null, cveAgeb: null}); return; }
+    const r = buscarUnidad(catalogo.hijos("municipio", geo.cveEnt), texto);
+    if (!r) { c.municipio.avisar(geo.cveEnt ? "Ningún municipio con ese nombre en esta entidad" : "Ningún municipio con ese nombre"); return; }
     if (r.varias) { c.municipio.avisar(`Varias coincidencias: ${r.varias.slice(0, 4).map((u) => u.nombre).join(", ")}`); return; }
     c.municipio.avisar("");
-    const tope = fuente.nivelMax({cveEnt: geo.cveEnt, cveMun: r.cve});
-    set({cveMun: r.cve, cveAgeb: null, nivel: ORDEN_NIVEL.indexOf(tope) >= 2 ? "ageb" : "municipio", seleccion: r.cve});
+    if (geo.nivel === "municipio") set({cveEnt: geo.cveEnt ?? r.cve.slice(0, 2), seleccion: r.cve});
+    else set({cveMun: r.cve, cveAgeb: null});
   });
   c.ageb.select.addEventListener("change", () => {
     const v = c.ageb.value || null;
-    set({cveAgeb: v, nivel: v ? "manzana" : "ageb", seleccion: v});
+    if (geo.nivel === "ageb") set({seleccion: v, cveMun: geo.cveMun ?? (v ? v.slice(0, 5) : null)});
+    else set({cveAgeb: v, cveMun: geo.cveMun ?? (v ? v.slice(0, 5) : null)});
   });
   for (const k of ["vista", "poblacion", "anio", "sexo", "edad"]) c[k].select.addEventListener("change", () => {
     // Pedir facetas estando en el mapa devuelve a la gráfica (el mapa no faceta).
