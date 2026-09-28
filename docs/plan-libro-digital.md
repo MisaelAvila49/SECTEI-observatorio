@@ -266,22 +266,14 @@ y cobertura) y las verificaciones, con una sección nueva por encuesta añadida.
 
 ## 4. Catálogo de filtros
 
-Todo panel usa el mismo catálogo, con los mismos rótulos y el mismo orden de lo
-grande a lo específico: primero *qué se compara y dónde* (población, lengua,
-año, unidad, alcaldía o entidad, ámbito) y después *entre quiénes* (sexo, grupo
-de edad, escolaridad, decil, tamaño de localidad). El selector de población
-ofrece siempre las mismas cuatro opciones que el mapa (hablantes, se consideran
-indígenas, hablan y se consideran, todas las poblaciones), y las encuestas que
-no traen una de ellas la ocultan en lugar de dejar la opción vacía. Los grupos
-de edad se fijan en 3 - 14, 15 - 29, 30 - 59 y 60 y más, con la excepción de
-ENDIREH (15 y más) y ENDUTIH y ENIGH digital (6 y más), donde el primer tramo se
-ajusta al universo. La escolaridad usa los cuatro tramos ya definidos en los
-cargadores (primaria o menos, secundaria, media superior, superior), y el decil
-se calcula con el ingreso deflactado.
-
-Cada filtro se muestra solo donde su fuente lo publica, y el panel lee el valor,
-no el DOM, para decidirlo. El verificador de filtros se extiende a cada página
-nueva con la huella de posiciones.
+El detalle de cómo se eligen la geografía y los cortes está en
+[arquitectura-filtros.md](arquitectura-filtros.md): un panel por sección con el
+mismo catálogo en el mismo orden, la geografía como objeto único (nivel, entidad,
+municipio, AGEB, vista), descenso de nivel con clic en el mapa y miga de pan para
+subir, y una tabla de qué filtro existe en cada nivel según lo que publica cada
+fuente. Los grupos de edad se fijan en 3 - 14, 15 - 29, 30 - 59 y 60 y más, con
+el primer tramo ajustado al universo de cada encuesta; la escolaridad usa los
+cuatro tramos de los cargadores y el decil se calcula con el ingreso deflactado.
 
 ## 5. Orden de trabajo
 
@@ -302,14 +294,14 @@ publicación oficial por sección y anotada en el archivo de verificaciones, err
 de diseño en toda encuesta, y batería de verificadores antes de cada
 publicación.
 
-## 6. Decisiones abiertas
+## 6. Decisiones tomadas y pendientes
 
-Quedan cuatro decisiones que cambian el alcance y conviene fijar antes de
-escribir código. La primera es si los capítulos de encuesta (6, 7, 8) se
-presentan como ciudad frente a país en toda figura o solo cuando la muestra de
-la ciudad no alcanza. La segunda es si se incluye el trabajo desde la ENOE, que
-no identifica a la población indígena, o se deja el tema a las muestras
-censales y la ENIGH. La tercera es si la ENADIS 2017 entra para la ciudad,
-según lo que confirme su diseño muestral, o solo la de 2022. La cuarta es el
-título y la portada del libro, que fijan el hero, el bloque de cita y el archivo
-de citación del repositorio.
+El 27 de septiembre se fijaron tres: la ENOE no entra (no identifica a la
+población indígena) y el trabajo se cubre con las muestras censales y la ENIGH;
+la ENADIS entra con sus dos ediciones, y la de 2017 se publicará para la ciudad
+solo si su diseño muestral la sostiene, cosa que se verificará al cargarla; y los
+filtros se diseñan antes que los análisis, con el mapa como forma de bajar de
+nivel. Queda pendiente el título y el diseño del libro (hero, bloque de cita y
+archivo de citación), y sigue abierta la pregunta de si los capítulos de encuesta
+se presentan siempre como ciudad frente a país o solo cuando la muestra de la
+ciudad no alcanza.
