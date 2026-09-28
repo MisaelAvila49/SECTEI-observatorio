@@ -115,10 +115,14 @@ error del agregado.
 
 ## El mapa por manzana de la Ciudad de México
 
-Usa otra fuente y otra definición: el tabulado por AGEB y manzana del Censo
-2020, y la variable `PHOG_IND`, personas en hogares donde la persona de
-referencia, su cónyuge o alguno de sus ascendientes hablan lengua indígena. Es
-un indicador de hogar y de lengua, no de autoadscripción; el detalle está en
+Usa otra fuente y otra definición: los tabulados por AGEB y manzana de los
+Censos 2010 y 2020, y la variable `PHOG_IND`, personas en hogares donde la
+persona de referencia, su cónyuge o alguno de sus ascendientes hablan lengua
+indígena. La definición no es la misma en las dos ediciones: el diccionario de
+2010 cuenta los hogares donde el jefe o su cónyuge hablan la lengua, y el de
+2020 añade a los ascendientes de ambos. Por eso el mapa avisa, al comparar
+2010 con 2020 en esa población, que parte del cambio es de definición. Es un
+indicador de hogar y de lengua, no de autoadscripción; el detalle está en
 [Fuentes y cobertura](./fuentes).
 
 ## Cómo se lee el mapa

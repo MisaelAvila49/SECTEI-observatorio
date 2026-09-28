@@ -27,8 +27,9 @@ ofrecer opciones vacías.
 ## 2. Descargas
 
 Todos los insumos son públicos. Del INEGI se descargaron los Principales
-resultados por localidad (ITER) de 1990, 1995, 2000, 2005, 2010 y 2020, el
-tabulado por AGEB y manzana de 2020 para la Ciudad de México, los microdatos
+resultados por localidad (ITER) de 1990, 1995, 2000, 2005, 2010 y 2020, los
+tabulados por AGEB y manzana de 2010 y de 2020 para la Ciudad de México, la
+cartografía urbana de cierre del Censo 2010 (un archivo por delegación), los microdatos
 de las muestras de 1990, 2000, 2005, 2010 y 2020 y de las encuestas
 intercensales de 2015 y 2025, el marco geoestadístico 2020 y el clasificador
 de lenguas del Censo 2020. Del INALI, el Catálogo de las Lenguas Indígenas
@@ -110,10 +111,17 @@ cuadros por variante del INALI de 2000.
 ## 7. El mapa
 
 Las manzanas y las AGEB se sirven como teselas vectoriales con las tasas de
-2020 como atributos; las alcaldías y las entidades son polígonos cuyo valor
-se escribe en el navegador con la serie, la lengua y el año elegidos. Los
-cortes de color por alcaldía son fijos a lo largo de los años, para que el
-mismo tono signifique lo mismo en 1990 y en 2025. La vista de origen dibuja
+cada edición como atributos, una capa por año: la de 2020 con el marco
+geoestadístico 2020 y la de 2010 con la cartografía de cierre del Censo 2010,
+que el INEGI publica por delegación y que cubre las 2 432 AGEB y las 63 239
+manzanas del tabulado de ese año. En 2010 no hay cruces (las clasificaciones
+de CONAPO y CONEVAL por AGEB de ese año no se cargaron) y la definición de
+hogar indígena es la anterior, sin ascendientes; el mapa lo avisa al elegir
+esa población. Las alcaldías y las entidades son polígonos cuyo valor se
+escribe en el navegador con la serie, la lengua y el año elegidos. Los cortes
+de color son fijos a lo largo de los años en todos los niveles, calculados
+sobre todas las ediciones de cada indicador, para que el mismo tono
+signifique lo mismo en 1990 y en 2025, o en 2010 y en 2020. La vista de origen dibuja
 una flecha por entidad y variante, con el grosor por número de personas y el
 color por variante. Cada variante tiene un tono fijo, el mismo en la lista,
 en las flechas y en el mapa de la lengua; por entidad se dibujan hasta cinco
@@ -137,7 +145,10 @@ construcción del sitio. Coinciden con el ITER los hablantes de 1995, 2000,
 celdas de hablantes por alcaldía y sexo de 2015, la distribución por
 alcaldía y las seis lenguas mayores; con los perfiles de la SEPI, los
 hablantes y autoadscritos de 2020 y los monolingües por alcaldía; con el
-tabulado de la Intercensal 2025, las 16 alcaldías. Quedan pendientes, sin
+tabulado de la Intercensal 2025, las 16 alcaldías; con la fila de total del
+tabulado 2010, la suma por AGEB de hablantes y de población en hogares
+indígenas de ese año, y con su cartografía de cierre, que cada AGEB y cada
+manzana del tabulado tenga polígono. Quedan pendientes, sin
 cifra oficial localizada, la autoadscripción de 2010 y el porcentaje de
 hogares con internet de la ENIGH 2024.
 

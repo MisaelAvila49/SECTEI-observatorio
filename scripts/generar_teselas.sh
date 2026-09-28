@@ -68,6 +68,15 @@ echo "Generando agebs.pmtiles..."
 # las manzanas: el resaltado bajo el cursor usa feature-state.
 tippecanoe   -o "$SALIDA/agebs.pmtiles"   --force   --layer=agebs   --name="AGEB urbanas CDMX · Censo 2020"   --attribution="INEGI Censo 2020 · CONAPO · CONEVAL"   -z14 -Z8   --no-tile-size-limit   --generate-ids   "$ENTRADA/agebs_cdmx.geojson"
 
+echo "Generando manzanas_2010.pmtiles y agebs_2010.pmtiles..."
+# Edición 2010 de las dos capas, con la cartografía de cierre del Censo 2010
+# (scripts/construir_2010.py). Mismas opciones que las de 2020 para que el
+# cambio de año no cambie el dibujo por razones de teselado.
+if [ -f "$ENTRADA/manzanas_2010_cdmx.geojson" ]; then
+tippecanoe   -o "$SALIDA/manzanas_2010.pmtiles"   --force   --layer=manzanas   --name="Manzanas CDMX · Censo 2010"   --attribution="INEGI, Censo de Población y Vivienda 2010"   -z15 -Z8   --coalesce-densest-as-needed   --drop-densest-as-needed   --extend-zooms-if-still-dropping   --no-tile-size-limit   --generate-ids   "$ENTRADA/manzanas_2010_cdmx.geojson"
+tippecanoe   -o "$SALIDA/agebs_2010.pmtiles"   --force   --layer=agebs   --name="AGEB urbanas CDMX · Censo 2010"   --attribution="INEGI Censo 2010"   -z14 -Z8   --no-tile-size-limit   --generate-ids   "$ENTRADA/agebs_2010_cdmx.geojson"
+fi
+
 echo "Generando municipios.pmtiles..."
 # Los 2,469 municipios del país, simplificados, para el mapa de variantes por
 # lengua: el valor (la variante) se escribe con feature-state por CVEGEO, así

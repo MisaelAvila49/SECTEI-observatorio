@@ -49,6 +49,19 @@ las oficiales en `src/data/verificaciones.csv`.
 
 ## De dónde sale el mapa por manzana
 
+El mapa por AGEB y por manzana tiene dos ediciones. La de 2020 se describe a
+continuación; la de 2010 sigue la misma estructura con el tabulado
+**Principales resultados por AGEB y manzana urbana** del Censo 2010 y la
+**Cartografía geoestadística urbana, cierre del Censo 2010**, que el INEGI
+publica en un archivo por delegación con las 33 localidades urbanas de la
+ciudad. Las 2 432 AGEB y las 63 239 manzanas del tabulado de 2010 encuentran
+su polígono; la suma por AGEB recupera el 98 por ciento de los hablantes y
+de la población en hogares indígenas de la fila de total (lo demás está
+suprimido por confidencialidad). En 2010 no se cargaron las clasificaciones
+de CONAPO y CONEVAL ni las viviendas con características, así que esa
+edición no ofrece cruces, y los cortes de color de cada indicador se
+calculan sobre las dos ediciones para que el tono sea comparable.
+
 El mapa por manzana se construye con **Principales resultados por AGEB y manzana
 urbana** del Censo de Población y Vivienda 2020 (INEGI), tabulado que publica
 alrededor de 230 variables para cada manzana urbana del país. Para la Ciudad de

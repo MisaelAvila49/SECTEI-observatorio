@@ -50,6 +50,16 @@ bajar "https://www.coneval.org.mx/Medicion/Documents/GRS_AGEB_2020/GRS_AGEB_urba
 # Serie por alcaldia, lenguas y variantes (mapa unificado). Los ITER de 1990,
 # 1995, 2000 y 2005 no tienen liga directa: se bajan a mano del portal del
 # INEGI (Censos y Conteos > Datos abiertos > ITER) a data-raw/iter/.
+# Cartografía geoestadística urbana, cierre del Censo 2010, Distrito Federal:
+# INEGI la publica por localidad (una por delegación), con la AGEB (…A.shp) y
+# la manzana (…M.shp) tal como quedaron al cierre del Censo 2010. El Marco
+# Geoestadístico 2010 v5.0 nacional no trae manzanas, por eso se usan estas.
+# Sirven para el mapa de 2010 por AGEB y manzana (scripts/construir_agebs.py y
+# construir_manzanas.py con --anio 2010).
+for upc in 702825585297 702825585303 702825585310 702825585327 702825585334 702825585341 702825585358 702825585365            702825585372 702825585389 702825585396 702825585402 702825585419 702825585426 702825585433 702825585440; do
+  bajar "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/geografia/urbana/SHP/Distrito_Federal/SHP/${upc}_s.zip"         "$CRUDO/cartografia/cgu2010/$upc.zip" "Cartografía urbana cierre Censo 2010, delegación $upc (1 a 5 MB)"
+done
+
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/iter_09_2010_csv.zip"       "$CRUDO/iter/iter_09_2010_csv.zip" "ITER 2010, Distrito Federal (0.1 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/iter/iter_09_cpv2020_csv.zip"       "$CRUDO/iter/iter_09_cpv2020_csv.zip" "ITER 2020, Ciudad de Mexico (0.2 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/ageb_y_manzana/resageburb_09_2010_csv.zip"       "$CRUDO/resageburb2010/resageburb_09_2010_csv.zip" "Resultados por AGEB y manzana 2010, Distrito Federal (9.8 MB)"
@@ -65,6 +75,7 @@ unzip -o -q "$CRUDO/cartografia/09_ciudaddemexico.zip" -d "$CRUDO/cartografia/mg
 unzip -o -q "$CRUDO/colonias/iecm2022.zip"             -d "$CRUDO/colonias/iecm2022"
 unzip -o -q "$CRUDO/colonias/catalogo.zip"             -d "$CRUDO/colonias/catalogo"
 unzip -o -q "$CRUDO/coneval/GRS_AGEB_urbana_2020.zip"  -d "$CRUDO/coneval"
+for z in "$CRUDO"/cartografia/cgu2010/*.zip; do unzip -o -q "$z" -d "${z%.zip}"; done
 for z in "$CRUDO"/iter/*.zip "$CRUDO"/resageburb2010/*.zip "$CRUDO"/eic2015/*.zip "$CRUDO"/eic2025/*.zip; do unzip -o -q "$z" -d "$(dirname "$z")"; done
 
 echo

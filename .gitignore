@@ -30,3 +30,5 @@ referencias/mapa-inide/script0.js
 
 # Bytecode de Python
 __pycache__/
+src/data/agebs_2010_cdmx.geojson
+src/data/manzanas_2010_cdmx.geojson

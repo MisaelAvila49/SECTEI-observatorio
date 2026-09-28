@@ -9,7 +9,7 @@ pager: false
 ```js
 import {mapaUnificado} from "./components/mapa-unificado.js";
 
-const [serie, lenguas, origen, clin, variantesCiudad, clinMunicipios, municipiosLenguas, catalogo, agebs, colonias, geoAlcaldias, geoLimite, geoEntidades] = await Promise.all([
+const [serie, lenguas, origen, clin, variantesCiudad, clinMunicipios, municipiosLenguas, catalogo, agebs, agebs2010, colonias, geoAlcaldias, geoLimite, geoEntidades] = await Promise.all([
   FileAttachment("data/serie_alcaldias.csv").csv({typed: true}),
   FileAttachment("data/lenguas_alcaldia.csv").csv({typed: true}),
   FileAttachment("data/lenguas_origen.csv").csv({typed: true}),
@@ -19,6 +19,7 @@ const [serie, lenguas, origen, clin, variantesCiudad, clinMunicipios, municipios
   FileAttachment("data/municipios_lenguas.csv").csv(),
   FileAttachment("data/catalogo_lenguas.csv").csv(),
   FileAttachment("data/agebs_resumen.csv").csv({typed: true}),
+  FileAttachment("data/agebs_resumen_2010.csv").csv({typed: true}),
   FileAttachment("data/colonias_resumen.csv").csv({typed: true}),
   FileAttachment("data/cdmx_alcaldias.geojson").json(),
   FileAttachment("data/cdmx_limite.geojson").json(),
@@ -38,13 +39,17 @@ const cm = clinMunicipios.map((r) => ({...r, lengua: String(r.lengua).padStart(4
 // Las teselas de municipios se publican cuando existen; si no, el botón del mapa de la lengua no aparece.
 let pmtilesMunicipios = null;
 try { pmtilesMunicipios = await FileAttachment("data/municipios.pmtiles").url(); } catch { pmtilesMunicipios = null; }
+// Edición 2010 por AGEB y manzana (scripts/construir_2010.py): si faltan sus teselas, el año por esos niveles se queda en 2020.
+let pmtilesManzanas2010 = null, pmtilesAgebs2010 = null;
+try { pmtilesManzanas2010 = await FileAttachment("data/manzanas_2010.pmtiles").url(); } catch { pmtilesManzanas2010 = null; }
+try { pmtilesAgebs2010 = await FileAttachment("data/agebs_2010.pmtiles").url(); } catch { pmtilesAgebs2010 = null; }
 const mapa = mapaUnificado({
   serie: s, lenguas: l, origen: o, clin, variantesCiudad: vc, clinMunicipios: cm,
   municipiosLenguas: municipiosLenguas.map((r) => ({cve: String(r.cve).padStart(5, "0"), lengua: String(r.lengua).padStart(4, "0"), hablantes: Number(r.hablantes)})),
-  catalogo, agebs, colonias,
+  catalogo, agebs, agebs2010, colonias,
   pmtilesManzanas: await FileAttachment("data/manzanas.pmtiles").url(),
   pmtilesAgebs: await FileAttachment("data/agebs.pmtiles").url(),
-  pmtilesMunicipios,
+  pmtilesMunicipios, pmtilesManzanas2010, pmtilesAgebs2010,
   geoAlcaldias, geoLimite, geoEntidades,
 });
 ```

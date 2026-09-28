@@ -1,5 +1,12 @@
 encuesta,clave,valor,nota
+ageb,agebs_2010_con_geometria,2432.0000,AGEB urbanas 2010 con polígono y dato
+ageb,cdmx_p3ym_hli_2010,1.4707,"% P3YM_HLI sobre su universo, suma de AGEB urbanas 2010"
+ageb,cdmx_p3ym_hli_2010_cobertura,98.2942,"% del total oficial de P3YM_HLI que suman las AGEB con cifra publicada, 2010"
+ageb,cdmx_p3ym_hli_2010_oficial,1.4854,fila de total de la entidad del tabulado 2010
 ageb,cdmx_phog_ind,3.0755,"% de población en hogares indígenas, suma de AGEB urbanas"
+ageb,cdmx_phog_ind_2010,3.0268,"% PHOG_IND sobre su universo, suma de AGEB urbanas 2010"
+ageb,cdmx_phog_ind_2010_cobertura,98.0450,"% del total oficial de PHOG_IND que suman las AGEB con cifra publicada, 2010"
+ageb,cdmx_phog_ind_2010_oficial,3.0670,fila de total de la entidad del tabulado 2010
 ageb,cdmx_phog_ind_oficial,3.1394,fila de total de la entidad del tabulado
 ageb,cdmx_viv_internet,75.9751,"% de viviendas con internet, suma de AGEB urbanas"
 ageb,cdmx_viv_internet_oficial,75.7278,fila de total de la entidad del tabulado
@@ -50,6 +57,7 @@ lenguas,nahuatl_2010,45300.0000,"hablantes de náhuatl en la CDMX, muestra 2010"
 lenguas,nahuatl_2015,38549.0000,"hablantes de náhuatl en la CDMX, muestra 2015"
 lenguas,nahuatl_2020,38338.0000,"hablantes de náhuatl en la CDMX, muestra 2020"
 lenguas,nahuatl_2025,38303.0000,"hablantes de náhuatl en la CDMX, muestra 2025"
+manzana,manzanas_2010_con_geometria,63239.0000,manzanas 2010 con polígono y dato
 serie,ambas_2000,40575.0000,personas que hablan lengua indígena y además se consideran indígenas
 serie,ambas_2010,109047.0000,personas que hablan lengua indígena y además se consideran indígenas
 serie,ambas_2015,78523.0000,personas que hablan lengua indígena y además se consideran indígenas

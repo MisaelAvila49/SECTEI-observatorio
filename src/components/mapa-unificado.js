@@ -136,7 +136,8 @@ function arco(a, b, curva = 0.18, n = 24) {
 }
 
 export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [], clinMunicipios = [], municipiosLenguas = [], catalogo, agebs, colonias,
-    pmtilesManzanas, pmtilesAgebs, pmtilesMunicipios = null, geoAlcaldias, geoLimite, geoEntidades}) {
+    pmtilesManzanas, pmtilesAgebs, pmtilesMunicipios = null, pmtilesManzanas2010 = null, pmtilesAgebs2010 = null, agebs2010 = [],
+    geoAlcaldias, geoLimite, geoEntidades}) {
   registrarProtocolo();
   const catNombre = new Map(catalogo.map((c) => [c.clave, c]));
 
@@ -147,8 +148,10 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     .sort((a, b) => b.num - a.num)
     .map((r) => ({clave: r.lengua, etiqueta: r.lengua_nombre}));
 
+  // Por AGEB y manzana hay dos ediciones si existen las teselas de 2010.
+  const teselas2010 = {ageb: Boolean(pmtilesAgebs2010), manzana: Boolean(pmtilesManzanas2010)};
   const aniosDe = ({unidad, poblacion, lengua}) => {
-    if (unidad !== "alcaldia") return [2020];
+    if (unidad !== "alcaldia") return teselas2010[unidad] ? [2010, 2020] : [2020];
     const filas = lengua !== "todas"
       ? lenguas.filter((r) => r.lengua === lengua && r.nivel === "alcaldia")
       : serie.filter((r) => r.poblacion === pobSerie(poblacion, r.anio) && r.nivel === "alcaldia");
@@ -295,6 +298,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     mapa.addImage("flecha", imagenFlecha(), {sdf: true});
     mapa.addSource("manzanas", {type: "vector", url: `pmtiles://${pmtilesManzanas}`});
     mapa.addSource("agebs", {type: "vector", url: `pmtiles://${pmtilesAgebs}`});
+    if (pmtilesManzanas2010) mapa.addSource("manzanas2010", {type: "vector", url: `pmtiles://${pmtilesManzanas2010}`});
+    if (pmtilesAgebs2010) mapa.addSource("agebs2010", {type: "vector", url: `pmtiles://${pmtilesAgebs2010}`});
     mapa.addSource("alcaldias", {type: "geojson", data: geoAlcaldias, promoteId: "CVEGEO"});
     mapa.addSource("entidades", {type: "geojson", data: geoEntidades, promoteId: "id"});
     mapa.addSource("flujos", {type: "geojson", data: {type: "FeatureCollection", features: []}});
@@ -303,6 +308,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
 
     capasTesela("manzanas", "manzanas", 13, 12);
     capasTesela("agebs", "agebs", 9, 9);
+    if (pmtilesManzanas2010) capasTesela("manzanas2010", "manzanas", 13, 12);
+    if (pmtilesAgebs2010) capasTesela("agebs2010", "agebs", 9, 9);
     mapa.addLayer({id: "alcaldias-relleno", type: "fill", source: "alcaldias", layout: {visibility: "none"},
       paint: {"fill-color": SIN_DATO, "fill-opacity": 0.85}});
     mapa.addLayer({id: "alcaldias-halo", type: "line", source: "alcaldias",
@@ -338,7 +345,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         "icon-rotation-alignment": "map", "icon-size": ["interpolate", ["linear"], ["get", "grosor"], 1, 0.35, 9, 0.7]},
       paint: {"icon-color": ["get", "color"], "icon-opacity": ["coalesce", ["get", "opacidad"], 0.85]}});
 
-    for (const capa of ["manzanas-relleno", "agebs-relleno", "alcaldias-relleno", "entidades-relleno", ...(pmtilesMunicipios ? ["municipios-relleno"] : [])]) {
+    for (const capa of ["manzanas-relleno", "agebs-relleno", ...(pmtilesManzanas2010 ? ["manzanas2010-relleno"] : []), ...(pmtilesAgebs2010 ? ["agebs2010-relleno"] : []),
+      "alcaldias-relleno", "entidades-relleno", ...(pmtilesMunicipios ? ["municipios-relleno"] : [])]) {
       mapa.on("mousemove", capa, (e) => {
         const f = e.features?.[0];
         if (!f || f.id == null) return;
@@ -401,7 +409,9 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     if (cruce?.categorias) return [1, 2, 3, 4, 5];
     const clave = `${e.unidad}|${campo}`;
     if (!cacheCortes.has(clave)) {
-      const tabla = e.unidad === "manzana" ? colonias : agebs;
+      // Cortes fijos entre ediciones: se calculan sobre las dos tablas de AGEB
+      // (2010 y 2020) para que el mismo tono signifique lo mismo en los dos años.
+      const tabla = e.unidad === "manzana" ? colonias : [...agebs, ...agebs2010];
       cacheCortes.set(clave, cortesPorCuantil(tabla.map((r) => r[campo]).filter((x) => x != null && Number.isFinite(+x)).map(Number), 5));
     }
     return cacheCortes.get(clave);
@@ -432,7 +442,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         <tr><th>Personas</th><td>${d ? `${entero(d.num)} de ${entero(d.den)}` : "sin dato"}</td></tr>${filaVar}</table>`;
     }
     const cruce = e.cruce ? cruceDe(e.cruce) : null;
-    const titulo = capa === "manzanas-relleno" ? escapar(p.colonia ?? "Sin colonia") : `AGEB ${escapar(String(p.cve_ageb ?? "").slice(-4))}`;
+    const titulo = capa.startsWith("manzanas") ? escapar(p.colonia ?? "Sin colonia") : `AGEB ${escapar(String(p.cve_ageb ?? "").slice(-4))}`;
     const valor = cruce?.categorias ? escapar(p[cruce.texto] ?? "sin grado") : pct(p[e.campo]);
     const presencia = e.cruce ? `<tr><th>${escapar(poblacionDe(e.poblacion).corto)}</th><td>${pct(p[poblacionDe(e.poblacion).tesela[e.unidad]])}</td></tr>` : "";
     return `<div class="globo-titulo">${titulo}</div><div class="globo-sub">${escapar(p.alcaldia)}</div>
@@ -443,6 +453,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   // ---------------------------------------------------------------- pintado
   function visibles(ids) {
     const todas = ["manzanas-relleno", "manzanas-borde", "manzanas-hover", "agebs-relleno", "agebs-borde", "agebs-hover",
+      "manzanas2010-relleno", "manzanas2010-borde", "manzanas2010-hover", "agebs2010-relleno", "agebs2010-borde", "agebs2010-hover",
       "alcaldias-relleno", "alcaldias-halo", "alcaldias-linea", "alcaldias-hover", "cdmx-limite-halo", "cdmx-limite",
       "entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea", "flujos-flecha", "municipios-relleno", "municipios-linea", "municipios-hover"];
     for (const id of todas) if (mapa.getLayer(id)) mapa.setLayoutProperty(id, "visibility", ids.includes(id) ? "visible" : "none");
@@ -499,7 +510,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       return;
     }
 
-    const id = CAPAS_UNIDAD[e.unidad];
+    // La capa de 2010 es una fuente aparte con la misma estructura de campos.
+    const id = CAPAS_UNIDAD[e.unidad] + (e.anio === 2010 && teselas2010[e.unidad] ? "2010" : "");
     const campo = campoTesela(e);
     const cortes = cortesTesela(e, campo);
     mapa.setPaintProperty(`${id}-relleno`, "fill-color", expresionColor(campo, cortes));
@@ -510,7 +522,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     mapa.setPaintProperty(`${id}-relleno`, "fill-opacity", e.umbral > 0 ? 0.95 : ["interpolate", ["linear"], ["zoom"], 9, 0.55, 12, 0.75, 14, 0.9]);
     visibles([`${id}-relleno`, `${id}-borde`, `${id}-hover`, "alcaldias-halo", "alcaldias-linea", "cdmx-limite-halo", "cdmx-limite"]);
     vistaActual = {unidad: e.unidad, etiqueta, valores: new Map(), cruce: e.cruce, poblacion: e.poblacion, campo};
-    const ent = serie.find((r) => r.anio === 2020 && r.nivel === "entidad" && r.poblacion === pobSerie(e.poblacion, 2020) && r.sexo === (pob.porSexo ? e.sexo : "Total"));
+    const ent = serie.find((r) => r.anio === e.anio && r.nivel === "entidad" && r.poblacion === pobSerie(e.poblacion, e.anio) && r.sexo === (pob.porSexo ? e.sexo : "Total"));
     pintarResumen({e, etiqueta, cortes, ent: cruce ? null : ent, muestra: false, cruce});
   }
 
@@ -533,7 +545,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       : `<div class="globo-titulo">${escapar(etiqueta)}</div><div class="mapa-tarjeta-pista">Pasa el cursor por una ${unidad.singular} para ver su cifra; haz clic para fijarla y comparar hasta cinco</div>`;
     globo.reposo();
     const cifra = "";
-    const fuente = e.unidad === "alcaldia" ? FUENTE_ANIO[e.anio] : "Censo 2020 (INEGI), resultados por AGEB y manzana";
+    const fuente = e.unidad === "alcaldia" ? FUENTE_ANIO[e.anio] : `Censo ${e.anio} (INEGI), resultados por AGEB y manzana`;
     // El universo de la definición es el de la fila (5 años y más antes de
     // 2010; autoadscripción de 5+ en 2000 y de 3+ en 2010).
     let definicion = cruce ? cruce.definicion : pob.definicion;
@@ -542,9 +554,11 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const aviso = e.umbral > 0 && e.unidad === "manzana"
       ? html`<p class="mapa-aviso">Solo las manzanas con ${e.umbral} % o más: son manzanas sueltas, acerca el mapa para verlas o cambia a AGEB.</p>` : "";
     const avisoTodas = e.poblacion === "todas" ? html`<p class="mapa-aviso">Una persona cuenta una sola vez aunque hable una lengua y además se considere indígena.</p>` : "";
+    const avisoHogares = e.poblacion === "hogares" && e.unidad !== "alcaldia" && teselas2010[e.unidad]
+      ? html`<p class="mapa-aviso">La definición de hogar indígena cambió en 2020 (incluye a los ascendientes que hablan la lengua); al comparar con 2010 parte del cambio es de definición.</p>` : "";
     leyendaCaja.replaceChildren(ley);
     resumen.replaceChildren(html`<h2 class="mapa-titulo">${etiqueta}</h2>
-      <p class="mapa-definicion">${definicion} <span class="mapa-fuente">${fuente}.</span></p>${cifra}${aviso}${avisoTodas}`);
+      <p class="mapa-definicion">${definicion} <span class="mapa-fuente">${fuente}.</span></p>${cifra}${aviso}${avisoTodas}${avisoHogares}`);
   }
 
   // ---------------------------------------------------------------- selección
@@ -581,11 +595,11 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         if (top.length) nodos.push(html`<p class="mapa-seleccion-sub">Lenguas más habladas en ${p.alcaldia}, ${e.anio}</p>`, tablaDetalle(top.map((r) => [r.lengua_nombre, entero(r.num)])));
       }
     } else if (capa === "agebs-relleno" || capa === "manzanas-relleno") {
-      const esMza = capa === "manzanas-relleno";
-      nodos.push(html`<h3 class="mapa-seleccion-titulo">${esMza ? (p.colonia ?? "Sin colonia") : `AGEB ${String(p.cve_ageb ?? "").slice(-4)}`}</h3><p class="mapa-seleccion-sub">${p.alcaldia} · Censo 2020</p>`);
+      const esMza = capa.startsWith("manzanas");
+      nodos.push(html`<h3 class="mapa-seleccion-titulo">${esMza ? (p.colonia ?? "Sin colonia") : `AGEB ${String(p.cve_ageb ?? "").slice(-4)}`}</h3><p class="mapa-seleccion-sub">${p.alcaldia} · Censo ${capa.includes("2010") ? 2010 : 2020}</p>`);
       const filas = [["Población", entero(p.POBTOT)]];
       for (const pob of POBLACIONES.filter((x) => x.tesela?.[e.unidad])) filas.push([pob.corto, pct(p[pob.tesela[e.unidad]])]);
-      for (const c of CRUCES.filter((x) => x.tesela[e.unidad])) filas.push([c.etiqueta, c.categorias ? (p[c.texto] ?? "sin grado") : pct(p[c.tesela[e.unidad]])]);
+      if (!capa.includes("2010")) for (const c of CRUCES.filter((x) => x.tesela[e.unidad])) filas.push([c.etiqueta, c.categorias ? (p[c.texto] ?? "sin grado") : pct(p[c.tesela[e.unidad]])]);
       if (esMza && p.pueblo_originario != null) filas.push(["Pueblo originario", String(p.pueblo_originario) === "True" ? "Sí" : "No"]);
       nodos.push(tablaDetalle(filas));
     } else if (capa === "entidades-relleno") {

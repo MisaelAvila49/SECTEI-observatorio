@@ -169,9 +169,13 @@ export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
     ver("lengua", conLengua);
     if (!conLengua) c.lengua.value = "todas";
 
-    // Cruces: solo en teselas, y solo los que existen en esa unidad.
-    const cruces = enAlcaldia ? [] : CRUCES.filter((x) => x.tesela[unidad]);
-    ver("cruce", !enAlcaldia);
+    // Cruces: solo en teselas, solo los que existen en esa unidad y solo en
+    // 2020 (las clasificaciones de CONAPO y CONEVAL y las viviendas con
+    // características no están cargadas para 2010).
+    const en2010 = !enAlcaldia && c.anio.value === "2010";
+    const cruces = enAlcaldia || en2010 ? [] : CRUCES.filter((x) => x.tesela[unidad]);
+    ver("cruce", !enAlcaldia && !en2010);
+    if (en2010) c.cruce.value = "sin";
     c.cruce.rellenar([{clave: "sin", etiqueta: "Sin cruce"}, ...cruces.map((x) => ({clave: x.clave, etiqueta: x.etiqueta, grupo: x.grupo}))], c.cruce.value);
     const cruce = c.cruce.value === "sin" ? null : c.cruce.value;
 
@@ -191,7 +195,7 @@ export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
     const anioPref = anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
     c.anio.rellenar(anios.map((a) => ({clave: String(a), etiqueta: String(a)})), anioPref);
     // Con un solo año el selector se deja a la vista pero deshabilitado, para
-    // que se entienda que no hay otro (por AGEB y manzana solo hay 2020).
+    // que se entienda que no hay otro (por AGEB y manzana hay 2010 y 2020).
     ver("anio", true);
     c.anio.select.disabled = anios.length <= 1;
     c.anio.querySelector("label").textContent = anios.length <= 1 ? "Año (único publicado a este nivel)" : "Año";

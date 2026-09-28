@@ -244,11 +244,22 @@ for (const ruta of []) {
   ok(ageb1.n < ageb0.n && ageb1.color !== ageb0.color, `«Cruzar con» → internet recorta (${ageb0.n} → ${ageb1.n}) y cambia lo que pinta`);
   await pg.selectOption("#mapa-umbral", "0"); await pg.waitForTimeout(4000);
   ok((await medir("agebs-relleno")).n > ageb1.n, "quitar el mínimo devuelve las AGEB");
-  await pg.selectOption("#mapa-cruce", "sin"); await pg.selectOption("#mapa-unidad", "manzana"); await pg.waitForTimeout(7000);
+  // Edición 2010 por AGEB: capa propia, sin cruce, y el año vuelve a 2020.
+  await pg.selectOption("#mapa-cruce", "sin"); await pg.selectOption("#mapa-anio", "2010"); await pg.waitForTimeout(6000);
+  const ageb10 = await medir("agebs2010-relleno");
+  ok(ageb10.n >= 1000 && (await medir("agebs-relleno")).n === 0, `AGEB 2010 pintadas en su capa: ${ageb10.n} marcas, y la de 2020 apagada`);
+  ok(!(await visible('form[data-campo="cruce"]')), "en 2010 por AGEB no se ofrece «Cruzar con»");
+  ok(/Censo 2010/.test(await pg.$eval(".mapa-fuente", (e) => e.textContent)), "la fuente del resumen dice Censo 2010");
+  await pg.selectOption("#mapa-anio", "2020"); await pg.waitForTimeout(4000);
+  ok((await medir("agebs-relleno")).n >= 1000 && (await medir("agebs2010-relleno")).n === 0, "volver a 2020 enciende la capa de 2020 y apaga la de 2010");
+  await pg.selectOption("#mapa-unidad", "manzana"); await pg.waitForTimeout(7000);
   const mza0 = await medir("manzanas-relleno");
   ok(mza0.n >= 500, `manzanas pintadas: ${mza0.n} marcas`);
   await pg.selectOption("#mapa-sexo", "Mujeres"); await pg.waitForTimeout(3000);
   ok((await medir("manzanas-relleno")).color !== mza0.color, "«Sexo» → Mujeres cambia el campo pintado por manzana");
+  await pg.selectOption("#mapa-anio", "2010"); await pg.waitForTimeout(7000);
+  ok((await medir("manzanas2010-relleno")).n >= 500 && (await medir("manzanas-relleno")).n === 0, "manzanas 2010 pintadas en su capa y la de 2020 apagada");
+  await pg.selectOption("#mapa-anio", "2020"); await pg.waitForTimeout(5000);
   await pg.selectOption("#mapa-ambito", "pueblos"); await pg.waitForTimeout(4000);
   ok((await medir("manzanas-relleno")).n < mza0.n, "«Ámbito» → pueblos originarios recorta las manzanas");
 }
