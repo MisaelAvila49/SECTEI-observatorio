@@ -9,9 +9,12 @@
 import {html} from "npm:htl";
 import {ORDEN_NIVEL, buscarUnidad, contenedorDe, nivelDe} from "./geografia.js";
 
-export const SEXOS = [{clave: "Total", etiqueta: "Mujeres y hombres"}, {clave: "Mujeres", etiqueta: "Mujeres"}, {clave: "Hombres", etiqueta: "Hombres"}];
+// "separado" pide una faceta por categoría (comparar dentro de la misma
+// categoría); solo existe en la vista de gráfica.
+export const SEPARADO = "separado";
+export const SEXOS = [{clave: "Total", etiqueta: "Mujeres y hombres"}, {clave: "Mujeres", etiqueta: "Mujeres"}, {clave: "Hombres", etiqueta: "Hombres"}, {clave: SEPARADO, etiqueta: "Por separado (mujeres frente a hombres)"}];
 export const EDADES = [{clave: "Todas", etiqueta: "Todas las edades"}, {clave: "3-14", etiqueta: "3 a 14 años"}, {clave: "15-29", etiqueta: "15 a 29 años"},
-  {clave: "30-59", etiqueta: "30 a 59 años"}, {clave: "60+", etiqueta: "60 años y más"}];
+  {clave: "30-59", etiqueta: "30 a 59 años"}, {clave: "60+", etiqueta: "60 años y más"}, {clave: SEPARADO, etiqueta: "Por separado (un panel por grupo)"}];
 
 function campo({id, etiqueta, opciones, valor, nombre}) {
   const select = document.createElement("select");
@@ -92,12 +95,17 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
   c.entidad.rellenar(catalogo.todos("entidad"));
 
   function leer() {
-    return {...geo, vista: c.vista.value, poblacion: c.poblacion.value, anio: Number(c.anio.value), sexo: c.sexo.value, edad: c.edad.value};
+    return {...geo, vista: c.vista.value, poblacion: c.poblacion.value, anio: c.anio.value === SEPARADO ? SEPARADO : Number(c.anio.value), sexo: c.sexo.value, edad: c.edad.value,
+      anios: anios.slice()};
   }
 
   // Reconcilia opciones y visibilidad a partir de la geografía y los valores.
+  let anios = [];
   function configurar() {
     const tope = fuente.nivelMax(geo);
+    // El mapa no faceta: si se pide el mapa, las categorías vuelven al total.
+    const enMapa = c.vista.value === "mapa";
+    if (enMapa) { if (c.sexo.value === SEPARADO) c.sexo.value = "Total"; if (c.edad.value === SEPARADO) c.edad.value = "Todas"; if (c.anio.value === SEPARADO) c.anio.value = "2020"; }
     const puede = (n) => ORDEN_NIVEL.indexOf(n) <= ORDEN_NIVEL.indexOf(tope);
     const ops = [{clave: "entidad", etiqueta: "Entidades del país"}];
     if (geo.cveEnt && puede("municipio")) ops.push({clave: "municipio", etiqueta: `Municipios de ${catalogo.de("entidad", geo.cveEnt)?.nombre ?? geo.cveEnt}`});
@@ -123,12 +131,12 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
     // Población, año y cortes: lo que la fuente publica para ESTA geografía.
     const pobs = fuente.poblaciones.filter((p) => fuente.poblacionesDe(geo).includes(p.clave));
     c.poblacion.rellenar(pobs, c.poblacion.value);
-    const anios = fuente.aniosDe({geo, poblacion: c.poblacion.value});
-    const pref = anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
-    c.anio.rellenar(anios.map((a) => ({clave: String(a), etiqueta: String(a)})), pref);
+    anios = fuente.aniosDe({geo, poblacion: c.poblacion.value});
+    const pref = (c.anio.value === SEPARADO && anios.length > 1 && !enMapa) ? SEPARADO : anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
+    c.anio.rellenar([...anios.map((a) => ({clave: String(a), etiqueta: String(a)})), ...(anios.length > 1 && !enMapa ? [{clave: SEPARADO, etiqueta: "Comparar todas las ediciones"}] : [])], pref);
     c.anio.select.disabled = anios.length <= 1;
     c.anio.querySelector("label").textContent = anios.length <= 1 ? "Año (único publicado a este nivel)" : "Año";
-    const ctx = {geo, poblacion: c.poblacion.value, anio: Number(c.anio.value)};
+    const ctx = {geo, poblacion: c.poblacion.value, anio: c.anio.value === SEPARADO ? anios.at(-1) : Number(c.anio.value)};
     const conSexo = fuente.sexoDe(ctx);
     ver("sexo", conSexo); if (!conSexo) c.sexo.value = "Total";
     const conEdad = fuente.edadDe(ctx);
@@ -172,7 +180,11 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
     const v = c.ageb.value || null;
     set({cveAgeb: v, nivel: v ? "manzana" : "ageb", seleccion: v});
   });
-  for (const k of ["vista", "poblacion", "anio", "sexo", "edad"]) c[k].select.addEventListener("change", () => { configurar(); avisar(); });
+  for (const k of ["vista", "poblacion", "anio", "sexo", "edad"]) c[k].select.addEventListener("change", () => {
+    // Pedir facetas estando en el mapa devuelve a la gráfica (el mapa no faceta).
+    if (k !== "vista" && c[k].value === SEPARADO && c.vista.value === "mapa") c.vista.value = "grafica";
+    configurar(); avisar();
+  });
   // Un clic en el mapa que baja de nivel deja la vista en mapa; el resto no la toca.
   nodo.verMapa = () => { c.vista.value = "mapa"; };
 

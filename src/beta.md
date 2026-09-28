@@ -19,11 +19,11 @@ solo por alcaldía de la ciudad.
 import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {catalogoGeo, contenedorDe, etiquetaGeo, nivelDe} from "./components/geografia.js";
-import {panelSeccion, SEXOS, EDADES} from "./components/panel-seccion.js";
+import {panelSeccion, SEXOS, EDADES, SEPARADO} from "./components/panel-seccion.js";
 import {mapaNavegador} from "./components/mapa-navegador.js";
-import {cortesPorCuantil} from "./components/mapa.js";
+import {cortesPorCuantil, leyenda, RAMPA_MORADA} from "./components/mapa.js";
 import {figura, explicacion, tablaColumnas} from "./components/graficas.js";
-import {punto, COLOR_SERIE} from "./components/base.js";
+import {punto} from "./components/base.js";
 
 const [nacional, serie, agebs, agebs2010, geoFilas, geoEntidades] = await Promise.all([
   FileAttachment("data/hablantes_nacional_2020.csv").csv({typed: true}),
@@ -151,8 +151,11 @@ let anchoCuerpo = 0;
 new ResizeObserver(([e]) => { const w = Math.round(e.contentRect.width); if (w > 0 && Math.abs(w - anchoCuerpo) > 8) { anchoCuerpo = w; pintar(); } }).observe(cuerpo);
 const anchoGrafica = () => Math.max(320, Math.min(760, anchoCuerpo || 600));
 function pintar() {
-  const v = panel.value;
-  const pob = pobDe(v.poblacion);
+  const v0 = panel.value;
+  const pob = pobDe(v0.poblacion);
+  // Para el mapa y la tarjeta las categorías "por separado" vuelven al total;
+  // la gráfica las reparte en facetas más abajo.
+  const v = {...v0, sexo: v0.sexo === SEPARADO ? "Total" : v0.sexo, edad: v0.edad === SEPARADO ? "Todas" : v0.edad, anio: v0.anio === SEPARADO ? (v0.anios.includes(2020) ? 2020 : v0.anios.at(-1)) : v0.anio};
   const valores = valoresDe(v);
   const sufijo = v.sexo === "Mujeres" ? "_f" : v.sexo === "Hombres" ? "_m" : "";
   const campo = v.nivel === "manzana" ? pob.tesela + sufijo : pob.tesela;
@@ -164,31 +167,68 @@ function pintar() {
   else cortes = cortesFijos(`municipio|${v.poblacion}`, nac.filter((r) => r.nivel === "municipio" && r.poblacion === v.poblacion && r.sexo === "Total" && r.edad === "Todas").map((r) => 100 * r.num / r.den));
   const {nombre, d} = cifraContenedor(v);
   const etiqueta = `${pob.corto}${v.sexo !== "Total" ? `, ${v.sexo.toLowerCase()}` : ""}${v.edad !== "Todas" ? `, ${EDADES.find((e) => e.clave === v.edad).etiqueta.toLowerCase()}` : ""}`;
+  const colorDe = (x) => (x == null ? "#d9d9d9" : RAMPA_MORADA[Math.min(RAMPA_MORADA.length - 1, cortes.filter((c, i) => i > 0 && x >= c).length)]);
+  const formatoLeyenda = (x) => x.toFixed(cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1) + " %";
+  const tituloLeyenda = `${etiqueta} (% de la población de cada ${nivelDe(v.nivel).singular})`;
   const tarjeta = `<div class="globo-titulo">${escapar(nombre)} · ${v.anio}</div><div class="globo-sub">${escapar(etiqueta)}</div>
     <div class="mapa-cifra-valor">${d ? pct(d.valor) : "sin dato"}${d?.ee ? `<span class="mapa-cifra-error"> ± ${(100 * d.ee * 1.96).toFixed(1)}</span>` : ""}</div>
     <div class="mapa-cifra-nota">${d ? `${entero(d.num)} personas · ${escapar(d.cota === "muestra" ? "estimación de la muestra" : d.cota)}` : "la fuente no publica esta celda"}</div>
     <div class="mapa-tarjeta-pista">${fuente.nivelMax(v) === v.nivel ? "Este es el nivel más fino que publica la fuente" : "Clic en una unidad para bajar de nivel; las migas suben"}</div>`;
-  mapa.pintar({v, valores, campo, cortes, titulo: `${etiqueta} (% de la población de cada ${nivelDe(v.nivel).singular})`, formato: (x) => x.toFixed(cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1) + " %", notaSinDato: "Sin dato publicado", tarjeta});
+  mapa.pintar({v, valores, campo, cortes, titulo: tituloLeyenda, formato: formatoLeyenda, notaSinDato: "Sin dato publicado", tarjeta});
 
-  // Gráfica: ranking de las unidades del nivel; por manzana solo el mapa.
-  const filas = [...valores.entries()].filter(([, d]) => d).map(([cve, d]) => ({cve, nombre: d.nombre ?? catalogo.de(v.nivel, cve)?.nombre ?? cve, pct: d.valor, num: d.num, den: d.den, ee: d.ee, cota: d.cota})).sort((a, b) => b.pct - a.pct);
-  const top = filas.slice(0, 25);
+  // Gráfica. Sin "por separado": ranking del nivel, con el color por VALOR y
+  // los mismos cortes que el mapa. Con una categoría por separado: una faceta
+  // por categoría hasta cuatro, y mapa de calor con más (las ocho ediciones).
+  const unidadDe = (cve, d) => d.nombre ?? catalogo.de(v.nivel, cve)?.nombre ?? cve;
+  const aFilas = (m, categoria) => [...m.entries()].filter(([, d]) => d).map(([cve, d]) => ({cve, nombre: unidadDe(cve, d), pct: d.valor, num: d.num, den: d.den, ee: d.ee, cota: d.cota, categoria}));
+  const separado = v0.sexo === SEPARADO ? {campo: "sexo", cats: ["Mujeres", "Hombres"], rotulo: "Sexo"}
+    : v0.edad === SEPARADO ? {campo: "edad", cats: EDADES.filter((e) => e.clave !== "Todas" && e.clave !== SEPARADO).map((e) => e.clave), rotulo: "Grupo de edad"}
+    : v0.anio === SEPARADO ? {campo: "anio", cats: v0.anios, rotulo: "Edición"} : null;
+  const filas = aFilas(valores, null).sort((a, b) => b.pct - a.pct);
   const nodos = [];
+  const titulo = (r) => `${r.nombre}${r.categoria ? ` · ${r.categoria}` : ""}\n${pob.corto}: ${r.pct.toFixed(1)} %\nPersonas: ${entero(r.num)} de ${entero(r.den)}${r.ee ? `\n± ${(196 * r.ee).toFixed(1)} puntos (95 %)` : ""}`;
+  const marcasBarras = (datos, opciones = {}) => [
+    Plot.barX(datos, {x: "pct", y: "nombre", fill: (r) => colorDe(r.pct), ...opciones}),
+    Plot.ruleX(datos.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "nombre", stroke: "currentColor", strokeOpacity: 0.55, ...opciones}),
+    Plot.text(datos, {x: "pct", y: "nombre", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, textAnchor: "start", fontSize: 11.5, ...opciones}),
+    Plot.tip(datos, Plot.pointerY({x: "pct", y: "nombre", maxRadius: Infinity, ...opciones, title: titulo})),
+    Plot.ruleX([0]),
+  ];
+  const subtituloBase = `${v.anio}${v.sexo !== "Total" ? ` · ${v.sexo}` : ""}${v.edad !== "Todas" ? ` · ${EDADES.find((e) => e.clave === v.edad).etiqueta}` : ""}`;
+  const pieBase = `${filas.some((r) => r.cota === "muestra") ? "Censo 2020, cuestionario ampliado (estimación con intervalo)" : "Censo (INEGI)"} · cada barra es una ${nivelDe(v.nivel).singular}; el color sigue los cortes del mapa`;
   if (v.nivel === "manzana") {
     nodos.push(html`<p class="beta-nota">Las manzanas solo se dibujan en el mapa: el navegador no carga la tabla de 66 mil manzanas. Cambia "Ver como" a Mapa y pasa el cursor por una para ver su cifra.</p>`);
-  } else {
-    nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()}`, subtitulo: `${v.anio}${v.sexo !== "Total" ? ` · ${v.sexo}` : ""}${v.edad !== "Todas" ? ` · ${EDADES.find((e) => e.clave === v.edad).etiqueta}` : ""}${filas.length > 25 ? ` · las 25 con mayor proporción de ${filas.length}` : ""}`,
-      pie: `${top.some((r) => r.cota === "muestra") ? "Censo 2020, cuestionario ampliado (estimación con intervalo)" : "Censo (INEGI)"} · cada barra es una ${nivelDe(v.nivel).singular}`},
-      [Plot.plot({
-        marginLeft: 170, marginRight: 60, height: Math.max(220, 22 * top.length + 60), width: anchoGrafica(),
+  } else if (!separado) {
+    const top = filas.slice(0, 25);
+    nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()}`, subtitulo: `${subtituloBase}${filas.length > 25 ? ` · las 25 con mayor proporción de ${filas.length}` : ""}`, pie: pieBase},
+      [leyenda({cortes, titulo: tituloLeyenda, formato: formatoLeyenda, notaSinDato: "Sin dato publicado"}),
+       Plot.plot({marginLeft: 170, marginRight: 60, height: Math.max(220, 22 * top.length + 60), width: anchoGrafica(),
         x: {label: "% de la población", grid: true, domain: [0, Math.max(1, ...top.map((r) => r.pct + (r.ee ? 196 * r.ee : 0))) * 1.08]}, y: {label: null, domain: top.map((r) => r.nombre)},
-        marks: [
-          Plot.barX(top, {x: "pct", y: "nombre", fill: COLOR_SERIE[0], tip: false}),
-          Plot.ruleX(top.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "nombre", stroke: "currentColor", strokeOpacity: 0.6}),
-          Plot.text(top, {x: "pct", y: "nombre", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, textAnchor: "start", fontSize: 12}),
-          Plot.ruleX([0]),
-        ],
-      })]));
+        marks: marcasBarras(top)})]));
+  } else {
+    // Las unidades se ordenan por su valor total y se conservan las mayores.
+    const orden = filas.slice(0, separado.cats.length > 4 ? 30 : 20).map((r) => r.nombre);
+    const etiquetaCat = (c) => separado.campo === "edad" ? EDADES.find((e) => e.clave === c)?.etiqueta ?? c : String(c);
+    const porCat = separado.cats.flatMap((cat) => aFilas(valoresDe({...v, [separado.campo]: cat}), etiquetaCat(cat)).filter((r) => orden.includes(r.nombre)));
+    const cats = separado.cats.map(etiquetaCat);
+    const maxX = Math.max(1, ...porCat.map((r) => r.pct + (r.ee ? 196 * r.ee : 0))) * 1.08;
+    if (cats.length <= 4) {
+      nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()} por ${separado.rotulo.toLowerCase()}`, subtitulo: `${subtituloBase} · un panel por ${separado.rotulo.toLowerCase()}, las ${orden.length} unidades con mayor proporción`, pie: pieBase},
+        [leyenda({cortes, titulo: tituloLeyenda, formato: formatoLeyenda, notaSinDato: "Sin dato publicado"}),
+         Plot.plot({marginLeft: 170, marginRight: 50, height: Math.max(240, 22 * orden.length + 70), width: anchoGrafica(),
+          fx: {label: null, domain: cats}, x: {label: "% de la población", grid: true, domain: [0, maxX]}, y: {label: null, domain: orden},
+          marks: marcasBarras(porCat, {fx: "categoria"})})]));
+    } else {
+      nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()} por ${separado.rotulo.toLowerCase()}`, subtitulo: `Mapa de calor: una columna por ${separado.rotulo.toLowerCase()}, las ${orden.length} unidades con mayor proporción en ${v.anio}`, pie: `${pieBase.split(" · ")[0]} · cada celda es una ${nivelDe(v.nivel).singular} en una edición; el color sigue los cortes del mapa; en blanco, ediciones sin la pregunta`},
+        [leyenda({cortes, titulo: tituloLeyenda, formato: formatoLeyenda, notaSinDato: "Sin dato publicado"}),
+         Plot.plot({marginLeft: 170, marginTop: 30, height: Math.max(240, 22 * orden.length + 60), width: anchoGrafica(), padding: 0.08,
+          x: {label: null, domain: cats, axis: "top"}, y: {label: null, domain: orden},
+          marks: [
+            Plot.cell(porCat, {x: "categoria", y: "nombre", fill: (r) => colorDe(r.pct), inset: 0.5}),
+            Plot.text(porCat, {x: "categoria", y: "nombre", text: (r) => r.pct.toFixed(1), fontSize: 10.5, fill: (r) => (RAMPA_MORADA.indexOf(colorDe(r.pct)) >= 3 ? "white" : "black")}),
+            Plot.tip(porCat, Plot.pointer({x: "categoria", y: "nombre", maxRadius: Infinity, title: titulo})),
+          ]})]));
+    }
   }
   // Serie por alcaldía: solo la ciudad y sus alcaldías tienen 1990 - 2025.
   const c = contenedorDe(v);
@@ -197,15 +237,17 @@ function pintar() {
     const s = ser.filter((r) => r.cve === cveSerie && r.poblacion === pob.serie(r.anio) && r.sexo === v.sexo && r.den > 0).map((r) => ({...r, pct: 100 * r.num / r.den}));
     if (s.length > 1) nodos.push(figura({titulo: `${nombre}: ${pob.corto.toLowerCase()}, ${s[0].anio} - ${s.at(-1).anio}`, subtitulo: "Serie por edición; el universo cambia de 5 a 3 años y más en 2010", pie: "Censos, conteos e intercensales (INEGI) · cada punto es una edición; los huecos, ediciones sin la pregunta"},
       [Plot.plot({height: 240, width: anchoGrafica(), x: {label: null, tickFormat: (d) => String(d)}, y: {label: "%", grid: true, zero: true},
-        marks: [Plot.line(s, {x: "anio", y: "pct", stroke: COLOR_SERIE[0], strokeWidth: 2}), Plot.dot(s, {x: "anio", y: "pct", fill: (r) => (r.cota === "censo" ? COLOR_SERIE[0] : "white"), stroke: COLOR_SERIE[0], r: 4.5}),
-          Plot.text(s, {x: "anio", y: "pct", text: (r) => `${r.pct.toFixed(1)}`, dy: -10, fontSize: 11}), Plot.ruleY([0])]})]));
+        marks: [Plot.line(s, {x: "anio", y: "pct", stroke: RAMPA_MORADA[3], strokeWidth: 2}), Plot.dot(s, {x: "anio", y: "pct", fill: (r) => (r.cota === "censo" ? RAMPA_MORADA[3] : "white"), stroke: RAMPA_MORADA[3], r: 4.5}),
+          Plot.text(s, {x: "anio", y: "pct", text: (r) => `${r.pct.toFixed(1)}`, dy: -10, fontSize: 11}),
+          Plot.tip(s, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, title: (r) => `${r.anio}\n${pob.corto}: ${r.pct.toFixed(1)} %\nPersonas: ${entero(r.num)} de ${entero(r.den)}\n${r.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
+          Plot.ruleY([0])]})]));
   }
   // Vista: análisis por omisión; el mapa la sustituye cuando se pide.
   const enMapa = v.vista === "mapa";
   mapa.hidden = !enMapa;
   cuerpo.hidden = enMapa;
   nodos.push(explicacion(`${pob.definicion} ${v.nivel === "entidad" || v.nivel === "municipio" ? "Las cifras por sexo y las de hogares vienen del conteo censal (ITER); las de grupo de edad y las de autoadscripción, de la muestra del cuestionario ampliado, con su intervalo de 95 %." : "Las cifras por AGEB y manzana vienen del tabulado del Censo; las celdas suprimidas por confidencialidad se dejan sin dato."}`));
-  if (filas.length) nodos.push(tablaColumnas(filas, [
+  if (filas.length && v.nivel !== "manzana") nodos.push(tablaColumnas(filas, [
     {etiqueta: "Unidad", valor: (r) => r.nombre}, {etiqueta: "Clave", valor: (r) => r.cve}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(2)},
     {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Población", num: true, valor: (r) => entero(r.den)},
     {etiqueta: "± 95 %", num: true, valor: (r) => (r.ee ? (196 * r.ee).toFixed(2) : "")}, {etiqueta: "Cota", valor: (r) => r.cota},

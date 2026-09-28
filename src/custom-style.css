@@ -4291,8 +4291,11 @@ body:has(.mapa-pantalla) #observablehq-footer {
    figuras anchas (var(--ancho-desbordado)) la sacaba 300 px fuera de la ventana. */
 #observablehq-main .beta-cuerpo figure[class^="grafica-"], #observablehq-main .beta-cuerpo figure[class*=" grafica-"] { width: auto; max-width: none; margin-left: 0; margin-right: 0; }
 .beta-nota { font-size: 0.9rem; color: var(--theme-foreground-muted); }
-.nav-mapa { position: relative; min-width: 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-subtle); background: var(--surface-1); }
-.nav-lienzo { width: 100%; height: 66vh; min-height: 22rem; }
+/* Sin overflow: hidden, o el globo de MapLibre se recorta en los bordes del lienzo. */
+.nav-mapa { position: relative; min-width: 0; border-radius: 10px; border: 1px solid var(--border-subtle); background: var(--surface-1); }
+.nav-lienzo { width: 100%; height: 66vh; min-height: 22rem; border-radius: 10px 10px 0 0; }
+.nav-lienzo .maplibregl-popup { z-index: 8; }
+.beta-cuerpo .mapa-leyenda { margin: 0 0 0.6rem; }
 .nav-lienzo .maplibregl-canvas-container, .nav-lienzo .maplibregl-canvas { width: 100% !important; height: 100% !important; }
 .nav-migas { position: absolute; z-index: 5; top: 0.75rem; left: 0.75rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; padding: 0.3rem 0.5rem; border-radius: 999px;
   background: color-mix(in srgb, var(--surface-1) 92%, transparent); border: 1px solid var(--border-subtle); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); backdrop-filter: blur(6px); font-size: 0.8rem; }
@@ -4305,10 +4308,11 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .nav-tarjeta, .nav-leyenda { padding: 0.5rem 0.7rem; border-radius: 10px; background: var(--surface-1); border: 1px solid var(--border-subtle); font-size: 0.8rem; }
 .nav-leyenda .mapa-leyenda { margin: 0; }
 .nav-leyenda:empty { display: none; }
-.panel-seccion { position: sticky; top: 0; z-index: 6; }
+/* El panel de sección no es pegajoso: con dos grupos mide 300 px y tapaba el título y las primeras filas de la gráfica al desplazarse. */
+.panel-seccion { position: static; z-index: 6; }
 .panel-seccion .filtro[hidden] { display: none !important; }
 .filtro-caja { position: relative; }
-.filtro-buscador input[type="text"] { width: 100%; box-sizing: border-box; font: inherit; padding: 0.4rem 2rem 0.4rem 0.55rem; border: 1px solid var(--border-subtle); border-radius: 8px; background: var(--surface-1); color: var(--theme-foreground); }
+.filtro-buscador input[type="text"] { width: 100%; box-sizing: border-box; font: inherit; font-size: 0.85rem; padding: 0.4rem 2rem 0.4rem 0.65rem; border: 1px solid var(--border-subtle); border-radius: 8px; background: var(--surface-1); color: var(--theme-foreground); }
 .filtro-buscador input.es-resuelta { font-weight: 600; }
 .filtro-quitar { position: absolute; right: 0.3rem; top: 50%; transform: translateY(-50%); border: 0; background: transparent; font: inherit; font-size: 1.1rem; line-height: 1; cursor: pointer; color: var(--theme-foreground-muted); padding: 0.1rem 0.35rem; border-radius: 6px; }
 .filtro-quitar:hover, .filtro-quitar:focus-visible { color: var(--theme-foreground); background: color-mix(in srgb, var(--theme-foreground) 8%, transparent); }
