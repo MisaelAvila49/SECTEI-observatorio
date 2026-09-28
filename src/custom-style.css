@@ -4324,3 +4324,9 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 .beta-tarjeta { display: inline-block; min-width: 18rem; margin: 0.25rem 0 0.5rem; padding: 0.6rem 0.9rem; border-radius: 10px; border: 1px solid var(--border-subtle); background: var(--surface-1); font-size: 0.8rem; }
 .beta-cuerpo > figure + figure { margin-top: 1.6rem; }
 .beta-cuerpo figure[class^="grafica-"] svg { max-width: 100%; height: auto; }
+/* Todos los controles del panel de sección con la misma caja: alto, letra y relleno. */
+.panel-seccion .filtro select, .panel-seccion .filtro-buscador input[type="text"] { height: 2.4rem; box-sizing: border-box; font-size: 0.85rem; line-height: 1.2; padding: 0 2rem 0 0.65rem; border-radius: var(--radio-1, 8px); }
+.panel-seccion .filtro-buscador input[type="text"] { font-weight: 400; }
+.panel-seccion .filtro-buscador input.es-resuelta { font-weight: 600; }
+.panel-seccion .filtro-etiqueta { font-size: 0.72rem; }
+.beta-tarjeta { display: none; }

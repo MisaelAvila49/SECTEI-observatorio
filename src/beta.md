@@ -92,9 +92,12 @@ function cortesFijos(clave, valores) {
   if (!CORTES.has(clave)) CORTES.set(clave, cortesPorCuantil(valores, 5));
   return CORTES.get(clave);
 }
+// Índice de la tabla nacional: 77 mil filas se consultan por clave, no con
+// un recorrido por cada uno de los 2,478 municipios (eso tardaba segundos).
+const INDICE_NAC = new Map(nac.map((r) => [`${r.nivel}|${r.cve}|${r.poblacion}|${r.sexo}|${r.edad}|${r.cota}`, r]));
 function filaNac(nivel, cve, v) {
   const cota = v.poblacion === "autoads" || v.edad !== "Todas" ? "muestra" : "censo";
-  return nac.find((r) => r.nivel === nivel && r.cve === cve && r.poblacion === v.poblacion && r.sexo === v.sexo && r.edad === v.edad && r.cota === cota) ?? null;
+  return INDICE_NAC.get(`${nivel}|${cve}|${v.poblacion}|${v.sexo}|${v.edad}|${cota}`) ?? null;
 }
 const aValor = (r) => (r && r.den > 0 ? {valor: 100 * r.num / r.den, num: r.num, den: r.den, ee: r.ee, cota: r.cota, nombre: r.nombre} : null);
 const valorAgeb = (r, p) => (r && r[p.tesela] != null ? {valor: r[p.tesela], num: r[p.num], den: r[p.den], cota: "censo", nombre: `AGEB ${r.cve_ageb.slice(-4)} (${r.alcaldia})`} : null);
@@ -158,13 +161,6 @@ new ResizeObserver(([e]) => { const w = Math.round(e.contentRect.width); if (w >
 const anchoGrafica = () => Math.max(320, anchoCuerpo || 900);
 const etiquetaEdad = (c) => EDADES.find((e) => e.clave === c)?.etiqueta ?? c;
 
-function tarjetaDe({nombre, d}, v, pob, pista) {
-  return html`<div class="beta-tarjeta"><div class="globo-titulo">${nombre} · ${v.anio}</div><div class="globo-sub">${pob.corto}${v.sexo !== "Total" ? `, ${v.sexo.toLowerCase()}` : ""}${v.edad !== "Todas" ? `, ${etiquetaEdad(v.edad).toLowerCase()}` : ""}</div>
-    <div class="mapa-cifra-valor">${d ? pct(d.valor) : "sin dato"}${d?.ee ? html`<span class="mapa-cifra-error"> ± ${(100 * d.ee * 1.96).toFixed(1)}</span>` : ""}</div>
-    <div class="mapa-cifra-nota">${d ? `${entero(d.num)} de ${entero(d.den)} personas · ${d.cota === "muestra" ? "estimación de la muestra" : d.cota}` : "la fuente no publica esta celda"}</div>
-    ${pista ? html`<div class="mapa-tarjeta-pista">${pista}</div>` : ""}</div>`;
-}
-
 function pintar() {
   const v0 = panel.value;
   const pob = pobDe(v0.poblacion);
@@ -180,7 +176,7 @@ function pintar() {
   let cortes;
   if (v.nivel === "ageb" || v.nivel === "manzana") cortes = cortesFijos(`ageb|${pob.tesela}`, ag.map((r) => r[pob.tesela]).filter((x) => x != null).map(Number));
   else if (v.nivel === "municipio") cortes = cortesFijos(`municipio|${v.poblacion}`, nac.filter((r) => r.nivel === "municipio" && r.poblacion === v.poblacion && r.sexo === "Total" && r.edad === "Todas").map((r) => 100 * r.num / r.den));
-  else cortes = cortesFijos(`entidad|${v.poblacion}|${v.sexo}|${v.edad}`, [...valoresDe({...v, nivel: "entidad"}).values()].map((d) => d?.valor));
+  else cortes = cortesFijos(`entidad|${v.poblacion}`, nac.filter((r) => r.nivel === "entidad" && r.poblacion === v.poblacion && r.den > 0).map((r) => 100 * r.num / r.den));
   const colorDe = (x) => (x == null ? "#d9d9d9" : RAMPA_MORADA[Math.min(RAMPA_MORADA.length - 1, cortes.filter((c, i) => i > 0 && x >= c).length)]);
   const formatoLeyenda = (x) => x.toFixed(cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1) + " %";
   const etiqueta = `${pob.corto}${v.sexo !== "Total" ? `, ${v.sexo.toLowerCase()}` : ""}${v.edad !== "Todas" ? `, ${etiquetaEdad(v.edad).toLowerCase()}` : ""}`;
@@ -194,7 +190,7 @@ function pintar() {
     <div class="mapa-cifra-valor">${cifra.d ? pct(cifra.d.valor) : "sin dato"}${cifra.d?.ee ? `<span class="mapa-cifra-error"> ± ${(100 * cifra.d.ee * 1.96).toFixed(1)}</span>` : ""}</div>
     <div class="mapa-cifra-nota">${cifra.d ? `${entero(cifra.d.num)} de ${entero(cifra.d.den)} personas · ${escapar(cifra.d.cota === "muestra" ? "estimación de la muestra" : cifra.d.cota)}` : "la fuente no publica esta celda"}</div>
     <div class="mapa-tarjeta-pista">${escapar(pista)}</div>`;
-  mapa.pintar({v, valores, campo, cortes, titulo: tituloLeyenda, formato: formatoLeyenda, notaSinDato: "Sin dato publicado", tarjeta: tarjetaMapa});
+  mapa.pintar({v, valores: v.nivel === "nacional" ? valoresDe({...v, nivel: "entidad"}) : valores, campo, cortes, titulo: tituloLeyenda, formato: formatoLeyenda, notaSinDato: "Sin dato publicado", tarjeta: tarjetaMapa});
 
   // Vista: análisis por omisión; el mapa la sustituye cuando se pide.
   const enMapa = v.vista === "mapa";
@@ -212,7 +208,8 @@ function pintar() {
   if (v0.edad === SEPARADO) dims.push({campo: "edad", cats: EDADES.filter((e) => e.clave !== "Todas" && e.clave !== SEPARADO).map((e) => e.clave), rotulo: "grupo de edad", etiqueta: etiquetaEdad});
   if (v0.anio === SEPARADO) dims.push({campo: "anio", cats: v0.anios, rotulo: "edición", etiqueta: String});
   const filas = aFilas(valores, {}).sort((a, b) => b.pct - a.pct);
-  const nodos = [tarjetaDe(cifra, v, pob, v.seleccion ? "Unidad resaltada; quítala con la × del panel" : null)];
+  const nodos = [];
+  const notaSel = v.seleccion && cifra.d ? ` · resaltado: ${cifra.nombre}, ${pct(cifra.d.valor)}` : "";
   const esSel = (r) => v.seleccion && r.cve === v.seleccion;
   const titulo = (r) => `${r.nombre}${r.categoria ? ` · ${r.categoria}` : ""}\n${pob.corto}: ${r.pct.toFixed(1)} %\nPersonas: ${entero(r.num)} de ${entero(r.den)}${r.ee ? `\n± ${(196 * r.ee).toFixed(1)} puntos (95 %)` : ""}`;
   const marcasBarras = (datos, opciones = {}) => [
@@ -235,15 +232,22 @@ function pintar() {
     // si se pide), que es lo que la muestra permite a este nivel.
     const cats = EDADES.filter((e) => e.clave !== "Todas" && e.clave !== SEPARADO).map((e) => e.clave);
     const sexos = v0.sexo === SEPARADO ? ["Mujeres", "Hombres"] : [v.sexo];
-    const perfil = v0.poblacion === "hogares" ? [] : sexos.flatMap((sx) => cats.map((ed) => { const d = aValor(filaNac("nacional", "00", {...v, sexo: sx, edad: ed})); return d ? {nombre: etiquetaEdad(ed), categoria: sx, pct: d.valor, num: d.num, den: d.den, ee: d.ee, cota: d.cota} : null; }).filter(Boolean));
-    if (perfil.length) nodos.push(figura({titulo: `México: ${pob.corto.toLowerCase()} por grupo de edad`, subtitulo: `${v.anio}${sexos.length > 1 ? " · un panel por sexo" : v.sexo !== "Total" ? ` · ${v.sexo}` : ""}`, pie: "Censo 2020, cuestionario ampliado · cada barra es un grupo de edad; el intervalo es de 95 %"},
+    const perfil = v0.poblacion === "hogares" ? [] : sexos.flatMap((sx) => cats.map((ed) => { const d = aValor(filaNac("nacional", "00", {...v, sexo: sx, edad: ed})); return d ? {nombre: etiquetaEdad(ed), categoria: sx, pct: d.valor, num: d.num, den: d.den, ee: d.ee, cota: d.cota, cve: ed} : null; }).filter(Boolean));
+    const selEdad = v.edad !== "Todas" ? v.edad : null;
+    if (perfil.length) nodos.push(figura({titulo: `México: ${pob.corto.toLowerCase()} por grupo de edad`, subtitulo: `${v.anio}${sexos.length > 1 ? " · un panel por sexo" : v.sexo !== "Total" ? ` · ${v.sexo}` : ""}${selEdad ? ` · resaltado: ${etiquetaEdad(selEdad)}, ${cifra.d ? pct(cifra.d.valor) : ""}` : ""}`, pie: "Censo 2020, cuestionario ampliado · cada barra es un grupo de edad; el intervalo es de 95 %"},
       [Plot.plot({marginLeft: 120, marginRight: 60, height: 200, width: anchoGrafica(), ...(sexos.length > 1 ? {fx: {label: null, domain: sexos}} : {}),
         x: {label: "% de la población", grid: true, domain: [0, Math.max(1, ...perfil.map((r) => r.pct + 196 * (r.ee ?? 0))) * 1.1]}, y: {label: null, domain: perfil.slice(0, cats.length).map((r) => r.nombre)},
-        marks: marcasBarras(perfil, sexos.length > 1 ? {fx: "categoria"} : {})})]));
+        marks: [
+          Plot.barX(perfil, {x: "pct", y: "nombre", fill: (r) => colorDe(r.pct), stroke: (r) => (r.cve === selEdad ? ROJO_IBERO : "none"), strokeWidth: 2, ...(sexos.length > 1 ? {fx: "categoria"} : {})}),
+          Plot.ruleX(perfil.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "nombre", stroke: "currentColor", strokeOpacity: 0.55, ...(sexos.length > 1 ? {fx: "categoria"} : {})}),
+          Plot.text(perfil, {x: "pct", y: "nombre", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, textAnchor: "start", fontSize: 11.5, fontWeight: (r) => (r.cve === selEdad ? "bold" : "normal"), ...(sexos.length > 1 ? {fx: "categoria"} : {})}),
+          Plot.tip(perfil, Plot.pointerY({x: "pct", y: "nombre", maxRadius: Infinity, ...(sexos.length > 1 ? {fx: "categoria"} : {}), title: titulo})),
+          Plot.ruleX([0]),
+        ]})]));
     else nodos.push(html`<p class="beta-nota">Para los hogares indígenas la fuente no publica grupos de edad: la cifra del país es la de la tarjeta.</p>`);
   } else if (!dims.length) {
     const top = conSeleccion(filas, 25);
-    nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()}`, subtitulo: `${subtituloBase}${filas.length > 25 ? ` · las 25 con mayor proporción de ${filas.length}` : ""}`, pie: pieBase},
+    nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${pob.corto.toLowerCase()}`, subtitulo: `${subtituloBase}${filas.length > 25 ? ` · las 25 con mayor proporción de ${filas.length}` : ""}${notaSel}`, pie: pieBase},
       [leyendaChica(), Plot.plot({marginLeft: 200, marginRight: 60, height: Math.max(220, 22 * top.length + 60), width: anchoGrafica(),
         x: {label: "% de la población", grid: true, domain: [0, Math.max(1, ...top.map((r) => r.pct + (r.ee ? 196 * r.ee : 0))) * 1.08]}, y: {label: null, domain: top.map((r) => r.nombre)},
         marks: marcasBarras(top)})]));
@@ -314,7 +318,7 @@ display(html`<section class="beta-seccion">${panel}<div class="beta-vista">${map
 
 Elige el nivel "Municipios" sin entidad: se comparan los 2,469 municipios del
 país; escribe "Oaxaca" en entidad para acotar y "Oaxaca de Juárez" en
-municipio para resaltarlo en el ranking y en la tarjeta. Vuelve a "Entidades
+municipio para resaltarlo en el ranking (contorno rojo y cifra en el subtítulo). Vuelve a "Entidades
 del país": la entidad se suelta sola. Cambia a "AGEB (Ciudad de México)" y
 elige una alcaldía; pon "Por separado" en sexo y en grupo de edad a la vez
 para ver la rejilla de facetas. Con "Ver como: Mapa", haz clic en una entidad,
