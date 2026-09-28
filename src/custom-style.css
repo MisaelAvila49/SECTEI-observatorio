@@ -4330,3 +4330,16 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 .panel-seccion .filtro-buscador input.es-resuelta { font-weight: 600; }
 .panel-seccion .filtro-etiqueta { font-size: 0.72rem; }
 .beta-tarjeta { display: none; }
+/* Panel de sección: los grupos van en fila, cada uno en su caja con rótulo,
+   con el mismo lenguaje visual que el panel del mapa. */
+/* `.panel-filtros:has(> .panel-grupo)` pone el panel en columna (es el del
+   mapa, en un lateral); aquí va en fila y con la misma especificidad no basta. */
+#observablehq-main .panel-filtros.panel-seccion { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.6rem; align-items: stretch; padding: 0.6rem; }
+.panel-seccion .panel-grupo { flex: 1 1 14rem; width: auto; margin: 0; padding: 0.5rem 0.7rem 0.65rem; border: 1px solid var(--border-subtle); border-radius: 10px; background: var(--surface-1); }
+.panel-seccion .panel-grupo + .panel-grupo { border-top: 1px solid var(--border-subtle); padding-top: 0.5rem; margin-top: 0; }
+.panel-seccion .panel-grupo-unidad { border-left: 3px solid var(--brand-red); flex-basis: 20rem; }
+.panel-seccion .panel-grupo-unidad select { font-weight: 600; }
+.panel-seccion .panel-grupo-donde { flex-basis: 24rem; }
+.panel-seccion .panel-grupo-titulo { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.45rem; padding: 0; }
+.panel-seccion .panel-campos { grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 0.6rem 0.8rem; }
+.panel-seccion .panel-grupo[hidden] { display: none; }

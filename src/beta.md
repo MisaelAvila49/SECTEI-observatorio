@@ -71,7 +71,7 @@ const POBLACIONES = [
    definicion: "Personas de 3 años y más que hablan una lengua indígena o se consideran indígenas; una persona cuenta una sola vez. Los hogares indígenas no entran en esta unión porque la muestra no trae esa marca por persona. Estimación de la muestra del Censo."},
   {clave: "ambas", etiqueta: "Hablan y se consideran indígenas", corto: "Hablan y se consideran indígenas", tesela: null, num: null, den: null, serie: () => "ambas",
    definicion: "Personas de 3 años y más que hablan una lengua indígena y además se consideran indígenas, sobre la población de 3 años y más. Estimación de la muestra del Censo."},
-  {clave: "inpi", etiqueta: "Población indígena según el INPI", corto: "Población indígena (INPI)", tesela: null, num: null, den: null, serie: null,
+  {clave: "inpi", etiqueta: "Población indígena (INPI)", corto: "Población indígena (INPI)", tesela: null, num: null, den: null, serie: null,
    definicion: "Definición del INPI: personas en hogares donde la jefa o el jefe, su cónyuge o alguno de sus ascendientes habla lengua indígena, más los hablantes que no viven en esos hogares, sobre la población total de todas las edades. No usa la autoadscripción. Con ella el INPI clasifica a cada municipio por presencia indígena."},
 ];
 const MUESTRA = new Set(["autoads", "todas", "ambas"]);
@@ -197,6 +197,7 @@ function pintar() {
   // del nivel en todas las ediciones, para que el tono no cambie al filtrar.
   let cortes;
   if (v.nivel === "ageb" || v.nivel === "manzana") cortes = cortesFijos(`ageb|${pob.tesela}`, ag.map((r) => r[pob.tesela]).filter((x) => x != null).map(Number));
+  else if (v.poblacion === "inpi") cortes = cortesFijos(`${nivelCapa}|inpi`, inpi.filter((r) => r.nivel === nivelCapa && r.pct != null).map((r) => Number(r.pct)));
   else if (v.nivel === "municipio") cortes = cortesFijos(`municipio|${v.poblacion}`, nac.filter((r) => r.nivel === "municipio" && r.poblacion === v.poblacion && r.sexo === "Total" && r.edad === "Todas").map((r) => 100 * r.num / r.den));
   else cortes = cortesFijos(`entidad|${v.poblacion}`, nac.filter((r) => r.nivel === "entidad" && r.poblacion === v.poblacion && r.den > 0).map((r) => 100 * r.num / r.den));
   const colorDe = (x) => (x == null ? "#d9d9d9" : RAMPA_MORADA[Math.min(RAMPA_MORADA.length - 1, cortes.filter((c, i) => i > 0 && x >= c).length)]);

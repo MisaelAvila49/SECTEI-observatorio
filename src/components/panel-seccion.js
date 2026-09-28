@@ -85,9 +85,15 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
     sexo: campo({id: `${id}-sexo`, nombre: "sexo", etiqueta: "Sexo", opciones: SEXOS, valor: "Total"}),
     edad: campo({id: `${id}-edad`, nombre: "edad", etiqueta: "Grupo de edad", opciones: EDADES, valor: "Todas"}),
   };
+  // Cuatro grupos rotulados, de lo grande a lo específico, como en el mapa:
+  // el nivel manda y va primero con su acento.
   const nodo = html`<div class="panel-filtros panel-seccion">
-    <fieldset class="panel-grupo"><legend class="panel-grupo-titulo">Qué se compara y dónde</legend>
-      <div class="panel-campos">${c.vista}${c.nivel}${c.entidad}${c.municipio}${c.ageb}${c.poblacion}${c.anio}</div></fieldset>
+    <fieldset class="panel-grupo panel-grupo-unidad"><legend class="panel-grupo-titulo">Nivel y vista</legend>
+      <div class="panel-campos">${c.nivel}${c.vista}</div></fieldset>
+    <fieldset class="panel-grupo panel-grupo-donde"><legend class="panel-grupo-titulo">Dónde</legend>
+      <div class="panel-campos">${c.entidad}${c.municipio}${c.ageb}</div></fieldset>
+    <fieldset class="panel-grupo"><legend class="panel-grupo-titulo">Qué se cuenta</legend>
+      <div class="panel-campos">${c.poblacion}${c.anio}</div></fieldset>
     <fieldset class="panel-grupo"><legend class="panel-grupo-titulo">Entre quiénes</legend>
       <div class="panel-campos">${c.sexo}${c.edad}</div></fieldset>
   </div>`;
