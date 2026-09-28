@@ -61,6 +61,12 @@ for upc in 702825585297 702825585303 702825585310 702825585327 702825585334 7028
 done
 
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/iter_09_2010_csv.zip"       "$CRUDO/iter/iter_09_2010_csv.zip" "ITER 2010, Distrito Federal (0.1 MB)"
+# INPI, Indicadores socioeconómicos de los pueblos indígenas y afromexicano 2020:
+# autoadscripción (muestra censal) por entidad y municipio, y población indígena
+# en hogares según la metodología del INPI con la tipología municipal.
+for f in 1-poblacion-indigena-autoadscrita-nacional-y-por-entidad-federativa-muestra-censal-2020          2-poblacion-indigena-autoadscrita-por-municipio-muestra-censal-2020-2-1-          3-poblacion-indigena-en-hogares-y-poblacion-afromexicana-nacional-y-por-entidad-federativa-censo-2020          4-poblacion-indigena-en-hogares-y-poblacion-afromexicana-por-municipio-censo-2020; do
+  bajar "https://www.inpi.gob.mx/indicadores2020/$f.xlsx" "$CRUDO/inpi/$f.xlsx" "INPI 2020, $f"
+done
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/iter/iter_00_cpv2020_csv.zip"       "$CRUDO/iter/iter_00_cpv2020_csv.zip" "ITER 2020 nacional, todos los municipios (35 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/iter/iter_09_cpv2020_csv.zip"       "$CRUDO/iter/iter_09_cpv2020_csv.zip" "ITER 2020, Ciudad de Mexico (0.2 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/ageb_y_manzana/resageburb_09_2010_csv.zip"       "$CRUDO/resageburb2010/resageburb_09_2010_csv.zip" "Resultados por AGEB y manzana 2010, Distrito Federal (9.8 MB)"

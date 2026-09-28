@@ -43,6 +43,11 @@ enigh,hog_tv_paga_2024,37.4134,"% de hogares (con al menos una persona de 6+), p
 enigh,pers_internet_2020,57.0131,% de personas de 6+ en hogares con internet
 enigh,pers_internet_2022,63.9506,% de personas de 6+ en hogares con internet
 enigh,pers_internet_2024,73.5993,% de personas de 6+ en hogares con internet
+inpi,autoads_mun_dentro_ic_2020,68.2095,% de municipios cuya autoadscripción propia cae dentro del intervalo de 90 % del INPI
+inpi,autoads_mun_mediana_dif_2020,0.0259,mediana de la diferencia (puntos) entre la autoadscripción municipal propia y la del INPI
+inpi,municipios_40_2020,614.0000,"municipios con 40 % y más de población indígena, tipología INPI 2020"
+inpi,pct_pi_cdmx_2020,3.2890,"% de población indígena según el INPI en la CDMX, 2020"
+inpi,pct_pi_nacional_2020,9.5065,"% de población indígena según el INPI en el país, 2020"
 lenguas,hli_nacidos_fuera_1990,83.8290,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,hli_nacidos_fuera_2000,76.3610,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,hli_nacidos_fuera_2010,86.6707,% de hablantes de la CDMX nacidos fuera de la ciudad
