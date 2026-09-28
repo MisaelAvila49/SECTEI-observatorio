@@ -58,6 +58,11 @@ lenguas,nahuatl_2015,38549.0000,"hablantes de náhuatl en la CDMX, muestra 2015"
 lenguas,nahuatl_2020,38338.0000,"hablantes de náhuatl en la CDMX, muestra 2020"
 lenguas,nahuatl_2025,38303.0000,"hablantes de náhuatl en la CDMX, muestra 2025"
 manzana,manzanas_2010_con_geometria,63239.0000,manzanas 2010 con polígono y dato
+nacional,desv_muestra_hli_cdmx_2020,13.6217,"% de desviación de la muestra frente al ITER, hablantes 3+, CDMX"
+nacional,desv_muestra_hli_nacional_2020,2.1434,"% de desviación de la muestra frente al ITER, hablantes 3+, país"
+nacional,hablantes3_nacional_2020,7364645.0000,"hablantes de 3 años y más en el país, ITER 2020"
+nacional,hablantes3_nacional_2020_muestra,7522496.0000,"hablantes de 3 años y más en el país, muestra del Censo 2020"
+nacional,pct_autoads_nacional_2020,19.4072,"% de población de 3 años y más que se considera indígena en el país, muestra del Censo 2020"
 serie,ambas_2000,40575.0000,personas que hablan lengua indígena y además se consideran indígenas
 serie,ambas_2010,109047.0000,personas que hablan lengua indígena y además se consideran indígenas
 serie,ambas_2015,78523.0000,personas que hablan lengua indígena y además se consideran indígenas

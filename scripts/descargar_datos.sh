@@ -61,6 +61,7 @@ for upc in 702825585297 702825585303 702825585310 702825585327 702825585334 7028
 done
 
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/iter_09_2010_csv.zip"       "$CRUDO/iter/iter_09_2010_csv.zip" "ITER 2010, Distrito Federal (0.1 MB)"
+bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/iter/iter_00_cpv2020_csv.zip"       "$CRUDO/iter/iter_00_cpv2020_csv.zip" "ITER 2020 nacional, todos los municipios (35 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/iter/iter_09_cpv2020_csv.zip"       "$CRUDO/iter/iter_09_cpv2020_csv.zip" "ITER 2020, Ciudad de Mexico (0.2 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/ageb_y_manzana/resageburb_09_2010_csv.zip"       "$CRUDO/resageburb2010/resageburb_09_2010_csv.zip" "Resultados por AGEB y manzana 2010, Distrito Federal (9.8 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/intercensal/2015/microdatos/eic2015_09_csv.zip"       "$CRUDO/eic2015/eic2015_09_csv.zip" "Encuesta Intercensal 2015, microdatos de la Ciudad de Mexico (23 MB)"

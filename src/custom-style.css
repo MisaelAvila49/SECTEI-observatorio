@@ -4279,3 +4279,38 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .mapa-variantes-lista li.es-destacada { background: color-mix(in srgb, var(--brand-red) 8%, transparent); border-radius: 6px; padding-left: 0.3rem; padding-right: 0.3rem; }
 .mapa-variantes-lista li.es-tenue { opacity: 0.45; }
 
+
+/* ---------------------------------------------------------------- beta */
+/* Sección de la beta de filtros: panel arriba (pegajoso), mapa navegador y
+   gráfica en dos columnas. Ver docs/arquitectura-filtros.md. */
+.beta-seccion { margin: 1rem 0 2rem; }
+.beta-rejilla { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1rem; align-items: start; margin-top: 1rem; }
+@media (max-width: 1023px) { .beta-rejilla { grid-template-columns: minmax(0, 1fr); } }
+.beta-cuerpo { min-width: 0; }
+/* Dentro de la beta la figura NO desborda la columna: la regla general de
+   figuras anchas (var(--ancho-desbordado)) la sacaba 300 px fuera de la ventana. */
+#observablehq-main .beta-cuerpo figure[class^="grafica-"], #observablehq-main .beta-cuerpo figure[class*=" grafica-"] { width: auto; max-width: none; margin-left: 0; margin-right: 0; }
+.beta-nota { font-size: 0.9rem; color: var(--theme-foreground-muted); }
+.nav-mapa { position: relative; min-width: 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-subtle); background: var(--surface-1); }
+.nav-lienzo { width: 100%; height: 62vh; min-height: 22rem; }
+.nav-lienzo .maplibregl-canvas-container, .nav-lienzo .maplibregl-canvas { width: 100% !important; height: 100% !important; }
+.nav-migas { position: absolute; z-index: 5; top: 0.75rem; left: 0.75rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; padding: 0.3rem 0.5rem; border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-1) 92%, transparent); border: 1px solid var(--border-subtle); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); backdrop-filter: blur(6px); font-size: 0.8rem; }
+.nav-miga { border: 0; background: transparent; color: var(--brand-red-dark, #8b0d15); font: inherit; font-weight: 600; padding: 0.15rem 0.35rem; border-radius: 6px; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.nav-miga:hover, .nav-miga:focus-visible { background: color-mix(in srgb, var(--brand-red-dark, #8b0d15) 10%, transparent); }
+.nav-miga[disabled] { color: var(--theme-foreground); text-decoration: none; cursor: default; }
+.nav-miga-sep { color: var(--theme-foreground-muted); }
+.nav-pie { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.75rem; padding: 0.75rem; border-top: 1px solid var(--border-subtle); }
+@media (max-width: 639px) { .nav-pie { grid-template-columns: minmax(0, 1fr); } }
+.nav-tarjeta, .nav-leyenda { padding: 0.5rem 0.7rem; border-radius: 10px; background: var(--surface-1); border: 1px solid var(--border-subtle); font-size: 0.8rem; }
+.nav-leyenda .mapa-leyenda { margin: 0; }
+.nav-leyenda:empty { display: none; }
+.panel-seccion { position: sticky; top: 0; z-index: 6; }
+.panel-seccion .filtro[hidden] { display: none !important; }
+.filtro-buscador input[type="search"] { width: 100%; font: inherit; padding: 0.4rem 0.55rem; border: 1px solid var(--border-subtle); border-radius: 8px; background: var(--surface-1); color: var(--theme-foreground); }
+.filtro-chip { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.35rem; padding: 0.15rem 0.35rem 0.15rem 0.6rem; border-radius: 999px; background: color-mix(in srgb, var(--brand-red-dark, #8b0d15) 10%, transparent); font-size: 0.8rem; }
+.filtro-chip-quitar { border: 0; background: transparent; font: inherit; font-size: 1rem; line-height: 1; cursor: pointer; color: inherit; padding: 0 0.2rem; }
+.filtro-aviso { display: block; margin-top: 0.3rem; font-size: 0.78rem; color: var(--brand-red-dark, #8b0d15); }
+/* La beta usa el ancho completo: el mapa y la gráfica caben lado a lado. */
+body:has(.beta-seccion) #observablehq-center, body:has(.beta-seccion) #observablehq-main { max-width: none; }
+body:has(.beta-seccion) #observablehq-main > * { max-width: none; }

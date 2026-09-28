@@ -82,6 +82,7 @@ scripts/descargar_datos.sh            # insumos públicos del INEGI y del gobier
 python scripts/construir_manzanas.py  # une censo y cartografía, reparte manzanas entre colonias, cruce por bandas
 python scripts/construir_agebs.py     # AGEB con marginación (CONAPO) y rezago social (CONEVAL); coteja y anota en calculado.csv
 python scripts/construir_2010.py      # edición 2010 por AGEB y manzana (tabulado 2010 + cartografía de cierre del Censo 2010)
+python scripts/loaders/nacional_2020.py  # entidades y municipios del país (ITER 2020 + muestra por sexo y edad), tabla de la beta /beta
 python scripts/construir_contornos.py # límite del estado, alcaldías y máscara del exterior
 python scripts/construir_colonias_resumen.py  # src/data/colonias_resumen.csv (se versiona)
 scripts/generar_teselas.sh            # en WSL: produce los .pmtiles con tippecanoe

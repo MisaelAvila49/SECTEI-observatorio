@@ -38,6 +38,10 @@ const PAGINAS = [
   {ruta: "/mapa", espera: ".mapa-leyenda-paso", esperado: [
     {nombre: "escalones de la leyenda del mapa", sel: ".mapa-leyenda-paso", minimo: 4},
   ]},
+  {ruta: "/beta", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [
+    {nombre: "escalones de la leyenda del navegador", sel: ".nav-leyenda .mapa-leyenda-paso", minimo: 4},
+    {nombre: "barras del ranking de entidades", sel: '.beta-cuerpo g[aria-label="bar"] rect', minimo: 20},
+  ]},
   {ruta: "/index", esperado: [
     {nombre: "puntos y barras de la portada", sel: 'g[aria-label="dot"] circle, g[aria-label="rect"] rect', minimo: 30},
     {nombre: "líneas de la serie", sel: 'g[aria-label="line"] path', minimo: 2},
@@ -138,7 +142,8 @@ for (const modo of ["claro", "oscuro"]) {
     });
 
     const marcas = conteo.celdas + conteo.puntos + conteo.lineas + conteo.geo + conteo.enlaces;
-    const ok = pag.esperado.length === 0 || marcas > 0;
+    // Las páginas de mapa dibujan en canvas: su comprobación es la de `esperado`.
+    const ok = pag.esperado.length === 0 || marcas > 0 || Boolean(pag.espera);
     console.log(
       `${ok ? "ok " : "FALLA"} ${pag.ruta.padEnd(24)} svg=${String(conteo.svg).padStart(3)} ` +
       `celdas=${String(conteo.celdas).padStart(4)} puntos=${String(conteo.puntos).padStart(4)} ` +

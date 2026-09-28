@@ -277,6 +277,10 @@ cuatro tramos de los cargadores y el decil se calcula con el ingreso deflactado.
 
 ## 5. Orden de trabajo
 
+La beta de la arquitectura de filtros está en la página `/beta` del sitio (ver
+[arquitectura-filtros.md](arquitectura-filtros.md), §9); lo que sigue se
+construye sobre esas piezas.
+
 Primero se completan los filtros del mapa que ya son posibles (sexo por AGEB,
 ámbito agregado por alcaldía, grupo de edad por alcaldía desde las muestras), que
 son cambios acotados sobre código existente. Después se explotan las muestras

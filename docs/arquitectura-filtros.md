@@ -187,6 +187,17 @@ tarjeta con su unidad y su universo.
 
 ## 9. Orden de trabajo
 
+Estado al 27 de septiembre: la beta está construida en la página `/beta` con
+las cuatro piezas (`geografia.js`, `panel-seccion.js`, `mapa-navegador.js` y la
+sección armada en la propia página) y datos reales: el ITER nacional 2020 y la
+muestra del cuestionario ampliado por entidad y municipio (sexo y grupo de
+edad), la serie 1990 - 2025 por alcaldía y las teselas de AGEB y manzana de
+2010 y 2020. Se comprobó con el navegador que el clic baja de entidad a
+municipio, de alcaldía a AGEB y de AGEB a manzana, que las migas suben, que
+los buscadores resuelven sin acentos y avisan, y que el año, el sexo y la edad
+aparecen solo donde su fuente los publica. La tarjeta y la leyenda van debajo
+del lienzo, no encima: un panel flotante tapaba unidades y se tragaba el clic.
+
 Primero `geografia.js` y `panelSeccion.js` con sus pruebas, porque todo lo demás
 depende de ellos. Después `mapaNavegador.js` sobre el mapa unificado, añadiendo
 el clic para bajar y la miga de pan sin quitar nada de lo que hoy funciona; esa

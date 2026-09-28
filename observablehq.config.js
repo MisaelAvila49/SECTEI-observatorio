@@ -40,6 +40,7 @@ const DESCRIPCIONES = {
   "/encuestas/endutih/actividades": "Para qué usa internet la población indígena que se conecta: estudiar, trabajar, trámites, dinero y entretenimiento, según la ENDUTIH 2025.",
   "/encuestas/endutih/barreras": "Quién no usa internet, computadora ni celular y qué motivo declara, por condición indígena, según la ENDUTIH 2025.",
   "/metodologia/paso-a-paso": "Cómo se construyó el tablero paso a paso: descargas, cálculos, cotejos y lo que ninguna fuente permite saber.",
+  "/beta": "Beta de la arquitectura de filtros del libro: un panel por sección, mapa que baja de nivel con un clic (entidades, municipios, AGEB y manzanas) y gráfica que sigue la selección.",
   "/mapa": "Mapa de la población indígena de la Ciudad de México por alcaldía, AGEB y manzana: hablantes, hogares indígenas y autoadscripción de 2010 a 2025, con la lengua, sus variantes probables y el origen de quienes la hablan.",
   "/mapa-manzanas": "Mapa por manzana de la población en hogares indígenas de la Ciudad de México, con el Censo 2020, agregable a colonia y con los pueblos originarios señalados.",
   "/mapa-agebs": "Población en hogares indígenas, conectividad de las viviendas, marginación urbana y rezago social por AGEB de la Ciudad de México, con un umbral de presencia indígena a elección.",
@@ -73,6 +74,7 @@ export default {
     // El mapa por manzana es la primera etapa del proyecto y la puerta de
     // entrada: va primero, fuera de los grupos por encuesta.
     {name: "Mapa", path: "/mapa"},
+    {name: "Beta de filtros", path: "/beta"},
     {
       name: "Metodología",
       open: true,
