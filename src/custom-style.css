@@ -4324,22 +4324,21 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 .beta-tarjeta { display: inline-block; min-width: 18rem; margin: 0.25rem 0 0.5rem; padding: 0.6rem 0.9rem; border-radius: 10px; border: 1px solid var(--border-subtle); background: var(--surface-1); font-size: 0.8rem; }
 .beta-cuerpo > figure + figure { margin-top: 1.6rem; }
 .beta-cuerpo figure[class^="grafica-"] svg { max-width: 100%; height: auto; }
-/* Todos los controles del panel de sección con la misma caja: alto, letra y relleno. */
-.panel-seccion .filtro select, .panel-seccion .filtro-buscador input[type="text"] { height: 2.4rem; box-sizing: border-box; font-size: 0.85rem; line-height: 1.2; padding: 0 2rem 0 0.65rem; border-radius: var(--radio-1, 8px); }
-.panel-seccion .filtro-buscador input[type="text"] { font-weight: 400; }
-.panel-seccion .filtro-buscador input.es-resuelta { font-weight: 600; }
-.panel-seccion .filtro-etiqueta { font-size: 0.72rem; }
 .beta-tarjeta { display: none; }
-/* Panel de sección: los grupos van en fila, cada uno en su caja con rótulo,
-   con el mismo lenguaje visual que el panel del mapa. */
-/* `.panel-filtros:has(> .panel-grupo)` pone el panel en columna (es el del
-   mapa, en un lateral); aquí va en fila y con la misma especificidad no basta. */
-#observablehq-main .panel-filtros.panel-seccion { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.6rem; align-items: stretch; padding: 0.6rem; }
-.panel-seccion .panel-grupo { flex: 1 1 14rem; width: auto; margin: 0; padding: 0.5rem 0.7rem 0.65rem; border: 1px solid var(--border-subtle); border-radius: 10px; background: var(--surface-1); }
-.panel-seccion .panel-grupo + .panel-grupo { border-top: 1px solid var(--border-subtle); padding-top: 0.5rem; margin-top: 0; }
-.panel-seccion .panel-grupo-unidad { border-left: 3px solid var(--brand-red); flex-basis: 20rem; }
+/* Panel de sección: una sola tarjeta; los grupos son segmentos en fila,
+   separados por una línea vertical, con su rótulo pequeño encima y todos los
+   controles alineados arriba. Sin cajas dentro de la caja. */
+#observablehq-main .panel-filtros.panel-seccion { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.5rem 0; align-items: flex-start; padding: 0.7rem 0.9rem 0.8rem; }
+.panel-seccion .panel-grupo { flex: 0 1 auto; width: auto; margin: 0; padding: 0 1.1rem 0 0.9rem; border: 0; border-left: 1px solid var(--border-subtle); border-radius: 0; background: transparent; }
+.panel-seccion .panel-grupo + .panel-grupo { border-top: 0; padding-top: 0; margin-top: 0; }
+.panel-seccion .panel-grupo:first-child { border-left: 3px solid var(--brand-red); padding-left: 0.8rem; }
 .panel-seccion .panel-grupo-unidad select { font-weight: 600; }
-.panel-seccion .panel-grupo-donde { flex-basis: 24rem; }
-.panel-seccion .panel-grupo-titulo { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.45rem; padding: 0; }
-.panel-seccion .panel-campos { grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 0.6rem 0.8rem; }
+.panel-seccion .panel-grupo-titulo { display: block; font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.4rem; padding: 0; float: none; }
+.panel-seccion .panel-campos { display: flex; flex-wrap: wrap; gap: 0.5rem 0.7rem; align-items: flex-start; }
+.panel-seccion .filtro { width: 12.5rem; }
+.panel-seccion .filtro-etiqueta { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .panel-seccion .panel-grupo[hidden] { display: none; }
+.panel-seccion .filtro select, .panel-seccion .filtro-buscador input[type="text"] { height: 2.4rem; box-sizing: border-box; font-size: 0.85rem; line-height: 1.2; padding: 0 2rem 0 0.65rem; border-radius: var(--radio-1, 8px); width: 100%; }
+.panel-seccion select optgroup { font-style: normal; font-weight: 700; color: var(--text-muted); }
+.panel-seccion .filtro[data-campo="poblacion"] { width: 17rem; }
+.panel-seccion .filtro[data-campo="anio"] { width: 13.5rem; }

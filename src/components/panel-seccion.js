@@ -13,9 +13,13 @@ import {NIVELES, ORDEN_NIVEL, buscarUnidad, nivelDe} from "./geografia.js";
 // "separado" pide una faceta por categoría (comparar dentro de la misma
 // categoría); solo existe en la vista de gráfica.
 export const SEPARADO = "separado";
-export const SEXOS = [{clave: "Total", etiqueta: "Mujeres y hombres"}, {clave: "Mujeres", etiqueta: "Mujeres"}, {clave: "Hombres", etiqueta: "Hombres"}, {clave: SEPARADO, etiqueta: "Por separado (mujeres frente a hombres)"}];
-export const EDADES = [{clave: "Todas", etiqueta: "Todas las edades"}, {clave: "3-14", etiqueta: "3 a 14 años"}, {clave: "15-29", etiqueta: "15 a 29 años"},
-  {clave: "30-59", etiqueta: "30 a 59 años"}, {clave: "60+", etiqueta: "60 años y más"}, {clave: SEPARADO, etiqueta: "Por separado (un panel por grupo)"}];
+export const CONJUNTO = "En conjunto", UNA_A_UNA = "Una a una";
+export const SEXOS = [{clave: "Total", etiqueta: "Mujeres y hombres", grupo: CONJUNTO}, {clave: SEPARADO, etiqueta: "Por separado (comparar)", grupo: CONJUNTO},
+  {clave: "Mujeres", etiqueta: "Mujeres", grupo: UNA_A_UNA}, {clave: "Hombres", etiqueta: "Hombres", grupo: UNA_A_UNA}];
+export const EDADES = [{clave: "Todas", etiqueta: "Todas las edades", grupo: CONJUNTO}, {clave: SEPARADO, etiqueta: "Por separado (comparar)", grupo: CONJUNTO},
+  {clave: "3-14", etiqueta: "3 a 14 años", grupo: UNA_A_UNA}, {clave: "15-29", etiqueta: "15 a 29 años", grupo: UNA_A_UNA},
+  {clave: "30-59", etiqueta: "30 a 59 años", grupo: UNA_A_UNA}, {clave: "60+", etiqueta: "60 años y más", grupo: UNA_A_UNA}];
+const GRUPO_NIVEL = {nacional: "País", entidad: "País", municipio: "País", ageb: "Ciudad de México", manzana: "Ciudad de México"};
 
 function campo({id, etiqueta, opciones, valor, nombre}) {
   const select = document.createElement("select");
@@ -28,8 +32,17 @@ function campo({id, etiqueta, opciones, valor, nombre}) {
   rotulo.textContent = etiqueta;
   rotulo.htmlFor = id;
   form.append(rotulo, select);
+  // Las opciones con `grupo` van en <optgroup>: separan "el conjunto" (total,
+  // por separado) de "una a una" para que la lista no se lea amontonada.
   form.rellenar = (ops, v) => {
-    select.replaceChildren(...ops.map((o) => { const op = document.createElement("option"); op.value = o.clave; op.textContent = o.etiqueta; return op; }));
+    select.replaceChildren();
+    let padre = select;
+    for (const o of ops) {
+      if (o.grupo) {
+        if (padre === select || padre.label !== o.grupo) { padre = document.createElement("optgroup"); padre.label = o.grupo; select.append(padre); }
+      } else padre = select;
+      const op = document.createElement("option"); op.value = o.clave; op.textContent = o.etiqueta; padre.append(op);
+    }
     select.value = ops.some((o) => o.clave === v) ? v : (ops[0]?.clave ?? "");
   };
   form.rellenar(opciones, valor);
@@ -76,7 +89,7 @@ function buscador({id, etiqueta, nombre, marcador}) {
 export function panelSeccion({fuente, catalogo, id = "sec"}) {
   const c = {
     vista: campo({id: `${id}-vista`, nombre: "vista", etiqueta: "Ver como", opciones: [{clave: "grafica", etiqueta: "Gráfica"}, {clave: "mapa", etiqueta: "Mapa"}], valor: "grafica"}),
-    nivel: campo({id: `${id}-nivel`, nombre: "nivel", etiqueta: "Nivel", opciones: NIVELES.map((n) => ({clave: n.clave, etiqueta: n.etiqueta})), valor: "entidad"}),
+    nivel: campo({id: `${id}-nivel`, nombre: "nivel", etiqueta: "Nivel", opciones: NIVELES.map((n) => ({clave: n.clave, etiqueta: n.etiqueta.replace(" (Ciudad de México)", ""), grupo: GRUPO_NIVEL[n.clave]})), valor: "entidad"}),
     entidad: buscador({id: `${id}-entidad`, nombre: "entidad", etiqueta: "Entidad", marcador: "Todas las entidades"}),
     municipio: buscador({id: `${id}-municipio`, nombre: "municipio", etiqueta: "Municipio", marcador: "Todos los municipios"}),
     ageb: campo({id: `${id}-ageb`, nombre: "ageb", etiqueta: "AGEB", opciones: [{clave: "", etiqueta: "Todas las AGEB"}], valor: ""}),
@@ -149,14 +162,15 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
 
     // Población, año y cortes: lo que la fuente publica para ESTE nivel.
     const pobs = fuente.poblaciones.filter((p) => fuente.poblacionesDe(geo).includes(p.clave));
-    c.poblacion.rellenar([...pobs, ...(pobs.length > 1 && !enMapa ? [{clave: SEPARADO, etiqueta: "Por separado (comparar poblaciones)"}] : [])], c.poblacion.value);
+    c.poblacion.rellenar([...(pobs.length > 1 && !enMapa ? [{clave: SEPARADO, etiqueta: "Todas por separado (comparar)", grupo: CONJUNTO}] : []), ...pobs.map((p) => ({...p, grupo: UNA_A_UNA}))], c.poblacion.value);
     poblaciones = pobs.map((p) => p.clave);
     const pobBase = c.poblacion.value === SEPARADO ? poblaciones[0] : c.poblacion.value;
     anios = fuente.aniosDe({geo, poblacion: pobBase});
     const pref = (c.anio.value === SEPARADO && anios.length > 1 && !enMapa) ? SEPARADO : anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
-    c.anio.rellenar([...anios.map((a) => ({clave: String(a), etiqueta: String(a)})), ...(anios.length > 1 && !enMapa ? [{clave: SEPARADO, etiqueta: "Comparar todas las ediciones"}] : [])], pref);
+    c.anio.rellenar(anios.length <= 1
+      ? [{clave: String(anios[0] ?? 2020), etiqueta: `${anios[0] ?? 2020} (única edición a este nivel)`}]
+      : [...(!enMapa ? [{clave: SEPARADO, etiqueta: "Todas las ediciones (comparar)", grupo: CONJUNTO}] : []), ...anios.map((a) => ({clave: String(a), etiqueta: String(a), grupo: "Una edición"}))], pref);
     c.anio.select.disabled = anios.length <= 1;
-    c.anio.rotular(anios.length <= 1 ? "Año (único publicado a este nivel)" : "Año");
     const ctx = {geo, poblacion: pobBase, anio: c.anio.value === SEPARADO ? anios.at(-1) : Number(c.anio.value)};
     const conSexo = fuente.sexoDe(ctx);
     ver("sexo", conSexo); if (!conSexo) c.sexo.value = "Total";
