@@ -19,7 +19,7 @@ import path from "node:path";
 const RAIZ = path.join(import.meta.dirname, "..", "dist");
 const PUERTO = 8897;
 const AXE = readFileSync(path.join(import.meta.dirname, "..", "node_modules", "axe-core", "axe.min.js"), "utf8");
-const PAGINAS = ["/index", "/mapa", "/beta", "/libro/lenguas-de-mexico", "/libro/la-ciudad-en-el-pais", "/libro/donde-viven", "/libro/variantes", "/libro/lenguas-en-riesgo", "/libro/derechos", "/metodologia/paso-a-paso", "/metodologia/fuentes", "/metodologia/definiciones"];
+const PAGINAS = ["/index", "/mapa", "/beta", "/libro/lenguas-de-mexico", "/libro/la-ciudad-en-el-pais", "/libro/donde-viven", "/libro/quienes-son", "/libro/discriminacion", "/libro/variantes", "/libro/acceso-digital", "/libro/lenguas-en-riesgo", "/encuestas/censo/vivienda", "/encuestas/enigh/hogar", "/encuestas/endutih/uso", "/libro/derechos", "/metodologia/paso-a-paso", "/metodologia/fuentes", "/metodologia/definiciones"];
 
 const servidor = () => servirEstatico(RAIZ, PUERTO);
 

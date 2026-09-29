@@ -196,11 +196,12 @@ display(seccion({numero: "02", titulo: "Explorar"}));
   const t = html`<div class="grid grid-cols-2"></div>`;
   const tarjetas = [
     ["./mapa", "Mapa de la Ciudad de México", "Hablantes, hogares indígenas y autoadscripción por alcaldía, AGEB y manzana; la lengua que se habla, sus variantes probables y de dónde vienen quienes la hablan."],
+    ["./libro/lenguas-de-mexico", "El libro: las lenguas de México", "Doce capítulos del país a la manzana: cuántas lenguas hay, dónde viven sus hablantes, quiénes son, cómo viven, qué discriminación enfrentan y qué lenguas están en riesgo."],
     ["./metodologia/paso-a-paso", "Cómo se hizo, paso a paso", "De los archivos del INEGI y del INALI a cada cifra del mapa: qué se descargó, qué se calculó, qué se cotejó y qué no se pudo saber."],
     ["./metodologia/definiciones", "Definiciones", "Qué mide cada población indígena, cómo se lee el mapa y qué cambia entre ediciones."],
     ["./metodologia/fuentes", "Fuentes y cobertura", "Cada archivo con su liga, su alcance y sus cautelas; los cotejos contra las cifras oficiales."],
   ];
-  tarjetas.forEach(([ruta, titulo, texto], i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">0${i + 1}</span>
+  tarjetas.forEach(([ruta, titulo, texto], i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
     <h3><a href="${ruta}">${titulo}</a></h3><p>${texto}</p></div>`));
   display(t);
 }

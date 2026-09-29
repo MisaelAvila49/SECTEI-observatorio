@@ -1,5 +1,4 @@
 ---
-draft: true
 title: Conectividad en la vivienda
 ---
 

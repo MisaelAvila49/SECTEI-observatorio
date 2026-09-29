@@ -85,6 +85,8 @@ python scripts/construir_2010.py      # edición 2010 por AGEB y manzana (tabula
 python scripts/loaders/nacional_2020.py  # entidades y municipios del país (ITER 2020 + muestra por sexo y edad), tabla de la beta /beta
 python scripts/loaders/inpi_2020.py      # población indígena según el INPI 2020 por entidad y municipio, con su tipología; coteja la autoadscripción municipal
 python scripts/construir_riesgo_inali.py  # grado de riesgo de las 364 variantes, INALI 2012 (lee el PDF oficial)
+python scripts/loaders/perfil.py         # perfil de la población indígena de la ciudad 2010 - 2025 (escolaridad, trabajo, salud, discapacidad, monolingüismo, edad)
+python scripts/loaders/enadis.py         # ENADIS 2017 y 2022, módulo indígena (nacional): discriminación, derechos negados, ámbitos, motivos
 python scripts/construir_contornos.py # límite del estado, alcaldías y máscara del exterior
 python scripts/construir_colonias_resumen.py  # src/data/colonias_resumen.csv (se versiona)
 scripts/generar_teselas.sh            # en WSL: produce los .pmtiles con tippecanoe

@@ -205,7 +205,7 @@ def main():
     out.to_csv(SALIDA, index=False, encoding="utf-8", lineterminator="\n")
 
     # Cotejo 2025 con la población completa de la entidad (INEGI, EIC 2025).
-    t = out[(out.anio == 2025) & (out.grupo == "Todos") & (out.sexo == "Total") & (out.edad == "Todas")].set_index(["dimension", "categoria"])
+    t = out[(out.anio == 2025) & (out.criterio == "todos") & (out.sexo == "Total") & (out.edad == "Todas")].set_index(["dimension", "categoria"])
     ocu, des = t.loc[("actividad", "Ocupada"), "num"], t.loc[("actividad", "Desocupada"), "num"]
     pea = 100 * (ocu + des) / t.loc[("actividad", "Ocupada"), "den"]
     ocup = 100 * ocu / (ocu + des)
