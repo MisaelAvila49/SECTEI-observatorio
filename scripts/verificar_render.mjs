@@ -45,6 +45,8 @@ const PAGINAS = [
   {ruta: "/libro/lenguas-de-mexico", esperado: [{nombre: "barras del capítulo 1", sel: 'g[aria-label="bar"] rect', minimo: 30}]},
   {ruta: "/libro/la-ciudad-en-el-pais", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [{nombre: "barras del capítulo 2", sel: 'g[aria-label="bar"] rect', minimo: 40}, {nombre: "líneas del capítulo 2", sel: 'g[aria-label="line"] path', minimo: 2}]},
   {ruta: "/libro/quienes-son", esperado: [{nombre: "barras del capítulo 3", sel: 'g[aria-label="bar"] rect', minimo: 30}, {nombre: "líneas del capítulo 3", sel: 'g[aria-label="line"] path', minimo: 4}]},
+  {ruta: "/libro/condiciones-de-vida", esperado: [{nombre: "líneas del capítulo 6", sel: 'g[aria-label="line"] path', minimo: 2}, {nombre: "barras del capítulo 6", sel: 'g[aria-label="bar"] rect', minimo: 16}]},
+  {ruta: "/libro/violencia", esperado: [{nombre: "barras del capítulo 8", sel: 'g[aria-label="bar"] rect', minimo: 18}]},
   {ruta: "/libro/discriminacion", esperado: [{nombre: "barras del capítulo 7", sel: 'g[aria-label="bar"] rect', minimo: 25}]},
   {ruta: "/libro/variantes", esperado: [{nombre: "barras del capítulo 5", sel: 'g[aria-label="bar"] rect', minimo: 30}]},
   {ruta: "/encuestas/censo/vivienda", esperado: [{nombre: "marcas del Censo", sel: 'g[aria-label="dot"] circle, g[aria-label="bar"] rect, g[aria-label="rect"] rect', minimo: 10}]},

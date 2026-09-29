@@ -1,0 +1,759 @@
+anio,ambito_geo,criterio,grupo,edad,indicador,periodo,num,den,casos,ee
+2021,Nacional,lengua,Resto,30-59,Cualquier ámbito,vida,17380355.0,24202678.0,55665.0,0.002657
+2021,Nacional,lengua,Resto,15-29,Cualquier ámbito,vida,11109202.0,14615414.0,26692.0,0.003266
+2021,Nacional,lengua,Indígena,60+,Cualquier ámbito,vida,415012.0,709124.0,1780.0,0.012
+2021,Nacional,lengua,Resto,60+,Cualquier ámbito,vida,4910092.0,8393025.0,20008.0,0.003849
+2021,Nacional,lengua,Indígena,15-29,Cualquier ámbito,vida,477365.0,842039.0,1727.0,0.012997
+2021,Nacional,lengua,Indígena,30-59,Cualquier ámbito,vida,1110953.0,1761189.0,4255.0,0.009392
+2021,Nacional,lengua,Resto,30-59,Cualquier ámbito,12 meses,10216221.0,24202678.0,55665.0,0.002695
+2021,Nacional,lengua,Resto,15-29,Cualquier ámbito,12 meses,8479941.0,14615414.0,26692.0,0.003477
+2021,Nacional,lengua,Indígena,60+,Cualquier ámbito,12 meses,159065.0,709124.0,1780.0,0.007593
+2021,Nacional,lengua,Resto,60+,Cualquier ámbito,12 meses,1861481.0,8393025.0,20008.0,0.002673
+2021,Nacional,lengua,Indígena,15-29,Cualquier ámbito,12 meses,322314.0,842039.0,1727.0,0.011194
+2021,Nacional,lengua,Indígena,30-59,Cualquier ámbito,12 meses,593241.0,1761189.0,4255.0,0.008397
+2021,Nacional,lengua,Resto,30-59,Pareja,vida,9839495.0,23755108.0,54934.0,0.002755
+2021,Nacional,lengua,Resto,15-29,Pareja,vida,4584890.0,12290527.0,23288.0,0.003249
+2021,Nacional,lengua,Indígena,60+,Pareja,vida,318794.0,687072.0,1746.0,0.014167
+2021,Nacional,lengua,Resto,60+,Pareja,vida,3173719.0,8201986.0,19611.0,0.003447
+2021,Nacional,lengua,Indígena,15-29,Pareja,vida,249894.0,697501.0,1516.0,0.00862
+2021,Nacional,lengua,Indígena,30-59,Pareja,vida,713371.0,1717319.0,4183.0,0.008466
+2021,Nacional,lengua,Resto,30-59,Pareja,12 meses,5181502.0,23755108.0,54934.0,0.001966
+2021,Nacional,lengua,Resto,15-29,Pareja,12 meses,3108105.0,12290527.0,23288.0,0.002903
+2021,Nacional,lengua,Indígena,60+,Pareja,12 meses,92464.0,687072.0,1746.0,0.004845
+2021,Nacional,lengua,Resto,60+,Pareja,12 meses,915287.0,8201986.0,19611.0,0.001694
+2021,Nacional,lengua,Indígena,15-29,Pareja,12 meses,161714.0,697501.0,1516.0,0.007611
+2021,Nacional,lengua,Indígena,30-59,Pareja,12 meses,345680.0,1717319.0,4183.0,0.005391
+2021,Nacional,lengua,Resto,30-59,Familiar,12 meses,2194487.0,24202678.0,55665.0,0.001155
+2021,Nacional,lengua,Resto,15-29,Familiar,12 meses,2570424.0,14615414.0,26692.0,0.00192
+2021,Nacional,lengua,Indígena,60+,Familiar,12 meses,55030.0,709124.0,1780.0,0.002824
+2021,Nacional,lengua,Resto,60+,Familiar,12 meses,653987.0,8393025.0,20008.0,0.001735
+2021,Nacional,lengua,Indígena,15-29,Familiar,12 meses,114067.0,842039.0,1727.0,0.006561
+2021,Nacional,lengua,Indígena,30-59,Familiar,12 meses,164649.0,1761189.0,4255.0,0.0026
+2021,Nacional,lengua,Resto,30-59,Escolar,vida,7196885.0,23582913.0,54368.0,0.002373
+2021,Nacional,lengua,Resto,15-29,Escolar,vida,6036565.0,14489417.0,26485.0,0.003187
+2021,Nacional,lengua,Indígena,60+,Escolar,vida,96133.0,349000.0,951.0,0.009106
+2021,Nacional,lengua,Resto,60+,Escolar,vida,1393526.0,7084350.0,17121.0,0.002581
+2021,Nacional,lengua,Indígena,15-29,Escolar,vida,210556.0,815692.0,1668.0,0.009313
+2021,Nacional,lengua,Indígena,30-59,Escolar,vida,482507.0,1472186.0,3619.0,0.008516
+2021,Nacional,lengua,Resto,30-59,Escolar,12 meses,95917.0,830867.0,1804.0,0.004814
+2021,Nacional,lengua,Resto,15-29,Escolar,12 meses,1265872.0,5832858.0,8838.0,0.002414
+2021,Nacional,lengua,Indígena,60+,Escolar,12 meses,,1067.0,3.0,
+2021,Nacional,lengua,Resto,60+,Escolar,12 meses,6278.0,55054.0,120.0,
+2021,Nacional,lengua,Indígena,15-29,Escolar,12 meses,25061.0,170904.0,276.0,0.004868
+2021,Nacional,lengua,Indígena,30-59,Escolar,12 meses,2279.0,20528.0,51.0,
+2021,Nacional,lengua,Resto,30-59,Laboral,vida,6302901.0,21517653.0,49435.0,0.00232
+2021,Nacional,lengua,Resto,15-29,Laboral,vida,3383193.0,10116391.0,19495.0,0.003017
+2021,Nacional,lengua,Indígena,60+,Laboral,vida,69411.0,433137.0,1059.0,0.006632
+2021,Nacional,lengua,Resto,60+,Laboral,vida,1036445.0,6233050.0,14673.0,0.002477
+2021,Nacional,lengua,Indígena,15-29,Laboral,vida,93158.0,479663.0,1024.0,0.007339
+2021,Nacional,lengua,Indígena,30-59,Laboral,vida,271336.0,1273575.0,3074.0,0.005191
+2021,Nacional,lengua,Resto,30-59,Laboral,12 meses,2895124.0,14751724.0,33968.0,0.00204
+2021,Nacional,lengua,Resto,15-29,Laboral,12 meses,2035423.0,7318959.0,13755.0,0.002849
+2021,Nacional,lengua,Indígena,60+,Laboral,12 meses,12340.0,171831.0,417.0,
+2021,Nacional,lengua,Resto,60+,Laboral,12 meses,169169.0,1870009.0,4575.0,0.002436
+2021,Nacional,lengua,Indígena,15-29,Laboral,12 meses,48368.0,306823.0,638.0,0.007231
+2021,Nacional,lengua,Indígena,30-59,Laboral,12 meses,105567.0,839796.0,1975.0,0.003726
+2021,Nacional,lengua,Resto,30-59,Comunitario,vida,11110574.0,24202678.0,55665.0,0.002902
+2021,Nacional,lengua,Resto,15-29,Comunitario,vida,8545661.0,14615414.0,26692.0,0.003554
+2021,Nacional,lengua,Indígena,60+,Comunitario,vida,124964.0,709124.0,1780.0,0.00603
+2021,Nacional,lengua,Resto,60+,Comunitario,vida,2532409.0,8393025.0,20008.0,0.003049
+2021,Nacional,lengua,Indígena,15-29,Comunitario,vida,238000.0,842039.0,1727.0,0.007718
+2021,Nacional,lengua,Indígena,30-59,Comunitario,vida,475904.0,1761189.0,4255.0,0.006
+2021,Nacional,lengua,Resto,30-59,Comunitario,12 meses,4633962.0,24202678.0,55665.0,0.001844
+2021,Nacional,lengua,Resto,15-29,Comunitario,12 meses,5859396.0,14615414.0,26692.0,0.003265
+2021,Nacional,lengua,Indígena,60+,Comunitario,12 meses,27298.0,709124.0,1780.0,0.000991
+2021,Nacional,lengua,Resto,60+,Comunitario,12 meses,498780.0,8393025.0,20008.0,0.001263
+2021,Nacional,lengua,Indígena,15-29,Comunitario,12 meses,135904.0,842039.0,1727.0,0.005323
+2021,Nacional,lengua,Indígena,30-59,Comunitario,12 meses,171354.0,1761189.0,4255.0,0.002796
+2021,Nacional,lengua,Resto,30-59,Psicológica,vida,12688283.0,24202678.0,55665.0,0.002827
+2021,Nacional,lengua,Resto,15-29,Psicológica,vida,8300592.0,14615414.0,26692.0,0.003353
+2021,Nacional,lengua,Indígena,60+,Psicológica,vida,325118.0,709124.0,1780.0,0.0134
+2021,Nacional,lengua,Resto,60+,Psicológica,vida,3574988.0,8393025.0,20008.0,0.003544
+2021,Nacional,lengua,Indígena,15-29,Psicológica,vida,337575.0,842039.0,1727.0,0.011005
+2021,Nacional,lengua,Indígena,30-59,Psicológica,vida,828471.0,1761189.0,4255.0,0.008581
+2021,Nacional,lengua,Resto,30-59,Psicológica,12 meses,6917970.0,24202678.0,55665.0,0.00219
+2021,Nacional,lengua,Resto,15-29,Psicológica,12 meses,5866001.0,14615414.0,26692.0,0.003172
+2021,Nacional,lengua,Indígena,60+,Psicológica,12 meses,110003.0,709124.0,1780.0,0.005117
+2021,Nacional,lengua,Resto,60+,Psicológica,12 meses,1283200.0,8393025.0,20008.0,0.002041
+2021,Nacional,lengua,Indígena,15-29,Psicológica,12 meses,230937.0,842039.0,1727.0,0.009216
+2021,Nacional,lengua,Indígena,30-59,Psicológica,12 meses,425279.0,1761189.0,4255.0,0.005911
+2021,Nacional,lengua,Resto,30-59,Física,vida,8787577.0,24202678.0,55665.0,0.002576
+2021,Nacional,lengua,Resto,15-29,Física,vida,4960164.0,14615414.0,26692.0,0.002906
+2021,Nacional,lengua,Indígena,60+,Física,vida,275345.0,709124.0,1780.0,0.009618
+2021,Nacional,lengua,Resto,60+,Física,vida,2619093.0,8393025.0,20008.0,0.003012
+2021,Nacional,lengua,Indígena,15-29,Física,vida,222364.0,842039.0,1727.0,0.008486
+2021,Nacional,lengua,Indígena,30-59,Física,vida,681408.0,1761189.0,4255.0,0.008037
+2021,Nacional,lengua,Resto,30-59,Física,12 meses,2264868.0,24202678.0,55665.0,0.00111
+2021,Nacional,lengua,Resto,15-29,Física,12 meses,2149272.0,14615414.0,26692.0,0.00163
+2021,Nacional,lengua,Indígena,60+,Física,12 meses,51664.0,709124.0,1780.0,0.004141
+2021,Nacional,lengua,Resto,60+,Física,12 meses,449339.0,8393025.0,20008.0,0.001221
+2021,Nacional,lengua,Indígena,15-29,Física,12 meses,78119.0,842039.0,1727.0,0.003603
+2021,Nacional,lengua,Indígena,30-59,Física,12 meses,177417.0,1761189.0,4255.0,0.003177
+2021,Nacional,lengua,Resto,30-59,Sexual,vida,12221040.0,24202678.0,55665.0,0.002914
+2021,Nacional,lengua,Resto,15-29,Sexual,vida,8998608.0,14615414.0,26692.0,0.00355
+2021,Nacional,lengua,Indígena,60+,Sexual,vida,157502.0,709124.0,1780.0,0.007364
+2021,Nacional,lengua,Resto,60+,Sexual,vida,2875222.0,8393025.0,20008.0,0.003153
+2021,Nacional,lengua,Indígena,15-29,Sexual,vida,271892.0,842039.0,1727.0,0.008066
+2021,Nacional,lengua,Indígena,30-59,Sexual,vida,569091.0,1761189.0,4255.0,0.007239
+2021,Nacional,lengua,Resto,30-59,Sexual,12 meses,4904321.0,24202678.0,55665.0,0.001864
+2021,Nacional,lengua,Resto,15-29,Sexual,12 meses,6012189.0,14615414.0,26692.0,0.003202
+2021,Nacional,lengua,Indígena,60+,Sexual,12 meses,32678.0,709124.0,1780.0,0.0018
+2021,Nacional,lengua,Resto,60+,Sexual,12 meses,467986.0,8393025.0,20008.0,0.001161
+2021,Nacional,lengua,Indígena,15-29,Sexual,12 meses,141555.0,842039.0,1727.0,0.005221
+2021,Nacional,lengua,Indígena,30-59,Sexual,12 meses,188425.0,1761189.0,4255.0,0.00313
+2021,Nacional,lengua,Resto,30-59,Económica o patrimonial,vida,7510045.0,24202678.0,55665.0,0.002296
+2021,Nacional,lengua,Resto,15-29,Económica o patrimonial,vida,3493843.0,14615414.0,26692.0,0.002295
+2021,Nacional,lengua,Indígena,60+,Económica o patrimonial,vida,196264.0,709124.0,1780.0,0.010202
+2021,Nacional,lengua,Resto,60+,Económica o patrimonial,vida,2027988.0,8393025.0,20008.0,0.00283
+2021,Nacional,lengua,Indígena,15-29,Económica o patrimonial,vida,156011.0,842039.0,1727.0,0.006352
+2021,Nacional,lengua,Indígena,30-59,Económica o patrimonial,vida,481720.0,1761189.0,4255.0,0.006326
+2021,Nacional,lengua,Resto,30-59,Económica o patrimonial,12 meses,4431986.0,24202678.0,55665.0,0.001688
+2021,Nacional,lengua,Resto,15-29,Económica o patrimonial,12 meses,2656904.0,14615414.0,26692.0,0.001996
+2021,Nacional,lengua,Indígena,60+,Económica o patrimonial,12 meses,63783.0,709124.0,1780.0,0.005049
+2021,Nacional,lengua,Resto,60+,Económica o patrimonial,12 meses,662276.0,8393025.0,20008.0,0.001316
+2021,Nacional,lengua,Indígena,15-29,Económica o patrimonial,12 meses,111389.0,842039.0,1727.0,0.004612
+2021,Nacional,lengua,Indígena,30-59,Económica o patrimonial,12 meses,265388.0,1761189.0,4255.0,0.003915
+2021,Nacional,lengua,Indígena,Todas,Cualquier ámbito,vida,2003330.0,3312352.0,7762.0,0.007787
+2021,Nacional,lengua,Resto,Todas,Cualquier ámbito,vida,33399649.0,47211117.0,102365.0,0.002218
+2021,Nacional,lengua,Indígena,Todas,Cualquier ámbito,12 meses,1074620.0,3312352.0,7762.0,0.006763
+2021,Nacional,lengua,Resto,Todas,Cualquier ámbito,12 meses,20557643.0,47211117.0,102365.0,0.002323
+2021,Nacional,lengua,Indígena,Todas,Pareja,vida,1282059.0,3101892.0,7445.0,0.006782
+2021,Nacional,lengua,Resto,Todas,Pareja,vida,17598104.0,44247621.0,97833.0,0.002293
+2021,Nacional,lengua,Indígena,Todas,Pareja,12 meses,599858.0,3101892.0,7445.0,0.004655
+2021,Nacional,lengua,Resto,Todas,Pareja,12 meses,9204894.0,44247621.0,97833.0,0.001713
+2021,Nacional,lengua,Indígena,Todas,Familiar,12 meses,333746.0,3312352.0,7762.0,0.003689
+2021,Nacional,lengua,Resto,Todas,Familiar,12 meses,5418898.0,47211117.0,102365.0,0.001157
+2021,Nacional,lengua,Indígena,Todas,Escolar,vida,789196.0,2636878.0,6238.0,0.008188
+2021,Nacional,lengua,Resto,Todas,Escolar,vida,14626976.0,45156680.0,97974.0,0.002083
+2021,Nacional,lengua,Indígena,Todas,Escolar,12 meses,27340.0,192499.0,330.0,0.005189
+2021,Nacional,lengua,Resto,Todas,Escolar,12 meses,1368067.0,6718779.0,10762.0,0.002337
+2021,Nacional,lengua,Indígena,Todas,Laboral,vida,433905.0,2186375.0,5157.0,0.004749
+2021,Nacional,lengua,Resto,Todas,Laboral,vida,10722539.0,37867094.0,83603.0,0.001988
+2021,Nacional,lengua,Indígena,Todas,Laboral,12 meses,166275.0,1318450.0,3030.0,0.003597
+2021,Nacional,lengua,Resto,Todas,Laboral,12 meses,5099716.0,23940692.0,52298.0,0.001881
+2021,Nacional,lengua,Indígena,Todas,Comunitario,vida,838868.0,3312352.0,7762.0,0.005669
+2021,Nacional,lengua,Resto,Todas,Comunitario,vida,22188644.0,47211117.0,102365.0,0.002399
+2021,Nacional,lengua,Indígena,Todas,Comunitario,12 meses,334556.0,3312352.0,7762.0,0.002917
+2021,Nacional,lengua,Resto,Todas,Comunitario,12 meses,10992138.0,47211117.0,102365.0,0.001749
+2021,Nacional,lengua,Indígena,Todas,Psicológica,vida,1491164.0,3312352.0,7762.0,0.007221
+2021,Nacional,lengua,Resto,Todas,Psicológica,vida,24563863.0,47211117.0,102365.0,0.002373
+2021,Nacional,lengua,Indígena,Todas,Psicológica,12 meses,766219.0,3312352.0,7762.0,0.005532
+2021,Nacional,lengua,Resto,Todas,Psicológica,12 meses,14067171.0,47211117.0,102365.0,0.002008
+2021,Nacional,lengua,Indígena,Todas,Física,vida,1179117.0,3312352.0,7762.0,0.006628
+2021,Nacional,lengua,Resto,Todas,Física,vida,16366834.0,47211117.0,102365.0,0.002146
+2021,Nacional,lengua,Indígena,Todas,Física,12 meses,307200.0,3312352.0,7762.0,0.002526
+2021,Nacional,lengua,Resto,Todas,Física,12 meses,4863479.0,47211117.0,102365.0,0.00101
+2021,Nacional,lengua,Indígena,Todas,Sexual,vida,998485.0,3312352.0,7762.0,0.00627
+2021,Nacional,lengua,Resto,Todas,Sexual,vida,24094870.0,47211117.0,102365.0,0.002404
+2021,Nacional,lengua,Indígena,Todas,Sexual,12 meses,362658.0,3312352.0,7762.0,0.003115
+2021,Nacional,lengua,Resto,Todas,Sexual,12 meses,11384496.0,47211117.0,102365.0,0.001757
+2021,Nacional,lengua,Indígena,Todas,Económica o patrimonial,vida,833995.0,3312352.0,7762.0,0.005615
+2021,Nacional,lengua,Resto,Todas,Económica o patrimonial,vida,13031876.0,47211117.0,102365.0,0.001859
+2021,Nacional,lengua,Indígena,Todas,Económica o patrimonial,12 meses,440560.0,3312352.0,7762.0,0.003495
+2021,Nacional,lengua,Resto,Todas,Económica o patrimonial,12 meses,7751166.0,47211117.0,102365.0,0.001364
+2021,Nacional,autoads,Resto,30-59,Cualquier ámbito,vida,13407988.0,18638380.0,41570.0,0.002895
+2021,Nacional,autoads,Resto,15-29,Cualquier ámbito,vida,8770233.0,11382117.0,20239.0,0.003443
+2021,Nacional,autoads,Indígena,60+,Cualquier ámbito,vida,1584366.0,2587673.0,6680.0,0.006067
+2021,Nacional,autoads,Resto,60+,Cualquier ámbito,vida,3666791.0,6389533.0,14783.0,0.00417
+2021,Nacional,autoads,Indígena,15-29,Cualquier ámbito,vida,2659707.0,3872711.0,7797.0,0.006053
+2021,Nacional,autoads,Indígena,30-59,Cualquier ámbito,vida,4859987.0,7004556.0,17557.0,0.004519
+2021,Nacional,autoads,Resto,30-59,Cualquier ámbito,12 meses,7798569.0,18638380.0,41570.0,0.002818
+2021,Nacional,autoads,Resto,15-29,Cualquier ámbito,12 meses,6694805.0,11382117.0,20239.0,0.003607
+2021,Nacional,autoads,Indígena,60+,Cualquier ámbito,12 meses,619432.0,2587673.0,6680.0,0.003905
+2021,Nacional,autoads,Resto,60+,Cualquier ámbito,12 meses,1376573.0,6389533.0,14783.0,0.003038
+2021,Nacional,autoads,Indígena,15-29,Cualquier ámbito,12 meses,1981541.0,3872711.0,7797.0,0.00587
+2021,Nacional,autoads,Indígena,30-59,Cualquier ámbito,12 meses,2878226.0,7004556.0,17557.0,0.004216
+2021,Nacional,autoads,Resto,30-59,Pareja,vida,7389212.0,18286773.0,41030.0,0.002956
+2021,Nacional,autoads,Resto,15-29,Pareja,vida,3506576.0,9557151.0,17648.0,0.003259
+2021,Nacional,autoads,Indígena,60+,Pareja,vida,1157635.0,2535593.0,6564.0,0.006258
+2021,Nacional,autoads,Resto,60+,Pareja,vida,2282224.0,6230909.0,14476.0,0.003681
+2021,Nacional,autoads,Indígena,15-29,Pareja,vida,1254019.0,3255605.0,6815.0,0.005467
+2021,Nacional,autoads,Indígena,30-59,Pareja,vida,3011273.0,6871513.0,17307.0,0.004473
+2021,Nacional,autoads,Resto,30-59,Pareja,12 meses,3877831.0,18286773.0,41030.0,0.002093
+2021,Nacional,autoads,Resto,15-29,Pareja,12 meses,2377915.0,9557151.0,17648.0,0.00296
+2021,Nacional,autoads,Indígena,60+,Pareja,12 meses,332583.0,2535593.0,6564.0,0.002511
+2021,Nacional,autoads,Resto,60+,Pareja,12 meses,658975.0,6230909.0,14476.0,0.001751
+2021,Nacional,autoads,Indígena,15-29,Pareja,12 meses,838089.0,3255605.0,6815.0,0.004585
+2021,Nacional,autoads,Indígena,30-59,Pareja,12 meses,1582786.0,6871513.0,17307.0,0.003107
+2021,Nacional,autoads,Resto,30-59,Familiar,12 meses,1619035.0,18638380.0,41570.0,0.001201
+2021,Nacional,autoads,Resto,15-29,Familiar,12 meses,2009047.0,11382117.0,20239.0,0.002087
+2021,Nacional,autoads,Indígena,60+,Familiar,12 meses,227174.0,2587673.0,6680.0,0.002111
+2021,Nacional,autoads,Resto,60+,Familiar,12 meses,476353.0,6389533.0,14783.0,0.002144
+2021,Nacional,autoads,Indígena,15-29,Familiar,12 meses,637883.0,3872711.0,7797.0,0.002854
+2021,Nacional,autoads,Indígena,30-59,Familiar,12 meses,707773.0,7004556.0,17557.0,0.001844
+2021,Nacional,autoads,Resto,30-59,Escolar,vida,5510328.0,18242204.0,40707.0,0.002429
+2021,Nacional,autoads,Resto,15-29,Escolar,vida,4785889.0,11290879.0,20087.0,0.003288
+2021,Nacional,autoads,Indígena,60+,Escolar,vida,438434.0,1851278.0,4999.0,0.004108
+2021,Nacional,autoads,Resto,60+,Escolar,vida,1033065.0,5492126.0,12835.0,0.002847
+2021,Nacional,autoads,Indígena,15-29,Escolar,vida,1375474.0,3812228.0,7685.0,0.00553
+2021,Nacional,autoads,Indígena,30-59,Escolar,vida,2082916.0,6511697.0,16526.0,0.004127
+2021,Nacional,autoads,Resto,30-59,Escolar,12 meses,82053.0,689233.0,1448.0,0.005774
+2021,Nacional,autoads,Resto,15-29,Escolar,12 meses,1028620.0,4703712.0,6964.0,0.002603
+2021,Nacional,autoads,Indígena,60+,Escolar,12 meses,1079.0,13820.0,30.0,
+2021,Nacional,autoads,Resto,60+,Escolar,12 meses,5199.0,41288.0,91.0,
+2021,Nacional,autoads,Indígena,15-29,Escolar,12 meses,245439.0,1228000.0,2027.0,0.003978
+2021,Nacional,autoads,Indígena,30-59,Escolar,12 meses,16143.0,154449.0,385.0,0.00387
+2021,Nacional,autoads,Resto,30-59,Laboral,vida,4954003.0,16668112.0,37034.0,0.002466
+2021,Nacional,autoads,Resto,15-29,Laboral,vida,2713953.0,7842302.0,14775.0,0.003252
+2021,Nacional,autoads,Indígena,60+,Laboral,vida,319912.0,1834452.0,4725.0,0.004343
+2021,Nacional,autoads,Resto,60+,Laboral,vida,768516.0,4740735.0,10775.0,0.002671
+2021,Nacional,autoads,Indígena,15-29,Laboral,vida,705717.0,2598048.0,5448.0,0.004609
+2021,Nacional,autoads,Indígena,30-59,Laboral,vida,1536044.0,5832264.0,14764.0,0.00336
+2021,Nacional,autoads,Resto,30-59,Laboral,12 meses,2264680.0,11491026.0,25579.0,0.002156
+2021,Nacional,autoads,Resto,15-29,Laboral,12 meses,1610655.0,5678482.0,10505.0,0.003021
+2021,Nacional,autoads,Indígena,60+,Laboral,12 meses,46023.0,643421.0,1658.0,0.001713
+2021,Nacional,autoads,Resto,60+,Laboral,12 meses,132609.0,1367491.0,3252.0,0.003078
+2021,Nacional,autoads,Indígena,15-29,Laboral,12 meses,435150.0,1830062.0,3669.0,0.003873
+2021,Nacional,autoads,Indígena,30-59,Laboral,12 meses,698931.0,3884854.0,9839.0,0.003136
+2021,Nacional,autoads,Resto,30-59,Comunitario,vida,8863792.0,18638380.0,41570.0,0.003185
+2021,Nacional,autoads,Resto,15-29,Comunitario,vida,6897386.0,11382117.0,20239.0,0.003777
+2021,Nacional,autoads,Indígena,60+,Comunitario,vida,650520.0,2587673.0,6680.0,0.004133
+2021,Nacional,autoads,Resto,60+,Comunitario,vida,1971731.0,6389533.0,14783.0,0.003383
+2021,Nacional,autoads,Indígena,15-29,Comunitario,vida,1762258.0,3872711.0,7797.0,0.005597
+2021,Nacional,autoads,Indígena,30-59,Comunitario,vida,2595962.0,7004556.0,17557.0,0.004217
+2021,Nacional,autoads,Resto,30-59,Comunitario,12 meses,3639640.0,18638380.0,41570.0,0.001966
+2021,Nacional,autoads,Resto,15-29,Comunitario,12 meses,4722383.0,11382117.0,20239.0,0.003408
+2021,Nacional,autoads,Indígena,60+,Comunitario,12 meses,137573.0,2587673.0,6680.0,0.001673
+2021,Nacional,autoads,Resto,60+,Comunitario,12 meses,382283.0,6389533.0,14783.0,0.001499
+2021,Nacional,autoads,Indígena,15-29,Comunitario,12 meses,1194466.0,3872711.0,7797.0,0.00472
+2021,Nacional,autoads,Indígena,30-59,Comunitario,12 meses,1106107.0,7004556.0,17557.0,0.002623
+2021,Nacional,autoads,Resto,30-59,Psicológica,vida,9721866.0,18638380.0,41570.0,0.003036
+2021,Nacional,autoads,Resto,15-29,Psicológica,vida,6547462.0,11382117.0,20239.0,0.003521
+2021,Nacional,autoads,Indígena,60+,Psicológica,vida,1219424.0,2587673.0,6680.0,0.006364
+2021,Nacional,autoads,Resto,60+,Psicológica,vida,2625119.0,6389533.0,14783.0,0.003797
+2021,Nacional,autoads,Indígena,15-29,Psicológica,vida,1961294.0,3872711.0,7797.0,0.005614
+2021,Nacional,autoads,Indígena,30-59,Psicológica,vida,3621555.0,7004556.0,17557.0,0.004747
+2021,Nacional,autoads,Resto,30-59,Psicológica,12 meses,5220106.0,18638380.0,41570.0,0.00235
+2021,Nacional,autoads,Resto,15-29,Psicológica,12 meses,4598205.0,11382117.0,20239.0,0.003362
+2021,Nacional,autoads,Indígena,60+,Psicológica,12 meses,445797.0,2587673.0,6680.0,0.003539
+2021,Nacional,autoads,Resto,60+,Psicológica,12 meses,930804.0,6389533.0,14783.0,0.002181
+2021,Nacional,autoads,Indígena,15-29,Psicológica,12 meses,1401504.0,3872711.0,7797.0,0.004937
+2021,Nacional,autoads,Indígena,30-59,Psicológica,12 meses,2027057.0,7004556.0,17557.0,0.003444
+2021,Nacional,autoads,Resto,30-59,Física,vida,6589737.0,18638380.0,41570.0,0.002706
+2021,Nacional,autoads,Resto,15-29,Física,vida,3892647.0,11382117.0,20239.0,0.003051
+2021,Nacional,autoads,Indígena,60+,Física,vida,958687.0,2587673.0,6680.0,0.004712
+2021,Nacional,autoads,Resto,60+,Física,vida,1890702.0,6389533.0,14783.0,0.003202
+2021,Nacional,autoads,Indígena,15-29,Física,vida,1218301.0,3872711.0,7797.0,0.004396
+2021,Nacional,autoads,Indígena,30-59,Física,vida,2764472.0,7004556.0,17557.0,0.004617
+2021,Nacional,autoads,Resto,30-59,Física,12 meses,1680781.0,18638380.0,41570.0,0.001216
+2021,Nacional,autoads,Resto,15-29,Física,12 meses,1673526.0,11382117.0,20239.0,0.001732
+2021,Nacional,autoads,Indígena,60+,Física,12 meses,175284.0,2587673.0,6680.0,0.001941
+2021,Nacional,autoads,Resto,60+,Física,12 meses,318615.0,6389533.0,14783.0,0.001158
+2021,Nacional,autoads,Indígena,15-29,Física,12 meses,524004.0,3872711.0,7797.0,0.002747
+2021,Nacional,autoads,Indígena,30-59,Física,12 meses,736432.0,7004556.0,17557.0,0.001922
+2021,Nacional,autoads,Resto,30-59,Sexual,vida,9697281.0,18638380.0,41570.0,0.003222
+2021,Nacional,autoads,Resto,15-29,Sexual,vida,7251112.0,11382117.0,20239.0,0.003775
+2021,Nacional,autoads,Indígena,60+,Sexual,vida,792756.0,2587673.0,6680.0,0.00427
+2021,Nacional,autoads,Resto,60+,Sexual,vida,2201364.0,6389533.0,14783.0,0.003499
+2021,Nacional,autoads,Indígena,15-29,Sexual,vida,1889716.0,3872711.0,7797.0,0.005696
+2021,Nacional,autoads,Indígena,30-59,Sexual,vida,2946369.0,7004556.0,17557.0,0.004239
+2021,Nacional,autoads,Resto,30-59,Sexual,12 meses,3874921.0,18638380.0,41570.0,0.002046
+2021,Nacional,autoads,Resto,15-29,Sexual,12 meses,4836270.0,11382117.0,20239.0,0.003398
+2021,Nacional,autoads,Indígena,60+,Sexual,12 meses,134674.0,2587673.0,6680.0,0.001387
+2021,Nacional,autoads,Resto,60+,Sexual,12 meses,361702.0,6389533.0,14783.0,0.001424
+2021,Nacional,autoads,Indígena,15-29,Sexual,12 meses,1233738.0,3872711.0,7797.0,0.00486
+2021,Nacional,autoads,Indígena,30-59,Sexual,12 meses,1152452.0,7004556.0,17557.0,0.002582
+2021,Nacional,autoads,Resto,30-59,Económica o patrimonial,vida,5661867.0,18638380.0,41570.0,0.00241
+2021,Nacional,autoads,Resto,15-29,Económica o patrimonial,vida,2739762.0,11382117.0,20239.0,0.00248
+2021,Nacional,autoads,Indígena,60+,Económica o patrimonial,vida,748822.0,2587673.0,6680.0,0.004821
+2021,Nacional,autoads,Resto,60+,Económica o patrimonial,vida,1444342.0,6389533.0,14783.0,0.00292
+2021,Nacional,autoads,Indígena,15-29,Económica o patrimonial,vida,858706.0,3872711.0,7797.0,0.003864
+2021,Nacional,autoads,Indígena,30-59,Económica o patrimonial,vida,2212185.0,7004556.0,17557.0,0.003951
+2021,Nacional,autoads,Resto,30-59,Económica o patrimonial,12 meses,3317997.0,18638380.0,41570.0,0.001736
+2021,Nacional,autoads,Resto,15-29,Económica o patrimonial,12 meses,2074365.0,11382117.0,20239.0,0.002129
+2021,Nacional,autoads,Indígena,60+,Económica o patrimonial,12 meses,215779.0,2587673.0,6680.0,0.002048
+2021,Nacional,autoads,Resto,60+,Económica o patrimonial,12 meses,498817.0,6389533.0,14783.0,0.001495
+2021,Nacional,autoads,Indígena,15-29,Económica o patrimonial,12 meses,651276.0,3872711.0,7797.0,0.00306
+2021,Nacional,autoads,Indígena,30-59,Económica o patrimonial,12 meses,1319154.0,7004556.0,17557.0,0.00302
+2021,Nacional,autoads,Indígena,Todas,Cualquier ámbito,vida,9104060.0,13464940.0,32034.0,0.003873
+2021,Nacional,autoads,Resto,Todas,Cualquier ámbito,vida,25845012.0,36410030.0,76592.0,0.002461
+2021,Nacional,autoads,Indígena,Todas,Cualquier ámbito,12 meses,5479199.0,13464940.0,32034.0,0.003695
+2021,Nacional,autoads,Resto,Todas,Cualquier ámbito,12 meses,15869947.0,36410030.0,76592.0,0.002533
+2021,Nacional,autoads,Indígena,Todas,Pareja,vida,5422927.0,12662711.0,30686.0,0.00379
+2021,Nacional,autoads,Resto,Todas,Pareja,vida,13178012.0,34074833.0,73154.0,0.002498
+2021,Nacional,autoads,Indígena,Todas,Pareja,12 meses,2753458.0,12662711.0,30686.0,0.002832
+2021,Nacional,autoads,Resto,Todas,Pareja,12 meses,6914721.0,34074833.0,73154.0,0.001759
+2021,Nacional,autoads,Indígena,Todas,Familiar,12 meses,1572830.0,13464940.0,32034.0,0.001847
+2021,Nacional,autoads,Resto,Todas,Familiar,12 meses,4104435.0,36410030.0,76592.0,0.001241
+2021,Nacional,autoads,Indígena,Todas,Escolar,vida,3896824.0,12175203.0,29210.0,0.003418
+2021,Nacional,autoads,Resto,Todas,Escolar,vida,11329282.0,35025209.0,73629.0,0.002215
+2021,Nacional,autoads,Indígena,Todas,Escolar,12 meses,262661.0,1396269.0,2442.0,0.003705
+2021,Nacional,autoads,Resto,Todas,Escolar,12 meses,1115872.0,5434233.0,8503.0,0.002535
+2021,Nacional,autoads,Indígena,Todas,Laboral,vida,2561673.0,10264764.0,24937.0,0.0029
+2021,Nacional,autoads,Resto,Todas,Laboral,vida,8436472.0,29251149.0,62584.0,0.002109
+2021,Nacional,autoads,Indígena,Todas,Laboral,12 meses,1180104.0,6358337.0,15166.0,0.002817
+2021,Nacional,autoads,Resto,Todas,Laboral,12 meses,4007944.0,18536999.0,39336.0,0.00206
+2021,Nacional,autoads,Indígena,Todas,Comunitario,vida,5008740.0,13464940.0,32034.0,0.00369
+2021,Nacional,autoads,Resto,Todas,Comunitario,vida,17732909.0,36410030.0,76592.0,0.002671
+2021,Nacional,autoads,Indígena,Todas,Comunitario,12 meses,2438146.0,13464940.0,32034.0,0.002378
+2021,Nacional,autoads,Resto,Todas,Comunitario,12 meses,8744306.0,36410030.0,76592.0,0.001885
+2021,Nacional,autoads,Indígena,Todas,Psicológica,vida,6802273.0,13464940.0,32034.0,0.004043
+2021,Nacional,autoads,Resto,Todas,Psicológica,vida,18894447.0,36410030.0,76592.0,0.002605
+2021,Nacional,autoads,Indígena,Todas,Psicológica,12 meses,3874358.0,13464940.0,32034.0,0.003329
+2021,Nacional,autoads,Resto,Todas,Psicológica,12 meses,10749115.0,36410030.0,76592.0,0.002168
+2021,Nacional,autoads,Indígena,Todas,Física,vida,4941460.0,13464940.0,32034.0,0.003746
+2021,Nacional,autoads,Resto,Todas,Física,vida,12373086.0,36410030.0,76592.0,0.002285
+2021,Nacional,autoads,Indígena,Todas,Física,12 meses,1435720.0,13464940.0,32034.0,0.001731
+2021,Nacional,autoads,Resto,Todas,Física,12 meses,3672922.0,36410030.0,76592.0,0.001025
+2021,Nacional,autoads,Indígena,Todas,Sexual,vida,5628841.0,13464940.0,32034.0,0.003754
+2021,Nacional,autoads,Resto,Todas,Sexual,vida,19149757.0,36410030.0,76592.0,0.002708
+2021,Nacional,autoads,Indígena,Todas,Sexual,12 meses,2520864.0,13464940.0,32034.0,0.002332
+2021,Nacional,autoads,Resto,Todas,Sexual,12 meses,9072893.0,36410030.0,76592.0,0.001922
+2021,Nacional,autoads,Indígena,Todas,Económica o patrimonial,vida,3819713.0,13464940.0,32034.0,0.003119
+2021,Nacional,autoads,Resto,Todas,Económica o patrimonial,vida,9845971.0,36410030.0,76592.0,0.00197
+2021,Nacional,autoads,Indígena,Todas,Económica o patrimonial,12 meses,2186209.0,13464940.0,32034.0,0.002267
+2021,Nacional,autoads,Resto,Todas,Económica o patrimonial,12 meses,5891179.0,36410030.0,76592.0,0.001457
+2021,Nacional,todas,Todas,30-59,Cualquier ámbito,vida,18491308.0,25963867.0,59920.0,0.002585
+2021,Nacional,todas,Todas,60+,Cualquier ámbito,vida,5325104.0,9102149.0,21788.0,0.003754
+2021,Nacional,todas,Todas,15-29,Cualquier ámbito,vida,11586567.0,15457453.0,28419.0,0.003279
+2021,Nacional,todas,Todas,30-59,Cualquier ámbito,12 meses,10809462.0,25963867.0,59920.0,0.002603
+2021,Nacional,todas,Todas,60+,Cualquier ámbito,12 meses,2020546.0,9102149.0,21788.0,0.002536
+2021,Nacional,todas,Todas,15-29,Cualquier ámbito,12 meses,8802255.0,15457453.0,28419.0,0.003412
+2021,Nacional,todas,Todas,30-59,Pareja,vida,10552866.0,25472427.0,59117.0,0.00267
+2021,Nacional,todas,Todas,60+,Pareja,vida,3492513.0,8889058.0,21357.0,0.003443
+2021,Nacional,todas,Todas,15-29,Pareja,vida,4834784.0,12988028.0,24804.0,0.003162
+2021,Nacional,todas,Todas,30-59,Pareja,12 meses,5527182.0,25472427.0,59117.0,0.00191
+2021,Nacional,todas,Todas,60+,Pareja,12 meses,1007751.0,8889058.0,21357.0,0.001624
+2021,Nacional,todas,Todas,15-29,Pareja,12 meses,3269819.0,12988028.0,24804.0,0.002827
+2021,Nacional,todas,Todas,30-59,Familiar,12 meses,2359136.0,25963867.0,59920.0,0.001124
+2021,Nacional,todas,Todas,60+,Familiar,12 meses,709017.0,9102149.0,21788.0,0.001638
+2021,Nacional,todas,Todas,15-29,Familiar,12 meses,2684491.0,15457453.0,28419.0,0.001876
+2021,Nacional,todas,Todas,30-59,Escolar,vida,7679392.0,25055099.0,57987.0,0.002335
+2021,Nacional,todas,Todas,60+,Escolar,vida,1489659.0,7433350.0,18072.0,0.002517
+2021,Nacional,todas,Todas,15-29,Escolar,vida,6247121.0,15305109.0,28153.0,0.003077
+2021,Nacional,todas,Todas,30-59,Escolar,12 meses,98196.0,851395.0,1855.0,0.004705
+2021,Nacional,todas,Todas,60+,Escolar,12 meses,6278.0,56121.0,123.0,
+2021,Nacional,todas,Todas,15-29,Escolar,12 meses,1290933.0,6003762.0,9114.0,0.00238
+2021,Nacional,todas,Todas,30-59,Laboral,vida,6574237.0,22791228.0,52509.0,0.002242
+2021,Nacional,todas,Todas,60+,Laboral,vida,1105856.0,6666187.0,15732.0,0.002427
+2021,Nacional,todas,Todas,15-29,Laboral,vida,3476351.0,10596054.0,20519.0,0.002942
+2021,Nacional,todas,Todas,30-59,Laboral,12 meses,3000691.0,15591520.0,35943.0,0.001965
+2021,Nacional,todas,Todas,60+,Laboral,12 meses,181509.0,2041840.0,4992.0,0.002282
+2021,Nacional,todas,Todas,15-29,Laboral,12 meses,2083791.0,7625782.0,14393.0,0.002783
+2021,Nacional,todas,Todas,30-59,Comunitario,vida,11586478.0,25963867.0,59920.0,0.002793
+2021,Nacional,todas,Todas,60+,Comunitario,vida,2657373.0,9102149.0,21788.0,0.002905
+2021,Nacional,todas,Todas,15-29,Comunitario,vida,8783661.0,15457453.0,28419.0,0.003454
+2021,Nacional,todas,Todas,30-59,Comunitario,12 meses,4805316.0,25963867.0,59920.0,0.00176
+2021,Nacional,todas,Todas,60+,Comunitario,12 meses,526078.0,9102149.0,21788.0,0.001181
+2021,Nacional,todas,Todas,15-29,Comunitario,12 meses,5995300.0,15457453.0,28419.0,0.003147
+2021,Nacional,todas,Todas,30-59,Psicológica,vida,13516754.0,25963867.0,59920.0,0.002742
+2021,Nacional,todas,Todas,60+,Psicológica,vida,3900106.0,9102149.0,21788.0,0.003496
+2021,Nacional,todas,Todas,15-29,Psicológica,vida,8638167.0,15457453.0,28419.0,0.003263
+2021,Nacional,todas,Todas,30-59,Psicológica,12 meses,7343249.0,25963867.0,59920.0,0.002108
+2021,Nacional,todas,Todas,60+,Psicológica,12 meses,1393203.0,9102149.0,21788.0,0.001949
+2021,Nacional,todas,Todas,15-29,Psicológica,12 meses,6096938.0,15457453.0,28419.0,0.00308
+2021,Nacional,todas,Todas,30-59,Física,vida,9468985.0,25963867.0,59920.0,0.002531
+2021,Nacional,todas,Todas,60+,Física,vida,2894438.0,9102149.0,21788.0,0.002936
+2021,Nacional,todas,Todas,15-29,Física,vida,5182528.0,15457453.0,28419.0,0.002821
+2021,Nacional,todas,Todas,30-59,Física,12 meses,2442285.0,25963867.0,59920.0,0.001101
+2021,Nacional,todas,Todas,60+,Física,12 meses,501003.0,9102149.0,21788.0,0.001141
+2021,Nacional,todas,Todas,15-29,Física,12 meses,2227391.0,15457453.0,28419.0,0.001566
+2021,Nacional,todas,Todas,30-59,Sexual,vida,12790131.0,25963867.0,59920.0,0.002796
+2021,Nacional,todas,Todas,60+,Sexual,vida,3032724.0,9102149.0,21788.0,0.002999
+2021,Nacional,todas,Todas,15-29,Sexual,vida,9270500.0,15457453.0,28419.0,0.003448
+2021,Nacional,todas,Todas,30-59,Sexual,12 meses,5092746.0,25963867.0,59920.0,0.001792
+2021,Nacional,todas,Todas,60+,Sexual,12 meses,500664.0,9102149.0,21788.0,0.00114
+2021,Nacional,todas,Todas,15-29,Sexual,12 meses,6153744.0,15457453.0,28419.0,0.003096
+2021,Nacional,todas,Todas,30-59,Económica o patrimonial,vida,7991765.0,25963867.0,59920.0,0.002208
+2021,Nacional,todas,Todas,60+,Económica o patrimonial,vida,2224252.0,9102149.0,21788.0,0.002863
+2021,Nacional,todas,Todas,15-29,Económica o patrimonial,vida,3649854.0,15457453.0,28419.0,0.002244
+2021,Nacional,todas,Todas,30-59,Económica o patrimonial,12 meses,4697374.0,25963867.0,59920.0,0.001626
+2021,Nacional,todas,Todas,60+,Económica o patrimonial,12 meses,726059.0,9102149.0,21788.0,0.001262
+2021,Nacional,todas,Todas,15-29,Económica o patrimonial,12 meses,2768293.0,15457453.0,28419.0,0.001936
+2021,Nacional,todas,Todas,Todas,Cualquier ámbito,vida,35402979.0,50523469.0,110127.0,0.002169
+2021,Nacional,todas,Todas,Todas,Cualquier ámbito,12 meses,21632263.0,50523469.0,110127.0,0.002251
+2021,Nacional,todas,Todas,Todas,Pareja,vida,18880163.0,47349513.0,105278.0,0.002232
+2021,Nacional,todas,Todas,Todas,Pareja,12 meses,9804752.0,47349513.0,105278.0,0.001665
+2021,Nacional,todas,Todas,Todas,Familiar,12 meses,5752644.0,50523469.0,110127.0,0.001126
+2021,Nacional,todas,Todas,Todas,Escolar,vida,15416172.0,47793558.0,104212.0,0.002024
+2021,Nacional,todas,Todas,Todas,Escolar,12 meses,1395407.0,6911278.0,11092.0,0.002304
+2021,Nacional,todas,Todas,Todas,Laboral,vida,11156444.0,40053469.0,88760.0,0.001924
+2021,Nacional,todas,Todas,Todas,Laboral,12 meses,5265991.0,25259142.0,55328.0,0.001812
+2021,Nacional,todas,Todas,Todas,Comunitario,vida,23027512.0,50523469.0,110127.0,0.002323
+2021,Nacional,todas,Todas,Todas,Comunitario,12 meses,11326694.0,50523469.0,110127.0,0.001685
+2021,Nacional,todas,Todas,Todas,Psicológica,vida,26055027.0,50523469.0,110127.0,0.002315
+2021,Nacional,todas,Todas,Todas,Psicológica,12 meses,14833390.0,50523469.0,110127.0,0.001951
+2021,Nacional,todas,Todas,Todas,Física,vida,17545951.0,50523469.0,110127.0,0.002097
+2021,Nacional,todas,Todas,Todas,Física,12 meses,5170679.0,50523469.0,110127.0,0.000997
+2021,Nacional,todas,Todas,Todas,Sexual,vida,25093355.0,50523469.0,110127.0,0.002326
+2021,Nacional,todas,Todas,Todas,Sexual,12 meses,11747154.0,50523469.0,110127.0,0.00169
+2021,Nacional,todas,Todas,Todas,Económica o patrimonial,vida,13865871.0,50523469.0,110127.0,0.001803
+2021,Nacional,todas,Todas,Todas,Económica o patrimonial,12 meses,8191726.0,50523469.0,110127.0,0.001316
+2021,Ciudad de México,lengua,Indígena,30-59,Cualquier ámbito,vida,35490.0,41083.0,34.0,0.01261
+2021,Ciudad de México,lengua,Resto,30-59,Cualquier ámbito,vida,1642452.0,2068129.0,1744.0,0.009162
+2021,Ciudad de México,lengua,Resto,15-29,Cualquier ámbito,vida,751880.0,959407.0,613.0,0.011124
+2021,Ciudad de México,lengua,Indígena,60+,Cualquier ámbito,vida,9604.0,13478.0,11.0,0.044224
+2021,Ciudad de México,lengua,Resto,60+,Cualquier ámbito,vida,654419.0,975598.0,849.0,0.01119
+2021,Ciudad de México,lengua,Indígena,15-29,Cualquier ámbito,vida,13100.0,17917.0,16.0,0.030257
+2021,Ciudad de México,lengua,Indígena,30-59,Cualquier ámbito,12 meses,21403.0,41083.0,34.0,0.027111
+2021,Ciudad de México,lengua,Resto,30-59,Cualquier ámbito,12 meses,1016631.0,2068129.0,1744.0,0.01027
+2021,Ciudad de México,lengua,Resto,15-29,Cualquier ámbito,12 meses,573580.0,959407.0,613.0,0.012397
+2021,Ciudad de México,lengua,Indígena,60+,Cualquier ámbito,12 meses,1640.0,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Cualquier ámbito,12 meses,256093.0,975598.0,849.0,0.009359
+2021,Ciudad de México,lengua,Indígena,15-29,Cualquier ámbito,12 meses,11040.0,17917.0,16.0,0.043016
+2021,Ciudad de México,lengua,Indígena,30-59,Pareja,vida,14268.0,40275.0,33.0,0.042061
+2021,Ciudad de México,lengua,Resto,30-59,Pareja,vida,876397.0,2023649.0,1719.0,0.010076
+2021,Ciudad de México,lengua,Resto,15-29,Pareja,vida,304779.0,759616.0,507.0,0.012622
+2021,Ciudad de México,lengua,Indígena,60+,Pareja,vida,3063.0,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Pareja,vida,377322.0,947148.0,822.0,0.012018
+2021,Ciudad de México,lengua,Indígena,15-29,Pareja,vida,5330.0,13137.0,13.0,0.070107
+2021,Ciudad de México,lengua,Indígena,30-59,Pareja,12 meses,3474.0,40275.0,33.0,0.016596
+2021,Ciudad de México,lengua,Resto,30-59,Pareja,12 meses,414191.0,2023649.0,1719.0,0.00676
+2021,Ciudad de México,lengua,Resto,15-29,Pareja,12 meses,193487.0,759616.0,507.0,0.010594
+2021,Ciudad de México,lengua,Indígena,60+,Pareja,12 meses,,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Pareja,12 meses,103085.0,947148.0,822.0,0.006998
+2021,Ciudad de México,lengua,Indígena,15-29,Pareja,12 meses,4659.0,13137.0,13.0,0.075947
+2021,Ciudad de México,lengua,Indígena,30-59,Familiar,12 meses,4205.0,41083.0,34.0,0.025442
+2021,Ciudad de México,lengua,Resto,30-59,Familiar,12 meses,284216.0,2068129.0,1744.0,0.00591
+2021,Ciudad de México,lengua,Resto,15-29,Familiar,12 meses,213353.0,959407.0,613.0,0.008085
+2021,Ciudad de México,lengua,Indígena,60+,Familiar,12 meses,747.0,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Familiar,12 meses,102668.0,975598.0,849.0,0.006354
+2021,Ciudad de México,lengua,Indígena,15-29,Familiar,12 meses,4292.0,17917.0,16.0,0.042528
+2021,Ciudad de México,lengua,Indígena,30-59,Escolar,vida,11825.0,35472.0,30.0,0.035255
+2021,Ciudad de México,lengua,Resto,30-59,Escolar,vida,742486.0,2046942.0,1722.0,0.009318
+2021,Ciudad de México,lengua,Resto,15-29,Escolar,vida,431619.0,949035.0,606.0,0.010669
+2021,Ciudad de México,lengua,Indígena,60+,Escolar,vida,5962.0,11478.0,10.0,0.073413
+2021,Ciudad de México,lengua,Resto,60+,Escolar,vida,227537.0,900475.0,790.0,0.010145
+2021,Ciudad de México,lengua,Indígena,15-29,Escolar,vida,7532.0,17917.0,16.0,0.039933
+2021,Ciudad de México,lengua,Indígena,30-59,Escolar,12 meses,,658.0,1.0,
+2021,Ciudad de México,lengua,Resto,30-59,Escolar,12 meses,31256.0,114655.0,86.0,0.027895
+2021,Ciudad de México,lengua,Resto,15-29,Escolar,12 meses,107150.0,434519.0,244.0,0.009945
+2021,Ciudad de México,lengua,Resto,60+,Escolar,12 meses,741.0,6999.0,7.0,
+2021,Ciudad de México,lengua,Indígena,15-29,Escolar,12 meses,3893.0,6703.0,5.0,0.048782
+2021,Ciudad de México,lengua,Indígena,30-59,Laboral,vida,17254.0,37236.0,32.0,0.038309
+2021,Ciudad de México,lengua,Resto,30-59,Laboral,vida,719392.0,1927012.0,1611.0,0.009337
+2021,Ciudad de México,lengua,Resto,15-29,Laboral,vida,229637.0,581224.0,404.0,0.014054
+2021,Ciudad de México,lengua,Indígena,60+,Laboral,vida,5370.0,11476.0,9.0,0.051324
+2021,Ciudad de México,lengua,Resto,60+,Laboral,vida,186429.0,796329.0,695.0,0.008665
+2021,Ciudad de México,lengua,Indígena,15-29,Laboral,vida,4717.0,12149.0,12.0,0.071696
+2021,Ciudad de México,lengua,Indígena,30-59,Laboral,12 meses,8575.0,32353.0,28.0,0.023791
+2021,Ciudad de México,lengua,Resto,30-59,Laboral,12 meses,339420.0,1446348.0,1202.0,0.007761
+2021,Ciudad de México,lengua,Resto,15-29,Laboral,12 meses,142528.0,435274.0,299.0,0.014003
+2021,Ciudad de México,lengua,Indígena,60+,Laboral,12 meses,,5552.0,5.0,
+2021,Ciudad de México,lengua,Resto,60+,Laboral,12 meses,27206.0,212972.0,193.0,0.010954
+2021,Ciudad de México,lengua,Indígena,15-29,Laboral,12 meses,4717.0,9198.0,9.0,0.075416
+2021,Ciudad de México,lengua,Indígena,30-59,Comunitario,vida,29339.0,41083.0,34.0,0.025976
+2021,Ciudad de México,lengua,Resto,30-59,Comunitario,vida,1315547.0,2068129.0,1744.0,0.010657
+2021,Ciudad de México,lengua,Resto,15-29,Comunitario,vida,666331.0,959407.0,613.0,0.012026
+2021,Ciudad de México,lengua,Indígena,60+,Comunitario,vida,8873.0,13478.0,11.0,0.028361
+2021,Ciudad de México,lengua,Resto,60+,Comunitario,vida,453982.0,975598.0,849.0,0.01188
+2021,Ciudad de México,lengua,Indígena,15-29,Comunitario,vida,9721.0,17917.0,16.0,0.051133
+2021,Ciudad de México,lengua,Indígena,30-59,Comunitario,12 meses,14863.0,41083.0,34.0,0.03526
+2021,Ciudad de México,lengua,Resto,30-59,Comunitario,12 meses,590159.0,2068129.0,1744.0,0.008658
+2021,Ciudad de México,lengua,Resto,15-29,Comunitario,12 meses,428880.0,959407.0,613.0,0.01194
+2021,Ciudad de México,lengua,Indígena,60+,Comunitario,12 meses,893.0,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Comunitario,12 meses,80167.0,975598.0,849.0,0.004315
+2021,Ciudad de México,lengua,Indígena,15-29,Comunitario,12 meses,8313.0,17917.0,16.0,0.059564
+2021,Ciudad de México,lengua,Indígena,30-59,Psicológica,vida,17869.0,41083.0,34.0,0.028606
+2021,Ciudad de México,lengua,Resto,30-59,Psicológica,vida,1225826.0,2068129.0,1744.0,0.010801
+2021,Ciudad de México,lengua,Resto,15-29,Psicológica,vida,601029.0,959407.0,613.0,0.012166
+2021,Ciudad de México,lengua,Indígena,60+,Psicológica,vida,6711.0,13478.0,11.0,0.065321
+2021,Ciudad de México,lengua,Resto,60+,Psicológica,vida,468328.0,975598.0,849.0,0.011744
+2021,Ciudad de México,lengua,Indígena,15-29,Psicológica,vida,9680.0,17917.0,16.0,0.038808
+2021,Ciudad de México,lengua,Indígena,30-59,Psicológica,12 meses,8509.0,41083.0,34.0,0.024413
+2021,Ciudad de México,lengua,Resto,30-59,Psicológica,12 meses,665309.0,2068129.0,1744.0,0.009149
+2021,Ciudad de México,lengua,Resto,15-29,Psicológica,12 meses,402065.0,959407.0,613.0,0.011614
+2021,Ciudad de México,lengua,Indígena,60+,Psicológica,12 meses,,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Psicológica,12 meses,170779.0,975598.0,849.0,0.007675
+2021,Ciudad de México,lengua,Indígena,15-29,Psicológica,12 meses,9009.0,17917.0,16.0,0.041976
+2021,Ciudad de México,lengua,Indígena,30-59,Física,vida,16132.0,41083.0,34.0,0.040233
+2021,Ciudad de México,lengua,Resto,30-59,Física,vida,820344.0,2068129.0,1744.0,0.009138
+2021,Ciudad de México,lengua,Resto,15-29,Física,vida,374179.0,959407.0,613.0,0.010407
+2021,Ciudad de México,lengua,Indígena,60+,Física,vida,6791.0,13478.0,11.0,0.04075
+2021,Ciudad de México,lengua,Resto,60+,Física,vida,367031.0,975598.0,849.0,0.010718
+2021,Ciudad de México,lengua,Indígena,15-29,Física,vida,5207.0,17917.0,16.0,0.05634
+2021,Ciudad de México,lengua,Indígena,30-59,Física,12 meses,4707.0,41083.0,34.0,0.027157
+2021,Ciudad de México,lengua,Resto,30-59,Física,12 meses,231105.0,2068129.0,1744.0,0.004561
+2021,Ciudad de México,lengua,Resto,15-29,Física,12 meses,167475.0,959407.0,613.0,0.007188
+2021,Ciudad de México,lengua,Indígena,60+,Física,12 meses,893.0,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Física,12 meses,69495.0,975598.0,849.0,0.005379
+2021,Ciudad de México,lengua,Indígena,15-29,Física,12 meses,4536.0,17917.0,16.0,0.059315
+2021,Ciudad de México,lengua,Indígena,30-59,Sexual,vida,25938.0,41083.0,34.0,0.031693
+2021,Ciudad de México,lengua,Resto,30-59,Sexual,vida,1395925.0,2068129.0,1744.0,0.010633
+2021,Ciudad de México,lengua,Resto,15-29,Sexual,vida,700055.0,959407.0,613.0,0.011513
+2021,Ciudad de México,lengua,Indígena,60+,Sexual,vida,8873.0,13478.0,11.0,0.028361
+2021,Ciudad de México,lengua,Resto,60+,Sexual,vida,485780.0,975598.0,849.0,0.012061
+2021,Ciudad de México,lengua,Indígena,15-29,Sexual,vida,10423.0,17917.0,16.0,0.046848
+2021,Ciudad de México,lengua,Indígena,30-59,Sexual,12 meses,11462.0,41083.0,34.0,0.035829
+2021,Ciudad de México,lengua,Resto,30-59,Sexual,12 meses,623696.0,2068129.0,1744.0,0.008901
+2021,Ciudad de México,lengua,Resto,15-29,Sexual,12 meses,457485.0,959407.0,613.0,0.012313
+2021,Ciudad de México,lengua,Indígena,60+,Sexual,12 meses,1640.0,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Sexual,12 meses,67226.0,975598.0,849.0,0.004084
+2021,Ciudad de México,lengua,Indígena,15-29,Sexual,12 meses,8363.0,17917.0,16.0,0.058292
+2021,Ciudad de México,lengua,Indígena,30-59,Económica o patrimonial,vida,12679.0,41083.0,34.0,0.032737
+2021,Ciudad de México,lengua,Resto,30-59,Económica o patrimonial,vida,667586.0,2068129.0,1744.0,0.008381
+2021,Ciudad de México,lengua,Resto,15-29,Económica o patrimonial,vida,198690.0,959407.0,613.0,0.008026
+2021,Ciudad de México,lengua,Indígena,60+,Económica o patrimonial,vida,3224.0,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Económica o patrimonial,vida,226662.0,975598.0,849.0,0.008415
+2021,Ciudad de México,lengua,Indígena,15-29,Económica o patrimonial,vida,8388.0,17917.0,16.0,0.044735
+2021,Ciudad de México,lengua,Indígena,30-59,Económica o patrimonial,12 meses,7890.0,41083.0,34.0,0.021549
+2021,Ciudad de México,lengua,Resto,30-59,Económica o patrimonial,12 meses,401577.0,2068129.0,1744.0,0.006325
+2021,Ciudad de México,lengua,Resto,15-29,Económica o patrimonial,12 meses,162919.0,959407.0,613.0,0.00777
+2021,Ciudad de México,lengua,Indígena,60+,Económica o patrimonial,12 meses,747.0,13478.0,11.0,
+2021,Ciudad de México,lengua,Resto,60+,Económica o patrimonial,12 meses,90590.0,975598.0,849.0,0.004921
+2021,Ciudad de México,lengua,Indígena,15-29,Económica o patrimonial,12 meses,8388.0,17917.0,16.0,0.044735
+2021,Ciudad de México,lengua,Indígena,Todas,Cualquier ámbito,vida,58194.0,72478.0,61.0,0.013243
+2021,Ciudad de México,lengua,Resto,Todas,Cualquier ámbito,vida,3048751.0,4003134.0,3206.0,0.008263
+2021,Ciudad de México,lengua,Indígena,Todas,Cualquier ámbito,12 meses,34083.0,72478.0,61.0,0.022634
+2021,Ciudad de México,lengua,Resto,Todas,Cualquier ámbito,12 meses,1846304.0,4003134.0,3206.0,0.008925
+2021,Ciudad de México,lengua,Indígena,Todas,Pareja,vida,22661.0,66890.0,57.0,0.031588
+2021,Ciudad de México,lengua,Resto,Todas,Pareja,vida,1558498.0,3730413.0,3048.0,0.008985
+2021,Ciudad de México,lengua,Indígena,Todas,Pareja,12 meses,8133.0,66890.0,57.0,0.02243
+2021,Ciudad de México,lengua,Resto,Todas,Pareja,12 meses,710763.0,3730413.0,3048.0,0.005777
+2021,Ciudad de México,lengua,Indígena,Todas,Familiar,12 meses,9244.0,72478.0,61.0,0.018991
+2021,Ciudad de México,lengua,Resto,Todas,Familiar,12 meses,600237.0,4003134.0,3206.0,0.004871
+2021,Ciudad de México,lengua,Indígena,Todas,Escolar,vida,25319.0,64867.0,56.0,0.029991
+2021,Ciudad de México,lengua,Resto,Todas,Escolar,vida,1401642.0,3896452.0,3118.0,0.008279
+2021,Ciudad de México,lengua,Indígena,Todas,Escolar,12 meses,3893.0,7361.0,6.0,0.049923
+2021,Ciudad de México,lengua,Resto,Todas,Escolar,12 meses,139147.0,556173.0,337.0,0.010218
+2021,Ciudad de México,lengua,Indígena,Todas,Laboral,vida,27341.0,60861.0,53.0,0.032592
+2021,Ciudad de México,lengua,Resto,Todas,Laboral,vida,1135458.0,3304565.0,2710.0,0.00798
+2021,Ciudad de México,lengua,Indígena,Todas,Laboral,12 meses,13292.0,47103.0,42.0,0.029867
+2021,Ciudad de México,lengua,Resto,Todas,Laboral,12 meses,509154.0,2094594.0,1694.0,0.007128
+2021,Ciudad de México,lengua,Indígena,Todas,Comunitario,vida,47933.0,72478.0,61.0,0.021606
+2021,Ciudad de México,lengua,Resto,Todas,Comunitario,vida,2435860.0,4003134.0,3206.0,0.009357
+2021,Ciudad de México,lengua,Indígena,Todas,Comunitario,12 meses,24069.0,72478.0,61.0,0.027068
+2021,Ciudad de México,lengua,Resto,Todas,Comunitario,12 meses,1099206.0,4003134.0,3206.0,0.006905
+2021,Ciudad de México,lengua,Indígena,Todas,Psicológica,vida,34260.0,72478.0,61.0,0.02379
+2021,Ciudad de México,lengua,Resto,Todas,Psicológica,vida,2295183.0,4003134.0,3206.0,0.009207
+2021,Ciudad de México,lengua,Indígena,Todas,Psicológica,12 meses,17518.0,72478.0,61.0,0.02275
+2021,Ciudad de México,lengua,Resto,Todas,Psicológica,12 meses,1238153.0,4003134.0,3206.0,0.007618
+2021,Ciudad de México,lengua,Indígena,Todas,Física,vida,28130.0,72478.0,61.0,0.027798
+2021,Ciudad de México,lengua,Resto,Todas,Física,vida,1561554.0,4003134.0,3206.0,0.008163
+2021,Ciudad de México,lengua,Indígena,Todas,Física,12 meses,10136.0,72478.0,61.0,0.023489
+2021,Ciudad de México,lengua,Resto,Todas,Física,12 meses,468075.0,4003134.0,3206.0,0.003741
+2021,Ciudad de México,lengua,Indígena,Todas,Sexual,vida,45234.0,72478.0,61.0,0.02359
+2021,Ciudad de México,lengua,Resto,Todas,Sexual,vida,2581760.0,4003134.0,3206.0,0.00919
+2021,Ciudad de México,lengua,Indígena,Todas,Sexual,12 meses,21465.0,72478.0,61.0,0.026951
+2021,Ciudad de México,lengua,Resto,Todas,Sexual,12 meses,1148407.0,4003134.0,3206.0,0.007077
+2021,Ciudad de México,lengua,Indígena,Todas,Económica o patrimonial,vida,24291.0,72478.0,61.0,0.024389
+2021,Ciudad de México,lengua,Resto,Todas,Económica o patrimonial,vida,1092938.0,4003134.0,3206.0,0.006622
+2021,Ciudad de México,lengua,Indígena,Todas,Económica o patrimonial,12 meses,17025.0,72478.0,61.0,0.022039
+2021,Ciudad de México,lengua,Resto,Todas,Económica o patrimonial,12 meses,655086.0,4003134.0,3206.0,0.004786
+2021,Ciudad de México,autoads,Resto,15-29,Cualquier ámbito,vida,705271.0,895922.0,570.0,0.010989
+2021,Ciudad de México,autoads,Indígena,60+,Cualquier ámbito,vida,84370.0,112482.0,97.0,0.021282
+2021,Ciudad de México,autoads,Indígena,30-59,Cualquier ámbito,vida,177582.0,222148.0,184.0,0.016021
+2021,Ciudad de México,autoads,Resto,60+,Cualquier ámbito,vida,572883.0,868872.0,756.0,0.011909
+2021,Ciudad de México,autoads,Indígena,15-29,Cualquier ámbito,vida,49296.0,70341.0,52.0,0.02999
+2021,Ciudad de México,autoads,Resto,30-59,Cualquier ámbito,vida,1486936.0,1870470.0,1581.0,0.009431
+2021,Ciudad de México,autoads,Resto,15-29,Cualquier ámbito,12 meses,537551.0,895922.0,570.0,0.012445
+2021,Ciudad de México,autoads,Indígena,60+,Cualquier ámbito,12 meses,37081.0,112482.0,97.0,0.028026
+2021,Ciudad de México,autoads,Indígena,30-59,Cualquier ámbito,12 meses,112773.0,222148.0,184.0,0.020795
+2021,Ciudad de México,autoads,Resto,60+,Cualquier ámbito,12 meses,218787.0,868872.0,756.0,0.009714
+2021,Ciudad de México,autoads,Indígena,15-29,Cualquier ámbito,12 meses,36656.0,70341.0,52.0,0.032816
+2021,Ciudad de México,autoads,Resto,30-59,Cualquier ámbito,12 meses,915468.0,1870470.0,1581.0,0.010197
+2021,Ciudad de México,autoads,Resto,15-29,Pareja,vida,283992.0,706905.0,471.0,0.012968
+2021,Ciudad de México,autoads,Indígena,60+,Pareja,vida,57326.0,110218.0,94.0,0.029232
+2021,Ciudad de México,autoads,Indígena,30-59,Pareja,vida,104612.0,218561.0,181.0,0.021206
+2021,Ciudad de México,autoads,Resto,60+,Pareja,vida,319404.0,842686.0,732.0,0.012324
+2021,Ciudad de México,autoads,Indígena,15-29,Pareja,vida,19780.0,54787.0,42.0,0.042125
+2021,Ciudad de México,autoads,Resto,30-59,Pareja,vida,777676.0,1828769.0,1558.0,0.010193
+2021,Ciudad de México,autoads,Resto,15-29,Pareja,12 meses,179792.0,706905.0,471.0,0.010533
+2021,Ciudad de México,autoads,Indígena,60+,Pareja,12 meses,15222.0,110218.0,94.0,0.012276
+2021,Ciudad de México,autoads,Indígena,30-59,Pareja,12 meses,36056.0,218561.0,181.0,0.014057
+2021,Ciudad de México,autoads,Resto,60+,Pareja,12 meses,86703.0,842686.0,732.0,0.006968
+2021,Ciudad de México,autoads,Indígena,15-29,Pareja,12 meses,12017.0,54787.0,42.0,0.04115
+2021,Ciudad de México,autoads,Resto,30-59,Pareja,12 meses,378295.0,1828769.0,1558.0,0.007137
+2021,Ciudad de México,autoads,Resto,15-29,Familiar,12 meses,200142.0,895922.0,570.0,0.008074
+2021,Ciudad de México,autoads,Indígena,60+,Familiar,12 meses,17306.0,112482.0,97.0,0.020927
+2021,Ciudad de México,autoads,Indígena,30-59,Familiar,12 meses,23041.0,222148.0,184.0,0.00792
+2021,Ciudad de México,autoads,Resto,60+,Familiar,12 meses,85404.0,868872.0,756.0,0.006641
+2021,Ciudad de México,autoads,Indígena,15-29,Familiar,12 meses,14648.0,70341.0,52.0,0.017805
+2021,Ciudad de México,autoads,Resto,30-59,Familiar,12 meses,262009.0,1870470.0,1581.0,0.006359
+2021,Ciudad de México,autoads,Resto,15-29,Escolar,vida,401493.0,887656.0,564.0,0.011227
+2021,Ciudad de México,autoads,Indígena,60+,Escolar,vida,37362.0,102497.0,88.0,0.02925
+2021,Ciudad de México,autoads,Indígena,30-59,Escolar,vida,80189.0,213311.0,176.0,0.020423
+2021,Ciudad de México,autoads,Resto,60+,Escolar,vida,194977.0,803476.0,707.0,0.010358
+2021,Ciudad de México,autoads,Indígena,15-29,Escolar,vida,31132.0,68235.0,51.0,0.02877
+2021,Ciudad de México,autoads,Resto,30-59,Escolar,vida,664551.0,1852509.0,1563.0,0.009274
+2021,Ciudad de México,autoads,Resto,15-29,Escolar,12 meses,100377.0,407707.0,229.0,0.010019
+2021,Ciudad de México,autoads,Indígena,30-59,Escolar,12 meses,5389.0,10158.0,9.0,0.030851
+2021,Ciudad de México,autoads,Resto,60+,Escolar,12 meses,741.0,6999.0,7.0,
+2021,Ciudad de México,autoads,Indígena,15-29,Escolar,12 meses,10666.0,30012.0,18.0,0.048939
+2021,Ciudad de México,autoads,Resto,30-59,Escolar,12 meses,25867.0,105155.0,78.0,0.031439
+2021,Ciudad de México,autoads,Resto,15-29,Laboral,vida,214459.0,533561.0,369.0,0.014563
+2021,Ciudad de México,autoads,Indígena,60+,Laboral,vida,26637.0,91400.0,81.0,0.028611
+2021,Ciudad de México,autoads,Indígena,30-59,Laboral,vida,73082.0,206028.0,171.0,0.021158
+2021,Ciudad de México,autoads,Resto,60+,Laboral,vida,161892.0,708683.0,616.0,0.008888
+2021,Ciudad de México,autoads,Indígena,15-29,Laboral,vida,18464.0,51606.0,41.0,0.04514
+2021,Ciudad de México,autoads,Resto,30-59,Laboral,vida,657708.0,1741626.0,1459.0,0.009527
+2021,Ciudad de México,autoads,Resto,15-29,Laboral,12 meses,133163.0,398608.0,271.0,0.014524
+2021,Ciudad de México,autoads,Indígena,60+,Laboral,12 meses,2027.0,25435.0,27.0,0.000724
+2021,Ciudad de México,autoads,Indígena,30-59,Laboral,12 meses,32289.0,159822.0,131.0,0.019028
+2021,Ciudad de México,autoads,Resto,60+,Laboral,12 meses,24474.0,189519.0,167.0,0.011137
+2021,Ciudad de México,autoads,Indígena,15-29,Laboral,12 meses,14082.0,38306.0,32.0,0.037355
+2021,Ciudad de México,autoads,Resto,30-59,Laboral,12 meses,315706.0,1306166.0,1090.0,0.008011
+2021,Ciudad de México,autoads,Resto,15-29,Comunitario,vida,621281.0,895922.0,570.0,0.011285
+2021,Ciudad de México,autoads,Indígena,60+,Comunitario,vida,52256.0,112482.0,97.0,0.02695
+2021,Ciudad de México,autoads,Indígena,30-59,Comunitario,vida,144292.0,222148.0,184.0,0.021111
+2021,Ciudad de México,autoads,Resto,60+,Comunitario,vida,406110.0,868872.0,756.0,0.012532
+2021,Ciudad de México,autoads,Indígena,15-29,Comunitario,vida,44358.0,70341.0,52.0,0.031186
+2021,Ciudad de México,autoads,Resto,30-59,Comunitario,vida,1190072.0,1870470.0,1581.0,0.011052
+2021,Ciudad de México,autoads,Resto,15-29,Comunitario,12 meses,397182.0,895922.0,570.0,0.012023
+2021,Ciudad de México,autoads,Indígena,60+,Comunitario,12 meses,11376.0,112482.0,97.0,0.013803
+2021,Ciudad de México,autoads,Indígena,30-59,Comunitario,12 meses,71712.0,222148.0,184.0,0.021896
+2021,Ciudad de México,autoads,Resto,60+,Comunitario,12 meses,68979.0,868872.0,756.0,0.004488
+2021,Ciudad de México,autoads,Indígena,15-29,Comunitario,12 meses,30241.0,70341.0,52.0,0.034565
+2021,Ciudad de México,autoads,Resto,30-59,Comunitario,12 meses,526032.0,1870470.0,1581.0,0.008751
+2021,Ciudad de México,autoads,Resto,15-29,Psicológica,vida,565519.0,895922.0,570.0,0.012226
+2021,Ciudad de México,autoads,Indígena,60+,Psicológica,vida,61839.0,112482.0,97.0,0.027288
+2021,Ciudad de México,autoads,Indígena,30-59,Psicológica,vida,122840.0,222148.0,184.0,0.020176
+2021,Ciudad de México,autoads,Resto,60+,Psicológica,vida,408017.0,868872.0,756.0,0.012318
+2021,Ciudad de México,autoads,Indígena,15-29,Psicológica,vida,34777.0,70341.0,52.0,0.035027
+2021,Ciudad de México,autoads,Resto,30-59,Psicológica,vida,1110039.0,1870470.0,1581.0,0.011043
+2021,Ciudad de México,autoads,Resto,15-29,Psicológica,12 meses,371318.0,895922.0,570.0,0.01138
+2021,Ciudad de México,autoads,Indígena,60+,Psicológica,12 meses,27197.0,112482.0,97.0,0.029239
+2021,Ciudad de México,autoads,Indígena,30-59,Psicológica,12 meses,63673.0,222148.0,184.0,0.017571
+2021,Ciudad de México,autoads,Resto,60+,Psicológica,12 meses,141717.0,868872.0,756.0,0.007554
+2021,Ciudad de México,autoads,Indígena,15-29,Psicológica,12 meses,29343.0,70341.0,52.0,0.035383
+2021,Ciudad de México,autoads,Resto,30-59,Psicológica,12 meses,602607.0,1870470.0,1581.0,0.009411
+2021,Ciudad de México,autoads,Resto,15-29,Física,vida,351551.0,895922.0,570.0,0.010671
+2021,Ciudad de México,autoads,Indígena,60+,Física,vida,56119.0,112482.0,97.0,0.026487
+2021,Ciudad de México,autoads,Indígena,30-59,Física,vida,91415.0,222148.0,184.0,0.021328
+2021,Ciudad de México,autoads,Resto,60+,Física,vida,314048.0,868872.0,756.0,0.010996
+2021,Ciudad de México,autoads,Indígena,15-29,Física,vida,24540.0,70341.0,52.0,0.029865
+2021,Ciudad de México,autoads,Resto,30-59,Física,vida,736808.0,1870470.0,1581.0,0.009423
+2021,Ciudad de México,autoads,Resto,15-29,Física,12 meses,156463.0,895922.0,570.0,0.007579
+2021,Ciudad de México,autoads,Indígena,60+,Física,12 meses,11618.0,112482.0,97.0,0.009025
+2021,Ciudad de México,autoads,Indígena,30-59,Física,12 meses,21068.0,222148.0,184.0,0.008057
+2021,Ciudad de México,autoads,Resto,60+,Física,12 meses,58065.0,868872.0,756.0,0.005913
+2021,Ciudad de México,autoads,Indígena,15-29,Física,12 meses,12896.0,70341.0,52.0,0.019135
+2021,Ciudad de México,autoads,Resto,30-59,Física,12 meses,213186.0,1870470.0,1581.0,0.004971
+2021,Ciudad de México,autoads,Resto,15-29,Sexual,vida,654942.0,895922.0,570.0,0.011277
+2021,Ciudad de México,autoads,Indígena,60+,Sexual,vida,64317.0,112482.0,97.0,0.024768
+2021,Ciudad de México,autoads,Indígena,30-59,Sexual,vida,142198.0,222148.0,184.0,0.021139
+2021,Ciudad de México,autoads,Resto,60+,Sexual,vida,425847.0,868872.0,756.0,0.012669
+2021,Ciudad de México,autoads,Indígena,15-29,Sexual,vida,45123.0,70341.0,52.0,0.020717
+2021,Ciudad de México,autoads,Resto,30-59,Sexual,vida,1266241.0,1870470.0,1581.0,0.011055
+2021,Ciudad de México,autoads,Resto,15-29,Sexual,12 meses,427988.0,895922.0,570.0,0.012445
+2021,Ciudad de México,autoads,Indígena,60+,Sexual,12 meses,10776.0,112482.0,97.0,0.012753
+2021,Ciudad de México,autoads,Indígena,30-59,Sexual,12 meses,64296.0,222148.0,184.0,0.020837
+2021,Ciudad de México,autoads,Resto,60+,Sexual,12 meses,57385.0,868872.0,756.0,0.00428
+2021,Ciudad de México,autoads,Indígena,15-29,Sexual,12 meses,27447.0,70341.0,52.0,0.028733
+2021,Ciudad de México,autoads,Resto,30-59,Sexual,12 meses,562825.0,1870470.0,1581.0,0.009057
+2021,Ciudad de México,autoads,Resto,15-29,Económica o patrimonial,vida,190745.0,895922.0,570.0,0.0083
+2021,Ciudad de México,autoads,Indígena,60+,Económica o patrimonial,vida,31843.0,112482.0,97.0,0.030023
+2021,Ciudad de México,autoads,Indígena,30-59,Económica o patrimonial,vida,80949.0,222148.0,184.0,0.021306
+2021,Ciudad de México,autoads,Resto,60+,Económica o patrimonial,vida,196301.0,868872.0,756.0,0.008423
+2021,Ciudad de México,autoads,Indígena,15-29,Económica o patrimonial,vida,14902.0,70341.0,52.0,0.020904
+2021,Ciudad de México,autoads,Resto,30-59,Económica o patrimonial,vida,592789.0,1870470.0,1581.0,0.008444
+2021,Ciudad de México,autoads,Resto,15-29,Económica o patrimonial,12 meses,155612.0,895922.0,570.0,0.008004
+2021,Ciudad de México,autoads,Indígena,60+,Económica o patrimonial,12 meses,9172.0,112482.0,97.0,0.017793
+2021,Ciudad de México,autoads,Indígena,30-59,Económica o patrimonial,12 meses,43774.0,222148.0,184.0,0.015171
+2021,Ciudad de México,autoads,Resto,60+,Económica o patrimonial,12 meses,81460.0,868872.0,756.0,0.005019
+2021,Ciudad de México,autoads,Indígena,15-29,Económica o patrimonial,12 meses,14264.0,70341.0,52.0,0.021121
+2021,Ciudad de México,autoads,Resto,30-59,Económica o patrimonial,12 meses,363376.0,1870470.0,1581.0,0.006509
+2021,Ciudad de México,autoads,Indígena,Todas,Cualquier ámbito,vida,311248.0,404971.0,333.0,0.01401
+2021,Ciudad de México,autoads,Resto,Todas,Cualquier ámbito,vida,2765090.0,3635264.0,2907.0,0.008629
+2021,Ciudad de México,autoads,Indígena,Todas,Cualquier ámbito,12 meses,186510.0,404971.0,333.0,0.016779
+2021,Ciudad de México,autoads,Resto,Todas,Cualquier ámbito,12 meses,1671806.0,3635264.0,2907.0,0.00894
+2021,Ciudad de México,autoads,Indígena,Todas,Pareja,vida,181718.0,383566.0,317.0,0.016697
+2021,Ciudad de México,autoads,Resto,Todas,Pareja,vida,1381072.0,3378360.0,2761.0,0.009043
+2021,Ciudad de México,autoads,Indígena,Todas,Pareja,12 meses,63295.0,383566.0,317.0,0.012434
+2021,Ciudad de México,autoads,Resto,Todas,Pareja,12 meses,644790.0,3378360.0,2761.0,0.005951
+2021,Ciudad de México,autoads,Indígena,Todas,Familiar,12 meses,54995.0,404971.0,333.0,0.007669
+2021,Ciudad de México,autoads,Resto,Todas,Familiar,12 meses,547555.0,3635264.0,2907.0,0.005053
+2021,Ciudad de México,autoads,Indígena,Todas,Escolar,vida,148683.0,384043.0,315.0,0.017155
+2021,Ciudad de México,autoads,Resto,Todas,Escolar,vida,1261021.0,3543641.0,2834.0,0.008328
+2021,Ciudad de México,autoads,Indígena,Todas,Escolar,12 meses,16055.0,40170.0,27.0,0.034799
+2021,Ciudad de México,autoads,Resto,Todas,Escolar,12 meses,126985.0,519861.0,314.0,0.010195
+2021,Ciudad de México,autoads,Indígena,Todas,Laboral,vida,118183.0,349034.0,293.0,0.018482
+2021,Ciudad de México,autoads,Resto,Todas,Laboral,vida,1034059.0,2983870.0,2444.0,0.008124
+2021,Ciudad de México,autoads,Indígena,Todas,Laboral,12 meses,48398.0,223563.0,190.0,0.015987
+2021,Ciudad de México,autoads,Resto,Todas,Laboral,12 meses,473343.0,1894293.0,1528.0,0.007455
+2021,Ciudad de México,autoads,Indígena,Todas,Comunitario,vida,240906.0,404971.0,333.0,0.017285
+2021,Ciudad de México,autoads,Resto,Todas,Comunitario,vida,2217463.0,3635264.0,2907.0,0.009754
+2021,Ciudad de México,autoads,Indígena,Todas,Comunitario,12 meses,113329.0,404971.0,333.0,0.015606
+2021,Ciudad de México,autoads,Resto,Todas,Comunitario,12 meses,992193.0,3635264.0,2907.0,0.007044
+2021,Ciudad de México,autoads,Indígena,Todas,Psicológica,vida,219456.0,404971.0,333.0,0.01694
+2021,Ciudad de México,autoads,Resto,Todas,Psicológica,vida,2083575.0,3635264.0,2907.0,0.009456
+2021,Ciudad de México,autoads,Indígena,Todas,Psicológica,12 meses,120213.0,404971.0,333.0,0.015444
+2021,Ciudad de México,autoads,Resto,Todas,Psicológica,12 meses,1115642.0,3635264.0,2907.0,0.00767
+2021,Ciudad de México,autoads,Indígena,Todas,Física,vida,172074.0,404971.0,333.0,0.016546
+2021,Ciudad de México,autoads,Resto,Todas,Física,vida,1402407.0,3635264.0,2907.0,0.008122
+2021,Ciudad de México,autoads,Indígena,Todas,Física,12 meses,45582.0,404971.0,333.0,0.006412
+2021,Ciudad de México,autoads,Resto,Todas,Física,12 meses,427714.0,3635264.0,2907.0,0.003791
+2021,Ciudad de México,autoads,Indígena,Todas,Sexual,vida,251638.0,404971.0,333.0,0.016908
+2021,Ciudad de México,autoads,Resto,Todas,Sexual,vida,2347030.0,3635264.0,2907.0,0.009539
+2021,Ciudad de México,autoads,Indígena,Todas,Sexual,12 meses,102519.0,404971.0,333.0,0.014584
+2021,Ciudad de México,autoads,Resto,Todas,Sexual,12 meses,1048198.0,3635264.0,2907.0,0.00719
+2021,Ciudad de México,autoads,Indígena,Todas,Económica o patrimonial,vida,127694.0,404971.0,333.0,0.016917
+2021,Ciudad de México,autoads,Resto,Todas,Económica o patrimonial,vida,979835.0,3635264.0,2907.0,0.006582
+2021,Ciudad de México,autoads,Indígena,Todas,Económica o patrimonial,12 meses,67210.0,404971.0,333.0,0.011078
+2021,Ciudad de México,autoads,Resto,Todas,Económica o patrimonial,12 meses,600448.0,3635264.0,2907.0,0.004871
+2021,Ciudad de México,todas,Todas,60+,Cualquier ámbito,vida,664023.0,989076.0,860.0,0.011312
+2021,Ciudad de México,todas,Todas,30-59,Cualquier ámbito,vida,1677942.0,2109212.0,1778.0,0.00905
+2021,Ciudad de México,todas,Todas,15-29,Cualquier ámbito,vida,764980.0,977324.0,629.0,0.011271
+2021,Ciudad de México,todas,Todas,60+,Cualquier ámbito,12 meses,257733.0,989076.0,860.0,0.009085
+2021,Ciudad de México,todas,Todas,30-59,Cualquier ámbito,12 meses,1038034.0,2109212.0,1778.0,0.010194
+2021,Ciudad de México,todas,Todas,15-29,Cualquier ámbito,12 meses,584620.0,977324.0,629.0,0.012464
+2021,Ciudad de México,todas,Todas,60+,Pareja,vida,380385.0,960626.0,833.0,0.011757
+2021,Ciudad de México,todas,Todas,30-59,Pareja,vida,890665.0,2063924.0,1752.0,0.010106
+2021,Ciudad de México,todas,Todas,15-29,Pareja,vida,310109.0,772753.0,520.0,0.012475
+2021,Ciudad de México,todas,Todas,60+,Pareja,12 meses,103085.0,960626.0,833.0,0.006858
+2021,Ciudad de México,todas,Todas,30-59,Pareja,12 meses,417665.0,2063924.0,1752.0,0.006633
+2021,Ciudad de México,todas,Todas,15-29,Pareja,12 meses,198146.0,772753.0,520.0,0.010439
+2021,Ciudad de México,todas,Todas,60+,Familiar,12 meses,103415.0,989076.0,860.0,0.006264
+2021,Ciudad de México,todas,Todas,30-59,Familiar,12 meses,288421.0,2109212.0,1778.0,0.005852
+2021,Ciudad de México,todas,Todas,15-29,Familiar,12 meses,217645.0,977324.0,629.0,0.008147
+2021,Ciudad de México,todas,Todas,60+,Escolar,vida,233499.0,911953.0,800.0,0.010048
+2021,Ciudad de México,todas,Todas,30-59,Escolar,vida,754311.0,2082414.0,1752.0,0.009405
+2021,Ciudad de México,todas,Todas,15-29,Escolar,vida,439151.0,966952.0,622.0,0.010583
+2021,Ciudad de México,todas,Todas,60+,Escolar,12 meses,741.0,6999.0,7.0,
+2021,Ciudad de México,todas,Todas,30-59,Escolar,12 meses,31256.0,115313.0,87.0,0.02779
+2021,Ciudad de México,todas,Todas,15-29,Escolar,12 meses,111043.0,441222.0,249.0,0.009839
+2021,Ciudad de México,todas,Todas,60+,Laboral,vida,191799.0,807805.0,704.0,0.008559
+2021,Ciudad de México,todas,Todas,30-59,Laboral,vida,736646.0,1964248.0,1643.0,0.009224
+2021,Ciudad de México,todas,Todas,15-29,Laboral,vida,234354.0,593373.0,416.0,0.013995
+2021,Ciudad de México,todas,Todas,60+,Laboral,12 meses,27206.0,218524.0,198.0,0.010702
+2021,Ciudad de México,todas,Todas,30-59,Laboral,12 meses,347995.0,1478701.0,1230.0,0.007632
+2021,Ciudad de México,todas,Todas,15-29,Laboral,12 meses,147245.0,444472.0,308.0,0.013799
+2021,Ciudad de México,todas,Todas,60+,Comunitario,vida,462855.0,989076.0,860.0,0.011756
+2021,Ciudad de México,todas,Todas,30-59,Comunitario,vida,1344886.0,2109212.0,1778.0,0.010557
+2021,Ciudad de México,todas,Todas,15-29,Comunitario,vida,676052.0,977324.0,629.0,0.012054
+2021,Ciudad de México,todas,Todas,60+,Comunitario,12 meses,81060.0,989076.0,860.0,0.004227
+2021,Ciudad de México,todas,Todas,30-59,Comunitario,12 meses,605022.0,2109212.0,1778.0,0.00856
+2021,Ciudad de México,todas,Todas,15-29,Comunitario,12 meses,437193.0,977324.0,629.0,0.011873
+2021,Ciudad de México,todas,Todas,60+,Psicológica,vida,475039.0,989076.0,860.0,0.011766
+2021,Ciudad de México,todas,Todas,30-59,Psicológica,vida,1243695.0,2109212.0,1778.0,0.010756
+2021,Ciudad de México,todas,Todas,15-29,Psicológica,vida,610709.0,977324.0,629.0,0.012248
+2021,Ciudad de México,todas,Todas,60+,Psicológica,12 meses,170779.0,989076.0,860.0,0.00753
+2021,Ciudad de México,todas,Todas,30-59,Psicológica,12 meses,673818.0,2109212.0,1778.0,0.009024
+2021,Ciudad de México,todas,Todas,15-29,Psicológica,12 meses,411074.0,977324.0,629.0,0.011624
+2021,Ciudad de México,todas,Todas,60+,Física,vida,373822.0,989076.0,860.0,0.010773
+2021,Ciudad de México,todas,Todas,30-59,Física,vida,836476.0,2109212.0,1778.0,0.009253
+2021,Ciudad de México,todas,Todas,15-29,Física,vida,379386.0,977324.0,629.0,0.010335
+2021,Ciudad de México,todas,Todas,60+,Física,12 meses,70388.0,989076.0,860.0,0.005305
+2021,Ciudad de México,todas,Todas,30-59,Física,12 meses,235812.0,2109212.0,1778.0,0.004523
+2021,Ciudad de México,todas,Todas,15-29,Física,12 meses,172011.0,977324.0,629.0,0.007111
+2021,Ciudad de México,todas,Todas,60+,Sexual,vida,494653.0,989076.0,860.0,0.011927
+2021,Ciudad de México,todas,Todas,30-59,Sexual,vida,1421863.0,2109212.0,1778.0,0.010527
+2021,Ciudad de México,todas,Todas,15-29,Sexual,vida,710478.0,977324.0,629.0,0.011526
+2021,Ciudad de México,todas,Todas,60+,Sexual,12 meses,68866.0,989076.0,860.0,0.00401
+2021,Ciudad de México,todas,Todas,30-59,Sexual,12 meses,635158.0,2109212.0,1778.0,0.008849
+2021,Ciudad de México,todas,Todas,15-29,Sexual,12 meses,465848.0,977324.0,629.0,0.012228
+2021,Ciudad de México,todas,Todas,60+,Económica o patrimonial,vida,229886.0,989076.0,860.0,0.008333
+2021,Ciudad de México,todas,Todas,30-59,Económica o patrimonial,vida,680265.0,2109212.0,1778.0,0.008294
+2021,Ciudad de México,todas,Todas,15-29,Económica o patrimonial,vida,207078.0,977324.0,629.0,0.007922
+2021,Ciudad de México,todas,Todas,60+,Económica o patrimonial,12 meses,91337.0,989076.0,860.0,0.004869
+2021,Ciudad de México,todas,Todas,30-59,Económica o patrimonial,12 meses,409467.0,2109212.0,1778.0,0.006243
+2021,Ciudad de México,todas,Todas,15-29,Económica o patrimonial,12 meses,171307.0,977324.0,629.0,0.007673
+2021,Ciudad de México,todas,Todas,Todas,Cualquier ámbito,vida,3106945.0,4075612.0,3267.0,0.008159
+2021,Ciudad de México,todas,Todas,Todas,Cualquier ámbito,12 meses,1880387.0,4075612.0,3267.0,0.008875
+2021,Ciudad de México,todas,Todas,Todas,Pareja,vida,1581159.0,3797303.0,3105.0,0.008885
+2021,Ciudad de México,todas,Todas,Todas,Pareja,12 meses,718896.0,3797303.0,3105.0,0.0057
+2021,Ciudad de México,todas,Todas,Todas,Familiar,12 meses,609481.0,4075612.0,3267.0,0.004855
+2021,Ciudad de México,todas,Todas,Todas,Escolar,vida,1426961.0,3961319.0,3174.0,0.008301
+2021,Ciudad de México,todas,Todas,Todas,Escolar,12 meses,143040.0,563534.0,343.0,0.010103
+2021,Ciudad de México,todas,Todas,Todas,Laboral,vida,1162799.0,3365426.0,2763.0,0.007892
+2021,Ciudad de México,todas,Todas,Todas,Laboral,12 meses,522446.0,2141697.0,1736.0,0.007068
+2021,Ciudad de México,todas,Todas,Todas,Comunitario,vida,2483793.0,4075612.0,3267.0,0.009269
+2021,Ciudad de México,todas,Todas,Todas,Comunitario,12 meses,1123275.0,4075612.0,3267.0,0.00685
+2021,Ciudad de México,todas,Todas,Todas,Psicológica,vida,2329443.0,4075612.0,3267.0,0.009168
+2021,Ciudad de México,todas,Todas,Todas,Psicológica,12 meses,1255671.0,4075612.0,3267.0,0.007557
+2021,Ciudad de México,todas,Todas,Todas,Física,vida,1589684.0,4075612.0,3267.0,0.008181
+2021,Ciudad de México,todas,Todas,Todas,Física,12 meses,478211.0,4075612.0,3267.0,0.003751
+2021,Ciudad de México,todas,Todas,Todas,Sexual,vida,2626994.0,4075612.0,3267.0,0.009134
+2021,Ciudad de México,todas,Todas,Todas,Sexual,12 meses,1169872.0,4075612.0,3267.0,0.007051
+2021,Ciudad de México,todas,Todas,Todas,Económica o patrimonial,vida,1117229.0,4075612.0,3267.0,0.006565
+2021,Ciudad de México,todas,Todas,Todas,Económica o patrimonial,12 meses,672111.0,4075612.0,3267.0,0.004737

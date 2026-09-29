@@ -87,6 +87,8 @@ python scripts/loaders/inpi_2020.py      # población indígena según el INPI 2
 python scripts/construir_riesgo_inali.py  # grado de riesgo de las 364 variantes, INALI 2012 (lee el PDF oficial)
 python scripts/loaders/perfil.py         # perfil de la población indígena de la ciudad 2010 - 2025 (escolaridad, trabajo, salud, discapacidad, monolingüismo, edad)
 python scripts/loaders/enadis.py         # ENADIS 2017 y 2022, módulo indígena (nacional): discriminación, derechos negados, ámbitos, motivos
+python scripts/loaders/endireh.py        # ENDIREH 2021: violencia contra mujeres indígenas por ámbito y tipo, nacional y CDMX
+python scripts/loaders/coneval.py        # CONEVAL: pobreza y carencias de la población indígena 2016 - 2022 (anexo estadístico)
 python scripts/construir_contornos.py # límite del estado, alcaldías y máscara del exterior
 python scripts/construir_colonias_resumen.py  # src/data/colonias_resumen.csv (se versiona)
 scripts/generar_teselas.sh            # en WSL: produce los .pmtiles con tippecanoe

@@ -74,3 +74,11 @@ monolingue_2025,perfil,2025,% de hablantes de la Ciudad de México que no hablan
 pea_2025,perfil,2025,% de la población de 12 años y más económicamente activa en la Ciudad de México,59.25,0.2,R-EIC-2025-ENT09,2026-09-28,verificado,"El INEGI incluye el no especificado en el denominador; aquí se excluye, de ahí la diferencia de 0.14 puntos."
 afiliada_2025,perfil,2025,% de la población afiliada a servicios de salud en la Ciudad de México,80.07,0.25,R-EIC-2025-ENT09,2026-09-28,verificado,"El INEGI incluye el no especificado en el denominador; aquí se excluye, de ahí la diferencia de 0.18 puntos."
 discapacidad_2025,perfil,2025,Personas con discapacidad en la Ciudad de México,480127,500,R-EIC-2025-ENT09,2026-09-28,verificado,Escala del Grupo de Washington: mucha dificultad o no puede en alguno de seis dominios.
+vida_total_2021,endireh,2021,% de mujeres de 15 años y más con violencia a lo largo de la vida,70.1,0.1,R-ENDIREH-2021-TAB,2026-09-28,verificado,"Hoja 21.13, total."
+vida_hli_2021,endireh,2021,% de mujeres hablantes de lengua indígena con violencia a lo largo de la vida,60.5,0.1,R-ENDIREH-2021-TAB,2026-09-28,verificado,"Hoja 21.13, habla lengua indígena."
+vida_autoads_2021,endireh,2021,% de mujeres que se consideran indígenas con violencia a lo largo de la vida,67.6,0.1,R-ENDIREH-2021-TAB,2026-09-28,verificado,"Hoja 21.13, se considera indígena (sí o en parte)."
+12m_total_2021,endireh,2021,% de mujeres de 15 años y más con violencia en los últimos 12 meses,42.8,0.1,R-ENDIREH-2021-TAB,2026-09-28,verificado,"Hoja 21.14, total."
+12m_hli_2021,endireh,2021,% de mujeres hablantes con violencia en los últimos 12 meses,32.4,0.1,R-ENDIREH-2021-TAB,2026-09-28,verificado,Hoja 21.14.
+12m_autoads_2021,endireh,2021,% de mujeres que se consideran indígenas con violencia en los últimos 12 meses,40.7,0.1,R-ENDIREH-2021-TAB,2026-09-28,verificado,Hoja 21.14.
+pobreza_indigena_2022,coneval,2022,% de población indígena en pobreza (CONEVAL),65.2,0.1,D-CONEVAL-AE-2022,2026-09-28,verificado,"Anexo estadístico 2022, cuadro 16; el cargador lee el mismo archivo, el cotejo confirma que la lectura por posición es correcta."
+pobreza_extrema_indigena_2022,coneval,2022,% de población indígena en pobreza extrema (CONEVAL),26.3,0.1,D-CONEVAL-AE-2022,2026-09-28,verificado,"Anexo estadístico 2022, cuadro 16."

@@ -25,6 +25,8 @@ censo,viv_telefono,37.6924,"% de viviendas particulares habitadas, muestra ampli
 censo,viv_televisor,91.3229,"% de viviendas particulares habitadas, muestra ampliada"
 censo,viv_tv_paga,43.4936,"% de viviendas particulares habitadas, muestra ampliada"
 censo,viv_videojuegos,11.7233,"% de viviendas particulares habitadas, muestra ampliada"
+coneval,pobreza_extrema_indigena_2022,26.2723,"% de población indígena en pobreza extrema, 2022 (CONEVAL)"
+coneval,pobreza_indigena_2022,65.2466,"% de población indígena en pobreza, 2022 (CONEVAL)"
 enadis,ambito_2017,20.3281,"ENADIS, población indígena de 12 años y más, nacional: ambito_2017"
 enadis,derecho_2017,29.1599,"ENADIS, población indígena de 12 años y más, nacional: derecho_2017"
 enadis,derecho_2022,26.8569,"ENADIS, población indígena de 12 años y más, nacional: derecho_2022"
@@ -32,6 +34,12 @@ enadis,disc_2017,25.3376,"ENADIS, población indígena de 12 años y más, nacio
 enadis,disc_2022,28.0459,"ENADIS, población indígena de 12 años y más, nacional: disc_2022"
 enadis,disc_comparable_2022,22.2950,"ENADIS, población indígena de 12 años y más, nacional: disc_comparable_2022"
 enadis,por_indigena_2022,29.0497,"ENADIS, población indígena de 12 años y más, nacional: por_indigena_2022"
+endireh,12m_autoads_2021,40.6923,"ENDIREH 2021, mujeres de 15 años y más, nacional: 12m_autoads_2021"
+endireh,12m_hli_2021,32.4428,"ENDIREH 2021, mujeres de 15 años y más, nacional: 12m_hli_2021"
+endireh,12m_total_2021,42.8163,"ENDIREH 2021, mujeres de 15 años y más, nacional: 12m_total_2021"
+endireh,vida_autoads_2021,67.6131,"ENDIREH 2021, mujeres de 15 años y más, nacional: vida_autoads_2021"
+endireh,vida_hli_2021,60.4806,"ENDIREH 2021, mujeres de 15 años y más, nacional: vida_hli_2021"
+endireh,vida_total_2021,70.0723,"ENDIREH 2021, mujeres de 15 años y más, nacional: vida_total_2021"
 endutih,escucha_radio_6mas,29.7605,% de personas de 6 años o más que escucharon la radio en la última semana
 endutih,net_habla_lengua,4.6803,% de las personas usuarias de internet que hablan lengua indígena
 endutih,net_se_considera,26.6132,% de las personas usuarias de internet que se consideran indígenas

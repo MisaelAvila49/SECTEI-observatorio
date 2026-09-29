@@ -278,17 +278,17 @@ cuatro tramos de los cargadores y el decil se calcula con el ingreso deflactado.
 
 ## 5. Orden de trabajo
 
-Estado al 28 de septiembre: la beta se convirtió en el componente
-`seccion-censo.js` y hay un segundo componente, `seccion-perfil.js`, para
-comparar a la población indígena con el resto. Están publicados los
-capítulos 1 (catálogo del INALI, hablantes por lengua y entidad, serie
-nacional 1990 - 2025 con cifras oficiales), 2, 3 (edad, escolaridad, trabajo,
-salud, discapacidad y monolingüismo en la ciudad, 2010 - 2025), 4, 5
-(variantes y certeza), 7 (ENADIS 2017 y 2022, solo nacional porque el módulo
-indígena no tiene dominio estatal), 10 (riesgo del INALI 2012, variantes en
-riesgo en la ciudad, lenguas que ganan o pierden hablantes) y 11. Faltan el
-6 (ENIGH ingreso y carencias, CONEVAL), el 8 (ENDIREH, sin descargar) y el 9
-(reubicar las páginas de acceso digital).
+Estado al 28 de septiembre: los once capítulos están publicados sobre dos
+componentes (`seccion-censo.js` y `seccion-perfil.js`) y cargadores con
+cotejo oficial: 1 (lenguas y serie nacional), 2 (la ciudad en el país), 3
+(perfil 2010 - 2025), 4 (dónde viven), 5 (variantes), 6 (pobreza y carencias,
+CONEVAL 2016 - 2022, nacional), 7 (discriminación, ENADIS 2017 y 2022,
+nacional), 8 (violencia, ENDIREH 2021, país y Ciudad de México), 9 (acceso
+digital, las tres páginas de encuestas), 10 (riesgo de las variantes, INALI
+2012) y 11 (derechos). Pendientes: el ingreso por trabajo deflactado en el
+capítulo 3, la ENDIREH 2016 por ámbito (sin tabla de violencia ya
+clasificada), la pobreza indígena de 2024 por pertenencia étnica (no
+publicada en tabla) y el título y la portada del libro.
 
 La beta de la arquitectura de filtros está en la página `/beta` del sitio (ver
 [arquitectura-filtros.md](arquitectura-filtros.md), §9); lo que sigue se
