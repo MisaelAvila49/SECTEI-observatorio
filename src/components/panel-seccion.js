@@ -21,7 +21,7 @@ export const EDADES = [{clave: "Todas", etiqueta: "Todas las edades", grupo: CON
   {clave: "30-59", etiqueta: "30 a 59 años", grupo: UNA_A_UNA}, {clave: "60+", etiqueta: "60 años y más", grupo: UNA_A_UNA}];
 const GRUPO_NIVEL = {nacional: "País", entidad: "País", municipio: "País", ageb: "Ciudad de México", manzana: "Ciudad de México"};
 
-function campo({id, etiqueta, opciones, valor, nombre}) {
+export function campo({id, etiqueta, opciones, valor, nombre}) {
   const select = document.createElement("select");
   select.id = id;
   const form = document.createElement("form");

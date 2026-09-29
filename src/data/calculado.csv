@@ -55,6 +55,13 @@ lenguas,hli_nacidos_fuera_2015,83.7138,% de hablantes de la CDMX nacidos fuera d
 lenguas,hli_nacidos_fuera_2020,82.2800,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,hli_nacidos_fuera_2025,83.4573,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,n_lenguas_2015,38.0000,"agrupaciones lingüísticas con hablantes en la CDMX, EIC 2015"
+lenguas,n_lenguas_nacional_2020,70.0000,agrupaciones lingüísticas con hablantes en la muestra nacional 2020
+lenguas,nacional_0211_2020,1674969.0000,"hablantes de Náhuatl en el país, muestra del Censo 2020"
+lenguas,nacional_0513_2020,500102.0000,"hablantes de Zapoteco en el país, muestra del Censo 2020"
+lenguas,nacional_0516_2020,518176.0000,"hablantes de Mixteco en el país, muestra del Censo 2020"
+lenguas,nacional_0602_2020,800533.0000,"hablantes de Maya en el país, muestra del Censo 2020"
+lenguas,nacional_0606_2020,672586.0000,"hablantes de Tseltal en el país, muestra del Censo 2020"
+lenguas,nacional_0607_2020,558484.0000,"hablantes de Tsotsil en el país, muestra del Censo 2020"
 lenguas,nahuatl_1990,24900.0000,"hablantes de náhuatl en la CDMX, muestra 1990"
 lenguas,nahuatl_2000,42044.0000,"hablantes de náhuatl en la CDMX, muestra 2000"
 lenguas,nahuatl_2005,32440.0000,"hablantes de náhuatl en la CDMX, muestra 2005"
@@ -68,6 +75,10 @@ nacional,desv_muestra_hli_nacional_2020,2.1434,"% de desviación de la muestra f
 nacional,hablantes3_nacional_2020,7364645.0000,"hablantes de 3 años y más en el país, ITER 2020"
 nacional,hablantes3_nacional_2020_muestra,7522496.0000,"hablantes de 3 años y más en el país, muestra del Censo 2020"
 nacional,pct_autoads_nacional_2020,19.4072,"% de población de 3 años y más que se considera indígena en el país, muestra del Censo 2020"
+riesgo,variantes_alto,43.0000,"variantes en alto riesgo, INALI 2012"
+riesgo,variantes_mediano,72.0000,"variantes en mediano riesgo, INALI 2012"
+riesgo,variantes_muy_alto,64.0000,"variantes en muy alto riesgo, INALI 2012"
+riesgo,variantes_no_inmediato,185.0000,"variantes en no inmediato riesgo, INALI 2012"
 serie,ambas_2000,40575.0000,personas que hablan lengua indígena y además se consideran indígenas
 serie,ambas_2010,109047.0000,personas que hablan lengua indígena y además se consideran indígenas
 serie,ambas_2015,78523.0000,personas que hablan lengua indígena y además se consideran indígenas

@@ -42,6 +42,11 @@ const PAGINAS = [
     {nombre: "escalones de la leyenda del navegador", sel: ".nav-leyenda .mapa-leyenda-paso", minimo: 4},
     {nombre: "barras del ranking de entidades", sel: '.beta-cuerpo g[aria-label="bar"] rect', minimo: 20},
   ]},
+  {ruta: "/libro/lenguas-de-mexico", esperado: [{nombre: "barras del capítulo 1", sel: 'g[aria-label="bar"] rect', minimo: 30}]},
+  {ruta: "/libro/la-ciudad-en-el-pais", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [{nombre: "barras del capítulo 2", sel: 'g[aria-label="bar"] rect', minimo: 40}, {nombre: "líneas del capítulo 2", sel: 'g[aria-label="line"] path', minimo: 2}]},
+  {ruta: "/libro/variantes", esperado: [{nombre: "barras del capítulo 5", sel: 'g[aria-label="bar"] rect', minimo: 30}]},
+  {ruta: "/libro/lenguas-en-riesgo", esperado: [{nombre: "barras del capítulo 10", sel: 'g[aria-label="bar"] rect', minimo: 20}, {nombre: "flechas de cambio", sel: 'g[aria-label="link"] path', minimo: 5}]},
+  {ruta: "/libro/donde-viven", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [{nombre: "barras del capítulo 4", sel: 'g[aria-label="bar"] rect', minimo: 40}]},
   {ruta: "/index", esperado: [
     {nombre: "puntos y barras de la portada", sel: 'g[aria-label="dot"] circle, g[aria-label="rect"] rect', minimo: 30},
     {nombre: "líneas de la serie", sel: 'g[aria-label="line"] path', minimo: 2},
@@ -121,7 +126,10 @@ for (const modo of ["claro", "oscuro"]) {
       if (m.type() === "error") errores.push(m.text());
     });
 
-    await page.goto(`http://127.0.0.1:${PUERTO}${pag.ruta}`, {waitUntil: "networkidle"});
+    await page.goto(`http://127.0.0.1:${PUERTO}${pag.ruta}`, {waitUntil: "load", timeout: 120000});
+    // "load" y no "networkidle": las páginas con teselas siguen pidiendo datos
+    // mientras se explora el mapa y networkidle no llega nunca.
+    await page.waitForTimeout(4000);
     await esperarDibujo(page, pag.espera ?? null);
 
     // Conteo global por tipo de marca. Se cuenta sobre TODA la página y no por
@@ -208,7 +216,10 @@ const muestras = {};
 for (const modo of ["claro", "oscuro"]) {
   const ctx = await contexto(modo, 1500, 1000);
   const page = await ctx.newPage();
-  await page.goto(`http://127.0.0.1:${PUERTO}/index`, {waitUntil: "networkidle"});
+  await page.goto(`http://127.0.0.1:${PUERTO}/index`, {waitUntil: "load", timeout: 120000});
+    // "load" y no "networkidle": las páginas con teselas siguen pidiendo datos
+    // mientras se explora el mapa y networkidle no llega nunca.
+    await page.waitForTimeout(4000);
   await esperarDibujo(page);
   muestras[modo] = await page.evaluate(() => {
     const cuerpo = getComputedStyle(document.body);

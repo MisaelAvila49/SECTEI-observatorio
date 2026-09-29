@@ -40,6 +40,12 @@ const DESCRIPCIONES = {
   "/encuestas/endutih/actividades": "Para qué usa internet la población indígena que se conecta: estudiar, trabajar, trámites, dinero y entretenimiento, según la ENDUTIH 2025.",
   "/encuestas/endutih/barreras": "Quién no usa internet, computadora ni celular y qué motivo declara, por condición indígena, según la ENDUTIH 2025.",
   "/metodologia/paso-a-paso": "Cómo se construyó el tablero paso a paso: descargas, cálculos, cotejos y lo que ninguna fuente permite saber.",
+  "/libro/lenguas-de-mexico": "Capítulo 1: cuántas lenguas y variantes reconoce México, cuántas personas hablan cada una y en qué entidades, con el Censo 2020 y el Catálogo del INALI.",
+  "/libro/la-ciudad-en-el-pais": "Capítulo 2: qué lugar ocupa la Ciudad de México entre las entidades, cuántas lenguas llegan a ella y de dónde vienen quienes las hablan, 1990 - 2025.",
+  "/libro/donde-viven": "Capítulo 4: dónde vive la población indígena de la Ciudad de México por alcaldía, AGEB y manzana, su relación con la marginación urbana y con los pueblos originarios.",
+  "/libro/variantes": "Capítulo 5: la variante probable de los hablantes de la Ciudad de México por lengua, año y alcaldía, inferida por su lugar de origen con el método del INALI, y qué tan segura es cada asignación.",
+  "/libro/lenguas-en-riesgo": "Capítulo 10: el grado de riesgo de desaparición de las 364 variantes según el INALI, cuáles se hablan en la Ciudad de México y qué lenguas ganan o pierden hablantes en la ciudad.",
+  "/libro/derechos": "Capítulo 11: el marco de derechos lingüísticos y culturales de los pueblos indígenas en México y en la Ciudad de México.",
   "/beta": "Beta de la arquitectura de filtros del libro: un panel por sección, mapa que baja de nivel con un clic (entidades, municipios, AGEB y manzanas) y gráfica que sigue la selección.",
   "/mapa": "Mapa de la población indígena de la Ciudad de México por alcaldía, AGEB y manzana: hablantes, hogares indígenas y autoadscripción de 2010 a 2025, con la lengua, sus variantes probables y el origen de quienes la hablan.",
   "/mapa-manzanas": "Mapa por manzana de la población en hogares indígenas de la Ciudad de México, con el Censo 2020, agregable a colonia y con los pueblos originarios señalados.",
@@ -74,6 +80,18 @@ export default {
     // El mapa por manzana es la primera etapa del proyecto y la puerta de
     // entrada: va primero, fuera de los grupos por encuesta.
     {name: "Mapa", path: "/mapa"},
+    {
+      name: "Libro",
+      open: true,
+      pages: [
+        {name: "1. Las lenguas de México", path: "/libro/lenguas-de-mexico"},
+        {name: "2. La ciudad en el país", path: "/libro/la-ciudad-en-el-pais"},
+        {name: "4. Dónde viven", path: "/libro/donde-viven"},
+        {name: "5. Variantes y origen", path: "/libro/variantes"},
+        {name: "10. Lenguas en riesgo", path: "/libro/lenguas-en-riesgo"},
+        {name: "11. Derechos y política cultural", path: "/libro/derechos"},
+      ],
+    },
     {name: "Beta de filtros", path: "/beta"},
     {
       name: "Metodología",
@@ -301,13 +319,13 @@ export default {
       <p class="book-footer-col-title">Explorar</p>
       <p class="book-footer-col-line"><a href="/">Inicio</a></p>
       <p class="book-footer-col-line"><a href="/mapa">Mapa</a></p>
-      <p class="book-footer-col-line"><a href="/encuestas/censo/vivienda">Censo 2020</a></p>
-      <p class="book-footer-col-line"><a href="/encuestas/enigh/hogar">ENIGH 2020 - 2024</a></p>
-      <p class="book-footer-col-line"><a href="/encuestas/endutih/uso">ENDUTIH 2025</a></p>
+      <p class="book-footer-col-line"><a href="/libro/lenguas-de-mexico">Las lenguas de México</a></p>
+      <p class="book-footer-col-line"><a href="/libro/la-ciudad-en-el-pais">La ciudad en el país</a></p>
+      <p class="book-footer-col-line"><a href="/libro/lenguas-en-riesgo">Lenguas en riesgo</a></p>
     </div>
     <div class="book-footer-col">
       <p class="book-footer-col-title">Datos y método</p>
-      <p class="book-footer-col-line">Fuente: <a href="https://www.inegi.org.mx" target="_blank" rel="noopener">INEGI</a>, Censo 2020, ENIGH 2020 - 2024 y ENDUTIH 2025; CONAPO y CONEVAL por AGEB</p>
+      <p class="book-footer-col-line">Fuentes: <a href="https://www.inegi.org.mx" target="_blank" rel="noopener">INEGI</a> (censos, conteos e intercensales 1990 - 2025), INALI, INPI, CONAPO y CONEVAL</p>
       <p class="book-footer-col-line"><a href="/metodologia/fuentes">Fuentes y cobertura</a></p>
       <p class="book-footer-col-line"><a href="/metodologia/definiciones">Definiciones</a></p>
       <p class="book-footer-col-line"><a href="/#citar">Cómo citar este tablero</a></p>

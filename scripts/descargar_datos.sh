@@ -72,6 +72,7 @@ bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/ite
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/ageb_y_manzana/resageburb_09_2010_csv.zip"       "$CRUDO/resageburb2010/resageburb_09_2010_csv.zip" "Resultados por AGEB y manzana 2010, Distrito Federal (9.8 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/intercensal/2015/microdatos/eic2015_09_csv.zip"       "$CRUDO/eic2015/eic2015_09_csv.zip" "Encuesta Intercensal 2015, microdatos de la Ciudad de Mexico (23 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/eic/2025/datosabiertos/conjunto_de_datos_eic2025_105_csv.zip"       "$CRUDO/eic2025/conjunto_de_datos_eic2025_105_csv.zip" "Encuesta Intercensal 2025, conjunto 105 (8 MB)"
+bajar "https://site.inali.gob.mx/pdf/libro_lenguas_indigenas_nacionales_en_riesgo_de_desaparicion.pdf"       "$CRUDO/inali/inali_riesgo_2012.pdf" "INALI 2012, variantes por grado de riesgo de desaparicion (34 MB)"
 bajar "https://www.inali.gob.mx/pdf/CLIN_completo.pdf"       "$CRUDO/inali/CLIN_completo.pdf" "Catalogo de las Lenguas Indigenas Nacionales, INALI 2008 (3 MB)"
 bajar "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/702825198701.pdf"       "$CRUDO/inali/clasificaciones_censo2020.pdf" "Clasificaciones del Censo 2020, INEGI (2.7 MB)"
 

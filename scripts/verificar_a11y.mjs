@@ -19,7 +19,7 @@ import path from "node:path";
 const RAIZ = path.join(import.meta.dirname, "..", "dist");
 const PUERTO = 8897;
 const AXE = readFileSync(path.join(import.meta.dirname, "..", "node_modules", "axe-core", "axe.min.js"), "utf8");
-const PAGINAS = ["/index", "/mapa", "/beta", "/metodologia/paso-a-paso", "/metodologia/fuentes", "/metodologia/definiciones"];
+const PAGINAS = ["/index", "/mapa", "/beta", "/libro/lenguas-de-mexico", "/libro/la-ciudad-en-el-pais", "/libro/donde-viven", "/libro/variantes", "/libro/lenguas-en-riesgo", "/libro/derechos", "/metodologia/paso-a-paso", "/metodologia/fuentes", "/metodologia/definiciones"];
 
 const servidor = () => servirEstatico(RAIZ, PUERTO);
 
@@ -37,7 +37,10 @@ for (const modo of ["claro", "oscuro"]) {
   await ctx.addInitScript((m) => { try { localStorage.setItem("sdi-tema", m); } catch {} }, modo);
   for (const ruta of PAGINAS) {
     const page = await ctx.newPage();
-    await page.goto(`http://127.0.0.1:${PUERTO}${ruta}`, {waitUntil: "networkidle"});
+    await page.goto(`http://127.0.0.1:${PUERTO}${ruta}`, {waitUntil: "load", timeout: 120000});
+    // "load" y no "networkidle": las páginas con teselas siguen pidiendo datos
+    // mientras se explora el mapa y networkidle no llega nunca.
+    await page.waitForTimeout(4000);
     // Las páginas de análisis cargan hasta 4 MB de parquet: se espera a que
     // no quede ninguna celda pendiente en vez de un tiempo fijo.
     await page.waitForFunction(() => !document.querySelector("observablehq-loading"), null, {timeout: 90000}).catch(() => {});

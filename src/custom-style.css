@@ -4342,3 +4342,7 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 .panel-seccion select optgroup { font-style: normal; font-weight: 700; color: var(--text-muted); }
 .panel-seccion .filtro[data-campo="poblacion"] { width: 17rem; }
 .panel-seccion .filtro[data-campo="anio"] { width: 13.5rem; }
+/* Enlace con forma de botón en las secciones del libro que remiten al mapa. */
+.beta-boton-enlace { display: inline-block; padding: 0.5rem 1rem; border-radius: 999px; border: 1.5px solid var(--brand-red); color: var(--brand-red-dark, #8b0d15); font-weight: 600; text-decoration: none; }
+.beta-boton-enlace:hover, .beta-boton-enlace:focus-visible { background: color-mix(in srgb, var(--brand-red) 10%, transparent); }
+.beta-seccion .kpi-fila { margin-bottom: 0.8rem; }

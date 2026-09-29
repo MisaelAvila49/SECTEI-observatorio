@@ -278,6 +278,17 @@ cuatro tramos de los cargadores y el decil se calcula con el ingreso deflactado.
 
 ## 5. Orden de trabajo
 
+Estado al 28 de septiembre: la beta se convirtió en el componente
+`seccion-censo.js` (panel, mapa navegador y gráfica sobre las tablas del
+Censo, el INPI y la serie por alcaldía) y están publicados los capítulos 1
+(catálogo del INALI y hablantes por lengua y entidad, 2020), 2 (lenguas que
+llegan a la ciudad, la ciudad frente a las entidades, origen), 4 (alcaldías,
+AGEB y manzanas, marginación urbana, pueblos originarios y colonias) y 11
+(derechos). Faltan la serie nacional del capítulo 1 (en cotejo), el capítulo 3
+(cargador de perfil desde las muestras), 5 (variantes en página propia), 6
+(ENIGH ingreso y carencias), 7 (ENADIS), 8 (ENDIREH, sin descargar), 9
+(reubicar las páginas de acceso digital) y 10 (catálogo de riesgo del INALI).
+
 La beta de la arquitectura de filtros está en la página `/beta` del sitio (ver
 [arquitectura-filtros.md](arquitectura-filtros.md), §9); lo que sigue se
 construye sobre esas piezas.
