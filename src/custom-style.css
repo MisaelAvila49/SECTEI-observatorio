@@ -4346,3 +4346,21 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 .beta-boton-enlace { display: inline-block; padding: 0.5rem 1rem; border-radius: 999px; border: 1.5px solid var(--brand-red); color: var(--brand-red-dark, #8b0d15); font-weight: 600; text-decoration: none; }
 .beta-boton-enlace:hover, .beta-boton-enlace:focus-visible { background: color-mix(in srgb, var(--brand-red) 10%, transparent); }
 .beta-seccion .kpi-fila { margin-bottom: 0.8rem; }
+
+/* Lista de cotejos del bloque de procedencia: un renglón por cifra oficial
+   con la cifra calculada aquí y el desenlace. Sin viñeta gruesa: son líneas
+   de referencia dentro de una tarjeta chica. */
+.verificado-cotejos {
+  margin: 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+.verificado-cotejos li + li {
+  margin-top: 0.2rem;
+}
+.verificado-cotejos .cotejo-nota {
+  color: var(--text-secondary);
+}
+.verificado-resultado > p {
+  margin: 0.3rem 0 0;
+}

@@ -344,7 +344,24 @@ def main():
         for p in problemas:
             print("  -", p)
     print(f"\nEscrito {SALIDA.relative_to(RAIZ)} ({len(df)} filas)")
+    anotar_conteos(df)
+
+
+def anotar_conteos(df):
+    """Familias, agrupaciones y variantes del archivo, para el cotejo con las
+    cifras que el propio Catálogo publica en su presentación (11, 68, 364)."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent / "loaders"))
+    from comun import anotar_calculado
+    for clave, valor, nota in (("clin_familias", df["familia"].nunique(), "familias lingüísticas en clin_variantes.csv"),
+                               ("clin_agrupaciones", df["agrupacion"].nunique(), "agrupaciones lingüísticas en clin_variantes.csv"),
+                               ("clin_variantes", len(df), "variantes lingüísticas en clin_variantes.csv")):
+        anotar_calculado("lenguas", clave, float(valor), nota)
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if sys.argv[1:] == ["--solo-cotejo"]:
+        anotar_conteos(pd.read_csv(SALIDA))
+    else:
+        main()

@@ -19,7 +19,7 @@ const EDAD_ETIQ = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "3
  * temas: [{clave, etiqueta, dimension, categorias (orden), edades (grupos válidos),
  *          anios (opcional), titulo(v), pie, explica}]
  */
-export function seccionPerfil(tabla, {id, temas, inicial = {}}) {
+export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) {
   const filas = tabla.map((r) => ({...r, anio: Number(r.anio)}));
   const cTema = campo({id: `${id}-tema`, nombre: "tema", etiqueta: "Tema", opciones: temas.map((t) => ({clave: t.clave, etiqueta: t.etiqueta})), valor: inicial.tema ?? temas[0].clave});
   const cCrit = campo({id: `${id}-criterio`, nombre: "criterio", etiqueta: "Población indígena", opciones: CRITERIOS, valor: inicial.criterio ?? "lengua"});
@@ -86,6 +86,7 @@ export function seccionPerfil(tabla, {id, temas, inicial = {}}) {
     cuerpo.replaceChildren(
       figura({titulo: tema.titulo({crit: CRITERIOS.find((c) => c.clave === crit).etiqueta.toLowerCase()}), subtitulo: subt, pie: tema.pie}, [plot]),
       aviso ? html`<p class="beta-nota">${aviso}</p>` : "",
+      fuentes ? fuentes(tema) : "",
       explicacion(tema.explica),
       tablaColumnas(sel, [{etiqueta: "Grupo", valor: (r) => r.serie}, {etiqueta: "Categoría", valor: (r) => r.categoria}, {etiqueta: "Año", valor: (r) => r.anio}, {etiqueta: "Sexo", valor: (r) => r.sexo}, {etiqueta: "Edad", valor: (r) => EDAD_ETIQ[r.edad] ?? "Todas"},
         {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => (r.ee ? (196 * r.ee).toFixed(2) : "")}, {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Del grupo", num: true, valor: (r) => entero(r.den)}], {titulo: "Ver los datos"}));

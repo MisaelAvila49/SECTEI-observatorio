@@ -63,6 +63,9 @@ inpi,autoads_mun_mediana_dif_2020,0.0259,mediana de la diferencia (puntos) entre
 inpi,municipios_40_2020,614.0000,"municipios con 40 % y más de población indígena, tipología INPI 2020"
 inpi,pct_pi_cdmx_2020,3.2890,"% de población indígena según el INPI en la CDMX, 2020"
 inpi,pct_pi_nacional_2020,9.5065,"% de población indígena según el INPI en el país, 2020"
+lenguas,clin_agrupaciones,68.0000,agrupaciones lingüísticas en clin_variantes.csv
+lenguas,clin_familias,11.0000,familias lingüísticas en clin_variantes.csv
+lenguas,clin_variantes,364.0000,variantes lingüísticas en clin_variantes.csv
 lenguas,hli_nacidos_fuera_1990,83.8290,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,hli_nacidos_fuera_2000,76.3610,% de hablantes de la CDMX nacidos fuera de la ciudad
 lenguas,hli_nacidos_fuera_2010,86.6707,% de hablantes de la CDMX nacidos fuera de la ciudad
@@ -87,14 +90,24 @@ lenguas,nahuatl_2025,38303.0000,"hablantes de náhuatl en la CDMX, muestra 2025"
 manzana,manzanas_2010_con_geometria,63239.0000,manzanas 2010 con polígono y dato
 nacional,desv_muestra_hli_cdmx_2020,13.6217,"% de desviación de la muestra frente al ITER, hablantes 3+, CDMX"
 nacional,desv_muestra_hli_nacional_2020,2.1434,"% de desviación de la muestra frente al ITER, hablantes 3+, país"
+nacional,hablantes3_nacional_2015_micro,7382785.0000,hablantes 3+ del país con microdatos de la EIC 2015
 nacional,hablantes3_nacional_2020,7364645.0000,"hablantes de 3 años y más en el país, ITER 2020"
 nacional,hablantes3_nacional_2020_muestra,7522496.0000,"hablantes de 3 años y más en el país, muestra del Censo 2020"
+nacional,hablantes3_nacional_2025_micro,7421285.0000,hablantes 3+ del país con microdatos de la EIC 2025
+nacional,hablantes5_nacional_2015,7173534.0000,"hablantes 5+ del país, microdatos EIC 2015"
+nacional,hablantes5_nacional_2025,7252488.0000,"hablantes 5+ del país, microdatos EIC 2025"
 nacional,pct_autoads_nacional_2020,19.4072,"% de población de 3 años y más que se considera indígena en el país, muestra del Censo 2020"
 perfil,afiliada_2025,80.2490,afiliada_2025
+perfil,afiliada_autoads_2025,76.0759,"% afiliada a servicios de salud, autoads, CDMX 2025"
+perfil,afiliada_hli_2025,66.8846,"% afiliada a servicios de salud, lengua, CDMX 2025"
 perfil,discapacidad_2025,480033.0000,discapacidad_2025
+perfil,discapacidad_autoads_2025,8.8941,"% con discapacidad, autoads, CDMX 2025"
+perfil,discapacidad_hli_2025,7.6628,"% con discapacidad, lengua, CDMX 2025"
 perfil,monolingue_2025,0.9521,monolingue_2025
 perfil,ocupada_pea_2025,96.5877,ocupada_pea_2025
 perfil,pea_2025,59.3850,pea_2025
+perfil,pea_autoads_2025,61.1223,"tasa de participación económica, 12 años y más, autoads, CDMX 2025"
+perfil,pea_hli_2025,69.3895,"tasa de participación económica, 12 años y más, lengua, CDMX 2025"
 riesgo,variantes_alto,43.0000,"variantes en alto riesgo, INALI 2012"
 riesgo,variantes_mediano,72.0000,"variantes en mediano riesgo, INALI 2012"
 riesgo,variantes_muy_alto,64.0000,"variantes en muy alto riesgo, INALI 2012"

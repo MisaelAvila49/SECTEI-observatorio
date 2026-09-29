@@ -9,7 +9,8 @@ import {datosCenso, seccionCenso} from "../components/seccion-censo.js";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {RAMPA_MORADA} from "../components/mapa.js";
-import {punto} from "../components/base.js";
+import {punto, ejePct} from "../components/base.js";
+import {procedencia} from "../components/fuentes.js";
 
 const [nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, lenguasAlc, origen] = await Promise.all([
   FileAttachment("../data/hablantes_nacional_2020.csv").csv({typed: true}),
@@ -26,6 +27,7 @@ const pmtiles = {municipios: await FileAttachment("../data/municipios.pmtiles").
 try { pmtiles.agebs2010 = await FileAttachment("../data/agebs_2010.pmtiles").url(); } catch { pmtiles.agebs2010 = null; }
 try { pmtiles.manzanas2010 = await FileAttachment("../data/manzanas_2010.pmtiles").url(); } catch { pmtiles.manzanas2010 = null; }
 const datos = datosCenso({nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, pmtiles});
+const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
 const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 ```
@@ -68,7 +70,9 @@ function pintar1() {
     figura({titulo: "Cuántas lenguas tienen hablantes en la ciudad, por edición", subtitulo: "Agrupaciones lingüísticas con al menos un hablante en la muestra de cada censo o encuesta", pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada punto es una edición"},
       [Plot.plot({height: 220, width: Math.min(900, width), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: {label: "lenguas", grid: true, zero: true},
         marks: [Plot.line(porAnio, {x: "anio", y: "n", stroke: RAMPA_MORADA[3], strokeWidth: 2}), Plot.dot(porAnio, {x: "anio", y: "n", fill: RAMPA_MORADA[3], r: 4.5}),
-          Plot.text(porAnio, {x: "anio", y: "n", text: "n", dy: -10, fontSize: 11}), Plot.ruleY([0])]})]),
+          Plot.text(porAnio, {x: "anio", y: "n", text: "n", dy: -10, fontSize: 11}),
+          Plot.tip(porAnio, Plot.pointerX({x: "anio", y: "n", maxRadius: Infinity, title: (r) => `${r.anio}\n${r.n} lenguas con al menos un hablante en la muestra`})), Plot.ruleY([0])]})]),
+    fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["nahuatl_2015", "nahuatl_2020", "word_tabla2_celdas_iguales"], lectura: ["R-SECULT-LENGUAS", "R-SEPI-2024-DIV"]}),
     explicacion("Cada edición censal pregunta qué lengua indígena habla cada persona; aquí se cuentan las agrupaciones lingüísticas del catálogo del INALI con al menos un hablante en la muestra de la ciudad. Las muestras de 1990 y 2005 no llevan error de diseño; las demás sí, y el globo lo muestra. El número de lenguas depende del tamaño de la muestra de cada edición: una lengua con muy pocos hablantes puede no caer en la muestra un año y sí al siguiente."),
     tablaColumnas(filas.map((r) => ({...r, share: 100 * r.num / total})), [{etiqueta: "Lengua", valor: (r) => r.lengua_nombre}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los hablantes", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "Casos en la muestra", num: true, valor: (r) => (r.casos ?? "")}], {titulo: "Ver todas las lenguas"}));
 }
@@ -82,7 +86,10 @@ display(html`<section class="beta-seccion">${panel1}${cuerpo1}</section>`);
 <h2 id="frente-a-las-entidades" class="toc-anchor">La ciudad frente a las entidades</h2>
 
 ```js
-display(seccionCenso(datos, {id: "c2ent", inicial: {nivel: "entidad", seleccion: "09"}}));
+display(seccionCenso(datos, {id: "c2ent", inicial: {nivel: "entidad", seleccion: "09"},
+  fuentes: () => fuenteDe({datos: ["D-ITER-2020-NAL", "D-CENSO-2020", "D-INPI-2020-HOG", "D-INPI-2020-AUTO"],
+    cotejos: ["hablantes3_nacional_2020", "pct_autoads_nacional_2020", "pct_pi_nacional_2020", "autoads_mun_mediana_dif_2020", "cdmx_hli3_2020_n", "cdmx_autoads_2020_n"],
+    lectura: ["R-CENSO-2020-TAB-ETN"]})}));
 ```
 
 ---
@@ -100,9 +107,9 @@ const topEnt = [...porEnt.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12).ma
 display(html`<section class="beta-seccion">
   ${kpis([{etiqueta: `Hablantes nacidos fuera de la ciudad, ${ultimo.anio}`, cifra: pct(ultimo.pctFuera), nota: `${entero(ultimo.total - ultimo.ciudad)} de ${entero(ultimo.total)} hablantes`}, {etiqueta: "Nacidos en la ciudad", cifra: entero(ultimo.ciudad), nota: "hablantes de lengua indígena"}, {etiqueta: "Entidad de origen mayor", cifra: topEnt[0]?.nombre ?? "", nota: topEnt[0] ? `${pct(topEnt[0].share)} de los hablantes de la ciudad` : ""}])}
   ${figura({titulo: "Hablantes de la ciudad nacidos en otra entidad, por edición", subtitulo: "Porcentaje de los hablantes de lengua indígena que viven en la ciudad y nacieron en otra entidad o en otro país", pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada punto es una edición"},
-    [Plot.plot({height: 240, width: Math.min(900, width), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: {label: "%", grid: true, domain: [0, 100]},
+    [Plot.plot({height: 240, width: Math.min(900, width), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {domain: [0, 100]}),
       marks: [Plot.line(fuera, {x: "anio", y: "pctFuera", stroke: RAMPA_MORADA[3], strokeWidth: 2}), Plot.dot(fuera, {x: "anio", y: "pctFuera", fill: RAMPA_MORADA[3], r: 4.5}),
-        Plot.text(fuera, {x: "anio", y: "pctFuera", text: (r) => r.pctFuera.toFixed(0), dy: -10, fontSize: 11}),
+        Plot.text(fuera, {x: "anio", y: "pctFuera", text: (r) => `${r.pctFuera.toFixed(0)} %`, dy: -10, fontSize: 11}),
         Plot.tip(fuera, Plot.pointerX({x: "anio", y: "pctFuera", maxRadius: Infinity, title: (r) => `${r.anio}\nNacidos fuera de la ciudad: ${pct(r.pctFuera)}\nEn otra entidad: ${entero(r.otraEntidad)} · en otro país: ${entero(r.otroPais)}\nNacidos en la ciudad: ${entero(r.ciudad)}`})),
         Plot.ruleY([0])]})])}
   ${figura({titulo: `Las doce entidades de las que vienen más hablantes, ${ultimo.anio}`, subtitulo: "Entidad de nacimiento de los hablantes que viven en la ciudad", pie: `${ultimo.anio === 2025 ? "Encuesta Intercensal 2025" : "Censo 2020"} (INEGI), muestra por alcaldía · cada barra es una entidad de nacimiento`},
@@ -110,6 +117,7 @@ display(html`<section class="beta-seccion">
       marks: [Plot.barX(topEnt, {x: "num", y: "nombre", fill: RAMPA_MORADA[3]}), Plot.text(topEnt, {x: "num", y: "nombre", text: (r) => `${entero(r.num)} (${pct(r.share)})`, dx: 6, textAnchor: "start", fontSize: 11.5}),
         Plot.tip(topEnt, Plot.pointerY({x: "num", y: "nombre", maxRadius: Infinity, title: (r) => `${r.nombre}\n${entero(r.num)} hablantes nacidos aquí viven en la ciudad\n${pct(r.share)} de los hablantes de la ciudad`})), Plot.ruleX([0])]})])}
   <p class="beta-nota">El mapa de origen, con una flecha por entidad y variante probable de cada lengua, está en <a href="../mapa">el mapa</a>: elige una lengua y pulsa "Ver de dónde vienen".</p>
+  ${fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["hli_nacidos_fuera_2020"], lectura: ["R-SEPI-2024-DIV"]})}
   ${explicacion("El Censo pregunta en qué entidad o país nació cada persona. Aquí se toma a los hablantes de lengua indígena que viven en la ciudad y se cuenta qué parte nació fuera de ella. Es una medida de origen, no de fecha de llegada: alguien nacido en Oaxaca pudo llegar hace cincuenta años o el año pasado.")}
 </section>`);
 ```

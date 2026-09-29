@@ -13,17 +13,24 @@ import {panelSeccion, EDADES, SEPARADO} from "./panel-seccion.js";
 import {mapaNavegador} from "./mapa-navegador.js";
 import {cortesPorCuantil, leyenda, RAMPA_MORADA, ROJO_IBERO} from "./mapa.js";
 import {figura, explicacion, tablaColumnas} from "./graficas.js";
-import {punto} from "./base.js";
+import {punto, ejePct} from "./base.js";
 
 const escapar = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const pct = (v, d = 1) => (v == null || !Number.isFinite(Number(v)) ? "sin dato" : `${Number(v).toFixed(d)} %`);
 const entero = (n) => (n == null || n === "" || !Number.isFinite(Number(n)) ? "sin dato" : punto(Math.round(Number(n))));
 const etiquetaEdad = (c) => EDADES.find((e) => e.clave === c)?.etiqueta ?? c;
 const minuscula = (t) => t.charAt(0).toLowerCase() + t.slice(1);
+// Antes de 2010 la pregunta de lengua empezaba a los 5 años: la foto de esas
+// ediciones es de 5 años y más y la definición tiene que decirlo.
+const definicionDe = (p, anio) => (p.clave === "hablantes" && anio < 2010 ? p.definicion.replace(/3 años y más/g, "5 años y más") : p.definicion);
 
 // Poblaciones y cómo se llaman en cada fuente.
 export const POBLACIONES = [
   {clave: "hablantes", etiqueta: "Hablan una lengua indígena", corto: "Hablantes de lengua indígena", tesela: "tasa_p3ym_hli", num: "P3YM_HLI", den: "P_3YMAS", serie: (anio) => (anio < 2010 ? "hablantes5" : "hablantes3"),
+   // La serie en el tiempo va en un solo universo, 5 años y más, en las ocho
+   // ediciones; por sexo solo hay 5 y más en 2005, 2015 y 2025, así que por
+   // sexo la serie es de 3 años y más desde 2010.
+   serieLarga: (anio, sexo) => (sexo === "Total" || anio < 2010 ? "hablantes5" : "hablantes3"),
    definicion: "Personas de 3 años y más que hablan alguna lengua indígena, sobre la población de 3 años y más."},
   {clave: "hogares", etiqueta: "Viven en hogares indígenas", corto: "Población en hogares indígenas", tesela: "tasa_phog_ind", num: "PHOG_IND", den: "POBTOT", serie: () => "hogares",
    definicion: "Personas en hogares donde la jefa o el jefe, su cónyuge o (desde 2020) alguno de sus ascendientes habla lengua indígena, sobre la población total."},
@@ -58,7 +65,7 @@ export function datosCenso({nacional, inpi, serie, agebs, agebs2010, geoFilas, g
  * ({nivel, cveEnt, cveMun, poblacion, vista, anio}); `ocultar` esconde
  * controles que la sección no ofrece (por ejemplo ["vista"] sin mapa).
  */
-export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], conMapa = true, tope = 25} = {}) {
+export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], conMapa = true, tope = 25, fuentes = null} = {}) {
   const {nac, ser, ag, inpi, catalogo, geoEntidades, pmtiles, INPI, INDICE_NAC} = datos;
   const inpiDe = (nivel, cve) => INPI.get(`${nivel}|${cve}`) ?? null;
   const enCiudad = (geo) => geo.cveEnt === "09";
@@ -261,16 +268,20 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
     // Serie por alcaldía: solo la ciudad y sus alcaldías tienen 1990 - 2025.
     const cveSerie = v.seleccion && nivelCapa === "municipio" && v.seleccion.startsWith("09") ? v.seleccion : cont.nivel === "entidad" && cont.cve === "09" ? "09" : cont.nivel === "municipio" && cont.cve.startsWith("09") ? cont.cve : null;
     if (cveSerie && v.nivel !== "nacional" && pob.serie) {
-      const s = ser.filter((r) => r.cve === cveSerie && r.poblacion === pob.serie(r.anio) && r.sexo === v.sexo && r.den > 0).map((r) => ({...r, pct: 100 * r.num / r.den}));
+      const clave = (anio) => (pob.serieLarga ?? pob.serie)(anio, v.sexo);
+      const s = ser.filter((r) => r.cve === cveSerie && r.poblacion === clave(r.anio) && r.sexo === v.sexo && r.den > 0).map((r) => ({...r, pct: 100 * r.num / r.den}));
+      const universos = [...new Set(s.map((r) => r.universo).filter(Boolean).map((u) => u.replace(/ \(.*\)$/, "")))];
+      const subSerie = universos.length === 1 ? `Serie por edición · ${universos[0].toLowerCase()}` : "Serie por edición; el universo cambia de 5 a 3 años y más en 2010";
       const nombreSerie = cveSerie === "09" ? "Ciudad de México" : (catalogo.de("municipio", cveSerie)?.nombre ?? cveSerie);
-      if (s.length > 1) nodos.push(figura({titulo: `${nombreSerie}: ${minuscula(pob.corto)}, ${s[0].anio} - ${s.at(-1).anio}`, subtitulo: "Serie por edición; el universo cambia de 5 a 3 años y más en 2010", pie: "Censos, conteos e intercensales (INEGI) · cada punto es una edición; los huecos, ediciones sin la pregunta"},
-        [Plot.plot({height: 260, width: anchoGrafica(), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: {label: "%", grid: true, zero: true},
+      if (s.length > 1) nodos.push(figura({titulo: `${nombreSerie}: ${minuscula(pob.corto)}, ${s[0].anio} - ${s.at(-1).anio}`, subtitulo: subSerie, pie: "Censos, conteos e intercensales (INEGI) · cada punto es una edición; los puntos huecos, estimaciones de encuesta"},
+        [Plot.plot({height: 260, width: anchoGrafica(), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {zero: true}),
           marks: [Plot.line(s, {x: "anio", y: "pct", stroke: RAMPA_MORADA[3], strokeWidth: 2}), Plot.dot(s, {x: "anio", y: "pct", fill: (r) => (r.cota === "censo" ? RAMPA_MORADA[3] : "white"), stroke: RAMPA_MORADA[3], r: 4.5}),
-            Plot.text(s, {x: "anio", y: "pct", text: (r) => `${r.pct.toFixed(1)}`, dy: -10, fontSize: 11}),
-            Plot.tip(s, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, title: (r) => `${r.anio}\n${pob.corto}: ${r.pct.toFixed(1)} %\nPersonas: ${entero(r.num)} de ${entero(r.den)}\n${r.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
+            Plot.text(s, {x: "anio", y: "pct", text: (r) => `${r.pct.toFixed(1)} %`, dy: -10, fontSize: 11}),
+            Plot.tip(s, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, title: (r) => `${r.anio}\n${pob.corto}: ${r.pct.toFixed(2)} %${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}\nPersonas: ${entero(r.num)} de ${entero(r.den)}\n${r.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
             Plot.ruleY([0])]})]));
     }
-    nodos.push(explicacion(`${v0.poblacion === SEPARADO ? "Cada población es una forma distinta de contar a la población indígena; se comparan una junto a otra sin sumarlas. " : pob.definicion + " "}${["nacional", "entidad", "municipio"].includes(v.nivel) ? "Las cifras por sexo y las de hogares vienen del conteo censal (ITER); las de grupo de edad, la autoadscripción, la unión y la intersección, de la muestra del cuestionario ampliado, con su intervalo de 95 %." : "Las cifras por AGEB y manzana vienen del tabulado del Censo; las celdas suprimidas por confidencialidad se dejan sin dato."}`));
+    if (fuentes) nodos.push(fuentes(v));
+    nodos.push(explicacion(`${v0.poblacion === SEPARADO ? "Cada población es una forma distinta de contar a la población indígena; se comparan una junto a otra sin sumarlas. " : definicionDe(pob, v.anio) + " "}${["nacional", "entidad", "municipio"].includes(v.nivel) ? "Las cifras por sexo y las de hogares vienen del conteo censal (ITER); las de grupo de edad, la autoadscripción, la unión y la intersección, de la muestra del cuestionario ampliado, con su intervalo de 95 %." : "Las cifras por AGEB y manzana vienen del tabulado del Censo; las celdas suprimidas por confidencialidad se dejan sin dato."}`));
     if (filas.length && v.nivel !== "manzana" && v.nivel !== "nacional") nodos.push(tablaColumnas(filas, [
       {etiqueta: "Unidad", valor: (r) => r.nombre}, {etiqueta: "Clave", valor: (r) => r.cve}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(2)},
       {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Población", num: true, valor: (r) => entero(r.den)},

@@ -8,12 +8,22 @@ import {html} from "npm:htl";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {punto} from "../components/base.js";
+import {procedencia} from "../components/fuentes.js";
 
 const [variantesCiudad, lenguasAlc, clin] = await Promise.all([
   FileAttachment("../data/variantes_ciudad.csv").csv(),
   FileAttachment("../data/lenguas_alcaldia.csv").csv({typed: true}),
   FileAttachment("../data/clin_variantes.csv").csv(),
 ]);
+const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
+const DATOS_VAR = ["D-INALI-CLIN-2008", "D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"];
+// La variante no se publica en ningún censo: no hay cifra oficial igual con
+// qué cotejar. Lo más cercano es la estimación del INALI para 2000, hecha con
+// el mismo cruce de lugar y Catálogo; se compara el orden de las variantes.
+const notaInali = () => {
+  const mayor = fuenteDe.valor("variantes", "inali2000_misma_variante_mayor"), top5 = fuenteDe.valor("variantes", "inali2000_top5");
+  return `Ningún censo registra la variante, así que no hay una cifra oficial igual con qué cotejar. Lo más cercano es la estimación de hablantes por variante que publicó el INALI para 2000 con el mismo método: el lugar de residencia cruzado con el Catálogo. Frente a ella, la variante mayor de cada lengua con varias variantes es la misma en ${mayor != null ? `${mayor.toFixed(0)} %` : "la mayoría"} de las lenguas, y las cinco variantes mayores coinciden en promedio en ${top5 != null ? `${top5.toFixed(0)} %` : "su mayoría"}. Aquí se usa el lugar de nacimiento, no el de residencia, porque los hablantes de la ciudad llegaron de otra parte.`;
+};
 const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 // Solo lenguas del catálogo (las claves 8000 y más son "otras de América" y "no especificado").
@@ -73,6 +83,7 @@ function pintarA() {
           Plot.text(top, {x: "total", y: "variante", text: (r) => entero(r.total), dx: 6, textAnchor: "start", fontSize: 11}),
           Plot.tip(top, Plot.pointerY({x: "total", y: "variante", maxRadius: Infinity, title: (r) => `${r.variante}\n${entero(r.total)} hablantes probables\nExacta ${entero(r.exacta)} · única ${entero(r.unica)} · estimada ${entero(r.estimada)}`})), Plot.ruleX([0])]})]) : html`<p class="beta-nota">Sin hablantes con variante probable en esta selección.</p>`,
     html`<p class="beta-nota">Para ver de dónde vienen y el territorio de cada variante, abre <a href="../mapa">el mapa</a>, elige la lengua y usa "Ver de dónde vienen" o "Ver el mapa de la lengua".</p>`,
+    fuenteDe({datos: DATOS_VAR, referencia: ["R-INALI-EST-2000"], nota: notaInali(), lectura: ["R-INEGI-CLASIF-2020"]}),
     explicacion(["Ningún censo pregunta la variante. Aquí se aplica al lugar de origen de cada hablante el mismo cruce que usa el INALI para estimar hablantes por variante: el Catálogo ubica cada variante en municipios, y se asigna la variante que corresponde al lugar de donde viene la persona.", ...CERTEZAS.map((c) => `${c.etiqueta}: ${c.texto}.`), "Quienes nacieron en la ciudad o en otro país no reciben variante. Es una inferencia sobre el origen, no un dato de la persona: alguien pudo nacer en un lugar y hablar la variante de otro."]),
     tablaColumnas([...porVar.values()].sort((a, b) => b.total - a.total), [{etiqueta: "Variante", valor: (r) => r.variante}, {etiqueta: "Hablantes probables", num: true, valor: (r) => entero(r.total)}, {etiqueta: "Exacta", num: true, valor: (r) => entero(r.exacta)}, {etiqueta: "Única", num: true, valor: (r) => entero(r.unica)}, {etiqueta: "Estimada", num: true, valor: (r) => entero(r.estimada)}], {titulo: "Ver todas las variantes"}));
 }
@@ -105,6 +116,7 @@ function pintarB() {
        Plot.plot({marginLeft: 120, marginRight: 30, height: 24 * top.length + 50, width: Math.min(900, width), color: {domain: dominio, range: [...CERTEZAS.map((c) => c.color), "#bdbdbd"]}, x: {label: "% de los hablantes", grid: true, domain: [0, 100]}, y: {label: null, domain: top.map((k) => porLengua.get(k).nombre)},
         marks: [Plot.barX(filas, {x: "share", y: "lengua", fill: "certeza", order: dominio}),
           Plot.tip(filas.filter((r) => r.num >= 0.5), Plot.pointerY(Plot.stackX({x: "share", y: "lengua", z: "certeza", order: dominio, maxRadius: Infinity, title: (r) => `${r.lengua} · ${r.certeza}\n${entero(r.num)} hablantes (${pct(r.share)})`}))), Plot.ruleX([0])]})]),
+    fuenteDe({datos: DATOS_VAR, referencia: ["R-INALI-EST-2000"], nota: notaInali()}),
     explicacion("La certeza depende de la lengua: una lengua que se habla en pocas entidades, cada una con una sola variante, sale casi toda 'única'; una lengua como el náhuatl o el zapoteco, con decenas de variantes en la misma entidad, sale casi toda 'estimada'. La parte sin variante son sobre todo hablantes nacidos en la ciudad. Como contraste externo, el orden de las variantes mayores de cada lengua coincide con el de los cuadros por variante del INALI de 2000 en 77 por ciento de las lenguas con varias variantes."));
 }
 panelB.addEventListener("input", pintarB);

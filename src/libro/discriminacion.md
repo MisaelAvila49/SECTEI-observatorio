@@ -8,8 +8,10 @@ import {html} from "npm:htl";
 import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {punto, COLOR_SERIE} from "../components/base.js";
+import {procedencia} from "../components/fuentes.js";
 
 const enadis = (await FileAttachment("../data/enadis.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
+const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
 const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 const EDAD_ETIQ = {"12-29": "12 a 29 años", "30-59": "30 a 59 años", "60+": "60 años y más"};
@@ -22,7 +24,7 @@ const pr = (r) => (r ? 100 * r.num / r.den : null);
 // Sección genérica: barras por categoría de un indicador de la ENADIS, con
 // año (2017, 2022 o las dos), sexo, edad y tipo de localidad; sexo, edad y
 // localidad admiten "por separado" (una faceta; la segunda vuelve al total).
-function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloAnios = null, inicialAnio = "2022"}) {
+function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloAnios = null, inicialAnio = "2022", fuentes = {}}) {
   const anios = soloAnios ?? [2017, 2022];
   const cAnio = campo({id: `${id}-anio`, nombre: "anio", etiqueta: "Año", opciones: [...(anios.length > 1 ? [{clave: SEPARADO, etiqueta: "2017 y 2022 (comparar)", grupo: "En conjunto"}] : []), ...anios.map((a) => ({clave: String(a), etiqueta: String(a), grupo: "Una edición"}))], valor: anios.length > 1 ? inicialAnio : String(anios[0])});
   const op = (total, cats) => [{clave: total, etiqueta: cats.total, grupo: "En conjunto"}, {clave: SEPARADO, etiqueta: "Por separado (comparar)", grupo: "En conjunto"}, ...cats.lista.map(([k, v]) => ({clave: k, etiqueta: v, grupo: "Una a una"}))];
@@ -61,6 +63,7 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
             }),
             Plot.tip(f, Plot.pointer({x: "pct", y: "categoria", ...(sepCampo ? {fx: "faceta"} : {}), maxRadius: Infinity, title: tip})), Plot.ruleX([0])]}) : html`<p class="beta-nota">La pregunta no existe en esta edición.</p>`]),
       extra.length ? html`<p class="beta-nota">Solo un corte puede ir por separado a la vez; los demás vuelven al total.</p>` : "",
+      fuenteDe({datos: ["D-ENADIS-2017", "D-ENADIS-2022"], ...fuentes}),
       explicacion(explica),
       tablaColumnas(f, [{etiqueta: "Categoría", valor: (r) => r.categoria}, {etiqueta: "Año", valor: (r) => r.anio}, {etiqueta: "Sexo", valor: (r) => r.sexo}, {etiqueta: "Edad", valor: (r) => EDAD_ETIQ[r.edad] ?? "12 y más"}, {etiqueta: "Localidad", valor: (r) => r.ambito},
         {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => (r.ee ? (196 * r.ee).toFixed(2) : "")}, {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Universo", num: true, valor: (r) => entero(r.den)}], {titulo: "Ver los datos"}));
@@ -90,7 +93,7 @@ display(kpis([
 <h2 id="en-el-ultimo-ano" class="toc-anchor">Discriminación en el último año</h2>
 
 ```js
-display(seccionEnadis({id: "c7a", indicador: "discriminacion", orden: ["Por algún motivo", "Por los diez motivos comunes a 2017 y 2022"], inicialAnio: SEPARADO,
+display(seccionEnadis({id: "c7a", indicador: "discriminacion", fuentes: {cotejos: ["disc_2017", "disc_2022"]}, orden: ["Por algún motivo", "Por los diez motivos comunes a 2017 y 2022"], inicialAnio: SEPARADO,
   titulo: "Personas indígenas que fueron discriminadas en los últimos 12 meses",
   pie: "INEGI, ENADIS 2017 y 2022, módulo de población indígena · cada barra es una forma de medir; la línea, el intervalo de 95 %",
   explica: "La encuesta pregunta si en los últimos doce meses la persona fue discriminada o menospreciada por alguno de una lista de motivos. En 2017 la lista tenía diez motivos y en 2022 dieciséis (se añadieron ser indígena o afrodescendiente, discapacidad, enfermedad, opiniones políticas, estado civil y otro). Por eso se muestran dos medidas: con todos los motivos de cada año, que es la que publica el INEGI (25.3 y 28.0 %), y solo con los diez motivos que existen en las dos ediciones, que es la comparable. Además, en 2022 entró al módulo más gente: quien se considera indígena por cualquiera de seis razones, no solo por su comunidad o sus padres."}));
@@ -101,7 +104,7 @@ display(seccionEnadis({id: "c7a", indicador: "discriminacion", orden: ["Por alg�
 <h2 id="motivos" class="toc-anchor">Por qué motivo</h2>
 
 ```js
-display(seccionEnadis({id: "c7b", indicador: "motivo",
+display(seccionEnadis({id: "c7b", indicador: "motivo", fuentes: {cotejos: ["por_indigena_2022", "disc_2022"]},
   titulo: "Motivos por los que las personas indígenas fueron discriminadas",
   pie: "INEGI, ENADIS 2017 y 2022 · cada barra es un motivo; una persona puede señalar varios",
   explica: "Porcentaje de toda la población indígena de 12 años y más que señaló cada motivo en los últimos doce meses. Una persona puede señalar más de uno, así que las barras no suman el total de discriminadas. Los motivos de 'ser persona indígena o afrodescendiente' en adelante solo existen en 2022."}));
@@ -112,7 +115,7 @@ display(seccionEnadis({id: "c7b", indicador: "motivo",
 <h2 id="donde-ocurre" class="toc-anchor">Dónde ocurre</h2>
 
 ```js
-display(seccionEnadis({id: "c7c", indicador: "ambito",
+display(seccionEnadis({id: "c7c", indicador: "ambito", fuentes: {cotejos: ["ambito_2017"]}, 
   titulo: "Lugares donde las personas indígenas fueron discriminadas",
   pie: "INEGI, ENADIS 2017 y 2022 · cada barra es un ámbito; una persona puede señalar varios",
   explica: "Porcentaje de la población indígena de 12 años y más que en los últimos doce meses fue discriminada en cada lugar: el trabajo o la escuela, la familia, los servicios médicos, una oficina de gobierno, un negocio o banco, la calle o el transporte, las redes sociales y, desde 2022, ante la policía o el Ministerio Público. La barra 'en al menos un ámbito' reúne a quien señaló cualquiera."}));
@@ -123,7 +126,7 @@ display(seccionEnadis({id: "c7c", indicador: "ambito",
 <h2 id="derechos-negados" class="toc-anchor">Derechos negados</h2>
 
 ```js
-display(seccionEnadis({id: "c7d", indicador: "derecho",
+display(seccionEnadis({id: "c7d", indicador: "derecho", fuentes: {cotejos: ["derecho_2017", "derecho_2022"]},
   titulo: "Derechos que les negaron injustificadamente en los últimos cinco años",
   pie: "INEGI, ENADIS 2017 y 2022 · cada barra es un derecho, sobre quienes respondieron sí o no",
   explica: "Porcentaje de la población indígena a la que en los últimos cinco años le negaron sin justificación cada derecho, sobre quienes lo intentaron ejercer (se excluye a quien respondió 'no aplica'). Estudiar solo se preguntó a personas de 12 a 35 años, y trabajar, crédito y renta a las de 18 y más; rentar una vivienda solo existe en 2022. El INEGI publica 26.9 % con al menos un derecho negado en 2022 (18 años y más) y 29.2 % en 2017."}));
@@ -134,7 +137,7 @@ display(seccionEnadis({id: "c7d", indicador: "derecho",
 <h2 id="respeto" class="toc-anchor">Cómo ven el respeto a sus derechos</h2>
 
 ```js
-display(seccionEnadis({id: "c7e", indicador: "respeto", orden: ["Mucho", "Algo", "Poco", "Nada"], inicialAnio: SEPARADO,
+display(seccionEnadis({id: "c7e", indicador: "respeto", fuentes: {cotejos: ["disc_2022"], referencia: ["R-ENADIS-2022-BOL"], nota: "La opinión sobre el respeto a los derechos no tiene todavía un cotejo propio; se coteja la cifra central del módulo, que confirma la muestra y el factor de expansión."}, orden: ["Mucho", "Algo", "Poco", "Nada"], inicialAnio: SEPARADO,
   titulo: "¿Qué tanto se respetan los derechos de las personas indígenas?",
   pie: "INEGI, ENADIS 2017 y 2022 · cada barra es una respuesta; suman 100 % en cada año",
   explica: "Opinión de las propias personas indígenas de 12 años y más sobre cuánto se respetan sus derechos en el país. Se excluye a quien no supo responder."}));

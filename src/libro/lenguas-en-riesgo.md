@@ -8,12 +8,14 @@ import {html} from "npm:htl";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {punto} from "../components/base.js";
+import {procedencia} from "../components/fuentes.js";
 
 const [riesgo, variantesCiudad, lenguasAlc] = await Promise.all([
   FileAttachment("../data/inali_riesgo_2012.csv").csv({typed: true}),
   FileAttachment("../data/variantes_ciudad.csv").csv(),
   FileAttachment("../data/lenguas_alcaldia.csv").csv({typed: true}),
 ]);
+const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
 const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 // Grados del INALI, de menor a mayor riesgo. Rampa de un solo tono (rojos):
@@ -68,6 +70,7 @@ function pintarA() {
         marks: [Plot.barX(orden, {x: "hablantes_2000", y: "variante", fill: "grado"}), Plot.text(orden, {x: "hablantes_2000", y: "variante", text: (r) => entero(r.hablantes_2000), dx: 6, textAnchor: "start", fontSize: 11}),
           Plot.tip(orden, Plot.pointerY({x: "hablantes_2000", y: "variante", maxRadius: Infinity, title: (r) => `${r.variante}\nRiesgo ${r.grado.toLowerCase()}\n${entero(r.hablantes_2000)} hablantes en 2000, ${entero(r.hablantes_2000_loc30)} en localidades donde son 30 % o más\nNiños de 5 a 14 años: ${pct(r.prop_ninos)} de los hablantes`})), Plot.ruleX([0])]})]));
   }
+  nodos.push(fuenteDe({datos: ["D-INALI-RIESGO-2012", "D-INALI-CLIN-2008"], cotejos: ["variantes_muy_alto", "variantes_alto", "variantes_mediano", "variantes_no_inmediato", "clin_variantes"]}));
   nodos.push(explicacion("El INALI mide el riesgo de cada variante con tres datos del Censo 2000: cuántos hablantes tiene, cuántos viven en localidades donde los hablantes son 30 % o más de la población (donde la lengua se usa en la vida diaria) y qué proporción de sus hablantes son niños de 5 a 14 años (si se sigue transmitiendo). Muy alto riesgo es no tener ninguna de esas localidades o tener menos de 100 hablantes en ellas; no inmediato, tener más de una localidad así, más de 1,000 hablantes en ellas y más de 25 % de niños. Es la única clasificación oficial por variante y no se ha actualizado con censos posteriores."),
     tablaColumnas(filas.slice().sort((a, b) => a.lugar - b.lugar), [{etiqueta: "Variante", valor: (r) => r.variante}, {etiqueta: "Lengua", valor: (r) => r.agrupacion}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Grado de riesgo", valor: (r) => r.grado}, {etiqueta: "Hablantes 2000", num: true, valor: (r) => entero(r.hablantes_2000)}, {etiqueta: "En localidades con 30 % o más", num: true, valor: (r) => entero(r.hablantes_2000_loc30)}, {etiqueta: "% niños 5 a 14", num: true, valor: (r) => r.prop_ninos}], {titulo: "Ver las variantes"}));
   cuerpoA.replaceChildren(...nodos);
@@ -111,6 +114,7 @@ function pintarB() {
       [Plot.plot({marginLeft: 260, marginRight: 60, height: 22 * graves.length + 50, width: Math.min(960, width), color: colorGrado, x: {label: "hablantes probables", grid: true}, y: {label: null, domain: graves.map((r) => r.variante)},
         marks: [Plot.barX(graves, {x: "num", y: "variante", fill: "grado"}), Plot.text(graves, {x: "num", y: "variante", text: (r) => entero(r.num), dx: 6, textAnchor: "start", fontSize: 11}),
           Plot.tip(graves, Plot.pointerY({x: "num", y: "variante", maxRadius: Infinity, title: (r) => `${r.variante} (${r.lengua})\nRiesgo ${r.grado.toLowerCase()}\n${entero(r.num)} hablantes probables en ${lugar}`})), Plot.ruleX([0])]})]) : html`<p class="beta-nota">Sin variantes en riesgo muy alto o alto con hablantes probables en esta selección.</p>`,
+    fuenteDe({datos: ["D-INALI-RIESGO-2012", "D-INALI-CLIN-2008", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["variantes_muy_alto", "variantes_alto", "variantes_mediano", "variantes_no_inmediato"], referencia: ["R-INALI-EST-2000"], nota: "El riesgo de cada variante es el que publica el INALI. La variante de cada hablante de la ciudad es probable, no registrada: se compara con la estimación por variante del INALI en el capítulo 5."}),
     explicacion("Ningún censo pregunta la variante. La variante probable de cada hablante se infiere por su lugar de origen con el método del INALI (ver el mapa y la metodología), y aquí se cruza con el grado de riesgo de 2012. Es una aproximación: dice cuántos hablantes de la ciudad provienen de territorios donde se habla una variante en riesgo, no cuántos la hablan con certeza. Los nacidos en la ciudad no reciben variante y no aparecen."),
     tablaColumnas([...porVariante.values()].sort((a, b) => b.num - a.num), [{etiqueta: "Variante", valor: (r) => r.variante}, {etiqueta: "Lengua", valor: (r) => r.lengua}, {etiqueta: "Grado", valor: (r) => r.grado}, {etiqueta: "Hablantes probables", num: true, valor: (r) => entero(r.num)}], {titulo: "Ver las variantes en riesgo muy alto o alto"}));
 }
@@ -153,6 +157,7 @@ function pintarC() {
           Plot.dot(puntos.filter((p) => p.anio === String(fin)), {x: "num", y: "lengua", fill: "cambio", r: 3.5}),
           Plot.text(filas, {x: "fin", y: "lengua", text: (r) => `${r.dif > 0 ? "+" : ""}${entero(r.dif)}`, dx: 10, textAnchor: "start", fontSize: 10.5}),
           Plot.tip(filas, Plot.pointerY({x: "fin", y: "lengua", maxRadius: Infinity, title: (r) => `${r.lengua}\n${ini}: ${entero(r.ini)} · ${fin}: ${entero(r.fin)}\nCambio: ${r.dif > 0 ? "+" : ""}${entero(r.dif)} (margen ± ${entero(r.error)})\n${r.cambio}`}))]})]),
+    fuenteDe({datos: ["D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["nahuatl_2015", "nahuatl_2020", "word_tabla2_celdas_iguales", "cdmx_hli3_2025"], lectura: ["R-SECULT-LENGUAS", "R-SEPI-2024-DIV"]}),
     explicacion("Se comparan las ediciones que preguntan desde los 3 años (2010, 2015, 2020 y 2025), todas muestras con error de diseño. Un cambio se marca como aumento o disminución solo si supera el margen de error combinado de las dos ediciones al 95 %; si no, se dice que no es distinguible, aunque las cifras sean distintas. La escala es logarítmica para que quepan lenguas de cientos y de decenas de miles de hablantes."),
     tablaColumnas(filas, [{etiqueta: "Lengua", valor: (r) => r.lengua}, {etiqueta: String(ini), num: true, valor: (r) => entero(r.ini)}, {etiqueta: String(fin), num: true, valor: (r) => entero(r.fin)}, {etiqueta: "Cambio", num: true, valor: (r) => entero(r.dif)}, {etiqueta: "Margen ± 95 %", num: true, valor: (r) => entero(r.error)}, {etiqueta: "Lectura", valor: (r) => r.cambio}], {titulo: "Ver los datos"}));
 }

@@ -113,9 +113,11 @@ toc: false
 ```js
 import {kpis, seccion, figura, explicacion} from "./components/graficas.js";
 import {conDescarga} from "./components/descargar.js";
-import {punto, COLOR_SERIE, alCambiarModo, alCambiarAncho, anchoActual} from "./components/base.js";
+import {punto, COLOR_SERIE, alCambiarModo, alCambiarAncho, anchoActual, ejePct} from "./components/base.js";
+import {procedencia} from "./components/fuentes.js";
 import * as Plot from "npm:@observablehq/plot";
 
+const fuenteDe = procedencia({fuentes: await FileAttachment("./data/fuentes.csv").csv(), verificaciones: await FileAttachment("./data/verificaciones.csv").csv(), calculado: await FileAttachment("./data/calculado.csv").csv()});
 const serie = (await FileAttachment("./data/serie_alcaldias.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
 const lenguas = (await FileAttachment("./data/lenguas_alcaldia.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio), lengua: String(r.lengua).padStart(4, "0")}));
 const ciudad = (pob, anio) => serie.find((r) => r.nivel === "entidad" && r.sexo === "Total" && r.poblacion === pob && r.anio === anio);
@@ -126,10 +128,10 @@ const pct = (r) => (r ? `${(100 * r.num / r.den).toFixed(1)} %` : "s/d");
 // Tarjetas: las tres definiciones de población indígena en la edición más
 // reciente, y cuántas lenguas registró la muestra. La nota dice solo el universo.
 {
-  const h = ciudad("hablantes3", 2025), a = ciudad("autoads", 2025), g = ciudad("hogares", 2025);
+  const h = ciudad("hablantes5", 2025), a = ciudad("autoads", 2025), g = ciudad("hogares", 2025);
   const nLenguas = new Set(lenguas.filter((r) => r.anio === 2025 && r.nivel === "entidad" && r.lengua < "8000").map((r) => r.lengua)).size;
   display(kpis([
-    {etiqueta: "Hablan una lengua indígena", cifra: pct(h), nota: `${punto(Math.round(h?.num ?? 0))} personas de 3 años y más, 2025`},
+    {etiqueta: "Hablan una lengua indígena", cifra: pct(h), nota: `${punto(Math.round(h?.num ?? 0))} personas de 5 años y más, 2025`},
     {etiqueta: "Se consideran indígenas", cifra: pct(a), nota: `${punto(Math.round(a?.num ?? 0))} personas, 2025`},
     {etiqueta: "Viven en hogares indígenas", cifra: pct(g), nota: `${punto(Math.round(g?.num ?? 0))} personas, 2025`},
     {etiqueta: "Lenguas con hablantes en la ciudad", cifra: String(nLenguas), nota: "agrupaciones lingüísticas, Encuesta Intercensal 2025"},
@@ -147,28 +149,31 @@ display(seccion({numero: "01", titulo: "Treinta y cinco años de hablantes"}));
 
 ```js
 {
-  // Serie larga en 5 años y más (1990-2020) y 3 años y más (2010-2025), con
-  // el conteo censal y las encuestas marcadas distinto: no se promedian ni se
-  // empalman, se dibujan las dos.
-  const filas = serie.filter((r) => r.nivel === "entidad" && r.sexo === "Total" && ["hablantes5", "hablantes3"].includes(r.poblacion))
-    .map((r) => ({anio: r.anio, universo: r.poblacion === "hablantes5" ? "5 años y más" : "3 años y más", pct: 100 * r.num / r.den, num: r.num, cota: r.cota}));
+  // Serie larga en un solo universo, 5 años y más, en las ocho ediciones.
+  // 2015 y 2025 salen de los microdatos de las intercensales (sin tabulado con
+  // ese corte) y van con punto hueco y su intervalo en el globo.
+  const filas = serie.filter((r) => r.nivel === "entidad" && r.sexo === "Total" && r.poblacion === "hablantes5")
+    .map((r) => ({anio: r.anio, pct: 100 * r.num / r.den, num: r.num, den: r.den, ee: r.ee, cota: r.cota}))
+    .sort((a, b) => a.anio - b.anio);
+  const color = () => COLOR_SERIE["Población indígena"];
   const cuerpo = html`<div class="seccion-cuerpo"></div>`;
   let ancho = anchoActual();
   const pintar = () => cuerpo.replaceChildren(conDescarga(figura({
     titulo: "Hablantes de lengua indígena en la Ciudad de México, 1990 - 2025",
-    subtitulo: "Porcentaje de la población del universo de cada pregunta. Los puntos huecos son estimaciones de encuesta.",
-    pie: "INEGI, censos, conteos e intercensales: cada punto es una edición y cada línea un universo de edad.",
+    subtitulo: "Porcentaje de la población de 5 años y más. Los puntos huecos son estimaciones de encuesta.",
+    pie: "INEGI, censos, conteos e intercensales · cada punto es una edición, con el mismo universo de edad en todas.",
   }, [Plot.plot({
-    width: Math.min(ancho, 980), height: 280, style: {fontSize: "13px"}, marginLeft: 48,
-    x: {label: null, tickFormat: (d) => String(d), ticks: [1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025]},
-    y: {label: "% de hablantes", grid: true, domain: [0, 2.2]},
-    // Colores de la paleta del sitio, que aplicarModo reescribe al cambiar el tema.
-    color: {legend: true, domain: ["5 años y más", "3 años y más"], range: [COLOR_SERIE["Resto de la población"], COLOR_SERIE["Población indígena"]]},
+    // El ancho descuenta el relleno de la tarjeta, y el eje x lleva margen a
+    // los lados para que las etiquetas de 1990 y 2025 no se corten ni pisen el eje.
+    width: Math.min(ancho - 64, 920), height: 280, style: {fontSize: "13px"}, marginLeft: 56, marginRight: 24,
+    x: {label: null, tickFormat: (d) => String(d), ticks: [1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025], inset: 28},
+    y: ejePct(null, {domain: [0, 2.2]}),
     marks: [
-      Plot.line(filas, {x: "anio", y: "pct", stroke: "universo", strokeWidth: 2}),
-      Plot.dot(filas, {x: "anio", y: "pct", stroke: "universo", fill: (d) => (d.cota === "censo" ? undefined : "white"), r: 4.5,
-        channels: {Universo: "universo", Personas: (d) => punto(Math.round(d.num)), Fuente: (d) => (d.cota === "censo" ? "conteo censal" : "encuesta")},
-        tip: {format: {x: (d) => String(d), y: (d) => `${d.toFixed(2)} %`, stroke: false, fill: false}}}),
+      Plot.line(filas, {x: "anio", y: "pct", stroke: color(), strokeWidth: 2}),
+      Plot.dot(filas, {x: "anio", y: "pct", stroke: color(), fill: (d) => (d.cota === "censo" ? color() : "white"), r: 4.5, strokeWidth: 1.6}),
+      Plot.text(filas, {x: "anio", y: "pct", text: (d) => `${d.pct.toFixed(2)} %`, dy: -12, fontSize: 11}),
+      Plot.tip(filas, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity,
+        title: (d) => `${d.anio}\n${d.pct.toFixed(2)} % de la población de 5 años y más${d.ee ? ` (± ${(196 * d.ee).toFixed(2)})` : ""}\n${punto(Math.round(d.num))} hablantes\n${d.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
       Plot.ruleY([0]),
     ],
   })])));
@@ -176,10 +181,15 @@ display(seccion({numero: "01", titulo: "Treinta y cinco años de hablantes"}));
   alCambiarAncho((n) => { ancho = n; pintar(); });
   pintar();
   display(cuerpo);
-  display(explicacion(`El universo de la pregunta de habla fue de 5 años y más hasta 2005 y de 3 años y más desde 2010;
-    los censos de 2010 y 2020 publican los dos. Las intercensales de 2015 y 2025 son encuestas y sus puntos van
-    huecos. El ITER de 1990 no publica el total de hablantes ni la población de 5 años y más: su punto suma a
-    quienes hablan y no hablan español y estima el denominador con la muestra del 10 %.`));
+  display(fuenteDe({datos: ["D-ITER-1990", "D-ITER-1995", "D-ITER-2000", "D-ITER-2005", "D-ITER-2010", "D-EIC-2015", "D-ITER-2020", "D-EIC-2025-MICRO"],
+    cotejos: ["cdmx_hli5_1990_n", "cdmx_hli5_1995_n", "cdmx_hli5_2000_n", "cdmx_hli5_2005_n", "cdmx_hli5_2010_n", "cdmx_hli5_2020_n", "cdmx_hli3_2015_n", "cdmx_hli3_2025"],
+    lectura: ["R-SEPI-2024-DIV"],
+    nota: "2015 y 2025 no tienen tabulado de 5 años y más: se calculan con los microdatos, que reproducen las cifras de 3 años y más publicadas para esas ediciones."}));
+  display(explicacion(`La pregunta de lengua se hizo a partir de los 5 años hasta 2005 y a partir de los 3 desde 2010.
+    Para comparar las ocho ediciones se usa siempre la población de 5 años y más: el INEGI la publica de 1990 a 2010 y
+    en 2020, y para las intercensales de 2015 y 2025 se calcula con sus microdatos. Esos dos puntos son estimaciones de
+    encuesta y van huecos. El ITER de 1990 no publica el total de hablantes ni la población de 5 años y más: su punto
+    suma a quienes hablan y no hablan español y estima el denominador con la muestra del 10 %.`));
 }
 ```
 
@@ -255,6 +265,10 @@ const indTotal = 289139;
 }
 ```
 
+```js
+display(fuenteDe({datos: ["D-CENSO-2020-RESAGEBURB", "D-IECM-COLONIAS-2022"], cotejos: ["cdmx_phog_ind"]}));
+```
+
 <details class="explica-analisis">
 <summary>¿Qué quiere decir este análisis?</summary>
 <p>Cada barra cuenta cuántas colonias tienen determinado porcentaje de su población en hogares censales indígenas. El denominador es la población total de cada colonia, y se excluyen las de menos de 500 habitantes. La línea roja marca el promedio de la ciudad. El detalle vive en el mapa.</p>
@@ -289,6 +303,10 @@ const indTotal = 289139;
   pintar();
   display(cuerpo);
 }
+```
+
+```js
+display(fuenteDe({datos: ["D-CENSO-2020-RESAGEBURB", "D-IECM-COLONIAS-2022", "D-SEPI-PUEBLOS"], cotejos: ["cdmx_phog_ind"]}));
 ```
 
 <details class="explica-analisis">

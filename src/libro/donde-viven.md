@@ -10,6 +10,7 @@ import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {RAMPA_MORADA, ROJO_IBERO} from "../components/mapa.js";
 import {punto} from "../components/base.js";
+import {procedencia} from "../components/fuentes.js";
 
 const [nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, colonias] = await Promise.all([
   FileAttachment("../data/hablantes_nacional_2020.csv").csv({typed: true}),
@@ -25,6 +26,19 @@ const pmtiles = {municipios: await FileAttachment("../data/municipios.pmtiles").
 try { pmtiles.agebs2010 = await FileAttachment("../data/agebs_2010.pmtiles").url(); } catch { pmtiles.agebs2010 = null; }
 try { pmtiles.manzanas2010 = await FileAttachment("../data/manzanas_2010.pmtiles").url(); } catch { pmtiles.manzanas2010 = null; }
 const datos = datosCenso({nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, pmtiles});
+const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
+// Fuentes y cotejos del panel censal según la población que se pinta.
+const DATOS_SERIE = ["D-ITER-1990", "D-ITER-1995", "D-ITER-2000", "D-ITER-2005", "D-ITER-2010", "D-EIC-2015", "D-ITER-2020", "D-EIC-2025-105", "D-EIC-2025-MICRO"];
+const MUESTRAS = ["D-CENSO-2000-AMP", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"];
+const FUENTES_CENSO = {
+  hablantes: {datos: DATOS_SERIE, cotejos: ["cdmx_hli5_1990_n", "cdmx_hli5_1995_n", "cdmx_hli5_2000_n", "cdmx_hli5_2005_n", "cdmx_hli5_2010_n", "cdmx_hli5_2020_n", "cdmx_hli3_2015_n", "cdmx_hli3_2025", "eic2025_alcaldias_iguales", "word_tabla2_celdas_iguales", "iztapalapa_parte_2015"], lectura: ["R-SEPI-2024-DIV", "R-SECULT-LENGUAS"]},
+  hogares: {datos: ["D-ITER-2005", "D-ITER-2010", "D-ITER-2020", "D-EIC-2025-105"], cotejos: ["cdmx_phog_2005_n", "cdmx_phog_2010_n", "cdmx_phog_ind", "cdmx_phog_2025_n"]},
+  autoads: {datos: MUESTRAS, cotejos: ["cdmx_autoads_2010", "cdmx_autoads_2015_n", "cdmx_autoads_2020_n", "cdmx_autoads_2025"], lectura: ["R-SEPI-2024-PERFIL"]},
+  inpi: {datos: ["D-INPI-2020-HOG", "D-INPI-2020-AUTO"], cotejos: ["pct_pi_nacional_2020", "autoads_mun_mediana_dif_2020"]},
+};
+FUENTES_CENSO.todas = {...FUENTES_CENSO.autoads, nota: "La unión de hablantes y personas que se consideran indígenas no tiene cifra publicada; se cotejan sus dos componentes por separado."};
+FUENTES_CENSO.ambas = FUENTES_CENSO.todas;
+const fuentesCenso = (v) => fuenteDe(FUENTES_CENSO[v.poblacion] ?? {datos: DATOS_SERIE, cotejos: [...FUENTES_CENSO.hablantes.cotejos.slice(0, 8), ...FUENTES_CENSO.autoads.cotejos]});
 const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 ```
@@ -40,7 +54,7 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 <h2 id="por-alcaldia" class="toc-anchor">Por alcaldía, 1990 - 2025</h2>
 
 ```js
-display(seccionCenso(datos, {id: "c4alc", inicial: {nivel: "municipio", cveEnt: "09"}}));
+display(seccionCenso(datos, {id: "c4alc", inicial: {nivel: "municipio", cveEnt: "09"}, fuentes: fuentesCenso}));
 ```
 
 ---
@@ -48,7 +62,8 @@ display(seccionCenso(datos, {id: "c4alc", inicial: {nivel: "municipio", cveEnt: 
 <h2 id="por-ageb-y-manzana" class="toc-anchor">Por AGEB y por manzana, 2010 y 2020</h2>
 
 ```js
-display(seccionCenso(datos, {id: "c4ageb", inicial: {nivel: "ageb", cveEnt: "09", vista: "mapa"}}));
+display(seccionCenso(datos, {id: "c4ageb", inicial: {nivel: "ageb", cveEnt: "09", vista: "mapa"},
+  fuentes: () => fuenteDe({datos: ["D-CENSO-2020-RESAGEBURB", "D-CENSO-2010-RESAGEBURB", "D-INEGI-CGU-2010"], cotejos: ["cdmx_phog_ind", "cdmx_phog_ind_2010", "cdmx_p3ym_hli_2010", "agebs_2010_con_geometria", "manzanas_2010_con_geometria"]})}));
 ```
 
 ---
@@ -81,6 +96,7 @@ function pintarM() {
           marks: [Plot.barX(porGrado, {x: "parte", y: "grado", fill: (r) => RAMPA_MORADA[1 + GRADOS.indexOf(r.grado) * 0.75 | 0]}), Plot.text(porGrado, {x: "parte", y: "grado", text: (r) => pct(r.parte), dx: 6, textAnchor: "start", fontSize: 11.5}),
             Plot.tip(porGrado, Plot.pointerY({x: "parte", y: "grado", maxRadius: Infinity, title: (r) => `Grado ${r.grado.toLowerCase()}\n${pct(r.parte)} de la población indígena de ${lugar} vive en AGEB de este grado\n${entero(r.num)} personas`})), Plot.ruleX([0])]}),
       ]}</div>`]),
+    fuenteDe({datos: ["D-CONAPO-IMU-2020", "D-CENSO-2020-RESAGEBURB"], cotejos: ["pob_igual_conapo", "pob_igual_coneval", "viv_igual_coneval"], lectura: ["D-CONEVAL-GRS-2020"]}),
     explicacion("CONAPO clasifica cada AGEB urbana en cinco grados de marginación a partir de carencias de educación, salud, vivienda y bienes; no mide ingreso. Aquí cada AGEB de la ciudad se agrupa por su grado y se suman sus personas. La gráfica de la izquierda responde qué tan indígena es la población de las AGEB de cada grado; la de la derecha, en qué grados vive la población indígena. Las AGEB sin grado publicado (muy poca población) no entran."),
     tablaColumnas(porGrado, [{etiqueta: "Grado de marginación", valor: (r) => r.grado}, {etiqueta: "AGEB", num: true, valor: (r) => r.agebs}, {etiqueta: `% ${nombrePob.toLowerCase()}`, num: true, valor: (r) => r.pct.toFixed(2)}, {etiqueta: "% de la población indígena", num: true, valor: (r) => r.parte.toFixed(1)}, {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Población", num: true, valor: (r) => entero(r.den)}], {titulo: "Ver los datos"}));
 }
@@ -110,6 +126,7 @@ function pintarC() {
       [Plot.plot({marginLeft: 260, marginRight: 60, height: 22 * lista.length + 60, width: Math.min(960, width), x: {label: "% de la población en hogares indígenas", grid: true}, y: {label: null, domain: lista.map((r) => r.etiqueta)},
         marks: [Plot.barX(lista, {x: "pct", y: "etiqueta", fill: (r) => (r.pueblo ? ROJO_IBERO : RAMPA_MORADA[3])}), Plot.text(lista, {x: "pct", y: "etiqueta", text: (r) => pct(r.pct), dx: 6, textAnchor: "start", fontSize: 11}),
           Plot.tip(lista, Plot.pointerY({x: "pct", y: "etiqueta", maxRadius: Infinity, title: (r) => `${r.colonia} (${r.alcaldia_col})\n${r.pueblo ? `Pueblo originario: ${r.nombre_pueblo || r.colonia}${r.etnia ? ` · ${r.etnia}` : ""}${r.lengua ? ` · ${r.lengua}` : ""}` : "Sin reconocimiento de pueblo originario"}\nPoblación en hogares indígenas: ${pct(r.pct)}\n${entero(r.PHOG_IND)} de ${entero(r.POBTOT)} personas`})), Plot.ruleX([0])]})]),
+    fuenteDe({datos: ["D-CENSO-2020-RESAGEBURB", "D-IECM-COLONIAS-2022", "D-SEPI-PUEBLOS"], cotejos: ["cdmx_phog_ind"], nota: "El padrón de la SEPI reconoce 50 pueblos originarios; la agregación de manzanas a colonias es propia y no tiene cifra oficial con qué compararla, así que se coteja el total de la ciudad."}),
     explicacion("Las colonias son las unidades territoriales del IECM (2022); cada manzana del Censo se reparte entre las colonias que la cruzan según su área y se suman sus personas. La marca de pueblo originario viene del padrón de la Secretaría de Pueblos y Barrios Originarios, que reconoce 50 pueblos con la misma clave del IECM. Se dejan fuera las colonias con menos de 500 habitantes, donde una proporción alta puede deberse a unas pocas personas."),
     tablaColumnas(lista, [{etiqueta: "Colonia", valor: (r) => r.colonia}, {etiqueta: "Alcaldía", valor: (r) => r.alcaldia_col}, {etiqueta: "Pueblo originario", valor: (r) => (r.pueblo ? "Sí" : "No")}, {etiqueta: "% en hogares indígenas", num: true, valor: (r) => r.pct.toFixed(2)}, {etiqueta: "Personas", num: true, valor: (r) => entero(r.PHOG_IND)}, {etiqueta: "Población", num: true, valor: (r) => entero(r.POBTOT)}], {titulo: "Ver los datos"}));
 }

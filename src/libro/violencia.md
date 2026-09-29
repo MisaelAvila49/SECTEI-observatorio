@@ -8,8 +8,10 @@ import {html} from "npm:htl";
 import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {punto, COLOR_SERIE} from "../components/base.js";
+import {procedencia} from "../components/fuentes.js";
 
 const endireh = (await FileAttachment("../data/endireh.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
+const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
 const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 const EDAD_ETIQ = {"15-29": "15 a 29 años", "30-59": "30 a 59 años", "60+": "60 años y más"};
@@ -18,7 +20,7 @@ const SERIE = {"Indígena": "Población indígena", "Resto": "Resto de la poblac
 const fila = (geo, crit, grupo, ind, per) => endireh.find((r) => r.ambito_geo === geo && r.criterio === crit && r.grupo === grupo && r.edad === "Todas" && r.indicador === ind && r.periodo === per);
 const pr = (r) => (r ? 100 * r.num / r.den : null);
 
-function seccionEndireh({id, indicadores, titulo, pie, explica}) {
+function seccionEndireh({id, indicadores, titulo, pie, explica, fuentes = {}}) {
   const cGeo = campo({id: `${id}-geo`, nombre: "geo", etiqueta: "Dónde", opciones: [{clave: "Nacional", etiqueta: "Todo el país"}, {clave: "Ciudad de México", etiqueta: "Ciudad de México"}], valor: "Nacional"});
   const cCrit = campo({id: `${id}-crit`, nombre: "criterio", etiqueta: "Mujeres indígenas", opciones: CRITERIOS, valor: "lengua"});
   const cPer = campo({id: `${id}-per`, nombre: "periodo", etiqueta: "Periodo", opciones: [{clave: "vida", etiqueta: "A lo largo de la vida"}, {clave: "12 meses", etiqueta: "Últimos 12 meses"}], valor: "vida"});
@@ -47,6 +49,7 @@ function seccionEndireh({id, indicadores, titulo, pie, explica}) {
           marks: [...marcas, Plot.tip(f, Plot.pointer({x: "pct", y: "indicador", ...fx, maxRadius: Infinity, title: (r) => `${r.indicador} · ${r.serie}${r.faceta ? ` · ${r.faceta}` : ""}\n${pct(r.pct)}${r.ee ? ` ± ${(196 * r.ee).toFixed(1)}` : ""}\n${entero(r.num)} de ${entero(r.den)} mujeres · ${r.casos} entrevistas`})), Plot.ruleX([0])]})]),
       faltaFamiliar ? html`<p class="beta-nota">La violencia familiar solo se pregunta para los últimos 12 meses; elige ese periodo para verla.</p>` : "",
       cGeo.value === "Ciudad de México" ? html`<p class="beta-nota">En la Ciudad de México la muestra de mujeres indígenas es chica: las líneas de cada barra muestran el intervalo de 95 %, y cuando se enciman las dos barras la diferencia no es distinguible.</p>` : "",
+      fuenteDe({datos: ["D-ENDIREH-2021"], cotejos: ["vida_total_2021", "vida_hli_2021", "vida_autoads_2021", "12m_total_2021", "12m_hli_2021", "12m_autoads_2021"], ...fuentes}),
       explicacion(explica),
       tablaColumnas(f, [{etiqueta: "Indicador", valor: (r) => r.indicador}, {etiqueta: "Grupo", valor: (r) => r.serie}, {etiqueta: "Edad", valor: (r) => EDAD_ETIQ[r.edad] ?? "15 y más"}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(1)}, {etiqueta: "± 95 %", num: true, valor: (r) => (r.ee ? (196 * r.ee).toFixed(1) : "")}, {etiqueta: "Mujeres", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Del grupo", num: true, valor: (r) => entero(r.den)}, {etiqueta: "Entrevistas", num: true, valor: (r) => r.casos}], {titulo: "Ver los datos"}));
   }
@@ -86,7 +89,7 @@ display(seccionEndireh({id: "c8a", indicadores: ["Cualquier ámbito", "Pareja", 
 <h2 id="por-tipo" class="toc-anchor">De qué tipo</h2>
 
 ```js
-display(seccionEndireh({id: "c8b", indicadores: ["Psicológica", "Física", "Sexual", "Económica o patrimonial"],
+display(seccionEndireh({id: "c8b", fuentes: {referencia: ["R-ENDIREH-2021-TAB"], nota: "Se cotejan las prevalencias totales de la encuesta; la prevalencia de cada tipo no tiene todavía un cotejo propio y se puede consultar en los tabulados del INEGI."}, indicadores: ["Psicológica", "Física", "Sexual", "Económica o patrimonial"],
   titulo: "Mujeres que han vivido violencia, por tipo",
   pie: "INEGI, ENDIREH 2021, mujeres de 15 años y más · cada par de barras es un tipo de violencia, en cualquier ámbito",
   explica: "Los tipos agrupan las situaciones que la encuesta pregunta en todos los ámbitos: psicológica (insultos, humillaciones, amenazas), física (golpes, empujones, agresiones con armas), sexual (acoso, abuso, violación) y económica o patrimonial (control del dinero, despojo de bienes). Una mujer puede haber vivido varios tipos."}));

@@ -8,15 +8,18 @@ import {html} from "npm:htl";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {RAMPA_MORADA, ROJO_IBERO} from "../components/mapa.js";
-import {punto} from "../components/base.js";
+import {punto, ejePct} from "../components/base.js";
+import {procedencia} from "../components/fuentes.js";
 
 const [clin, lenguasNac, serieNac] = await Promise.all([
   FileAttachment("../data/clin_variantes.csv").csv(),
   FileAttachment("../data/lenguas_nacional_2020.csv").csv({typed: true}),
   FileAttachment("../data/serie_nacional.csv").csv({typed: true}),
 ]);
+const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
 const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
+const uni = (u) => String(u ?? "").replace(/pob (\d)\+/, "población de $1 años y más").replace("viv. particulares", "viviendas particulares");
 const nac = lenguasNac.map((r) => ({...r, lengua: String(r.lengua).padStart(4, "0"), cve: String(r.cve).padStart(2, "0")}));
 ```
 
@@ -52,6 +55,7 @@ function pintarA() {
         marks: [Plot.barX(top, {x: "variantes", y: "agrupacion", fill: "familia"}), Plot.text(top, {x: "variantes", y: "agrupacion", text: "variantes", dx: 6, textAnchor: "start", fontSize: 11.5}),
           Plot.tip(top, Plot.pointerY({x: "variantes", y: "agrupacion", maxRadius: Infinity, title: (r) => `${r.agrupacion} (familia ${r.familia})\n${r.variantes} variantes`})), Plot.ruleX([0])]})]));
   }
+  nodos.push(fuenteDe({datos: ["D-INALI-CLIN-2008"], cotejos: ["clin_familias", "clin_agrupaciones", "clin_variantes"]}));
   nodos.push(explicacion("El Catálogo de las Lenguas Indígenas Nacionales (INALI, 2008) ordena las lenguas en tres niveles: la familia, que reúne lenguas con un origen común; la agrupación, que es lo que comúnmente se llama 'lengua' y lo que pregunta el Censo; y la variante, la forma concreta que se habla en un territorio, con su propia autodenominación. Las 364 variantes son las que el INALI trata como lenguas para fines de política pública."),
     tablaColumnas(porAgrupacion, [{etiqueta: "Agrupación", valor: (r) => r.agrupacion}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Variantes", num: true, valor: (r) => r.variantes}], {titulo: "Ver las 68 agrupaciones"}));
   cuerpoA.replaceChildren(...nodos);
@@ -99,6 +103,7 @@ function pintarB() {
       html`<p class="beta-nota">En rojo, la Ciudad de México. El mapa de la lengua por municipio, con la variante del catálogo, está en <a href="../mapa">el mapa</a>: elige la lengua y pulsa "Ver el mapa de la lengua".</p>`,
       tablaColumnas(filas.map((r) => ({...r, share: 100 * r.num / total, tasa: 100 * r.num / r.den})), [{etiqueta: "Entidad", valor: (r) => r.nombre}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de la lengua", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "% de la entidad", num: true, valor: (r) => r.tasa.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => entero(1.96 * r.ee * r.den)}], {titulo: "Ver todas las entidades"}));
   }
+  nodos.push(fuenteDe({datos: ["D-CENSO-2020"], cotejos: ["hablantes3_nacional_2020", "n_lenguas_nacional_2020", "nacional_0211_2020", "nacional_0602_2020", "nacional_0606_2020", "nacional_0607_2020", "nacional_0516_2020", "nacional_0513_2020"], lectura: ["R-INALI-DATOSGOB"]}));
   nodos.push(explicacion("El Censo 2020 pregunta a cada persona de 3 años y más si habla alguna lengua indígena y cuál. Las cifras salen del cuestionario ampliado, una muestra de cuatro millones de viviendas expandida a todo el país, por eso llevan intervalo. La muestra sobreestima al conteo completo (7,364,645 hablantes) en 2 por ciento en total, y más en algunas lenguas: el tabulado oficial da 589,144 hablantes de tseltal y 774,755 de maya, contra 672,586 y 800,533 de la muestra. Las cifras oficiales por lengua están en la tabla de verificaciones de la metodología. El desglose por entidad y sexo es el que esa muestra permite."));
   cuerpoB.replaceChildren(...nodos);
 }
@@ -122,8 +127,7 @@ display(html`<section class="beta-seccion">${panelB}${cuerpoB}</section>`);
 
 ```js
 const SERIES = [
-  {clave: "hablantes5", etiqueta: "Hablan lengua indígena, 5 años y más", corto: "Hablantes (5 años y más)"},
-  {clave: "hablantes3", etiqueta: "Hablan lengua indígena, 3 años y más", corto: "Hablantes (3 años y más)"},
+  {clave: "hablantes5", etiqueta: "Hablan una lengua indígena", corto: "Hablantes de lengua indígena"},
   {clave: "autoads", etiqueta: "Se consideran indígenas", corto: "Se consideran indígenas"},
   {clave: "hogares", etiqueta: "Viven en hogares indígenas", corto: "Población en hogares indígenas"},
 ];
@@ -131,24 +135,30 @@ const selSerie = campo({id: "c1-serie", nombre: "serie", etiqueta: "Población",
 const selMedida = campo({id: "c1-medida", nombre: "medida", etiqueta: "Medida", opciones: [{clave: "pct", etiqueta: "Porcentaje de la población"}, {clave: "num", etiqueta: "Personas"}], valor: "pct"});
 const panelS = html`<div class="panel-filtros"><div class="panel-campos">${selSerie}${selMedida}</div></div>`;
 const cuerpoS = document.createElement("div");
-const COLORES = {hablantes5: "#88419d", hablantes3: "#4d004b", autoads: "#C4101B", hogares: "#2166AC"};
+const COLORES = {hablantes5: "#88419d", autoads: "#C4101B", hogares: "#2166AC"};
 function pintarS() {
   const claves = selSerie.value === "todas" ? SERIES.map((s) => s.clave) : [selSerie.value];
-  const filas = serieNac.filter((r) => claves.includes(r.poblacion)).map((r) => ({...r, serie: SERIES.find((s) => s.clave === r.poblacion).corto, valor: selMedida.value === "pct" ? r.pct : r.num}));
   const esPct = selMedida.value === "pct";
+  const filas = serieNac.filter((r) => claves.includes(r.poblacion)).map((r) => ({...r, serie: SERIES.find((s) => s.clave === r.poblacion).corto, valor: esPct ? r.pct : r.num})).sort((a, b) => a.anio - b.anio);
   const ultimo = (k) => serieNac.filter((r) => r.poblacion === k).sort((a, b) => b.anio - a.anio)[0];
+  const h1990 = serieNac.find((r) => r.poblacion === "hablantes5" && r.anio === 1990);
   const ultimos = filas.filter((r) => r.anio === Math.max(...filas.filter((f) => f.serie === r.serie).map((f) => f.anio)));
+  const color = (s) => COLORES[SERIES.find((x) => x.corto === s).clave];
   cuerpoS.replaceChildren(
-    kpis([{etiqueta: "Hablantes de 3 años y más, 2025", cifra: entero(ultimo("hablantes3").num), nota: `${pct(ultimo("hablantes3").pct)} de la población de 3 años y más`}, {etiqueta: "Se consideran indígenas, 2025", cifra: entero(ultimo("autoads").num), nota: `${pct(ultimo("autoads").pct)} de la población`}, {etiqueta: "Hablantes de 5 años y más, 1990 y 2020", cifra: `${pct(serieNac.find((r) => r.poblacion === "hablantes5" && r.anio === 1990).pct)} y ${pct(ultimo("hablantes5").pct)}`, nota: "proporción de la población de 5 años y más"}]),
-    figura({titulo: esPct ? "Población indígena de México por edición, en porcentaje" : "Población indígena de México por edición, en personas", subtitulo: "Cada serie usa el universo con que la publica el INEGI; el globo lo dice", pie: "Censos, conteos e intercensales (INEGI), cifras oficiales publicadas · cada punto es una edición; los huecos, ediciones sin la pregunta"},
-      [Plot.plot({height: 320, width: Math.min(900, width), marginLeft: 70, marginRight: 170, x: {label: null, tickFormat: (d) => String(d), domain: [1988, 2027]}, y: {label: esPct ? "%" : "personas", grid: true, zero: true, tickFormat: esPct ? undefined : (d) => `${(d / 1e6).toFixed(0)} M`},
+    kpis([{etiqueta: "Hablantes de 5 años y más, 2025", cifra: entero(ultimo("hablantes5").num), nota: `${pct(ultimo("hablantes5").pct)} de la población de 5 años y más`}, {etiqueta: "Se consideran indígenas, 2025", cifra: entero(ultimo("autoads").num), nota: `${pct(ultimo("autoads").pct)} de la población`}, {etiqueta: "Hablantes de 5 años y más, 1990", cifra: entero(h1990.num), nota: `${pct(h1990.pct)} de la población de 5 años y más`}]),
+    figura({titulo: esPct ? "Población indígena de México por edición, en porcentaje" : "Población indígena de México por edición, en personas", subtitulo: "Hablantes: población de 5 años y más en todas las ediciones. Los puntos huecos son estimaciones de encuesta", pie: "Censos, conteos e intercensales (INEGI) · cada punto es una edición; una línea que empieza tarde es una pregunta que antes no se hacía"},
+      [Plot.plot({height: 320, width: Math.min(900, width), marginLeft: 70, marginRight: 190, x: {label: null, tickFormat: (d) => String(d), domain: [1988, 2027]}, y: esPct ? ejePct(null, {zero: true}) : {label: "personas", grid: true, zero: true, tickFormat: (d) => `${(d / 1e6).toFixed(0)} M`},
         color: {domain: claves.map((k) => SERIES.find((s) => s.clave === k).corto), range: claves.map((k) => COLORES[k])},
-        marks: [Plot.line(filas, {x: "anio", y: "valor", stroke: "serie", strokeWidth: 2}), Plot.dot(filas, {x: "anio", y: "valor", fill: "serie", r: 4}),
-          Plot.text(ultimos, {x: "anio", y: "valor", text: "serie", dx: 8, textAnchor: "start", fontSize: 11}),
-          Plot.tip(filas, Plot.pointerX({x: "anio", y: "valor", maxRadius: Infinity, title: (r) => `${r.anio} · ${r.serie}\n${entero(r.num)} personas · ${pct(r.pct)}\nUniverso: ${r.universo}${r.nota ? `\n${r.nota}` : ""}`})),
+        marks: [Plot.line(filas, {x: "anio", y: "valor", stroke: "serie", strokeWidth: 2}),
+          Plot.dot(filas, {x: "anio", y: "valor", stroke: "serie", fill: (r) => (r.cota === "muestra" ? "white" : color(r.serie)), r: 4, strokeWidth: 1.6}),
+          Plot.text(ultimos, {x: "anio", y: "valor", text: (r) => `${r.serie}: ${esPct ? pct(r.pct) : `${(r.num / 1e6).toFixed(1)} M`}`, dx: 8, textAnchor: "start", fontSize: 11}),
+          Plot.tip(filas, Plot.pointerX({x: "anio", y: "valor", z: "serie", maxRadius: Infinity, title: (r) => `${r.anio} · ${r.serie}\n${pct(r.pct, 2)}${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""} · ${entero(r.num)} personas\nUniverso: ${uni(r.universo)}\n${r.cota === "muestra" ? "estimación de encuesta" : "conteo censal"}`})),
           Plot.ruleY([0])]})]),
-    explicacion("Son las cifras oficiales que el INEGI publicó en cada edición, sin recalcular. Los hablantes de 5 años y más forman la serie más larga (1990 - 2020, sin 2015); desde 2010 el Censo pregunta desde los 3 años. La autoadscripción cambió de universo: 5 años y más en 2000, 3 y más en 2010 y 2020, toda la población en 2015 y 2025, y en 2015 existió además la categoría 'se considera en parte'. La población en hogares indígenas del ITER (2010 y 2020) no es la del INPI, que suma además a los hablantes fuera de esos hogares."),
-    tablaColumnas(filas.slice().sort((a, b) => a.anio - b.anio || a.serie.localeCompare(b.serie)), [{etiqueta: "Año", valor: (r) => r.anio}, {etiqueta: "Población", valor: (r) => r.serie}, {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Población de referencia", num: true, valor: (r) => entero(r.den)}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(2)}, {etiqueta: "Universo", valor: (r) => r.universo}, {etiqueta: "Fuente", valor: (r) => r.tabla}], {titulo: "Ver la serie con sus fuentes"}));
+    fuenteDe({datos: ["R-INEGI-2004-PI", "D-ITER-2020-NAL", "R-CENSO-2020-TAB-ETN", "D-EIC-2015-NAL", "D-EIC-2025-MICRO", "R-EIC-2025-TAB-ETN"],
+      cotejos: ["hablantes3_nacional_2015_micro", "hablantes3_nacional_2025_micro", "hablantes3_nacional_2020", "pct_autoads_nacional_2020"],
+      nota: "Los hablantes de 5 años y más de 1990 a 2010 y de 2020 son cifras publicadas por el INEGI. Los de 2015 y 2025 se calculan con los microdatos de las intercensales, porque sus tabulados empiezan en 3 años; el mismo cálculo desde 3 años reproduce exactamente la cifra publicada."}),
+    explicacion("La pregunta de lengua se hizo a partir de los 5 años hasta 2005 y a partir de los 3 desde 2010. Para que las ocho ediciones se puedan comparar, los hablantes se cuentan siempre sobre la población de 5 años y más. La autoadscripción cambió de universo: 5 años y más en 2000, 3 y más en 2010 y 2020, toda la población en 2015 y 2025, y en 2015 existió además la categoría 'se considera en parte'. La población en hogares indígenas del ITER (2010 y 2020) no es la del INPI, que suma además a los hablantes fuera de esos hogares."),
+    tablaColumnas(filas.slice().sort((a, b) => a.anio - b.anio || a.serie.localeCompare(b.serie)), [{etiqueta: "Año", valor: (r) => r.anio}, {etiqueta: "Población", valor: (r) => r.serie}, {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Población de referencia", num: true, valor: (r) => entero(r.den)}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => (r.ee ? (196 * r.ee).toFixed(2) : "")}, {etiqueta: "Universo", valor: (r) => uni(r.universo)}, {etiqueta: "Fuente", valor: (r) => r.tabla}], {titulo: "Ver la serie con sus fuentes"}));
 }
 panelS.addEventListener("input", pintarS);
 pintarS();

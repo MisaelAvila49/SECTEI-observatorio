@@ -220,8 +220,35 @@ def main():
                                ("discapacidad_2025", disc, "personas con discapacidad, CDMX 2025"),
                                ("monolingue_2025", mono, "% de hablantes que no hablan español, CDMX 2025")):
         anotar_calculado("perfil", clave, float(valor), nota)
+    cotejar_indigena(out)
     print(f"[ok] {os.path.relpath(SALIDA, RAIZ)}: {len(out):,} filas", file=sys.stderr)
 
 
+def cotejar_indigena(out):
+    """
+    Cotejo 2025 de la población indígena de la ciudad contra los indicadores
+    sociodemográficos que el INEGI publica por entidad para hablantes (hoja 51
+    del tabulado de etnicidad de la EIC 2025) y para quienes se consideran
+    indígenas (hoja 49): discapacidad, afiliación a servicios de salud y tasa
+    de participación económica. El INEGI deja el no especificado en el
+    denominador de la participación; aquí se excluye, de ahí décimas de
+    diferencia.
+    """
+    for crit, sufijo in (("lengua", "hli"), ("autoads", "autoads")):
+        t = out[(out.anio == 2025) & (out.criterio == crit) & (out.grupo == "Indígena") & (out.sexo == "Total") & (out.edad == "Todas")].set_index(["dimension", "categoria"])
+        act = t.loc["actividad"]
+        pea = 100 * act.loc[["Ocupada", "Desocupada"], "num"].sum() / act["num"].sum()
+        disc = 100 * t.loc[("discapacidad", "Con discapacidad"), "num"] / t.loc[("discapacidad", "Con discapacidad"), "den"]
+        afil = 100 * t.loc[("salud", "Afiliada"), "num"] / t.loc[("salud", "Afiliada"), "den"]
+        for clave, valor, nota in ((f"pea_{sufijo}_2025", pea, f"tasa de participación económica, 12 años y más, {crit}, CDMX 2025"),
+                                   (f"discapacidad_{sufijo}_2025", disc, f"% con discapacidad, {crit}, CDMX 2025"),
+                                   (f"afiliada_{sufijo}_2025", afil, f"% afiliada a servicios de salud, {crit}, CDMX 2025")):
+            anotar_calculado("perfil", clave, float(valor), nota)
+        print(f"[ok] cotejo 2025 {crit}: participación {pea:.2f} %, discapacidad {disc:.2f} %, afiliada {afil:.2f} %", file=sys.stderr)
+
+
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:] == ["--solo-cotejo"]:
+        cotejar_indigena(pd.read_csv(SALIDA))
+    else:
+        main()
