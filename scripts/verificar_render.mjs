@@ -56,7 +56,8 @@ const PAGINAS = [
   {ruta: "/libro/donde-viven", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [{nombre: "barras del capítulo 4", sel: 'g[aria-label="bar"] rect', minimo: 40}]},
   {ruta: "/index", esperado: [
     {nombre: "puntos y barras de la portada", sel: 'g[aria-label="dot"] circle, g[aria-label="rect"] rect', minimo: 30},
-    {nombre: "líneas de la serie", sel: 'g[aria-label="line"] path', minimo: 2},
+    // Una sola serie de hablantes de 5 años y más desde que se unificó el universo.
+    {nombre: "línea de la serie", sel: 'g[aria-label="line"] path', minimo: 1},
   ]},
 ];
 

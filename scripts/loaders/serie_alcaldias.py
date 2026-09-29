@@ -9,7 +9,8 @@ Salida: src/data/serie_alcaldias.csv, tabla larga con
 
 Poblaciones:
   hablantes3   habla lengua indígena, 3 años y más  (2010, 2015, 2020, 2025)
-  hablantes5   habla lengua indígena, 5 años y más  (1990-2020: la serie larga)
+  hablantes5   habla lengua indígena, 5 años y más  (1990-2025: la serie larga;
+               2015 y 2025 de microdatos, sin tabulado con ese corte)
   monolingues  hablantes que no hablan español, sobre los hablantes
   hogares      población en hogares censales indígenas, sobre la población
   autoads      se considera indígena (2000, 2010, 2015, 2020, 2025)
@@ -213,12 +214,15 @@ FUENTE_MUESTRA = {
     2020: "Censo de Población y Vivienda 2020 (INEGI), cuestionario ampliado",
     2025: "Encuesta Intercensal 2025 (INEGI), microdatos",
 }
-# Qué poblaciones salen de cada muestra. Los hablantes solo de 2015 (la
-# única edición sin conteo censal completo del básico).
+# Qué poblaciones salen de cada muestra. Los hablantes de 3 años y más solo
+# de 2015 (la única edición sin conteo censal completo del básico); los de 5
+# años y más de 2015 y 2025, que no tienen tabulado con ese corte y cierran
+# la serie larga en un solo universo. Su denominador son todas las personas
+# de 5 años y más, con el no especificado de lengua, como el P_5YMAS del ITER.
 POB_MUESTRA = {
     2000: ["autoads", "todas", "ambas"], 2010: ["autoads", "todas", "ambas"],
-    2015: ["hablantes3", "monolingues", "autoads", "todas", "ambas"],
-    2020: ["autoads", "todas", "ambas"], 2025: ["todas", "ambas"],
+    2015: ["hablantes3", "hablantes5", "monolingues", "autoads", "todas", "ambas"],
+    2020: ["autoads", "todas", "ambas"], 2025: ["hablantes5", "todas", "ambas"],
 }
 
 
@@ -240,6 +244,7 @@ def leer_muestra(anio):
     CREATE OR REPLACE TABLE base AS
     SELECT anio, cve_mun, sexo, w, upm, est,
       hli AS y_hablantes3, (hli IS NOT NULL AND edad >= {e_hli}) AS u_hablantes3,
+      COALESCE(hli, FALSE) AS y_hablantes5, (edad BETWEEN 5 AND 130) AS u_hablantes5,
       monolingue AS y_monolingues, (monolingue IS NOT NULL) AS u_monolingues,
       autoads AS y_autoads, (edad >= {e_aut} OR edad IS NULL) AS u_autoads,
       (COALESCE(hli, FALSE) OR COALESCE(autoads, FALSE)) AS y_todas, (edad >= {e_aut} OR edad IS NULL) AS u_todas,

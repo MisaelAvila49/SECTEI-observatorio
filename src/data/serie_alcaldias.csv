@@ -637,6 +637,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,002,Azcapotzalco,hablantes3,Hombres,1908.0,180287.0,8814.0,0.001093,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,002,Azcapotzalco,hablantes3,Mujeres,1824.0,205484.0,9967.0,0.001155,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,002,Azcapotzalco,hablantes3,Total,3732.0,385771.0,18781.0,0.001065,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,002,Azcapotzalco,hablantes5,Hombres,1908.0,176916.0,8629.0,0.00111,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,002,Azcapotzalco,hablantes5,Mujeres,1824.0,201891.0,9777.0,0.001172,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,002,Azcapotzalco,hablantes5,Total,3732.0,378807.0,18406.0,0.001082,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,002,Azcapotzalco,monolingues,Hombres,,1703.0,91.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,002,Azcapotzalco,monolingues,Mujeres,,1558.0,66.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,002,Azcapotzalco,monolingues,Total,,3261.0,157.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -652,6 +655,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,003,Coyoacán,hablantes3,Hombres,3330.0,269097.0,16728.0,0.001157,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,003,Coyoacán,hablantes3,Mujeres,4728.0,310461.0,19170.0,0.001071,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,003,Coyoacán,hablantes3,Total,8058.0,579558.0,35898.0,0.00107,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,003,Coyoacán,hablantes5,Hombres,3324.0,266743.0,16592.0,0.001174,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,003,Coyoacán,hablantes5,Mujeres,4651.0,308967.0,19084.0,0.001075,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,003,Coyoacán,hablantes5,Total,7975.0,575710.0,35676.0,0.001082,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,003,Coyoacán,monolingues,Hombres,28.0,2881.0,201.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,003,Coyoacán,monolingues,Mujeres,,4110.0,281.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,003,Coyoacán,monolingues,Total,28.0,6991.0,482.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -667,6 +673,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,004,Cuajimalpa de Morelos,hablantes3,Hombres,869.0,91105.0,8684.0,0.001431,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,004,Cuajimalpa de Morelos,hablantes3,Mujeres,1432.0,98827.0,9090.0,0.001991,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,004,Cuajimalpa de Morelos,hablantes3,Total,2301.0,189932.0,17774.0,0.001312,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,004,Cuajimalpa de Morelos,hablantes5,Hombres,859.0,88540.0,8414.0,0.001465,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,004,Cuajimalpa de Morelos,hablantes5,Mujeres,1429.0,96156.0,8829.0,0.002048,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,004,Cuajimalpa de Morelos,hablantes5,Total,2288.0,184696.0,17243.0,0.001344,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,004,Cuajimalpa de Morelos,monolingues,Hombres,,741.0,110.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,004,Cuajimalpa de Morelos,monolingues,Mujeres,,1198.0,100.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,004,Cuajimalpa de Morelos,monolingues,Total,,1939.0,210.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -682,6 +691,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,005,Gustavo A. Madero,hablantes3,Hombres,7554.0,531706.0,29250.0,0.000923,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,005,Gustavo A. Madero,hablantes3,Mujeres,8268.0,587418.0,32389.0,0.00102,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,005,Gustavo A. Madero,hablantes3,Total,15822.0,1119124.0,61639.0,0.000961,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,005,Gustavo A. Madero,hablantes5,Hombres,7497.0,518292.0,28465.0,0.000942,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,005,Gustavo A. Madero,hablantes5,Mujeres,8173.0,574560.0,31635.0,0.001035,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,005,Gustavo A. Madero,hablantes5,Total,15670.0,1092852.0,60100.0,0.000983,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,005,Gustavo A. Madero,monolingues,Hombres,13.0,6430.0,404.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,005,Gustavo A. Madero,monolingues,Mujeres,33.0,6910.0,411.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,005,Gustavo A. Madero,monolingues,Total,46.0,13340.0,815.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -697,6 +709,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,006,Iztacalco,hablantes3,Hombres,1798.0,176998.0,9001.0,0.00138,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,006,Iztacalco,hablantes3,Mujeres,1784.0,199219.0,10107.0,0.00119,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,006,Iztacalco,hablantes3,Total,3582.0,376217.0,19108.0,0.001127,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,006,Iztacalco,hablantes5,Hombres,1766.0,173077.0,8773.0,0.001367,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,006,Iztacalco,hablantes5,Mujeres,1784.0,195098.0,9891.0,0.001217,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,006,Iztacalco,hablantes5,Total,3550.0,368175.0,18664.0,0.00114,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,006,Iztacalco,monolingues,Hombres,,1642.0,107.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,006,Iztacalco,monolingues,Mujeres,,1615.0,94.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,006,Iztacalco,monolingues,Total,,3257.0,201.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -712,6 +727,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,007,Iztapalapa,hablantes3,Hombres,15917.0,836632.0,47722.0,0.001069,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,007,Iztapalapa,hablantes3,Mujeres,15418.0,911249.0,51766.0,0.001122,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,007,Iztapalapa,hablantes3,Total,31335.0,1747881.0,99488.0,0.001062,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,007,Iztapalapa,hablantes5,Hombres,15813.0,812658.0,46265.0,0.001087,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,007,Iztapalapa,hablantes5,Mujeres,15344.0,887822.0,50392.0,0.001118,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,007,Iztapalapa,hablantes5,Total,31157.0,1700480.0,96657.0,0.001073,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,007,Iztapalapa,monolingues,Hombres,29.0,13882.0,1003.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,007,Iztapalapa,monolingues,Mujeres,194.0,13539.0,919.0,0.001532,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,007,Iztapalapa,monolingues,Total,223.0,27421.0,1922.0,0.000863,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -727,6 +745,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,008,La Magdalena Contreras,hablantes3,Hombres,1298.0,110870.0,8222.0,0.001472,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,008,La Magdalena Contreras,hablantes3,Mujeres,1971.0,120623.0,8995.0,0.001991,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,008,La Magdalena Contreras,hablantes3,Total,3269.0,231493.0,17217.0,0.001741,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,008,La Magdalena Contreras,hablantes5,Hombres,1278.0,109041.0,8132.0,0.00152,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,008,La Magdalena Contreras,hablantes5,Mujeres,1971.0,118694.0,8899.0,0.002035,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,008,La Magdalena Contreras,hablantes5,Total,3249.0,227735.0,17031.0,0.001784,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,008,La Magdalena Contreras,monolingues,Hombres,,1140.0,88.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,008,La Magdalena Contreras,monolingues,Mujeres,,1639.0,122.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,008,La Magdalena Contreras,monolingues,Total,,2779.0,210.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -742,6 +763,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,009,Milpa Alta,hablantes3,Hombres,2850.0,63632.0,8851.0,0.004746,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,009,Milpa Alta,hablantes3,Mujeres,2508.0,67111.0,9267.0,0.003922,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,009,Milpa Alta,hablantes3,Total,5358.0,130743.0,18118.0,0.004207,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,009,Milpa Alta,hablantes5,Hombres,2836.0,61490.0,8538.0,0.004911,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,009,Milpa Alta,hablantes5,Mujeres,2499.0,64970.0,8961.0,0.004038,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,009,Milpa Alta,hablantes5,Total,5335.0,126460.0,17499.0,0.004342,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,009,Milpa Alta,monolingues,Hombres,,2623.0,391.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,009,Milpa Alta,monolingues,Mujeres,12.0,2317.0,351.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,009,Milpa Alta,monolingues,Total,12.0,4940.0,742.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -757,6 +781,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,010,Álvaro Obregón,hablantes3,Hombres,3295.0,340293.0,19842.0,0.000828,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,010,Álvaro Obregón,hablantes3,Mujeres,4959.0,378535.0,22016.0,0.001019,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,010,Álvaro Obregón,hablantes3,Total,8254.0,718828.0,41858.0,0.000769,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,010,Álvaro Obregón,hablantes5,Hombres,3295.0,332891.0,19471.0,0.000848,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,010,Álvaro Obregón,hablantes5,Mujeres,4875.0,370939.0,21616.0,0.001027,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,010,Álvaro Obregón,hablantes5,Total,8170.0,703830.0,41087.0,0.000784,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,010,Álvaro Obregón,monolingues,Hombres,2.0,3011.0,215.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,010,Álvaro Obregón,monolingues,Mujeres,4.0,4366.0,275.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,010,Álvaro Obregón,monolingues,Total,6.0,7377.0,490.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -772,6 +799,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,011,Tláhuac,hablantes3,Hombres,2556.0,164738.0,9567.0,0.001698,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,011,Tláhuac,hablantes3,Mujeres,2260.0,181763.0,10390.0,0.001034,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,011,Tláhuac,hablantes3,Total,4816.0,346501.0,19957.0,0.001359,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,011,Tláhuac,hablantes5,Hombres,2556.0,159369.0,9230.0,0.00176,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,011,Tláhuac,hablantes5,Mujeres,2259.0,176919.0,10076.0,0.001063,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,011,Tláhuac,hablantes5,Total,4815.0,336288.0,19306.0,0.001406,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,011,Tláhuac,monolingues,Hombres,,2378.0,171.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,011,Tláhuac,monolingues,Mujeres,,2189.0,167.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,011,Tláhuac,monolingues,Total,,4567.0,338.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -787,6 +817,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,012,Tlalpan,hablantes3,Hombres,5706.0,307584.0,24514.0,0.001302,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,012,Tlalpan,hablantes3,Mujeres,6607.0,342489.0,26957.0,0.00124,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,012,Tlalpan,hablantes3,Total,12313.0,650073.0,51471.0,0.001284,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,012,Tlalpan,hablantes5,Hombres,5677.0,299647.0,23875.0,0.001324,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,012,Tlalpan,hablantes5,Mujeres,6575.0,334739.0,26328.0,0.001257,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,012,Tlalpan,hablantes5,Total,12252.0,634386.0,50203.0,0.001302,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,012,Tlalpan,monolingues,Hombres,8.0,4729.0,415.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,012,Tlalpan,monolingues,Mujeres,21.0,5536.0,473.0,0.002613,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,012,Tlalpan,monolingues,Total,29.0,10265.0,888.0,0.001356,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -802,6 +835,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,013,Xochimilco,hablantes3,Hombres,4892.0,189662.0,16137.0,0.003165,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,013,Xochimilco,hablantes3,Mujeres,4697.0,207198.0,17066.0,0.002601,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,013,Xochimilco,hablantes3,Total,9589.0,396860.0,33203.0,0.002887,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,013,Xochimilco,hablantes5,Hombres,4835.0,183989.0,15638.0,0.003258,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,013,Xochimilco,hablantes5,Mujeres,4690.0,201602.0,16563.0,0.00267,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,013,Xochimilco,hablantes5,Total,9525.0,385591.0,32201.0,0.002969,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,013,Xochimilco,monolingues,Hombres,34.0,4476.0,499.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,013,Xochimilco,monolingues,Mujeres,83.0,4352.0,522.0,0.002359,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,013,Xochimilco,monolingues,Total,117.0,8828.0,1021.0,0.001346,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -817,6 +853,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,014,Benito Juárez,hablantes3,Hombres,2140.0,186974.0,9548.0,0.001254,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,014,Benito Juárez,hablantes3,Mujeres,2830.0,219013.0,11405.0,0.001231,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,014,Benito Juárez,hablantes3,Total,4970.0,405987.0,20953.0,0.001245,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,014,Benito Juárez,hablantes5,Hombres,2140.0,183269.0,9360.0,0.001288,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,014,Benito Juárez,hablantes5,Mujeres,2830.0,215968.0,11223.0,0.001247,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,014,Benito Juárez,hablantes5,Total,4970.0,399237.0,20583.0,0.001271,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,014,Benito Juárez,monolingues,Hombres,,1954.0,92.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,014,Benito Juárez,monolingues,Mujeres,,2316.0,114.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,014,Benito Juárez,monolingues,Total,,4270.0,206.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -832,6 +871,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,015,Cuauhtémoc,hablantes3,Hombres,3041.0,244811.0,15065.0,0.00112,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,015,Cuauhtémoc,hablantes3,Mujeres,4100.0,269988.0,16823.0,0.001444,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,015,Cuauhtémoc,hablantes3,Total,7141.0,514799.0,31888.0,0.001152,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,015,Cuauhtémoc,hablantes5,Hombres,3031.0,239282.0,14772.0,0.001151,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,015,Cuauhtémoc,hablantes5,Mujeres,4020.0,265557.0,16560.0,0.001418,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,015,Cuauhtémoc,hablantes5,Total,7051.0,504839.0,31332.0,0.001162,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,015,Cuauhtémoc,monolingues,Hombres,,2577.0,151.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,015,Cuauhtémoc,monolingues,Mujeres,16.0,3634.0,198.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,015,Cuauhtémoc,monolingues,Total,16.0,6211.0,349.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -847,6 +889,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,016,Miguel Hidalgo,hablantes3,Hombres,1143.0,160433.0,8977.0,0.000805,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,016,Miguel Hidalgo,hablantes3,Mujeres,2153.0,191249.0,10731.0,0.001083,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,016,Miguel Hidalgo,hablantes3,Total,3296.0,351682.0,19708.0,0.000863,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,016,Miguel Hidalgo,hablantes5,Hombres,1117.0,156689.0,8767.0,0.000824,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,016,Miguel Hidalgo,hablantes5,Mujeres,2153.0,187888.0,10533.0,0.001098,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,016,Miguel Hidalgo,hablantes5,Total,3270.0,344577.0,19300.0,0.000875,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,016,Miguel Hidalgo,monolingues,Hombres,,997.0,61.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,016,Miguel Hidalgo,monolingues,Mujeres,40.0,1743.0,103.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,016,Miguel Hidalgo,monolingues,Total,40.0,2740.0,164.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -862,6 +907,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,alcaldia,017,Venustiano Carranza,hablantes3,Hombres,2601.0,191031.0,10361.0,0.001616,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,017,Venustiano Carranza,hablantes3,Mujeres,2918.0,219680.0,11712.0,0.001881,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,alcaldia,017,Venustiano Carranza,hablantes3,Total,5519.0,410711.0,22073.0,0.001774,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,alcaldia,017,Venustiano Carranza,hablantes5,Hombres,2601.0,187203.0,10113.0,0.001639,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,017,Venustiano Carranza,hablantes5,Mujeres,2895.0,214965.0,11446.0,0.001866,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,alcaldia,017,Venustiano Carranza,hablantes5,Total,5496.0,402168.0,21559.0,0.00178,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,alcaldia,017,Venustiano Carranza,monolingues,Hombres,,2199.0,127.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,017,Venustiano Carranza,monolingues,Mujeres,25.0,2644.0,126.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,alcaldia,017,Venustiano Carranza,monolingues,Total,25.0,4843.0,253.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -877,6 +925,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2015,entidad,09,Ciudad de México,hablantes3,Hombres,60898.0,4045853.0,251283.0,0.000371,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,entidad,09,Ciudad de México,hablantes3,Mujeres,68457.0,4510307.0,277851.0,0.000374,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
 2015,entidad,09,Ciudad de México,hablantes3,Total,129355.0,8556160.0,529134.0,0.000361,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 3 años y más
+2015,entidad,09,Ciudad de México,hablantes5,Hombres,60533.0,3949096.0,245034.0,0.000378,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,entidad,09,Ciudad de México,hablantes5,Mujeres,67972.0,4416735.0,271813.0,0.000376,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
+2015,entidad,09,Ciudad de México,hablantes5,Total,128505.0,8365831.0,516847.0,0.000366,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Población de 5 años y más
 2015,entidad,09,Ciudad de México,monolingues,Hombres,114.0,53363.0,4126.0,,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,entidad,09,Ciudad de México,monolingues,Mujeres,428.0,59666.0,4322.0,0.000465,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
 2015,entidad,09,Ciudad de México,monolingues,Total,542.0,113029.0,8448.0,0.000265,muestra,"Encuesta Intercensal 2015 (INEGI), microdatos",Hablantes de lengua indígena
@@ -1181,6 +1232,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,002,Azcapotzalco,hablantes3,Hombres,1249.6,189334.0,,0.0009,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,002,Azcapotzalco,hablantes3,Mujeres,1499.69,217346.0,,0.0009,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,002,Azcapotzalco,hablantes3,Total,2765.42,406680.0,,0.0008,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,002,Azcapotzalco,hablantes5,Hombres,1243.0,186617.0,13427.0,0.000667,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,002,Azcapotzalco,hablantes5,Mujeres,1508.0,214880.0,15469.0,0.00068,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,002,Azcapotzalco,hablantes5,Total,2751.0,401497.0,28896.0,0.000652,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,002,Azcapotzalco,hogares,Total,5963.0,413444.0,,0.001333,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,002,Azcapotzalco,monolingues,Total,0.0,2765.42,,0.0,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,002,Azcapotzalco,todas,Hombres,11730.0,192704.0,13864.0,0.004876,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1195,6 +1249,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,003,Coyoacán,hablantes3,Hombres,4799.52,269636.0,,0.0026,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,003,Coyoacán,hablantes3,Mujeres,5911.76,304730.0,,0.0029,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,003,Coyoacán,hablantes3,Total,10683.21,574366.0,,0.0027,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,003,Coyoacán,hablantes5,Hombres,4770.0,266018.0,12766.0,0.002141,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,003,Coyoacán,hablantes5,Mujeres,5885.0,301649.0,14469.0,0.002402,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,003,Coyoacán,hablantes5,Total,10655.0,567667.0,27235.0,0.002559,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,003,Coyoacán,hogares,Total,20040.0,584520.0,,0.0054,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,003,Coyoacán,monolingues,Total,72.65,10683.21,,0.0049,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,003,Coyoacán,todas,Hombres,20111.0,274856.0,13173.0,0.00493,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1209,6 +1266,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,004,Cuajimalpa de Morelos,hablantes3,Hombres,585.9,106528.0,,0.0017,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,004,Cuajimalpa de Morelos,hablantes3,Mujeres,723.48,111305.0,,0.0013,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,004,Cuajimalpa de Morelos,hablantes3,Total,1307.0,217833.0,,0.0014,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,004,Cuajimalpa de Morelos,hablantes5,Hombres,588.0,104099.0,10922.0,0.000963,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,004,Cuajimalpa de Morelos,hablantes5,Mujeres,725.0,109368.0,11773.0,0.001218,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,004,Cuajimalpa de Morelos,hablantes5,Total,1313.0,213467.0,22695.0,0.001367,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,004,Cuajimalpa de Morelos,hogares,Total,3195.0,224262.0,,0.002119,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,004,Cuajimalpa de Morelos,monolingues,Total,1.05,1307.0,,0.0008,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,004,Cuajimalpa de Morelos,todas,Hombres,5120.0,109843.0,11516.0,0.008998,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1223,6 +1283,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,005,Gustavo A. Madero,hablantes3,Hombres,7548.82,551009.0,,0.0023,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,005,Gustavo A. Madero,hablantes3,Mujeres,9244.96,620467.0,,0.0024,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,005,Gustavo A. Madero,hablantes3,Total,16752.11,1171476.0,,0.0023,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,005,Gustavo A. Madero,hablantes5,Hombres,7451.0,542090.0,15153.0,0.002057,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,005,Gustavo A. Madero,hablantes5,Mujeres,9214.0,611317.0,17075.0,0.002118,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,005,Gustavo A. Madero,hablantes5,Total,16665.0,1153407.0,32228.0,0.002151,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,005,Gustavo A. Madero,hogares,Total,37456.0,1195789.0,,0.004613,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,005,Gustavo A. Madero,monolingues,Total,291.49,16752.11,,0.0073,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,005,Gustavo A. Madero,todas,Hombres,38297.0,563098.0,15742.0,0.005339,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1237,6 +1300,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,006,Iztacalco,hablantes3,Hombres,1627.74,178872.0,,0.0011,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,006,Iztacalco,hablantes3,Mujeres,1823.33,202592.0,,0.0016,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,006,Iztacalco,hablantes3,Total,3471.32,381464.0,,0.0013,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,006,Iztacalco,hablantes5,Hombres,1593.0,176015.0,14760.0,0.000875,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,006,Iztacalco,hablantes5,Mujeres,1820.0,199790.0,16757.0,0.001379,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,006,Iztacalco,hablantes5,Total,3413.0,375805.0,31517.0,0.001197,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,006,Iztacalco,hogares,Total,7917.0,389204.0,,0.002371,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,006,Iztacalco,monolingues,Total,30.89,3471.32,,0.0063,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,006,Iztacalco,todas,Hombres,10982.0,182870.0,15328.0,0.004541,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1251,6 +1317,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,007,Iztapalapa,hablantes3,Hombres,13540.35,873571.0,,0.0016,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,007,Iztapalapa,hablantes3,Mujeres,14377.0,958467.0,,0.0014,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,007,Iztapalapa,hablantes3,Total,27846.98,1832038.0,,0.0014,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,007,Iztapalapa,hablantes5,Hombres,13475.0,856463.0,16158.0,0.001291,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,007,Iztapalapa,hablantes5,Mujeres,14349.0,944093.0,17814.0,0.001186,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,007,Iztapalapa,hablantes5,Total,27824.0,1800556.0,33972.0,0.001266,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,007,Iztapalapa,hogares,Total,64376.0,1877417.0,,0.003455,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,007,Iztapalapa,monolingues,Total,211.64,27846.98,,0.0037,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,007,Iztapalapa,todas,Hombres,63373.0,898014.0,16943.0,0.004871,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1265,6 +1334,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,008,La Magdalena Contreras,hablantes3,Hombres,1281.71,112431.0,,0.0021,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,008,La Magdalena Contreras,hablantes3,Mujeres,1570.9,125672.0,,0.0016,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,008,La Magdalena Contreras,hablantes3,Total,2857.24,238103.0,,0.0016,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,008,La Magdalena Contreras,hablantes5,Hombres,1277.0,110493.0,9642.0,0.001693,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,008,La Magdalena Contreras,hablantes5,Mujeres,1576.0,124011.0,10820.0,0.001292,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,008,La Magdalena Contreras,hablantes5,Total,2853.0,234504.0,20462.0,0.001544,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,008,La Magdalena Contreras,hogares,Total,6913.0,243057.0,,0.004375,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,008,La Magdalena Contreras,monolingues,Total,33.14,2857.24,,0.0058,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,008,La Magdalena Contreras,todas,Hombres,7906.0,114708.0,10012.0,0.008356,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1279,6 +1351,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,009,Milpa Alta,hablantes3,Hombres,2564.45,72238.0,,0.0029,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,009,Milpa Alta,hablantes3,Mujeres,2330.65,77174.0,,0.0024,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,009,Milpa Alta,hablantes3,Total,4885.77,149412.0,,0.0024,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,009,Milpa Alta,hablantes5,Hombres,2561.0,70727.0,11140.0,0.002555,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,009,Milpa Alta,hablantes5,Mujeres,2321.0,75325.0,11858.0,0.002058,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,009,Milpa Alta,hablantes5,Total,4882.0,146052.0,22998.0,0.002324,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,009,Milpa Alta,hogares,Total,13237.0,154384.0,,0.006752,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,009,Milpa Alta,monolingues,Total,42.99,4885.77,,0.0036,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,009,Milpa Alta,todas,Hombres,16979.0,74633.0,11754.0,0.014306,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1293,6 +1368,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,010,Álvaro Obregón,hablantes3,Hombres,2749.0,327262.0,,0.0014,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,010,Álvaro Obregón,hablantes3,Mujeres,3938.25,368061.0,,0.0015,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,010,Álvaro Obregón,hablantes3,Total,6675.1,695323.0,,0.0012,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,010,Álvaro Obregón,hablantes5,Hombres,2740.0,321994.0,9694.0,0.000905,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,010,Álvaro Obregón,hablantes5,Mujeres,3952.0,362505.0,10868.0,0.000671,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,010,Álvaro Obregón,hablantes5,Total,6692.0,684499.0,20562.0,0.000882,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,010,Álvaro Obregón,hogares,Total,15222.0,710286.0,,0.001805,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,010,Álvaro Obregón,monolingues,Total,32.04,6675.1,,0.0046,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,010,Álvaro Obregón,todas,Hombres,17211.0,334679.0,10074.0,0.004914,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1307,6 +1385,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,011,Tláhuac,hablantes3,Hombres,2445.97,192596.0,,0.0015,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,011,Tláhuac,hablantes3,Mujeres,2754.89,210297.0,,0.0015,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,011,Tláhuac,hablantes3,Total,5197.32,402893.0,,0.0013,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,011,Tláhuac,hablantes5,Hombres,2450.0,188711.0,14426.0,0.00105,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,011,Tláhuac,hablantes5,Mujeres,2763.0,206727.0,15578.0,0.001071,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,011,Tláhuac,hablantes5,Total,5213.0,395438.0,30004.0,0.001068,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,011,Tláhuac,hogares,Total,12880.0,413870.0,,0.002428,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,011,Tláhuac,monolingues,Total,74.84,5197.32,,0.0075,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,011,Tláhuac,todas,Hombres,19378.0,197619.0,15149.0,0.00791,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1321,6 +1402,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,012,Tlalpan,hablantes3,Hombres,4669.84,326562.0,,0.002,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,012,Tlalpan,hablantes3,Mujeres,5874.16,360378.0,,0.0019,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,012,Tlalpan,hablantes3,Total,10510.18,686940.0,,0.0018,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,012,Tlalpan,hablantes5,Hombres,4661.0,321823.0,14422.0,0.001072,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,012,Tlalpan,hablantes5,Mujeres,5865.0,354771.0,15284.0,0.001453,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,012,Tlalpan,hablantes5,Total,10526.0,676594.0,29706.0,0.001561,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,012,Tlalpan,hogares,Total,26916.0,702591.0,,0.003455,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,012,Tlalpan,monolingues,Total,103.0,10510.18,,0.0064,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,012,Tlalpan,todas,Hombres,23147.0,335804.0,15152.0,0.007508,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1335,6 +1419,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,013,Xochimilco,hablantes3,Hombres,5055.96,209791.0,,0.0027,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,013,Xochimilco,hablantes3,Mujeres,5610.02,225302.0,,0.0023,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,013,Xochimilco,hablantes3,Total,10659.78,435093.0,,0.0024,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,013,Xochimilco,hablantes5,Hombres,5036.0,205683.0,12638.0,0.002301,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,013,Xochimilco,hablantes5,Mujeres,5597.0,221734.0,13259.0,0.002094,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,013,Xochimilco,hablantes5,Total,10633.0,427417.0,25897.0,0.002271,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,013,Xochimilco,hogares,Total,27284.0,445636.0,,0.006113,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,013,Xochimilco,monolingues,Total,58.63,10659.78,,0.0032,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,013,Xochimilco,todas,Hombres,24609.0,215365.0,13315.0,0.009148,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1349,6 +1436,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,014,Benito Juárez,hablantes3,Hombres,1522.78,187997.0,,0.0011,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,014,Benito Juárez,hablantes3,Mujeres,1757.58,216985.0,,0.001,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,014,Benito Juárez,hablantes3,Total,3280.35,404982.0,,0.0008,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,014,Benito Juárez,hablantes5,Hombres,1527.0,186002.0,10030.0,0.000778,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,014,Benito Juárez,hablantes5,Mujeres,1762.0,214921.0,11596.0,0.000611,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,014,Benito Juárez,hablantes5,Total,3289.0,400923.0,21626.0,0.00064,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,014,Benito Juárez,hogares,Total,4917.0,410956.0,,0.001186,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,014,Benito Juárez,monolingues,Total,19.03,3280.35,,0.0058,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,014,Benito Juárez,todas,Hombres,9176.0,190845.0,10287.0,0.003145,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1363,6 +1453,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,015,Cuauhtémoc,hablantes3,Hombres,4309.38,236779.0,,0.0051,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,015,Cuauhtémoc,hablantes3,Mujeres,5032.34,259399.0,,0.0059,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,015,Cuauhtémoc,hablantes3,Total,9328.15,496178.0,,0.0055,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,015,Cuauhtémoc,hablantes5,Hombres,4293.0,233670.0,11025.0,0.004967,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,015,Cuauhtémoc,hablantes5,Mujeres,5002.0,256615.0,12162.0,0.00578,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,015,Cuauhtémoc,hablantes5,Total,9295.0,490285.0,23187.0,0.005427,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,015,Cuauhtémoc,hogares,Total,16908.0,505637.0,,0.008051,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,015,Cuauhtémoc,monolingues,Total,138.99,9328.15,,0.0061,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,015,Cuauhtémoc,todas,Hombres,18481.0,241281.0,11384.0,0.009941,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1377,6 +1470,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,016,Miguel Hidalgo,hablantes3,Hombres,2094.38,205331.0,,0.0027,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,016,Miguel Hidalgo,hablantes3,Mujeres,2296.83,234370.0,,0.0028,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,016,Miguel Hidalgo,hablantes3,Total,4397.01,439701.0,,0.0026,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,016,Miguel Hidalgo,hablantes5,Hombres,2067.0,202395.0,12123.0,0.000886,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,016,Miguel Hidalgo,hablantes5,Mujeres,2289.0,231368.0,13654.0,0.000841,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,016,Miguel Hidalgo,hablantes5,Total,4356.0,433763.0,25777.0,0.000736,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,016,Miguel Hidalgo,hogares,Total,9339.0,449403.0,,0.001589,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,016,Miguel Hidalgo,monolingues,Total,36.06,4397.01,,0.0057,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,016,Miguel Hidalgo,todas,Hombres,12738.0,210061.0,12564.0,0.00624,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1391,6 +1487,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,alcaldia,017,Venustiano Carranza,hablantes3,Hombres,2556.74,204539.0,,0.0015,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,017,Venustiano Carranza,hablantes3,Mujeres,2493.67,230895.0,,0.0014,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,alcaldia,017,Venustiano Carranza,hablantes3,Total,5051.03,435434.0,,0.0013,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,alcaldia,017,Venustiano Carranza,hablantes5,Hombres,2552.0,201174.0,13679.0,0.001207,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,017,Venustiano Carranza,hablantes5,Mujeres,2504.0,227388.0,15443.0,0.001143,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,alcaldia,017,Venustiano Carranza,hablantes5,Total,5056.0,428562.0,29122.0,0.001191,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,alcaldia,017,Venustiano Carranza,hogares,Total,10403.0,445363.0,,0.00219,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,alcaldia,017,Venustiano Carranza,monolingues,Total,43.94,5051.03,,0.0061,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,alcaldia,017,Venustiano Carranza,todas,Hombres,12971.0,209507.0,14241.0,0.004296,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total
@@ -1405,6 +1504,9 @@ anio,nivel,cve,nombre,poblacion,sexo,num,den,casos,ee,cota,fuente,universo
 2025,entidad,09,Ciudad de México,hablantes3,Hombres,58573.77,4244476.0,,0.0006,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,entidad,09,Ciudad de México,hablantes3,Mujeres,67072.85,4723440.0,,0.0006,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
 2025,entidad,09,Ciudad de México,hablantes3,Total,125550.82,8967916.0,,0.0006,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población de 3 años y más
+2025,entidad,09,Ciudad de México,hablantes5,Hombres,58284.0,4173974.0,202005.0,0.000537,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,entidad,09,Ciudad de México,hablantes5,Mujeres,67132.0,4656462.0,223879.0,0.000556,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
+2025,entidad,09,Ciudad de México,hablantes5,Total,125416.0,8830436.0,425884.0,0.000566,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población de 5 años y más
 2025,entidad,09,Ciudad de México,hogares,Total,282966.0,9165819.0,,0.001197,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Población total
 2025,entidad,09,Ciudad de México,monolingues,Total,1192.73,125550.82,,0.0017,muestra,"Encuesta Intercensal 2025 (INEGI), principales resultados por localidad de 50 000 y más habitantes",Hablantes de lengua indígena
 2025,entidad,09,Ciudad de México,todas,Hombres,312209.0,4345887.0,210498.0,0.001783,muestra,"Encuesta Intercensal 2025 (INEGI), microdatos",Población total

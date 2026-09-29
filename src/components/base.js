@@ -98,6 +98,13 @@ export function aplicarModo(oscuro) {
 // Plot fija 10px por omisión, que en una tarjeta queda por debajo del mínimo
 // cómodo. Un solo lugar para que el tablero no se vea disparejo.
 export const TIPO = {ejes: 13, valor: 12.5, etiqueta: 11.5};
+
+// Eje de porcentaje de las líneas de tiempo: el símbolo va en cada marca del
+// eje, no solo en el rótulo, porque el rótulo queda lejos de la lectura.
+export const conPct = (d) => `${String(d).replace("-", "−")} %`;
+export function ejePct(label = null, extra = {}) {
+  return {label, grid: true, tickFormat: conPct, ...extra};
+}
 export const ESTILO_EJES = {fontSize: `${TIPO.ejes}px`};
 
 // --- Ancho disponible -------------------------------------------------------

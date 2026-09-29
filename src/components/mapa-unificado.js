@@ -35,9 +35,11 @@ const ENTIDAD = {
   "031": ["MX-YUC", "YUCATÁN"], "032": ["MX-ZAC", "ZACATECAS"],
 };
 const POB_SERIE = {hablantes: "hablantes3", hogares: "hogares", autoads: "autoads", todas: "todas", ambas: "ambas"};
-// Antes de 2010 solo hay hablantes de 5 años y más: se usa ese universo y la
-// definición lo dice. Desde 2010, 3 años y más.
-const pobSerie = (poblacion, anio) => (poblacion === "hablantes" && anio < 2010 ? "hablantes5" : POB_SERIE[poblacion]);
+// Hablantes: un solo universo, 5 años y más, en las ocho ediciones (2015 y
+// 2025 salen de los microdatos, sin tabulado con ese corte). Por sexo solo hay
+// 5 años y más en 2005, 2015 y 2025, así que por sexo se usa 3 años y más
+// desde 2010. La definición del panel toma el universo de la fila.
+const pobSerie = (poblacion, anio, sexo = "Total") => (poblacion === "hablantes" ? (sexo === "Total" || anio < 2010 ? "hablantes5" : "hablantes3") : POB_SERIE[poblacion]);
 const FUENTE_ANIO = {1990: "Censo 1990 (INEGI)", 1995: "Conteo 1995 (INEGI)", 2000: "Censo 2000 (INEGI)", 2005: "Conteo 2005 (INEGI)",
   2010: "Censo 2010 (INEGI)", 2015: "Encuesta Intercensal 2015 (INEGI)", 2020: "Censo 2020 (INEGI)", 2025: "Encuesta Intercensal 2025 (INEGI)"};
 
@@ -163,7 +165,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     if (unidad !== "alcaldia") return true;
     const filas = lengua !== "todas"
       ? lenguas.filter((r) => r.lengua === lengua && r.anio === anio && r.nivel === "alcaldia")
-      : serie.filter((r) => r.poblacion === pobSerie(poblacion, anio) && r.anio === anio && r.nivel === "alcaldia");
+      : serie.filter((r) => r.poblacion === pobSerie(poblacion, anio, "Mujeres") && r.anio === anio && r.nivel === "alcaldia");
     return filas.some((r) => r.sexo === "Mujeres");
   };
 
@@ -381,7 +383,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   function filasAlcaldia({anio, poblacion, lengua, sexo}, nivel) {
     return lengua !== "todas"
       ? lenguas.filter((r) => r.anio === anio && r.lengua === lengua && r.sexo === sexo && r.nivel === nivel)
-      : serie.filter((r) => r.anio === anio && r.poblacion === pobSerie(poblacion, anio) && r.sexo === sexo && r.nivel === nivel);
+      : serie.filter((r) => r.anio === anio && r.poblacion === pobSerie(poblacion, anio, sexo) && r.sexo === sexo && r.nivel === nivel);
   }
 
   // Cortes FIJOS por indicador a lo largo de los años (lección 74): se miden
@@ -391,7 +393,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     if (!cacheCortes.has(clave)) {
       const filas = lengua !== "todas"
         ? lenguas.filter((r) => r.lengua === lengua && r.nivel === "alcaldia")
-        : serie.filter((r) => r.poblacion === pobSerie(poblacion, r.anio) && r.nivel === "alcaldia");
+        : serie.filter((r) => r.poblacion === pobSerie(poblacion, r.anio, r.sexo) && r.nivel === "alcaldia");
       cacheCortes.set(clave, cortesPorCuantil(filas.map((r) => 100 * r.num / r.den), 5));
     }
     return cacheCortes.get(clave);
@@ -522,7 +524,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     mapa.setPaintProperty(`${id}-relleno`, "fill-opacity", e.umbral > 0 ? 0.95 : ["interpolate", ["linear"], ["zoom"], 9, 0.55, 12, 0.75, 14, 0.9]);
     visibles([`${id}-relleno`, `${id}-borde`, `${id}-hover`, "alcaldias-halo", "alcaldias-linea", "cdmx-limite-halo", "cdmx-limite"]);
     vistaActual = {unidad: e.unidad, etiqueta, valores: new Map(), cruce: e.cruce, poblacion: e.poblacion, campo};
-    const ent = serie.find((r) => r.anio === e.anio && r.nivel === "entidad" && r.poblacion === pobSerie(e.poblacion, e.anio) && r.sexo === (pob.porSexo ? e.sexo : "Total"));
+    const ent = serie.find((r) => r.anio === e.anio && r.nivel === "entidad" && r.poblacion === pobSerie(e.poblacion, e.anio, pob.porSexo ? e.sexo : "Total") && r.sexo === (pob.porSexo ? e.sexo : "Total"));
     pintarResumen({e, etiqueta, cortes, ent: cruce ? null : ent, muestra: false, cruce});
   }
 
@@ -579,7 +581,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       // Serie de la alcaldía para lo que está pintado.
       const filas = (e.lengua !== "todas"
         ? lenguas.filter((r) => r.lengua === e.lengua && r.cve === cve && r.nivel === "alcaldia" && r.sexo === e.sexo)
-        : serie.filter((r) => r.poblacion === pobSerie(e.poblacion, r.anio) && r.cve === cve && r.nivel === "alcaldia" && r.sexo === e.sexo))
+        : serie.filter((r) => r.poblacion === pobSerie(e.poblacion, r.anio, e.sexo) && r.cve === cve && r.nivel === "alcaldia" && r.sexo === e.sexo))
         .sort((a, b) => a.anio - b.anio);
       nodos.push(html`<p class="mapa-seleccion-sub">${vistaActual.etiqueta}, por edición</p>`,
         tablaDetalle(filas.map((r) => [String(r.anio) + (r.anio === e.anio ? " ◂" : ""), `${pct(100 * r.num / r.den)} · ${entero(r.num)}`])));

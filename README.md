@@ -89,6 +89,7 @@ python scripts/loaders/perfil.py         # perfil de la población indígena de 
 python scripts/loaders/enadis.py         # ENADIS 2017 y 2022, módulo indígena (nacional): discriminación, derechos negados, ámbitos, motivos
 python scripts/loaders/endireh.py        # ENDIREH 2021: violencia contra mujeres indígenas por ámbito y tipo, nacional y CDMX
 python scripts/loaders/coneval.py        # CONEVAL: pobreza y carencias de la población indígena 2016 - 2022 (anexo estadístico)
+python scripts/loaders/serie_nacional.py # serie nacional 1990 - 2025; hablantes de 5 años y más de 2015 y 2025 con microdatos de las intercensales (coteja 3 años y más)
 python scripts/construir_contornos.py # límite del estado, alcaldías y máscara del exterior
 python scripts/construir_colonias_resumen.py  # src/data/colonias_resumen.csv (se versiona)
 scripts/generar_teselas.sh            # en WSL: produce los .pmtiles con tippecanoe
