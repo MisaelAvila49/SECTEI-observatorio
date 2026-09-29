@@ -149,18 +149,21 @@ for (const modo of ["claro", "oscuro"]) {
         lineas: q('g[aria-label="line"] path'),
         geo: q('g[aria-label="geo"] path'),
         enlaces: q('g[aria-label="link"] path'),
+        barras: q('g[aria-label="bar"] rect'),
         vacios: [...document.querySelectorAll("#observablehq-main svg")]
           .filter((s) => s.querySelectorAll("rect, circle, path, line").length === 0).length,
       };
     });
 
-    const marcas = conteo.celdas + conteo.puntos + conteo.lineas + conteo.geo + conteo.enlaces;
+    // Las barras cuentan: las páginas del libro que solo dibujan barras salían
+    // como FALLA en el renglón aunque el resultado final las aprobara.
+    const marcas = conteo.celdas + conteo.puntos + conteo.lineas + conteo.geo + conteo.enlaces + conteo.barras;
     // Las páginas de mapa dibujan en canvas: su comprobación es la de `esperado`.
     const ok = pag.esperado.length === 0 || marcas > 0 || Boolean(pag.espera);
     console.log(
       `${ok ? "ok " : "FALLA"} ${pag.ruta.padEnd(24)} svg=${String(conteo.svg).padStart(3)} ` +
       `celdas=${String(conteo.celdas).padStart(4)} puntos=${String(conteo.puntos).padStart(4)} ` +
-      `lineas=${String(conteo.lineas).padStart(4)} geo=${String(conteo.geo).padStart(4)} ` +
+      `lineas=${String(conteo.lineas).padStart(4)} barras=${String(conteo.barras).padStart(4)} geo=${String(conteo.geo).padStart(4)} ` +
       `vacios=${conteo.vacios}`
     );
 
