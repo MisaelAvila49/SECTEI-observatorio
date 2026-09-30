@@ -17,10 +17,7 @@
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
 import {html} from "npm:htl";
-import {
-  ROJO, GRIS, FONDO, RAMPA, SECUENCIAL, TIPO, ESTILO_EJES, ORDEN_EDAD,
-  punto, diferencia, anio as fmtAnio, formatear, poblacionCorta, animar,
-} from "./base.js";
+import {ROJO, GRIS, FONDO, RAMPA, SECUENCIAL, TIPO, ESTILO_EJES, ORDEN_EDAD, punto, diferencia, anio as fmtAnio, formatear, poblacionCorta, animar, GLOBO} from "./base.js";
 import {COMPARACION_POR_CLAVE, escalaColor} from "./grupos.js";
 import {MIN_CASOS} from "./agregar.js";
 import {DIMENSIONES} from "./filtros.js";
@@ -163,7 +160,9 @@ export function barrasComparadas(datos, {comparacion, formato = "pct", width = 6
     ...canalPoblacion(formato),
   };
   const maxV = Math.max(...datos.map((d) => d.ic?.hi ?? d.pct ?? 0), 0);
-  const techo = formato === "pct" ? Math.min(maxV * 1.15, 100) : maxV * 1.15;
+  // En porcentaje el eje es fijo (0 a 100): al cambiar un filtro la barra
+  // cambia de largo y el fondo se queda quieto, así se compara entre filtros.
+  const techo = formato === "pct" ? 100 : maxV * 1.15;
   return animar(Plot.plot({
     style: ESTILO_EJES,
     width: Math.min(width, 560), height: 300,
@@ -174,14 +173,14 @@ export function barrasComparadas(datos, {comparacion, formato = "pct", width = 6
     marks: [
       Plot.ruleY([0], {stroke: GRIS.regla}),
       Plot.barY(datos, {x: "serie", y: "pct", fill: "serie", insetLeft: 6, insetRight: 6, fillOpacity: 0.9,
-        rx2: 4, channels: canales, tip: {channels: canales, format: {x: false, y: false, fill: false}}}),
+        rx2: 4, channels: canales, tip: {...GLOBO, channels: canales, format: {x: false, y: false, fill: false}}}),
       Plot.barY(datos.filter((d) => d.fragil), {x: "serie", y: "pct", fill: `url(#${ID_TRAMA})`, insetLeft: 6, insetRight: 6}),
       Plot.ruleX(datos.filter((d) => d.ic), {x: "serie", y1: (d) => d.ic.lo, y2: (d) => d.ic.hi,
         stroke: GRIS.tinta, strokeWidth: 1.4, strokeOpacity: 0.75}),
       Plot.text(datos, {x: "serie", y: "pct", text: (d) => formatear(d.pct, formato) + (d.fragil ? " *" : ""),
         dy: -9, fontSize: TIPO.valor, fontWeight: 600, fill: "currentColor", stroke: FONDO, strokeWidth: 3}),
       Plot.barY(datos, Plot.pointerX({x: "serie", y: "pct", fill: "none", stroke: GRIS.tinta, strokeWidth: 1.8,
-        insetLeft: 6, insetRight: 6, pointerEvents: "none", maxRadius: Infinity})),
+        insetLeft: 6, insetRight: 6, pointerEvents: "none", maxRadius: Infinity, ...GLOBO})),
     ],
   }));
 }
@@ -261,7 +260,7 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
     height: nFilas * alto + 96,
     marginLeft: filas === "entidad" ? 150 : filas === "indicador" ? 250 : 130,
     marginRight: 44, marginTop: 44, marginBottom: 36,
-    x: {...ejeValor(formato), axis: "top", domain: [0, formato === "pct" ? Math.min(100, Math.ceil(maxV / 10) * 10) : maxV * 1.1]},
+    x: {...ejeValor(formato), axis: "top", domain: [0, formato === "pct" ? 100 : maxV * 1.1]},
     y: {domain: ordenFilas.map(String), label: null, tickSize: 0, tickFormat: (v) => rotulo(filas, v)},
     ...(faceta ? {fx: {domain: ordenFacetas, label: null, tickFormat: (v) => rotulo(faceta, v)}} : {}),
     color,
@@ -279,7 +278,7 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
         ...fx, y: (d) => String(d.fila), x: "valor", fill: "grupo", r: nFilas > 12 ? 4.2 : 5.5,
         stroke: FONDO, strokeWidth: 0.8,
         channels: canales,
-        tip: {channels: canales, format: {x: false, y: false, fill: false, fx: false}},
+        tip: {...GLOBO, channels: canales, format: {x: false, y: false, fill: false, fx: false}},
       }),
       // Las frágiles llevan la trama encima del punto.
       Plot.dot(puntos.filter((d) => d.fragil), {
@@ -297,7 +296,7 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
       // distancia al punto.
       Plot.dot(puntos, Plot.pointerY({
         ...fx, y: (d) => String(d.fila), x: "valor", r: nFilas > 12 ? 6 : 8, fill: "none",
-        stroke: GRIS.tinta, strokeWidth: 1.6, pointerEvents: "none", maxRadius: Infinity,
+        stroke: GRIS.tinta, strokeWidth: 1.6, pointerEvents: "none", maxRadius: Infinity, ...GLOBO,
       })),
     ],
   });
@@ -363,11 +362,11 @@ export function puntosPorBanda(filas, {formatoValor = (v) => formatear(v, "pct")
         Plot.link(datos, {y: "banda", x1: () => referencia, x2: "valor", stroke: GRIS.fondo, strokeWidth: 3.2, strokeLinecap: "round"}),
       ]),
       Plot.dot(datos, {y: "banda", x: "valor", r: 6, fill: ROJO, stroke: FONDO, strokeWidth: 1,
-        channels: canales, tip: {channels: canales, format: {x: false, y: false}}}),
+        channels: canales, tip: {...GLOBO, channels: canales, format: {x: false, y: false}}}),
       Plot.text(datos, {y: "banda", x: "valor", text: (d) => formatoValor(d.valor) + (d.fragil ? " *" : ""), dy: -13,
         fontSize: TIPO.etiqueta, fontWeight: 600, fill: "currentColor", stroke: FONDO, strokeWidth: 3}),
       Plot.dot(datos, Plot.pointerY({y: "banda", x: "valor", r: 9, fill: "none", stroke: GRIS.tinta,
-        strokeWidth: 1.6, pointerEvents: "none", maxRadius: Infinity})),
+        strokeWidth: 1.6, pointerEvents: "none", maxRadius: Infinity, ...GLOBO})),
     ],
   });
   return animar(fig);
@@ -409,14 +408,14 @@ export function pendiente(datos, {comparacion, formato = "pct", width = 900} = {
     width, height: 420,
     marginLeft: 60, marginRight: 150, marginTop: 24, marginBottom: 46,
     x: {domain: anios, type: "point", label: "Edición", padding: 0.25, tickFormat: fmtAnio},
-    y: {...ejeValor(formato), domain: [Math.max(0, minV - 5), formato === "pct" ? Math.min(100, maxV + 5) : maxV * 1.05]},
+    y: {...ejeValor(formato), domain: formato === "pct" ? [0, 100] : [Math.max(0, minV - 5), maxV * 1.05]},
     color,
     marks: [
       Plot.areaY(conIc, {x: (d) => String(d.anio), y1: (d) => d.ic.lo, y2: (d) => d.ic.hi, z: "serie",
         fill: "serie", fillOpacity: 0.12, curve: "monotone-x"}),
       Plot.line(datos, {x: (d) => String(d.anio), y: "pct", z: "serie", stroke: "serie", strokeWidth: 2.6, curve: "monotone-x"}),
       Plot.dot(datos, {x: (d) => String(d.anio), y: "pct", fill: "serie", r: 5, stroke: FONDO, strokeWidth: 1,
-        channels: canales, tip: {channels: canales, format: {x: false, y: false, fill: false}}}),
+        channels: canales, tip: {...GLOBO, channels: canales, format: {x: false, y: false, fill: false}}}),
       Plot.text(datos.filter((d) => String(d.anio) === primero), {x: (d) => String(d.anio), y: "pct",
         text: (d) => formatear(d.pct, formato), textAnchor: "end", dx: -10, fontSize: TIPO.etiqueta, fill: "currentColor", stroke: FONDO, strokeWidth: 3}),
       Plot.text(datos.filter((d) => String(d.anio) === ultimo), {x: (d) => String(d.anio), y: "pct",
@@ -470,7 +469,7 @@ function mapaBase(geo, valores, {formato, etiquetaValor, colorSpec, canalesExtra
       // Sin trazo entre polígonos: un trazo blanco antialiasea a gris. El
       // contorno aparece solo bajo el puntero (CSS .mapa-hover).
       Plot.geo(feats, {fill: (d) => d.properties.valor, stroke: "none", channels: canales,
-        tip: {channels: canales, format: {fill: false}}}),
+        tip: {...GLOBO, channels: canales, format: {fill: false}}}),
     ],
   }));
 }
@@ -486,7 +485,11 @@ export function mapasComparados(geo, series, {comparacion, formato = "pct", widt
   const poblacion = (s) => new Map(series.filter((d) => d.serie === s).map((d) => [d.entidad, d.num]));
   const va = valores(serieA), vb = valores(serieB), pa = poblacion(serieA);
   const brecha = new Map([...va.entries()].filter(([e]) => vb.has(e)).map(([e, v]) => [e, v - vb.get(e)]));
-  const maxAbs = Math.max(5, ...[...brecha.values()].map(Math.abs));
+  // Escala de la brecha FIJA (lección 74): recalcularla con cada filtro hacía
+  // que la misma brecha cambiara de tono. 40 puntos cubren el percentil 95 de
+  // las brechas por entidad de las tres encuestas (39 puntos); lo que pase de
+  // ahí se pinta con el tono del extremo.
+  const maxAbs = 40;
   // Tres paneles en una fila: el ancho de cada uno sale del ancho medido,
   // descontando los dos huecos de la rejilla; por debajo de 240 px la
   // rejilla los baja de fila sola.

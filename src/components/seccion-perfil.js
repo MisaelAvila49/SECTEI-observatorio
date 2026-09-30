@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo, SEPARADO} from "./panel-seccion.js";
 import {figura, explicacion, tablaColumnas} from "./graficas.js";
-import {punto, COLOR_SERIE, alCambiarModo} from "./base.js";
+import {punto, COLOR_SERIE, alCambiarModo, GLOBO} from "./base.js";
 
 const entero = (n) => punto(Math.round(Number(n)));
 const CONJUNTO = "En conjunto", UNA = "Una a una";
@@ -28,6 +28,12 @@ export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) 
   const cEdad = campo({id: `${id}-edad`, nombre: "edad", etiqueta: "Grupo de edad", opciones: [], valor: "Todas"});
   const panel = html`<div class="panel-filtros"><div class="panel-campos">${temas.length > 1 ? cTema : ""}${cCrit}${cAnio}${cSexo}${cEdad}</div></div>`;
   const cuerpo = document.createElement("div");
+  // Eje FIJO por tema: el máximo de todas las ediciones, criterios, sexos y
+  // edades. Con el máximo de la vista, cambiar de año o de criterio movía el
+  // fondo y la misma barra parecía crecer o encogerse.
+  const MAX_TEMA = new Map(temas.map((t) => [t.clave, Math.min(100, Math.max(5, ...filas
+    .filter((r) => r.dimension === t.dimension && (r.grupo === "Indígena" || r.grupo === "Resto") && t.categorias.includes(r.categoria) && r.den > 0)
+    .map((r) => 100 * r.num / r.den)) * 1.15)]));
   let ancho = 0;
   new ResizeObserver(([e]) => { const w = Math.round(e.contentRect.width); if (w > 0 && Math.abs(w - ancho) > 8) { ancho = w; pintar(); } }).observe(cuerpo);
 
@@ -62,7 +68,7 @@ export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) 
     const canal = {...(sep[0] ? {fx: "f0"} : {}), ...(sep[1] ? {fy: "f1"} : {})};
     const nCat = tema.categorias.length;
     const alto = (60 + 44 * nCat) * (sep[1] ? sep[1].cats.length : 1);
-    const maxX = Math.min(100, Math.max(5, ...sel.map((r) => r.pct + 196 * (r.ee ?? 0))) * 1.12);
+    const maxX = MAX_TEMA.get(tema.clave);
     const series = Object.values(SERIE);
     const titulo = (r) => `${r.serie} · ${r.categoria}${r.f0 ? ` · ${r.f0}` : ""}${r.f1 ? ` · ${r.f1}` : ""}\n${r.pct.toFixed(1)} %${r.ee ? ` ± ${(196 * r.ee).toFixed(1)}` : ""}\n${entero(r.num)} de ${entero(r.den)} personas`;
     const subt = [fijo.anio ?? "", fijo.sexo && fijo.sexo !== "Total" ? fijo.sexo : "", fijo.edad && fijo.edad !== "Todas" ? EDAD_ETIQ[fijo.edad] : "", sep.length ? `un panel por ${sep.map((s) => s.rotulo).join(" y ")}` : ""].filter(Boolean).join(" · ");
@@ -76,11 +82,11 @@ export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) 
           const d = sel.filter((r) => r.serie === serie), dy = k === 0 ? -8 : 8;
           return [
             Plot.barX(d, {x: "pct", y: "categoria", fill: "serie", ...canal, dy, insetTop: 13, insetBottom: 13}),
-            Plot.ruleX(d.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "categoria", dy, stroke: "currentColor", strokeOpacity: 0.55, ...canal}),
+            Plot.ruleX(d.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => Math.min(maxX, r.pct + 196 * r.ee), y: "categoria", dy, stroke: "currentColor", strokeOpacity: 0.55, ...canal}),
             Plot.text(d, {x: "pct", y: "categoria", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, dy, textAnchor: "start", fontSize: 11, ...canal}),
           ];
         }),
-        Plot.tip(sel, Plot.pointer({x: "pct", y: "categoria", ...canal, maxRadius: Infinity, title: titulo})),
+        Plot.tip(sel, Plot.pointer({x: "pct", y: "categoria", ...canal, maxRadius: Infinity, ...GLOBO, title: titulo})),
         Plot.ruleX([0]),
       ]}) : html`<p class="beta-nota">Sin datos para esta combinación.</p>`;
     cuerpo.replaceChildren(

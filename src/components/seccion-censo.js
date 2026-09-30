@@ -2,7 +2,7 @@
 // navegador como vista alterna y gráfica por omisión, sobre las tablas del
 // Censo (ITER nacional, muestra ampliada, INPI, serie por alcaldía y AGEB).
 //
-// Es la beta de /beta convertida en pieza reutilizable: cada capítulo la
+// Nació como la página de prueba /beta (ya retirada) y es pieza reutilizable: cada página la
 // llama con sus datos y un estado inicial (nivel, población, vista) y, si
 // quiere, oculta controles que no vienen al caso en esa sección.
 // Ver docs/arquitectura-filtros.md.
@@ -13,7 +13,7 @@ import {panelSeccion, EDADES, SEPARADO} from "./panel-seccion.js";
 import {mapaNavegador} from "./mapa-navegador.js";
 import {cortesPorCuantil, leyenda, RAMPA_MORADA, ROJO_IBERO} from "./mapa.js";
 import {figura, explicacion, tablaColumnas} from "./graficas.js";
-import {punto, ejePct} from "./base.js";
+import {punto, ejePct, GLOBO} from "./base.js";
 
 const escapar = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const pct = (v, d = 1) => (v == null || !Number.isFinite(Number(v)) ? "sin dato" : `${Number(v).toFixed(d)} %`);
@@ -148,6 +148,33 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
   new ResizeObserver(([e]) => { const w = Math.round(e.contentRect.width); if (w > 0 && Math.abs(w - anchoCuerpo) > 8) { anchoCuerpo = w; pintar(); } }).observe(cuerpo);
   const anchoGrafica = () => Math.max(320, anchoCuerpo || 900);
 
+  // Eje FIJO por nivel, contenedor y población: el máximo de todos los sexos,
+  // edades y años de esa población en ese ámbito. Con el máximo de la vista,
+  // cambiar de año o de sexo movía el fondo y la misma barra cambiaba de largo
+  // aparente; así cambia la barra y el fondo se queda.
+  const TECHOS = new Map();
+  function techoFijo(v) {
+    const nivelCapa = v.nivel === "nacional" ? "entidad" : v.nivel;
+    const cont = v.nivel === "ageb" ? (v.cveMun ?? "09") : (v.cveEnt ?? "");
+    const clave = `${nivelCapa}|${cont}|${v.poblacion}`;
+    if (!TECHOS.has(clave)) {
+      const p = pobDe(v.poblacion);
+      let vals;
+      if (v.poblacion === "inpi") vals = inpi.filter((r) => r.nivel === nivelCapa && r.pct != null).map((r) => Number(r.pct));
+      else if (nivelCapa === "ageb") vals = ag.filter((r) => r.cve_ageb.startsWith(cont) && r[p.tesela] != null).map((r) => Number(r[p.tesela]));
+      else {
+        vals = nac.filter((r) => r.nivel === nivelCapa && r.poblacion === v.poblacion && r.den > 0 && (nivelCapa !== "municipio" || !cont || r.cve.startsWith(cont))).map((r) => 100 * r.num / r.den);
+        if (nivelCapa === "municipio" && cont === "09") {
+          const claves = v.poblacion === "hablantes" ? ["hablantes3", "hablantes5"] : [v.poblacion];
+          vals.push(...ser.filter((r) => r.nivel === "alcaldia" && claves.includes(r.poblacion) && r.den > 0).map((r) => 100 * r.num / r.den));
+        }
+      }
+      TECHOS.set(clave, Math.min(100, Math.max(1, ...vals) * 1.08));
+    }
+    return TECHOS.get(clave);
+  }
+  const techoNacional = (poblaciones) => Math.min(100, Math.max(1, ...nac.filter((r) => r.nivel === "nacional" && poblaciones.includes(r.poblacion) && r.den > 0).map((r) => 100 * r.num / r.den)) * 1.1);
+
   function pintar() {
     const v0 = panel.value;
     const pob = pobDe(v0.poblacion === SEPARADO ? v0.poblaciones[0] : v0.poblacion);
@@ -194,9 +221,9 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
     const titulo = (r) => `${r.nombre}${r.categoria ? ` · ${r.categoria}` : ""}\n${pob.corto}: ${r.pct.toFixed(1)} %\nPersonas: ${entero(r.num)} de ${entero(r.den)}${r.ee ? `\n± ${(196 * r.ee).toFixed(1)} puntos (95 %)` : ""}`;
     const marcasBarras = (datos, opciones = {}, sel = esSel) => [
       Plot.barX(datos, {x: "pct", y: "nombre", fill: (r) => colorDe(r.pct), stroke: (r) => (sel(r) ? ROJO_IBERO : "none"), strokeWidth: 2, ...opciones}),
-      Plot.ruleX(datos.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "nombre", stroke: "currentColor", strokeOpacity: 0.55, ...opciones}),
+      Plot.ruleX(datos.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "nombre", stroke: "currentColor", strokeOpacity: 0.55, clip: "frame", ...opciones}),
       Plot.text(datos, {x: "pct", y: "nombre", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, textAnchor: "start", fontSize: 11.5, fontWeight: (r) => (sel(r) ? "bold" : "normal"), ...opciones}),
-      Plot.tip(datos, Plot.pointerY({x: "pct", y: "nombre", maxRadius: Infinity, ...opciones, title: titulo})),
+      Plot.tip(datos, Plot.pointerY({x: "pct", y: "nombre", maxRadius: Infinity, ...GLOBO, ...opciones, title: titulo})),
       Plot.ruleX([0]),
     ];
     const subtituloBase = `${v.anio}${v.sexo !== "Total" ? ` · ${v.sexo}` : ""}${v.edad !== "Todas" ? ` · ${etiquetaEdad(v.edad)}` : ""}`;
@@ -218,7 +245,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
       const selPob = v0.poblacion !== SEPARADO ? v0.poblacion : null;
       const esSelPob = (r) => r.cve === selPob;
       const ordenPob = v0.poblaciones.filter((k) => filasPais.some((r) => r.cve === k)).map((k) => pobDe(k).corto);
-      const maxP = Math.max(1, ...filasPais.map((r) => r.pct + 196 * (r.ee ?? 0))) * 1.1;
+      const maxP = techoNacional(v0.poblaciones);
       const notaHog = (v.sexo !== "Total" || v.edad !== "Todas" || dimsN.length) && v0.poblaciones.includes("hogares") ? " Los hogares indígenas y la población indígena del INPI no se publican por sexo ni por edad y quedan fuera de este corte." : "";
       const sub = `${subtituloBase}${selPob ? ` · resaltado: ${pob.corto}` : ""}${dimsN.length ? ` · un panel por ${dimsN.map((d) => d.rotulo).join(" y ")}` : ""}`;
       const pieP = `Censo 2020: conteo (ITER) para hablantes, hogares y la definición del INPI (esta sobre la población total); cuestionario ampliado para el resto, con intervalo de 95 % · cada barra es una forma de ser indígena.${notaHog}`;
@@ -234,7 +261,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
       const top = conSeleccion(filas, tope);
       nodos.push(figura({titulo: `${etiquetaGeo(v, catalogo)}: ${minuscula(pob.corto)}`, subtitulo: `${subtituloBase}${filas.length > tope ? ` · las ${tope} con mayor proporción de ${filas.length}` : ""}${notaSel}`, pie: pieBase},
         [leyendaChica(), Plot.plot({marginLeft: 200, marginRight: 60, height: Math.max(220, 22 * top.length + 60), width: anchoGrafica(),
-          x: {label: ejeX, grid: true, domain: [0, Math.max(1, ...top.map((r) => r.pct + (r.ee ? 196 * r.ee : 0))) * 1.08]}, y: {label: null, domain: top.map((r) => r.nombre)}, marks: marcasBarras(top)})]));
+          x: {label: ejeX, grid: true, domain: [0, techoFijo(v)]}, y: {label: null, domain: top.map((r) => r.nombre)}, marks: marcasBarras(top)})]));
     } else {
       const combos = dims.reduce((acc, d) => acc.flatMap((c) => d.cats.map((cat) => [...c, cat])), [[]]);
       const nCombos = combos.length;
@@ -245,7 +272,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
         return aFilas(valoresDe(vc), {categoria: etiquetas.join(" · "), c0: etiquetas[0], c1: etiquetas[1] ?? ""}).filter((r) => orden.includes(r.nombre));
       });
       const rotulos = dims.map((d) => d.rotulo).join(" y ");
-      const maxX = Math.max(1, ...porCat.map((r) => r.pct + (r.ee ? 196 * r.ee : 0))) * 1.08;
+      const maxX = dims.some((d) => d.campo === "poblacion") ? Math.max(...v0.poblaciones.map((k) => techoFijo({...v, poblacion: k}))) : techoFijo(v);
       const conPob = dims.some((d) => d.campo === "poblacion");
       const otras = dims.filter((d) => d.campo !== "poblacion").map((d) => d.rotulo).join(" y ");
       const tituloFig = conPob ? `${etiquetaGeo(v, catalogo)}: formas de ser indígena${otras ? ` por ${otras}` : ""}` : `${etiquetaGeo(v, catalogo)}: ${minuscula(pob.corto)} por ${rotulos}`;
@@ -261,7 +288,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
           marks: [
             Plot.cell(porCat, {x: "categoria", y: "nombre", fill: (r) => colorDe(r.pct), inset: 0.5, stroke: (r) => (esSel(r) ? ROJO_IBERO : "none"), strokeWidth: 2}),
             Plot.text(porCat, {x: "categoria", y: "nombre", text: (r) => r.pct.toFixed(1), fontSize: 10.5, fill: (r) => (RAMPA_MORADA.indexOf(colorDe(r.pct)) >= 3 ? "white" : "black")}),
-            Plot.tip(porCat, Plot.pointer({x: "categoria", y: "nombre", maxRadius: Infinity, title: titulo})),
+            Plot.tip(porCat, Plot.pointer({x: "categoria", y: "nombre", maxRadius: Infinity, ...GLOBO, title: titulo})),
           ]})]));
     }
 
@@ -277,7 +304,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
         [Plot.plot({height: 260, width: anchoGrafica(), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {zero: true}),
           marks: [Plot.line(s, {x: "anio", y: "pct", stroke: RAMPA_MORADA[3], strokeWidth: 2}), Plot.dot(s, {x: "anio", y: "pct", fill: (r) => (r.cota === "censo" ? RAMPA_MORADA[3] : "white"), stroke: RAMPA_MORADA[3], r: 4.5}),
             Plot.text(s, {x: "anio", y: "pct", text: (r) => `${r.pct.toFixed(1)} %`, dy: -10, fontSize: 11}),
-            Plot.tip(s, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, title: (r) => `${r.anio}\n${pob.corto}: ${r.pct.toFixed(2)} %${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}\nPersonas: ${entero(r.num)} de ${entero(r.den)}\n${r.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
+            Plot.tip(s, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.anio}\n${pob.corto}: ${r.pct.toFixed(2)} %${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}\nPersonas: ${entero(r.num)} de ${entero(r.den)}\n${r.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
             Plot.ruleY([0])]})]));
     }
     if (fuentes) nodos.push(fuentes(v));

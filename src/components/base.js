@@ -33,6 +33,33 @@ const PAR_AGEB_OSCURO = {"AGEB que alcanzan el umbral": "#EE4C7C", "Resto de las
 
 export const COLOR_SERIE = {...PAR_INDIGENA_CLARO, ...PAR_SEXO_CLARO, ...PAR_AGEB_CLARO};
 
+// --- Sistema de color del sitio ----------------------------------------------
+// Una regla por significado, igual en todas las páginas y con cualquier filtro:
+//   1. Población indígena contra el resto: rojo y azul (COLOR_SERIE).
+//   2. Mujeres contra hombres: ámbar y azul (COLOR_SERIE); si además se
+//      compara indígena con resto, el grupo va en color y el sexo en el trazo.
+//   3. Una sola serie, sin comparación: morado (COLOR_UNICO). Lo destacado
+//      dentro de ella (la Ciudad de México en un ranking) va en rojo.
+//   4. Magnitud en mapas, celdas y barras de color: la rampa morada, del claro
+//      (poco) al oscuro (mucho), con dominio fijo por indicador.
+//   5. Categorías con orden (grupos de edad, grado de riesgo, certeza): pasos
+//      de la misma rampa morada, del claro al oscuro en el orden natural.
+//   6. Referencias (promedio de la ciudad, la otra población de fondo): gris.
+export const COLOR_UNICO = "#88419d";
+export const COLOR_REFERENCIA = "#8a8a86";
+// Pasos ordinales de la rampa morada, para 2 a 5 categorías con orden.
+export const ORDINAL = {
+  2: ["#8c96c6", "#4d004b"],
+  3: ["#9ebcda", "#8c6bb1", "#4d004b"],
+  4: ["#bfd3e6", "#8c96c6", "#88419d", "#4d004b"],
+  5: ["#bfd3e6", "#9ebcda", "#8c6bb1", "#88419d", "#4d004b"],
+};
+export const ordinal = (n) => ORDINAL[Math.max(2, Math.min(5, n))].slice(0, n);
+
+// Globos: Plot los dibuja a 10 px y en una tarjeta se leen chicos. Se pasa a
+// cada Plot.tip (o dentro del pointer) para que todos midan lo mismo.
+export const GLOBO = {fontSize: 13, textPadding: 9};
+
 // Gris para lo no asignable en las vistas de variantes (flechas y lista).
 // El color de cada variante lo genera el componente del mapa (un tono hsl por
 // variante en el orden del Catálogo); con treinta categorías no hay paleta
@@ -66,9 +93,12 @@ const RAMPA_OSCURO = ["#FFB3B8", "#F27C82", "#E8474F", "#A32C34", "#4A4A45", "#2
 export const RAMPA = [...RAMPA_CLARO];
 
 // Rampa SECUENCIAL de un solo tono para magnitudes (mapas de nivel, celdas).
-// Del papel al rojo de marca: más tinta es más valor.
-const SECUENCIAL_CLARO = ["#FDE9E7", "#F8C4BE", "#EF9A93", "#E36F6A", "#D34246", "#C4101B", "#8E0B14"];
-const SECUENCIAL_OSCURO = ["#3A2223", "#6A2C31", "#9A3A40", "#C64C52", "#E8666C", "#F58A8F", "#FFB3B8"];
+// Es la misma familia morada de los mapas censales (RAMPA_MORADA en mapa.js)
+// y del color de serie única: antes era roja, y un mismo "% de la población"
+// se veía rojo en unas páginas y morado en otras. Más tinta es más valor; en
+// oscuro la tinta es luz, así que la rampa sube en luminosidad.
+const SECUENCIAL_CLARO = ["#edf8fb", "#bfd3e6", "#9ebcda", "#8c96c6", "#8c6bb1", "#88419d", "#6e016b"];
+const SECUENCIAL_OSCURO = ["#2a2233", "#3d2b52", "#55377a", "#71479b", "#9163b6", "#b389cf", "#d6b6e6"];
 export const SECUENCIAL = [...SECUENCIAL_CLARO];
 
 export const MODO = {oscuro: false};

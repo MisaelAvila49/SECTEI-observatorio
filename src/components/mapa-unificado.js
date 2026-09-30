@@ -13,7 +13,7 @@
 import maplibregl from "npm:maplibre-gl@5.24.0";
 import {html} from "npm:htl";
 import {registrarProtocolo, estiloBase, expresionColor, cortesPorCuantil, leyenda, RAMPA_MORADA, SIN_DATO, ROJO_IBERO} from "./mapa.js";
-import {GRIS_VARIANTE, ORDEN_GRADO, punto, alCambiarModo} from "./base.js";
+import {GRIS_VARIANTE, ORDEN_GRADO, ORDINAL, punto, alCambiarModo} from "./base.js";
 import {panelMapa, POBLACIONES, CRUCES, UNIDADES, SEXOS} from "./panel-mapa.js";
 
 const CDMX = [[-99.37, 19.04], [-98.94, 19.60]];
@@ -516,7 +516,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const id = CAPAS_UNIDAD[e.unidad] + (e.anio === 2010 && teselas2010[e.unidad] ? "2010" : "");
     const campo = campoTesela(e);
     const cortes = cortesTesela(e, campo);
-    mapa.setPaintProperty(`${id}-relleno`, "fill-color", expresionColor(campo, cortes));
+    const rampaTesela = e.cruce && cruceDe(e.cruce)?.categorias ? ORDINAL[5] : RAMPA_MORADA;
+    mapa.setPaintProperty(`${id}-relleno`, "fill-color", expresionColor(campo, cortes, rampaTesela));
     const condiciones = [];
     if (e.umbral > 0) condiciones.push([">=", ["to-number", ["get", pob.tesela[e.unidad]]], e.umbral]);
     if (e.unidad === "manzana" && e.ambito === "pueblos") condiciones.push(["==", ["to-string", ["get", "pueblo_originario"]], "True"]);
@@ -534,7 +535,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const tituloLeyenda = cruce?.categorias ? cruce.etiqueta
       : `${etiqueta} (% de ${cruce ? (cruce.unidad === "viviendas" ? "las viviendas" : "la población") : "la población"} de cada ${unidad.singular})`
         + (e.umbral > 0 ? `, donde ${pob.corto.toLowerCase()} es ${e.umbral} % o más` : "");
-    const ley = leyenda({cortes, titulo: tituloLeyenda,
+    const ley = leyenda({cortes, titulo: tituloLeyenda, ...(cruce?.categorias ? {rampa: ORDINAL[5]} : {}),
       formato: cruce?.categorias ? (x) => ORDEN_GRADO[x - 1] : (x) => x.toFixed(cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1) + " %",
       abierta: !cruce?.categorias,
       notaSinDato: cruce?.categorias ? "Sin grado publicado" : "Sin dato publicado (INEGI suprime la cifra por confidencialidad)"});
@@ -774,7 +775,15 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     features.sort((a, b) => (a.properties.color === GRIS_VARIANTE ? 0 : 1) - (b.properties.color === GRIS_VARIANTE ? 0 : 1));
     for (const f of features) f.properties.opacidad = f.properties.color === GRIS_VARIANTE ? 0.45 : 0.9;
     mapa.getSource("flujos").setData({type: "FeatureCollection", features});
-    const cortes = cortesPorCuantil([...porEnt.values()].map((d) => d.num), 5);
+    // Cortes fijos por lengua a través de las ediciones: con cuantiles de la
+    // vista, cambiar de año recoloreaba las entidades aunque no cambiaran.
+    const claveOrigen = `origen|${e.lengua}`;
+    if (!cacheCortes.has(claveOrigen)) {
+      const suma = new Map();
+      for (const r of variantesCiudad) if ((todas || r.lengua === e.lengua) && r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009") suma.set(`${r.anio}|${r.cve_ent}`, (suma.get(`${r.anio}|${r.cve_ent}`) ?? 0) + r.num);
+      cacheCortes.set(claveOrigen, cortesPorCuantil([...suma.values()], 5));
+    }
+    const cortes = cacheCortes.get(claveOrigen);
     mapa.setPaintProperty("entidades-relleno", "fill-color", expresionColor("valor", cortes, RAMPA_MORADA, "feature-state"));
     visibles(["entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea", "flujos-flecha"]);
     vistaActual = {unidad: "entidad", etiqueta, valores, cruce: null, poblacion: e.poblacion, campo: null};
