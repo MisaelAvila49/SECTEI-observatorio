@@ -19,7 +19,7 @@ import path from "node:path";
 const RAIZ = path.join(import.meta.dirname, "..", "dist");
 const PUERTO = 8897;
 const AXE = readFileSync(path.join(import.meta.dirname, "..", "node_modules", "axe-core", "axe.min.js"), "utf8");
-const PAGINAS = ["/index", "/mapa", "/beta", "/libro/lenguas-de-mexico", "/libro/la-ciudad-en-el-pais", "/libro/donde-viven", "/libro/quienes-son", "/libro/condiciones-de-vida", "/libro/discriminacion", "/libro/violencia", "/libro/variantes", "/libro/acceso-digital", "/libro/lenguas-en-riesgo", "/encuestas/censo/vivienda", "/encuestas/enigh/hogar", "/encuestas/endutih/uso", "/libro/derechos", "/metodologia/paso-a-paso", "/metodologia/fuentes", "/metodologia/definiciones"];
+const PAGINAS = ["/index", "/mapa", "/libro/lenguas-de-mexico", "/libro/hablantes-en-el-tiempo", "/libro/variantes", "/libro/lenguas-en-riesgo", "/libro/la-ciudad-en-el-pais", "/libro/de-donde-vienen", "/libro/donde-viven", "/libro/colonias-y-marginacion", "/libro/quienes-son", "/libro/escuela-y-trabajo", "/libro/salud-y-lengua", "/libro/condiciones-de-vida", "/encuestas/censo/vivienda", "/encuestas/enigh/hogar", "/encuestas/endutih/uso", "/encuestas/endutih/actividades", "/encuestas/endutih/barreras", "/libro/discriminacion", "/libro/violencia", "/libro/derechos", "/metodologia"];
 
 const servidor = () => servirEstatico(RAIZ, PUERTO);
 

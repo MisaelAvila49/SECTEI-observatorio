@@ -57,7 +57,7 @@ const mapa = mapaUnificado({
 <div class="mapa-cabecera">
   <a class="mapa-cabecera-marca" href="./">Grupos originarios <span>Social Data Ibero</span></a>
   <h1 class="mapa-cabecera-titulo">Población indígena en la Ciudad de México</h1>
-  <nav class="mapa-cabecera-nav" aria-label="Secciones"><a href="./encuestas/censo/vivienda">Análisis</a><a href="./metodologia/definiciones">Definiciones</a><a href="./metodologia/fuentes">Fuentes</a></nav>
+  <nav class="mapa-cabecera-nav" aria-label="Secciones"><a href="./libro/lenguas-de-mexico">Temas</a><a href="./metodologia">Metodología</a></nav>
 </div>
 
 ```js

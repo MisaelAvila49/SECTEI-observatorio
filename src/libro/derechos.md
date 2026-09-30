@@ -1,11 +1,11 @@
 ---
-title: 11. Derechos y política cultural
+title: Derechos y política cultural
 ---
 
 <div class="hero-pagina">
-  <span class="kicker">Capítulo 11</span>
+  <span class="kicker">Discriminación, violencia y derechos</span>
   <h1>Derechos y política cultural</h1>
-  <p class="hero-entrada">Las cifras de los capítulos anteriores tienen un marco: las leyes que reconocen a las lenguas indígenas como lenguas nacionales y a la ciudad como un espacio plurilingüe. Este capítulo resume ese marco y las fechas que lo fueron construyendo, a partir del documento de la Secretaría de Cultura de la Ciudad de México.</p>
+  <p class="hero-entrada">Las cifras de este sitio tienen un marco: las leyes que reconocen a las lenguas indígenas como lenguas nacionales y a la ciudad como un espacio plurilingüe. Esta página resume ese marco y las fechas que lo fueron construyendo, a partir del documento de la Secretaría de Cultura de la Ciudad de México.</p>
 </div>
 
 ## El marco legal
@@ -34,7 +34,7 @@ de la Ciudad de México, de 2018, incluye entre los derechos culturales el de
 identidad, acceso y participación en la vida cultural, y con él el de expresarse
 en la lengua propia. La Secretaría de Pueblos y Barrios Originarios y Comunidades
 Indígenas Residentes, creada en 2019, lleva el padrón de los pueblos y barrios
-originarios que aparece en el capítulo 4.
+originarios que aparece en <a href="./colonias-y-marginacion">Colonias, pueblos y marginación</a>.
 
 ## Las fechas
 
@@ -63,10 +63,10 @@ Concluye que las lenguas indígenas deben considerarse en cualquier consulta a
 los pueblos y que la ciudad, como espacio donde convergen todas ellas, tiene un
 papel en su transmisión y permanencia.
 
-Los capítulos con datos de este libro se leen con ese marco: el capítulo 7 mide
+Las páginas con datos se leen con ese marco: <a href="./discriminacion">Discriminación</a> mide
 la discriminación que declaran las personas indígenas y en qué ámbitos ocurre;
-el capítulo 3, en qué proporción los niños de la ciudad hablan la lengua de sus
-padres; y el capítulo 10, qué variantes presentes en la ciudad están en riesgo
+<a href="./quienes-son">Edad y sexo</a>, en qué proporción los niños de la ciudad hablan la lengua de sus
+padres; y <a href="./lenguas-en-riesgo">Lenguas en riesgo</a>, qué variantes presentes en la ciudad están en riesgo
 según el INALI y la UNESCO.
 
 ## Referencias

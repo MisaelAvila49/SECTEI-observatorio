@@ -1,9 +1,10 @@
 ---
-title: 9. Acceso y uso digital
+title: Acceso y uso digital
+draft: true
 ---
 
 <div class="hero-pagina">
-  <span class="kicker">Capítulo 9</span>
+  <span class="kicker">Condiciones de vida</span>
   <h1>Acceso y uso digital</h1>
   <p class="hero-entrada">Tres fuentes miden la brecha digital de la población indígena, cada una con su pregunta: el Censo 2020, qué hay en la vivienda; la ENIGH, qué hay en el hogar en tres ediciones; y la ENDUTIH 2025, qué usa cada persona y para qué. Cada página compara a la población indígena con el resto en todo el país, por entidad, sexo, edad, escolaridad y tamaño de localidad.</p>
 </div>

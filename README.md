@@ -18,7 +18,7 @@ Cada persona cae en una de cuatro celdas excluyentes: habla lengua indígena
 navegador suma las que corresponden al **criterio** que el lector elige en el
 panel (lengua o autoadscripción), así que los dos criterios comparten universo
 y nadie se cuenta dos veces. El universo son personas de 6 años o más. Detalle
-en `src/metodologia/definiciones.md`.
+en `src/metodologia.md` (parte «Definiciones»).
 
 ## Reproducir los datos
 
@@ -82,7 +82,7 @@ scripts/descargar_datos.sh            # insumos públicos del INEGI y del gobier
 python scripts/construir_manzanas.py  # une censo y cartografía, reparte manzanas entre colonias, cruce por bandas
 python scripts/construir_agebs.py     # AGEB con marginación (CONAPO) y rezago social (CONEVAL); coteja y anota en calculado.csv
 python scripts/construir_2010.py      # edición 2010 por AGEB y manzana (tabulado 2010 + cartografía de cierre del Censo 2010)
-python scripts/loaders/nacional_2020.py  # entidades y municipios del país (ITER 2020 + muestra por sexo y edad), tabla de la beta /beta
+python scripts/loaders/nacional_2020.py  # entidades y municipios del país (ITER 2020 + muestra por sexo y edad), tabla del panel censal (`seccion-censo.js`)
 python scripts/loaders/inpi_2020.py      # población indígena según el INPI 2020 por entidad y municipio, con su tipología; coteja la autoadscripción municipal
 python scripts/construir_riesgo_inali.py  # grado de riesgo de las 364 variantes, INALI 2012 (lee el PDF oficial)
 python scripts/loaders/perfil.py         # perfil de la población indígena de la ciudad 2010 - 2025 (escolaridad, trabajo, salud, discapacidad, monolingüismo, edad)
@@ -156,5 +156,5 @@ src/components/    base.js (paleta, ancho, formatos), grupos.js (comparaciones y
 src/data/          indicadores/*.parquet, fuentes.csv, verificaciones.csv, calculado.csv,
                    verificar_fuentes.py, mx_entidades.json, teselas del mapa
 src/encuestas/     una carpeta por fuente; cada página es un cascarón de seccionesTema()
-src/metodologia/   fuentes y cobertura, definiciones
+src/metodologia.md  paso a paso, definiciones, fuentes y cobertura (una sola página)
 ```

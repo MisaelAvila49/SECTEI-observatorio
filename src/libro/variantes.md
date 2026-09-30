@@ -1,5 +1,5 @@
 ---
-title: 5. Variantes y origen
+title: Variantes y origen
 ---
 
 ```js
@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto} from "../components/base.js";
+import {punto, ORDINAL, COLOR_REFERENCIA, GLOBO} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const [variantesCiudad, lenguasAlc, clin] = await Promise.all([
@@ -29,12 +29,13 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 // Solo lenguas del catálogo (las claves 8000 y más son "otras de América" y "no especificado").
 const vc = variantesCiudad.map((r) => ({...r, anio: Number(r.anio), num: Number(r.num), lengua: String(r.lengua).padStart(4, "0"), cve_alc: String(r.cve_alc).padStart(3, "0")})).filter((r) => r.lengua < "8000");
 const nombreAlc = new Map(lenguasAlc.filter((r) => r.nivel === "alcaldia").map((r) => [String(r.cve).padStart(3, "0"), r.nombre]));
-// Niveles de certeza, de más a menos seguro. Tres tonos de un mismo azul y gris
-// para "sin variante": es un orden de confianza.
+// Niveles de certeza, de más a menos seguro. Es un orden: tres pasos de la
+// rampa morada del sitio (el más oscuro, el más seguro) y gris de referencia
+// para "sin variante", el mismo gris del mapa.
 const CERTEZAS = [
-  {clave: "exacta", etiqueta: "Exacta", color: "#08306b", texto: "se conoce el municipio donde vivía cinco años antes y ahí el Catálogo ubica una sola variante"},
-  {clave: "unica", etiqueta: "Única", color: "#2171b5", texto: "solo se conoce la entidad de nacimiento, y en ella hay una sola variante de la lengua"},
-  {clave: "estimada", etiqueta: "Estimada", color: "#9ecae1", texto: "la entidad tiene varias variantes; los hablantes se reparten según cuántos hay en los municipios de cada una"},
+  {clave: "exacta", etiqueta: "Exacta", color: ORDINAL[3][2], texto: "se conoce el municipio donde vivía cinco años antes y ahí el Catálogo ubica una sola variante"},
+  {clave: "unica", etiqueta: "Única", color: ORDINAL[3][1], texto: "solo se conoce la entidad de nacimiento, y en ella hay una sola variante de la lengua"},
+  {clave: "estimada", etiqueta: "Estimada", color: ORDINAL[3][0], texto: "la entidad tiene varias variantes; los hablantes se reparten según cuántos hay en los municipios de cada una"},
 ];
 const colorCerteza = {domain: CERTEZAS.map((c) => c.etiqueta), range: CERTEZAS.map((c) => c.color)};
 const etiquetaCerteza = new Map(CERTEZAS.map((c) => [c.clave, c.etiqueta]));
@@ -46,9 +47,9 @@ const lenguasOrden = [...porLengua.entries()].sort((a, b) => b[1].num - a[1].num
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">Capítulo 5</span>
+  <span class="kicker">Las lenguas</span>
   <h1>Variantes y origen</h1>
-  <p class="hero-entrada">Cada lengua indígena tiene variantes, y ningún censo pregunta cuál habla cada persona. Este capítulo muestra la variante probable de los hablantes de la Ciudad de México, inferida por su lugar de origen con el método del INALI, y qué tan segura es cada asignación.</p>
+  <p class="hero-entrada">Cada lengua indígena tiene variantes, y ningún censo pregunta cuál habla cada persona. Esta página muestra la variante probable de los hablantes de la Ciudad de México, inferida por su lugar de origen con el método del INALI, y qué tan segura es cada asignación.</p>
 </div>
 
 ---
@@ -81,7 +82,7 @@ function pintarA() {
       [Plot.legend({color: {...colorCerteza, legend: true}}), Plot.plot({marginLeft: 270, marginRight: 60, height: 22 * top.length + 50, width: Math.min(980, width), color: colorCerteza, x: {label: "hablantes probables", grid: true}, y: {label: null, domain: top.map((r) => r.variante)},
         marks: [Plot.barX(apiladas, {x: "num", y: "variante", fill: "certeza", order: CERTEZAS.map((c) => c.etiqueta)}),
           Plot.text(top, {x: "total", y: "variante", text: (r) => entero(r.total), dx: 6, textAnchor: "start", fontSize: 11}),
-          Plot.tip(top, Plot.pointerY({x: "total", y: "variante", maxRadius: Infinity, title: (r) => `${r.variante}\n${entero(r.total)} hablantes probables\nExacta ${entero(r.exacta)} · única ${entero(r.unica)} · estimada ${entero(r.estimada)}`})), Plot.ruleX([0])]})]) : html`<p class="beta-nota">Sin hablantes con variante probable en esta selección.</p>`,
+          Plot.tip(top, Plot.pointerY({x: "total", y: "variante", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.variante}\n${entero(r.total)} hablantes probables\nExacta ${entero(r.exacta)} · única ${entero(r.unica)} · estimada ${entero(r.estimada)}`})), Plot.ruleX([0])]})]) : html`<p class="beta-nota">Sin hablantes con variante probable en esta selección.</p>`,
     html`<p class="beta-nota">Para ver de dónde vienen y el territorio de cada variante, abre <a href="../mapa">el mapa</a>, elige la lengua y usa "Ver de dónde vienen" o "Ver el mapa de la lengua".</p>`,
     fuenteDe({datos: DATOS_VAR, referencia: ["R-INALI-EST-2000"], nota: notaInali(), lectura: ["R-INEGI-CLASIF-2020"]}),
     explicacion(["Ningún censo pregunta la variante. Aquí se aplica al lugar de origen de cada hablante el mismo cruce que usa el INALI para estimar hablantes por variante: el Catálogo ubica cada variante en municipios, y se asigna la variante que corresponde al lugar de donde viene la persona.", ...CERTEZAS.map((c) => `${c.etiqueta}: ${c.texto}.`), "Quienes nacieron en la ciudad o en otro país no reciben variante. Es una inferencia sobre el origen, no un dato de la persona: alguien pudo nacer en un lugar y hablar la variante de otro."]),
@@ -112,10 +113,10 @@ function pintarB() {
   const dominio = [...CERTEZAS.map((c) => c.etiqueta), "Sin variante"];
   cuerpoB.replaceChildren(
     figura({titulo: `Cómo se asignó la variante en las 15 lenguas con más hablantes, ${anio}`, subtitulo: "Cada barra reparte a los hablantes de la lengua por nivel de certeza", pie: "Censos e intercensales (INEGI) y Catálogo del INALI 2008 · cada barra es una lengua; suma 100 %"},
-      [Plot.legend({color: {domain: dominio, range: [...CERTEZAS.map((c) => c.color), "#bdbdbd"], legend: true}}),
-       Plot.plot({marginLeft: 120, marginRight: 30, height: 24 * top.length + 50, width: Math.min(900, width), color: {domain: dominio, range: [...CERTEZAS.map((c) => c.color), "#bdbdbd"]}, x: {label: "% de los hablantes", grid: true, domain: [0, 100]}, y: {label: null, domain: top.map((k) => porLengua.get(k).nombre)},
+      [Plot.legend({color: {domain: dominio, range: [...CERTEZAS.map((c) => c.color), COLOR_REFERENCIA], legend: true}}),
+       Plot.plot({marginLeft: 120, marginRight: 30, height: 24 * top.length + 50, width: Math.min(900, width), color: {domain: dominio, range: [...CERTEZAS.map((c) => c.color), COLOR_REFERENCIA]}, x: {label: "% de los hablantes", grid: true, domain: [0, 100]}, y: {label: null, domain: top.map((k) => porLengua.get(k).nombre)},
         marks: [Plot.barX(filas, {x: "share", y: "lengua", fill: "certeza", order: dominio}),
-          Plot.tip(filas.filter((r) => r.num >= 0.5), Plot.pointerY(Plot.stackX({x: "share", y: "lengua", z: "certeza", order: dominio, maxRadius: Infinity, title: (r) => `${r.lengua} · ${r.certeza}\n${entero(r.num)} hablantes (${pct(r.share)})`}))), Plot.ruleX([0])]})]),
+          Plot.tip(filas.filter((r) => r.num >= 0.5), Plot.pointerY(Plot.stackX({x: "share", y: "lengua", z: "certeza", order: dominio, maxRadius: Infinity, ...GLOBO, title: (r) => `${r.lengua} · ${r.certeza}\n${entero(r.num)} hablantes (${pct(r.share)})`}))), Plot.ruleX([0])]})]),
     fuenteDe({datos: DATOS_VAR, referencia: ["R-INALI-EST-2000"], nota: notaInali()}),
     explicacion("La certeza depende de la lengua: una lengua que se habla en pocas entidades, cada una con una sola variante, sale casi toda 'única'; una lengua como el náhuatl o el zapoteco, con decenas de variantes en la misma entidad, sale casi toda 'estimada'. La parte sin variante son sobre todo hablantes nacidos en la ciudad. Como contraste externo, el orden de las variantes mayores de cada lengua coincide con el de los cuadros por variante del INALI de 2000 en 77 por ciento de las lenguas con varias variantes."));
 }

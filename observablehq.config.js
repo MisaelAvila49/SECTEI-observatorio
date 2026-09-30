@@ -27,36 +27,37 @@ const SITE_URL = process.env.GITHUB_ACTIONS
   ? `https://${process.env.GITHUB_REPOSITORY.split("/")[0]}.github.io${BASE}`
   : "http://localhost:3000/";
 const TITULO_SITIO = "Grupos originarios";
-const DESCRIPCION_SITIO = "Acceso a internet, celular y computadora de la población indígena de México, comparada con el resto de la población, con el Censo 2020, la ENIGH 2020-2024 y la ENDUTIH 2025; y el mapa por manzana de la población indígena de la Ciudad de México. Social Data Ibero, Universidad Iberoamericana.";
+const DESCRIPCION_SITIO = "La población indígena de la Ciudad de México y las lenguas de México, 1990 - 2025: cuántas personas hablan una lengua indígena o se consideran indígenas, dónde viven, quiénes son, cómo viven y qué discriminación enfrentan, con censos, intercensales y encuestas del INEGI, el INALI, el INPI, CONAPO y el CONEVAL. Social Data Ibero, Universidad Iberoamericana.";
 
 // Descripción propia de cada página para buscadores y vistas previas. Va
 // aquí y no en el front matter porque Framework descarta las claves que no
 // conoce antes de pasar `data` a `head`.
 const DESCRIPCIONES = {
   "/": DESCRIPCION_SITIO,
+  "/mapa": "Mapa de la población indígena de la Ciudad de México por alcaldía, AGEB y manzana: hablantes, hogares indígenas y autoadscripción de 1990 a 2025, con la lengua, sus variantes probables y el origen de quienes la hablan.",
+  "/libro/lenguas-de-mexico": "Cuántas lenguas y variantes reconoce México, cuántas personas hablan cada una y en qué entidades, con el Censo 2020 y el Catálogo del INALI.",
+  "/libro/hablantes-en-el-tiempo": "Hablantes de lengua indígena de 5 años y más de 1990 a 2025 en el país y en cada alcaldía de la Ciudad de México.",
+  "/libro/variantes": "La variante probable de los hablantes de la Ciudad de México por lengua, año y alcaldía, inferida por su lugar de origen con el método del INALI, y qué tan segura es cada asignación.",
+  "/libro/lenguas-en-riesgo": "El grado de riesgo de desaparición de las 364 variantes según el INALI, cuáles se hablan en la Ciudad de México y qué lenguas ganan o pierden hablantes en la ciudad.",
+  "/libro/la-ciudad-en-el-pais": "Qué lugar ocupa la Ciudad de México entre las entidades y cuántas lenguas tienen hablantes en ella, 1990 - 2025.",
+  "/libro/de-donde-vienen": "Entidad de nacimiento y llegadas recientes de los hablantes de lengua indígena que viven en la Ciudad de México, 1990 - 2025.",
+  "/libro/donde-viven": "Dónde vive la población indígena de la Ciudad de México por alcaldía, AGEB y manzana, y qué lenguas se hablan en cada alcaldía.",
+  "/libro/colonias-y-marginacion": "Presencia indígena y marginación urbana por AGEB, y colonias y pueblos originarios de la Ciudad de México.",
+  "/libro/quienes-son": "Edad y sexo de la población indígena de la Ciudad de México frente al resto, 2010 - 2025.",
+  "/libro/escuela-y-trabajo": "Escolaridad, condición de actividad, posición en el trabajo y trabajo doméstico remunerado de la población indígena de la Ciudad de México, 2010 - 2025.",
+  "/libro/salud-y-lengua": "Afiliación a servicios de salud, discapacidad y hablantes que no hablan español en la Ciudad de México, 2010 - 2025.",
+  "/libro/condiciones-de-vida": "Pobreza, pobreza extrema y carencias sociales de la población indígena del país frente al resto, CONEVAL 2016 - 2022.",
   "/encuestas/censo/vivienda": "Qué proporción de la población indígena vive en una vivienda con internet, celular o computadora, por entidad, edad y tamaño de localidad, con el Censo 2020.",
   "/encuestas/enigh/hogar": "Acceso del hogar a internet y dispositivos por condición indígena en 2020, 2022 y 2024, con decil de ingreso, según la ENIGH.",
   "/encuestas/endutih/uso": "Quién usa internet, celular y computadora, con qué equipo y desde dónde, por condición indígena, según la ENDUTIH 2025.",
   "/encuestas/endutih/actividades": "Para qué usa internet la población indígena que se conecta: estudiar, trabajar, trámites, dinero y entretenimiento, según la ENDUTIH 2025.",
   "/encuestas/endutih/barreras": "Quién no usa internet, computadora ni celular y qué motivo declara, por condición indígena, según la ENDUTIH 2025.",
-  "/metodologia/paso-a-paso": "Cómo se construyó el tablero paso a paso: descargas, cálculos, cotejos y lo que ninguna fuente permite saber.",
-  "/libro/lenguas-de-mexico": "Capítulo 1: cuántas lenguas y variantes reconoce México, cuántas personas hablan cada una y en qué entidades, con el Censo 2020 y el Catálogo del INALI.",
-  "/libro/la-ciudad-en-el-pais": "Capítulo 2: qué lugar ocupa la Ciudad de México entre las entidades, cuántas lenguas llegan a ella y de dónde vienen quienes las hablan, 1990 - 2025.",
-  "/libro/donde-viven": "Capítulo 4: dónde vive la población indígena de la Ciudad de México por alcaldía, AGEB y manzana, su relación con la marginación urbana y con los pueblos originarios.",
-  "/libro/quienes-son": "Capítulo 3: edad, escolaridad, trabajo, salud, discapacidad y monolingüismo de la población indígena de la Ciudad de México frente al resto, 2010 - 2025.",
-  "/libro/condiciones-de-vida": "Capítulo 6: pobreza, pobreza extrema y carencias sociales de la población indígena del país frente al resto, CONEVAL 2016 - 2022.",
-  "/libro/violencia": "Capítulo 8: violencia contra las mujeres indígenas de 15 años y más por ámbito y tipo, en el país y en la Ciudad de México, ENDIREH 2021.",
-  "/libro/discriminacion": "Capítulo 7: discriminación, motivos, ámbitos y derechos negados a la población indígena del país, ENADIS 2017 y 2022.",
-  "/libro/variantes": "Capítulo 5: la variante probable de los hablantes de la Ciudad de México por lengua, año y alcaldía, inferida por su lugar de origen con el método del INALI, y qué tan segura es cada asignación.",
-  "/libro/acceso-digital": "Capítulo 9: la brecha digital de la población indígena según el Censo 2020, la ENIGH 2020 - 2024 y la ENDUTIH 2025.",
-  "/libro/lenguas-en-riesgo": "Capítulo 10: el grado de riesgo de desaparición de las 364 variantes según el INALI, cuáles se hablan en la Ciudad de México y qué lenguas ganan o pierden hablantes en la ciudad.",
-  "/libro/derechos": "Capítulo 11: el marco de derechos lingüísticos y culturales de los pueblos indígenas en México y en la Ciudad de México.",
-  "/beta": "Beta de la arquitectura de filtros del libro: un panel por sección, mapa que baja de nivel con un clic (entidades, municipios, AGEB y manzanas) y gráfica que sigue la selección.",
-  "/mapa": "Mapa de la población indígena de la Ciudad de México por alcaldía, AGEB y manzana: hablantes, hogares indígenas y autoadscripción de 2010 a 2025, con la lengua, sus variantes probables y el origen de quienes la hablan.",
+  "/libro/discriminacion": "Discriminación, motivos, ámbitos y derechos negados a la población indígena del país, ENADIS 2017 y 2022.",
+  "/libro/violencia": "Violencia contra las mujeres indígenas de 15 años y más por ámbito y tipo, en el país y en la Ciudad de México, ENDIREH 2021.",
+  "/libro/derechos": "El marco de derechos lingüísticos y culturales de los pueblos indígenas en México y en la Ciudad de México.",
+  "/metodologia": "Cómo se hizo el sitio: qué mide cada población indígena, de dónde sale cada cifra, cómo se cotejó y qué no se puede saber con estas fuentes.",
   "/mapa-manzanas": "Mapa por manzana de la población en hogares indígenas de la Ciudad de México, con el Censo 2020, agregable a colonia y con los pueblos originarios señalados.",
   "/mapa-agebs": "Población en hogares indígenas, conectividad de las viviendas, marginación urbana y rezago social por AGEB de la Ciudad de México, con un umbral de presencia indígena a elección.",
-  "/metodologia/fuentes": "Fuentes, cobertura y cautelas de cada encuesta usada en el tablero.",
-  "/metodologia/definiciones": "Cómo se define la población indígena en cada fuente y qué mide cada indicador.",
 };
 
 export default {
@@ -77,41 +78,58 @@ export default {
 
   base: BASE,
 
-  // Navegación por FUENTE, no por tema: una cifra solo es comparable con
-  // otra de la misma encuesta, y el lector tiene que saber en todo momento
-  // cuál está viendo.
+  // Navegación por TEMA, de lo general a lo particular: primero las lenguas,
+  // después quién es y dónde vive la población indígena de la ciudad, luego
+  // cómo vive y al final lo que enfrenta. Cada página es un subtema con sus
+  // gráficas; la fuente de cada cifra va en el desplegable de cada gráfica.
   pages: [
     {name: "Inicio", path: "/"},
-    // El mapa por manzana es la primera etapa del proyecto y la puerta de
-    // entrada: va primero, fuera de los grupos por encuesta.
     {name: "Mapa", path: "/mapa"},
     {
-      name: "Libro",
+      name: "Las lenguas",
       open: true,
       pages: [
-        {name: "1. Las lenguas de México", path: "/libro/lenguas-de-mexico"},
-        {name: "2. La ciudad en el país", path: "/libro/la-ciudad-en-el-pais"},
-        {name: "3. Quiénes son", path: "/libro/quienes-son"},
-        {name: "4. Dónde viven", path: "/libro/donde-viven"},
-        {name: "5. Variantes y origen", path: "/libro/variantes"},
-        {name: "6. Condiciones de vida", path: "/libro/condiciones-de-vida"},
-        {name: "7. Discriminación", path: "/libro/discriminacion"},
-        {name: "8. Violencia contra las mujeres indígenas", path: "/libro/violencia"},
-        {name: "9. Acceso y uso digital", path: "/libro/acceso-digital"},
-        {name: "10. Lenguas en riesgo", path: "/libro/lenguas-en-riesgo"},
-        {name: "11. Derechos y política cultural", path: "/libro/derechos"},
+        {name: "Las lenguas de México", path: "/libro/lenguas-de-mexico"},
+        {name: "Hablantes en el tiempo", path: "/libro/hablantes-en-el-tiempo"},
+        {name: "Variantes y origen", path: "/libro/variantes"},
+        {name: "Lenguas en riesgo", path: "/libro/lenguas-en-riesgo"},
       ],
     },
-    {name: "Beta de filtros", path: "/beta"},
     {
-      name: "Metodología",
+      name: "La población indígena en la ciudad",
       open: true,
       pages: [
-        {name: "Paso a paso", path: "/metodologia/paso-a-paso"},
-        {name: "Definiciones", path: "/metodologia/definiciones"},
-        {name: "Fuentes y cobertura", path: "/metodologia/fuentes"},
+        {name: "La ciudad en el país", path: "/libro/la-ciudad-en-el-pais"},
+        {name: "De dónde vienen", path: "/libro/de-donde-vienen"},
+        {name: "Dónde viven", path: "/libro/donde-viven"},
+        {name: "Colonias, pueblos y marginación", path: "/libro/colonias-y-marginacion"},
+        {name: "Edad y sexo", path: "/libro/quienes-son"},
+        {name: "Escuela y trabajo", path: "/libro/escuela-y-trabajo"},
+        {name: "Salud, discapacidad y español", path: "/libro/salud-y-lengua"},
       ],
     },
+    {
+      name: "Condiciones de vida",
+      open: true,
+      pages: [
+        {name: "Pobreza y carencias", path: "/libro/condiciones-de-vida"},
+        {name: "Conectividad en la vivienda", path: "/encuestas/censo/vivienda"},
+        {name: "Acceso en el hogar", path: "/encuestas/enigh/hogar"},
+        {name: "Quién usa internet", path: "/encuestas/endutih/uso"},
+        {name: "Para qué se usa internet", path: "/encuestas/endutih/actividades"},
+        {name: "Quién no se conecta", path: "/encuestas/endutih/barreras"},
+      ],
+    },
+    {
+      name: "Discriminación, violencia y derechos",
+      open: true,
+      pages: [
+        {name: "Discriminación", path: "/libro/discriminacion"},
+        {name: "Violencia contra las mujeres", path: "/libro/violencia"},
+        {name: "Derechos y política cultural", path: "/libro/derechos"},
+      ],
+    },
+    {name: "Metodología", path: "/metodologia"},
   ],
 
   home: `<span class="sidebar-brand">
@@ -330,14 +348,13 @@ export default {
       <p class="book-footer-col-line"><a href="/">Inicio</a></p>
       <p class="book-footer-col-line"><a href="/mapa">Mapa</a></p>
       <p class="book-footer-col-line"><a href="/libro/lenguas-de-mexico">Las lenguas de México</a></p>
-      <p class="book-footer-col-line"><a href="/libro/la-ciudad-en-el-pais">La ciudad en el país</a></p>
-      <p class="book-footer-col-line"><a href="/libro/lenguas-en-riesgo">Lenguas en riesgo</a></p>
+      <p class="book-footer-col-line"><a href="/libro/donde-viven">Dónde viven</a></p>
+      <p class="book-footer-col-line"><a href="/libro/condiciones-de-vida">Condiciones de vida</a></p>
     </div>
     <div class="book-footer-col">
       <p class="book-footer-col-title">Datos y método</p>
       <p class="book-footer-col-line">Fuentes: <a href="https://www.inegi.org.mx" target="_blank" rel="noopener">INEGI</a> (censos, conteos e intercensales 1990 - 2025), INALI, INPI, CONAPO y CONEVAL</p>
-      <p class="book-footer-col-line"><a href="/metodologia/fuentes">Fuentes y cobertura</a></p>
-      <p class="book-footer-col-line"><a href="/metodologia/definiciones">Definiciones</a></p>
+      <p class="book-footer-col-line"><a href="/metodologia">Metodología</a></p>
       <p class="book-footer-col-line"><a href="/#citar">Cómo citar este tablero</a></p>
     </div>
     <div class="book-footer-col">

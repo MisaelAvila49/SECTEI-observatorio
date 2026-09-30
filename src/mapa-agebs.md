@@ -325,6 +325,6 @@ display(seccion({numero: "03", titulo: "Marginación y rezago social según el u
 display(verTambien([
   {ruta: "/mapa-manzanas", titulo: "Mapa por manzana", nota: "La misma información a la unidad más fina que publica el Censo, con agregado por colonia."},
   {ruta: "/encuestas/censo/vivienda", titulo: "Conectividad en la vivienda", nota: "La conectividad por condición indígena de cada persona, en todo el país, con la muestra ampliada del Censo."},
-  {ruta: "/metodologia/fuentes", titulo: "Fuentes y cobertura", nota: "De dónde sale cada cifra y cómo se cotejó."},
+  {ruta: "/metodologia", titulo: "Metodología", nota: "De dónde sale cada cifra y cómo se cotejó."},
 ]));
 ```

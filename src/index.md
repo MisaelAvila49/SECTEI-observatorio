@@ -10,7 +10,7 @@ toc: false
     <p class="book-hero-abstract">Este tablero reúne los censos, conteos y encuestas intercensales del INEGI de 1990 a 2025 para describir la distribución de la población indígena en la Ciudad de México: cuánta es según tres definiciones, dónde vive, qué lenguas habla, de qué entidades llegó y qué variante es probable que hable según el Catálogo del INALI.</p>
     <div class="book-hero-ctas">
       <a class="book-cta book-cta-primary" href="./mapa">Abrir el mapa</a>
-      <a class="book-cta" href="./metodologia/paso-a-paso">Cómo se hizo, paso a paso</a>
+      <a class="book-cta" href="./metodologia">Cómo se hizo</a>
     </div>
   </div>
 
@@ -113,7 +113,7 @@ toc: false
 ```js
 import {kpis, seccion, figura, explicacion} from "./components/graficas.js";
 import {conDescarga} from "./components/descargar.js";
-import {punto, COLOR_SERIE, alCambiarModo, alCambiarAncho, anchoActual, ejePct} from "./components/base.js";
+import {punto, COLOR_SERIE, alCambiarModo, alCambiarAncho, anchoActual, ejePct, GLOBO} from "./components/base.js";
 import {procedencia} from "./components/fuentes.js";
 import * as Plot from "npm:@observablehq/plot";
 
@@ -172,7 +172,7 @@ display(seccion({numero: "01", titulo: "Treinta y cinco años de hablantes"}));
       Plot.line(filas, {x: "anio", y: "pct", stroke: color(), strokeWidth: 2}),
       Plot.dot(filas, {x: "anio", y: "pct", stroke: color(), fill: (d) => (d.cota === "censo" ? color() : "white"), r: 4.5, strokeWidth: 1.6}),
       Plot.text(filas, {x: "anio", y: "pct", text: (d) => `${d.pct.toFixed(2)} %`, dy: -12, fontSize: 11}),
-      Plot.tip(filas, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity,
+      Plot.tip(filas, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, ...GLOBO,
         title: (d) => `${d.anio}\n${d.pct.toFixed(2)} % de la población de 5 años y más${d.ee ? ` (± ${(196 * d.ee).toFixed(2)})` : ""}\n${punto(Math.round(d.num))} hablantes\n${d.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
       Plot.ruleY([0]),
     ],
@@ -206,10 +206,11 @@ display(seccion({numero: "02", titulo: "Explorar"}));
   const t = html`<div class="grid grid-cols-2"></div>`;
   const tarjetas = [
     ["./mapa", "Mapa de la Ciudad de México", "Hablantes, hogares indígenas y autoadscripción por alcaldía, AGEB y manzana; la lengua que se habla, sus variantes probables y de dónde vienen quienes la hablan."],
-    ["./libro/lenguas-de-mexico", "El libro: las lenguas de México", "Doce capítulos del país a la manzana: cuántas lenguas hay, dónde viven sus hablantes, quiénes son, cómo viven, qué discriminación enfrentan y qué lenguas están en riesgo."],
-    ["./metodologia/paso-a-paso", "Cómo se hizo, paso a paso", "De los archivos del INEGI y del INALI a cada cifra del mapa: qué se descargó, qué se calculó, qué se cotejó y qué no se pudo saber."],
-    ["./metodologia/definiciones", "Definiciones", "Qué mide cada población indígena, cómo se lee el mapa y qué cambia entre ediciones."],
-    ["./metodologia/fuentes", "Fuentes y cobertura", "Cada archivo con su liga, su alcance y sus cautelas; los cotejos contra las cifras oficiales."],
+    ["./libro/lenguas-de-mexico", "Las lenguas", "Cuántas lenguas y variantes hay en el país, cómo han cambiado sus hablantes de 1990 a 2025, qué variantes se hablan en la ciudad y cuáles están en riesgo."],
+    ["./libro/la-ciudad-en-el-pais", "La población indígena en la ciudad", "La ciudad frente a las entidades, de dónde vienen sus hablantes, dónde viven, su edad, su escuela, su trabajo y su salud."],
+    ["./libro/condiciones-de-vida", "Condiciones de vida", "Pobreza y carencias sociales, y la conectividad de la vivienda, el hogar y las personas."],
+    ["./libro/discriminacion", "Discriminación, violencia y derechos", "La discriminación que declara la población indígena, la violencia contra las mujeres indígenas y el marco de derechos lingüísticos."],
+    ["./metodologia", "Metodología", "Qué mide cada población indígena, de dónde sale cada cifra, cómo se cotejó y qué no se puede saber con estas fuentes."],
   ];
   tarjetas.forEach(([ruta, titulo, texto], i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
     <h3><a href="${ruta}">${titulo}</a></h3><p>${texto}</p></div>`));
@@ -253,7 +254,7 @@ const indTotal = 289139;
   y: {label: "colonias", grid: true},
   marks: [
     Plot.rectY(props, Plot.binX({y: "count"}, {x: "tasa_phog_ind", fill: COLOR_SERIE["Resto de la población"], thresholds: 40, rx2: 3,
-      tip: true})),
+      tip: GLOBO})),
     Plot.ruleX([indTotal / pobTotal * 100], {stroke: COLOR_SERIE["Población indígena"], strokeWidth: 2}),
     Plot.ruleY([0]),
   ],
@@ -293,7 +294,7 @@ display(fuenteDe({datos: ["D-CENSO-2020-RESAGEBURB", "D-IECM-COLONIAS-2022"], co
   marks: [
     Plot.dot(props, {x: "POBTOT", y: "tasa_phog_ind",
       fill: (d) => (d.pueblo_originario ? "Pueblo o barrio originario" : "Resto de la ciudad"),
-      r: 3, fillOpacity: 0.7, tip: true, channels: {Colonia: "colonia", Alcaldía: "alcaldia_col"}}),
+      r: 3, fillOpacity: 0.7, tip: GLOBO, channels: {Colonia: "colonia", Alcaldía: "alcaldia_col"}}),
     Plot.ruleY([indTotal / pobTotal * 100], {stroke: COLOR_SERIE["Población indígena"], strokeWidth: 1.5, strokeDasharray: "4 3"}),
     Plot.ruleY([0]),
   ],

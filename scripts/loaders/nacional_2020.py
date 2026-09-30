@@ -3,7 +3,7 @@ nacional_2020.py: hablantes de lengua indígena, población en hogares indígena
 y población que se considera indígena por entidad y municipio de todo el
 país, Censo 2020, por sexo y grupo de edad.
 
-Es la tabla de la beta del libro (página /beta): un solo archivo largo con el
+Es la tabla del panel censal (src/components/seccion-censo.js): un solo archivo largo con el
 grano más fino que la fuente permite y las celdas de total escritas aquí, no
 en el navegador. Dos cotas, como en la serie por alcaldía:
 
