@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, COLOR_SERIE, alCambiarModo, GLOBO} from "../components/base.js";
+import {punto, COLOR_SERIE, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const endireh = (await FileAttachment("../data/endireh.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
@@ -50,7 +50,7 @@ function seccionEndireh({id, indicadores, titulo, pie, explica, fuentes = {}}) {
       figura({titulo, subtitulo: `${cGeo.value === "Nacional" ? "Todo el país" : "Ciudad de México"} · 2021 · ${cPer.value === "vida" ? "a lo largo de la vida" : "últimos 12 meses"}${sep ? " · un panel por grupo de edad" : cEdad.value !== "Todas" ? ` · ${EDAD_ETIQ[cEdad.value]}` : ""}`, pie},
         [Plot.plot({marginLeft: 180, marginRight: 60, height: 60 + 44 * cats.length, width: Math.min(1000, width), ...(sep ? {fx: {label: null, domain: Object.values(EDAD_ETIQ)}} : {}),
           color: {domain: series, range: series.map((s) => COLOR_SERIE[s]), legend: true}, x: {label: "% de las mujeres del grupo", grid: true, domain: [0, maxX]}, y: {label: null, domain: cats},
-          marks: [...marcas, Plot.tip(f, Plot.pointer({x: "pct", y: "indicador", ...fx, maxRadius: Infinity, ...GLOBO, title: (r) => `${r.indicador} · ${r.serie}${r.faceta ? ` · ${r.faceta}` : ""}\n${pct(r.pct)}${r.ee ? ` ± ${(196 * r.ee).toFixed(1)}` : ""}\n${entero(r.num)} de ${entero(r.den)} mujeres · ${r.casos} entrevistas`})), Plot.ruleX([0])]})]),
+          marks: [...marcas, Plot.tip(f, Plot.pointer({x: "pct", y: "indicador", ...fx, maxRadius: Infinity, ...GLOBO, ...globo([["Ámbito o tipo", (r) => r.indicador], ["Grupo", (r) => r.serie], ["Edad", (r) => r.faceta || null], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Mujeres", (r) => `${entero(r.num)} de ${entero(r.den)}`], ["Entrevistas", (r) => r.casos]])})), Plot.ruleX([0])]})]),
       faltaFamiliar ? html`<p class="beta-nota">La violencia familiar solo se pregunta para los últimos 12 meses; elige ese periodo para verla.</p>` : "",
       cGeo.value === "Ciudad de México" ? html`<p class="beta-nota">En la Ciudad de México la muestra de mujeres indígenas es chica: las líneas de cada barra muestran el intervalo de 95 %, y cuando se enciman las dos barras la diferencia no es distinguible.</p>` : "",
       fuenteDe({datos: ["D-ENDIREH-2021"], cotejos: ["vida_total_2021", "vida_hli_2021", "vida_autoads_2021", "12m_total_2021", "12m_hli_2021", "12m_autoads_2021"], ...fuentes}),

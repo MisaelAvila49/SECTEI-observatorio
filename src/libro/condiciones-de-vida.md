@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {COLOR_SERIE, ejePct, alCambiarModo, GLOBO} from "../components/base.js";
+import {COLOR_SERIE, ejePct, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const pobreza = (await FileAttachment("../data/coneval_pobreza.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
@@ -69,7 +69,7 @@ function pintarA() {
           Plot.line(f.filter((r) => sexoSep && !soloIndigena && r.sexo === "Hombres"), {x: "anio", y: "pct", stroke: "serie", strokeWidth: 2, strokeDasharray: "5,3"}),
           Plot.dot(f, {x: "anio", y: "pct", fill: "serie", r: 4}),
           Plot.text(f.filter((r) => r.anio === Math.max(...f.filter((x) => x.serie === r.serie).map((x) => x.anio))), {x: "anio", y: "pct", text: (r) => `${r.serie} ${pct(r.pct)}`, dx: 8, textAnchor: "start", fontSize: 11}),
-          Plot.tip(f, Plot.pointerX({x: "anio", y: "pct", z: "serie", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.anio} · ${r.serie}\n${pct(r.pct)}${r.millones ? `\n${r.millones.toFixed(1)} millones de personas` : ""}\n${r.fuente}`})), Plot.ruleY([0])]})]),
+          Plot.tip(f, Plot.pointerX({x: "anio", y: "pct", z: "serie", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Grupo", (r) => r.serie], ["Porcentaje", (r) => pct(r.pct)], ["Personas", (r) => (r.millones ? `${r.millones.toFixed(1)} millones` : null)], ["Fuente", (r) => r.fuente]])})), Plot.ruleY([0])]})]),
     sexoSep && crit === "pertenencia" && !tieneResto ? html`<p class="beta-nota">Por sexo, el CONEVAL solo publica a la población indígena; para comparar con el resto por sexo, elige "Hablan una lengua indígena".</p>` : "",
     fuenteDe({datos: ["D-CONEVAL-AE-2022", "R-INEGI-PM-2024"], cotejos: ["pobreza_indigena_2022", "pobreza_extrema_indigena_2022"],
       nota: "Son las cifras que publica el CONEVAL en su anexo estadístico; el cotejo confirma que se leyó el renglón y el año correctos. La cifra de 2024 es la que publicó el INEGI en la presentación de la medición."}),
@@ -109,7 +109,7 @@ function pintarB() {
     figura({titulo: "Carencias sociales y bienestar económico de la población indígena y del resto", subtitulo: `${CRITERIOS.find((c) => c.clave === crit).etiqueta} · ${comparar ? "2016 (tono claro) y 2022" : anios[0]}`, pie: "CONEVAL, medición multidimensional de la pobreza, anexo estadístico 2022 · cada par de barras es una carencia"},
       [Plot.plot({marginLeft: 290, marginRight: 80, height: 60 + (comparar ? 56 : 44) * IND_CAR.length, width: Math.min(1000, width), color: {domain: series, range: [COLOR("Indígena"), COLOR("Resto")], legend: true},
         x: {label: "% de la población", grid: true, domain: [0, 100]}, y: {label: null, domain: IND_CAR},
-        marks: [...marcas, Plot.tip(f, Plot.pointer({x: "pct", y: "indicador", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.indicador} · ${r.serie} · ${r.anio}\n${pct(r.pct)} · ${r.millones.toFixed(1)} millones de personas`})), Plot.ruleX([0])]})]),
+        marks: [...marcas, Plot.tip(f, Plot.pointer({x: "pct", y: "indicador", maxRadius: Infinity, ...GLOBO, ...globo([["Indicador", (r) => r.indicador], ["Grupo", (r) => r.serie], ["Año", (r) => r.anio], ["Porcentaje", (r) => pct(r.pct)], ["Personas", (r) => `${r.millones.toFixed(1)} millones`]])})), Plot.ruleX([0])]})]),
     fuenteDe({datos: ["D-CONEVAL-AE-2022"], cotejos: ["pobreza_indigena_2022"], nota: "Las carencias se leen del mismo anexo estadístico del CONEVAL (cuadros 16, 17, 23 y 24); el cotejo de la pobreza confirma la lectura de los cuadros."}),
     explicacion("Cada carencia es una de las seis dimensiones de derechos sociales que mide el CONEVAL, más las dos líneas de ingreso. El salto de la carencia de acceso a la salud en 2020 y 2022 coincide con la sustitución del Seguro Popular por el INSABI: muchas personas dejaron de contar como afiliadas. La carencia de seguridad social es la más extendida en los dos grupos."),
     tablaColumnas(f, [{etiqueta: "Carencia", valor: (r) => r.indicador}, {etiqueta: "Grupo", valor: (r) => r.serie}, {etiqueta: "Año", valor: (r) => r.anio}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(1)}, {etiqueta: "Millones", num: true, valor: (r) => r.millones.toFixed(2)}, {etiqueta: "Carencias promedio", num: true, valor: (r) => r.carencias.toFixed(2)}], {titulo: "Ver los datos"}));

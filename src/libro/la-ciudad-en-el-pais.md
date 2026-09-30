@@ -8,7 +8,7 @@ import {html} from "npm:htl";
 import {datosCenso, seccionCenso} from "../components/seccion-censo.js";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, ejePct, COLOR_UNICO, GLOBO} from "../components/base.js";
+import {punto, ejePct, COLOR_UNICO, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const [nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, lenguasAlc, origen] = await Promise.all([
@@ -67,13 +67,13 @@ function pintar1() {
         x: {label: "hablantes", grid: true, domain: [0, MAX_LENGUA]}, y: {label: null, domain: top.map((r) => r.lengua_nombre)},
         marks: [Plot.barX(top, {x: "num", y: "lengua_nombre", fill: COLOR_UNICO}),
           Plot.text(top, {x: "num", y: "lengua_nombre", text: (r) => `${entero(r.num)} (${pct(r.share)})`, dx: 6, textAnchor: "start", fontSize: 11.5}),
-          Plot.tip(top, Plot.pointerY({x: "num", y: "lengua_nombre", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.lengua_nombre} (${r.familia})\n${entero(r.num)} hablantes · ${pct(r.share)} de los hablantes de la ciudad${r.ee ? `\n± ${entero(196 * r.ee * r.den / 100)} (95 %)` : ""}`})),
+          Plot.tip(top, Plot.pointerY({x: "num", y: "lengua_nombre", maxRadius: Infinity, ...GLOBO, ...globo([["Lengua", (r) => r.lengua_nombre], ["Familia", (r) => r.familia], ["Hablantes", (r) => `${entero(r.num)}${r.ee ? ` (± ${entero(196 * r.ee * r.den / 100)})` : ""}`], ["Parte de los hablantes de la ciudad", (r) => pct(r.share)]])})),
           Plot.ruleX([0])]})]),
     figura({titulo: "Cuántas lenguas tienen hablantes en la ciudad, por edición", subtitulo: "Agrupaciones lingüísticas con al menos un hablante en la muestra de cada censo o encuesta", pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada punto es una edición"},
       [Plot.plot({height: 220, width: Math.min(900, width), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: {label: "lenguas", grid: true, zero: true},
         marks: [Plot.line(porAnio, {x: "anio", y: "n", stroke: COLOR_UNICO, strokeWidth: 2}), Plot.dot(porAnio, {x: "anio", y: "n", fill: COLOR_UNICO, r: 4.5}),
           Plot.text(porAnio, {x: "anio", y: "n", text: "n", dy: -10, fontSize: 11}),
-          Plot.tip(porAnio, Plot.pointerX({x: "anio", y: "n", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.anio}\n${r.n} lenguas con al menos un hablante en la muestra`})), Plot.ruleY([0])]})]),
+          Plot.tip(porAnio, Plot.pointerX({x: "anio", y: "n", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Lenguas con hablantes", (r) => r.n]])})), Plot.ruleY([0])]})]),
     fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["nahuatl_2015", "nahuatl_2020", "word_tabla2_celdas_iguales"], lectura: ["R-SECULT-LENGUAS", "R-SEPI-2024-DIV"]}),
     explicacion("Cada edición censal pregunta qué lengua indígena habla cada persona; aquí se cuentan las agrupaciones lingüísticas del catálogo del INALI con al menos un hablante en la muestra de la ciudad. Las muestras de 1990 y 2005 no llevan error de diseño; las demás sí, y el globo lo muestra. El número de lenguas depende del tamaño de la muestra de cada edición: una lengua con muy pocos hablantes puede no caer en la muestra un año y sí al siguiente."),
     tablaColumnas(filas.map((r) => ({...r, share: 100 * r.num / total})), [{etiqueta: "Lengua", valor: (r) => r.lengua_nombre}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los hablantes", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "Casos en la muestra", num: true, valor: (r) => (r.casos ?? "")}], {titulo: "Ver todas las lenguas"}));

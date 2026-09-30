@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, COLOR_UNICO, COLOR_REFERENCIA, GLOBO} from "../components/base.js";
+import {punto, COLOR_UNICO, COLOR_REFERENCIA, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const enadis = (await FileAttachment("../data/enadis.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
@@ -60,7 +60,7 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
     const inset = comparar ? {insetTop: 13, insetBottom: 13} : {};
     const maxX = MAX_X;
     const color = comparar ? {domain: ["2017", "2022"], range: [COLOR_ANIO["2017"], COLOR_ANIO["2022"]], legend: true} : {domain: ["x"], range: [COLOR_UNICO]};
-    const tip = (r) => `${r.categoria} · ${r.anio}${r.faceta ? ` · ${r.faceta}` : ""}\n${pct(r.pct)}${r.ee ? ` ± ${(196 * r.ee).toFixed(1)}` : ""}\n${entero(r.num)} de ${entero(r.den)} personas`;
+    const renglones = [["Categoría", (r) => r.categoria], ["Año", (r) => r.anio], ["Corte", (r) => r.faceta || null], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]];
     const sub = [comparar ? "2017 y 2022" : cAnio.value, fijo.sexo && fijo.sexo !== "Total" ? fijo.sexo : "", fijo.edad && fijo.edad !== "Todas" ? EDAD_ETIQ[fijo.edad] : "", fijo.ambito && fijo.ambito !== "Total" ? `localidades ${fijo.ambito === "Rural" ? "rurales" : "urbanas"}` : "", sepCampo ? `un panel por ${{sexo: "sexo", edad: "grupo de edad", ambito: "tipo de localidad"}[sepCampo]}` : ""].filter(Boolean).join(" · ");
     cuerpo.replaceChildren(
       figura({titulo, subtitulo: `Población indígena de 12 años y más, México · ${sub}`, pie},
@@ -72,7 +72,7 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
                 Plot.ruleX(d.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => Math.min(maxX, r.pct + 196 * r.ee), y: "categoria", dy, stroke: "currentColor", strokeOpacity: 0.55, ...fx}),
                 Plot.text(d, {x: "pct", y: "categoria", text: (r) => pct(r.pct), dx: 6, dy, textAnchor: "start", fontSize: 11, ...fx})];
             }),
-            Plot.tip(f, Plot.pointer({x: "pct", y: "categoria", ...(sepCampo ? {fx: "faceta"} : {}), maxRadius: Infinity, ...GLOBO, title: tip})), Plot.ruleX([0])]}) : html`<p class="beta-nota">La pregunta no existe en esta edición.</p>`]),
+            Plot.tip(f, Plot.pointer({x: "pct", y: "categoria", ...(sepCampo ? {fx: "faceta"} : {}), maxRadius: Infinity, ...GLOBO, ...globo(renglones)})), Plot.ruleX([0])]}) : html`<p class="beta-nota">La pregunta no existe en esta edición.</p>`]),
       extra.length ? html`<p class="beta-nota">Solo un corte puede ir por separado a la vez; los demás vuelven al total.</p>` : "",
       fuenteDe({datos: ["D-ENADIS-2017", "D-ENADIS-2022"], ...fuentes}),
       explicacion(explica),

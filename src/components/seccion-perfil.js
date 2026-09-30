@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo, SEPARADO} from "./panel-seccion.js";
 import {figura, explicacion, tablaColumnas} from "./graficas.js";
-import {punto, COLOR_SERIE, alCambiarModo, GLOBO} from "./base.js";
+import {punto, COLOR_SERIE, alCambiarModo, GLOBO, globo} from "./base.js";
 
 const entero = (n) => punto(Math.round(Number(n)));
 const CONJUNTO = "En conjunto", UNA = "Una a una";
@@ -70,7 +70,7 @@ export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) 
     const alto = (60 + 44 * nCat) * (sep[1] ? sep[1].cats.length : 1);
     const maxX = MAX_TEMA.get(tema.clave);
     const series = Object.values(SERIE);
-    const titulo = (r) => `${r.serie} · ${r.categoria}${r.f0 ? ` · ${r.f0}` : ""}${r.f1 ? ` · ${r.f1}` : ""}\n${r.pct.toFixed(1)} %${r.ee ? ` ± ${(196 * r.ee).toFixed(1)}` : ""}\n${entero(r.num)} de ${entero(r.den)} personas`;
+    const renglones = [["Grupo", (r) => r.serie], ["Categoría", (r) => r.categoria], ["Corte", (r) => [r.f0, r.f1].filter(Boolean).join(" · ") || null], ["Porcentaje", (r) => `${r.pct.toFixed(1)} %${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]];
     const subt = [fijo.anio ?? "", fijo.sexo && fijo.sexo !== "Total" ? fijo.sexo : "", fijo.edad && fijo.edad !== "Todas" ? EDAD_ETIQ[fijo.edad] : "", sep.length ? `un panel por ${sep.map((s) => s.rotulo).join(" y ")}` : ""].filter(Boolean).join(" · ");
     const plot = sel.length ? Plot.plot({marginLeft: 190, marginRight: 60, height: alto, width: Math.max(360, ancho || 900), ...facetas,
       color: {domain: series, range: series.map((s) => COLOR_SERIE[s]), legend: true},
@@ -86,7 +86,7 @@ export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) 
             Plot.text(d, {x: "pct", y: "categoria", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, dy, textAnchor: "start", fontSize: 11, ...canal}),
           ];
         }),
-        Plot.tip(sel, Plot.pointer({x: "pct", y: "categoria", ...canal, maxRadius: Infinity, ...GLOBO, title: titulo})),
+        Plot.tip(sel, Plot.pointer({x: "pct", y: "categoria", ...canal, maxRadius: Infinity, ...GLOBO, ...globo(renglones)})),
         Plot.ruleX([0]),
       ]}) : html`<p class="beta-nota">Sin datos para esta combinación.</p>`;
     cuerpo.replaceChildren(

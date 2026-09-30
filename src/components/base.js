@@ -58,7 +58,23 @@ export const ordinal = (n) => ORDINAL[Math.max(2, Math.min(5, n))].slice(0, n);
 
 // Globos: Plot los dibuja a 10 px y en una tarjeta se leen chicos. Se pasa a
 // cada Plot.tip (o dentro del pointer) para que todos midan lo mismo.
-export const GLOBO = {fontSize: 13, textPadding: 9};
+export const GLOBO = {fontSize: 13, textPadding: 9, lineWidth: 34};
+
+// Globo con renglones "Rótulo valor": Plot escribe el rótulo en negritas solo
+// cuando el globo se arma con `channels`; con `title` todo salía como texto
+// corrido y se leía plano. `renglones` es una lista [rótulo, (d) => valor];
+// si el valor es vacío o nulo, Plot omite el renglón. Los canales de posición
+// y facetas se ocultan: lo que importa va en los renglones, con su nombre.
+export function globo(renglones) {
+  const channels = {};
+  const format = {x: false, y: false, x1: false, x2: false, y1: false, y2: false, fx: false, fy: false, z: false, fill: false, stroke: false, r: false};
+  renglones.forEach(([rotulo, valor], i) => {
+    const clave = `g${i}`;
+    channels[clave] = {label: rotulo, value: (d) => { const v = valor(d); return v == null || v === "" ? undefined : String(v); }};
+    format[clave] = true;
+  });
+  return {...GLOBO, channels, format};
+}
 
 // Gris para lo no asignable en las vistas de variantes (flechas y lista).
 // El color de cada variante lo genera el componente del mapa (un tono hsl por

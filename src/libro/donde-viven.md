@@ -8,7 +8,7 @@ import {html} from "npm:htl";
 import {datosCenso, seccionCenso} from "../components/seccion-censo.js";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, SECUENCIAL, MODO, alCambiarModo, GLOBO} from "../components/base.js";
+import {punto, SECUENCIAL, MODO, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import * as d3 from "npm:d3";
 import {procedencia} from "../components/fuentes.js";
 
@@ -104,7 +104,7 @@ function pintarLA() {
         marks: [
           Plot.cell(celdas, {x: "lengua", y: "alcaldia", fill: "share", inset: 0.5}),
           Plot.text(celdas.filter((c) => c.num > 0), {x: "lengua", y: "alcaldia", text: (c) => c.share.toFixed(0), fontSize: 10.5, fill: (c) => ((c.share >= 22) !== MODO.oscuro ? "white" : "black")}),
-          Plot.tip(celdas, Plot.pointer({x: "lengua", y: "alcaldia", maxRadius: Infinity, ...GLOBO, title: (c) => `${c.alcaldia} · ${c.lengua}\n${c.share.toFixed(1)} % de sus hablantes\n${entero(c.num)} de ${entero(c.tot)} hablantes`})),
+          Plot.tip(celdas, Plot.pointer({x: "lengua", y: "alcaldia", maxRadius: Infinity, ...GLOBO, ...globo([["Alcaldía", (c) => c.alcaldia], ["Lengua", (c) => c.lengua], ["Parte de sus hablantes", (c) => `${c.share.toFixed(1)} %`], ["Hablantes", (c) => `${entero(c.num)} de ${entero(c.tot)}`]])})),
         ]})]),
     fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["nahuatl_2015", "nahuatl_2020", "word_tabla2_celdas_iguales"], lectura: ["R-SECULT-LENGUAS", "R-SEPI-2024-DIV"]}),
     explicacion("Para cada alcaldía se reparte a sus hablantes de lengua indígena entre las diez lenguas con más hablantes en la ciudad ese año; lo que falta para llegar a 100 son las demás lenguas, que están en la tabla. Las cifras salen de las muestras censales, así que en las alcaldías con pocos hablantes una celda puede apoyarse en muy pocas entrevistas; el globo dice cuántos hablantes representa cada celda."),

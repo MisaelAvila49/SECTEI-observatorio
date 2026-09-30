@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, ejePct, COLOR_UNICO, ROJO, alCambiarModo, GLOBO} from "../components/base.js";
+import {punto, ejePct, COLOR_UNICO, ROJO, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const [clin, lenguasNac, serieNac] = await Promise.all([
@@ -45,13 +45,13 @@ function pintarA() {
     nodos.push(figura({titulo: "Las 11 familias lingüísticas, por número de variantes", subtitulo: "Cada familia agrupa lenguas emparentadas; oto-mangue y yuto-nahua concentran la mayor diversidad", pie: "INALI, Catálogo de las Lenguas Indígenas Nacionales 2008 · cada barra es una familia; el número entre paréntesis, sus agrupaciones"},
       [Plot.plot({marginLeft: 140, marginRight: 70, height: 26 * porFamilia.length + 60, width: Math.min(900, width), x: {label: "variantes", grid: true}, y: {label: null, domain: porFamilia.map((r) => r.familia)},
         marks: [Plot.barX(porFamilia, {x: "variantes", y: "familia", fill: COLOR_UNICO}), Plot.text(porFamilia, {x: "variantes", y: "familia", text: (r) => `${r.variantes} (${r.agrupaciones})`, dx: 6, textAnchor: "start", fontSize: 11.5}),
-          Plot.tip(porFamilia, Plot.pointerY({x: "variantes", y: "familia", maxRadius: Infinity, ...GLOBO, title: (r) => `Familia ${r.familia}\n${r.agrupaciones} agrupaciones · ${r.variantes} variantes`})), Plot.ruleX([0])]})]));
+          Plot.tip(porFamilia, Plot.pointerY({x: "variantes", y: "familia", maxRadius: Infinity, ...GLOBO, ...globo([["Familia", (r) => r.familia], ["Agrupaciones", (r) => r.agrupaciones], ["Variantes", (r) => r.variantes]])})), Plot.ruleX([0])]})]));
   } else {
     const top = porAgrupacion.slice(0, 25);
     nodos.push(figura({titulo: "Las 25 agrupaciones con más variantes", subtitulo: "Una variante es una forma de la lengua con diferencias estructurales o léxicas y una identidad sociolingüística propia", pie: "INALI, Catálogo de las Lenguas Indígenas Nacionales 2008 · cada barra es una agrupación; junto al número, su familia"},
       [Plot.plot({marginLeft: 150, marginRight: 150, height: 22 * top.length + 60, width: Math.min(900, width), x: {label: "variantes", grid: true}, y: {label: null, domain: top.map((r) => r.agrupacion)},
         marks: [Plot.barX(top, {x: "variantes", y: "agrupacion", fill: COLOR_UNICO}), Plot.text(top, {x: "variantes", y: "agrupacion", text: (r) => `${r.variantes} · ${r.familia}`, dx: 6, textAnchor: "start", fontSize: 11.5}),
-          Plot.tip(top, Plot.pointerY({x: "variantes", y: "agrupacion", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.agrupacion} (familia ${r.familia})\n${r.variantes} variantes`})), Plot.ruleX([0])]})]));
+          Plot.tip(top, Plot.pointerY({x: "variantes", y: "agrupacion", maxRadius: Infinity, ...GLOBO, ...globo([["Agrupación", (r) => r.agrupacion], ["Familia", (r) => r.familia], ["Variantes", (r) => r.variantes]])})), Plot.ruleX([0])]})]));
   }
   nodos.push(fuenteDe({datos: ["D-INALI-CLIN-2008"], cotejos: ["clin_familias", "clin_agrupaciones", "clin_variantes"]}));
   nodos.push(explicacion("El Catálogo de las Lenguas Indígenas Nacionales (INALI, 2008) ordena las lenguas en tres niveles: la familia, que reúne lenguas con un origen común; la agrupación, que es lo que comúnmente se llama 'lengua' y lo que pregunta el Censo; y la variante, la forma concreta que se habla en un territorio, con su propia autodenominación. Las 364 variantes son las que el INALI trata como lenguas para fines de política pública."),
@@ -89,7 +89,7 @@ function pintarB() {
         [Plot.plot({marginLeft: 150, marginRight: 110, height: 22 * top.length + 60, width: Math.min(900, width), x: {label: "hablantes", grid: true, domain: [0, MAX_NAC]}, y: {label: null, domain: top.map((r) => r.lengua_nombre)},
           marks: [Plot.barX(top, {x: "num", y: "lengua_nombre", fill: COLOR_UNICO}), Plot.ruleX(top, {x1: (r) => Math.max(0, r.num - 1.96 * r.ee * r.den), x2: (r) => r.num + 1.96 * r.ee * r.den, y: "lengua_nombre", stroke: "currentColor", strokeOpacity: 0.5}),
             Plot.text(top, {x: "num", y: "lengua_nombre", text: (r) => `${entero(r.num)} (${pct(r.share)})`, dx: 8, textAnchor: "start", fontSize: 11.5}),
-            Plot.tip(top, Plot.pointerY({x: "num", y: "lengua_nombre", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.lengua_nombre} (${r.familia})\n${entero(r.num)} hablantes · ${pct(r.share)} de los hablantes del país\n± ${entero(1.96 * r.ee * r.den)} (95 %)`})), Plot.ruleX([0])]})]),
+            Plot.tip(top, Plot.pointerY({x: "num", y: "lengua_nombre", maxRadius: Infinity, ...GLOBO, ...globo([["Lengua", (r) => r.lengua_nombre], ["Familia", (r) => r.familia], ["Hablantes", (r) => `${entero(r.num)} (± ${entero(1.96 * r.ee * r.den)})`], ["Parte de los hablantes del país", (r) => pct(r.share)]])})), Plot.ruleX([0])]})]),
       tablaColumnas(filas.map((r) => ({...r, share: 100 * r.num / total})), [{etiqueta: "Lengua", valor: (r) => r.lengua_nombre}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los hablantes", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => entero(1.96 * r.ee * r.den)}], {titulo: "Ver las 70 lenguas"}));
   } else {
     const filas = nac.filter((r) => r.nivel === "entidad" && r.sexo === sexo && r.lengua === selLengua.value).sort((a, b) => b.num - a.num);
@@ -100,7 +100,7 @@ function pintarB() {
       figura({titulo: `Dónde viven los hablantes de ${nombre}, 2020`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}las doce entidades con más hablantes; el porcentaje es su parte de todos los hablantes de la lengua`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada barra es una entidad; el globo trae la proporción dentro de la entidad"},
         [Plot.plot({marginLeft: 150, marginRight: 110, height: 24 * top.length + 60, width: Math.min(900, width), x: {label: "hablantes", grid: true, domain: [0, Math.max(...nac.filter((r) => r.nivel === "entidad" && r.sexo === "Total" && r.lengua === selLengua.value).map((r) => r.num)) * 1.15]}, y: {label: null, domain: top.map((r) => r.nombre)},
           marks: [Plot.barX(top, {x: "num", y: "nombre", fill: (r) => (r.cve === "09" ? ROJO : COLOR_UNICO)}), Plot.text(top, {x: "num", y: "nombre", text: (r) => `${entero(r.num)} (${pct(r.share)})`, dx: 8, textAnchor: "start", fontSize: 11.5}),
-            Plot.tip(top, Plot.pointerY({x: "num", y: "nombre", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.nombre}\n${entero(r.num)} hablantes de ${nombre} · ${pct(r.share)} de la lengua\n${pct(r.tasa, 2)} de la población de 3 años y más de la entidad`})), Plot.ruleX([0])]})]),
+            Plot.tip(top, Plot.pointerY({x: "num", y: "nombre", maxRadius: Infinity, ...GLOBO, ...globo([["Entidad", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], ["Parte de la lengua", (r) => pct(r.share)], ["De la población de la entidad", (r) => pct(r.tasa, 2)]])})), Plot.ruleX([0])]})]),
       html`<p class="beta-nota">En rojo, la Ciudad de México. El mapa de la lengua por municipio, con la variante del catálogo, está en <a href="../mapa">el mapa</a>: elige la lengua y pulsa "Ver el mapa de la lengua".</p>`,
       tablaColumnas(filas.map((r) => ({...r, share: 100 * r.num / total, tasa: 100 * r.num / r.den})), [{etiqueta: "Entidad", valor: (r) => r.nombre}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de la lengua", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "% de la entidad", num: true, valor: (r) => r.tasa.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => entero(1.96 * r.ee * r.den)}], {titulo: "Ver todas las entidades"}));
   }

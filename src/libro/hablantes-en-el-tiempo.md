@@ -6,8 +6,8 @@ title: Hablantes en el tiempo
 import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo} from "../components/panel-seccion.js";
-import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, ejePct, COLOR_UNICO, COLOR_REFERENCIA, GLOBO} from "../components/base.js";
+import {figura, explicacion, tablaColumnas, kpis, claves} from "../components/graficas.js";
+import {punto, ejePct, COLOR_UNICO, COLOR_REFERENCIA, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const [clin, lenguasNac, serieNac] = await Promise.all([
@@ -16,6 +16,7 @@ const [clin, lenguasNac, serieNac] = await Promise.all([
   FileAttachment("../data/serie_nacional.csv").csv({typed: true}),
 ]);
 const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
+const clavesSerie = () => claves([{termino: "Punto lleno", texto: "conteo censal: cuenta a toda la población, sin margen de error."}, {termino: "Punto hueco", texto: "estimación de una encuesta intercensal; el globo trae su margen de error al 95 % (±)."}]);
 const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 const uni = (u) => String(u ?? "").replace(/pob (\d)\+/, "población de $1 años y más").replace("viv. particulares", "viviendas particulares");
@@ -63,8 +64,9 @@ function pintarS() {
         marks: [...claves.map((k) => Plot.line(filas.filter((r) => r.poblacion === k), {x: "anio", y: "valor", stroke: "serie", strokeWidth: 2.2, strokeDasharray: TRAZOS[k] ?? undefined})),
           Plot.dot(filas, {x: "anio", y: "valor", stroke: "serie", fill: (r) => (r.cota === "muestra" ? "white" : color(r.serie)), r: 4, strokeWidth: 1.6}),
           Plot.text(ultimos, {x: "anio", y: "valor", text: (r) => `${r.serie}: ${esPct ? pct(r.pct) : `${(r.num / 1e6).toFixed(1)} M`}`, dx: 8, textAnchor: "start", fontSize: 11}),
-          Plot.tip(filas, Plot.pointerX({x: "anio", y: "valor", z: "serie", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.anio} · ${r.serie}\n${pct(r.pct, 2)}${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""} · ${entero(r.num)} personas\nUniverso: ${uni(r.universo)}\n${r.cota === "muestra" ? "estimación de encuesta" : "conteo censal"}`})),
+          Plot.tip(filas, Plot.pointerX({x: "anio", y: "valor", z: "serie", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Población", (r) => r.serie], ["Porcentaje", (r) => `${pct(r.pct, 2)}${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}`], ["Personas", (r) => entero(r.num)], ["Fuente", (r) => (r.cota === "muestra" ? "estimación de encuesta" : "conteo censal")]])})),
           Plot.ruleY([0])]})]),
+    clavesSerie(),
     fuenteDe({datos: ["R-INEGI-2004-PI", "D-ITER-2020-NAL", "R-CENSO-2020-TAB-ETN", "D-EIC-2015-NAL", "D-EIC-2025-MICRO", "R-EIC-2025-TAB-ETN"],
       cotejos: ["hablantes3_nacional_2015_micro", "hablantes3_nacional_2025_micro", "hablantes3_nacional_2020", "pct_autoads_nacional_2020"],
       nota: "Los hablantes de 5 años y más de 1990 a 2010 y de 2020 son cifras publicadas por el INEGI. Los de 2015 y 2025 se calculan con los microdatos de las intercensales, porque sus tabulados empiezan en 3 años; el mismo cálculo desde 3 años reproduce exactamente la cifra publicada."}),
@@ -118,8 +120,9 @@ function pintarAlc() {
           Plot.dot(datos, {x: "anio", y: "valor", fx: "col", fy: "fila", stroke: COLOR_UNICO, fill: (r) => (r.cota === "censo" ? COLOR_UNICO : "white"), r: 2.8}),
           Plot.text(rotulos, {fx: "col", fy: "fila", text: "nombre", frameAnchor: "top-left", dx: 6, dy: 6, fontSize: 11.5, fontWeight: 600}),
           Plot.tip(datos, Plot.pointerX({x: "anio", y: "valor", fx: "col", fy: "fila", maxRadius: Infinity, ...GLOBO,
-            title: (r) => `${r.nombre} · ${r.anio}\n${pct(r.pct, 2)} de la población de 5 años y más${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}\n${entero(r.num)} hablantes`})),
+            ...globo([["Alcaldía", (r) => r.nombre], ["Año", (r) => r.anio], ["Porcentaje", (r) => `${pct(r.pct, 2)}${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}`], ["Hablantes", (r) => entero(r.num)]])})),
         ]})]),
+    clavesSerie(),
     fuenteDe({datos: ["D-ITER-1990", "D-ITER-1995", "D-ITER-2000", "D-ITER-2005", "D-ITER-2010", "D-EIC-2015", "D-ITER-2020", "D-EIC-2025-MICRO"],
       cotejos: ["cdmx_hli5_1995_n", "cdmx_hli5_2000_n", "cdmx_hli5_2005_n", "cdmx_hli5_2010_n", "cdmx_hli5_2020_n", "word_tabla2_celdas_iguales", "eic2025_alcaldias_iguales"],
       nota: "Los totales de la ciudad reproducen las cifras publicadas; por alcaldía, 2015 reproduce la tabla del documento de la Secretaría de Cultura y 2025 el tabulado de la Encuesta Intercensal, ambos sobre la población de 3 años y más."}),

@@ -94,6 +94,20 @@ export function kpis(tarjetas) {
   </div>`;
 }
 
+// Claves de lectura junto a la gráfica: qué significa cada término de una
+// aproximación (exacta, única, estimada, punto hueco...) en una línea, a la
+// vista y sin tener que ir a la metodología. El detalle sigue en el
+// desplegable de explicación. `items`: [{termino, texto, color?}].
+export function claves(items, {titulo = "Cómo leer esta gráfica"} = {}) {
+  return html`<div class="claves-lectura" role="note" aria-label="${titulo}">
+    <span class="claves-titulo">${titulo}</span>
+    <dl class="claves-lista">${items.map(({termino, texto, color}) => html`<div class="clave">
+      <dt>${color ? html`<span class="clave-muestra" style="background:${color}" aria-hidden="true"></span>` : ""}${termino}</dt>
+      <dd>${texto}</dd>
+    </div>`)}</dl>
+  </div>`;
+}
+
 export function explicacion(texto) {
   const partes = (Array.isArray(texto) ? texto : [texto]).filter(Boolean)
     .map((t) => String(t).replace(/\s+/g, " ").trim());

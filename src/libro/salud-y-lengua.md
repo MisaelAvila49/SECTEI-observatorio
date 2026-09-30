@@ -8,7 +8,7 @@ import {html} from "npm:htl";
 import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {seccionPerfil, CRITERIOS} from "../components/seccion-perfil.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, COLOR_SERIE, COLOR_UNICO, ejePct, ordinal, alCambiarModo, GLOBO} from "../components/base.js";
+import {punto, COLOR_SERIE, COLOR_UNICO, ejePct, ordinal, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const perfil = (await FileAttachment("../data/perfil_ciudad.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
@@ -85,7 +85,7 @@ function pintarM() {
         marks: [Plot.areaY(f.filter((r) => r.ee), {x: "anio", y1: (r) => Math.max(0, r.pct - 196 * r.ee), y2: (r) => Math.min(MAX_MONO, r.pct + 196 * r.ee), fill: "serie", fillOpacity: 0.12, z: "serie"}),
           Plot.line(f, {x: "anio", y: "pct", stroke: "serie", strokeWidth: 2}), Plot.dot(f, {x: "anio", y: "pct", fill: "serie", r: 3.5}),
           Plot.text(f.filter((r) => r.anio === 2025), {x: "anio", y: "pct", text: "serie", dx: 8, textAnchor: "start", fontSize: 11}),
-          Plot.tip(f, Plot.pointerX({x: "anio", y: "pct", z: "serie", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.anio} · ${r.serie}\n${pct(r.pct, 2)} no habla español${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}\n${entero(r.num)} de ${entero(r.den)} hablantes`})), Plot.ruleY([0])]})]),
+          Plot.tip(f, Plot.pointerX({x: "anio", y: "pct", z: "serie", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Grupo", (r) => r.serie], ["No habla español", (r) => `${pct(r.pct, 2)}${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}`], ["Hablantes", (r) => `${entero(r.num)} de ${entero(r.den)}`]])})), Plot.ruleY([0])]})]),
     avisoM,
     fuenteDe({datos: PERFIL_DATOS, cotejos: ["monolingue_2025", "sepi_monolingues_alcaldia_iguales"], lectura: ["R-SEPI-2024-DIV"]}),
     explicacion("De quienes hablan una lengua indígena, qué parte declaró no hablar español. En la ciudad es una proporción chica y con mucho error por la muestra; por eso la banda. El universo son los hablantes que respondieron la pregunta; en 2010 y 2015 más de una décima parte no la respondió."),

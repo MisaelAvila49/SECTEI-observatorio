@@ -4364,3 +4364,48 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 .verificado-resultado > p {
   margin: 0.3rem 0 0;
 }
+
+/* Claves de lectura: qué significa cada término de una aproximación, a la
+   vista junto a la gráfica. Una rejilla de términos cortos; el término en
+   negritas con su muestra de color, la definición en una línea. */
+.claves-lectura {
+  margin: 0.4rem 0 0.6rem;
+  padding: 0.55rem 0.75rem;
+  border-left: 3px solid var(--border-subtle);
+  background: color-mix(in srgb, var(--theme-foreground) 3%, transparent);
+  border-radius: 6px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.claves-titulo {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 0.3rem;
+}
+.claves-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.35rem 1.1rem;
+  margin: 0;
+}
+.claves-lista .clave dt {
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.claves-lista .clave dd {
+  margin: 0.05rem 0 0;
+  color: var(--text-primary);
+}
+.clave-muestra {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 2px;
+  flex: none;
+}

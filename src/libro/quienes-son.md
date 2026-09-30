@@ -8,7 +8,7 @@ import {html} from "npm:htl";
 import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {seccionPerfil, CRITERIOS} from "../components/seccion-perfil.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, COLOR_SERIE, ejePct, ordinal, alCambiarModo, GLOBO} from "../components/base.js";
+import {punto, COLOR_SERIE, ejePct, ordinal, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const perfil = (await FileAttachment("../data/perfil_ciudad.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
@@ -67,14 +67,14 @@ function pintarA() {
         color: {domain: ["Población indígena", "Resto de la población"], range: [COLOR_SERIE["Población indígena"], COLOR_SERIE["Resto de la población"]], legend: true},
         marks: [Plot.barX(pir.filter((r) => r.serie === "Resto de la población"), {x: "x", y: "categoria", fill: "serie", fillOpacity: 0.35}),
           Plot.barX(pir.filter((r) => r.serie === "Población indígena"), {x: "x", y: "categoria", fill: "none", stroke: "serie", strokeWidth: 1.6, insetTop: 1, insetBottom: 1}),
-          Plot.tip(pir, Plot.pointer({x: "x", y: "categoria", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.serie} · ${r.sexo} · ${r.categoria} años\n${pct(r.pct, 2)} del grupo\n${entero(r.num)} personas`})),
+          Plot.tip(pir, Plot.pointer({x: "x", y: "categoria", maxRadius: Infinity, ...GLOBO, ...globo([["Grupo", (r) => r.serie], ["Sexo", (r) => r.sexo], ["Edad", (r) => `${r.categoria} años`], ["Parte del grupo", (r) => pct(r.pct, 2)], ["Personas", (r) => entero(r.num)]])})),
           Plot.ruleX([0])]})]),
     figura({titulo: "Qué parte de cada grupo de edad es indígena, 2010 - 2025", subtitulo: `Porcentaje de la población de cada grupo de edad que ${crit === "lengua" ? "habla una lengua indígena" : "se considera indígena"}`, pie: "Censos e intercensales (INEGI), muestras de la Ciudad de México · cada línea es un grupo de edad; cada punto, una edición"},
       [Plot.plot({height: 260, width: Math.min(920, width), marginLeft: 50, marginRight: 110, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {domain: [0, MAX_PROP]}),
         color: {domain: Object.values(EDAD_ETIQ), range: ordinal(4)},
         marks: [Plot.line(prop, {x: "anio", y: "pct", stroke: "edadEt", strokeWidth: 2}), Plot.dot(prop, {x: "anio", y: "pct", fill: "edadEt", r: 3.5}),
           Plot.text(prop.filter((r) => r.anio === Math.max(...prop.map((x) => x.anio))), {x: "anio", y: "pct", text: "edadEt", dx: 8, textAnchor: "start", fontSize: 11}),
-          Plot.tip(prop, Plot.pointerX({x: "anio", y: "pct", z: "edadEt", maxRadius: Infinity, ...GLOBO, title: (r) => `${r.anio} · ${r.edadEt}\n${pct(r.pct, 2)} ${crit === "lengua" ? "habla una lengua indígena" : "se considera indígena"}\n${entero(r.num)} de ${entero(r.den)}`})), Plot.ruleY([0])]})]),
+          Plot.tip(prop, Plot.pointerX({x: "anio", y: "pct", z: "edadEt", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Grupo de edad", (r) => r.edadEt], [crit === "lengua" ? "Habla una lengua indígena" : "Se considera indígena", (r) => pct(r.pct, 2)], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]])})), Plot.ruleY([0])]})]),
     fuenteDe({datos: PERFIL_DATOS, cotejos: ["cdmx_hli3_2015_n", "cdmx_hli3_2020_n", "cdmx_hli3_2025", "cdmx_autoads_2015_n", "cdmx_autoads_2020_n", "cdmx_autoads_2025"], referencia: ["R-EIC-2025-TAB-ETN"],
       nota: "Los totales de cada población reproducen las cifras publicadas; la estructura por edad de la población indígena de la ciudad no tiene tabulado con estos grupos."}),
     explicacion("La pirámide compara la forma de las dos poblaciones: cada barra es el porcentaje del grupo que tiene esa edad y ese sexo, así que las dos suman 100 % y se pueden superponer aunque una sea mucho más chica. Entre los hablantes pesan más las edades de trabajo y menos las infantiles; la segunda gráfica lo muestra de otro modo, como la parte de cada grupo de edad que habla la lengua. Que los niños de 3 a 14 años hablen menos que sus padres es la señal de que la lengua se transmite menos."),

@@ -111,9 +111,9 @@ toc: false
 </section>
 
 ```js
-import {kpis, seccion, figura, explicacion} from "./components/graficas.js";
+import {kpis, seccion, figura, explicacion, claves} from "./components/graficas.js";
 import {conDescarga} from "./components/descargar.js";
-import {punto, COLOR_SERIE, alCambiarModo, alCambiarAncho, anchoActual, ejePct, GLOBO} from "./components/base.js";
+import {punto, COLOR_SERIE, alCambiarModo, alCambiarAncho, anchoActual, ejePct, GLOBO, globo} from "./components/base.js";
 import {procedencia} from "./components/fuentes.js";
 import * as Plot from "npm:@observablehq/plot";
 
@@ -173,7 +173,7 @@ display(seccion({numero: "01", titulo: "Treinta y cinco años de hablantes"}));
       Plot.dot(filas, {x: "anio", y: "pct", stroke: color(), fill: (d) => (d.cota === "censo" ? color() : "white"), r: 4.5, strokeWidth: 1.6}),
       Plot.text(filas, {x: "anio", y: "pct", text: (d) => `${d.pct.toFixed(2)} %`, dy: -12, fontSize: 11}),
       Plot.tip(filas, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, ...GLOBO,
-        title: (d) => `${d.anio}\n${d.pct.toFixed(2)} % de la población de 5 años y más${d.ee ? ` (± ${(196 * d.ee).toFixed(2)})` : ""}\n${punto(Math.round(d.num))} hablantes\n${d.cota === "censo" ? "conteo censal" : "estimación de encuesta"}`})),
+        ...globo([["Año", (d) => d.anio], ["Porcentaje", (d) => `${d.pct.toFixed(2)} %${d.ee ? ` (± ${(196 * d.ee).toFixed(2)})` : ""}`], ["Hablantes", (d) => punto(Math.round(d.num))], ["Fuente", (d) => (d.cota === "censo" ? "conteo censal" : "estimación de encuesta")]])})),
       Plot.ruleY([0]),
     ],
   })])));
@@ -181,6 +181,7 @@ display(seccion({numero: "01", titulo: "Treinta y cinco años de hablantes"}));
   alCambiarAncho((n) => { ancho = n; pintar(); });
   pintar();
   display(cuerpo);
+  display(claves([{termino: "Punto lleno", texto: "conteo censal: cuenta a toda la población, sin margen de error."}, {termino: "Punto hueco", texto: "estimación de una encuesta intercensal; el globo trae su margen de error al 95 % (±)."}]));
   display(fuenteDe({datos: ["D-ITER-1990", "D-ITER-1995", "D-ITER-2000", "D-ITER-2005", "D-ITER-2010", "D-EIC-2015", "D-ITER-2020", "D-EIC-2025-MICRO"],
     cotejos: ["cdmx_hli5_1990_n", "cdmx_hli5_1995_n", "cdmx_hli5_2000_n", "cdmx_hli5_2005_n", "cdmx_hli5_2010_n", "cdmx_hli5_2020_n", "cdmx_hli3_2015_n", "cdmx_hli3_2025"],
     lectura: ["R-SEPI-2024-DIV"],
