@@ -9,7 +9,7 @@ import {datosCenso, seccionCenso} from "../components/seccion-censo.js";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {punto, ejePct, COLOR_UNICO, GLOBO, globo, alCambiarModo} from "../components/base.js";
-import {mosaico} from "../components/formas.js";
+import {coropleta, lollipop, treemap} from "../components/formas.js";
 import {procedencia} from "../components/fuentes.js";
 
 const [nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, lenguasAlc, origen] = await Promise.all([
@@ -67,12 +67,14 @@ function pintarMos() {
     kpis([{etiqueta: `Lugar de la Ciudad de México`, cifra: cdmx ? `${cdmx.lugar} de 32` : "", nota: "de la entidad con mayor proporción a la menor"},
       {etiqueta: "Proporción en la ciudad", cifra: cdmx ? pct(cdmx.valor) : "", nota: p.universo},
       {etiqueta: "Entidad con mayor proporción", cifra: filas[0]?.nombre ?? "", nota: filas[0] ? pct(filas[0].valor) : ""}]),
-    figura({titulo: `${p.etiqueta}: las 32 entidades, 2020`, subtitulo: `Porcentaje ${p.universo}. Cada entidad ocupa un cuadro del mismo tamaño y la posición aproxima la geografía; con borde rojo, la Ciudad de México`,
+    figura({titulo: `${p.etiqueta}: las 32 entidades, 2020`, subtitulo: `Porcentaje ${p.universo}; con borde rojo, la Ciudad de México`,
       pie: `INEGI, Censo 2020 (${p.fuente}) · el color es el porcentaje, con la misma escala para todas las entidades`},
-      [mosaico(filas, {ancho: Math.min(900, width), dominio: [0, p.tope], destacado: "09",
-        renglones: [["Entidad", (r) => r.nombre], ["Porcentaje", (r) => `${pct(r.valor)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`], ["Lugar", (r) => `${r.lugar} de 32`]]})]),
+      [coropleta(filas, geoEntidades, {ancho: Math.min(900, width), dominio: [0, p.tope], destacado: "09", renglones: [["Entidad", (r) => r.nombre], ["Porcentaje", (r) => `${pct(r.valor)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`], ["Lugar", (r) => `${r.lugar} de 32`]]})]),
+    figura({titulo: `Las 32 entidades ordenadas, 2020`, subtitulo: "De la entidad con mayor proporción a la menor; en rojo, la Ciudad de México",
+      pie: `INEGI, Censo 2020 (${p.fuente}) · cada punto es una entidad, con la misma escala que el mapa`},
+      [lollipop(filas.map((r) => ({...r, nombre: r.nombre})), {ancho: Math.min(900, width), dominio: [0, p.tope], destacado: (r) => r.cve === "09", formato: (v) => pct(v), etiquetaX: "%", renglones: [["Entidad", (r) => r.nombre], ["Porcentaje", (r) => `${pct(r.valor)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`], ["Lugar", (r) => `${r.lugar} de 32`]]})]),
     fuenteDe({datos: ["D-ITER-2020-NAL", "D-CENSO-2020", "D-INPI-2020-HOG"], cotejos: ["hablantes3_nacional_2020", "pct_autoads_nacional_2020", "pct_pi_nacional_2020", "cdmx_hli3_2020_n", "cdmx_autoads_2020_n"]}),
-    explicacion("Un mapa con la forma real del país hace que las entidades grandes dominen la vista aunque tengan poca población. Aquí cada entidad es un cuadro del mismo tamaño, colocado cerca de donde está, y el color dice qué proporción de su población es indígena según la forma de contarla que se elija. La escala es la misma para todas y no cambia al elegir otra entidad."),
+    explicacion("El mapa pinta cada entidad según qué proporción de su población es indígena, con la forma de contarla que se elija. Como las entidades del centro son chicas en el mapa, debajo van las 32 ordenadas de mayor a menor con la misma escala, para que la Ciudad de México se compare con las demás sin buscarla. Cada forma de contar tiene su propia escala, fija para las 32 entidades."),
     tablaColumnas(filas, [{etiqueta: "Lugar", num: true, valor: (r) => r.lugar}, {etiqueta: "Entidad", valor: (r) => r.nombre}, {etiqueta: "%", num: true, valor: (r) => r.valor.toFixed(2)}, {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Población", num: true, valor: (r) => entero(r.den)}], {titulo: "Ver las 32 entidades"}));
 }
 panelMos.addEventListener("input", pintarMos);
@@ -106,13 +108,9 @@ function pintar1() {
   const top = filas.slice(0, 15).map((r) => ({...r, share: 100 * r.num / total}));
   cuerpo1.replaceChildren(
     kpis([{etiqueta: `Lenguas con hablantes en ${anio}`, cifra: String(filas.length), nota: "agrupaciones lingüísticas del catálogo del INALI"}, {etiqueta: "Hablantes en la ciudad", cifra: entero(total), nota: filas[0]?.universo ?? ""}, {etiqueta: "La lengua mayor", cifra: filas[0]?.lengua_nombre ?? "", nota: filas[0] ? `${pct(top[0].share)} de los hablantes` : ""}]),
-    figura({titulo: `Las quince lenguas con más hablantes en la ciudad, ${anio}`, subtitulo: `${sexo !== "Total" && conSexo ? `${sexo} · ` : ""}${filas.length} lenguas con hablantes; se muestran las quince mayores`, pie: `${filas[0]?.fuente ?? "INEGI"} · cada barra es una lengua; el porcentaje es su parte de todos los hablantes de la ciudad`},
-      [Plot.plot({marginLeft: 150, marginRight: 90, height: 24 * top.length + 60, width: Math.min(900, width),
-        x: {label: "hablantes", grid: true, domain: [0, MAX_LENGUA]}, y: {label: null, domain: top.map((r) => r.lengua_nombre)},
-        marks: [Plot.barX(top, {x: "num", y: "lengua_nombre", fill: COLOR_UNICO}),
-          Plot.text(top, {x: "num", y: "lengua_nombre", text: (r) => `${entero(r.num)} (${pct(r.share)})`, dx: 6, textAnchor: "start", fontSize: 11.5}),
-          Plot.tip(top, Plot.pointerY({x: "num", y: "lengua_nombre", maxRadius: Infinity, ...GLOBO, ...globo([["Lengua", (r) => r.lengua_nombre], ["Familia", (r) => r.familia], ["Hablantes", (r) => `${entero(r.num)}${r.ee ? ` (± ${entero(196 * r.ee * r.den / 100)})` : ""}`], ["Parte de los hablantes de la ciudad", (r) => pct(r.share)]])})),
-          Plot.ruleX([0])]})]),
+    figura({titulo: `Cómo se reparten los hablantes de la ciudad entre las lenguas, ${anio}`, subtitulo: `${sexo !== "Total" && conSexo ? `${sexo} · ` : ""}${filas.length} lenguas con hablantes; el área de cada rectángulo es su parte de los hablantes de la ciudad`, pie: `${filas[0]?.fuente ?? "INEGI"} · cada rectángulo es una lengua; el color, su familia (las tres mayores con color y las demás en gris)`},
+      [treemap(filas.map((r) => ({...r, grupo: r.familia ? r.familia.charAt(0).toUpperCase() + r.familia.slice(1) : "Sin familia asignada", parte: r.lengua_nombre, valor: r.num})), {ancho: Math.min(980, width), alto: 440, etiquetaOtras: "Otras familias",
+        renglones: [["Lengua", (d) => d.parte], ["Familia", (d) => d.grupo], ["Hablantes", (d) => `${entero(d.num)}${d.ee ? ` (± ${entero(196 * d.ee * d.den / 100)})` : ""}`], ["Parte de los hablantes de la ciudad", (d) => pct(d.pct)]]})]),
     figura({titulo: "Cuántas lenguas tienen hablantes en la ciudad, por edición", subtitulo: "Agrupaciones lingüísticas con al menos un hablante en la muestra de cada censo o encuesta", pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada punto es una edición"},
       [Plot.plot({height: 220, width: Math.min(900, width), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: {label: "lenguas", grid: true, zero: true},
         marks: [Plot.line(porAnio, {x: "anio", y: "n", stroke: COLOR_UNICO, strokeWidth: 2}), Plot.dot(porAnio, {x: "anio", y: "n", fill: COLOR_UNICO, r: 4.5}),

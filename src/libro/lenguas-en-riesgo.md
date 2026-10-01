@@ -9,6 +9,7 @@ import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis, claves} from "../components/graficas.js";
 import {punto, ordinal, COLOR_UNICO, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
+import {unidades} from "../components/formas.js";
 
 const [riesgo, variantesCiudad, lenguasAlc] = await Promise.all([
   FileAttachment("../data/inali_riesgo_2012.csv").csv({typed: true}),
@@ -63,10 +64,9 @@ function pintarA() {
     const porAgr = agrupaciones.map((a) => { const f = riesgo.filter((r) => r.agrupacion === a); return {agrupacion: a, total: f.length, graves: f.filter((r) => r.grado === "Muy alto" || r.grado === "Alto").length}; }).filter((r) => r.graves > 0).sort((a, b) => b.graves - a.graves || b.total - a.total).slice(0, 20);
     const apiladas = porAgr.flatMap((a) => GRADOS.map((g) => ({agrupacion: a.agrupacion, grado: g, n: riesgo.filter((r) => r.agrupacion === a.agrupacion && r.grado === g).length})));
     nodos.push(
-      figura({titulo: "Las 364 variantes por grado de riesgo", subtitulo: "Número de variantes en cada grado", pie: "INALI, Lenguas indígenas nacionales en riesgo de desaparición (2012) · cada barra es un grado"},
-        [Plot.plot({marginLeft: 110, marginRight: 60, height: 190, width: Math.min(900, width), color: colorGrado, x: {label: "variantes", grid: true}, y: {label: null, domain: GRADOS.slice().reverse()},
-          marks: [Plot.barX(porGrado, {x: "n", y: "grado", fill: "grado"}), Plot.text(porGrado, {x: "n", y: "grado", text: "n", dx: 6, textAnchor: "start", fontSize: 12}),
-            Plot.tip(porGrado, Plot.pointerY({x: "n", y: "grado", maxRadius: Infinity, ...GLOBO, ...globo([["Grado de riesgo", (r) => r.grado], ["Variantes", (r) => `${r.n} (${pct(100 * r.n / 364)})`]])})), Plot.ruleX([0])]})]),
+      figura({titulo: "Las 364 variantes por grado de riesgo", subtitulo: "Cada cuadro es una variante; el color, su grado de riesgo de desaparecer", pie: "INALI, Lenguas indígenas nacionales en riesgo de desaparición (2012) · los cuadros se acomodan de la variante en mayor riesgo a la de menor"},
+        [unidades(porGrado.map((r) => ({categoria: r.grado, valor: r.n})), {ancho: Math.min(900, width), orden: GRADOS.slice().reverse(), colores: GRADOS.slice().reverse().map((g) => COLOR_GRADO[g]), porFila: 26,
+          renglones: [["Grado de riesgo", (d) => d.categoria], ["Variantes", (d) => `${d.valor} (${pct(100 * d.valor / 364)})`]]})]),
       figura({titulo: "Las 20 lenguas con más variantes en riesgo muy alto o alto", subtitulo: "Cada barra suma las variantes de la lengua; el color es su grado", pie: "INALI 2012 · cada barra es una agrupación lingüística; elige una en el panel para ver sus variantes"},
         [Plot.legend({color: {...colorGrado, legend: true}}), Plot.plot({marginLeft: 150, marginRight: 50, height: 22 * porAgr.length + 50, width: Math.min(900, width), color: colorGrado, x: {label: "variantes", grid: true}, y: {label: null, domain: porAgr.map((r) => r.agrupacion)},
           marks: [Plot.barX(apiladas, {x: "n", y: "agrupacion", fill: "grado", order: GRADOS.slice().reverse()}),
@@ -115,10 +115,9 @@ function pintarB() {
   const lugar = selAlcB.value ? nombreAlc.get(selAlcB.value) : "la ciudad";
   cuerpoB.replaceChildren(
     kpis([{etiqueta: `Hablantes con variante probable, ${lugar}`, cifra: entero(total), nota: `${anio}; la variante se infiere por el lugar de origen`}, {etiqueta: "En variantes de riesgo muy alto o alto", cifra: pct(porGrado[2].share + porGrado[3].share), nota: `${entero(porGrado[2].num + porGrado[3].num)} hablantes probables`}, {etiqueta: "Variantes en riesgo muy alto o alto presentes", cifra: String(porVariante.size), nota: "con al menos un hablante probable"}]),
-    figura({titulo: `Hablantes de ${lugar} según el grado de riesgo de su variante probable, ${anio}`, subtitulo: `${selLenB.value ? `${lenguasV.find(([k]) => k === selLenB.value)[1]} · ` : ""}porcentaje de los hablantes con variante probable`, pie: "Censos e intercensales (INEGI), variante probable por lugar de origen (método del INALI) y grado del INALI 2012 · cada barra es un grado"},
-      [Plot.plot({marginLeft: 110, marginRight: 90, height: 190, width: Math.min(900, width), color: colorGrado, x: {label: "% de los hablantes", grid: true, domain: [0, 100]}, y: {label: null, domain: GRADOS.slice().reverse()},
-        marks: [Plot.barX(porGrado, {x: "share", y: "grado", fill: "grado"}), Plot.text(porGrado, {x: "share", y: "grado", text: (r) => `${pct(r.share)} (${entero(r.num)})`, dx: 6, textAnchor: "start", fontSize: 11.5}),
-          Plot.tip(porGrado, Plot.pointerY({x: "share", y: "grado", maxRadius: Infinity, ...GLOBO, ...globo([["Grado de riesgo", (r) => r.grado], ["Hablantes probables", (r) => entero(r.num)], ["Parte de los hablantes", (r) => pct(r.share)]])})), Plot.ruleX([0])]})]),
+    figura({titulo: `De cada 100 hablantes de ${lugar} con variante probable, cuántos hablan una variante en riesgo, ${anio}`, subtitulo: `${selLenB.value ? `${lenguasV.find(([k]) => k === selLenB.value)[1]} · ` : ""}cada cuadro es uno de cada 100 hablantes; el color, el grado de riesgo de su variante`, pie: "Censos e intercensales (INEGI), variante probable por lugar de origen, y grado de riesgo del INALI (2012) · los porcentajes se redondean para sumar 100"},
+      [unidades(porGrado.map((r) => ({categoria: r.grado, valor: r.share, num: r.num})), {ancho: Math.min(520, width), orden: GRADOS.slice().reverse(), colores: GRADOS.slice().reverse().map((g) => COLOR_GRADO[g]), escala100: true, porFila: 10,
+        renglones: [["Grado de riesgo", (d) => d.categoria], ["Hablantes probables", (d) => entero(d.num)], ["Parte de los hablantes", (d) => pct(d.valor)]]})]),
     graves.length ? figura({titulo: `Las variantes en riesgo muy alto o alto con más hablantes probables en ${lugar}`, subtitulo: `${anio} · hasta 20 variantes`, pie: "Variante probable por lugar de origen · cada barra es una variante; el color es su grado"},
       [Plot.plot({marginLeft: 260, marginRight: 60, height: 22 * graves.length + 50, width: Math.min(960, width), color: colorGrado, x: {label: "hablantes probables", grid: true}, y: {label: null, domain: graves.map((r) => r.variante)},
         marks: [Plot.barX(graves, {x: "num", y: "variante", fill: "grado"}), Plot.text(graves, {x: "num", y: "variante", text: (r) => entero(r.num), dx: 6, textAnchor: "start", fontSize: 11}),

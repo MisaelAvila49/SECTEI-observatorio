@@ -260,3 +260,57 @@ export function likert(filas, {ancho, orden, negativas, renglones, dominio = [-7
     ],
   });
 }
+
+// ---------------------------------------------------------------- unidades
+// Waffle por categorías: ¿cómo se reparte un total entre pocas categorías
+// con orden? Cada cuadro es una unidad (una variante, o una de cada 100
+// personas) y el color, su categoría. Con `escala100` los valores son
+// porcentajes y se redondean por el mayor residuo para que sumen 100.
+// `datos`: [{categoria, valor}]; `orden` y `colores` fijan la leyenda.
+export function unidades(datos, {ancho, orden, colores, renglones, escala100 = false, porFila = 20, alto = null}) {
+  const W = Math.max(ancho, 360);
+  let filas = orden.map((c) => ({categoria: c, valor: datos.find((d) => d.categoria === c)?.valor ?? 0, dato: datos.find((d) => d.categoria === c)}));
+  if (escala100) {
+    const base = filas.map((f) => ({...f, entero: Math.floor(f.valor), resto: f.valor - Math.floor(f.valor)}));
+    let falta = 100 - d3.sum(base, (f) => f.entero);
+    for (const f of base.slice().sort((a, b) => b.resto - a.resto)) { if (falta <= 0) break; f.entero += 1; falta -= 1; }
+    filas = base.map((f) => ({...f, n: f.entero}));
+  } else filas = filas.map((f) => ({...f, n: Math.round(f.valor)}));
+  const total = d3.sum(filas, (f) => f.n);
+  const nFilas = Math.ceil(total / porFila);
+  const lado = Math.min(26, (W - 20) / porFila);
+  const g = globo(renglones.map(([k, fn]) => [k, (f) => fn(f.dato ?? f)]));
+  return Plot.plot({
+    style: ESTILO_EJES, width: Math.round(porFila * lado + 20), height: alto ?? Math.round(nFilas * lado + 20), marginTop: 10, marginBottom: 6, marginLeft: 10, marginRight: 10,
+    x: {axis: null}, y: {axis: null},
+    color: {domain: orden, range: colores, legend: true},
+    marks: [
+      Plot.waffleY(filas.filter((f) => f.n > 0), {y: "n", fill: "categoria", order: orden, multiple: porFila, rx: 2, gap: 2,
+        channels: g.channels, tip: {format: g.format, fontSize: g.fontSize, textPadding: g.textPadding, lineWidth: g.lineWidth}}),
+    ],
+  });
+}
+
+// ---------------------------------------------------------------- coropleta
+// ¿Dónde pasa? Una tasa por entidad sobre el mapa real, con escala fija (la
+// rampa morada del sitio) y la entidad destacada con borde rojo. Las
+// entidades chicas del centro se leen en el globo y en el ranking que la
+// acompaña. `datos`: [{cve, valor, ...}].
+export function coropleta(datos, geo, {ancho, dominio, destacado = null, renglones, etiqueta = "%"}) {
+  const W = Math.max(ancho, 420);
+  const porId = new Map(datos.map((d) => [`MX-${CVE_ISO[d.cve]}`, d]));
+  const dato = (f) => porId.get(f.properties.id);
+  const feats = geo.features.filter((f) => porId.has(f.properties.id));
+  const dest = feats.filter((f) => dato(f).cve === destacado);
+  return Plot.plot({
+    style: ESTILO_EJES, width: W, height: Math.round(W * 0.64), margin: 12,
+    projection: {type: "mercator", domain: geo},
+    color: {type: "linear", domain: dominio, interpolate: d3.interpolateRgbBasis(SECUENCIAL), clamp: true, legend: true, label: etiqueta, tickFormat: (d) => `${d} %`},
+    marks: [
+      Plot.geo(feats, {fill: (f) => dato(f).valor, stroke: FONDO, strokeWidth: 0.8}),
+      Plot.geo(dest, {fill: "none", stroke: ROJO, strokeWidth: 2.6}),
+      Plot.geo(feats, Plot.pointer(Plot.centroid({fill: "none", stroke: "currentColor", strokeWidth: 1.6, maxRadius: 40}))),
+      Plot.tip(feats, Plot.pointer(Plot.centroid({maxRadius: 40, ...globo(renglones.map(([k, fn]) => [k, (f) => fn(dato(f))]))}))),
+    ],
+  });
+}

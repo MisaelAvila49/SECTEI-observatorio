@@ -296,6 +296,56 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     g.fillStyle = "#000"; g.beginPath(); g.moveTo(4, 6); g.lineTo(28, 16); g.lineTo(4, 26); g.lineTo(10, 16); g.closePath(); g.fill();
     return g.getImageData(0, 0, n, n);
   }
+
+  // ---------------------------------------------------------------- flujos
+  // Interacción de las líneas de origen: al pasar por una línea, por su
+  // entidad o por una lengua o variante de la leyenda, se resaltan esos
+  // flujos y los demás se atenúan; los resaltados avanzan hacia la ciudad con
+  // un trazo en movimiento (salvo con movimiento reducido). `cond` es una
+  // expresión de MapLibre sobre las propiedades de cada línea, o null.
+  const NINGUNO = ["==", ["get", "ent"], "__ninguna__"];
+  const OPACIDAD_FLUJO = ["coalesce", ["get", "opacidad"], 0.85];
+  const movimientoReducido = () => typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let animacionFlujo = null;
+  function resaltarFlujos(cond) {
+    if (!mapa.getLayer("flujos-linea")) return;
+    mapa.setPaintProperty("flujos-linea", "line-opacity", cond ? ["case", cond, 0.95, 0.1] : OPACIDAD_FLUJO);
+    mapa.setPaintProperty("flujos-flecha", "icon-opacity", cond ? ["case", cond, 0.95, 0.1] : OPACIDAD_FLUJO);
+    mapa.setPaintProperty("flujos-halo", "line-opacity", cond ? ["case", cond, 0.75, 0.04] : 0.55);
+    const animar = Boolean(cond) && !movimientoReducido();
+    mapa.setFilter("flujos-foco", animar ? cond : NINGUNO);
+    cancelAnimationFrame(animacionFlujo);
+    animacionFlujo = null;
+    if (!animar) return;
+    // Secuencia de guiones del ejemplo de MapLibre: recorrerla desplaza el
+    // trazo en el sentido de la línea, de la entidad hacia la ciudad.
+    const pasos = [[0, 4, 3], [0.5, 4, 2.5], [1, 4, 2], [1.5, 4, 1.5], [2, 4, 1], [2.5, 4, 0.5], [3, 4, 0],
+      [0, 0.5, 3, 3.5], [0, 1, 3, 3], [0, 1.5, 3, 2.5], [0, 2, 3, 2], [0, 2.5, 3, 1.5], [0, 3, 3, 1], [0, 3.5, 3, 0.5]];
+    let paso = -1;
+    const cuadro = (t) => {
+      const n = Math.floor(t / 60) % pasos.length;
+      if (n !== paso && mapa.getLayer("flujos-foco")) { mapa.setPaintProperty("flujos-foco", "line-dasharray", pasos[n]); paso = n; }
+      animacionFlujo = requestAnimationFrame(cuadro);
+    };
+    animacionFlujo = requestAnimationFrame(cuadro);
+  }
+  // Línea o destino bajo el cursor, con una caja de tolerancia; null si no hay.
+  function flujoBajo(punto) {
+    if (!mapa.getLayer("flujos-linea") || mapa.getLayoutProperty("flujos-linea", "visibility") !== "visible") return null;
+    const caja = [[punto.x - 6, punto.y - 6], [punto.x + 6, punto.y + 6]];
+    const destino = mapa.queryRenderedFeatures(caja, {layers: ["flujos-destino"]})[0];
+    if (destino) return {tipo: "destino", f: destino};
+    const linea = mapa.queryRenderedFeatures(caja, {layers: ["flujos-linea"]})[0];
+    return linea ? {tipo: "linea", f: linea} : null;
+  }
+  function globoFlujo(p) {
+    return `<div class="globo-titulo">${escapar(p.nombreEnt)} → Ciudad de México</div>
+      <table class="globo-tabla"><tr><th>${escapar(p.tipo)}</th><td>${escapar(p.etiqueta)}</td></tr>
+      <tr><th>Hablantes</th><td>${entero(p.num)}</td></tr>
+      <tr><th>Parte de los nacidos fuera</th><td>${pct(p.pct)}</td></tr>
+      <tr><th>Desde ${escapar(p.nombreEnt)}, en total</th><td>${entero(p.totalEnt)}</td></tr></table>
+      <div class="mapa-tarjeta-pista">Clic para fijar y comparar</div>`;
+  }
   mapa.on("load", () => {
     mapa.addImage("flecha", imagenFlecha(), {sdf: true});
     mapa.addSource("manzanas", {type: "vector", url: `pmtiles://${pmtilesManzanas}`});
@@ -305,6 +355,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     mapa.addSource("alcaldias", {type: "geojson", data: geoAlcaldias, promoteId: "CVEGEO"});
     mapa.addSource("entidades", {type: "geojson", data: geoEntidades, promoteId: "id"});
     mapa.addSource("flujos", {type: "geojson", data: {type: "FeatureCollection", features: []}});
+    mapa.addSource("destino", {type: "geojson", data: {type: "FeatureCollection", features: []}});
     if (pmtilesMunicipios) mapa.addSource("municipios", {type: "vector", url: `pmtiles://${pmtilesMunicipios}`, promoteId: "CVEGEO"});
     if (geoLimite) mapa.addSource("cdmx-limite", {type: "geojson", data: geoLimite});
 
@@ -340,18 +391,29 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       mapa.addLayer({id: "municipios-hover", type: "line", source: "municipios", "source-layer": "municipios", layout: {visibility: "none"},
         paint: {"line-color": ROJO_IBERO, "line-width": 2, "line-opacity": ["case", ["boolean", ["feature-state", "activa"], false], 1, 0]}});
     }
+    // Borde claro bajo cada línea: separa los flujos del relleno de las
+    // entidades y entre sí cuando se cruzan.
+    mapa.addLayer({id: "flujos-halo", type: "line", source: "flujos", layout: {visibility: "none", "line-cap": "round"},
+      paint: {"line-color": "#ffffff", "line-width": ["+", ["get", "grosor"], 2.5], "line-opacity": 0.55}});
     mapa.addLayer({id: "flujos-linea", type: "line", source: "flujos", layout: {visibility: "none", "line-cap": "round"},
       paint: {"line-color": ["get", "color"], "line-width": ["get", "grosor"], "line-opacity": ["coalesce", ["get", "opacidad"], 0.85]}});
     mapa.addLayer({id: "flujos-flecha", type: "symbol", source: "flujos",
       layout: {visibility: "none", "symbol-placement": "line", "symbol-spacing": 160, "icon-image": "flecha", "icon-allow-overlap": true, "icon-ignore-placement": true,
         "icon-rotation-alignment": "map", "icon-size": ["interpolate", ["linear"], ["get", "grosor"], 1, 0.35, 9, 0.7]},
       paint: {"icon-color": ["get", "color"], "icon-opacity": ["coalesce", ["get", "opacidad"], 0.85]}});
+    // Trazo en movimiento sobre los flujos resaltados (filtro vacío en reposo).
+    mapa.addLayer({id: "flujos-foco", type: "line", source: "flujos", filter: NINGUNO, layout: {visibility: "none", "line-cap": "butt"},
+      paint: {"line-color": "#ffffff", "line-width": ["max", 1.2, ["*", ["get", "grosor"], 0.45]], "line-opacity": 0.95, "line-dasharray": [0, 4, 3]}});
+    // Destino: la ciudad, con un círculo proporcional a los hablantes que llegan.
+    mapa.addLayer({id: "flujos-destino", type: "circle", source: "destino", layout: {visibility: "none"},
+      paint: {"circle-radius": ["get", "radio"], "circle-color": ROJO_IBERO, "circle-opacity": 0.7, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1.5}});
 
     for (const capa of ["manzanas-relleno", "agebs-relleno", ...(pmtilesManzanas2010 ? ["manzanas2010-relleno"] : []), ...(pmtilesAgebs2010 ? ["agebs2010-relleno"] : []),
       "alcaldias-relleno", "entidades-relleno", ...(pmtilesMunicipios ? ["municipios-relleno"] : [])]) {
       mapa.on("mousemove", capa, (e) => {
         const f = e.features?.[0];
         if (!f || f.id == null) return;
+        if (capa === "entidades-relleno" && vistaActual.flujos && flujoBajo(e.point)) return;
         mapa.getCanvas().style.cursor = "pointer";
         const ref = {source: f.source, sourceLayer: f.sourceLayer, id: f.id};
         if (!activa || activa.id !== f.id || activa.source !== f.source) {
@@ -360,17 +422,57 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
           mapa.setFeatureState(ref, {activa: true});
         }
         globo.mostrar(globoDe(capa, f), e.lngLat);
+        if (capa === "entidades-relleno" && vistaActual.flujos) resaltarFlujos(["==", ["get", "ent"], f.id]);
       });
-      mapa.on("mouseleave", capa, () => { mapa.getCanvas().style.cursor = ""; apagarActiva(); globo.reposo(); });
+      mapa.on("mouseleave", capa, () => { mapa.getCanvas().style.cursor = ""; apagarActiva(); globo.reposo(); if (capa === "entidades-relleno") resaltarFlujos(null); });
       mapa.on("click", capa, (e) => {
         const f = e.features?.[0];
         if (!f || f.id == null) return;
+        if (capa === "entidades-relleno" && vistaActual.flujos && flujoBajo(e.point)) return;
         fijar(`${f.source}:${f.id}`, globoDe(capa, f));
         seleccionada = {capa, id: f.id, propiedades: f.properties};
         pintarSeleccion();
         mostrarPestana("info");
       });
     }
+    // Vista de origen: un solo manejador decide qué responde, con prioridad
+    // destino > línea > entidad. Así el globo de la entidad y el de la línea no
+    // se encimen: si hay una línea a menos de 6 px del cursor, manda la línea y
+    // la entidad no se resalta; si no, el manejador de la entidad toma el turno.
+    let enFlujo = false;
+    mapa.on("mousemove", (e) => {
+      if (!vistaActual.flujos) return;
+      const hit = flujoBajo(e.point);
+      if (hit?.tipo === "destino") {
+        enFlujo = true;
+        apagarActiva();
+        mapa.getCanvas().style.cursor = "pointer";
+        resaltarFlujos(["has", "ent"]);
+        const p = hit.f.properties;
+        globo.mostrar(`<div class="globo-titulo">Ciudad de México</div><table class="globo-tabla"><tr><th>Hablantes nacidos en otra entidad</th><td>${entero(p.total)}</td></tr><tr><th>Entidades de origen</th><td>${p.entidades}</td></tr></table>`, e.lngLat);
+      } else if (hit?.tipo === "linea") {
+        enFlujo = true;
+        apagarActiva();
+        mapa.getCanvas().style.cursor = "pointer";
+        const p = hit.f.properties;
+        resaltarFlujos(["all", ["==", ["get", "ent"], p.ent], ["==", ["get", "cat"], p.cat]]);
+        globo.mostrar(globoFlujo(p), e.lngLat);
+      } else if (enFlujo) {
+        // Se salió de la línea: se limpia y, si quedó sobre una entidad, su
+        // manejador vuelve a pintar en este mismo movimiento.
+        enFlujo = false;
+        const ent = mapa.queryRenderedFeatures(e.point, {layers: ["entidades-relleno"]})[0];
+        // Si quedó sobre una entidad, se resaltan sus flujos aquí mismo (el
+        // manejador de la entidad pudo correr antes en este movimiento).
+        if (ent?.id != null) resaltarFlujos(["==", ["get", "ent"], ent.id]);
+        else { resaltarFlujos(null); mapa.getCanvas().style.cursor = ""; globo.reposo(); }
+      }
+    });
+    mapa.on("click", (e) => {
+      if (!vistaActual.flujos) return;
+      const hit = flujoBajo(e.point);
+      if (hit?.tipo === "linea") fijar(`flujo:${hit.f.properties.ent}:${hit.f.properties.cat}`, globoFlujo(hit.f.properties));
+    });
     estado.cargado = true;
     pintar();
   });
@@ -457,8 +559,10 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const todas = ["manzanas-relleno", "manzanas-borde", "manzanas-hover", "agebs-relleno", "agebs-borde", "agebs-hover",
       "manzanas2010-relleno", "manzanas2010-borde", "manzanas2010-hover", "agebs2010-relleno", "agebs2010-borde", "agebs2010-hover",
       "alcaldias-relleno", "alcaldias-halo", "alcaldias-linea", "alcaldias-hover", "cdmx-limite-halo", "cdmx-limite",
-      "entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea", "flujos-flecha", "municipios-relleno", "municipios-linea", "municipios-hover"];
+      "entidades-relleno", "entidades-linea", "entidades-hover", "flujos-halo", "flujos-linea", "flujos-flecha", "flujos-foco", "flujos-destino", "municipios-relleno", "municipios-linea", "municipios-hover"];
     for (const id of todas) if (mapa.getLayer(id)) mapa.setLayoutProperty(id, "visibility", ids.includes(id) ? "visible" : "none");
+    // Fuera de la vista de origen no queda ninguna animación corriendo.
+    if (!ids.includes("flujos-foco")) { cancelAnimationFrame(animacionFlujo); animacionFlujo = null; }
   }
 
   function pintar() {
@@ -734,6 +838,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     for (const f of geoEntidades.features) mapa.setFeatureState({source: "entidades", id: f.properties.id}, {valor: null});
     // Por entidad: total, y desglose por lengua y por variante.
     const porEnt = new Map();
+    const totalOrigen = filas.reduce((s, r) => s + r.num, 0);
     for (const r of filas) {
       const d = porEnt.get(r.cve_ent) ?? {num: 0, lenguas: new Map(), variantes: new Map()};
       d.num += r.num;
@@ -769,12 +874,16 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       trazos.forEach(([k, n], idx) => {
         const curva = 0.18 + (idx - (trazos.length - 1) / 2) * 0.07;
         features.push({type: "Feature", properties: {ent: iso, num: n, color: colores.get(k) ?? GRIS_VARIANTE,
-          grosor: 1 + 8 * Math.sqrt(n / max)}, geometry: {type: "LineString", coordinates: arco(a, cdmx, curva)}});
+          cat: k ?? "__otras__", tipo: todas ? "Lengua" : "Variante probable", nombreEnt: f.properties.name, totalEnt: d.num, pct: totalOrigen ? 100 * n / totalOrigen : 0,
+          etiqueta: k == null ? (todas ? "Otras lenguas" : "Variantes menores o sin registro") : (todas ? (catNombre.get(k)?.nombre ?? k) : k),
+          grosor: 1.2 + 9 * Math.sqrt(n / max)}, geometry: {type: "LineString", coordinates: arco(a, cdmx, curva)}});
       });
     }
     features.sort((a, b) => (a.properties.color === GRIS_VARIANTE ? 0 : 1) - (b.properties.color === GRIS_VARIANTE ? 0 : 1));
     for (const f of features) f.properties.opacidad = f.properties.color === GRIS_VARIANTE ? 0.45 : 0.9;
     mapa.getSource("flujos").setData({type: "FeatureCollection", features});
+    mapa.getSource("destino").setData({type: "FeatureCollection", features: [{type: "Feature", properties: {total: totalOrigen, entidades: porEnt.size, radio: Math.min(15, 5 + Math.sqrt(totalOrigen) / 30)}, geometry: {type: "Point", coordinates: cdmx}}]});
+    resaltarFlujos(null);
     // Cortes fijos por lengua a través de las ediciones: con cuantiles de la
     // vista, cambiar de año recoloreaba las entidades aunque no cambiaran.
     const claveOrigen = `origen|${e.lengua}`;
@@ -785,22 +894,25 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     }
     const cortes = cacheCortes.get(claveOrigen);
     mapa.setPaintProperty("entidades-relleno", "fill-color", expresionColor("valor", cortes, RAMPA_MORADA, "feature-state"));
-    visibles(["entidades-relleno", "entidades-linea", "entidades-hover", "flujos-linea", "flujos-flecha"]);
-    vistaActual = {unidad: "entidad", etiqueta, valores, cruce: null, poblacion: e.poblacion, campo: null};
+    visibles(["entidades-relleno", "entidades-linea", "entidades-hover", "flujos-halo", "flujos-linea", "flujos-flecha", "flujos-foco", "flujos-destino"]);
+    vistaActual = {unidad: "entidad", etiqueta, valores, cruce: null, poblacion: e.poblacion, campo: null, flujos: true};
     const nombre = todas ? "lengua indígena" : (catNombre.get(e.lengua)?.nombre ?? e.lengua);
     const total = filas.reduce((s, r) => s + r.num, 0);
     const enCiudad = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && r.cve_ent === "009").reduce((s, r) => s + r.num, 0);
     // Leyenda: solo las categorías que recibieron flecha con color, de mayor a
     // menor por hablantes; por lengua con "todas", por variante con una lengua.
     const chips = [...usadas.entries()].sort((a, b) => b[1] - a[1])
-      .map(([k, ]) => html`<li><span class="mapa-variante-chip" style="background:${colores.get(k)}" aria-hidden="true"></span>${todas ? (catNombre.get(k)?.nombre ?? k) : k}</li>`);
+      .map(([k, ]) => html`<li class="mapa-chip-activo" tabindex="0" title="Resaltar sus flujos"
+        onmouseenter=${() => resaltarFlujos(["==", ["get", "cat"], k])} onmouseleave=${() => resaltarFlujos(null)}
+        onfocus=${() => resaltarFlujos(["==", ["get", "cat"], k])} onblur=${() => resaltarFlujos(null)}>
+        <span class="mapa-variante-chip" style="background:${colores.get(k)}" aria-hidden="true"></span>${todas ? (catNombre.get(k)?.nombre ?? k) : k}</li>`);
     enReposo = () => `<div class="globo-titulo">Hablantes de ${escapar(nombre)} en la ciudad · ${e.anio}</div>
       <div class="mapa-cifra-valor">${entero(total)}</div><div class="mapa-cifra-nota">nacidos en otra entidad · ${entero(enCiudad)} nacidos en la ciudad</div>
       <div class="mapa-tarjeta-pista">Pasa el cursor por una entidad; haz clic para fijarla y comparar</div>`;
     globo.reposo();
     leyendaCaja.replaceChildren(
       leyenda({cortes, titulo: `Hablantes de ${nombre} nacidos en la entidad`, formato: (x) => punto(Math.round(x)), notaSinDato: "Sin hablantes en la muestra"}),
-      html`<ul class=${`mapa-variantes-leyenda${chips.length > 8 ? " mapa-variantes-leyenda-larga" : ""}`}><li class="mapa-variantes-leyenda-titulo">${todas ? "Color de la flecha: lengua (las diez mayores)" : "Color de la flecha: variante probable (hasta cinco por entidad)"}</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>${todas ? "Otras lenguas" : "Variantes menores de cada entidad o sin registro"}</li></ul>`,
+      html`<ul class=${`mapa-variantes-leyenda${chips.length > 8 ? " mapa-variantes-leyenda-larga" : ""}`}><li class="mapa-variantes-leyenda-titulo">${todas ? "Color de la flecha: lengua (las diez mayores)" : "Color de la flecha: variante probable (hasta cinco por entidad)"}. Pasa el cursor por una para ver solo sus flujos.</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>${todas ? "Otras lenguas" : "Variantes menores de cada entidad o sin registro"}</li></ul>`,
       todas ? "" : glosarioCerteza());
     resumen.replaceChildren(html`<h2 class="mapa-titulo">De dónde vienen quienes hablan ${nombre}</h2>
       <p class="mapa-definicion">Hablantes que viven en la Ciudad de México, según su entidad de nacimiento. Cada flecha va de la entidad a la ciudad; su grosor es el número de personas y su color, ${todas ? "la lengua" : "la variante probable"}. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra; variantes según el Catálogo INALI 2008.</span></p>`);

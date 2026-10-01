@@ -4409,3 +4409,21 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
   border-radius: 2px;
   flex: none;
 }
+
+/* Leyenda de flujos interactiva: cada lengua o variante resalta sus flujos al
+   pasar el cursor o al recibir el foco con el teclado. */
+.mapa-chip-activo {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 1px 4px;
+}
+.mapa-chip-activo:hover,
+.mapa-chip-activo:focus-visible {
+  background: color-mix(in srgb, var(--theme-foreground) 8%, transparent);
+  outline: 2px solid var(--tablero-rojo, #C4101B);
+  outline-offset: 1px;
+}
+
+/* El globo del mapa va por encima de la tarjeta y la leyenda flotantes
+   (z-index 5): pegado a una línea del oeste quedaba tapado por ellas. */
+.maplibregl-popup.mapa-globo { z-index: 9; }

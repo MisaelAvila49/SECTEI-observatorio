@@ -7,9 +7,9 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, COLOR_UNICO, COLOR_REFERENCIA, GLOBO, globo} from "../components/base.js";
+import {punto, COLOR_UNICO, COLOR_REFERENCIA, COLOR_SERIE, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
-import {likert} from "../components/formas.js";
+import {likert, dumbbell, lollipop} from "../components/formas.js";
 
 const enadis = (await FileAttachment("../data/enadis.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
 const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
@@ -62,6 +62,16 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
     const maxX = MAX_X;
     const color = comparar ? {domain: ["2017", "2022"], range: [COLOR_ANIO["2017"], COLOR_ANIO["2022"]], legend: true} : {domain: ["x"], range: [COLOR_UNICO]};
     const renglones = [["Categoría", (r) => r.categoria], ["Año", (r) => r.anio], ["Corte", (r) => r.faceta || null], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]];
+    // La forma sigue a la comparación: dos ediciones, mujeres y hombres o urbana
+    // y rural van en dumbbell (la brecha es la historia); una sola edición sin
+    // cortes, en puntos; los tres grupos de edad, en barras por panel.
+    const par = comparar && !sepCampo ? {campo: "anioT", series: ["2017", "2022"], colores: [COLOR_ANIO["2017"], COLOR_ANIO["2022"]]}
+      : !comparar && sepCampo === "sexo" ? {campo: "faceta", series: ["Mujeres", "Hombres"], colores: [COLOR_SERIE["Mujeres indígenas"], COLOR_SERIE["Hombres indígenas"]]}
+      : !comparar && sepCampo === "ambito" ? {campo: "faceta", series: ["Urbana", "Rural"], colores: [COLOR_REFERENCIA, COLOR_UNICO]} : null;
+    const grafica = !f.length || forma === "likert" ? null
+      : par ? dumbbell(f.map((r) => ({...r, fila: r.categoria, serie: r[par.campo], valor: r.pct})), {ancho: Math.min(1000, width), series: par.series, colores: par.colores, dominio: [0, maxX], orden: cats, margenIzq: 280, etiquetaX: "% de la población indígena", renglones})
+      : !comparar && !sepCampo ? lollipop(cats.map((c) => f.find((r) => r.categoria === c)).filter(Boolean).map((r) => ({...r, nombre: r.categoria, valor: r.pct})), {ancho: Math.min(1000, width), dominio: [0, maxX], margenIzq: 280, formato: (v) => pct(v), etiquetaX: "% de la población indígena", renglones})
+      : null;
     const sub = [comparar ? "2017 y 2022" : cAnio.value, fijo.sexo && fijo.sexo !== "Total" ? fijo.sexo : "", fijo.edad && fijo.edad !== "Todas" ? EDAD_ETIQ[fijo.edad] : "", fijo.ambito && fijo.ambito !== "Total" ? `localidades ${fijo.ambito === "Rural" ? "rurales" : "urbanas"}` : "", sepCampo ? `un panel por ${{sexo: "sexo", edad: "grupo de edad", ambito: "tipo de localidad"}[sepCampo]}` : ""].filter(Boolean).join(" · ");
     cuerpo.replaceChildren(
       figura({titulo, subtitulo: `Población indígena de 12 años y más, México · ${sub}`, pie},
@@ -71,6 +81,7 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
           ? likert(f.map((r) => ({...r, respuesta: r.categoria, fila: [comparar ? String(r.anio) : null, r.faceta || null].filter(Boolean).join(" · ") || "Población indígena"})),
             {ancho: Math.min(1000, width), orden: ["Nada", "Poco", "Algo", "Mucho"], negativas: 2, dominio: [-75, 75], margenIzq: 170,
               renglones: [["Grupo", (r) => r.fila], ["Respuesta", (r) => r.respuesta], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]]})
+          : grafica ? grafica
           : f.length ? Plot.plot({marginLeft: 280, marginRight: 60, height: alto, width: Math.min(1000, width), ...facetas, color, x: {label: "% de la población indígena", grid: true, domain: [0, maxX]}, y: {label: null, domain: cats},
           marks: [...(comparar ? [[2017, -8], [2022, 8]] : [[null, 0]]).flatMap(([a, dy]) => {
               const d = a == null ? f : f.filter((r) => r.anio === a);
@@ -113,7 +124,7 @@ display(kpis([
 ```js
 display(seccionEnadis({id: "c7a", indicador: "discriminacion", fuentes: {cotejos: ["disc_2017", "disc_2022"]}, orden: ["Por algún motivo", "Por los diez motivos comunes a 2017 y 2022"], inicialAnio: SEPARADO,
   titulo: "Personas indígenas que fueron discriminadas en los últimos 12 meses",
-  pie: "INEGI, ENADIS 2017 y 2022, módulo de población indígena · cada barra es una forma de medir; la línea, el intervalo de 95 %",
+  pie: "INEGI, ENADIS 2017 y 2022, módulo de población indígena · cada fila es una forma de medir; al comparar, la línea gris une los dos valores",
   explica: "La encuesta pregunta si en los últimos doce meses la persona fue discriminada o menospreciada por alguno de una lista de motivos. En 2017 la lista tenía diez motivos y en 2022 dieciséis (se añadieron ser indígena o afrodescendiente, discapacidad, enfermedad, opiniones políticas, estado civil y otro). Por eso se muestran dos medidas: con todos los motivos de cada año, que es la que publica el INEGI (25.3 y 28.0 %), y solo con los diez motivos que existen en las dos ediciones, que es la comparable. Además, en 2022 entró al módulo más gente: quien se considera indígena por cualquiera de seis razones, no solo por su comunidad o sus padres."}));
 ```
 
@@ -124,7 +135,7 @@ display(seccionEnadis({id: "c7a", indicador: "discriminacion", fuentes: {cotejos
 ```js
 display(seccionEnadis({id: "c7b", indicador: "motivo", fuentes: {cotejos: ["por_indigena_2022", "disc_2022"]},
   titulo: "Motivos por los que las personas indígenas fueron discriminadas",
-  pie: "INEGI, ENADIS 2017 y 2022 · cada barra es un motivo; una persona puede señalar varios",
+  pie: "INEGI, ENADIS 2017 y 2022 · cada fila es un motivo; una persona puede señalar varios",
   explica: "Porcentaje de toda la población indígena de 12 años y más que señaló cada motivo en los últimos doce meses. Una persona puede señalar más de uno, así que las barras no suman el total de discriminadas. Los motivos de 'ser persona indígena o afrodescendiente' en adelante solo existen en 2022."}));
 ```
 
@@ -135,7 +146,7 @@ display(seccionEnadis({id: "c7b", indicador: "motivo", fuentes: {cotejos: ["por_
 ```js
 display(seccionEnadis({id: "c7c", indicador: "ambito", fuentes: {cotejos: ["ambito_2017"]}, 
   titulo: "Lugares donde las personas indígenas fueron discriminadas",
-  pie: "INEGI, ENADIS 2017 y 2022 · cada barra es un ámbito; una persona puede señalar varios",
+  pie: "INEGI, ENADIS 2017 y 2022 · cada fila es un ámbito; una persona puede señalar varios",
   explica: "Porcentaje de la población indígena de 12 años y más que en los últimos doce meses fue discriminada en cada lugar: el trabajo o la escuela, la familia, los servicios médicos, una oficina de gobierno, un negocio o banco, la calle o el transporte, las redes sociales y, desde 2022, ante la policía o el Ministerio Público. La barra 'en al menos un ámbito' reúne a quien señaló cualquiera."}));
 ```
 
@@ -146,7 +157,7 @@ display(seccionEnadis({id: "c7c", indicador: "ambito", fuentes: {cotejos: ["ambi
 ```js
 display(seccionEnadis({id: "c7d", indicador: "derecho", fuentes: {cotejos: ["derecho_2017", "derecho_2022"]},
   titulo: "Derechos que les negaron injustificadamente en los últimos cinco años",
-  pie: "INEGI, ENADIS 2017 y 2022 · cada barra es un derecho, sobre quienes respondieron sí o no",
+  pie: "INEGI, ENADIS 2017 y 2022 · cada fila es un derecho, sobre quienes respondieron sí o no",
   explica: "Porcentaje de la población indígena a la que en los últimos cinco años le negaron sin justificación cada derecho, sobre quienes lo intentaron ejercer (se excluye a quien respondió 'no aplica'). Estudiar solo se preguntó a personas de 12 a 35 años, y trabajar, crédito y renta a las de 18 y más; rentar una vivienda solo existe en 2022. El INEGI publica 26.9 % con al menos un derecho negado en 2022 (18 años y más) y 29.2 % en 2017."}));
 ```
 

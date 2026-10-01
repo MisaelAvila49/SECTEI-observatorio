@@ -10,7 +10,7 @@ import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis, claves} from "../components/graficas.js";
 import {punto, ORDINAL, COLOR_UNICO, ROJO, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
-import {lollipop} from "../components/formas.js";
+import {lollipop, unidades} from "../components/formas.js";
 
 const [nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, colonias] = await Promise.all([
   FileAttachment("../data/hablantes_nacional_2020.csv").csv({typed: true}),
@@ -77,14 +77,13 @@ function pintarM() {
   porGrado.forEach((r) => { r.parte = totalN ? 100 * r.num / totalN : 0; });
   const lugar = selAlc.value || "la ciudad";
   cuerpoM.replaceChildren(
-    figura({titulo: `${nombrePob} según la marginación urbana de la AGEB, ${lugar}`, subtitulo: "Izquierda: qué proporción de la población de las AGEB de cada grado es indígena. Derecha: cómo se reparte la población indígena entre los grados", pie: "Censo 2020 (INEGI), tabulado por AGEB, y CONAPO, índice de marginación urbana 2020 · cada barra es un grado de marginación"},
-      [html`<div class="grid grid-cols-2">${[
+    figura({titulo: `${nombrePob} según la marginación urbana de la AGEB, ${lugar}`, subtitulo: "Izquierda: qué proporción de la población de las AGEB de cada grado es indígena. Derecha: cómo se reparte la población indígena entre los grados", pie: "Censo 2020 (INEGI), tabulado por AGEB, y CONAPO, índice de marginación urbana 2020 · a la izquierda, cada barra es un grado; a la derecha, cada cuadro es una de cada 100 personas indígenas"},
+      [html`<div style="display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:flex-start">${[
         Plot.plot({marginLeft: 80, marginRight: 60, height: 200, width: Math.min(440, width / 2), x: {label: `% ${nombrePob === "Hablantes de lengua indígena" ? "de la población de 3 años y más" : "de la población"}`, grid: true, domain: [0, MAX_MARG]}, y: {label: null, domain: GRADOS},
           marks: [Plot.barX(porGrado, {x: "pct", y: "grado", fill: (r) => ORDINAL[5][GRADOS.indexOf(r.grado)]}), Plot.text(porGrado, {x: "pct", y: "grado", text: (r) => pct(r.pct), dx: 6, textAnchor: "start", fontSize: 11.5}),
             Plot.tip(porGrado, Plot.pointerY({x: "pct", y: "grado", maxRadius: Infinity, ...GLOBO, ...globo([["Grado de marginación", (r) => r.grado], ["AGEB", (r) => r.agebs], [nombrePob, (r) => pct(r.pct)], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]])})), Plot.ruleX([0])]}),
-        Plot.plot({marginLeft: 80, marginRight: 60, height: 200, width: Math.min(440, width / 2), x: {label: "% de la población indígena", grid: true, domain: [0, 100]}, y: {label: null, domain: GRADOS},
-          marks: [Plot.barX(porGrado, {x: "parte", y: "grado", fill: (r) => ORDINAL[5][GRADOS.indexOf(r.grado)]}), Plot.text(porGrado, {x: "parte", y: "grado", text: (r) => pct(r.parte), dx: 6, textAnchor: "start", fontSize: 11.5}),
-            Plot.tip(porGrado, Plot.pointerY({x: "parte", y: "grado", maxRadius: Infinity, ...GLOBO, ...globo([["Grado de marginación", (r) => r.grado], ["Parte de la población indígena", (r) => pct(r.parte)], ["Personas", (r) => entero(r.num)]])})), Plot.ruleX([0])]}),
+        unidades(porGrado.map((r) => ({categoria: r.grado, valor: r.parte, num: r.num})), {ancho: Math.min(360, width / 2), orden: GRADOS, colores: GRADOS.map((g, k) => ORDINAL[5][k]), escala100: true, porFila: 10,
+          renglones: [["Grado de marginación", (d) => d.categoria], ["Parte de la población indígena", (d) => pct(d.valor)], ["Personas", (d) => entero(d.num)]]}),
       ]}</div>`]),
     fuenteDe({datos: ["D-CONAPO-IMU-2020", "D-CENSO-2020-RESAGEBURB"], cotejos: ["pob_igual_conapo", "pob_igual_coneval", "viv_igual_coneval"], lectura: ["D-CONEVAL-GRS-2020"]}),
     explicacion("CONAPO clasifica cada AGEB urbana en cinco grados de marginación a partir de carencias de educación, salud, vivienda y bienes; no mide ingreso. Aquí cada AGEB de la ciudad se agrupa por su grado y se suman sus personas. La gráfica de la izquierda responde qué tan indígena es la población de las AGEB de cada grado; la de la derecha, en qué grados vive la población indígena. Las AGEB sin grado publicado (muy poca población) no entran."),
