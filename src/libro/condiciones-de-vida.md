@@ -9,6 +9,7 @@ import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {COLOR_SERIE, ejePct, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
+import {dumbbell, waffle} from "../components/formas.js";
 
 const pobreza = (await FileAttachment("../data/coneval_pobreza.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
 const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
@@ -25,7 +26,7 @@ const v = (anio, crit, grupo, ind, sexo = "Total") => pobreza.find((r) => r.anio
 
 <div class="hero-pagina">
   <span class="kicker">Condiciones de vida</span>
-  <h1>Condiciones de vida</h1>
+  <h1>Pobreza y carencias</h1>
   <p class="hero-entrada">Pobreza, pobreza extrema y carencias sociales de la población indígena del país frente al resto, según la medición oficial del CONEVAL de 2016 a 2022. Las cifras son nacionales: la medición no publica la condición indígena por entidad.</p>
 </div>
 
@@ -35,6 +36,10 @@ display(kpis([
   {etiqueta: "En pobreza extrema, 2022", cifra: pct(v(2022, "pertenencia", "Indígena", "Pobreza extrema").pct), nota: `no indígena: ${pct(v(2022, "pertenencia", "Resto", "Pobreza extrema").pct)}`},
   {etiqueta: "Hablantes en pobreza, 2024", cifra: pct(v(2024, "lengua", "Indígena", "Pobreza").pct), nota: `no hablantes: ${pct(v(2024, "lengua", "Resto", "Pobreza").pct)} (INEGI)`},
 ]));
+display(figura({titulo: "De cada 100 personas, cuántas viven en pobreza", subtitulo: "Todo el país, 2022 · población indígena según la pertenencia étnica del hogar (INPI)",
+  pie: "CONEVAL, medición multidimensional de la pobreza 2022 · cada cuadro es una de cada 100 personas del grupo; en color, las que viven en pobreza"},
+  [waffle([{grupo: "Población indígena", valor: v(2022, "pertenencia", "Indígena", "Pobreza").pct, color: COLOR("Indígena")}, {grupo: "Población no indígena", valor: v(2022, "pertenencia", "Resto", "Pobreza").pct, color: COLOR("Resto")}],
+    {ancho: Math.min(760, width), colorDe: (d) => d.color})]));
 ```
 
 ---
@@ -98,18 +103,11 @@ function pintarB() {
   const anios = comparar ? [2016, 2022] : [Number(cAnioB.value)];
   const f = pobreza.filter((r) => r.criterio === crit && r.sexo === "Total" && IND_CAR.includes(r.indicador) && anios.includes(r.anio)).map((r) => ({...r, serie: NOMBRE[crit][r.grupo], anioT: String(r.anio)}));
   const series = [NOMBRE[crit]["Indígena"], NOMBRE[crit]["Resto"]];
-  const marcas = [];
-  anios.forEach((a, ia) => series.forEach((s, is) => {
-    const d = f.filter((r) => r.anio === a && r.serie === s);
-    const dy = (comparar ? [-15, -5, 5, 15] : [-8, 8])[comparar ? ia * 2 + is : is];
-    marcas.push(Plot.barX(d, {x: "pct", y: "indicador", fill: "serie", fillOpacity: comparar && a === 2016 ? 0.45 : 1, dy, insetTop: comparar ? 16 : 13, insetBottom: comparar ? 16 : 13}),
-      Plot.text(d, {x: "pct", y: "indicador", text: (r) => `${r.pct.toFixed(1)}${comparar ? ` (${r.anio})` : ""}`, dx: 5, dy, textAnchor: "start", fontSize: 10.5}));
-  }));
   cuerpoB.replaceChildren(
-    figura({titulo: "Carencias sociales y bienestar económico de la población indígena y del resto", subtitulo: `${CRITERIOS.find((c) => c.clave === crit).etiqueta} · ${comparar ? "2016 (tono claro) y 2022" : anios[0]}`, pie: "CONEVAL, medición multidimensional de la pobreza, anexo estadístico 2022 · cada par de barras es una carencia"},
-      [Plot.plot({marginLeft: 290, marginRight: 80, height: 60 + (comparar ? 56 : 44) * IND_CAR.length, width: Math.min(1000, width), color: {domain: series, range: [COLOR("Indígena"), COLOR("Resto")], legend: true},
-        x: {label: "% de la población", grid: true, domain: [0, 100]}, y: {label: null, domain: IND_CAR},
-        marks: [...marcas, Plot.tip(f, Plot.pointer({x: "pct", y: "indicador", maxRadius: Infinity, ...GLOBO, ...globo([["Indicador", (r) => r.indicador], ["Grupo", (r) => r.serie], ["Año", (r) => r.anio], ["Porcentaje", (r) => pct(r.pct)], ["Personas", (r) => `${r.millones.toFixed(1)} millones`]])})), Plot.ruleX([0])]})]),
+    figura({titulo: "Carencias sociales y bienestar económico de la población indígena y del resto", subtitulo: `${CRITERIOS.find((c) => c.clave === crit).etiqueta} · ${comparar ? "un panel por año, 2016 y 2022" : anios[0]}`, pie: "CONEVAL, medición multidimensional de la pobreza, anexo estadístico 2022 · cada par de puntos es una carencia"},
+      [dumbbell(f.map((r) => ({...r, fila: r.indicador, valor: r.pct})), {ancho: Math.min(1000, width), series, colores: [COLOR("Indígena"), COLOR("Resto")], dominio: [0, 100], orden: IND_CAR, margenIzq: 290,
+        fx: comparar ? "anioT" : null, fxDominio: ["2016", "2022"], etiquetaX: "% de la población",
+        renglones: [["Indicador", (r) => r.indicador], ["Grupo", (r) => r.serie], ["Año", (r) => r.anio], ["Porcentaje", (r) => pct(r.pct)], ["Personas", (r) => `${r.millones.toFixed(1)} millones`]]})]),
     fuenteDe({datos: ["D-CONEVAL-AE-2022"], cotejos: ["pobreza_indigena_2022"], nota: "Las carencias se leen del mismo anexo estadístico del CONEVAL (cuadros 16, 17, 23 y 24); el cotejo de la pobreza confirma la lectura de los cuadros."}),
     explicacion("Cada carencia es una de las seis dimensiones de derechos sociales que mide el CONEVAL, más las dos líneas de ingreso. El salto de la carencia de acceso a la salud en 2020 y 2022 coincide con la sustitución del Seguro Popular por el INSABI: muchas personas dejaron de contar como afiliadas. La carencia de seguridad social es la más extendida en los dos grupos."),
     tablaColumnas(f, [{etiqueta: "Carencia", valor: (r) => r.indicador}, {etiqueta: "Grupo", valor: (r) => r.serie}, {etiqueta: "Año", valor: (r) => r.anio}, {etiqueta: "%", num: true, valor: (r) => r.pct.toFixed(1)}, {etiqueta: "Millones", num: true, valor: (r) => r.millones.toFixed(2)}, {etiqueta: "Carencias promedio", num: true, valor: (r) => r.carencias.toFixed(2)}], {titulo: "Ver los datos"}));

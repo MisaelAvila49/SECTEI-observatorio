@@ -69,6 +69,52 @@ display(html`<section class="beta-seccion">
 
 ---
 
+<h2 id="a-donde-llegan" class="toc-anchor">De su entidad a su alcaldía</h2>
+
+```js
+import {sankey} from "../components/formas.js";
+const nacS = origen.filter((r) => r.tipo === "nacimiento").map((r) => ({...r, anio: Number(r.anio), ent: String(r.ent).padStart(3, "0"), cve_alc: String(r.cve_alc).padStart(3, "0")}))
+  .filter((r) => r.ent !== "009" && r.ent <= "032");
+const nombreAlcS = new Map(lenguasAlc.filter((r) => r.nivel === "alcaldia").map((r) => [String(r.cve).padStart(3, "0"), r.nombre]));
+const aniosS = [...new Set(nacS.map((r) => r.anio))].sort();
+const TOPE_S = 7;
+const sumaS = (filas, k) => { const m = new Map(); for (const r of filas) m.set(r[k], (m.get(r[k]) ?? 0) + r.num); return [...m.entries()].sort((a, b) => b[1] - a[1]); };
+const entUltimo = sumaS(nacS.filter((r) => r.anio === aniosS.at(-1)), "ent_nombre").slice(0, TOPE_S).map(([n]) => n);
+const selAnioS = campo({id: "c2s-anio", nombre: "anio", etiqueta: "Año", opciones: aniosS.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: String(aniosS.at(-1))});
+const selEntS = campo({id: "c2s-ent", nombre: "entidad", etiqueta: "Resaltar entidad de nacimiento", opciones: [{clave: "", etiqueta: "Ninguna"}, ...entUltimo.map((n) => ({clave: n, etiqueta: n}))], valor: entUltimo[0] ?? ""});
+const panelS = html`<div class="panel-filtros"><div class="panel-campos">${selAnioS}${selEntS}</div></div>`;
+const cuerpoS = document.createElement("div");
+function pintarS() {
+  const anio = Number(selAnioS.value);
+  const f = nacS.filter((r) => r.anio === anio);
+  const total = f.reduce((s, r) => s + r.num, 0);
+  const origenes = sumaS(f, "ent_nombre").slice(0, TOPE_S).map(([n]) => n);
+  const destinos = sumaS(f.map((r) => ({...r, alc: nombreAlcS.get(r.cve_alc) ?? r.cve_alc})), "alc").slice(0, TOPE_S).map(([n]) => n);
+  const o = (r) => (origenes.includes(r.ent_nombre) ? r.ent_nombre : "Otras entidades");
+  const d = (r) => { const n = nombreAlcS.get(r.cve_alc) ?? r.cve_alc; return destinos.includes(n) ? n : "Otras alcaldías"; };
+  const flujos = new Map();
+  for (const r of f) { const k = `${o(r)}|${d(r)}`; flujos.set(k, (flujos.get(k) ?? 0) + r.num); }
+  const enlaces = [...flujos.entries()].map(([k, value]) => { const [a, b] = k.split("|"); return {source: `o:${a}`, target: `d:${b}`, value}; }).filter((e) => e.value > 0);
+  const nodos = [...[...origenes, "Otras entidades"].map((n) => ({id: `o:${n}`, nombre: n})), ...[...destinos, "Otras alcaldías"].map((n) => ({id: `d:${n}`, nombre: n}))]
+    .filter((n) => enlaces.some((e) => e.source === n.id || e.target === n.id));
+  const destacado = selEntS.value ? `o:${selEntS.value}` : null;
+  cuerpoS.replaceChildren(
+    figura({titulo: `De qué entidad nacieron y en qué alcaldía viven los hablantes, ${anio}`, subtitulo: `Hablantes de lengua indígena nacidos en otra entidad · las ${TOPE_S} entidades y alcaldías con más hablantes; las demás, agrupadas${selEntS.value ? ` · resaltada: ${selEntS.value}` : ""}`,
+      pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · el grosor de cada flujo es proporcional al número de hablantes"},
+      [sankey({nodos, enlaces}, {ancho: Math.min(980, width), alto: 440, destacado,
+        renglonesEnlace: [["Nacieron en", (l) => l.source.nombre], ["Viven en", (l) => l.target.nombre], ["Hablantes", (l) => entero(l.value)], ["Parte de los nacidos fuera", (l) => pct(100 * l.value / total)]]})]),
+    fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["hli_nacidos_fuera_2020"], lectura: ["R-SEPI-2024-DIV"]}),
+    explicacion("A la izquierda, la entidad donde nacieron los hablantes de lengua indígena que viven en la ciudad; a la derecha, la alcaldía donde viven. Cada flujo une un lugar de nacimiento con una alcaldía, y su grosor es el número de hablantes. Se muestran las siete entidades y las siete alcaldías con más hablantes; las demás se suman en un solo nodo para que los flujos se puedan seguir. Quienes nacieron en la ciudad o en otro país no aparecen."),
+    tablaColumnas(enlaces.map((e) => ({de: e.source.slice(2), a: e.target.slice(2), num: e.value})).sort((x, y) => y.num - x.num), [{etiqueta: "Nacieron en", valor: (r) => r.de}, {etiqueta: "Viven en", valor: (r) => r.a}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los nacidos fuera", num: true, valor: (r) => (100 * r.num / total).toFixed(1)}], {titulo: "Ver los flujos"}));
+}
+panelS.addEventListener("input", pintarS);
+alCambiarModo(() => pintarS());
+pintarS();
+display(html`<section class="beta-seccion">${panelS}${cuerpoS}</section>`);
+```
+
+---
+
 <h2 id="llegadas-recientes" class="toc-anchor">Quiénes llegaron en los últimos cinco años</h2>
 
 ```js

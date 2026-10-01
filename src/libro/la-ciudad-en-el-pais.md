@@ -8,7 +8,8 @@ import {html} from "npm:htl";
 import {datosCenso, seccionCenso} from "../components/seccion-censo.js";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, ejePct, COLOR_UNICO, GLOBO, globo} from "../components/base.js";
+import {punto, ejePct, COLOR_UNICO, GLOBO, globo, alCambiarModo} from "../components/base.js";
+import {mosaico} from "../components/formas.js";
 import {procedencia} from "../components/fuentes.js";
 
 const [nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, lenguasAlc, origen] = await Promise.all([
@@ -36,6 +37,49 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
   <h1>La ciudad en el país</h1>
   <p class="hero-entrada">La Ciudad de México frente a las otras 31 entidades, y cuántas lenguas tienen hablantes en ella en cada censo.</p>
 </div>
+
+---
+
+<h2 id="las-32-entidades" class="toc-anchor">La ciudad entre las 32 entidades</h2>
+
+```js
+// Mosaico de entidades (catálogo de gráficas): cada entidad un cuadro del
+// mismo tamaño, para que la Ciudad de México y Tlaxcala pesen lo mismo que
+// Chihuahua. Escala fija por población, medida sobre las 32 entidades.
+const POB_MOS = [
+  {clave: "hablantes", etiqueta: "Hablan una lengua indígena", tope: 35, universo: "de la población de 3 años y más", fuente: "conteo censal"},
+  {clave: "autoads", etiqueta: "Se consideran indígenas", tope: 70, universo: "de la población de 3 años y más", fuente: "estimación del cuestionario ampliado"},
+  {clave: "hogares", etiqueta: "Viven en hogares indígenas", tope: 45, universo: "de la población total", fuente: "conteo censal"},
+  {clave: "inpi", etiqueta: "Población indígena según el INPI", tope: 45, universo: "de la población total", fuente: "INPI"},
+];
+const selPobMos = campo({id: "c2m-pob", nombre: "poblacion", etiqueta: "Población indígena", opciones: POB_MOS.map((p) => ({clave: p.clave, etiqueta: p.etiqueta})), valor: "hablantes"});
+const panelMos = html`<div class="panel-filtros"><div class="panel-campos">${selPobMos}</div></div>`;
+const cuerpoMos = document.createElement("div");
+function pintarMos() {
+  const p = POB_MOS.find((x) => x.clave === selPobMos.value);
+  const filas = (p.clave === "inpi"
+    ? inpi.filter((r) => r.nivel === "entidad").map((r) => ({cve: String(r.cve).padStart(2, "0"), nombre: r.nombre, valor: Number(r.pct), num: r.num, den: r.den, ee: null}))
+    : nacional.filter((r) => r.nivel === "entidad" && r.poblacion === p.clave && r.sexo === "Total" && r.edad === "Todas" && r.den > 0)
+      .map((r) => ({cve: String(r.cve).padStart(2, "0"), nombre: r.nombre, valor: 100 * r.num / r.den, num: r.num, den: r.den, ee: r.ee})))
+    .sort((a, b) => b.valor - a.valor).map((r, i) => ({...r, lugar: i + 1}));
+  const cdmx = filas.find((r) => r.cve === "09");
+  cuerpoMos.replaceChildren(
+    kpis([{etiqueta: `Lugar de la Ciudad de México`, cifra: cdmx ? `${cdmx.lugar} de 32` : "", nota: "de la entidad con mayor proporción a la menor"},
+      {etiqueta: "Proporción en la ciudad", cifra: cdmx ? pct(cdmx.valor) : "", nota: p.universo},
+      {etiqueta: "Entidad con mayor proporción", cifra: filas[0]?.nombre ?? "", nota: filas[0] ? pct(filas[0].valor) : ""}]),
+    figura({titulo: `${p.etiqueta}: las 32 entidades, 2020`, subtitulo: `Porcentaje ${p.universo}. Cada entidad ocupa un cuadro del mismo tamaño y la posición aproxima la geografía; con borde rojo, la Ciudad de México`,
+      pie: `INEGI, Censo 2020 (${p.fuente}) · el color es el porcentaje, con la misma escala para todas las entidades`},
+      [mosaico(filas, {ancho: Math.min(900, width), dominio: [0, p.tope], destacado: "09",
+        renglones: [["Entidad", (r) => r.nombre], ["Porcentaje", (r) => `${pct(r.valor)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`], ["Lugar", (r) => `${r.lugar} de 32`]]})]),
+    fuenteDe({datos: ["D-ITER-2020-NAL", "D-CENSO-2020", "D-INPI-2020-HOG"], cotejos: ["hablantes3_nacional_2020", "pct_autoads_nacional_2020", "pct_pi_nacional_2020", "cdmx_hli3_2020_n", "cdmx_autoads_2020_n"]}),
+    explicacion("Un mapa con la forma real del país hace que las entidades grandes dominen la vista aunque tengan poca población. Aquí cada entidad es un cuadro del mismo tamaño, colocado cerca de donde está, y el color dice qué proporción de su población es indígena según la forma de contarla que se elija. La escala es la misma para todas y no cambia al elegir otra entidad."),
+    tablaColumnas(filas, [{etiqueta: "Lugar", num: true, valor: (r) => r.lugar}, {etiqueta: "Entidad", valor: (r) => r.nombre}, {etiqueta: "%", num: true, valor: (r) => r.valor.toFixed(2)}, {etiqueta: "Personas", num: true, valor: (r) => entero(r.num)}, {etiqueta: "Población", num: true, valor: (r) => entero(r.den)}], {titulo: "Ver las 32 entidades"}));
+}
+panelMos.addEventListener("input", pintarMos);
+alCambiarModo(() => pintarMos());
+pintarMos();
+display(html`<section class="beta-seccion">${panelMos}${cuerpoMos}</section>`);
+```
 
 ---
 

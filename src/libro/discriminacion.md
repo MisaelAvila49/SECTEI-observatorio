@@ -9,6 +9,7 @@ import {campo, SEPARADO} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
 import {punto, COLOR_UNICO, COLOR_REFERENCIA, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
+import {likert} from "../components/formas.js";
 
 const enadis = (await FileAttachment("../data/enadis.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio)}));
 const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
@@ -26,7 +27,7 @@ const pr = (r) => (r ? 100 * r.num / r.den : null);
 // Sección genérica: barras por categoría de un indicador de la ENADIS, con
 // año (2017, 2022 o las dos), sexo, edad y tipo de localidad; sexo, edad y
 // localidad admiten "por separado" (una faceta; la segunda vuelve al total).
-function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloAnios = null, inicialAnio = "2022", fuentes = {}}) {
+function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloAnios = null, inicialAnio = "2022", fuentes = {}, forma = "barras"}) {
   const anios = soloAnios ?? [2017, 2022];
   const cAnio = campo({id: `${id}-anio`, nombre: "anio", etiqueta: "Año", opciones: [...(anios.length > 1 ? [{clave: SEPARADO, etiqueta: "2017 y 2022 (comparar)", grupo: "En conjunto"}] : []), ...anios.map((a) => ({clave: String(a), etiqueta: String(a), grupo: "Una edición"}))], valor: anios.length > 1 ? inicialAnio : String(anios[0])});
   const op = (total, cats) => [{clave: total, etiqueta: cats.total, grupo: "En conjunto"}, {clave: SEPARADO, etiqueta: "Por separado (comparar)", grupo: "En conjunto"}, ...cats.lista.map(([k, v]) => ({clave: k, etiqueta: v, grupo: "Una a una"}))];
@@ -64,7 +65,13 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
     const sub = [comparar ? "2017 y 2022" : cAnio.value, fijo.sexo && fijo.sexo !== "Total" ? fijo.sexo : "", fijo.edad && fijo.edad !== "Todas" ? EDAD_ETIQ[fijo.edad] : "", fijo.ambito && fijo.ambito !== "Total" ? `localidades ${fijo.ambito === "Rural" ? "rurales" : "urbanas"}` : "", sepCampo ? `un panel por ${{sexo: "sexo", edad: "grupo de edad", ambito: "tipo de localidad"}[sepCampo]}` : ""].filter(Boolean).join(" · ");
     cuerpo.replaceChildren(
       figura({titulo, subtitulo: `Población indígena de 12 años y más, México · ${sub}`, pie},
-        [f.length ? Plot.plot({marginLeft: 280, marginRight: 60, height: alto, width: Math.min(1000, width), ...facetas, color, x: {label: "% de la población indígena", grid: true, domain: [0, maxX]}, y: {label: null, domain: cats},
+        [f.length && forma === "likert"
+          // Escala ordenada de respuesta: apilada divergente (catálogo, Likert). Lo
+          // desfavorable (nada, poco) a la izquierda del cero y lo favorable a la derecha.
+          ? likert(f.map((r) => ({...r, respuesta: r.categoria, fila: [comparar ? String(r.anio) : null, r.faceta || null].filter(Boolean).join(" · ") || "Población indígena"})),
+            {ancho: Math.min(1000, width), orden: ["Nada", "Poco", "Algo", "Mucho"], negativas: 2, dominio: [-75, 75], margenIzq: 170,
+              renglones: [["Grupo", (r) => r.fila], ["Respuesta", (r) => r.respuesta], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]]})
+          : f.length ? Plot.plot({marginLeft: 280, marginRight: 60, height: alto, width: Math.min(1000, width), ...facetas, color, x: {label: "% de la población indígena", grid: true, domain: [0, maxX]}, y: {label: null, domain: cats},
           marks: [...(comparar ? [[2017, -8], [2022, 8]] : [[null, 0]]).flatMap(([a, dy]) => {
               const d = a == null ? f : f.filter((r) => r.anio === a);
               const fx = sepCampo ? {fx: "faceta"} : {};
@@ -148,8 +155,8 @@ display(seccionEnadis({id: "c7d", indicador: "derecho", fuentes: {cotejos: ["der
 <h2 id="respeto" class="toc-anchor">Cómo ven el respeto a sus derechos</h2>
 
 ```js
-display(seccionEnadis({id: "c7e", indicador: "respeto", fuentes: {cotejos: ["disc_2022"], referencia: ["R-ENADIS-2022-BOL"], nota: "La opinión sobre el respeto a los derechos no tiene todavía un cotejo propio; se coteja la cifra central del módulo, que confirma la muestra y el factor de expansión."}, orden: ["Mucho", "Algo", "Poco", "Nada"], inicialAnio: SEPARADO,
+display(seccionEnadis({id: "c7e", indicador: "respeto", forma: "likert", fuentes: {cotejos: ["disc_2022"], referencia: ["R-ENADIS-2022-BOL"], nota: "La opinión sobre el respeto a los derechos no tiene todavía un cotejo propio; se coteja la cifra central del módulo, que confirma la muestra y el factor de expansión."}, orden: ["Mucho", "Algo", "Poco", "Nada"], inicialAnio: SEPARADO,
   titulo: "¿Qué tanto se respetan los derechos de las personas indígenas?",
-  pie: "INEGI, ENADIS 2017 y 2022 · cada barra es una respuesta; suman 100 % en cada año",
+  pie: "INEGI, ENADIS 2017 y 2022 · a la izquierda del cero, nada y poco; a la derecha, algo y mucho; cada fila suma 100 %",
   explica: "Opinión de las propias personas indígenas de 12 años y más sobre cuánto se respetan sus derechos en el país. Se excluye a quien no supo responder."}));
 ```

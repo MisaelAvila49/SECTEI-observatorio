@@ -10,6 +10,8 @@ import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.j
 import {punto, ejePct, COLOR_UNICO, ROJO, alCambiarModo, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
+import {treemap, lollipop, burbujas} from "../components/formas.js";
+const geoEnt = await FileAttachment("../data/mx_entidades.json").json();
 const [clin, lenguasNac, serieNac] = await Promise.all([
   FileAttachment("../data/clin_variantes.csv").csv(),
   FileAttachment("../data/lenguas_nacional_2020.csv").csv({typed: true}),
@@ -48,10 +50,9 @@ function pintarA() {
           Plot.tip(porFamilia, Plot.pointerY({x: "variantes", y: "familia", maxRadius: Infinity, ...GLOBO, ...globo([["Familia", (r) => r.familia], ["Agrupaciones", (r) => r.agrupaciones], ["Variantes", (r) => r.variantes]])})), Plot.ruleX([0])]})]));
   } else {
     const top = porAgrupacion.slice(0, 25);
-    nodos.push(figura({titulo: "Las 25 agrupaciones con más variantes", subtitulo: "Una variante es una forma de la lengua con diferencias estructurales o léxicas y una identidad sociolingüística propia", pie: "INALI, Catálogo de las Lenguas Indígenas Nacionales 2008 · cada barra es una agrupación; junto al número, su familia"},
-      [Plot.plot({marginLeft: 150, marginRight: 150, height: 22 * top.length + 60, width: Math.min(900, width), x: {label: "variantes", grid: true}, y: {label: null, domain: top.map((r) => r.agrupacion)},
-        marks: [Plot.barX(top, {x: "variantes", y: "agrupacion", fill: COLOR_UNICO}), Plot.text(top, {x: "variantes", y: "agrupacion", text: (r) => `${r.variantes} · ${r.familia}`, dx: 6, textAnchor: "start", fontSize: 11.5}),
-          Plot.tip(top, Plot.pointerY({x: "variantes", y: "agrupacion", maxRadius: Infinity, ...GLOBO, ...globo([["Agrupación", (r) => r.agrupacion], ["Familia", (r) => r.familia], ["Variantes", (r) => r.variantes]])})), Plot.ruleX([0])]})]));
+    nodos.push(figura({titulo: "Las 25 agrupaciones con más variantes", subtitulo: "Una variante es una forma de la lengua con diferencias estructurales o léxicas y una identidad sociolingüística propia", pie: "INALI, Catálogo de las Lenguas Indígenas Nacionales 2008 · cada punto es una agrupación; el globo dice su familia"},
+      [lollipop(top.map((r) => ({nombre: r.agrupacion, valor: r.variantes, familia: r.familia})), {ancho: Math.min(900, width), dominio: [0, porAgrupacion[0].variantes * 1.1], etiquetaX: "variantes",
+        formato: (v) => String(v), renglones: [["Agrupación", (r) => r.nombre], ["Familia", (r) => r.familia], ["Variantes", (r) => r.valor]]})]));
   }
   nodos.push(fuenteDe({datos: ["D-INALI-CLIN-2008"], cotejos: ["clin_familias", "clin_agrupaciones", "clin_variantes"]}));
   nodos.push(explicacion("El Catálogo de las Lenguas Indígenas Nacionales (INALI, 2008) ordena las lenguas en tres niveles: la familia, que reúne lenguas con un origen común; la agrupación, que es lo que comúnmente se llama 'lengua' y lo que pregunta el Censo; y la variante, la forma concreta que se habla en un territorio, con su propia autodenominación. Las 364 variantes son las que el INALI trata como lenguas para fines de política pública."),
@@ -73,7 +74,7 @@ const lenguasOrden = totalNac.slice().sort((a, b) => b.num - a.num);
 // Eje fijo: el total de la lengua mayor, para que elegir un sexo acorte las
 // barras en vez de reescalar la gráfica.
 const MAX_NAC = Math.max(...totalNac.map((r) => r.num + 1.96 * r.ee * r.den)) * 1.05;
-const selLengua = campo({id: "c1-lengua", nombre: "lengua", etiqueta: "Lengua", opciones: [{clave: "todas", etiqueta: "Las 25 con más hablantes", grupo: "En conjunto"}, ...lenguasOrden.map((r) => ({clave: r.lengua, etiqueta: r.lengua_nombre, grupo: "Una a una"}))], valor: "todas"});
+const selLengua = campo({id: "c1-lengua", nombre: "lengua", etiqueta: "Lengua", opciones: [{clave: "todas", etiqueta: "Todas las lenguas", grupo: "En conjunto"}, ...lenguasOrden.map((r) => ({clave: r.lengua, etiqueta: r.lengua_nombre, grupo: "Una a una"}))], valor: "todas"});
 const selSexoB = campo({id: "c1-sexo", nombre: "sexo", etiqueta: "Sexo", opciones: [{clave: "Total", etiqueta: "Mujeres y hombres", grupo: "En conjunto"}, {clave: "Mujeres", etiqueta: "Mujeres", grupo: "Una a una"}, {clave: "Hombres", etiqueta: "Hombres", grupo: "Una a una"}], valor: "Total"});
 const panelB = html`<div class="panel-filtros"><div class="panel-campos">${selLengua}${selSexoB}</div></div>`;
 const cuerpoB = document.createElement("div");
@@ -85,11 +86,12 @@ function pintarB() {
     const total = filas.reduce((s, r) => s + r.num, 0);
     const top = filas.slice(0, 25).map((r) => ({...r, share: 100 * r.num / total}));
     nodos.push(kpis([{etiqueta: "Hablantes de 3 años y más en el país", cifra: entero(total), nota: "muestra del Censo 2020; el conteo del ITER da 7,364,645"}, {etiqueta: "Lenguas con hablantes", cifra: String(filas.length), nota: "agrupaciones del catálogo del INALI en la muestra"}, {etiqueta: "Las cinco mayores reúnen", cifra: pct(top.slice(0, 5).reduce((s, r) => s + r.share, 0)), nota: "de todos los hablantes"}]),
-      figura({titulo: `Las 25 lenguas con más hablantes en México, 2020`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}personas de 3 años y más; el porcentaje es su parte de todos los hablantes`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada barra es una agrupación lingüística; estimación con intervalo de 95 %"},
-        [Plot.plot({marginLeft: 150, marginRight: 110, height: 22 * top.length + 60, width: Math.min(900, width), x: {label: "hablantes", grid: true, domain: [0, MAX_NAC]}, y: {label: null, domain: top.map((r) => r.lengua_nombre)},
-          marks: [Plot.barX(top, {x: "num", y: "lengua_nombre", fill: COLOR_UNICO}), Plot.ruleX(top, {x1: (r) => Math.max(0, r.num - 1.96 * r.ee * r.den), x2: (r) => r.num + 1.96 * r.ee * r.den, y: "lengua_nombre", stroke: "currentColor", strokeOpacity: 0.5}),
-            Plot.text(top, {x: "num", y: "lengua_nombre", text: (r) => `${entero(r.num)} (${pct(r.share)})`, dx: 8, textAnchor: "start", fontSize: 11.5}),
-            Plot.tip(top, Plot.pointerY({x: "num", y: "lengua_nombre", maxRadius: Infinity, ...GLOBO, ...globo([["Lengua", (r) => r.lengua_nombre], ["Familia", (r) => r.familia], ["Hablantes", (r) => `${entero(r.num)} (± ${entero(1.96 * r.ee * r.den)})`], ["Parte de los hablantes del país", (r) => pct(r.share)]])})), Plot.ruleX([0])]})]),
+      figura({titulo: `Cómo se reparten los hablantes entre las lenguas y sus familias, 2020`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}personas de 3 años y más; el área de cada rectángulo es su parte de todos los hablantes del país`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada rectángulo es una lengua; el color, su familia (las tres mayores con color y las demás en gris)"},
+        [treemap(filas.map((r) => ({grupo: r.familia ? r.familia.charAt(0).toUpperCase() + r.familia.slice(1) : "Sin familia asignada", parte: r.lengua_nombre, valor: r.num})), {ancho: Math.min(980, width), alto: 470, etiquetaOtras: "Otras familias",
+          renglones: [["Lengua", (d) => d.parte], ["Familia", (d) => d.grupo], ["Hablantes", (d) => entero(d.valor)], ["Parte de los hablantes", (d) => pct(d.pct)]]})]),
+      figura({titulo: `Las 25 lenguas con más hablantes en México, 2020`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}personas de 3 años y más; el porcentaje es su parte de todos los hablantes`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada punto es una agrupación lingüística; el globo trae el intervalo de 95 %"},
+        [lollipop(top.map((r) => ({...r, nombre: r.lengua_nombre, valor: r.num})), {ancho: Math.min(900, width), dominio: [0, MAX_NAC], etiquetaX: "hablantes",
+          formato: (v) => entero(v), renglones: [["Lengua", (r) => r.lengua_nombre], ["Familia", (r) => r.familia], ["Hablantes", (r) => `${entero(r.num)} (± ${entero(1.96 * r.ee * r.den)})`], ["Parte de los hablantes del país", (r) => pct(r.share)]]})]),
       tablaColumnas(filas.map((r) => ({...r, share: 100 * r.num / total})), [{etiqueta: "Lengua", valor: (r) => r.lengua_nombre}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los hablantes", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => entero(1.96 * r.ee * r.den)}], {titulo: "Ver las 70 lenguas"}));
   } else {
     const filas = nac.filter((r) => r.nivel === "entidad" && r.sexo === sexo && r.lengua === selLengua.value).sort((a, b) => b.num - a.num);
@@ -97,6 +99,10 @@ function pintarB() {
     const total = filas.reduce((s, r) => s + r.num, 0);
     const top = filas.slice(0, 12).map((r) => ({...r, share: 100 * r.num / total, tasa: 100 * r.num / r.den}));
     nodos.push(kpis([{etiqueta: `Hablantes de ${nombre} en el país`, cifra: entero(total), nota: "personas de 3 años y más, 2020"}, {etiqueta: "Entidades con hablantes", cifra: String(filas.length), nota: "en la muestra del Censo"}, {etiqueta: "La entidad mayor reúne", cifra: pct(top[0]?.share ?? 0), nota: top[0]?.nombre ?? ""}]),
+      figura({titulo: `Hablantes de ${nombre} en cada entidad, 2020`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}el área de cada círculo es proporcional al número de hablantes; en rojo, la Ciudad de México`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada círculo está en el centro de su entidad"},
+        [burbujas(filas.map((r) => ({...r, share: 100 * r.num / total, tasa: 100 * r.num / r.den})), geoEnt, {ancho: Math.min(900, width), destacado: "09",
+          tope: Math.max(...nac.filter((r) => r.nivel === "entidad" && r.sexo === "Total" && r.lengua === selLengua.value).map((r) => r.num)),
+          renglones: [["Entidad", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], ["Parte de la lengua", (r) => pct(r.share)], ["De la población de la entidad", (r) => pct(r.tasa, 2)]]})]),
       figura({titulo: `Dónde viven los hablantes de ${nombre}, 2020`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}las doce entidades con más hablantes; el porcentaje es su parte de todos los hablantes de la lengua`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada barra es una entidad; el globo trae la proporción dentro de la entidad"},
         [Plot.plot({marginLeft: 150, marginRight: 110, height: 24 * top.length + 60, width: Math.min(900, width), x: {label: "hablantes", grid: true, domain: [0, Math.max(...nac.filter((r) => r.nivel === "entidad" && r.sexo === "Total" && r.lengua === selLengua.value).map((r) => r.num)) * 1.15]}, y: {label: null, domain: top.map((r) => r.nombre)},
           marks: [Plot.barX(top, {x: "num", y: "nombre", fill: (r) => (r.cve === "09" ? ROJO : COLOR_UNICO)}), Plot.text(top, {x: "num", y: "nombre", text: (r) => `${entero(r.num)} (${pct(r.share)})`, dx: 8, textAnchor: "start", fontSize: 11.5}),

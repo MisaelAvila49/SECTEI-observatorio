@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis, claves} from "../components/graficas.js";
-import {punto, ejePct, COLOR_UNICO, COLOR_REFERENCIA, GLOBO, globo} from "../components/base.js";
+import {punto, ejePct, COLOR_UNICO, COLOR_REFERENCIA, GLOBO, globo, alCambiarModo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
 
 const [clin, lenguasNac, serieNac] = await Promise.all([
@@ -132,4 +132,38 @@ function pintarAlc() {
 panelAlc.addEventListener("input", pintarAlc);
 pintarAlc();
 display(html`<section class="beta-seccion">${panelAlc}${cuerpoAlc}</section>`);
+```
+
+---
+
+<h2 id="orden-de-las-lenguas" class="toc-anchor">El orden de las lenguas en la ciudad</h2>
+
+```js
+import {bump} from "../components/formas.js";
+const lenguasCiudad = (await FileAttachment("../data/lenguas_alcaldia.csv").csv({typed: true}))
+  .map((r) => ({...r, anio: Number(r.anio), lengua: String(r.lengua).padStart(4, "0")}))
+  .filter((r) => r.nivel === "entidad" && r.sexo === "Total" && r.lengua < "8000" && r.num > 0);
+const aniosB = [...new Set(lenguasCiudad.map((r) => r.anio))].sort();
+// Lugar de cada lengua en cada edición, entre todas las que tienen hablantes.
+const lugares = aniosB.flatMap((a) => lenguasCiudad.filter((r) => r.anio === a).sort((x, y) => y.num - x.num).map((r, i) => ({...r, lugar: i + 1})));
+const ultimoB = aniosB.at(-1);
+const TOP_B = lugares.filter((r) => r.anio === ultimoB && r.lugar <= 10).map((r) => r.lengua_nombre);
+const MAX_LUGAR = 15;
+const selDest = campo({id: "c1c-dest", nombre: "lengua", etiqueta: "Resaltar lengua", opciones: TOP_B.map((n) => ({clave: n, etiqueta: n})), valor: TOP_B[0]});
+const panelB2 = html`<div class="panel-filtros"><div class="panel-campos">${selDest}</div></div>`;
+const cuerpoB2 = document.createElement("div");
+function pintarB2() {
+  const datos = lugares.filter((r) => TOP_B.includes(r.lengua_nombre) && r.lugar <= MAX_LUGAR).map((r) => ({...r, serie: r.lengua_nombre}));
+  cuerpoB2.replaceChildren(
+    figura({titulo: `El lugar de las diez lenguas más habladas de ${ultimoB}, edición por edición`, subtitulo: `1 es la lengua con más hablantes en la ciudad ese año; resaltada: ${selDest.value}`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada círculo es el lugar de una lengua en una edición; fuera del lugar 15 la línea se corta"},
+      [bump(datos, {ancho: Math.min(980, width), destacada: selDest.value, maxLugar: MAX_LUGAR,
+        renglones: [["Lengua", (r) => r.serie], ["Año", (r) => r.anio], ["Lugar en la ciudad", (r) => r.lugar], ["Hablantes", (r) => entero(r.num)]]})]),
+    fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["nahuatl_2015", "nahuatl_2020", "word_tabla2_celdas_iguales"], lectura: ["R-SECULT-LENGUAS"]}),
+    explicacion("Cada columna es una edición y cada círculo dice qué lugar ocupó la lengua entre todas las que tienen hablantes en la ciudad ese año: 1 es la de más hablantes. Se siguen las diez lenguas más habladas de la edición más reciente. Las cifras salen de las muestras censales, que preguntan desde los 5 años hasta 2005 y desde los 3 a partir de 2010; el cambio de edad casi no mueve el orden. Cuando dos lenguas tienen cifras parecidas, su lugar puede cambiar por el margen de error de la muestra."),
+    tablaColumnas(datos.slice().sort((a, b) => a.anio - b.anio || a.lugar - b.lugar), [{etiqueta: "Año", valor: (r) => r.anio}, {etiqueta: "Lugar", num: true, valor: (r) => r.lugar}, {etiqueta: "Lengua", valor: (r) => r.serie}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}], {titulo: "Ver los lugares"}));
+}
+panelB2.addEventListener("input", pintarB2);
+alCambiarModo(() => pintarB2());
+pintarB2();
+display(html`<section class="beta-seccion">${panelB2}${cuerpoB2}</section>`);
 ```
