@@ -4427,3 +4427,46 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 /* El globo del mapa va por encima de la tarjeta y la leyenda flotantes
    (z-index 5): pegado a una línea del oeste quedaba tapado por ellas. */
 .maplibregl-popup.mapa-globo { z-index: 9; }
+
+/* --- Narración (docs/guion-narrativo.md) -----------------------------------
+   Cierre de página: la pregunta que queda y el botón a la página siguiente. */
+.relato-cierre {
+  margin: 2.4rem 0 1rem;
+  padding: 1.1rem 1.2rem;
+  border-top: 2px solid var(--brand-red, #C4101B);
+  background: color-mix(in srgb, var(--theme-foreground) 3%, transparent);
+  border-radius: 0 0 10px 10px;
+}
+.relato-cierre p {
+  margin: 0 0 0.8rem;
+  max-width: 68ch;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+.relato-cierre .book-cta + .book-cta {
+  margin-left: 0.5rem;
+}
+/* El párrafo de cada sección se lee como texto, con la tinta principal. */
+.relato-seccion .seccion-entrada,
+.seccion-cabeza .seccion-entrada {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+/* Tarjetas de la portada: pregunta en rojo y lista de páginas de la parte. */
+.historia-pregunta {
+  margin: 0.1rem 0 0.4rem;
+  font-weight: 600;
+  color: var(--brand-red, #C4101B);
+}
+.historia-paginas {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Cinco tarjetas: la primera a ancho completo, para no dejar un hueco. */
+.historia-partes .historia-parte:first-child {
+  grid-column: 1 / -1;
+}

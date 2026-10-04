@@ -5,7 +5,7 @@ title: Quién usa internet y con qué
 ```js
 import {seccionesTema} from "../../components/tablero.js";
 import {catalogo} from "../../components/fuentes.js";
-import {verTambien} from "../../components/navegacion.js";
+import {conEntrada} from "../../components/graficas.js";
 import {materializar} from "../../components/agregar.js";
 const datos = materializar(await FileAttachment("../../data/indicadores/endutih-uso.parquet").parquet());
 const datosEscolaridad = materializar(await FileAttachment("../../data/indicadores/endutih-uso_escolaridad.parquet").parquet());
@@ -15,9 +15,9 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">ENDUTIH 2025</span>
+  <span class="kicker">Parte 4 · La brecha digital · 3 de 5</span>
   <h1>Quién usa internet y con qué</h1>
-  <p class="hero-entrada">La ENDUTIH pregunta a cada persona de 6 años o más si usó internet, computadora y celular, con qué equipo y desde dónde. Desde 2025 pregunta también por lengua indígena y autoadscripción.</p>
+  <p class="hero-entrada">La ENDUTIH pregunta a cada persona y no al hogar. Desde 2025 identifica a la población indígena, y con eso se puede saber quién usa internet, con qué equipo y desde dónde.</p>
 </div>
 
 ```js
@@ -29,36 +29,31 @@ const secciones = seccionesTema("endutih-uso", datos, {geoEntidades, datosEscola
 <h2 id="usa-internet" class="toc-anchor">Usa internet</h2>
 
 ```js
-display(secciones[0]);
+display(conEntrada(secciones[0], "El uso personal es la medida más directa de la brecha: cuenta a quien se conecta, tenga o no conexión en casa."));
 ```
 ---
 
 <h2 id="dispositivos" class="toc-anchor">Dispositivos y conexión</h2>
 
 ```js
-display(secciones[1]);
+display(conEntrada(secciones[1], "Con qué aparatos cuenta cada persona y qué tipo de conexión tiene describen las condiciones en que se conecta."));
 ```
 ---
 
 <h2 id="equipo-lugar" class="toc-anchor">Desde qué equipo y en qué lugar</h2>
 
 ```js
-display(secciones[2]);
+display(conEntrada(secciones[2], "Conectarse solo desde un celular, o solo fuera de casa, limita lo que se puede hacer en línea. Por eso se pregunta desde dónde y con qué."));
 ```
 ---
 
 <h2 id="hogar" class="toc-anchor">El hogar de quien responde</h2>
 
 ```js
-display(secciones[3]);
+display(conEntrada(secciones[3], "Las condiciones del hogar ponen en contexto el uso de cada persona."));
 ```
 
----
-
-```js
-display(verTambien([
-  {ruta: "/encuestas/endutih/actividades", titulo: "Para qué se usa internet", nota: "Estudiar, trabajar, trámites, dinero y entretenimiento, entre quienes se conectan."},
-  {ruta: "/encuestas/endutih/barreras", titulo: "Quién no se conecta y por qué", nota: "Cuánta gente queda fuera y qué motivo declara."},
-  {ruta: "/encuestas/censo/vivienda", titulo: "Conectividad en la vivienda", nota: "Lo que hay en la vivienda según el Censo 2020, con cortes por entidad y edad."}
-]));
-```
+<div class="relato-cierre">
+  <p>Conectarse es un medio. Falta saber para qué se usa.</p>
+  <a class="book-cta book-cta-primary" href="./actividades">Sigue: Para qué se usa internet</a>
+</div>

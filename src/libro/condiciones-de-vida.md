@@ -25,9 +25,9 @@ const v = (anio, crit, grupo, ind, sexo = "Total") => pobreza.find((r) => r.anio
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">Condiciones de vida</span>
+  <span class="kicker">Parte 3 · Quiénes son y cómo viven · 4 de 4</span>
   <h1>Pobreza y carencias</h1>
-  <p class="hero-entrada">Pobreza, pobreza extrema y carencias sociales de la población indígena del país frente al resto, según la medición oficial del CONEVAL de 2016 a 2022. Las cifras son nacionales: la medición no publica la condición indígena por entidad.</p>
+  <p class="hero-entrada">La medición oficial de la pobreza junta el ingreso con seis carencias sociales. No se publica para la población indígena de la ciudad, así que esta página da el contexto del país.</p>
 </div>
 
 ```js
@@ -45,6 +45,10 @@ display(figura({titulo: "De cada 100 personas, cuántas viven en pobreza", subti
 ---
 
 <h2 id="pobreza" class="toc-anchor">Pobreza y pobreza extrema</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Pobreza y pobreza extrema</span>
+  <p class="seccion-entrada">La pobreza se sigue en el tiempo para saber si la distancia entre la población indígena y el resto se cierra, se mantiene o crece de una medición a otra.</p>
+</header>
 
 ```js
 const IND_POBREZA = ["Pobreza", "Pobreza moderada", "Pobreza extrema", "Vulnerable por carencias sociales", "Vulnerable por ingresos", "No pobre y no vulnerable"];
@@ -90,6 +94,10 @@ display(html`<section class="beta-seccion">${panelA}${cuerpoA}</section>`);
 ---
 
 <h2 id="carencias" class="toc-anchor">Carencias sociales</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Carencias sociales</span>
+  <p class="seccion-entrada">La pobreza es un resumen. Las carencias dicen de qué está hecha: educación, salud, seguridad social, vivienda, servicios y alimentación. Verlas por separado muestra en cuáles la distancia es mayor.</p>
+</header>
 
 ```js
 const IND_CAR = ["Rezago educativo", "Acceso a los servicios de salud", "Acceso a la seguridad social", "Calidad y espacios de la vivienda", "Servicios básicos en la vivienda", "Alimentación nutritiva y de calidad", "Ingreso inferior a la línea de pobreza", "Ingreso inferior a la línea de pobreza extrema"];
@@ -117,3 +125,8 @@ alCambiarModo(() => pintarB());
 pintarB();
 display(html`<section class="beta-seccion">${panelB}${cuerpoB}</section>`);
 ```
+
+<div class="relato-cierre">
+  <p>Hay una condición que la medición oficial no incluye y que hoy pesa en la escuela, el trabajo y los trámites: la conexión. La cuarta parte la mira de cerca.</p>
+  <a class="book-cta book-cta-primary" href="../encuestas/censo/vivienda">Sigue: Conectividad en la vivienda</a>
+</div>

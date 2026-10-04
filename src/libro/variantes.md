@@ -52,14 +52,18 @@ const lenguasOrden = [...porLengua.entries()].sort((a, b) => b[1].num - a[1].num
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">Las lenguas</span>
+  <span class="kicker">Parte 1 · Las lenguas · 3 de 4</span>
   <h1>Variantes y origen</h1>
-  <p class="hero-entrada">Cada lengua indígena tiene variantes, y ningún censo pregunta cuál habla cada persona. Esta página muestra la variante probable de los hablantes de la Ciudad de México, inferida por su lugar de origen con el método del INALI, y qué tan segura es cada asignación.</p>
+  <p class="hero-entrada">Dentro de cada lengua hay variantes, con su nombre propio y su territorio. Ningún censo pregunta cuál habla cada persona, así que aquí se estima con el método del INALI: por el lugar de donde viene cada hablante.</p>
 </div>
 
 ---
 
 <h2 id="variantes-de-cada-lengua" class="toc-anchor">Las variantes de cada lengua en la ciudad</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Las variantes de cada lengua en la ciudad</span>
+  <p class="seccion-entrada">La variante importa para cualquier servicio en lengua indígena: un intérprete, un material escolar o una campaña de salud sirven si están en la variante de quien los recibe. Esta gráfica muestra qué variantes es probable encontrar en la ciudad.</p>
+</header>
 
 ```js
 const aniosV = [...new Set(vc.map((r) => r.anio))].sort();
@@ -102,6 +106,10 @@ display(html`<section class="beta-seccion">${panelA}${cuerpoA}</section>`);
 ---
 
 <h2 id="que-tan-segura" class="toc-anchor">Qué tan segura es la asignación</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Qué tan segura es la asignación</span>
+  <p class="seccion-entrada">Una estimación vale lo que vale su certeza. Por eso cada cifra dice si la variante es exacta, única o estimada, y esta sección muestra qué parte de los hablantes de cada lengua cae en cada caso.</p>
+</header>
 
 ```js
 const selAnioB = campo({id: "c5b-anio", nombre: "anio", etiqueta: "Año", opciones: aniosV.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: String(ultimoAnio)});
@@ -131,3 +139,8 @@ panelB.addEventListener("input", pintarB);
 pintarB();
 display(html`<section class="beta-seccion">${panelB}${cuerpoB}</section>`);
 ```
+
+<div class="relato-cierre">
+  <p>Con las variantes identificadas se puede hacer la pregunta más delicada de esta parte: cuáles corren riesgo de dejar de hablarse.</p>
+  <a class="book-cta book-cta-primary" href="./lenguas-en-riesgo">Sigue: Lenguas en riesgo</a>
+</div>

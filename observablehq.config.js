@@ -78,15 +78,15 @@ export default {
 
   base: BASE,
 
-  // Navegación por TEMA, de lo general a lo particular: primero las lenguas,
-  // después quién es y dónde vive la población indígena de la ciudad, luego
-  // cómo vive y al final lo que enfrenta. Cada página es un subtema con sus
-  // gráficas; la fuente de cada cifra va en el desplegable de cada gráfica.
+  // Navegación en cinco partes numeradas, el orden de lectura del guion
+  // (docs/guion-narrativo.md): las lenguas, la ciudad, quiénes son y cómo
+  // viven, la brecha digital y lo que enfrentan. Cada parte responde una
+  // pregunta y cada página deja planteada la siguiente.
   pages: [
     {name: "Inicio", path: "/"},
     {name: "Mapa", path: "/mapa"},
     {
-      name: "Las lenguas",
+      name: "1. Las lenguas",
       open: true,
       pages: [
         {name: "Las lenguas de México", path: "/libro/lenguas-de-mexico"},
@@ -96,23 +96,29 @@ export default {
       ],
     },
     {
-      name: "La población indígena en la ciudad",
+      name: "2. La ciudad",
       open: true,
       pages: [
         {name: "La ciudad en el país", path: "/libro/la-ciudad-en-el-pais"},
         {name: "De dónde vienen", path: "/libro/de-donde-vienen"},
         {name: "Dónde viven", path: "/libro/donde-viven"},
         {name: "Colonias, pueblos y marginación", path: "/libro/colonias-y-marginacion"},
-        {name: "Edad y sexo", path: "/libro/quienes-son"},
-        {name: "Escuela y trabajo", path: "/libro/escuela-y-trabajo"},
-        {name: "Salud, discapacidad y español", path: "/libro/salud-y-lengua"},
       ],
     },
     {
-      name: "Condiciones de vida",
+      name: "3. Quiénes son y cómo viven",
       open: true,
       pages: [
+        {name: "Edad y sexo", path: "/libro/quienes-son"},
+        {name: "Escuela y trabajo", path: "/libro/escuela-y-trabajo"},
+        {name: "Salud, discapacidad y español", path: "/libro/salud-y-lengua"},
         {name: "Pobreza y carencias", path: "/libro/condiciones-de-vida"},
+      ],
+    },
+    {
+      name: "4. La brecha digital",
+      open: true,
+      pages: [
         {name: "Conectividad en la vivienda", path: "/encuestas/censo/vivienda"},
         {name: "Acceso en el hogar", path: "/encuestas/enigh/hogar"},
         {name: "Quién usa internet", path: "/encuestas/endutih/uso"},
@@ -121,7 +127,7 @@ export default {
       ],
     },
     {
-      name: "Discriminación, violencia y derechos",
+      name: "5. Lo que enfrentan",
       open: true,
       pages: [
         {name: "Discriminación", path: "/libro/discriminacion"},

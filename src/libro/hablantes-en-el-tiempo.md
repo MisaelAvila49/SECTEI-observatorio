@@ -24,14 +24,18 @@ const nac = lenguasNac.map((r) => ({...r, lengua: String(r.lengua).padStart(4, "
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">Las lenguas</span>
+  <span class="kicker">Parte 1 · Las lenguas · 2 de 4</span>
   <h1>Hablantes en el tiempo</h1>
-  <p class="hero-entrada">Cómo ha cambiado el número de personas que hablan una lengua indígena de 1990 a 2025, en el país y en cada alcaldía, contadas siempre sobre la población de 5 años y más para que las ediciones se puedan comparar.</p>
+  <p class="hero-entrada">Una lengua vive mientras se habla. Por eso, además de contar hablantes hoy, importa seguirlos en el tiempo: de 1990 a 2025, con la misma medida en todas las ediciones para que la comparación sea válida.</p>
 </div>
 
 ---
 
 <h2 id="serie-nacional" class="toc-anchor">La serie nacional, 1990 - 2025</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> La serie nacional, 1990 - 2025</span>
+  <p class="seccion-entrada">El país es el punto de referencia. La serie junta tres formas de contar a la población indígena, porque hablar una lengua, considerarse indígena y vivir en un hogar indígena son cosas distintas y pueden moverse en sentidos distintos.</p>
+</header>
 
 ```js
 const SERIES = [
@@ -81,6 +85,10 @@ display(html`<section class="beta-seccion">${panelS}${cuerpoS}</section>`);
 ---
 
 <h2 id="por-alcaldia" class="toc-anchor">Cada alcaldía, 1990 - 2025</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Cada alcaldía, 1990 - 2025</span>
+  <p class="seccion-entrada">La ciudad tiene dieciséis alcaldías con historias propias, y el promedio de la ciudad no deja ver lo que pasa en cada una. Por eso se dibujan por separado, con la misma escala y con la ciudad como referencia.</p>
+</header>
 
 ```js
 const serieAlc = (await FileAttachment("../data/serie_alcaldias.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio), cve: String(r.cve).padStart(3, "0")}));
@@ -137,6 +145,10 @@ display(html`<section class="beta-seccion">${panelAlc}${cuerpoAlc}</section>`);
 ---
 
 <h2 id="orden-de-las-lenguas" class="toc-anchor">El orden de las lenguas en la ciudad</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">03</span> El orden de las lenguas en la ciudad</span>
+  <p class="seccion-entrada">Además de cuántos hablantes hay, importa de qué lenguas son. El lugar que ocupa cada lengua en la ciudad, edición tras edición, muestra si la mezcla de lenguas cambia o se mantiene.</p>
+</header>
 
 ```js
 import {bump} from "../components/formas.js";
@@ -167,3 +179,8 @@ alCambiarModo(() => pintarB2());
 pintarB2();
 display(html`<section class="beta-seccion">${panelB2}${cuerpoB2}</section>`);
 ```
+
+<div class="relato-cierre">
+  <p>Hasta aquí cada lengua se trató como una sola. Pero una lengua tiene variantes, y quienes hablan variantes distintas no siempre se entienden entre sí.</p>
+  <a class="book-cta book-cta-primary" href="./variantes">Sigue: Variantes y origen</a>
+</div>

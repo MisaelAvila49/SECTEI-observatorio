@@ -60,9 +60,9 @@ function seccionEndireh({id, indicadores, titulo, pie, explica, fuentes = {}}) {
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">Discriminación, violencia y derechos</span>
+  <span class="kicker">Parte 5 · Lo que enfrentan · 2 de 3</span>
   <h1>Violencia contra las mujeres indígenas</h1>
-  <p class="hero-entrada">Cuántas mujeres de 15 años y más han vivido violencia, en qué ámbito y de qué tipo, comparando a las mujeres indígenas con el resto, según la Encuesta Nacional sobre la Dinámica de las Relaciones en los Hogares (ENDIREH) 2021 del INEGI, para el país y para la Ciudad de México.</p>
+  <p class="hero-entrada">La ENDIREH pregunta a las mujeres por situaciones concretas de violencia. Permite comparar a las mujeres indígenas con el resto, en el país y en la Ciudad de México.</p>
 </div>
 
 ```js
@@ -81,6 +81,10 @@ display(figura({titulo: "De cada 100 mujeres, cuántas han vivido violencia a lo
 ---
 
 <h2 id="por-ambito" class="toc-anchor">Dónde ocurre: por ámbito</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Dónde ocurre: por ámbito</span>
+  <p class="seccion-entrada">El ámbito dice dónde ocurre la violencia: en la pareja, la familia, la escuela, el trabajo o la comunidad. Cada uno pide respuestas distintas.</p>
+</header>
 
 ```js
 display(seccionEndireh({id: "c8a", indicadores: ["Cualquier ámbito", "Pareja", "Familiar", "Escolar", "Laboral", "Comunitario"],
@@ -92,6 +96,10 @@ display(seccionEndireh({id: "c8a", indicadores: ["Cualquier ámbito", "Pareja", 
 ---
 
 <h2 id="por-tipo" class="toc-anchor">De qué tipo</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> De qué tipo</span>
+  <p class="seccion-entrada">El tipo dice cómo es la violencia: psicológica, física, sexual o económica. Una misma mujer puede haber vivido varios.</p>
+</header>
 
 ```js
 display(seccionEndireh({id: "c8b", fuentes: {referencia: ["R-ENDIREH-2021-TAB"], nota: "Se cotejan las prevalencias totales de la encuesta; la prevalencia de cada tipo no tiene todavía un cotejo propio y se puede consultar en los tabulados del INEGI."}, indicadores: ["Psicológica", "Física", "Sexual", "Económica o patrimonial"],
@@ -99,3 +107,8 @@ display(seccionEndireh({id: "c8b", fuentes: {referencia: ["R-ENDIREH-2021-TAB"],
   pie: "INEGI, ENDIREH 2021, mujeres de 15 años y más · cada par de puntos es un tipo de violencia, en cualquier ámbito",
   explica: "Los tipos agrupan las situaciones que la encuesta pregunta en todos los ámbitos: psicológica (insultos, humillaciones, amenazas), física (golpes, empujones, agresiones con armas), sexual (acoso, abuso, violación) y económica o patrimonial (control del dinero, despojo de bienes). Una mujer puede haber vivido varios tipos."}));
 ```
+
+<div class="relato-cierre">
+  <p>Frente a la discriminación y la violencia hay un marco de derechos. Con él cierra el recorrido.</p>
+  <a class="book-cta book-cta-primary" href="./derechos">Sigue: Derechos y política cultural</a>
+</div>

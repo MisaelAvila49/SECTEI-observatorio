@@ -196,25 +196,25 @@ display(seccion({numero: "01", titulo: "Treinta y cinco años de hablantes"}));
 
 ---
 
-<h2 id="explorar" class="toc-anchor">Explorar</h2>
+<h2 id="historia" class="toc-anchor">La historia en cinco partes</h2>
 
 ```js
-display(seccion({numero: "02", titulo: "Explorar"}));
+display(seccion({numero: "02", titulo: "La historia en cinco partes", entrada: "El sitio se lee como una sola historia, de las lenguas del país a la vida de sus hablantes en la ciudad. Cada parte responde una pregunta y cada página lleva a la siguiente."}));
 ```
 
 ```js
 {
-  const t = html`<div class="grid grid-cols-2"></div>`;
-  const tarjetas = [
-    ["./mapa", "Mapa de la Ciudad de México", "Hablantes, hogares indígenas y autoadscripción por alcaldía, AGEB y manzana; la lengua que se habla, sus variantes probables y de dónde vienen quienes la hablan."],
-    ["./libro/lenguas-de-mexico", "Las lenguas", "Cuántas lenguas y variantes hay en el país, cómo han cambiado sus hablantes de 1990 a 2025, qué variantes se hablan en la ciudad y cuáles están en riesgo."],
-    ["./libro/la-ciudad-en-el-pais", "La población indígena en la ciudad", "La ciudad frente a las entidades, de dónde vienen sus hablantes, dónde viven, su edad, su escuela, su trabajo y su salud."],
-    ["./libro/condiciones-de-vida", "Condiciones de vida", "Pobreza y carencias sociales, y la conectividad de la vivienda, el hogar y las personas."],
-    ["./libro/discriminacion", "Discriminación, violencia y derechos", "La discriminación que declara la población indígena, la violencia contra las mujeres indígenas y el marco de derechos lingüísticos."],
-    ["./metodologia", "Metodología", "Qué mide cada población indígena, de dónde sale cada cifra, cómo se cotejó y qué no se puede saber con estas fuentes."],
-  ];
-  tarjetas.forEach(([ruta, titulo, texto], i) => t.append(html`<div class="card"><span class="card-numero" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
-    <h3><a href="${ruta}">${titulo}</a></h3><p>${texto}</p></div>`));
+  // Las cinco partes salen del guion (docs/guion-narrativo.md), vía
+  // scripts/aplicar_guion.py: pregunta, párrafo y páginas de cada una.
+  const partes = await FileAttachment("./components/guion-partes.json").json();
+  const t = html`<div class="grid grid-cols-2 historia-partes"></div>`;
+  for (const g of partes) t.append(html`<div class="card historia-parte">
+    <span class="card-numero" aria-hidden="true">${String(g.numero).padStart(2, "0")}</span>
+    <h3><a href="${"." + g.ruta}">${g.nombre}</a></h3>
+    <p class="historia-pregunta">${g.pregunta}</p>
+    <p>${g.texto}</p>
+    <ul class="historia-paginas">${g.paginas.map((x) => html`<li><a href="${"." + x.ruta}">${x.titulo}</a></li>`)}</ul>
+  </div>`);
   display(t);
 }
 ```

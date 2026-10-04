@@ -33,14 +33,18 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">La población indígena en la ciudad</span>
+  <span class="kicker">Parte 2 · La ciudad · 1 de 4</span>
   <h1>La ciudad en el país</h1>
-  <p class="hero-entrada">La Ciudad de México frente a las otras 31 entidades, y cuántas lenguas tienen hablantes en ella en cada censo.</p>
+  <p class="hero-entrada">La segunda parte baja del país a la ciudad. El primer paso es ubicarla: qué lugar ocupa la Ciudad de México entre las entidades, según la forma de contar a la población indígena, y cuántas lenguas tienen hablantes en ella.</p>
 </div>
 
 ---
 
 <h2 id="las-32-entidades" class="toc-anchor">La ciudad entre las 32 entidades</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> La ciudad entre las 32 entidades</span>
+  <p class="seccion-entrada">Comparar con el resto del país da la escala. Una proporción sola dice poco; junto a las de las demás entidades se entiende si es alta o baja. Además cambia según se cuente a quienes hablan una lengua, a quienes se consideran indígenas o a quienes viven en hogares indígenas.</p>
+</header>
 
 ```js
 // Mosaico de entidades (catálogo de gráficas): cada entidad un cuadro del
@@ -85,7 +89,26 @@ display(html`<section class="beta-seccion">${panelMos}${cuerpoMos}</section>`);
 
 ---
 
+<h2 id="frente-a-las-entidades" class="toc-anchor">La ciudad frente a las entidades</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> La ciudad frente a las entidades</span>
+  <p class="seccion-entrada">El mismo panorama con más detalle: por sexo, por grupo de edad y hasta el municipio, para quien quiera comparar a la ciudad con una entidad o con un municipio en particular.</p>
+</header>
+
+```js
+display(seccionCenso(datos, {id: "c2ent", inicial: {nivel: "entidad", seleccion: "09"},
+  fuentes: () => fuenteDe({datos: ["D-ITER-2020-NAL", "D-CENSO-2020", "D-INPI-2020-HOG", "D-INPI-2020-AUTO"],
+    cotejos: ["hablantes3_nacional_2020", "pct_autoads_nacional_2020", "pct_pi_nacional_2020", "autoads_mun_mediana_dif_2020", "cdmx_hli3_2020_n", "cdmx_autoads_2020_n"],
+    lectura: ["R-CENSO-2020-TAB-ETN"]})}));
+```
+
+---
+
 <h2 id="cuantas-lenguas" class="toc-anchor">Cuántas lenguas llegan a la ciudad</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">03</span> Cuántas lenguas llegan a la ciudad</span>
+  <p class="seccion-entrada">La proporción no cuenta toda la historia. En una ciudad grande, una proporción chica pueden ser muchas personas y muchas lenguas distintas. Aquí se ve cuántas lenguas tienen hablantes en la ciudad y cómo se reparten entre ellas.</p>
+</header>
 
 ```js
 // Lenguas con hablantes en la ciudad por edición (muestras censales por alcaldía).
@@ -125,13 +148,7 @@ pintar1();
 display(html`<section class="beta-seccion">${panel1}${cuerpo1}</section>`);
 ```
 
----
-
-<h2 id="frente-a-las-entidades" class="toc-anchor">La ciudad frente a las entidades</h2>
-
-```js
-display(seccionCenso(datos, {id: "c2ent", inicial: {nivel: "entidad", seleccion: "09"},
-  fuentes: () => fuenteDe({datos: ["D-ITER-2020-NAL", "D-CENSO-2020", "D-INPI-2020-HOG", "D-INPI-2020-AUTO"],
-    cotejos: ["hablantes3_nacional_2020", "pct_autoads_nacional_2020", "pct_pi_nacional_2020", "autoads_mun_mediana_dif_2020", "cdmx_hli3_2020_n", "cdmx_autoads_2020_n"],
-    lectura: ["R-CENSO-2020-TAB-ETN"]})}));
-```
+<div class="relato-cierre">
+  <p>Si en la ciudad se hablan lenguas de todo el país, la pregunta siguiente es de dónde vienen quienes las hablan.</p>
+  <a class="book-cta book-cta-primary" href="./de-donde-vienen">Sigue: De dónde vienen</a>
+</div>

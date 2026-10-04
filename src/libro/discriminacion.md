@@ -104,9 +104,9 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">Discriminación, violencia y derechos</span>
+  <span class="kicker">Parte 5 · Lo que enfrentan · 1 de 3</span>
   <h1>Discriminación</h1>
-  <p class="hero-entrada">Qué tanto declaran las personas indígenas haber sido discriminadas, por qué motivo, en qué lugares y qué derechos les negaron, según la Encuesta Nacional sobre Discriminación de 2017 y 2022. La encuesta solo da cifras para el país: su muestra de población indígena no alcanza para la Ciudad de México.</p>
+  <p class="hero-entrada">La quinta parte trata de lo que la población indígena enfrenta. La ENADIS pregunta directamente a las personas indígenas si han sido discriminadas, por qué, dónde y qué derechos se les han negado. Sus cifras son del país.</p>
 </div>
 
 ```js
@@ -120,6 +120,10 @@ display(kpis([
 ---
 
 <h2 id="en-el-ultimo-ano" class="toc-anchor">Discriminación en el último año</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Discriminación en el último año</span>
+  <p class="seccion-entrada">La primera medida es la más simple: cuántas personas dicen haber sido discriminadas en un año, y si eso cambió entre las dos ediciones de la encuesta.</p>
+</header>
 
 ```js
 display(seccionEnadis({id: "c7a", indicador: "discriminacion", fuentes: {cotejos: ["disc_2017", "disc_2022"]}, orden: ["Por algún motivo", "Por los diez motivos comunes a 2017 y 2022"], inicialAnio: SEPARADO,
@@ -131,6 +135,10 @@ display(seccionEnadis({id: "c7a", indicador: "discriminacion", fuentes: {cotejos
 ---
 
 <h2 id="motivos" class="toc-anchor">Por qué motivo</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Por qué motivo</span>
+  <p class="seccion-entrada">El motivo permite distinguir la discriminación por ser indígena de otros motivos que una misma persona puede señalar.</p>
+</header>
 
 ```js
 display(seccionEnadis({id: "c7b", indicador: "motivo", fuentes: {cotejos: ["por_indigena_2022", "disc_2022"]},
@@ -142,6 +150,10 @@ display(seccionEnadis({id: "c7b", indicador: "motivo", fuentes: {cotejos: ["por_
 ---
 
 <h2 id="donde-ocurre" class="toc-anchor">Dónde ocurre</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">03</span> Dónde ocurre</span>
+  <p class="seccion-entrada">El lugar indica a quién le toca actuar. La discriminación en un servicio médico, en la calle o en el trabajo pide respuestas distintas.</p>
+</header>
 
 ```js
 display(seccionEnadis({id: "c7c", indicador: "ambito", fuentes: {cotejos: ["ambito_2017"]}, 
@@ -153,6 +165,10 @@ display(seccionEnadis({id: "c7c", indicador: "ambito", fuentes: {cotejos: ["ambi
 ---
 
 <h2 id="derechos-negados" class="toc-anchor">Derechos negados</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">04</span> Derechos negados</span>
+  <p class="seccion-entrada">La discriminación se vuelve concreta cuando se niega un derecho. Aquí se cuenta cuáles son los que las personas dicen que se les han negado.</p>
+</header>
 
 ```js
 display(seccionEnadis({id: "c7d", indicador: "derecho", fuentes: {cotejos: ["derecho_2017", "derecho_2022"]},
@@ -164,6 +180,10 @@ display(seccionEnadis({id: "c7d", indicador: "derecho", fuentes: {cotejos: ["der
 ---
 
 <h2 id="respeto" class="toc-anchor">Cómo ven el respeto a sus derechos</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">05</span> Cómo ven el respeto a sus derechos</span>
+  <p class="seccion-entrada">Por último, la percepción: qué tanto creen las propias personas indígenas que se respetan sus derechos en el país.</p>
+</header>
 
 ```js
 display(seccionEnadis({id: "c7e", indicador: "respeto", forma: "likert", fuentes: {cotejos: ["disc_2022"], referencia: ["R-ENADIS-2022-BOL"], nota: "La opinión sobre el respeto a los derechos no tiene todavía un cotejo propio; se coteja la cifra central del módulo, que confirma la muestra y el factor de expansión."}, orden: ["Mucho", "Algo", "Poco", "Nada"], inicialAnio: SEPARADO,
@@ -171,3 +191,8 @@ display(seccionEnadis({id: "c7e", indicador: "respeto", forma: "likert", fuentes
   pie: "INEGI, ENADIS 2017 y 2022 · a la izquierda del cero, nada y poco; a la derecha, algo y mucho; cada fila suma 100 %",
   explica: "Opinión de las propias personas indígenas de 12 años y más sobre cuánto se respetan sus derechos en el país. Se excluye a quien no supo responder."}));
 ```
+
+<div class="relato-cierre">
+  <p>Entre las personas indígenas, las mujeres enfrentan además una violencia que tiene su propia encuesta.</p>
+  <a class="book-cta book-cta-primary" href="./violencia">Sigue: Violencia contra las mujeres</a>
+</div>

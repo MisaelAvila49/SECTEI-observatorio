@@ -33,14 +33,18 @@ const EDAD_ETIQ = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "3
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">La población indígena en la ciudad</span>
+  <span class="kicker">Parte 3 · Quiénes son y cómo viven · 2 de 4</span>
   <h1>Escuela y trabajo</h1>
-  <p class="hero-entrada">Hasta qué nivel estudió la población indígena de la ciudad, si trabaja, en qué posición y cuántas personas se ocupan en el trabajo doméstico remunerado, frente al resto de la población.</p>
+  <p class="hero-entrada">La escuela y el trabajo son las dos puertas principales al ingreso y a los servicios en una ciudad. Esta página compara cómo las cruzan la población indígena y el resto.</p>
 </div>
 
 ---
 
 <h2 id="escolaridad" class="toc-anchor">Escolaridad</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Escolaridad</span>
+  <p class="seccion-entrada">El nivel de estudios influye en el empleo, en el ingreso y en el ejercicio de otros derechos. Comparar los niveles alcanzados muestra si hay una distancia entre las dos poblaciones y en qué nivel se abre.</p>
+</header>
 
 ```js
 display(seccionPerfil(perfil, {id: "c3esc", fuentes: fuentesPerfil, temas: [{clave: "esc", etiqueta: "Nivel de estudios", dimension: "escolaridad", categorias: ["Primaria o menos", "Secundaria", "Media superior", "Superior"], edades: ["15-29", "30-59", "60+"],
@@ -52,6 +56,10 @@ display(seccionPerfil(perfil, {id: "c3esc", fuentes: fuentesPerfil, temas: [{cla
 ---
 
 <h2 id="trabajo" class="toc-anchor">Trabajo</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Trabajo</span>
+  <p class="seccion-entrada">Importa si se tiene trabajo, pero también en qué posición y en qué ocupación. El trabajo doméstico remunerado se mira aparte porque el documento de la Secretaría de Cultura lo señala como ocupación frecuente entre las mujeres hablantes.</p>
+</header>
 
 ```js
 display(seccionPerfil(perfil, {id: "c3tra", fuentes: fuentesPerfil, temas: [
@@ -66,3 +74,8 @@ display(seccionPerfil(perfil, {id: "c3tra", fuentes: fuentesPerfil, temas: [
    explica: "Porcentaje de las personas ocupadas cuya ocupación es la de trabajadora doméstica (código 961 del Sistema Nacional de Clasificación de Ocupaciones; 9611 en 2010). Nueve de cada diez son mujeres. El documento de la Secretaría de Cultura señala esta ocupación como una de las principales de los hablantes en la ciudad."},
 ]}));
 ```
+
+<div class="relato-cierre">
+  <p>Además de la escuela y el trabajo, hay condiciones que deciden qué tan fácil es ejercer un derecho en la ciudad.</p>
+  <a class="book-cta book-cta-primary" href="./salud-y-lengua">Sigue: Salud, discapacidad y español</a>
+</div>

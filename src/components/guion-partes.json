@@ -1,0 +1,127 @@
+[
+ {
+  "numero": 1,
+  "nombre": "Las lenguas",
+  "pregunta": "¿Qué lenguas hay y qué pasa con ellas?",
+  "texto": "México es un país de muchas lenguas. Antes de hablar de la ciudad hace falta saber cuáles son, cuántas personas las hablan, cómo ha cambiado ese número desde 1990 y cuáles corren riesgo de dejar de hablarse.",
+  "ruta": "/libro/lenguas-de-mexico",
+  "paginas": [
+   {
+    "ruta": "/libro/lenguas-de-mexico",
+    "titulo": "Las lenguas de México"
+   },
+   {
+    "ruta": "/libro/hablantes-en-el-tiempo",
+    "titulo": "Hablantes en el tiempo"
+   },
+   {
+    "ruta": "/libro/variantes",
+    "titulo": "Variantes y origen"
+   },
+   {
+    "ruta": "/libro/lenguas-en-riesgo",
+    "titulo": "Lenguas en riesgo"
+   }
+  ]
+ },
+ {
+  "numero": 2,
+  "nombre": "La ciudad",
+  "pregunta": "¿Quiénes las hablan en la ciudad, de dónde vienen y dónde viven?",
+  "texto": "En la Ciudad de México se hablan lenguas de todo el país. Esta parte sigue a sus hablantes: qué lugar ocupa la ciudad entre las entidades, de dónde vienen quienes hablan cada lengua y en qué alcaldías, colonias y manzanas viven.",
+  "ruta": "/libro/la-ciudad-en-el-pais",
+  "paginas": [
+   {
+    "ruta": "/libro/la-ciudad-en-el-pais",
+    "titulo": "La ciudad en el país"
+   },
+   {
+    "ruta": "/libro/de-donde-vienen",
+    "titulo": "De dónde vienen"
+   },
+   {
+    "ruta": "/libro/donde-viven",
+    "titulo": "Dónde viven"
+   },
+   {
+    "ruta": "/libro/colonias-y-marginacion",
+    "titulo": "Colonias, pueblos y marginación"
+   }
+  ]
+ },
+ {
+  "numero": 3,
+  "nombre": "Quiénes son y cómo viven",
+  "pregunta": "¿En qué se parecen y en qué se distinguen del resto?",
+  "texto": "Con la misma pregunta y en el mismo año, se compara a la población indígena de la ciudad con el resto: su edad, su escuela, su trabajo, su salud y, para el país, su situación de pobreza.",
+  "ruta": "/libro/quienes-son",
+  "paginas": [
+   {
+    "ruta": "/libro/quienes-son",
+    "titulo": "Edad y sexo"
+   },
+   {
+    "ruta": "/libro/escuela-y-trabajo",
+    "titulo": "Escuela y trabajo"
+   },
+   {
+    "ruta": "/libro/salud-y-lengua",
+    "titulo": "Salud, discapacidad y español"
+   },
+   {
+    "ruta": "/libro/condiciones-de-vida",
+    "titulo": "Pobreza y carencias"
+   }
+  ]
+ },
+ {
+  "numero": 4,
+  "nombre": "La brecha digital",
+  "pregunta": "¿Quién se conecta, con qué y para qué?",
+  "texto": "La conexión condiciona hoy la escuela, el trabajo y los trámites. Tres fuentes miden quién tiene internet en la vivienda y en el hogar, quién lo usa, para qué, y por qué hay quien no se conecta.",
+  "ruta": "/encuestas/censo/vivienda",
+  "paginas": [
+   {
+    "ruta": "/encuestas/censo/vivienda",
+    "titulo": "Conectividad en la vivienda"
+   },
+   {
+    "ruta": "/encuestas/enigh/hogar",
+    "titulo": "Acceso en el hogar"
+   },
+   {
+    "ruta": "/encuestas/endutih/uso",
+    "titulo": "Quién usa internet"
+   },
+   {
+    "ruta": "/encuestas/endutih/actividades",
+    "titulo": "Para qué se usa internet"
+   },
+   {
+    "ruta": "/encuestas/endutih/barreras",
+    "titulo": "Quién no se conecta"
+   }
+  ]
+ },
+ {
+  "numero": 5,
+  "nombre": "Lo que enfrentan",
+  "pregunta": "¿Qué discriminación y qué violencia viven, y qué las protege?",
+  "texto": "Las encuestas preguntan a las propias personas qué discriminación y qué violencia han vivido. El recorrido cierra con el marco de derechos que da sentido a todas las cifras anteriores.",
+  "ruta": "/libro/discriminacion",
+  "paginas": [
+   {
+    "ruta": "/libro/discriminacion",
+    "titulo": "Discriminación"
+   },
+   {
+    "ruta": "/libro/violencia",
+    "titulo": "Violencia contra las mujeres"
+   },
+   {
+    "ruta": "/libro/derechos",
+    "titulo": "Derechos y política cultural"
+   }
+  ]
+ }
+]

@@ -32,14 +32,18 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">La población indígena en la ciudad</span>
+  <span class="kicker">Parte 2 · La ciudad · 2 de 4</span>
   <h1>De dónde vienen</h1>
-  <p class="hero-entrada">En qué entidad nacieron quienes hablan una lengua indígena en la ciudad y cuántos llegaron en los cinco años previos a cada censo.</p>
+  <p class="hero-entrada">Las lenguas viajan con las personas. Esta página sigue el camino: en qué entidad nacieron los hablantes que viven en la ciudad, en qué alcaldía viven y quiénes llegaron hace poco.</p>
 </div>
 
 ---
 
 <h2 id="de-donde-vienen" class="toc-anchor">De dónde vienen quienes hablan</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> De dónde vienen quienes hablan</span>
+  <p class="seccion-entrada">El lugar de nacimiento distingue dos historias: la de quienes nacieron en la ciudad y la de quienes llegaron de otra entidad. Se miden por separado porque cada una plantea necesidades distintas.</p>
+</header>
 
 ```js
 import {burbujas, lollipop} from "../components/formas.js";
@@ -73,6 +77,10 @@ display(html`<section class="beta-seccion">
 ---
 
 <h2 id="a-donde-llegan" class="toc-anchor">De su entidad a su alcaldía</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> De su entidad a su alcaldía</span>
+  <p class="seccion-entrada">Esta gráfica une cada entidad de nacimiento con las alcaldías donde viven sus hablantes. Sirve para ver si quienes vienen del mismo lugar viven en las mismas zonas de la ciudad.</p>
+</header>
 
 ```js
 import {sankey} from "../components/formas.js";
@@ -119,6 +127,10 @@ display(html`<section class="beta-seccion">${panelS}${cuerpoS}</section>`);
 ---
 
 <h2 id="llegadas-recientes" class="toc-anchor">Quiénes llegaron en los últimos cinco años</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">03</span> Quiénes llegaron en los últimos cinco años</span>
+  <p class="seccion-entrada">Nacer en otra entidad no dice cuándo se llegó. La pregunta sobre dónde se vivía cinco años antes separa la llegada reciente de la antigua, y muestra de dónde y con qué lenguas siguen llegando hablantes.</p>
+</header>
 
 ```js
 const res5 = origen.filter((r) => r.tipo === "residencia5").map((r) => ({...r, anio: Number(r.anio), ent: String(r.ent).padStart(3, "0"), lengua: String(r.lengua).padStart(4, "0")}));
@@ -161,3 +173,8 @@ alCambiarModo(() => pintarR());
 pintarR();
 display(html`<section class="beta-seccion">${panelR}${cuerpoR}</section>`);
 ```
+
+<div class="relato-cierre">
+  <p>Sabemos de dónde vienen. Ya en la ciudad, la pregunta es dónde viven.</p>
+  <a class="book-cta book-cta-primary" href="./donde-viven">Sigue: Dónde viven</a>
+</div>

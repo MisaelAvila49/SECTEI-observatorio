@@ -3,9 +3,9 @@ title: Derechos y política cultural
 ---
 
 <div class="hero-pagina">
-  <span class="kicker">Discriminación, violencia y derechos</span>
+  <span class="kicker">Parte 5 · Lo que enfrentan · 3 de 3</span>
   <h1>Derechos y política cultural</h1>
-  <p class="hero-entrada">Las cifras de este sitio tienen un marco: las leyes que reconocen a las lenguas indígenas como lenguas nacionales y a la ciudad como un espacio plurilingüe. Esta página resume ese marco y las fechas que lo fueron construyendo, a partir del documento de la Secretaría de Cultura de la Ciudad de México.</p>
+  <p class="hero-entrada">El recorrido termina con el marco que da sentido a las cifras: las leyes que reconocen a las lenguas indígenas como lenguas nacionales y a la ciudad como un espacio plurilingüe.</p>
 </div>
 
 ## El marco legal
@@ -81,3 +81,9 @@ de enero de 2008). UNESCO, Año Internacional de las Lenguas Indígenas 2019 y
 Decenio Internacional de las Lenguas Indígenas 2022 - 2032. Secretaría de Cultura
 de la Ciudad de México, *Lenguas indígenas en la Ciudad de México*, asesoría de
 Andrea Moctezuma Mendoza.
+
+<div class="relato-cierre">
+  <p>Aquí termina la historia. Cada cifra del sitio se puede explorar en el mapa y comprobar en la metodología, que dice de dónde sale cada dato y contra qué fuente se cotejó.</p>
+  <a class="book-cta book-cta-primary" href="../mapa">Abrir el mapa</a>
+  <a class="book-cta" href="../metodologia">Cómo se hizo</a>
+</div>

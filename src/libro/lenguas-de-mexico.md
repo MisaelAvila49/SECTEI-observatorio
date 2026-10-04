@@ -25,14 +25,18 @@ const nac = lenguasNac.map((r) => ({...r, lengua: String(r.lengua).padStart(4, "
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">Las lenguas</span>
+  <span class="kicker">Parte 1 · Las lenguas · 1 de 4</span>
   <h1>Las lenguas de México</h1>
-  <p class="hero-entrada">México reconoce 68 agrupaciones lingüísticas, repartidas en 11 familias y 364 variantes. Esta página muestra cómo se organizan, cuántas personas hablan cada una y en qué entidades viven.</p>
+  <p class="hero-entrada">Toda la historia empieza por las lenguas. Para entender quién habla una lengua indígena en la Ciudad de México conviene mirar primero el país completo: qué lenguas reconoce, cómo se agrupan y cuántas personas hablan cada una.</p>
 </div>
 
 ---
 
 <h2 id="cuantas-lenguas" class="toc-anchor">Cuántas lenguas y cuántas variantes</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Cuántas lenguas y cuántas variantes</span>
+  <p class="seccion-entrada">Decir «lengua indígena» en singular esconde una diversidad grande. El Catálogo del INALI la ordena en familias, agrupaciones y variantes, y esa clasificación es la que usan el Censo y todas las páginas que siguen. Conocerla primero permite leer lo demás.</p>
+</header>
 
 ```js
 // Catálogo INALI 2008: familias, agrupaciones y variantes.
@@ -67,6 +71,10 @@ display(html`<section class="beta-seccion">${panelA}${cuerpoA}</section>`);
 ---
 
 <h2 id="cuantos-hablantes" class="toc-anchor">Cuántas personas hablan cada lengua</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Cuántas personas hablan cada lengua</span>
+  <p class="seccion-entrada">El tamaño de cada lengua importa para lo que sigue: una lengua con muchos hablantes y una con pocos enfrentan situaciones distintas, en su territorio y cuando sus hablantes migran. Aquí se ve cuántas personas hablan cada una y, al elegir una, en qué entidades viven.</p>
+</header>
 
 ```js
 const totalNac = nac.filter((r) => r.nivel === "nacional" && r.sexo === "Total");
@@ -123,8 +131,17 @@ display(html`<section class="beta-seccion">${panelB}${cuerpoB}</section>`);
 ---
 
 <h2 id="donde-se-habla" class="toc-anchor">Dónde se habla cada lengua</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">03</span> Dónde se habla cada lengua</span>
+  <p class="seccion-entrada">Cada lengua tiene un territorio. Saber dónde se habla ayuda a entender de dónde llegan sus hablantes a la ciudad, que es la pregunta de la segunda parte.</p>
+</header>
 
 <div class="beta-seccion">
   <p>El territorio de cada lengua está en el mapa: cada municipio del país se pinta con la variante que el Catálogo del INALI ubica ahí, y con "Todas las lenguas" cada municipio toma la lengua con más hablantes según el Censo 2020. Es el territorio histórico de la lengua, no dónde vive hoy cada hablante; <a href="./de-donde-vienen">De dónde vienen</a> muestra el origen de quienes la hablan en la ciudad.</p>
   <p><a class="beta-boton-enlace" href="../mapa">Abrir el mapa de la lengua</a></p>
+</div>
+
+<div class="relato-cierre">
+  <p>Estas cifras son una foto de 2020. Falta saber cómo se llegó a ella: si los hablantes aumentan o disminuyen con el tiempo.</p>
+  <a class="book-cta book-cta-primary" href="./hablantes-en-el-tiempo">Sigue: Hablantes en el tiempo</a>
 </div>

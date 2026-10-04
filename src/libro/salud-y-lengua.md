@@ -33,14 +33,18 @@ const EDAD_ETIQ = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "3
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">La población indígena en la ciudad</span>
+  <span class="kicker">Parte 3 · Quiénes son y cómo viven · 3 de 4</span>
   <h1>Salud, discapacidad y español</h1>
-  <p class="hero-entrada">Quiénes tienen acceso a servicios de salud, quiénes viven con alguna discapacidad y cuántos hablantes no hablan español, frente al resto de la población.</p>
+  <p class="hero-entrada">Tres condiciones pesan a la hora de ejercer un derecho en la ciudad: tener un servicio de salud, vivir con una discapacidad y poder comunicarse en español.</p>
 </div>
 
 ---
 
 <h2 id="salud" class="toc-anchor">Salud y discapacidad</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Salud y discapacidad</span>
+  <p class="seccion-entrada">La afiliación indica si una persona tiene dónde atenderse; la discapacidad, quién necesita más apoyos. Las dos se comparan entre la población indígena y el resto, por edad y por sexo.</p>
+</header>
 
 ```js
 display(seccionPerfil(perfil, {id: "c3sal", fuentes: fuentesPerfil, temas: [
@@ -56,6 +60,10 @@ display(seccionPerfil(perfil, {id: "c3sal", fuentes: fuentesPerfil, temas: [
 ---
 
 <h2 id="monolinguismo" class="toc-anchor">Hablantes que no hablan español</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Hablantes que no hablan español</span>
+  <p class="seccion-entrada">Quien habla solo su lengua depende de que haya intérpretes y servicios en ella para ir al médico, a la escuela o a un juzgado. Se mide aparte y con su margen de error, porque en la ciudad la muestra de estas personas es chica.</p>
+</header>
 
 ```js
 const mono = perfil.filter((r) => r.dimension === "monolingue" && r.criterio === "lengua" && r.grupo === "Indígena");
@@ -96,3 +104,8 @@ alCambiarModo(() => pintarM());
 pintarM();
 display(html`<section class="beta-seccion">${panelM}${cuerpoM}</section>`);
 ```
+
+<div class="relato-cierre">
+  <p>Edad, escuela, trabajo y salud se combinan en una medida que las resume: la pobreza.</p>
+  <a class="book-cta book-cta-primary" href="./condiciones-de-vida">Sigue: Pobreza y carencias</a>
+</div>

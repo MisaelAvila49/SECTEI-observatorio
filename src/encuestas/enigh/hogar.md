@@ -5,7 +5,7 @@ title: Acceso en el hogar, 2020 - 2024
 ```js
 import {seccionesTema} from "../../components/tablero.js";
 import {catalogo} from "../../components/fuentes.js";
-import {verTambien} from "../../components/navegacion.js";
+import {conEntrada} from "../../components/graficas.js";
 import {materializar} from "../../components/agregar.js";
 const datos = materializar(await FileAttachment("../../data/indicadores/enigh-hogar.parquet").parquet());
 const datosEscolaridad = materializar(await FileAttachment("../../data/indicadores/enigh-hogar_escolaridad.parquet").parquet());
@@ -16,9 +16,9 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">ENIGH</span>
+  <span class="kicker">Parte 4 · La brecha digital · 2 de 5</span>
   <h1>Acceso en el hogar, 2020 - 2024</h1>
-  <p class="hero-entrada">La ENIGH pregunta a cada hogar si tiene internet, celular, computadora y otros servicios, con la misma pregunta cada dos años. Esta página muestra las ediciones 2020, 2022 y 2024 por condición indígena, con decil de ingreso.</p>
+  <p class="hero-entrada">La ENIGH hace la misma pregunta cada dos años y la cruza con el ingreso del hogar. Es la única de las tres fuentes que permite ver el cambio en el tiempo.</p>
 </div>
 
 ```js
@@ -30,20 +30,17 @@ const secciones = seccionesTema("enigh-hogar", datos, {geoEntidades, datosEscola
 <h2 id="internet" class="toc-anchor">Vive en un hogar con conexión a internet</h2>
 
 ```js
-display(secciones[0]);
+display(conEntrada(secciones[0], "Seguir la conexión en tres ediciones muestra si la distancia entre los hogares indígenas y el resto se cierra. El decil de ingreso permite ver qué parte de esa distancia va junto con el ingreso."));
 ```
 ---
 
 <h2 id="dispositivos" class="toc-anchor">Dispositivos y servicios del hogar</h2>
 
 ```js
-display(secciones[1]);
+display(conEntrada(secciones[1], "Los mismos cortes, aplicados a los aparatos y servicios con que cuenta el hogar."));
 ```
 
----
-
-```js
-display(verTambien([
-  {ruta: "/encuestas/censo/vivienda", titulo: "Conectividad en la vivienda", nota: "La misma pregunta con la muestra ampliada del Censo 2020, que permite cortes más finos."},
-]));
-```
+<div class="relato-cierre">
+  <p>Que un hogar tenga internet no significa que todas las personas que viven en él lo usen.</p>
+  <a class="book-cta book-cta-primary" href="../endutih/uso">Sigue: Quién usa internet</a>
+</div>

@@ -5,7 +5,7 @@ title: Quién no se conecta y por qué
 ```js
 import {seccionesTema} from "../../components/tablero.js";
 import {catalogo} from "../../components/fuentes.js";
-import {verTambien} from "../../components/navegacion.js";
+import {conEntrada} from "../../components/graficas.js";
 import {materializar} from "../../components/agregar.js";
 const datos = materializar(await FileAttachment("../../data/indicadores/endutih-barreras.parquet").parquet());
 const datosEscolaridad = materializar(await FileAttachment("../../data/indicadores/endutih-barreras_escolaridad.parquet").parquet());
@@ -15,9 +15,9 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">ENDUTIH 2025</span>
+  <span class="kicker">Parte 4 · La brecha digital · 5 de 5</span>
   <h1>Quién no se conecta y por qué</h1>
-  <p class="hero-entrada">La ENDUTIH pregunta a quien no usa internet, computadora o celular por qué no lo hace, y al hogar sin internet por qué no lo tiene. Esta página muestra ambas respuestas por condición indígena.</p>
+  <p class="hero-entrada">La última página de esta parte mira a quienes quedan fuera y les pregunta por qué. La razón importa, porque no se resuelve igual la falta de dinero que la falta de cobertura, de interés o de saber cómo usarlo.</p>
 </div>
 
 ```js
@@ -29,49 +29,45 @@ const secciones = seccionesTema("endutih-barreras", datos, {geoEntidades, datosE
 <h2 id="desconexion" class="toc-anchor">No usa internet ni celular</h2>
 
 ```js
-display(secciones[0]);
+display(conEntrada(secciones[0], "Es la medida de la desconexión completa: personas que no usan ninguno de los dos."));
 ```
 ---
 
 <h2 id="fuera" class="toc-anchor">Quién queda fuera</h2>
 
 ```js
-display(secciones[1]);
+display(conEntrada(secciones[1], "La desconexión se cruza con la edad, el sexo, la escolaridad y el tamaño de la localidad para ver en qué grupos se concentra."));
 ```
 ---
 
 <h2 id="motivo-internet" class="toc-anchor">Por qué no usa internet</h2>
 
 ```js
-display(secciones[2]);
+display(conEntrada(secciones[2], "Los motivos que declaran las propias personas."));
 ```
 ---
 
 <h2 id="motivo-computadora" class="toc-anchor">Por qué no usa computadora</h2>
 
 ```js
-display(secciones[3]);
+display(conEntrada(secciones[3], "La computadora tiene sus propios motivos, distintos de los de internet."));
 ```
 ---
 
 <h2 id="motivo-celular" class="toc-anchor">Por qué no dispone de celular</h2>
 
 ```js
-display(secciones[4]);
+display(conEntrada(secciones[4], "El celular es el aparato más extendido; quien no lo tiene explica por qué."));
 ```
 ---
 
 <h2 id="motivo-hogar" class="toc-anchor">Por qué el hogar no tiene internet</h2>
 
 ```js
-display(secciones[5]);
+display(conEntrada(secciones[5], "La misma pregunta, hecha al hogar."));
 ```
 
----
-
-```js
-display(verTambien([
-  {ruta: "/encuestas/endutih/uso", titulo: "Quién usa internet y con qué", nota: "El acceso: quién se conecta, con qué equipo y desde dónde."},
-  {ruta: "/encuestas/endutih/actividades", titulo: "Para qué se usa internet", nota: "Estudiar, trabajar, trámites, dinero y entretenimiento, entre quienes se conectan."}
-]));
-```
+<div class="relato-cierre">
+  <p>La brecha digital es una desigualdad que se mide en aparatos y conexiones. Otras se miden preguntando a las personas qué han vivido. La quinta parte trata de ellas.</p>
+  <a class="book-cta book-cta-primary" href="../../libro/discriminacion">Sigue: Discriminación</a>
+</div>

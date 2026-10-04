@@ -44,14 +44,18 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">La población indígena en la ciudad</span>
+  <span class="kicker">Parte 2 · La ciudad · 4 de 4</span>
   <h1>Colonias, pueblos y marginación</h1>
-  <p class="hero-entrada">Cómo se relaciona la presencia indígena de cada AGEB con su grado de marginación urbana, y qué colonias coinciden con los pueblos originarios reconocidos.</p>
+  <p class="hero-entrada">El lugar donde se vive condiciona cómo se vive. Esta página cruza la presencia indígena con dos rasgos del territorio: la marginación urbana y los pueblos originarios reconocidos.</p>
 </div>
 
 ---
 
 <h2 id="marginacion" class="toc-anchor">Presencia indígena y marginación urbana</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Presencia indígena y marginación urbana</span>
+  <p class="seccion-entrada">La marginación urbana resume las carencias de una zona en educación, salud, vivienda y bienes. Cruzarla con la presencia indígena responde si esta población vive en zonas con más o con menos carencias que el resto de la ciudad.</p>
+</header>
 
 ```js
 // Población en hogares indígenas y hablantes por grado de marginación urbana de la AGEB (CONAPO 2020).
@@ -97,6 +101,10 @@ display(html`<section class="beta-seccion">${panelM}${cuerpoM}</section>`);
 ---
 
 <h2 id="pueblos-y-colonias" class="toc-anchor">Pueblos originarios y colonias</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Pueblos originarios y colonias</span>
+  <p class="seccion-entrada">En la ciudad conviven dos realidades indígenas: los pueblos originarios, que ya estaban antes de que la ciudad creciera, y las comunidades que llegaron de otras entidades. Esta sección muestra qué tanto coinciden las colonias con más población indígena con los pueblos reconocidos.</p>
+</header>
 
 ```js
 const col = colonias.map((r) => ({...r, pueblo: String(r.pueblo_originario) === "True", pct: r.POBTOT > 0 && r.PHOG_IND != null ? 100 * r.PHOG_IND / r.POBTOT : null})).filter((r) => r.pct != null && r.POBTOT >= 500);
@@ -124,3 +132,8 @@ panelC.addEventListener("input", pintarC);
 pintarC();
 display(html`<section class="beta-seccion">${panelC}${cuerpoC}</section>`);
 ```
+
+<div class="relato-cierre">
+  <p>Con esto termina la segunda parte: se sabe cuántas personas son, de dónde vienen y dónde viven. La tercera parte pregunta quiénes son.</p>
+  <a class="book-cta book-cta-primary" href="./quienes-son">Sigue: Edad y sexo</a>
+</div>

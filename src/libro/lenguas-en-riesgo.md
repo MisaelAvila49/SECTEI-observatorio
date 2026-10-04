@@ -37,14 +37,18 @@ const agrupaciones = [...new Set(riesgo.map((r) => r.agrupacion))].sort((a, b) =
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">Las lenguas</span>
+  <span class="kicker">Parte 1 · Las lenguas · 4 de 4</span>
   <h1>Lenguas en riesgo</h1>
-  <p class="hero-entrada">El INALI clasificó en 2012 cada una de las 364 variantes lingüísticas del país según su riesgo de desaparecer, a partir de cuántos hablantes tiene, dónde viven y si los niños la aprenden. Esta página muestra esa clasificación, cuáles de esas variantes se hablan en la Ciudad de México y qué lenguas ganan o pierden hablantes en la ciudad.</p>
+  <p class="hero-entrada">No todas las variantes tienen el mismo futuro. El INALI clasificó cada una según su riesgo de desaparecer, y esta página cruza esa clasificación con las variantes que se hablan en la ciudad.</p>
 </div>
 
 ---
 
 <h2 id="cuantas-en-riesgo" class="toc-anchor">Cuántas variantes están en riesgo</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Cuántas variantes están en riesgo</span>
+  <p class="seccion-entrada">El riesgo se mide por variante, porque dentro de una misma lengua puede haber variantes en situaciones muy distintas. Aquí se ve el panorama del país completo y, al elegir una lengua, el de cada una de sus variantes.</p>
+</header>
 
 ```js
 const selAgr = campo({id: "c10-agr", nombre: "agrupacion", etiqueta: "Lengua", opciones: [{clave: "todas", etiqueta: "Todas las lenguas", grupo: "En conjunto"}, ...agrupaciones.map((a) => ({clave: a, etiqueta: a, grupo: "Una a una"}))], valor: "todas"});
@@ -92,6 +96,10 @@ display(html`<section class="beta-seccion">${panelA}${cuerpoA}</section>`);
 ---
 
 <h2 id="en-la-ciudad" class="toc-anchor">Las variantes en riesgo que se hablan en la ciudad</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Las variantes en riesgo que se hablan en la ciudad</span>
+  <p class="seccion-entrada">La ciudad recibe hablantes de todo el país, y con ellos pueden llegar variantes en riesgo. Saber cuáles son y cuántas personas las hablan permite ubicar dónde tendría sentido un esfuerzo de preservación en la ciudad.</p>
+</header>
 
 ```js
 const vc = variantesCiudad.map((r) => ({...r, anio: Number(r.anio), num: Number(r.num), lengua: String(r.lengua).padStart(4, "0"), cve_alc: String(r.cve_alc).padStart(3, "0"), grado: gradoDe.get(r.variante) ?? null})).filter((r) => r.variante);
@@ -135,6 +143,10 @@ display(html`<section class="beta-seccion">${panelB}${cuerpoB}</section>`);
 ---
 
 <h2 id="ganan-o-pierden" class="toc-anchor">Lenguas que ganan o pierden hablantes en la ciudad</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">03</span> Lenguas que ganan o pierden hablantes en la ciudad</span>
+  <p class="seccion-entrada">La clasificación del INALI es de 2012. Esta sección la complementa con lo que pasó después en la ciudad: qué lenguas tienen más o menos hablantes entre dos ediciones, y si el cambio supera el margen de error.</p>
+</header>
 
 ```js
 // Solo ediciones con el mismo universo (3 años y más): 2010, 2015, 2020 y 2025.
@@ -178,3 +190,8 @@ panelC.addEventListener("input", pintarC);
 pintarC();
 display(html`<section class="beta-seccion">${panelC}${cuerpoC}</section>`);
 ```
+
+<div class="relato-cierre">
+  <p>Aquí termina el recorrido por las lenguas. La segunda parte sigue a las personas que las hablan en la Ciudad de México.</p>
+  <a class="book-cta book-cta-primary" href="./la-ciudad-en-el-pais">Sigue: La ciudad en el país</a>
+</div>

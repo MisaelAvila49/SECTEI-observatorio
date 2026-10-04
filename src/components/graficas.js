@@ -84,6 +84,15 @@ export function seccion({numero, titulo, entrada}) {
   </header>`;
 }
 
+// Agrega el párrafo narrativo («por qué este análisis») a la cabecera que ya
+// dibuja una sección armada por componente. El texto sale del guion
+// (docs/guion-narrativo.md) y lo escribe scripts/aplicar_guion.py.
+export function conEntrada(nodo, texto) {
+  const cabeza = nodo?.querySelector?.(".seccion-cabeza");
+  if (cabeza && texto && !cabeza.querySelector(".seccion-entrada")) cabeza.append(html`<p class="seccion-entrada">${texto}</p>`);
+  return nodo;
+}
+
 export function kpis(tarjetas) {
   return html`<div class="kpi-fila">
     ${tarjetas.map((t, i) => html`<div class="kpi-tarjeta ${i === 0 ? "kpi-destacado" : ""}">

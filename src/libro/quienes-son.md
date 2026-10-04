@@ -33,14 +33,18 @@ const EDAD_ETIQ = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "3
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">La población indígena en la ciudad</span>
+  <span class="kicker">Parte 3 · Quiénes son y cómo viven · 1 de 4</span>
   <h1>Edad y sexo</h1>
-  <p class="hero-entrada">La forma de la población indígena de la ciudad frente al resto: cuántas personas hay en cada edad y sexo, y qué parte de cada grupo de edad habla una lengua indígena.</p>
+  <p class="hero-entrada">La tercera parte compara a la población indígena de la ciudad con el resto, con la misma pregunta y en el mismo año. Empieza por lo más básico: la edad y el sexo.</p>
 </div>
 
 ---
 
 <h2 id="edad-y-sexo" class="toc-anchor">Edad y sexo</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Edad y sexo</span>
+  <p class="seccion-entrada">La edad es la clave de la transmisión de una lengua: una lengua se mantiene si las niñas y los niños la aprenden. La pirámide compara la forma de las dos poblaciones, y la segunda gráfica muestra qué parte de cada grupo de edad es indígena a lo largo de las ediciones.</p>
+</header>
 
 ```js
 const aniosP = [...new Set(perfil.filter((r) => r.dimension === "piramide").map((r) => r.anio))].sort();
@@ -85,3 +89,8 @@ alCambiarModo(() => pintarA());
 pintarA();
 display(html`<section class="beta-seccion">${panelA}${cuerpoA}</section>`);
 ```
+
+<div class="relato-cierre">
+  <p>La edad condiciona lo que sigue: quién está en edad de estudiar y quién en edad de trabajar.</p>
+  <a class="book-cta book-cta-primary" href="./escuela-y-trabajo">Sigue: Escuela y trabajo</a>
+</div>

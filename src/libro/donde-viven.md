@@ -44,14 +44,18 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 ```
 
 <div class="hero-pagina">
-  <span class="kicker">La población indígena en la ciudad</span>
+  <span class="kicker">Parte 2 · La ciudad · 3 de 4</span>
   <h1>Dónde viven</h1>
-  <p class="hero-entrada">En qué alcaldías, AGEB y manzanas de la ciudad vive la población indígena, y qué lenguas se hablan en cada alcaldía.</p>
+  <p class="hero-entrada">La respuesta a dónde vive la población indígena cambia con la escala. Una alcaldía entera, una AGEB y una manzana muestran cosas distintas, y esta página permite bajar de una a otra.</p>
 </div>
 
 ---
 
 <h2 id="por-alcaldia" class="toc-anchor">Por alcaldía, 1990 - 2025</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">01</span> Por alcaldía, 1990 - 2025</span>
+  <p class="seccion-entrada">La alcaldía es la unidad con la serie más larga. Permite ver dónde vive la población indígena y cómo ha cambiado eso desde 1990.</p>
+</header>
 
 ```js
 display(seccionCenso(datos, {id: "c4alc", inicial: {nivel: "municipio", cveEnt: "09"}, fuentes: fuentesCenso}));
@@ -59,16 +63,11 @@ display(seccionCenso(datos, {id: "c4alc", inicial: {nivel: "municipio", cveEnt: 
 
 ---
 
-<h2 id="por-ageb-y-manzana" class="toc-anchor">Por AGEB y por manzana, 2010 y 2020</h2>
-
-```js
-display(seccionCenso(datos, {id: "c4ageb", inicial: {nivel: "ageb", cveEnt: "09", vista: "mapa"},
-  fuentes: () => fuenteDe({datos: ["D-CENSO-2020-RESAGEBURB", "D-CENSO-2010-RESAGEBURB", "D-INEGI-CGU-2010"], cotejos: ["cdmx_phog_ind", "cdmx_phog_ind_2010", "cdmx_p3ym_hli_2010", "agebs_2010_con_geometria", "manzanas_2010_con_geometria"]})}));
-```
-
----
-
 <h2 id="lenguas-por-alcaldia" class="toc-anchor">Qué lenguas se hablan en cada alcaldía</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">02</span> Qué lenguas se hablan en cada alcaldía</span>
+  <p class="seccion-entrada">En cada alcaldía la mezcla de lenguas puede ser distinta. Saber cuáles se hablan más en cada una sirve para decidir en qué lengua ofrecer un servicio en cada zona.</p>
+</header>
 
 ```js
 const lenguasAlc = (await FileAttachment("../data/lenguas_alcaldia.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio), lengua: String(r.lengua).padStart(4, "0"), cve: String(r.cve).padStart(3, "0")}))
@@ -116,3 +115,21 @@ alCambiarModo(() => pintarLA());
 pintarLA();
 display(html`<section class="beta-seccion">${panelLA}${cuerpoLA}</section>`);
 ```
+
+---
+
+<h2 id="por-ageb-y-manzana" class="toc-anchor">Por AGEB y por manzana, 2010 y 2020</h2>
+<header class="seccion-cabeza relato-seccion">
+  <span class="kicker"><span class="kicker-num">03</span> Por AGEB y por manzana, 2010 y 2020</span>
+  <p class="seccion-entrada">Dentro de una alcaldía hay zonas muy distintas. El detalle por AGEB y por manzana muestra si la población indígena vive concentrada en unas cuantas zonas o repartida por toda la alcaldía.</p>
+</header>
+
+```js
+display(seccionCenso(datos, {id: "c4ageb", inicial: {nivel: "ageb", cveEnt: "09", vista: "mapa"},
+  fuentes: () => fuenteDe({datos: ["D-CENSO-2020-RESAGEBURB", "D-CENSO-2010-RESAGEBURB", "D-INEGI-CGU-2010"], cotejos: ["cdmx_phog_ind", "cdmx_phog_ind_2010", "cdmx_p3ym_hli_2010", "agebs_2010_con_geometria", "manzanas_2010_con_geometria"]})}));
+```
+
+<div class="relato-cierre">
+  <p>El mapa dice dónde vive la población indígena. Falta saber cómo son esos lugares.</p>
+  <a class="book-cta book-cta-primary" href="./colonias-y-marginacion">Sigue: Colonias, pueblos y marginación</a>
+</div>
