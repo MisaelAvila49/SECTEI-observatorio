@@ -226,11 +226,39 @@ POB_MUESTRA = {
 }
 
 
+# Hablantes de 3 años y más por grupo de edad y alcaldía, de las muestras que
+# preguntan desde los 3 años. Va a un archivo aparte (serie_alcaldias_edad.csv)
+# para no duplicar filas en la serie principal, que no tiene columna de edad.
+EDAD_ANIOS = (2010, 2015, 2020, 2025)
+FILAS_EDAD = []
+
+
+def leer_edad(con, anio):
+    con.execute("""
+    CREATE OR REPLACE VIEW edad_a AS
+    SELECT anio, cve_mun,
+      CASE WHEN edad BETWEEN 3 AND 14 THEN '3-14' WHEN edad BETWEEN 15 AND 29 THEN '15-29'
+           WHEN edad BETWEEN 30 AND 59 THEN '30-59' WHEN edad BETWEEN 60 AND 130 THEN '60+' END AS edad_g,
+      w, upm, est, COALESCE(hli, FALSE) AS y_h, (hli IS NOT NULL) AS u_h
+    FROM m WHERE edad BETWEEN 3 AND 130
+    """)
+    con.execute("CREATE OR REPLACE VIEW edad_e AS SELECT anio, '09' AS cve_mun, * EXCLUDE (anio, cve_mun) FROM edad_a")
+    ind = [{"clave": "h", "tema": "serie", "indicador": "h", "universo": "Población de 3 años y más"}]
+    for vista in ("edad_a", "edad_e"):
+        d = agregar(con, vista, ["anio", "cve_mun", "edad_g"], ind)
+        for _, r in d.iterrows():
+            FILAS_EDAD.append({"anio": anio, "nivel": "entidad" if r["cve_mun"] == "09" else "alcaldia", "cve": r["cve_mun"], "edad": r["edad_g"],
+                               "num": round(float(r["num"]), 2), "den": round(float(r["den"]), 2), "casos": int(r["casos"]),
+                               "ee": None if anio in SIN_DISENO or pd.isna(r["ee"]) else round(float(r["ee"]), 6)})
+
+
 def leer_muestra(anio):
     con = duckdb.connect()
     con.execute("PRAGMA disable_progress_bar")
     CARGADORES[anio](con)
     hli, aut = comprobar(con, anio)
+    if anio in EDAD_ANIOS:
+        leer_edad(con, anio)
     print(f"[ok] muestra {anio}: hablantes {hli:,.0f}, se consideran indígenas {aut}", file=sys.stderr)
     union = con.execute("SELECT ROUND(SUM(CASE WHEN hli OR autoads THEN w END)), ROUND(SUM(CASE WHEN hli AND autoads THEN w END)) FROM m").fetchone()
     anotar_calculado("serie", f"union_{anio}", union[0], "personas que hablan lengua indígena o se consideran indígenas (una sola vez)")
@@ -306,6 +334,11 @@ def main():
         filas += leer_muestra(anio)
     filas += leer_eic2025()
     print("[ok] EIC 2025", file=sys.stderr)
+
+    edad = pd.DataFrame(FILAS_EDAD).sort_values(["anio", "nivel", "cve", "edad"])
+    ruta_edad = os.path.join(os.path.dirname(SALIDA), "serie_alcaldias_edad.csv")
+    edad.to_csv(ruta_edad, index=False, encoding="utf-8", lineterminator="\n")
+    print(f"[ok] {os.path.relpath(ruta_edad, RAIZ)}: {len(edad):,} filas", file=sys.stderr)
 
     df = pd.DataFrame(filas, columns=COLUMNAS)
     df["num"] = pd.to_numeric(df["num"]).round(2)

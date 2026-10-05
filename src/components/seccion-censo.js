@@ -11,7 +11,7 @@ import {html} from "npm:htl";
 import {catalogoGeo, contenedorDe, etiquetaGeo, nivelDe} from "./geografia.js";
 import {panelSeccion, EDADES, SEPARADO} from "./panel-seccion.js";
 import {mapaNavegador} from "./mapa-navegador.js";
-import {cortesPorCuantil, leyenda, RAMPA_MORADA, ROJO_IBERO} from "./mapa.js";
+import {cortesDalenius, leyenda, RAMPA_MORADA, ROJO_IBERO} from "./mapa.js";
 import {figura, explicacion, tablaColumnas} from "./graficas.js";
 import {punto, ejePct, GLOBO, globo} from "./base.js";
 
@@ -93,7 +93,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
 
   // ---------------------------------------------------------------- datos
   const CORTES = new Map();
-  const cortesFijos = (clave, valores) => { if (!CORTES.has(clave)) CORTES.set(clave, cortesPorCuantil(valores, 5)); return CORTES.get(clave); };
+  const cortesFijos = (clave, valores) => { if (!CORTES.has(clave)) CORTES.set(clave, cortesDalenius(valores, 5)); return CORTES.get(clave); };
   const filaNac = (nivel, cve, v) => INDICE_NAC.get(`${nivel}|${cve}|${v.poblacion}|${v.sexo}|${v.edad}|${MUESTRA.has(v.poblacion) || v.edad !== "Todas" ? "muestra" : "censo"}`) ?? null;
   const aValor = (r) => (r && r.den > 0 ? {valor: 100 * r.num / r.den, num: r.num, den: r.den, ee: r.ee, cota: r.cota, nombre: r.nombre} : null);
   const aValorInpi = (r) => (r && r.den > 0 ? {valor: 100 * r.num / r.den, num: r.num, den: r.den, ee: null, cota: "INPI (conteo)", nombre: r.nombre, tipo: r.tipo} : null);

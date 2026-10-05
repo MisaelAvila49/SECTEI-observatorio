@@ -12,7 +12,7 @@
 //     flujo entidad de nacimiento → CDMX generadas aquí.
 import maplibregl from "npm:maplibre-gl@5.24.0";
 import {html} from "npm:htl";
-import {registrarProtocolo, estiloBase, expresionColor, cortesPorCuantil, leyenda, RAMPA_MORADA, SIN_DATO, ROJO_IBERO} from "./mapa.js";
+import {registrarProtocolo, estiloBase, expresionColor, cortesPorCuantil, cortesDalenius, leyenda, RAMPA_MORADA, SIN_DATO, ROJO_IBERO} from "./mapa.js";
 import {GRIS_VARIANTE, ORDEN_GRADO, ORDINAL, punto, alCambiarModo} from "./base.js";
 import {panelMapa, POBLACIONES, CRUCES, UNIDADES, SEXOS} from "./panel-mapa.js";
 
@@ -137,7 +137,7 @@ function arco(a, b, curva = 0.18, n = 24) {
   return pts;
 }
 
-export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [], clinMunicipios = [], municipiosLenguas = [], catalogo, agebs, colonias,
+export function mapaUnificado({serie, serieEdad = [], lenguas, origen, clin, variantesCiudad = [], clinMunicipios = [], municipiosLenguas = [], catalogo, agebs, colonias,
     pmtilesManzanas, pmtilesAgebs, pmtilesMunicipios = null, pmtilesManzanas2010 = null, pmtilesAgebs2010 = null, agebs2010 = [],
     geoAlcaldias, geoLimite, geoEntidades}) {
   registrarProtocolo();
@@ -169,7 +169,8 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     return filas.some((r) => r.sexo === "Mujeres");
   };
 
-  const panel = panelMapa({lenguas: opcionesLengua, aniosDe, sexoDe});
+  const aniosEdad = new Set(serieEdad.map((r) => r.anio));
+  const panel = panelMapa({lenguas: opcionesLengua, aniosDe, sexoDe, edadDe: ({anio}) => aniosEdad.has(anio)});
   const contenedor = html`<div class="mapa-lienzo" role="region" aria-label="Mapa"></div>`;
   // Dentro del lienzo: la leyenda abajo a la derecha y una tarjeta de lectura
   // arriba a la izquierda, que muestra la cifra de la ciudad en reposo y la
@@ -217,7 +218,9 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   let seleccionada = null;
   const nodo = html`<div class="mapa-pantalla">${contenedor}${lateral}</div>`;
 
-  const estado = {origen: false, lengua: false, cargado: false};
+  // `alcOrigen`: alcaldía de residencia cuyos flujos de origen se muestran
+  // ({cve, nombre}); null es toda la ciudad.
+  const estado = {origen: false, lengua: false, cargado: false, alcOrigen: null};
   const mapa = new maplibregl.Map({
     container: contenedor, style: estiloBase(), bounds: CDMX, fitBoundsOptions: {padding: 12},
     minZoom: 4, maxZoom: 17, attributionControl: {compact: true},
@@ -399,7 +402,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       paint: {"line-color": ["get", "color"], "line-width": ["get", "grosor"], "line-opacity": ["coalesce", ["get", "opacidad"], 0.85]}});
     mapa.addLayer({id: "flujos-flecha", type: "symbol", source: "flujos",
       layout: {visibility: "none", "symbol-placement": "line", "symbol-spacing": 160, "icon-image": "flecha", "icon-allow-overlap": true, "icon-ignore-placement": true,
-        "icon-rotation-alignment": "map", "icon-size": ["interpolate", ["linear"], ["get", "grosor"], 1, 0.35, 9, 0.7]},
+        "icon-rotation-alignment": "map", "icon-size": ["interpolate", ["linear"], ["get", "grosor"], 1, 0.35, 9, 0.7, 17, 1.05]},
       paint: {"icon-color": ["get", "color"], "icon-opacity": ["coalesce", ["get", "opacidad"], 0.85]}});
     // Trazo en movimiento sobre los flujos resaltados (filtro vacío en reposo).
     mapa.addLayer({id: "flujos-foco", type: "line", source: "flujos", filter: NINGUNO, layout: {visibility: "none", "line-cap": "butt"},
@@ -482,7 +485,9 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
   const poblacionDe = (k) => POBLACIONES.find((p) => p.clave === k);
   const cruceDe = (k) => CRUCES.find((x) => x.clave === k);
 
-  function filasAlcaldia({anio, poblacion, lengua, sexo}, nivel) {
+  function filasAlcaldia({anio, poblacion, lengua, sexo, edad = "Todas"}, nivel) {
+    // Por grupo de edad las cifras salen de la muestra (estimación con error).
+    if (edad !== "Todas" && poblacion === "hablantes" && lengua === "todas") return serieEdad.filter((r) => r.anio === anio && r.edad === edad && r.nivel === nivel).map((r) => ({...r, num: r.num || 0, cota: "muestra"}));
     return lengua !== "todas"
       ? lenguas.filter((r) => r.anio === anio && r.lengua === lengua && r.sexo === sexo && r.nivel === nivel)
       : serie.filter((r) => r.anio === anio && r.poblacion === pobSerie(poblacion, anio, sexo) && r.sexo === sexo && r.nivel === nivel);
@@ -496,7 +501,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       const filas = lengua !== "todas"
         ? lenguas.filter((r) => r.lengua === lengua && r.nivel === "alcaldia")
         : serie.filter((r) => r.poblacion === pobSerie(poblacion, r.anio, r.sexo) && r.nivel === "alcaldia");
-      cacheCortes.set(clave, cortesPorCuantil(filas.map((r) => 100 * r.num / r.den), 5));
+      cacheCortes.set(clave, cortesDalenius(filas.map((r) => 100 * r.num / r.den), 5));
     }
     return cacheCortes.get(clave);
   }
@@ -516,7 +521,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       // Cortes fijos entre ediciones: se calculan sobre las dos tablas de AGEB
       // (2010 y 2020) para que el mismo tono signifique lo mismo en los dos años.
       const tabla = e.unidad === "manzana" ? colonias : [...agebs, ...agebs2010];
-      cacheCortes.set(clave, cortesPorCuantil(tabla.map((r) => r[campo]).filter((x) => x != null && Number.isFinite(+x)).map(Number), 5));
+      cacheCortes.set(clave, cortesDalenius(tabla.map((r) => r[campo]).filter((x) => x != null && Number.isFinite(+x)).map(Number), 5));
     }
     return cacheCortes.get(clave);
   }
@@ -569,12 +574,13 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     const e = v();
     const pob = poblacionDe(e.poblacion);
     const cruce = e.cruce ? cruceDe(e.cruce) : null;
-    const etiqueta = cruce ? cruce.etiqueta : e.lengua !== "todas" ? `Hablan ${catNombre.get(e.lengua)?.nombre ?? e.lengua}` : pob.corto;
+    const ETIQ_EDAD = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "30 a 59 años", "60+": "60 años y más"};
+    const etiqueta = (cruce ? cruce.etiqueta : e.lengua !== "todas" ? `Hablan ${catNombre.get(e.lengua)?.nombre ?? e.lengua}` : pob.corto) + (e.edad && e.edad !== "Todas" && e.unidad === "alcaldia" ? `, ${ETIQ_EDAD[e.edad]} (muestra)` : "");
     // Las dos vistas nacionales existen con una lengua concreta o con todas.
     const conOrigen = e.unidad === "alcaldia" && e.poblacion === "hablantes";
     botonOrigen.hidden = !conOrigen;
     botonLengua.hidden = !conOrigen || !pmtilesMunicipios;
-    if (!conOrigen) { estado.origen = false; estado.lengua = false; }
+    if (!conOrigen) { estado.origen = false; estado.lengua = false; estado.alcOrigen = null; }
     botonOrigen.textContent = estado.origen ? "Volver a la ciudad" : "Ver de dónde vienen";
     botonLengua.textContent = estado.lengua ? "Volver a la ciudad" : "Ver el mapa de la lengua";
     botonOrigen.hidden = botonOrigen.hidden || estado.lengua;
@@ -700,6 +706,27 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       } else {
         const top = lenguas.filter((r) => r.anio === e.anio && r.cve === cve && r.nivel === "alcaldia" && r.sexo === "Total" && r.lengua < "8000").sort((a, b) => b.num - a.num).slice(0, 8);
         if (top.length) nodos.push(html`<p class="mapa-seleccion-sub">Lenguas más habladas en ${p.alcaldia}, ${e.anio}</p>`, tablaDetalle(top.map((r) => [r.lengua_nombre, entero(r.num)])));
+        // Variantes probables de todas las lenguas en la alcaldía.
+        const porV = new Map();
+        for (const r of variantesCiudad.filter((r) => r.anio === e.anio && r.cve_alc === cve && r.variante)) {
+          const k = `${catNombre.get(r.lengua)?.nombre ?? r.lengua}: ${r.variante}`;
+          porV.set(k, (porV.get(k) ?? 0) + r.num);
+        }
+        const listaV = [...porV.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
+        if (listaV.length) nodos.push(html`<p class="mapa-seleccion-sub">Variantes probables más habladas en ${p.alcaldia}, ${e.anio}</p>`, tablaDetalle(listaV.map(([k, n]) => [k, entero(n)])),
+          html`<p class="mapa-seleccion-nota">Variante probable según el lugar de origen; el Censo no la registra.</p>`);
+      }
+      if (e.poblacion === "hablantes" && variantesCiudad.some((r) => r.anio === e.anio && r.cve_alc === cve)) {
+        const boton = html`<button type="button" class="mapa-boton-origen mapa-boton-alcaldia">Ver de dónde vienen quienes viven en ${p.alcaldia}</button>`;
+        boton.addEventListener("click", () => {
+          estado.alcOrigen = {cve, nombre: p.alcaldia};
+          estado.origen = true;
+          estado.lengua = false;
+          pila = []; pintarFijadas();
+          mapa.fitBounds(MEXICO, {padding: 12, duration: 600});
+          pintar();
+        });
+        nodos.push(boton);
       }
     } else if (capa === "agebs-relleno" || capa === "manzanas-relleno") {
       const esMza = capa.startsWith("manzanas");
@@ -816,7 +843,9 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
 
   function pintarOrigen(e, etiqueta) {
     const todas = e.lengua === "todas";
-    const filas = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009");
+    const alc = estado.alcOrigen;
+    const enAlc = (r) => !alc || r.cve_alc === alc.cve;
+    const filas = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && enAlc(r) && r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009");
     // Color de cada línea: por variante (una lengua) o por lengua (todas).
     let colores;
     if (todas) {
@@ -850,6 +879,11 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
       porEnt.set(r.cve_ent, d);
     }
     const max = Math.max(...[...porEnt.values()].map((d) => d.num), 1);
+    // El grosor se mide contra el flujo individual más grande (no contra el
+    // total de la entidad): antes ninguna línea llegaba al grosor máximo y
+    // todas se veían delgadas. El área de la línea crece con las personas.
+    const maxFlujo = Math.max(1, ...[...porEnt.values()].map((d) => Math.max(0, ...(todas ? d.lenguas : d.variantes).values())));
+    const grosorDe = (n) => 1.5 + 15 * Math.sqrt(Math.min(1, n / maxFlujo));
     const features = [];
     for (const [ent, d] of porEnt) {
       const iso = ENTIDAD[ent][0];
@@ -876,7 +910,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         features.push({type: "Feature", properties: {ent: iso, num: n, color: colores.get(k) ?? GRIS_VARIANTE,
           cat: k ?? "__otras__", tipo: todas ? "Lengua" : "Variante probable", nombreEnt: f.properties.name, totalEnt: d.num, pct: totalOrigen ? 100 * n / totalOrigen : 0,
           etiqueta: k == null ? (todas ? "Otras lenguas" : "Variantes menores o sin registro") : (todas ? (catNombre.get(k)?.nombre ?? k) : k),
-          grosor: 1.2 + 9 * Math.sqrt(n / max)}, geometry: {type: "LineString", coordinates: arco(a, cdmx, curva)}});
+          grosor: grosorDe(n)}, geometry: {type: "LineString", coordinates: arco(a, cdmx, curva)}});
       });
     }
     features.sort((a, b) => (a.properties.color === GRIS_VARIANTE ? 0 : 1) - (b.properties.color === GRIS_VARIANTE ? 0 : 1));
@@ -886,11 +920,11 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     resaltarFlujos(null);
     // Cortes fijos por lengua a través de las ediciones: con cuantiles de la
     // vista, cambiar de año recoloreaba las entidades aunque no cambiaran.
-    const claveOrigen = `origen|${e.lengua}`;
+    const claveOrigen = `origen|${e.lengua}|${alc?.cve ?? ""}`;
     if (!cacheCortes.has(claveOrigen)) {
       const suma = new Map();
-      for (const r of variantesCiudad) if ((todas || r.lengua === e.lengua) && r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009") suma.set(`${r.anio}|${r.cve_ent}`, (suma.get(`${r.anio}|${r.cve_ent}`) ?? 0) + r.num);
-      cacheCortes.set(claveOrigen, cortesPorCuantil([...suma.values()], 5));
+      for (const r of variantesCiudad) if ((todas || r.lengua === e.lengua) && enAlc(r) && r.cve_ent && ENTIDAD[r.cve_ent] && r.cve_ent !== "009") suma.set(`${r.anio}|${r.cve_ent}`, (suma.get(`${r.anio}|${r.cve_ent}`) ?? 0) + r.num);
+      cacheCortes.set(claveOrigen, cortesDalenius([...suma.values()], 5));
     }
     const cortes = cacheCortes.get(claveOrigen);
     mapa.setPaintProperty("entidades-relleno", "fill-color", expresionColor("valor", cortes, RAMPA_MORADA, "feature-state"));
@@ -898,7 +932,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     vistaActual = {unidad: "entidad", etiqueta, valores, cruce: null, poblacion: e.poblacion, campo: null, flujos: true};
     const nombre = todas ? "lengua indígena" : (catNombre.get(e.lengua)?.nombre ?? e.lengua);
     const total = filas.reduce((s, r) => s + r.num, 0);
-    const enCiudad = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && r.cve_ent === "009").reduce((s, r) => s + r.num, 0);
+    const enCiudad = variantesCiudad.filter((r) => r.anio === e.anio && (todas || r.lengua === e.lengua) && enAlc(r) && r.cve_ent === "009").reduce((s, r) => s + r.num, 0);
     // Leyenda: solo las categorías que recibieron flecha con color, de mayor a
     // menor por hablantes; por lengua con "todas", por variante con una lengua.
     const chips = [...usadas.entries()].sort((a, b) => b[1] - a[1])
@@ -906,15 +940,18 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
         onmouseenter=${() => resaltarFlujos(["==", ["get", "cat"], k])} onmouseleave=${() => resaltarFlujos(null)}
         onfocus=${() => resaltarFlujos(["==", ["get", "cat"], k])} onblur=${() => resaltarFlujos(null)}>
         <span class="mapa-variante-chip" style="background:${colores.get(k)}" aria-hidden="true"></span>${todas ? (catNombre.get(k)?.nombre ?? k) : k}</li>`);
-    enReposo = () => `<div class="globo-titulo">Hablantes de ${escapar(nombre)} en la ciudad · ${e.anio}</div>
+    enReposo = () => `<div class="globo-titulo">Hablantes de ${escapar(nombre)} en ${escapar(alc ? alc.nombre : "la ciudad")} · ${e.anio}</div>
       <div class="mapa-cifra-valor">${entero(total)}</div><div class="mapa-cifra-nota">nacidos en otra entidad · ${entero(enCiudad)} nacidos en la ciudad</div>
       <div class="mapa-tarjeta-pista">Pasa el cursor por una entidad; haz clic para fijarla y comparar</div>`;
     globo.reposo();
     leyendaCaja.replaceChildren(
       leyenda({cortes, titulo: `Hablantes de ${nombre} nacidos en la entidad`, formato: (x) => punto(Math.round(x)), notaSinDato: "Sin hablantes en la muestra"}),
       html`<ul class=${`mapa-variantes-leyenda${chips.length > 8 ? " mapa-variantes-leyenda-larga" : ""}`}><li class="mapa-variantes-leyenda-titulo">${todas ? "Color de la flecha: lengua (las diez mayores)" : "Color de la flecha: variante probable (hasta cinco por entidad)"}. Pasa el cursor por una para ver solo sus flujos.</li>${chips}<li><span class="mapa-variante-chip" style="background:${GRIS_VARIANTE}" aria-hidden="true"></span>${todas ? "Otras lenguas" : "Variantes menores de cada entidad o sin registro"}</li></ul>`,
+      html`<div class="mapa-grosor"><span class="mapa-grosor-titulo">Grosor de la línea: hablantes</span>${[maxFlujo, maxFlujo / 4, maxFlujo / 16].filter((n) => n >= 1).map((n) => html`<span class="mapa-grosor-item"><span class="mapa-grosor-linea" style="height:${grosorDe(n).toFixed(1)}px" aria-hidden="true"></span>${entero(n)}</span>`)}</div>`,
       todas ? "" : glosarioCerteza());
-    resumen.replaceChildren(html`<h2 class="mapa-titulo">De dónde vienen quienes hablan ${nombre}</h2>
+    const quitarAlc = alc ? html`<button type="button" class="mapa-alc-quitar">Ver toda la ciudad</button>` : "";
+    if (alc) quitarAlc.addEventListener("click", () => { estado.alcOrigen = null; pintar(); });
+    resumen.replaceChildren(html`<h2 class="mapa-titulo">De dónde vienen quienes hablan ${nombre}${alc ? ` y viven en ${alc.nombre}` : ""}</h2>${quitarAlc}
       <p class="mapa-definicion">Hablantes que viven en la Ciudad de México, según su entidad de nacimiento. Cada flecha va de la entidad a la ciudad; su grosor es el número de personas y su color, ${todas ? "la lengua" : "la variante probable"}. <span class="mapa-fuente">${FUENTE_ANIO[e.anio]}, muestra; variantes según el Catálogo INALI 2008.</span></p>`);
   }
 
@@ -994,6 +1031,7 @@ export function mapaUnificado({serie, lenguas, origen, clin, variantesCiudad = [
     limpiarFijadas();
     estado.origen = !estado.origen;
     estado.lengua = false;
+    if (!estado.origen) estado.alcOrigen = null;
     mapa.fitBounds(estado.origen ? MEXICO : CDMX, {padding: 12, duration: 600});
     pintar();
   });

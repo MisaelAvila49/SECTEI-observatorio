@@ -127,6 +127,46 @@ export function expresionColor(campo, cortes, rampa = RAMPA_MORADA, origen = "ge
 }
 
 /**
+ * Cortes por el método de Dalenius-Hodges (estratificación óptima): se ordenan
+ * los valores, se acumula la raíz de la frecuencia de un histograma fino y se
+ * corta esa acumulada en n partes iguales. Es la estratificación que usan
+ * CONAPO y el INEGI para sus cinco grados.
+ *
+ * Sustituye a los cuantiles en los mapas. Con cuantiles cada tono cubría la
+ * misma cantidad de unidades, y el tono más oscuro empezaba en valores muy
+ * bajos (1.9 % de hablantes por AGEB): una quinta parte de la ciudad salía
+ * oscura y se leía como si casi todos hablaran una lengua indígena. Con
+ * Dalenius-Hodges el tono oscuro queda para las unidades que de verdad se
+ * separan del resto (unas 120 AGEB de 4,700, desde 4.9 %).
+ *
+ * Devuelve [0, c1, ..., c(n-1)], igual que cortesPorCuantil. Los cortes se
+ * redondean a dos cifras significativas para que la leyenda se lea.
+ */
+export function cortesDalenius(valores, n = 5) {
+  const v = valores.filter((x) => x != null && Number.isFinite(x) && x > 0).sort((a, b) => a - b);
+  if (v.length < n * 3) return cortesPorCuantil(valores, n);
+  const lo = v[0], hi = v[v.length - 1];
+  if (!(hi > lo)) return [0];
+  const J = Math.min(200, Math.max(n * 10, Math.round(Math.sqrt(v.length) * 2)));
+  const paso = (hi - lo) / J;
+  const f = new Array(J).fill(0);
+  for (const x of v) f[Math.min(J - 1, Math.floor((x - lo) / paso))] += 1;
+  const acum = [];
+  let suma = 0;
+  for (const k of f) { suma += Math.sqrt(k); acum.push(suma); }
+  const redondo = (x) => { const e = Math.pow(10, Math.floor(Math.log10(x)) - 1); return Math.round(x / e) * e; };
+  const cortes = [0];
+  for (let h = 1; h < n; h++) {
+    const meta = h * suma / n;
+    let mejor = 0;
+    for (let k = 1; k < J; k++) if (Math.abs(acum[k] - meta) < Math.abs(acum[mejor] - meta)) mejor = k;
+    const c = Number(redondo(lo + (mejor + 1) * paso).toPrecision(2));
+    if (c > cortes[cortes.length - 1]) cortes.push(c);
+  }
+  return cortes.length >= 3 ? cortes : cortesPorCuantil(valores, n);
+}
+
+/**
  * Cortes por cuantiles sobre los valores no nulos.
  *
  * Se usan cuantiles y no intervalos iguales porque la distribución está muy

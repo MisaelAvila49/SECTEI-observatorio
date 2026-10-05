@@ -43,8 +43,9 @@ try { pmtilesMunicipios = await FileAttachment("data/municipios.pmtiles").url();
 let pmtilesManzanas2010 = null, pmtilesAgebs2010 = null;
 try { pmtilesManzanas2010 = await FileAttachment("data/manzanas_2010.pmtiles").url(); } catch { pmtilesManzanas2010 = null; }
 try { pmtilesAgebs2010 = await FileAttachment("data/agebs_2010.pmtiles").url(); } catch { pmtilesAgebs2010 = null; }
+const serieEdad = (await FileAttachment("data/serie_alcaldias_edad.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio), cve: String(r.cve).padStart(r.nivel === "entidad" ? 2 : 3, "0")}));
 const mapa = mapaUnificado({
-  serie: s, lenguas: l, origen: o, clin, variantesCiudad: vc, clinMunicipios: cm,
+  serie: s, serieEdad, lenguas: l, origen: o, clin, variantesCiudad: vc, clinMunicipios: cm,
   municipiosLenguas: municipiosLenguas.map((r) => ({cve: String(r.cve).padStart(5, "0"), lengua: String(r.lengua).padStart(4, "0"), hablantes: Number(r.hablantes)})),
   catalogo, agebs, agebs2010, colonias,
   pmtilesManzanas: await FileAttachment("data/manzanas.pmtiles").url(),

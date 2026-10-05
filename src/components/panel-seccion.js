@@ -8,6 +8,7 @@
 // que las gráficas no distinguen por dónde llegó la selección.
 // Ver docs/arquitectura-filtros.md, §3 y §4.
 import {html} from "npm:htl";
+import {TIPO_EDICION} from "./panel-mapa.js";
 import {NIVELES, ORDEN_NIVEL, buscarUnidad, nivelDe} from "./geografia.js";
 
 // "separado" pide una faceta por categoría (comparar dentro de la misma
@@ -169,7 +170,7 @@ export function panelSeccion({fuente, catalogo, id = "sec"}) {
     const pref = (c.anio.value === SEPARADO && anios.length > 1 && !enMapa) ? SEPARADO : anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
     c.anio.rellenar(anios.length <= 1
       ? [{clave: String(anios[0] ?? 2020), etiqueta: `${anios[0] ?? 2020} (única edición a este nivel)`}]
-      : [...(!enMapa ? [{clave: SEPARADO, etiqueta: "Todas las ediciones (comparar)", grupo: CONJUNTO}] : []), ...anios.map((a) => ({clave: String(a), etiqueta: String(a), grupo: "Una edición"}))], pref);
+      : [...(!enMapa ? [{clave: SEPARADO, etiqueta: "Todas las ediciones (comparar)", grupo: CONJUNTO}] : []), ...anios.map((a) => ({clave: String(a), etiqueta: TIPO_EDICION[a] ? `${a} · ${TIPO_EDICION[a]}` : String(a), grupo: "Una edición"}))], pref);
     c.anio.select.disabled = anios.length <= 1;
     const ctx = {geo, poblacion: pobBase, anio: c.anio.value === SEPARADO ? anios.at(-1) : Number(c.anio.value)};
     const conSexo = fuente.sexoDe(ctx);

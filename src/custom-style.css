@@ -4470,3 +4470,42 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 .historia-partes .historia-parte:first-child {
   grid-column: 1 / -1;
 }
+
+/* Leyenda del grosor de los flujos y controles de la alcaldía de origen. */
+.mapa-grosor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.9rem;
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+}
+.mapa-grosor-titulo {
+  flex-basis: 100%;
+  font-weight: 600;
+}
+.mapa-grosor-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.mapa-grosor-linea {
+  display: inline-block;
+  width: 2.2rem;
+  border-radius: 999px;
+  background: #6f6f6a;
+}
+.mapa-boton-alcaldia {
+  margin-top: 0.6rem;
+  width: 100%;
+}
+.mapa-alc-quitar {
+  margin: 0.2rem 0 0.4rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  cursor: pointer;
+}

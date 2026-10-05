@@ -114,7 +114,12 @@ function campo({id, etiqueta, opciones, valor, nombre}) {
  * para la combinación unidad + población + lengua. El nodo devuelto tiene
  * `.value` y emite `input` en cada cambio ya reconciliado.
  */
-export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
+// Qué levantamiento es cada edición: un censo y un conteo cuentan a toda la
+// población; una encuesta intercensal es una muestra y sus cifras son
+// estimaciones. El selector de año lo dice junto a cada año.
+export const TIPO_EDICION = {1990: "Censo", 1995: "Conteo", 2000: "Censo", 2005: "Conteo", 2010: "Censo", 2015: "Encuesta Intercensal", 2020: "Censo", 2025: "Encuesta Intercensal"};
+
+export function panelMapa({lenguas, aniosDe, sexoDe = () => true, edadDe = () => false}) {
   const c = {
     poblacion: campo({id: "mapa-poblacion", nombre: "poblacion", etiqueta: "Población", opciones: POBLACIONES, valor: "hablantes"}),
     lengua: campo({id: "mapa-lengua", nombre: "lengua", etiqueta: "Lengua", opciones: [{clave: "todas", etiqueta: "Todas las lenguas"}, ...lenguas], valor: "todas"}),
@@ -122,6 +127,9 @@ export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
     unidad: campo({id: "mapa-unidad", nombre: "unidad", etiqueta: "Unidad del mapa", opciones: UNIDADES, valor: "ageb"}),
     anio: campo({id: "mapa-anio", nombre: "anio", etiqueta: "Año", opciones: [{clave: "2020", etiqueta: "2020"}], valor: "2020"}),
     sexo: campo({id: "mapa-sexo", nombre: "sexo", etiqueta: "Sexo", opciones: SEXOS, valor: "Total"}),
+    // Grupo de edad: solo por alcaldía y solo en las ediciones cuya muestra
+    // pregunta desde los 3 años; por AGEB y manzana el Censo no lo publica.
+    edad: campo({id: "mapa-edad", nombre: "edad", etiqueta: "Grupo de edad", opciones: [{clave: "Todas", etiqueta: "Todas las edades"}, {clave: "3-14", etiqueta: "3 a 14 años"}, {clave: "15-29", etiqueta: "15 a 29 años"}, {clave: "30-59", etiqueta: "30 a 59 años"}, {clave: "60+", etiqueta: "60 años y más"}], valor: "Todas"}),
     ambito: campo({id: "mapa-ambito", nombre: "ambito", etiqueta: "Ámbito", opciones: [{clave: "ciudad", etiqueta: "Toda la ciudad"}, {clave: "pueblos", etiqueta: "Solo pueblos originarios"}], valor: "ciudad"}),
     umbral: campo({id: "mapa-umbral", nombre: "umbral", etiqueta: "Presencia indígena mínima",
       opciones: PRESENCIA_MINIMA.map((p) => ({clave: String(p.valor), etiqueta: p.etiqueta})), valor: "0"}),
@@ -139,7 +147,7 @@ export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
     </fieldset>
     <fieldset class="panel-grupo">
       <legend class="panel-grupo-titulo">Cuándo y para quién</legend>
-      <div class="panel-campos">${c.anio}${c.sexo}${c.ambito}${c.umbral}</div>
+      <div class="panel-campos">${c.anio}${c.sexo}${c.edad}${c.ambito}${c.umbral}</div>
     </fieldset>
   </div>`;
 
@@ -150,7 +158,7 @@ export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
   function leer() {
     return {
       poblacion: c.poblacion.value, lengua: c.lengua.value, cruce: c.cruce.value === "sin" ? null : c.cruce.value,
-      unidad: c.unidad.value, anio: Number(c.anio.value), sexo: c.sexo.value, ambito: c.ambito.value,
+      unidad: c.unidad.value, anio: Number(c.anio.value), sexo: c.sexo.value, edad: c.edad.value, ambito: c.ambito.value,
       umbral: Number(c.umbral.value),
     };
   }
@@ -193,7 +201,7 @@ export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
     const anios = aniosDe({unidad, poblacion: pob.clave, lengua: c.lengua.value});
     // Año por omisión: el último censo (2020) si existe; si no, el más reciente.
     const anioPref = anios.includes(Number(c.anio.value)) ? c.anio.value : anios.includes(2020) ? "2020" : String(anios.at(-1));
-    c.anio.rellenar(anios.map((a) => ({clave: String(a), etiqueta: String(a)})), anioPref);
+    c.anio.rellenar(anios.map((a) => ({clave: String(a), etiqueta: TIPO_EDICION[a] ? `${a} · ${TIPO_EDICION[a]}` : String(a)})), anioPref);
     // Con un solo año el selector se deja a la vista pero deshabilitado, para
     // que se entienda que no hay otro (por AGEB y manzana hay 2010 y 2020).
     ver("anio", true);
@@ -206,6 +214,10 @@ export function panelMapa({lenguas, aniosDe, sexoDe = () => true}) {
       && sexoDe({unidad, poblacion: pob.clave, lengua: c.lengua.value, anio: Number(c.anio.value)});
     ver("sexo", conSexo);
     if (!conSexo) c.sexo.value = "Total";
+    // Edad y sexo no se cruzan: la muestra por alcaldía no alcanza para los dos.
+    const conEdad = enAlcaldia && pob.clave === "hablantes" && c.lengua.value === "todas" && c.sexo.value === "Total" && edadDe({anio: Number(c.anio.value)});
+    ver("edad", conEdad);
+    if (!conEdad) c.edad.value = "Todas";
 
     ver("ambito", unidad === "manzana");
     if (unidad !== "manzana") c.ambito.value = "ciudad";
