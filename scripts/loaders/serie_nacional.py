@@ -86,7 +86,8 @@ def main():
     base = pd.read_csv(ENTRADA, dtype={"nota": str})
     base["cota"] = base["anio"].map(lambda a: "muestra" if a in (2015, 2025) else "censo")
     base.loc[base["poblacion"] == "autoads", "cota"] = "muestra"
-    base["ee"] = None
+    # El error estándar publicado (hogares 2025) viene en la entrada; lo demás, vacío.
+    base["ee"] = pd.to_numeric(base["ee"], errors="coerce") if "ee" in base.columns else None
     nuevas = []
     anios = [a for a in (2015, 2025) if len(sys.argv) < 2 or str(a) in sys.argv[1:]]
     for anio in anios:

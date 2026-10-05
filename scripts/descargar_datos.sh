@@ -71,6 +71,10 @@ bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/ite
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/iter/iter_09_cpv2020_csv.zip"       "$CRUDO/iter/iter_09_cpv2020_csv.zip" "ITER 2020, Ciudad de Mexico (0.2 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2010/datosabiertos/ageb_y_manzana/resageburb_09_2010_csv.zip"       "$CRUDO/resageburb2010/resageburb_09_2010_csv.zip" "Resultados por AGEB y manzana 2010, Distrito Federal (9.8 MB)"
 bajar "https://www.inegi.org.mx/contenidos/programas/intercensal/2015/microdatos/eic2015_09_csv.zip"       "$CRUDO/eic2015/eic2015_09_csv.zip" "Encuesta Intercensal 2015, microdatos de la Ciudad de Mexico (23 MB)"
+# Tabulados con la población en hogares indígenas del país en 2005 y 2025 (serie nacional).
+bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2005/tabulados/Cont2005_NAL_Lengua_indigena.xls" "$CRUDO/tabulados/Cont2005_NAL_Lengua_indigena.xls" "Conteo 2005, tabulados de lengua indigena (1.4 MB)"
+bajar "https://www.inegi.org.mx/contenidos/programas/ccpv/2005/tabulados/Cont2005_NAL_Poblacion.xls" "$CRUDO/tabulados/Cont2005_NAL_Poblacion.xls" "Conteo 2005, tabulados de poblacion (0.5 MB)"
+bajar "https://www.inegi.org.mx/contenidos/programas/eic/2025/tabulados/eic2025_etnicidad.xlsx" "$CRUDO/tabulados/eic2025_etnicidad.xlsx" "Encuesta Intercensal 2025, tabulados de etnicidad (5.8 MB)"
 # EIC 2015 de las otras 31 entidades: la serie nacional de hablantes de 5 anos y mas
 # de 2015 solo se puede calcular con los microdatos (serie_nacional.py). Unos 5 GB.
 for e in 01 02 03 04 05 06 07 08 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32; do
