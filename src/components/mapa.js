@@ -167,6 +167,19 @@ export function cortesDalenius(valores, n = 5) {
 }
 
 /**
+ * Rangos FIJOS y desiguales para la presencia indígena (porcentaje de la
+ * población o de los hogares). Sustituyen a Dalenius-Hodges en esos mapas:
+ * cualquier corte calculado sobre los datos reparte los tonos y deja zonas
+ * oscuras aunque casi todo esté abajo de 2 %. Con rangos fijos el tono claro
+ * dice "menos de 2 %" en todos los niveles, años y filtros, y el oscuro solo
+ * aparece donde la presencia es alta. El primer rango es el mismo en las dos
+ * escalas. Dalenius-Hodges se queda para lo que no es presencia: una lengua
+ * en particular, los cruces y los conteos de origen.
+ */
+export const CORTES_CIUDAD = [0, 2, 5, 10, 20];
+export const CORTES_PAIS = [0, 2, 10, 20, 40];
+
+/**
  * Cortes por cuantiles sobre los valores no nulos.
  *
  * Se usan cuantiles y no intervalos iguales porque la distribución está muy

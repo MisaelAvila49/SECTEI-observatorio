@@ -11,7 +11,7 @@ import {html} from "npm:htl";
 import {catalogoGeo, contenedorDe, etiquetaGeo, nivelDe} from "./geografia.js";
 import {panelSeccion, EDADES, SEPARADO} from "./panel-seccion.js";
 import {mapaNavegador} from "./mapa-navegador.js";
-import {cortesDalenius, leyenda, RAMPA_MORADA, ROJO_IBERO} from "./mapa.js";
+import {CORTES_CIUDAD, CORTES_PAIS, leyenda, RAMPA_MORADA, ROJO_IBERO} from "./mapa.js";
 import {figura, explicacion, tablaColumnas} from "./graficas.js";
 import {punto, ejePct, GLOBO, globo} from "./base.js";
 
@@ -92,8 +92,6 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
   for (const k of ocultar) panel.mostrar(k, false);
 
   // ---------------------------------------------------------------- datos
-  const CORTES = new Map();
-  const cortesFijos = (clave, valores) => { if (!CORTES.has(clave)) CORTES.set(clave, cortesDalenius(valores, 5)); return CORTES.get(clave); };
   const filaNac = (nivel, cve, v) => INDICE_NAC.get(`${nivel}|${cve}|${v.poblacion}|${v.sexo}|${v.edad}|${MUESTRA.has(v.poblacion) || v.edad !== "Todas" ? "muestra" : "censo"}`) ?? null;
   const aValor = (r) => (r && r.den > 0 ? {valor: 100 * r.num / r.den, num: r.num, den: r.den, ee: r.ee, cota: r.cota, nombre: r.nombre} : null);
   const aValorInpi = (r) => (r && r.den > 0 ? {valor: 100 * r.num / r.den, num: r.num, den: r.den, ee: null, cota: "INPI (conteo)", nombre: r.nombre, tipo: r.tipo} : null);
@@ -184,10 +182,8 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
     const sufijo = v.sexo === "Mujeres" ? "_f" : v.sexo === "Hombres" ? "_m" : "";
     const campo = v.nivel === "manzana" ? pob.tesela + sufijo : pob.tesela;
     let cortes;
-    if (v.nivel === "ageb" || v.nivel === "manzana") cortes = cortesFijos(`ageb|${pob.tesela}`, ag.map((r) => r[pob.tesela]).filter((x) => x != null).map(Number));
-    else if (v.poblacion === "inpi") cortes = cortesFijos(`${nivelCapa}|inpi`, inpi.filter((r) => r.nivel === nivelCapa && r.pct != null).map((r) => Number(r.pct)));
-    else if (v.nivel === "municipio") cortes = cortesFijos(`municipio|${v.poblacion}`, nac.filter((r) => r.nivel === "municipio" && r.poblacion === v.poblacion && r.sexo === "Total" && r.edad === "Todas").map((r) => 100 * r.num / r.den));
-    else cortes = cortesFijos(`entidad|${v.poblacion}`, nac.filter((r) => r.nivel === "entidad" && r.poblacion === v.poblacion && r.den > 0).map((r) => 100 * r.num / r.den));
+    // Rangos fijos de presencia: los de la ciudad por AGEB y manzana, los del país en lo demás.
+    cortes = v.nivel === "ageb" || v.nivel === "manzana" ? CORTES_CIUDAD : CORTES_PAIS;
     const colorDe = (x) => (x == null ? "#d9d9d9" : RAMPA_MORADA[Math.min(RAMPA_MORADA.length - 1, cortes.filter((c, i) => i > 0 && x >= c).length)]);
     const formatoLeyenda = (x) => x.toFixed(cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1) + " %";
     const etiqueta = `${pob.corto}${v.sexo !== "Total" ? `, ${v.sexo.toLowerCase()}` : ""}${v.edad !== "Todas" ? `, ${etiquetaEdad(v.edad).toLowerCase()}` : ""}`;

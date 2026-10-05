@@ -12,7 +12,7 @@
 //     flujo entidad de nacimiento → CDMX generadas aquí.
 import maplibregl from "npm:maplibre-gl@5.24.0";
 import {html} from "npm:htl";
-import {registrarProtocolo, estiloBase, expresionColor, cortesPorCuantil, cortesDalenius, leyenda, RAMPA_MORADA, SIN_DATO, ROJO_IBERO} from "./mapa.js";
+import {registrarProtocolo, estiloBase, expresionColor, cortesPorCuantil, cortesDalenius, CORTES_CIUDAD, leyenda, RAMPA_MORADA, SIN_DATO, ROJO_IBERO} from "./mapa.js";
 import {GRIS_VARIANTE, ORDEN_GRADO, ORDINAL, punto, alCambiarModo} from "./base.js";
 import {panelMapa, POBLACIONES, CRUCES, UNIDADES, SEXOS} from "./panel-mapa.js";
 
@@ -496,6 +496,7 @@ export function mapaUnificado({serie, serieEdad = [], lenguas, origen, clin, var
   // Cortes FIJOS por indicador a lo largo de los años (lección 74): se miden
   // sobre todas las alcaldías, años y sexos de ese indicador.
   function cortesAlcaldia({poblacion, lengua}) {
+    if (lengua === "todas") return CORTES_CIUDAD;
     const clave = `alc|${poblacion}|${lengua}`;
     if (!cacheCortes.has(clave)) {
       const filas = lengua !== "todas"
@@ -516,6 +517,7 @@ export function mapaUnificado({serie, serieEdad = [], lenguas, origen, clin, var
   function cortesTesela(e, campo) {
     const cruce = e.cruce ? cruceDe(e.cruce) : null;
     if (cruce?.categorias) return [1, 2, 3, 4, 5];
+    if (!cruce) return CORTES_CIUDAD;
     const clave = `${e.unidad}|${campo}`;
     if (!cacheCortes.has(clave)) {
       // Cortes fijos entre ediciones: se calculan sobre las dos tablas de AGEB
