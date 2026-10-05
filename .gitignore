@@ -32,3 +32,10 @@ referencias/mapa-inide/script0.js
 __pycache__/
 src/data/agebs_2010_cdmx.geojson
 src/data/manzanas_2010_cdmx.geojson
+
+# Capturas de prueba y copia suelta del mapa del INIDE en la raíz: material de
+# trabajo local, no del sitio.
+/f_*.png
+/p_*.png
+/mapa.html
+/.claude/
