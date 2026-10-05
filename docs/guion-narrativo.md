@@ -365,14 +365,15 @@ mira de cerca. Sigue: Conectividad en la vivienda.
 
 #### Conectividad en la vivienda
 
-**Apertura.** La cuarta parte trata de la brecha digital, con tres fuentes que
-miden cosas distintas: lo que hay en la vivienda, lo que tiene el hogar y lo
-que usa cada persona. Empieza por el Censo 2020, que pregunta por la vivienda
-y permite llegar a cada entidad.
+**Apertura.** La cuarta parte trata de la brecha digital con tres fuentes, y
+cada una aporta algo que las otras no pueden. El Censo 2020 aporta el
+territorio: es la única con muestra suficiente para comparar las 32 entidades,
+y por eso esta página abre con el mapa.
 
 **Vive en una vivienda con internet.** Tener internet en casa es el primer
-escalón. Sin conexión en la vivienda, estudiar, trabajar o hacer un trámite en
-línea depende de salir a buscarla.
+escalón: sin conexión en la vivienda, estudiar, trabajar o hacer un trámite en
+línea depende de salir a buscarla. El mapa compara, entidad por entidad, a la
+población indígena con el resto.
 
 **Dispositivos para conectarse.** La conexión sirve según el aparato con que
 se usa. Un celular y una computadora no permiten hacer lo mismo, y por eso se
@@ -382,34 +383,40 @@ cuentan por separado.
 completan el panorama: muestran por qué medios llega la información a una
 vivienda.
 
-**Cierre.** El Censo es una foto de un año. Para saber si la brecha cambia
-hace falta una fuente que repita la pregunta. Sigue: Acceso en el hogar.
+**Cierre.** El Censo es una foto de un año y no pregunta por el ingreso. Para
+saber si la brecha cambia y cuánto pesa el dinero hace falta otra fuente.
+Sigue: Acceso en el hogar.
 
 #### Acceso en el hogar
 
-**Apertura.** La ENIGH hace la misma pregunta cada dos años y la cruza con el
-ingreso del hogar. Es la única de las tres fuentes que permite ver el cambio
-en el tiempo.
+**Apertura.** La ENIGH aporta lo que el Censo no puede: el tiempo y el
+ingreso. Hace la misma pregunta cada dos años y la cruza con lo que gana el
+hogar. No repite el mapa; muestra cómo se mueve la brecha y entre qué hogares.
 
-**Vive en un hogar con conexión a internet.** Seguir la conexión en tres
-ediciones muestra si la distancia entre los hogares indígenas y el resto se
-cierra. El decil de ingreso permite ver qué parte de esa distancia va junto
-con el ingreso.
+**La conexión del hogar en tres ediciones.** Seguir la misma pregunta en 2020,
+2022 y 2024 muestra si la distancia entre la población indígena y el resto se
+cierra, se mantiene o crece.
+
+**La conexión según el ingreso del hogar.** El ingreso es la explicación más
+inmediata de quién tiene conexión. Comparar dentro de cada decil permite ver
+si la distancia se mantiene entre hogares de ingreso parecido.
 
 **Dispositivos y servicios del hogar.** Los mismos cortes, aplicados a los
 aparatos y servicios con que cuenta el hogar.
 
 **Cierre.** Que un hogar tenga internet no significa que todas las personas
-que viven en él lo usen. Sigue: Quién usa internet.
+que viven en él lo usen. Eso solo lo sabe una encuesta que pregunte a cada
+persona. Sigue: Quién usa internet.
 
 #### Quién usa internet
 
-**Apertura.** La ENDUTIH pregunta a cada persona y no al hogar. Desde 2025
-identifica a la población indígena, y con eso se puede saber quién usa
-internet, con qué equipo y desde dónde.
+**Apertura.** La ENDUTIH aporta a la persona: pregunta a cada quien, y no al
+hogar, si usó internet, con qué equipo y desde dónde. Desde 2025 identifica a
+la población indígena, y es la única fuente que permite ver el uso por edad.
 
 **Usa internet.** El uso personal es la medida más directa de la brecha:
-cuenta a quien se conecta, tenga o no conexión en casa.
+cuenta a quien se conecta, tenga o no conexión en casa. Se abre por grupo de
+edad, un corte que solo permite una fuente que pregunta persona por persona.
 
 **Dispositivos y conexión.** Con qué aparatos cuenta cada persona y qué tipo
 de conexión tiene describen las condiciones en que se conecta.

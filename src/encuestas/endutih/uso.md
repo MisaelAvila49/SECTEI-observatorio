@@ -17,7 +17,7 @@ const fuentes = catalogo(await FileAttachment("../../data/fuentes.csv").csv());
 <div class="hero-pagina">
   <span class="kicker">Parte 4 · La brecha digital · 3 de 5</span>
   <h1>Quién usa internet y con qué</h1>
-  <p class="hero-entrada">La ENDUTIH pregunta a cada persona y no al hogar. Desde 2025 identifica a la población indígena, y con eso se puede saber quién usa internet, con qué equipo y desde dónde.</p>
+  <p class="hero-entrada">La ENDUTIH aporta a la persona: pregunta a cada quien, y no al hogar, si usó internet, con qué equipo y desde dónde. Desde 2025 identifica a la población indígena, y es la única fuente que permite ver el uso por edad.</p>
 </div>
 
 ```js
@@ -29,7 +29,7 @@ const secciones = seccionesTema("endutih-uso", datos, {geoEntidades, datosEscola
 <h2 id="usa-internet" class="toc-anchor">Usa internet</h2>
 
 ```js
-display(conEntrada(secciones[0], "El uso personal es la medida más directa de la brecha: cuenta a quien se conecta, tenga o no conexión en casa."));
+display(conEntrada(secciones[0], "El uso personal es la medida más directa de la brecha: cuenta a quien se conecta, tenga o no conexión en casa. Se abre por grupo de edad, un corte que solo permite una fuente que pregunta persona por persona."));
 ```
 ---
 

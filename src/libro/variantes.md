@@ -9,6 +9,7 @@ import {campo} from "../components/panel-seccion.js";
 import {figura, explicacion, tablaColumnas, kpis, claves} from "../components/graficas.js";
 import {punto, ORDINAL, COLOR_REFERENCIA, GLOBO, globo} from "../components/base.js";
 import {procedencia} from "../components/fuentes.js";
+import {ENTIDADES} from "../components/geografia.js";
 
 const [variantesCiudad, lenguasAlc, clin] = await Promise.all([
   FileAttachment("../data/variantes_ciudad.csv").csv(),
@@ -70,13 +71,23 @@ const aniosV = [...new Set(vc.map((r) => r.anio))].sort();
 const selLengua = campo({id: "c5-lengua", nombre: "lengua", etiqueta: "Lengua", opciones: lenguasOrden.map(([k, d]) => ({clave: k, etiqueta: d.nombre})), valor: lenguasOrden[0][0]});
 const selAnio = campo({id: "c5-anio", nombre: "anio", etiqueta: "Año", opciones: aniosV.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: String(ultimoAnio)});
 const selAlc = campo({id: "c5-alc", nombre: "alcaldia", etiqueta: "Alcaldía", opciones: [{clave: "", etiqueta: "Toda la ciudad", grupo: "En conjunto"}, ...[...nombreAlc.entries()].sort((a, b) => a[1].localeCompare(b[1], "es")).map(([k, n]) => ({clave: k, etiqueta: n, grupo: "Una a una"}))], valor: ""});
-const panelA = html`<div class="panel-filtros"><div class="panel-campos">${selLengua}${selAnio}${selAlc}</div></div>`;
+const OPC_CERTEZA = [{clave: "", etiqueta: "Todas", grupo: "En conjunto"}, ...CERTEZAS.map((c) => ({clave: c.clave, etiqueta: c.etiqueta, grupo: "Una a una"}))];
+const selCert = campo({id: "c5-cert", nombre: "certeza", etiqueta: "Certeza de la variante", opciones: OPC_CERTEZA, valor: ""});
+// Entidades de nacimiento con al menos un hablante con variante probable.
+const entConVar = new Set(vc.filter((r) => r.variante).map((r) => String(r.cve_ent).padStart(3, "0").slice(1)));
+const selEnt = campo({id: "c5-ent", nombre: "entidad", etiqueta: "Entidad de origen", opciones: [{clave: "", etiqueta: "Todas las entidades", grupo: "En conjunto"}, ...ENTIDADES.filter((e) => entConVar.has(e.cve)).map((e) => ({clave: e.cve, etiqueta: e.nombre, grupo: "Una a una"}))], valor: ""});
+const panelA = html`<div class="panel-filtros"><div class="panel-campos">${selLengua}${selAnio}${selAlc}${selEnt}${selCert}</div></div>`;
 const cuerpoA = document.createElement("div");
 function pintarA() {
   const lengua = selLengua.value, anio = Number(selAnio.value), alc = selAlc.value;
   const nombre = porLengua.get(lengua)?.nombre ?? lengua;
-  const filas = vc.filter((r) => r.anio === anio && r.lengua === lengua && (!alc || r.cve_alc === alc));
-  const conVar = filas.filter((r) => r.variante);
+  // Solo se ofrecen las entidades de origen con variantes de la lengua elegida.
+  const entLengua = new Set(vc.filter((r) => r.lengua === lengua && r.variante).map((r) => String(r.cve_ent).padStart(3, "0").slice(1)));
+  selEnt.rellenar([{clave: "", etiqueta: "Todas las entidades", grupo: "En conjunto"}, ...ENTIDADES.filter((e) => entLengua.has(e.cve)).map((e) => ({clave: e.cve, etiqueta: e.nombre, grupo: "Una a una"}))], selEnt.value);
+  const ent = selEnt.value, cert = selCert.value;
+  const filas = vc.filter((r) => r.anio === anio && r.lengua === lengua && (!alc || r.cve_alc === alc) && (!ent || String(r.cve_ent).padStart(3, "0").slice(1) === ent));
+  const conVar = filas.filter((r) => r.variante && (!cert || r.certeza === cert));
+  const acotado = `${ent ? ` · nacidos en ${selEnt.select.selectedOptions[0].textContent}` : ""}${cert ? ` · solo certeza ${etiquetaCerteza.get(cert).toLowerCase()}` : ""}`;
   const sin = filas.filter((r) => !r.variante).reduce((s, r) => s + r.num, 0);
   const total = filas.reduce((s, r) => s + r.num, 0);
   const porVar = new Map();
@@ -87,7 +98,7 @@ function pintarA() {
   const lugar = alc ? nombreAlc.get(alc) : "la ciudad";
   cuerpoA.replaceChildren(
     kpis([{etiqueta: `Hablantes de ${nombre} en ${lugar}`, cifra: entero(total), nota: `${anio}; muestra censal`}, {etiqueta: "Con variante probable", cifra: pct(total ? 100 * (total - sin) / total : 0), nota: `${entero(sin)} sin variante (nacidos en la ciudad o sin registro)`}, {etiqueta: "Variantes presentes", cifra: `${porVar.size} de ${nCatalogo || "?"}`, nota: "del Catálogo del INALI con al menos un hablante probable"}]),
-    top.length ? figura({titulo: `Variantes probables del ${nombre} en ${lugar}, ${anio}`, subtitulo: `Las ${top.length} variantes con más hablantes probables; el color dice qué tan segura es la asignación`, pie: "Censos e intercensales (INEGI), lugar de origen de cada hablante, y Catálogo de las Lenguas Indígenas Nacionales (INALI 2008) · cada barra es una variante"},
+    top.length ? figura({titulo: `Variantes probables del ${nombre} en ${lugar}, ${anio}`, subtitulo: `Las ${top.length} variantes con más hablantes probables; el color dice qué tan segura es la asignación${acotado}`, pie: "Censos e intercensales (INEGI), lugar de origen de cada hablante, y Catálogo de las Lenguas Indígenas Nacionales (INALI 2008) · cada barra es una variante"},
       [Plot.legend({color: {...colorCerteza, legend: true}}), Plot.plot({marginLeft: 270, marginRight: 60, height: 22 * top.length + 50, width: Math.min(980, width), color: colorCerteza, x: {label: "hablantes probables", grid: true}, y: {label: null, domain: top.map((r) => r.variante)},
         marks: [Plot.barX(apiladas, {x: "num", y: "variante", fill: "certeza", order: CERTEZAS.map((c) => c.etiqueta)}),
           Plot.text(top, {x: "total", y: "variante", text: (r) => entero(r.total), dx: 6, textAnchor: "start", fontSize: 11}),
@@ -113,24 +124,30 @@ display(html`<section class="beta-seccion">${panelA}${cuerpoA}</section>`);
 
 ```js
 const selAnioB = campo({id: "c5b-anio", nombre: "anio", etiqueta: "Año", opciones: aniosV.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: String(ultimoAnio)});
-const panelB = html`<div class="panel-filtros"><div class="panel-campos">${selAnioB}</div></div>`;
+const selAlcB = campo({id: "c5b-alc", nombre: "alcaldia", etiqueta: "Alcaldía", opciones: [{clave: "", etiqueta: "Toda la ciudad", grupo: "En conjunto"}, ...[...nombreAlc.entries()].sort((a, b) => a[1].localeCompare(b[1], "es")).map(([k, n]) => ({clave: k, etiqueta: n, grupo: "Una a una"}))], valor: ""});
+const selMedB = campo({id: "c5b-medida", nombre: "medida", etiqueta: "Medida", opciones: [{clave: "pct", etiqueta: "Porcentaje de los hablantes"}, {clave: "num", etiqueta: "Hablantes"}], valor: "pct"});
+const panelB = html`<div class="panel-filtros"><div class="panel-campos">${selAnioB}${selAlcB}${selMedB}</div></div>`;
 const cuerpoB = document.createElement("div");
 function pintarB() {
-  const anio = Number(selAnioB.value);
+  const anio = Number(selAnioB.value), alc = selAlcB.value, enNum = selMedB.value === "num";
   const top = lenguasOrden.slice(0, 15).map(([k]) => k);
+  const deAlc = vc.filter((r) => !alc || r.cve_alc === alc);
+  const lugar = alc ? nombreAlc.get(alc) : "la ciudad";
+  // Eje fijo en personas: la lengua mayor en cualquier edición de la selección.
+  const topeNum = Math.max(1, ...aniosV.flatMap((a) => top.map((k) => deAlc.filter((r) => r.anio === a && r.lengua === k).reduce((t, r) => t + r.num, 0)))) * 1.05;
   const filas = top.flatMap((k) => {
-    const f = vc.filter((r) => r.anio === anio && r.lengua === k);
+    const f = deAlc.filter((r) => r.anio === anio && r.lengua === k);
     const total = f.reduce((s, r) => s + r.num, 0);
     const nombre = porLengua.get(k).nombre;
     return [...CERTEZAS.map((c) => ({lengua: nombre, certeza: c.etiqueta, num: f.filter((r) => r.certeza === c.clave).reduce((s, r) => s + r.num, 0), total})), {lengua: nombre, certeza: "Sin variante", num: f.filter((r) => r.certeza === "sin").reduce((s, r) => s + r.num, 0), total}];
   }).map((r) => ({...r, share: r.total ? 100 * r.num / r.total : 0}));
   const dominio = [...CERTEZAS.map((c) => c.etiqueta), "Sin variante"];
   cuerpoB.replaceChildren(
-    figura({titulo: `Cómo se asignó la variante en las 15 lenguas con más hablantes, ${anio}`, subtitulo: "Cada barra reparte a los hablantes de la lengua por nivel de certeza", pie: "Censos e intercensales (INEGI) y Catálogo del INALI 2008 · cada barra es una lengua; suma 100 %"},
+    figura({titulo: `Cómo se asignó la variante en las 15 lenguas con más hablantes de ${lugar}, ${anio}`, subtitulo: "Cada barra reparte a los hablantes de la lengua por nivel de certeza", pie: `Censos e intercensales (INEGI) y Catálogo del INALI 2008 · cada barra es una lengua${enNum ? "" : "; suma 100 %"}`},
       [Plot.legend({color: {domain: dominio, range: [...CERTEZAS.map((c) => c.color), COLOR_REFERENCIA], legend: true}}),
-       Plot.plot({marginLeft: 120, marginRight: 30, height: 24 * top.length + 50, width: Math.min(900, width), color: {domain: dominio, range: [...CERTEZAS.map((c) => c.color), COLOR_REFERENCIA]}, x: {label: "% de los hablantes", grid: true, domain: [0, 100]}, y: {label: null, domain: top.map((k) => porLengua.get(k).nombre)},
-        marks: [Plot.barX(filas, {x: "share", y: "lengua", fill: "certeza", order: dominio}),
-          Plot.tip(filas.filter((r) => r.num >= 0.5), Plot.pointerY(Plot.stackX({x: "share", y: "lengua", z: "certeza", order: dominio, maxRadius: Infinity, ...GLOBO, ...globo([["Lengua", (r) => r.lengua], ["Certeza", (r) => r.certeza], ["Hablantes", (r) => `${entero(r.num)} (${pct(r.share)})`]])}))), Plot.ruleX([0])]})]),
+       Plot.plot({marginLeft: 120, marginRight: 30, height: 24 * top.length + 50, width: Math.min(900, width), color: {domain: dominio, range: [...CERTEZAS.map((c) => c.color), COLOR_REFERENCIA]}, x: enNum ? {label: "hablantes", grid: true, domain: [0, topeNum]} : {label: "% de los hablantes", grid: true, domain: [0, 100]}, y: {label: null, domain: top.map((k) => porLengua.get(k).nombre)},
+        marks: [Plot.barX(filas, {x: enNum ? "num" : "share", y: "lengua", fill: "certeza", order: dominio}),
+          Plot.tip(filas.filter((r) => r.num >= 0.5), Plot.pointerY(Plot.stackX({x: enNum ? "num" : "share", y: "lengua", z: "certeza", order: dominio, maxRadius: Infinity, ...GLOBO, ...globo([["Lengua", (r) => r.lengua], ["Certeza", (r) => r.certeza], ["Hablantes", (r) => `${entero(r.num)} (${pct(r.share)})`]])}))), Plot.ruleX([0])]})]),
     clavesCerteza(),
     fuenteDe({datos: DATOS_VAR, referencia: ["R-INALI-EST-2000"], nota: notaInali()}),
     explicacion("La certeza depende de la lengua: una lengua que se habla en pocas entidades, cada una con una sola variante, sale casi toda 'única'; una lengua como el náhuatl o el zapoteco, con decenas de variantes en la misma entidad, sale casi toda 'estimada'. La parte sin variante son sobre todo hablantes nacidos en la ciudad. Como contraste externo, el orden de las variantes mayores de cada lengua coincide con el de los cuadros por variante del INALI de 2000 en 77 por ciento de las lenguas con varias variantes."));

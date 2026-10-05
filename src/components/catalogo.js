@@ -35,6 +35,7 @@ export const CATALOGO = {
     principal: {
       indicador: "Vive en una vivienda con internet",
       titulo: "Vive en una vivienda con internet",
+      abre: "mapa",
       explica: `La pregunta del Censo es si la vivienda dispone de internet, sin distinguir
         conexión fija de móvil.`,
     },
@@ -88,11 +89,21 @@ export const CATALOGO = {
       ingreso corriente per cápita del hogar, calculado dentro de cada edición.`,
     principal: {
       indicador: "Vive en un hogar con conexión a internet",
-      titulo: "Vive en un hogar con conexión a internet",
+      titulo: "La conexión del hogar en tres ediciones",
+      abre: "tiempo",
       explica: `Al comparar ediciones se ve la trayectoria de cada grupo; al elegir una
         edición y comparar entidades, dónde está la brecha ese año.`,
     },
     bloques: [
+      {
+        titulo: "La conexión según el ingreso del hogar",
+        abre: "decil",
+        indicadores: [{indicador: "Vive en un hogar con conexión a internet"}],
+        explica: `Los hogares se ordenan por su ingreso corriente por persona y se parten en
+          diez grupos del mismo tamaño, los deciles: el 1 reúne a los de menor ingreso y
+          el 10 a los de mayor. La gráfica compara a la población indígena con el resto
+          dentro de cada decil.`,
+      },
       {
         titulo: "Dispositivos y servicios del hogar",
         abre: "edad",
@@ -132,6 +143,7 @@ export const CATALOGO = {
     principal: {
       indicador: "Usa internet",
       titulo: "Usa internet",
+      abre: "edad",
       explica: `Usar internet es haberlo usado en los últimos tres meses, en el hogar o fuera
         de él, desde cualquier dispositivo.`,
     },

@@ -70,7 +70,7 @@ export const DIMENSIONES = {
 // las opciones reales de cada selector. Las opciones iniciales las decide la
 // sección: la principal abre comparando entidades, las secundarias por edad.
 export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial = AGREGADO,
-    ambitoInicial = AGREGADO, mostrarMapa = false, mostrarDecil = null, mostrarEscolaridad = true,
+    ambitoInicial = AGREGADO, anioInicial = null, decilInicial = TODOS, mostrarMapa = false, mostrarDecil = null, mostrarEscolaridad = true,
     // Las secciones cuyas filas ya son otra cosa (los motivos) no pueden
     // comparar entidades: la opción se retira en vez de dejarla inerte.
     compararEntidades = true} = {}) {
@@ -103,7 +103,7 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
   // no se parte en tres columnas.
   const anio = anios.length > 1
     ? Inputs.select([POR_SEPARADO, ...anios], {
-        label: "Edición", value: anios.at(-1),
+        label: "Edición", value: anioInicial === POR_SEPARADO ? POR_SEPARADO : anios.at(-1),
         format: (k) => k === POR_SEPARADO ? ETIQUETA.anioFacetas : k,
       })
     : null;
@@ -134,7 +134,7 @@ export function panelFiltros(datos, {fuente, entidadInicial = TODAS, edadInicial
     : null;
   const decil = hayDecil
     ? Inputs.select([TODOS, COMPARAR], {
-        label: "Decil de ingreso", value: TODOS,
+        label: "Decil de ingreso", value: decilInicial,
         format: (k) => k === TODOS ? ETIQUETA.decilTodos : ETIQUETA.decilComparar,
       })
     : null;

@@ -44,23 +44,27 @@ const cap = (t) => (t ? t.charAt(0).toUpperCase() + t.slice(1) : "Sin familia as
 const porFamilia = [...new Map(clin.map((r) => [r.familia, null])).keys()].map((f) => { const filas = clin.filter((r) => r.familia === f); return {familia: f, agrupaciones: new Set(filas.map((r) => r.agrupacion)).size, variantes: filas.length}; }).sort((a, b) => b.variantes - a.variantes);
 const porAgrupacion = [...new Map(clin.map((r) => [r.agrupacion, r.familia])).entries()].map(([a, f]) => ({agrupacion: a, familia: f, variantes: clin.filter((r) => r.agrupacion === a).length})).sort((a, b) => b.variantes - a.variantes);
 const selVista = campo({id: "c1-vista", nombre: "vista", etiqueta: "Mostrar", opciones: [{clave: "familias", etiqueta: "Familias y agrupaciones (todo el catálogo)"}, {clave: "agrupaciones", etiqueta: "Las agrupaciones con más variantes"}], valor: "familias"});
-const panelA = html`<div class="panel-filtros"><div class="panel-campos">${selVista}</div></div>`;
+const selFam = campo({id: "c1-familia", nombre: "familia", etiqueta: "Familia", opciones: [{clave: "", etiqueta: "Las 11 familias", grupo: "En conjunto"}, ...porFamilia.map((f) => ({clave: f.familia, etiqueta: cap(f.familia), grupo: "Una a una"}))], valor: ""});
+const panelA = html`<div class="panel-filtros"><div class="panel-campos">${selVista}${selFam}</div></div>`;
 const cuerpoA = document.createElement("div");
 function pintarA() {
   const nodos = [kpis([{etiqueta: "Familias lingüísticas", cifra: String(porFamilia.length), nota: "Catálogo de las Lenguas Indígenas Nacionales, INALI 2008"}, {etiqueta: "Agrupaciones lingüísticas", cifra: String(porAgrupacion.length), nota: "las 'lenguas' que pregunta el Censo"}, {etiqueta: "Variantes", cifra: String(clin.length), nota: "con autodenominación y municipios de referencia"}])];
+  const fam = selFam.value;
+  const agr = porAgrupacion.filter((r) => !fam || r.familia === fam);
+  const nVar = agr.reduce((t, r) => t + r.variantes, 0);
   if (selVista.value === "familias") {
-    nodos.push(figura({titulo: "Las 11 familias, sus 68 agrupaciones y sus 364 variantes", subtitulo: "Cada rectángulo es una agrupación lingüística; su área, el número de variantes que tiene; el color, su familia", pie: "INALI, Catálogo de las Lenguas Indígenas Nacionales 2008 · las tres familias con más variantes llevan color y las demás van en gris"},
-      [treemap(porAgrupacion.map((r) => ({grupo: cap(r.familia), parte: cap(r.agrupacion), valor: r.variantes})), {ancho: Math.min(980, width), alto: 470, etiquetaOtras: "Otras familias",
-        renglones: [["Agrupación", (d) => d.parte], ["Familia", (d) => d.grupo], ["Variantes", (d) => d.valor], ["Parte de las 364 variantes", (d) => pct(d.pct)]]})]));
+    nodos.push(figura({titulo: fam ? `La familia ${cap(fam)}: ${agr.length} agrupaciones y ${nVar} variantes` : "Las 11 familias, sus 68 agrupaciones y sus 364 variantes", subtitulo: "Cada rectángulo es una agrupación lingüística; su área, el número de variantes que tiene; el color, su familia", pie: "INALI, Catálogo de las Lenguas Indígenas Nacionales 2008 · las tres familias con más variantes llevan color y las demás van en gris"},
+      [treemap(agr.map((r) => ({grupo: cap(r.familia), parte: cap(r.agrupacion), valor: r.variantes})), {ancho: Math.min(980, width), alto: 470, etiquetaOtras: "Otras familias",
+        renglones: [["Agrupación", (d) => d.parte], ["Familia", (d) => d.grupo], ["Variantes", (d) => d.valor], [`Parte de las ${nVar} variantes`, (d) => pct(d.pct)]]})]));
   } else {
-    const top = porAgrupacion.slice(0, 25);
-    nodos.push(figura({titulo: "Las 25 agrupaciones con más variantes", subtitulo: "Una variante es una forma de la lengua con diferencias estructurales o léxicas y una identidad sociolingüística propia", pie: "INALI, Catálogo de las Lenguas Indígenas Nacionales 2008 · cada punto es una agrupación; el globo dice su familia"},
+    const top = agr.slice(0, 25);
+    nodos.push(figura({titulo: `Las ${top.length} agrupaciones con más variantes${fam ? ` de la familia ${cap(fam)}` : ""}`, subtitulo: "Una variante es una forma de la lengua con diferencias estructurales o léxicas y una identidad sociolingüística propia", pie: "INALI, Catálogo de las Lenguas Indígenas Nacionales 2008 · cada punto es una agrupación; el globo dice su familia"},
       [lollipop(top.map((r) => ({nombre: r.agrupacion, valor: r.variantes, familia: r.familia})), {ancho: Math.min(900, width), dominio: [0, porAgrupacion[0].variantes * 1.1], etiquetaX: "variantes",
         formato: (v) => String(v), renglones: [["Agrupación", (r) => r.nombre], ["Familia", (r) => r.familia], ["Variantes", (r) => r.valor]]})]));
   }
   nodos.push(fuenteDe({datos: ["D-INALI-CLIN-2008"], cotejos: ["clin_familias", "clin_agrupaciones", "clin_variantes"]}));
   nodos.push(explicacion("El Catálogo de las Lenguas Indígenas Nacionales (INALI, 2008) ordena las lenguas en tres niveles: la familia, que reúne lenguas con un origen común; la agrupación, que es lo que comúnmente se llama 'lengua' y lo que pregunta el Censo; y la variante, la forma concreta que se habla en un territorio, con su propia autodenominación. Las 364 variantes son las que el INALI trata como lenguas para fines de política pública."),
-    tablaColumnas(porAgrupacion, [{etiqueta: "Agrupación", valor: (r) => r.agrupacion}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Variantes", num: true, valor: (r) => r.variantes}], {titulo: "Ver las 68 agrupaciones"}));
+    tablaColumnas(agr, [{etiqueta: "Agrupación", valor: (r) => r.agrupacion}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Variantes", num: true, valor: (r) => r.variantes}], {titulo: `Ver las ${agr.length} agrupaciones`}));
   cuerpoA.replaceChildren(...nodos);
 }
 panelA.addEventListener("input", pintarA);
@@ -78,29 +82,42 @@ display(html`<section class="beta-seccion">${panelA}${cuerpoA}</section>`);
 
 ```js
 const totalNac = nac.filter((r) => r.nivel === "nacional" && r.sexo === "Total");
-const lenguasOrden = totalNac.slice().sort((a, b) => b.num - a.num);
+// El archivo trae 70 renglones, pero cinco no son lenguas: «No especificado»,
+// «Otras lenguas indígenas de América» y tres «insuficientemente
+// especificado» (claves 8000 y 9000 en adelante). Cuentan en el total de
+// hablantes y en la tabla, no en el número de lenguas ni en las gráficas.
+const esLengua = (r) => r.lengua < "8000";
+const N_CATALOGO = new Set(clin.map((r) => r.agrupacion)).size;
+const lenguasOrden = totalNac.filter(esLengua).sort((a, b) => b.num - a.num);
 // Eje fijo: el total de la lengua mayor, para que elegir un sexo acorte las
 // barras en vez de reescalar la gráfica.
 const MAX_NAC = Math.max(...totalNac.map((r) => r.num + 1.96 * r.ee * r.den)) * 1.05;
 const selLengua = campo({id: "c1-lengua", nombre: "lengua", etiqueta: "Lengua", opciones: [{clave: "todas", etiqueta: "Todas las lenguas", grupo: "En conjunto"}, ...lenguasOrden.map((r) => ({clave: r.lengua, etiqueta: r.lengua_nombre, grupo: "Una a una"}))], valor: "todas"});
 const selSexoB = campo({id: "c1-sexo", nombre: "sexo", etiqueta: "Sexo", opciones: [{clave: "Total", etiqueta: "Mujeres y hombres", grupo: "En conjunto"}, {clave: "Mujeres", etiqueta: "Mujeres", grupo: "Una a una"}, {clave: "Hombres", etiqueta: "Hombres", grupo: "Una a una"}], valor: "Total"});
-const panelB = html`<div class="panel-filtros"><div class="panel-campos">${selLengua}${selSexoB}</div></div>`;
+const famNac = [...new Set(lenguasOrden.map((r) => r.familia).filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"));
+const selFamB = campo({id: "c1-familia-b", nombre: "familia", etiqueta: "Familia", opciones: [{clave: "", etiqueta: "Todas las familias", grupo: "En conjunto"}, ...famNac.map((f) => ({clave: f, etiqueta: f.charAt(0).toUpperCase() + f.slice(1), grupo: "Una a una"}))], valor: ""});
+const panelB = html`<div class="panel-filtros"><div class="panel-campos">${selLengua}${selFamB}${selSexoB}</div></div>`;
 const cuerpoB = document.createElement("div");
 function pintarB() {
   const sexo = selSexoB.value;
+  // La familia acota la lista de lenguas; con una lengua elegida no aplica.
+  selFamB.hidden = selLengua.value !== "todas";
+  const fam = selFamB.value;
+  const quienes = `${fam ? `Familia ${fam} · ` : ""}${sexo !== "Total" ? `${sexo} · ` : ""}`;
   const nodos = [];
   if (selLengua.value === "todas") {
     const filas = nac.filter((r) => r.nivel === "nacional" && r.sexo === sexo).sort((a, b) => b.num - a.num);
     const total = filas.reduce((s, r) => s + r.num, 0);
-    const top = filas.slice(0, 25).map((r) => ({...r, share: 100 * r.num / total}));
-    nodos.push(kpis([{etiqueta: "Hablantes de 3 años y más en el país", cifra: entero(total), nota: "muestra del Censo 2020; el conteo del ITER da 7,364,645"}, {etiqueta: "Lenguas con hablantes", cifra: String(filas.length), nota: "agrupaciones del catálogo del INALI en la muestra"}, {etiqueta: "Las cinco mayores reúnen", cifra: pct(top.slice(0, 5).reduce((s, r) => s + r.share, 0)), nota: "de todos los hablantes"}]),
-      figura({titulo: `Cómo se reparten los hablantes entre las lenguas y sus familias, 2020`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}personas de 3 años y más; el área de cada rectángulo es su parte de todos los hablantes del país`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada rectángulo es una lengua; el color, su familia (las tres mayores con color y las demás en gris)"},
-        [treemap(filas.map((r) => ({grupo: r.familia ? r.familia.charAt(0).toUpperCase() + r.familia.slice(1) : "Sin familia asignada", parte: r.lengua_nombre, valor: r.num})), {ancho: Math.min(980, width), alto: 470, etiquetaOtras: "Otras familias",
+    const filasLengua = filas.filter(esLengua).filter((r) => !fam || r.familia === fam);
+    const top = filasLengua.slice(0, 25).map((r) => ({...r, share: 100 * r.num / total}));
+    nodos.push(kpis([{etiqueta: "Hablantes de 3 años y más en el país", cifra: entero(total), nota: "muestra del Censo 2020; el conteo del ITER da 7,364,645"}, {etiqueta: "Lenguas con hablantes", cifra: `${filasLengua.length} de ${N_CATALOGO}`, nota: "agrupaciones del Catálogo del INALI con hablantes en la muestra del Censo"}, {etiqueta: "Las cinco mayores reúnen", cifra: pct(top.slice(0, 5).reduce((s, r) => s + r.share, 0)), nota: "de todos los hablantes"}]),
+      figura({titulo: `Cómo se reparten los hablantes entre las lenguas y sus familias, 2020`, subtitulo: `${quienes}personas de 3 años y más; el área de cada rectángulo es su parte de todos los hablantes del país`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada rectángulo es una lengua; el color, su familia (las tres mayores con color y las demás en gris)"},
+        [treemap(filasLengua.map((r) => ({grupo: r.familia ? r.familia.charAt(0).toUpperCase() + r.familia.slice(1) : "Sin familia asignada", parte: r.lengua_nombre, valor: r.num})), {ancho: Math.min(980, width), alto: 470, etiquetaOtras: "Otras familias",
           renglones: [["Lengua", (d) => d.parte], ["Familia", (d) => d.grupo], ["Hablantes", (d) => entero(d.valor)], ["Parte de los hablantes", (d) => pct(d.pct)]]})]),
-      figura({titulo: `Las 25 lenguas con más hablantes en México, 2020`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}personas de 3 años y más; el porcentaje es su parte de todos los hablantes`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada punto es una agrupación lingüística; el globo trae el intervalo de 95 %"},
+      figura({titulo: `Las ${top.length} lenguas con más hablantes en México, 2020`, subtitulo: `${quienes}personas de 3 años y más; el porcentaje es su parte de todos los hablantes`, pie: "Censo 2020 (INEGI), cuestionario ampliado · cada punto es una agrupación lingüística; el globo trae el intervalo de 95 %"},
         [lollipop(top.map((r) => ({...r, nombre: r.lengua_nombre, valor: r.num})), {ancho: Math.min(900, width), dominio: [0, MAX_NAC], etiquetaX: "hablantes",
           formato: (v) => entero(v), renglones: [["Lengua", (r) => r.lengua_nombre], ["Familia", (r) => r.familia], ["Hablantes", (r) => `${entero(r.num)} (± ${entero(1.96 * r.ee * r.den)})`], ["Parte de los hablantes del país", (r) => pct(r.share)]]})]),
-      tablaColumnas(filas.map((r) => ({...r, share: 100 * r.num / total})), [{etiqueta: "Lengua", valor: (r) => r.lengua_nombre}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los hablantes", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => entero(1.96 * r.ee * r.den)}], {titulo: "Ver las 70 lenguas"}));
+      tablaColumnas(filas.filter((r) => !fam || r.familia === fam).map((r) => ({...r, share: 100 * r.num / total})), [{etiqueta: "Lengua", valor: (r) => r.lengua_nombre}, {etiqueta: "Familia", valor: (r) => r.familia}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los hablantes", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => entero(1.96 * r.ee * r.den)}], {titulo: "Ver todas las lenguas"}));
   } else {
     const filas = nac.filter((r) => r.nivel === "entidad" && r.sexo === sexo && r.lengua === selLengua.value).sort((a, b) => b.num - a.num);
     const nombre = filas[0]?.lengua_nombre ?? selLengua.value;
@@ -119,7 +136,7 @@ function pintarB() {
       tablaColumnas(filas.map((r) => ({...r, share: 100 * r.num / total, tasa: 100 * r.num / r.den})), [{etiqueta: "Entidad", valor: (r) => r.nombre}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de la lengua", num: true, valor: (r) => r.share.toFixed(2)}, {etiqueta: "% de la entidad", num: true, valor: (r) => r.tasa.toFixed(2)}, {etiqueta: "± 95 %", num: true, valor: (r) => entero(1.96 * r.ee * r.den)}], {titulo: "Ver todas las entidades"}));
   }
   nodos.push(fuenteDe({datos: ["D-CENSO-2020"], cotejos: ["hablantes3_nacional_2020", "n_lenguas_nacional_2020", "nacional_0211_2020", "nacional_0602_2020", "nacional_0606_2020", "nacional_0607_2020", "nacional_0516_2020", "nacional_0513_2020"], lectura: ["R-INALI-DATOSGOB"]}));
-  nodos.push(explicacion("El Censo 2020 pregunta a cada persona de 3 años y más si habla alguna lengua indígena y cuál. Las cifras salen del cuestionario ampliado, una muestra de cuatro millones de viviendas expandida a todo el país, por eso llevan intervalo. La muestra sobreestima al conteo completo (7,364,645 hablantes) en 2 por ciento en total, y más en algunas lenguas: el tabulado oficial da 589,144 hablantes de tseltal y 774,755 de maya, contra 672,586 y 800,533 de la muestra. Las cifras oficiales por lengua están en la tabla de verificaciones de la metodología. El desglose por entidad y sexo es el que esa muestra permite."));
+  nodos.push(explicacion("El Censo 2020 pregunta a cada persona de 3 años y más si habla alguna lengua indígena y cuál. Las cifras salen del cuestionario ampliado, una muestra de cuatro millones de viviendas expandida a todo el país, por eso llevan intervalo. La muestra sobreestima al conteo completo (7,364,645 hablantes) en 2 por ciento en total, y más en algunas lenguas: el tabulado oficial da 589,144 hablantes de tseltal y 774,755 de maya, contra 672,586 y 800,533 de la muestra. Las cifras oficiales por lengua están en la tabla de verificaciones de la metodología. El desglose por entidad y sexo es el que esa muestra permite. El Catálogo del INALI reconoce 68 agrupaciones lingüísticas; tres de ellas (awakateko, cucapá y ku'ahl) no tienen hablantes en la muestra. La tabla incluye además cinco renglones que no son lenguas: quienes no especificaron cuál hablan, las lenguas indígenas de otros países de América y tres nombres insuficientemente especificados."));
   cuerpoB.replaceChildren(...nodos);
 }
 panelB.addEventListener("input", pintarB);

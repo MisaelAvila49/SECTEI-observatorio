@@ -70,11 +70,13 @@ display(seccionCenso(datos, {id: "c4alc", inicial: {nivel: "municipio", cveEnt: 
 </header>
 
 ```js
-const lenguasAlc = (await FileAttachment("../data/lenguas_alcaldia.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio), lengua: String(r.lengua).padStart(4, "0"), cve: String(r.cve).padStart(3, "0")}))
-  .filter((r) => r.sexo === "Total" && r.lengua < "8000");
+const lenguasAlcSexo = (await FileAttachment("../data/lenguas_alcaldia.csv").csv({typed: true})).map((r) => ({...r, anio: Number(r.anio), lengua: String(r.lengua).padStart(4, "0"), cve: String(r.cve).padStart(3, "0")}))
+  .filter((r) => r.lengua < "8000");
+const lenguasAlc = lenguasAlcSexo.filter((r) => r.sexo === "Total");
 const aniosLA = [...new Set(lenguasAlc.map((r) => r.anio))].sort();
 const selAnioLA = campo({id: "c4l-anio", nombre: "anio", etiqueta: "Año", opciones: aniosLA.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: String(aniosLA.at(-1))});
-const panelLA = html`<div class="panel-filtros"><div class="panel-campos">${selAnioLA}</div></div>`;
+const selSexoLA = campo({id: "c4l-sexo", nombre: "sexo", etiqueta: "Sexo", opciones: [{clave: "Total", etiqueta: "Mujeres y hombres", grupo: "En conjunto"}, {clave: "Mujeres", etiqueta: "Mujeres", grupo: "Una a una"}, {clave: "Hombres", etiqueta: "Hombres", grupo: "Una a una"}], valor: "Total"});
+const panelLA = html`<div class="panel-filtros"><div class="panel-campos">${selAnioLA}${selSexoLA}</div></div>`;
 const cuerpoLA = document.createElement("div");
 // Escala de color FIJA para todos los años (lección 74): de 0 a 50 % cubre más
 // del 98 % de las celdas; el náhuatl en Milpa Alta pasa de ahí y toma el tono
@@ -82,13 +84,18 @@ const cuerpoLA = document.createElement("div");
 const TOPE_LA = 50;
 const colorLA = () => ({type: "linear", domain: [0, TOPE_LA], clamp: true, interpolate: d3.interpolateRgbBasis(SECUENCIAL), label: "% de los hablantes de la alcaldía", legend: true, tickFormat: (d) => `${d} %`});
 function pintarLA() {
-  const anio = Number(selAnioLA.value);
-  const alc = lenguasAlc.filter((r) => r.nivel === "alcaldia" && r.anio === anio);
+  const anio = Number(selAnioLA.value), sexo = selSexoLA.value;
+  const deSexo = lenguasAlcSexo.filter((r) => r.sexo === sexo);
+  const alc = deSexo.filter((r) => r.nivel === "alcaldia" && r.anio === anio);
   const totAlc = new Map();
   for (const r of alc) totAlc.set(r.nombre, (totAlc.get(r.nombre) ?? 0) + r.num);
+  // Columnas y filas en el orden de la ciudad completa, para que elegir un
+  // sexo cambie las celdas y no el acomodo.
   const ciudadLA = lenguasAlc.filter((r) => r.nivel === "entidad" && r.anio === anio).sort((a, b) => b.num - a.num);
+  const totOrden = new Map();
+  for (const r of lenguasAlc.filter((x) => x.nivel === "alcaldia" && x.anio === anio)) totOrden.set(r.nombre, (totOrden.get(r.nombre) ?? 0) + r.num);
   const lenguasTop = ciudadLA.slice(0, 10).map((r) => r.lengua_nombre);
-  const filasAlc = [...totAlc.entries()].sort((a, b) => b[1] - a[1]).map(([n]) => n);
+  const filasAlc = [...totOrden.entries()].sort((a, b) => b[1] - a[1]).map(([n]) => n);
   const celdas = filasAlc.flatMap((n) => lenguasTop.map((l) => {
     const r = alc.find((x) => x.nombre === n && x.lengua_nombre === l);
     const num = r?.num ?? 0, tot = totAlc.get(n);
@@ -96,7 +103,7 @@ function pintarLA() {
   }));
   const otras = filasAlc.map((n) => ({alcaldia: n, share: 100 - celdas.filter((c) => c.alcaldia === n).reduce((s, c) => s + c.share, 0)}));
   cuerpoLA.replaceChildren(
-    figura({titulo: `Las diez lenguas con más hablantes en la ciudad, en cada alcaldía, ${anio}`, subtitulo: "Cada celda es la parte de los hablantes de la alcaldía que habla esa lengua; las alcaldías van de más a menos hablantes", pie: `${alc[0]?.fuente ?? "INEGI"} · cada fila es una alcaldía y cada columna una lengua; más oscuro, mayor parte de los hablantes de la alcaldía`},
+    figura({titulo: `Las diez lenguas con más hablantes en la ciudad, en cada alcaldía, ${anio}`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}cada celda es la parte de los hablantes de la alcaldía que habla esa lengua; las alcaldías van de más a menos hablantes`, pie: `${alc[0]?.fuente ?? "INEGI"} · cada fila es una alcaldía y cada columna una lengua; más oscuro, mayor parte de los hablantes de la alcaldía`},
       [Plot.plot({marginLeft: 170, marginTop: 70, marginRight: 10, height: 30 * filasAlc.length + 90, width: Math.min(1000, width), padding: 0.06,
         color: colorLA(),
         x: {label: null, domain: lenguasTop, axis: "top", tickRotate: -30}, y: {label: null, domain: filasAlc},

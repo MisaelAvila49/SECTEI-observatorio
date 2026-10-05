@@ -112,17 +112,22 @@ display(seccionCenso(datos, {id: "c2ent", inicial: {nivel: "entidad", seleccion:
 
 ```js
 // Lenguas con hablantes en la ciudad por edición (muestras censales por alcaldía).
-const ciudad = lenguasAlc.filter((r) => r.nivel === "entidad" && String(r.lengua).padStart(4, "0") < "8000").map((r) => ({...r, lengua: String(r.lengua).padStart(4, "0"), anio: Number(r.anio)}));
+const lenguasCdmx = lenguasAlc.filter((r) => String(r.lengua).padStart(4, "0") < "8000").map((r) => ({...r, lengua: String(r.lengua).padStart(4, "0"), anio: Number(r.anio), cve: String(r.cve).padStart(3, "0")}));
+const ciudad = lenguasCdmx.filter((r) => r.nivel === "entidad");
+const nombreAlcL = new Map(lenguasCdmx.filter((r) => r.nivel === "alcaldia").map((r) => [r.cve, r.nombre]));
 const aniosL = [...new Set(ciudad.map((r) => r.anio))].sort();
 // Eje fijo: la lengua mayor de todas las ediciones, para que cambiar de año o
 // de sexo mueva las barras y no la escala.
 const MAX_LENGUA = Math.max(...ciudad.map((r) => r.num)) * 1.2;
 const selAnio = campo({id: "c2-anio", nombre: "anio", etiqueta: "Año", opciones: aniosL.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: "2025"});
 const selSexo = campo({id: "c2-sexo", nombre: "sexo", etiqueta: "Sexo", opciones: [{clave: "Total", etiqueta: "Mujeres y hombres"}, {clave: "Mujeres", etiqueta: "Mujeres"}, {clave: "Hombres", etiqueta: "Hombres"}], valor: "Total"});
-const panel1 = html`<div class="panel-filtros"><div class="panel-campos">${selAnio}${selSexo}</div></div>`;
+const selAlc1 = campo({id: "c2-alc", nombre: "alcaldia", etiqueta: "Alcaldía", opciones: [{clave: "", etiqueta: "Toda la ciudad", grupo: "En conjunto"}, ...[...nombreAlcL.entries()].sort((a, b) => a[1].localeCompare(b[1], "es")).map(([k, n]) => ({clave: k, etiqueta: n, grupo: "Una a una"}))], valor: ""});
+const panel1 = html`<div class="panel-filtros"><div class="panel-campos">${selAnio}${selAlc1}${selSexo}</div></div>`;
 const cuerpo1 = document.createElement("div");
 function pintar1() {
-  const anio = Number(selAnio.value), sexo = selSexo.value;
+  const anio = Number(selAnio.value), sexo = selSexo.value, alc = selAlc1.value;
+  const lugar = alc ? nombreAlcL.get(alc) : "la ciudad";
+  const ciudad = alc ? lenguasCdmx.filter((r) => r.nivel === "alcaldia" && r.cve === alc) : lenguasCdmx.filter((r) => r.nivel === "entidad");
   const conSexo = ciudad.some((r) => r.anio === anio && r.sexo === "Mujeres");
   selSexo.hidden = !conSexo;
   const filas = ciudad.filter((r) => r.anio === anio && r.sexo === (conSexo ? sexo : "Total") && r.num > 0).sort((a, b) => b.num - a.num);
@@ -130,11 +135,11 @@ function pintar1() {
   const porAnio = aniosL.map((a) => ({anio: a, n: new Set(ciudad.filter((r) => r.anio === a && r.sexo === "Total" && r.num > 0).map((r) => r.lengua)).size}));
   const top = filas.slice(0, 15).map((r) => ({...r, share: 100 * r.num / total}));
   cuerpo1.replaceChildren(
-    kpis([{etiqueta: `Lenguas con hablantes en ${anio}`, cifra: String(filas.length), nota: "agrupaciones lingüísticas del catálogo del INALI"}, {etiqueta: "Hablantes en la ciudad", cifra: entero(total), nota: filas[0]?.universo ?? ""}, {etiqueta: "La lengua mayor", cifra: filas[0]?.lengua_nombre ?? "", nota: filas[0] ? `${pct(top[0].share)} de los hablantes` : ""}]),
-    figura({titulo: `Cómo se reparten los hablantes de la ciudad entre las lenguas, ${anio}`, subtitulo: `${sexo !== "Total" && conSexo ? `${sexo} · ` : ""}${filas.length} lenguas con hablantes; el área de cada rectángulo es su parte de los hablantes de la ciudad`, pie: `${filas[0]?.fuente ?? "INEGI"} · cada rectángulo es una lengua; el color, su familia (las tres mayores con color y las demás en gris)`},
+    kpis([{etiqueta: `Lenguas con hablantes en ${anio}`, cifra: String(filas.length), nota: "agrupaciones lingüísticas del catálogo del INALI"}, {etiqueta: `Hablantes en ${lugar}`, cifra: entero(total), nota: filas[0]?.universo ?? ""}, {etiqueta: "La lengua mayor", cifra: filas[0]?.lengua_nombre ?? "", nota: filas[0] ? `${pct(top[0].share)} de los hablantes` : ""}]),
+    figura({titulo: `Cómo se reparten los hablantes de ${lugar} entre las lenguas, ${anio}`, subtitulo: `${sexo !== "Total" && conSexo ? `${sexo} · ` : ""}${filas.length} lenguas con hablantes; el área de cada rectángulo es su parte de los hablantes de ${lugar}`, pie: `${filas[0]?.fuente ?? "INEGI"} · cada rectángulo es una lengua; el color, su familia (las tres mayores con color y las demás en gris)`},
       [treemap(filas.map((r) => ({...r, grupo: r.familia ? r.familia.charAt(0).toUpperCase() + r.familia.slice(1) : "Sin familia asignada", parte: r.lengua_nombre, valor: r.num})), {ancho: Math.min(980, width), alto: 440, etiquetaOtras: "Otras familias",
-        renglones: [["Lengua", (d) => d.parte], ["Familia", (d) => d.grupo], ["Hablantes", (d) => `${entero(d.num)}${d.ee ? ` (± ${entero(196 * d.ee * d.den / 100)})` : ""}`], ["Parte de los hablantes de la ciudad", (d) => pct(d.pct)]]})]),
-    figura({titulo: "Cuántas lenguas tienen hablantes en la ciudad, por edición", subtitulo: "Agrupaciones lingüísticas con al menos un hablante en la muestra de cada censo o encuesta", pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada punto es una edición"},
+        renglones: [["Lengua", (d) => d.parte], ["Familia", (d) => d.grupo], ["Hablantes", (d) => `${entero(d.num)}${d.ee ? ` (± ${entero(196 * d.ee * d.den / 100)})` : ""}`], [`Parte de los hablantes de ${lugar}`, (d) => pct(d.pct)]]})]),
+    figura({titulo: `Cuántas lenguas tienen hablantes en ${lugar}, por edición`, subtitulo: "Agrupaciones lingüísticas con al menos un hablante en la muestra de cada censo o encuesta", pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada punto es una edición"},
       [Plot.plot({height: 220, width: Math.min(900, width), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: {label: "lenguas", grid: true, zero: true},
         marks: [Plot.line(porAnio, {x: "anio", y: "n", stroke: COLOR_UNICO, strokeWidth: 2}), Plot.dot(porAnio, {x: "anio", y: "n", fill: COLOR_UNICO, r: 4.5}),
           Plot.text(porAnio, {x: "anio", y: "n", text: "n", dy: -10, fontSize: 11}),

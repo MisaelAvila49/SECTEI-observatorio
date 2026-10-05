@@ -153,23 +153,35 @@ display(html`<section class="beta-seccion">${panelAlc}${cuerpoAlc}</section>`);
 ```js
 import {bump} from "../components/formas.js";
 const lenguasCiudad = (await FileAttachment("../data/lenguas_alcaldia.csv").csv({typed: true}))
-  .map((r) => ({...r, anio: Number(r.anio), lengua: String(r.lengua).padStart(4, "0")}))
-  .filter((r) => r.nivel === "entidad" && r.sexo === "Total" && r.lengua < "8000" && r.num > 0);
+  .map((r) => ({...r, anio: Number(r.anio), lengua: String(r.lengua).padStart(4, "0"), cve: String(r.cve).padStart(3, "0")}))
+  .filter((r) => r.lengua < "8000" && r.num > 0);
 const aniosB = [...new Set(lenguasCiudad.map((r) => r.anio))].sort();
 // Lugar de cada lengua en cada edición, entre todas las que tienen hablantes.
-const lugares = aniosB.flatMap((a) => lenguasCiudad.filter((r) => r.anio === a).sort((x, y) => y.num - x.num).map((r, i) => ({...r, lugar: i + 1})));
+// El orden se calcula dentro de la selección (ciudad o alcaldía, y sexo).
+const lugaresDe = (sexo, alc) => { const u = lenguasCiudad.filter((r) => r.sexo === sexo && (alc ? r.nivel === "alcaldia" && r.cve === alc : r.nivel === "entidad"));
+  return aniosB.flatMap((a) => u.filter((r) => r.anio === a).sort((x, y) => y.num - x.num).map((r, i) => ({...r, lugar: i + 1}))); };
 const ultimoB = aniosB.at(-1);
-const TOP_B = lugares.filter((r) => r.anio === ultimoB && r.lugar <= 10).map((r) => r.lengua_nombre);
+const TOP_B = lugaresDe("Total", "").filter((r) => r.anio === ultimoB && r.lugar <= 10).map((r) => r.lengua_nombre);
+const nombreAlcB = new Map(lenguasCiudad.filter((r) => r.nivel === "alcaldia").map((r) => [r.cve, r.nombre]));
 const MAX_LUGAR = 15;
 const selDest = campo({id: "c1c-dest", nombre: "lengua", etiqueta: "Resaltar lengua", opciones: TOP_B.map((n) => ({clave: n, etiqueta: n})), valor: TOP_B[0]});
-const panelB2 = html`<div class="panel-filtros"><div class="panel-campos">${selDest}</div></div>`;
+const selAlcB2 = campo({id: "c1c-alc", nombre: "alcaldia", etiqueta: "Alcaldía", opciones: [{clave: "", etiqueta: "Toda la ciudad", grupo: "En conjunto"}, ...[...nombreAlcB.entries()].sort((a, b) => a[1].localeCompare(b[1], "es")).map(([k, n]) => ({clave: k, etiqueta: n, grupo: "Una a una"}))], valor: ""});
+const selSexoB2 = campo({id: "c1c-sexo", nombre: "sexo", etiqueta: "Sexo", opciones: [{clave: "Total", etiqueta: "Mujeres y hombres", grupo: "En conjunto"}, {clave: "Mujeres", etiqueta: "Mujeres", grupo: "Una a una"}, {clave: "Hombres", etiqueta: "Hombres", grupo: "Una a una"}], valor: "Total"});
+const panelB2 = html`<div class="panel-filtros"><div class="panel-campos">${selAlcB2}${selSexoB2}${selDest}</div></div>`;
 const cuerpoB2 = document.createElement("div");
 function pintarB2() {
-  const datos = lugares.filter((r) => TOP_B.includes(r.lengua_nombre) && r.lugar <= MAX_LUGAR).map((r) => ({...r, serie: r.lengua_nombre}));
+  const sexo = selSexoB2.value, alc = selAlcB2.value;
+  const lugar = alc ? nombreAlcB.get(alc) : "la ciudad";
+  const lugares = lugaresDe(sexo, alc);
+  // Las diez mayores de la selección en la última edición con dato.
+  const ultimoSel = Math.max(...lugares.map((r) => r.anio));
+  const top = lugares.filter((r) => r.anio === ultimoSel && r.lugar <= 10).map((r) => r.lengua_nombre);
+  const datos = lugares.filter((r) => top.includes(r.lengua_nombre) && r.lugar <= MAX_LUGAR).map((r) => ({...r, serie: r.lengua_nombre}));
+  const destacada = top.includes(selDest.value) ? selDest.value : null;
   cuerpoB2.replaceChildren(
-    figura({titulo: `El lugar de las diez lenguas más habladas de ${ultimoB}, edición por edición`, subtitulo: `1 es la lengua con más hablantes en la ciudad ese año; resaltada: ${selDest.value}`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada círculo es el lugar de una lengua en una edición; fuera del lugar 15 la línea se corta"},
-      [bump(datos, {ancho: Math.min(980, width), destacada: selDest.value, maxLugar: MAX_LUGAR,
-        renglones: [["Lengua", (r) => r.serie], ["Año", (r) => r.anio], ["Lugar en la ciudad", (r) => r.lugar], ["Hablantes", (r) => entero(r.num)]]})]),
+    figura({titulo: `El lugar de las diez lenguas más habladas de ${lugar} en ${ultimoSel}, edición por edición`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}1 es la lengua con más hablantes en ${lugar} ese año${destacada ? `; resaltada: ${destacada}` : ""}`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada círculo es el lugar de una lengua en una edición; fuera del lugar 15 la línea se corta"},
+      [bump(datos, {ancho: Math.min(980, width), destacada, maxLugar: MAX_LUGAR,
+        renglones: [["Lengua", (r) => r.serie], ["Año", (r) => r.anio], [`Lugar en ${lugar}`, (r) => r.lugar], ["Hablantes", (r) => entero(r.num)]]})]),
     fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["nahuatl_2015", "nahuatl_2020", "word_tabla2_celdas_iguales"], lectura: ["R-SECULT-LENGUAS"]}),
     explicacion("Cada columna es una edición y cada círculo dice qué lugar ocupó la lengua entre todas las que tienen hablantes en la ciudad ese año: 1 es la de más hablantes. Se siguen las diez lenguas más habladas de la edición más reciente. Las cifras salen de las muestras censales, que preguntan desde los 5 años hasta 2005 y desde los 3 a partir de 2010; el cambio de edad casi no mueve el orden. Cuando dos lenguas tienen cifras parecidas, su lugar puede cambiar por el margen de error de la muestra."),
     tablaColumnas(datos.slice().sort((a, b) => a.anio - b.anio || a.lugar - b.lugar), [{etiqueta: "Año", valor: (r) => r.anio}, {etiqueta: "Lugar", num: true, valor: (r) => r.lugar}, {etiqueta: "Lengua", valor: (r) => r.serie}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}], {titulo: "Ver los lugares"}));

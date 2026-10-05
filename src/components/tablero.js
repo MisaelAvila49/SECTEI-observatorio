@@ -197,7 +197,12 @@ export function seccionesTema(clave, datos, {geoEntidades = null, datosDecil = n
     titulo: titulos[0],
     datos: deIndicador(principal.indicador),
     fuente: encuesta,
-    opciones: {entidadInicial: COMPARAR_ENTIDADES, mostrarMapa: Boolean(geoEntidades)},
+    // `principal.abre` decide la vista de entrada según lo que solo esa fuente
+    // aporta: el Censo, el mapa por entidad; la ENIGH, las tres ediciones; la
+    // ENDUTIH, el uso de cada persona por edad. Sin `abre`, compara entidades.
+    opciones: {entidadInicial: principal.abre === "mapa" ? VER_MAPA : principal.abre ? TODAS : COMPARAR_ENTIDADES,
+      anioInicial: principal.abre === "tiempo" ? POR_SEPARADO : null, edadInicial: principal.abre === "edad" ? POR_SEPARADO : AGREGADO,
+      mostrarMapa: Boolean(geoEntidades)},
     construir: ({v, geo, anios, ancho}) => {
       const filas = filtrar(deIndicador(principal.indicador), v);
       // Las tarjetas resumen SIEMPRE una sola edición y todo el país.
@@ -242,7 +247,7 @@ export function seccionesTema(clave, datos, {geoEntidades = null, datosDecil = n
       datos: datosB,
       fuente: encuesta,
       opciones: {entidadInicial: TODAS, edadInicial: bloque.abre === "edad" ? POR_SEPARADO : AGREGADO,
-        ambitoInicial: bloque.abre === "localidad" ? POR_SEPARADO : AGREGADO, mostrarMapa: Boolean(geoEntidades)},
+        ambitoInicial: bloque.abre === "localidad" ? POR_SEPARADO : AGREGADO, decilInicial: bloque.abre === "decil" ? COMPARAR : TODOS, mostrarMapa: Boolean(geoEntidades)},
       construir: ({v, geo, anios, ancho}) => {
         const tarjetas = [];
         for (const i of bloque.indicadores) {
