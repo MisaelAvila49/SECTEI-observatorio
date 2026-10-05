@@ -88,7 +88,7 @@ function pintarM() {
   const series = orden.filter((s) => f.some((r) => r.serie === s));
   cuerpoM.replaceChildren(
     figura({titulo: "Hablantes de lengua indígena que no hablan español, 2010 - 2025", subtitulo: "Porcentaje de los hablantes que declararon no hablar español", pie: "Censos e intercensales (INEGI), muestras de la Ciudad de México · cada línea es un grupo; la banda, el intervalo de 95 %"},
-      [Plot.plot({height: 280, width: Math.min(920, width), marginLeft: 50, marginRight: 150, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {domain: [0, MAX_MONO]}),
+      [Plot.plot({height: Math.round(Math.min(400, Math.max(280, Math.min(1320, width) * 0.3))), width: Math.min(1320, width), marginLeft: 50, marginRight: 150, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {domain: [0, MAX_MONO]}),
         color: {domain: series, range: series.map(colorMono)},
         marks: [Plot.areaY(f.filter((r) => r.ee), {x: "anio", y1: (r) => Math.max(0, r.pct - 196 * r.ee), y2: (r) => Math.min(MAX_MONO, r.pct + 196 * r.ee), fill: "serie", fillOpacity: 0.12, z: "serie"}),
           Plot.line(f, {x: "anio", y: "pct", stroke: "serie", strokeWidth: 2}), Plot.dot(f, {x: "anio", y: "pct", fill: "serie", r: 3.5}),

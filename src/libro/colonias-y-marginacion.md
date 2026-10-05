@@ -80,7 +80,7 @@ function pintarM() {
   const totalN = base.reduce((s, r) => s + r[num], 0);
   porGrado.forEach((r) => { r.parte = totalN ? 100 * r.num / totalN : 0; });
   const lugar = selAlc.value || "la ciudad";
-  const anchoM = Math.max(320, Math.min(540, width / 2 - 56));
+  const anchoM = Math.max(320, Math.min(640, Math.min(1320, width) / 2 - 40));
   cuerpoM.replaceChildren(
     // Dos preguntas, dos figuras, cada una con su título: antes iban juntas en
     // una sola y no se sabía qué respondía cada lado. Mismos grados, mismo
@@ -128,7 +128,7 @@ function pintarC() {
   cuerpoC.replaceChildren(
     kpis([{etiqueta: "Pueblos originarios en el padrón de la SEPI", cifra: String(enPueblos.length), nota: "colonias del IECM marcadas con el padrón oficial"}, {etiqueta: "Población indígena que vive en pueblos originarios", cifra: pct(100 * enP / totalCiudad), nota: `${entero(enP)} de ${entero(totalCiudad)} en hogares indígenas`}, {etiqueta: "De las 25 colonias con mayor proporción, son pueblos", cifra: String(top25.filter((r) => r.pueblo).length), nota: "el resto son colonias sin ese reconocimiento"}]),
     figura({titulo: selQue.value === "top" ? "Las 25 colonias con mayor proporción de población en hogares indígenas" : "Los pueblos originarios reconocidos, por proporción de población en hogares indígenas", subtitulo: "Colonias del IECM con 500 habitantes o más; en rojo, las que están en el padrón de pueblos originarios de la SEPI", pie: "Censo 2020 (INEGI) por manzana, agregado a colonia (IECM 2022); padrón de pueblos y barrios originarios (SEPI) · cada punto es una colonia; en rojo, los pueblos originarios"},
-      [lollipop(lista.map((r) => ({...r, nombre: r.etiqueta, valor: r.pct})), {ancho: Math.min(960, width), dominio: [0, Math.max(...col.map((r) => r.pct)) * 1.08], margenIzq: 280,
+      [lollipop(lista.map((r) => ({...r, nombre: r.etiqueta, valor: r.pct})), {ancho: Math.min(1320, width), dominio: [0, Math.max(...col.map((r) => r.pct)) * 1.08], margenIzq: 280,
         destacado: (r) => r.pueblo, formato: (v) => pct(v), etiquetaX: "% de la población en hogares indígenas",
         renglones: [["Colonia", (r) => `${r.colonia} (${r.alcaldia_col})`], ["Pueblo originario", (r) => (r.pueblo ? [r.nombre_pueblo || r.colonia, r.etnia, r.lengua].filter(Boolean).join(" · ") : "no")], ["En hogares indígenas", (r) => pct(r.pct)], ["Personas", (r) => `${entero(r.PHOG_IND)} de ${entero(r.POBTOT)}`]]})]),
     claves([{termino: "Colonia", texto: "Suma de las manzanas del Censo que caen en ella; una manzana que cruza dos colonias se reparte según su área."}, {termino: "Pueblo originario", texto: "Colonia que coincide con uno de los pueblos del padrón de la SEPI.", color: ROJO}]),

@@ -63,7 +63,7 @@ function pintarS() {
   cuerpoS.replaceChildren(
     kpis([{etiqueta: "Hablantes de 5 años y más, 2025", cifra: entero(ultimo("hablantes5").num), nota: `${pct(ultimo("hablantes5").pct)} de la población de 5 años y más`}, {etiqueta: "Se consideran indígenas, 2025", cifra: entero(ultimo("autoads").num), nota: `${pct(ultimo("autoads").pct)} de la población`}, {etiqueta: "Hablantes de 5 años y más, 1990", cifra: entero(h1990.num), nota: `${pct(h1990.pct)} de la población de 5 años y más`}]),
     figura({titulo: esPct ? "Población indígena de México por edición, en porcentaje" : "Población indígena de México por edición, en personas", subtitulo: "Hablantes: población de 5 años y más en todas las ediciones. Los puntos huecos son estimaciones de encuesta", pie: "Censos, conteos e intercensales (INEGI) · cada punto es una edición; una línea que empieza tarde es una pregunta que antes no se hacía"},
-      [Plot.plot({height: 320, width: Math.min(900, width), marginLeft: 70, marginRight: 190, x: {label: null, tickFormat: (d) => String(d), domain: [1988, 2027]}, y: esPct ? ejePct(null, {zero: true}) : {label: "personas", grid: true, zero: true, tickFormat: (d) => `${(d / 1e6).toFixed(0)} M`},
+      [Plot.plot({height: 320, width: Math.min(1320, width), marginLeft: 70, marginRight: 190, x: {label: null, tickFormat: (d) => String(d), domain: [1988, 2027]}, y: esPct ? ejePct(null, {zero: true}) : {label: "personas", grid: true, zero: true, tickFormat: (d) => `${(d / 1e6).toFixed(0)} M`},
         color: {domain: claves.map((k) => SERIES.find((s) => s.clave === k).corto), range: claves.map((k) => COLORES[k])},
         marks: [...claves.map((k) => Plot.line(filas.filter((r) => r.poblacion === k), {x: "anio", y: "valor", stroke: "serie", strokeWidth: 2.2, strokeDasharray: TRAZOS[k] ?? undefined})),
           Plot.dot(filas, {x: "anio", y: "valor", stroke: "serie", fill: (r) => (r.cota === "muestra" ? "white" : color(r.serie)), r: 4, strokeWidth: 1.6}),
@@ -117,7 +117,7 @@ function pintarAlc() {
   const filasN = Math.ceil(orden.length / COLS);
   cuerpoAlc.replaceChildren(
     figura({titulo: `Hablantes de lengua indígena en cada alcaldía, 1990 - ${ULTIMO}`, subtitulo: `${esPct ? "Porcentaje de la población de 5 años y más; la línea gris es la ciudad" : "Personas de 5 años y más"}. Los puntos huecos son estimaciones de encuesta`, pie: "Censos, conteos e intercensales (INEGI) · cada panel es una alcaldía y cada punto una edición, con la misma escala en todos"},
-      [Plot.plot({width: Math.min(1000, width), height: 150 * filasN + 40, marginLeft: 52, marginTop: 10,
+      [Plot.plot({width: Math.min(1320, width), height: 150 * filasN + 40, marginLeft: 52, marginTop: 10,
         fx: {axis: null, padding: 0.12}, fy: {axis: null, padding: 0.18},
         x: {label: null, ticks: [1990, 2005, 2025], tickFormat: (d) => String(d), inset: 8},
         y: esPct ? ejePct(null, {domain: [0, TOPE_ALC.pct], ticks: 3}) : {label: null, grid: true, domain: [0, TOPE_ALC.num], ticks: 3, tickFormat: (d) => `${(d / 1000).toFixed(0)} mil`},
@@ -180,7 +180,7 @@ function pintarB2() {
   const destacada = top.includes(selDest.value) ? selDest.value : null;
   cuerpoB2.replaceChildren(
     figura({titulo: `El lugar de las diez lenguas más habladas de ${lugar} en ${ultimoSel}, edición por edición`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}1 es la lengua con más hablantes en ${lugar} ese año${destacada ? `; resaltada: ${destacada}` : ""}`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada círculo es el lugar de una lengua en una edición; fuera del lugar 15 la línea se corta"},
-      [bump(datos, {ancho: Math.min(980, width), destacada, maxLugar: MAX_LUGAR,
+      [bump(datos, {ancho: Math.min(1320, width), destacada, maxLugar: MAX_LUGAR,
         renglones: [["Lengua", (r) => r.serie], ["Año", (r) => r.anio], [`Lugar en ${lugar}`, (r) => r.lugar], ["Hablantes", (r) => entero(r.num)]]})]),
     fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["nahuatl_2015", "nahuatl_2020", "word_tabla2_celdas_iguales"], lectura: ["R-SECULT-LENGUAS"]}),
     explicacion("Cada columna es una edición y cada círculo dice qué lugar ocupó la lengua entre todas las que tienen hablantes en la ciudad ese año: 1 es la de más hablantes. Se siguen las diez lenguas más habladas de la edición más reciente. Las cifras salen de las muestras censales, que preguntan desde los 5 años hasta 2005 y desde los 3 a partir de 2010; el cambio de edad casi no mueve el orden. Cuando dos lenguas tienen cifras parecidas, su lugar puede cambiar por el margen de error de la muestra."),

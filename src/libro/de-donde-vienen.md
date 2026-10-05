@@ -31,6 +31,15 @@ const entero = (n) => punto(Math.round(Number(n)));
 const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 ```
 
+```js
+// Las gráficas ocupan todo el ancho de la columna, hasta 1,320 px, y su alto
+// crece con el ancho.
+const anchoG = Math.min(1320, width);
+// El mapa crece en alto con el ancho: se topa para que quepa en una pantalla.
+const anchoMapa = Math.min(980, anchoG);
+const altoLinea = Math.round(Math.min(400, Math.max(240, anchoG * 0.3)));
+```
+
 <div class="hero-pagina">
   <span class="kicker">Parte 2 · La ciudad · 2 de 4</span>
   <h1>De dónde vienen</h1>
@@ -80,13 +89,13 @@ function pintarO() {
   if (sel) nodos.push(kpis([{etiqueta: `Hablantes nacidos fuera de la ciudad, ${anio}`, cifra: pct(sel.pctFuera), nota: `${entero(sel.total - sel.ciudad)} de ${entero(sel.total)} hablantes`}, {etiqueta: "Nacidos en la ciudad", cifra: entero(sel.ciudad), nota: "hablantes de lengua indígena"}, {etiqueta: "Entidad de origen mayor", cifra: entNac[0]?.nombre ?? "", nota: entNac[0] ? `${pct(entNac[0].share)} de los hablantes de ${lugar}` : ""}]));
   else nodos.push(html`<p class="beta-nota">Sin hablantes en la muestra de ${anio} para esta selección.</p>`);
   if (fuera.length) nodos.push(figura({titulo: `Hablantes de ${lugar} nacidos en otra entidad, por edición`, subtitulo: `${quienes}porcentaje de los hablantes de lengua indígena que viven en ${lugar} y nacieron en otra entidad o en otro país`, pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada punto es una edición; en rojo, la elegida"},
-    [Plot.plot({height: 240, width: Math.min(900, width), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d), domain: [aniosO[0] - 1, aniosO.at(-1) + 1]}, y: ejePct(null, {domain: [0, 100]}),
+    [Plot.plot({height: altoLinea, width: anchoG, marginLeft: 50, x: {label: null, ticks: aniosO, tickFormat: (d) => String(d), domain: [aniosO[0] - 1, aniosO.at(-1) + 1]}, y: ejePct(null, {domain: [0, 100]}),
       marks: [Plot.line(fuera, {x: "anio", y: "pctFuera", stroke: COLOR_UNICO, strokeWidth: 2}), Plot.dot(fuera, {x: "anio", y: "pctFuera", fill: (r) => (r.anio === anio ? ROJO : COLOR_UNICO), r: (r) => (r.anio === anio ? 6 : 4.5)}),
         Plot.text(fuera, {x: "anio", y: "pctFuera", text: (r) => `${r.pctFuera.toFixed(0)} %`, dy: -10, fontSize: 11}),
         Plot.tip(fuera, Plot.pointerX({x: "anio", y: "pctFuera", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Nacidos fuera de la ciudad", (r) => pct(r.pctFuera)], ["En otra entidad", (r) => entero(r.otraEntidad)], ["En otro país", (r) => entero(r.otroPais)], ["Nacidos en la ciudad", (r) => entero(r.ciudad)]])})),
         Plot.ruleY([0])]})]));
   if (entNac.length) nodos.push(figura({titulo: `En qué entidad nacieron los hablantes que viven en ${lugar}, ${anio}`, subtitulo: `${quienes}el área de cada círculo es proporcional al número de hablantes nacidos en esa entidad, con la misma escala en todas las ediciones`, pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada círculo está en el centro de su entidad"},
-    [burbujas(entNac, geoEntidades, {ancho: Math.min(900, width), tope, renglones: [["Entidad de nacimiento", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], [`Parte de los hablantes de ${lugar}`, (r) => pct(r.share)]]})]));
+    [burbujas(entNac, geoEntidades, {ancho: anchoMapa, tope, renglones: [["Entidad de nacimiento", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], [`Parte de los hablantes de ${lugar}`, (r) => pct(r.share)]]})]));
   nodos.push(html`<p class="beta-nota">El mapa de origen, con una flecha por entidad y variante probable de cada lengua, está en <a href="../mapa">el mapa</a>: elige una lengua y pulsa "Ver de dónde vienen".</p>`,
     fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["hli_nacidos_fuera_2020"], lectura: ["R-SEPI-2024-DIV"]}),
     explicacion("El Censo pregunta en qué entidad o país nació cada persona. Aquí se toma a los hablantes de lengua indígena que viven en la ciudad y se cuenta qué parte nació fuera de ella. Es una medida de origen, no de fecha de llegada: alguien nacido en Oaxaca pudo llegar hace cincuenta años o el año pasado. Al elegir una lengua o una alcaldía la muestra se reduce y las cifras son menos precisas."),
@@ -140,7 +149,7 @@ function pintarS() {
   cuerpoS.replaceChildren(
     figura({titulo: `De qué entidad nacieron y en qué alcaldía viven los hablantes, ${anio}`, subtitulo: `${len ? `Hablantes de ${nombreLen(len)}` : "Hablantes de lengua indígena"} nacidos en otra entidad · las ${TOPE_S} entidades y alcaldías con más hablantes; las demás, agrupadas${selEntS.value ? ` · resaltada: ${selEntS.value}` : ""}`,
       pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · el grosor de cada flujo es proporcional al número de hablantes"},
-      [sankey({nodos, enlaces}, {ancho: Math.min(980, width), alto: 440, destacado,
+      [sankey({nodos, enlaces}, {ancho: anchoG, alto: Math.round(Math.min(600, Math.max(420, anchoG * 0.45))), destacado,
         renglonesEnlace: [["Nacieron en", (l) => l.source.nombre], ["Viven en", (l) => l.target.nombre], ["Hablantes", (l) => entero(l.value)], ["Parte de los nacidos fuera", (l) => pct(100 * l.value / total)]]})]),
     fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["hli_nacidos_fuera_2020"], lectura: ["R-SEPI-2024-DIV"]}),
     explicacion("A la izquierda, la entidad donde nacieron los hablantes de lengua indígena que viven en la ciudad; a la derecha, la alcaldía donde viven. Cada flujo une un lugar de nacimiento con una alcaldía, y su grosor es el número de hablantes. Se muestran las siete entidades y las siete alcaldías con más hablantes; las demás se suman en un solo nodo para que los flujos se puedan seguir. Quienes nacieron en la ciudad o en otro país no aparecen."),
@@ -187,14 +196,14 @@ function pintarR() {
   cuerpoR.replaceChildren(
     kpis([{etiqueta: `Hablantes que llegaron en los cinco años previos, ${anio}`, cifra: entero(total), nota: "vivían en otra entidad cinco años antes del censo"}, {etiqueta: "Entidad de la que llegaron más", cifra: porEntR[0]?.nombre ?? "", nota: porEntR[0] ? `${pct(porEntR[0].share)} de quienes llegaron` : ""}, ...(len ? [] : [{etiqueta: "Lengua más hablada entre quienes llegaron", cifra: porLenR[0]?.nombre ?? "", nota: porLenR[0] ? `${pct(porLenR[0].share)} de quienes llegaron` : ""}])]),
     figura({titulo: `Hablantes que llegaron a ${lugar} en los cinco años previos, por edición`, subtitulo: `${quienes}personas de 5 años y más que hablan una lengua indígena y cinco años antes vivían en otra entidad`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada punto es una edición; en rojo, la elegida"},
-      [Plot.plot({height: 240, width: Math.min(900, width), marginLeft: 60, marginRight: 30, x: {label: null, tickFormat: (d) => String(d), inset: 30}, y: {label: "personas", grid: true, domain: [0, TOPE_R.serie], tickFormat: (d) => entero(d)},
+      [Plot.plot({height: altoLinea, width: anchoG, marginLeft: 60, marginRight: 30, x: {label: null, tickFormat: (d) => String(d), inset: 30}, y: {label: "personas", grid: true, domain: [0, TOPE_R.serie], tickFormat: (d) => entero(d)},
         marks: [Plot.line(llegadas, {x: "anio", y: "num", stroke: COLOR_UNICO, strokeWidth: 2}), Plot.dot(llegadas, {x: "anio", y: "num", fill: (r) => (r.anio === anio ? ROJO : COLOR_UNICO), r: (r) => (r.anio === anio ? 6 : 4.5)}),
           Plot.text(llegadas, {x: "anio", y: "num", text: (r) => entero(r.num), dy: -12, fontSize: 11}),
           Plot.tip(llegadas, Plot.pointerX({x: "anio", y: "num", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Llegaron de otra entidad", (r) => `${entero(r.num)} hablantes`], ["Entrevistas en la muestra", (r) => entero(r.casos)]])})), Plot.ruleY([0])]})]),
     ...(entR.length ? [figura({titulo: `De qué entidad llegaron, ${anio}`, subtitulo: `${quienes}entidad donde vivían cinco años antes; el área de cada círculo es proporcional al número de hablantes, con la misma escala en todas las ediciones`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada círculo está en el centro de su entidad"},
-      [burbujas(entR, geoEntidades, {ancho: Math.min(900, width), tope: TOPE_R.ent / 1.2, renglones: [["Entidad de origen", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], ["Parte de quienes llegaron", (r) => pct(r.share)]]})])] : [html`<p class="beta-nota">Sin llegadas en la muestra de ${anio} para esta selección.</p>`]),
+      [burbujas(entR, geoEntidades, {ancho: anchoMapa, tope: TOPE_R.ent / 1.2, renglones: [["Entidad de origen", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], ["Parte de quienes llegaron", (r) => pct(r.share)]]})])] : [html`<p class="beta-nota">Sin llegadas en la muestra de ${anio} para esta selección.</p>`]),
     ...(len || !porLenR.length ? [] : [figura({titulo: `Qué lenguas hablan quienes llegaron, ${anio}`, subtitulo: `${quienes}las quince lenguas con más hablantes entre quienes llegaron en los cinco años previos`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada punto es una lengua"},
-      [lollipop(porLenR.map((r) => ({...r, valor: r.num})), {ancho: Math.min(900, width), dominio: [0, TOPE_R.len], etiquetaX: "hablantes", formato: (v) => entero(v),
+      [lollipop(porLenR.map((r) => ({...r, valor: r.num})), {ancho: anchoG, dominio: [0, TOPE_R.len], etiquetaX: "hablantes", formato: (v) => entero(v),
         renglones: [["Lengua", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], ["Parte de quienes llegaron", (r) => pct(r.share)]]})])]),
     fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], referencia: ["R-SECULT-LENGUAS"],
       nota: "El INEGI no publica la migración reciente de los hablantes por entidad de origen y lengua; la referencia más cercana es el documento de la Secretaría de Cultura, que describe la llegada de hablantes a la ciudad."}),

@@ -96,7 +96,7 @@ function bloqueGrafica(filas, {v, geo, anios, formato, titulo, subtitulo, fuente
     dims = ["anio"];
     series = prepararSeries(filas, {...base, dims});
     if (!series.length) return vacio;
-    grafica = pendiente(series, {comparacion: v.comparacion, formato, width: Math.min(ancho, 900)});
+    grafica = pendiente(series, {comparacion: v.comparacion, formato, width: Math.min(ancho, 1320)});
   } else if (geo.modo === "barras") {
     dims = [];
     series = prepararSeries(filas, {...base, dims});

@@ -69,8 +69,8 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
       : !comparar && sepCampo === "sexo" ? {campo: "faceta", series: ["Mujeres", "Hombres"], colores: [COLOR_SERIE["Mujeres indígenas"], COLOR_SERIE["Hombres indígenas"]]}
       : !comparar && sepCampo === "ambito" ? {campo: "faceta", series: ["Urbana", "Rural"], colores: [COLOR_REFERENCIA, COLOR_UNICO]} : null;
     const grafica = !f.length || forma === "likert" ? null
-      : par ? dumbbell(f.map((r) => ({...r, fila: r.categoria, serie: r[par.campo], valor: r.pct})), {ancho: Math.min(1000, width), series: par.series, colores: par.colores, dominio: [0, maxX], orden: cats, margenIzq: 280, etiquetaX: "% de la población indígena", renglones})
-      : !comparar && !sepCampo ? lollipop(cats.map((c) => f.find((r) => r.categoria === c)).filter(Boolean).map((r) => ({...r, nombre: r.categoria, valor: r.pct})), {ancho: Math.min(1000, width), dominio: [0, maxX], margenIzq: 280, formato: (v) => pct(v), etiquetaX: "% de la población indígena", renglones})
+      : par ? dumbbell(f.map((r) => ({...r, fila: r.categoria, serie: r[par.campo], valor: r.pct})), {ancho: Math.min(1320, width), series: par.series, colores: par.colores, dominio: [0, maxX], orden: cats, margenIzq: 280, etiquetaX: "% de la población indígena", renglones})
+      : !comparar && !sepCampo ? lollipop(cats.map((c) => f.find((r) => r.categoria === c)).filter(Boolean).map((r) => ({...r, nombre: r.categoria, valor: r.pct})), {ancho: Math.min(1320, width), dominio: [0, maxX], margenIzq: 280, formato: (v) => pct(v), etiquetaX: "% de la población indígena", renglones})
       : null;
     const sub = [comparar ? "2017 y 2022" : cAnio.value, fijo.sexo && fijo.sexo !== "Total" ? fijo.sexo : "", fijo.edad && fijo.edad !== "Todas" ? EDAD_ETIQ[fijo.edad] : "", fijo.ambito && fijo.ambito !== "Total" ? `localidades ${fijo.ambito === "Rural" ? "rurales" : "urbanas"}` : "", sepCampo ? `un panel por ${{sexo: "sexo", edad: "grupo de edad", ambito: "tipo de localidad"}[sepCampo]}` : ""].filter(Boolean).join(" · ");
     cuerpo.replaceChildren(
@@ -79,10 +79,10 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
           // Escala ordenada de respuesta: apilada divergente (catálogo, Likert). Lo
           // desfavorable (nada, poco) a la izquierda del cero y lo favorable a la derecha.
           ? likert(f.map((r) => ({...r, respuesta: r.categoria, fila: [comparar ? String(r.anio) : null, r.faceta || null].filter(Boolean).join(" · ") || "Población indígena"})),
-            {ancho: Math.min(1000, width), orden: ["Nada", "Poco", "Algo", "Mucho"], negativas: 2, dominio: [-75, 75], margenIzq: 170,
+            {ancho: Math.min(1320, width), orden: ["Nada", "Poco", "Algo", "Mucho"], negativas: 2, dominio: [-75, 75], margenIzq: 170,
               renglones: [["Grupo", (r) => r.fila], ["Respuesta", (r) => r.respuesta], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]]})
           : grafica ? grafica
-          : f.length ? Plot.plot({marginLeft: 280, marginRight: 60, height: alto, width: Math.min(1000, width), ...facetas, color, x: {label: "% de la población indígena", grid: true, domain: [0, maxX]}, y: {label: null, domain: cats},
+          : f.length ? Plot.plot({marginLeft: 280, marginRight: 60, height: alto, width: Math.min(1320, width), ...facetas, color, x: {label: "% de la población indígena", grid: true, domain: [0, maxX]}, y: {label: null, domain: cats},
           marks: [...(comparar ? [[2017, -8], [2022, 8]] : [[null, 0]]).flatMap(([a, dy]) => {
               const d = a == null ? f : f.filter((r) => r.anio === a);
               const fx = sepCampo ? {fx: "faceta"} : {};

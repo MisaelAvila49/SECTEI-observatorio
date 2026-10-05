@@ -67,14 +67,14 @@ function pintarA() {
   const nombre = CRITERIOS.find((c) => c.clave === crit).etiqueta.toLowerCase();
   cuerpoA.replaceChildren(
     figura({titulo: `Pirámide de edades: población indígena y resto, ${anio}`, subtitulo: `Porcentaje de cada grupo en cada edad y sexo; a la izquierda hombres, a la derecha mujeres · población indígena: ${nombre}`, pie: "Censos e intercensales (INEGI), muestras de la Ciudad de México · cada barra es un grupo de edad de cinco años; las dos poblaciones se superponen"},
-      [Plot.plot({height: 440, width: Math.min(920, width), marginLeft: 60, x: {label: "← hombres · % del grupo · mujeres →", tickFormat: (d) => Math.abs(d).toFixed(0), domain: [-lim, lim], grid: true}, y: {label: null, domain: ORDEN_EDAD.slice().reverse()},
+      [Plot.plot({height: 440, width: Math.min(1320, width), marginLeft: 60, x: {label: "← hombres · % del grupo · mujeres →", tickFormat: (d) => Math.abs(d).toFixed(0), domain: [-lim, lim], grid: true}, y: {label: null, domain: ORDEN_EDAD.slice().reverse()},
         color: {domain: ["Población indígena", "Resto de la población"], range: [COLOR_SERIE["Población indígena"], COLOR_SERIE["Resto de la población"]], legend: true},
         marks: [Plot.barX(pir.filter((r) => r.serie === "Resto de la población"), {x: "x", y: "categoria", fill: "serie", fillOpacity: 0.35}),
           Plot.barX(pir.filter((r) => r.serie === "Población indígena"), {x: "x", y: "categoria", fill: "none", stroke: "serie", strokeWidth: 1.6, insetTop: 1, insetBottom: 1}),
           Plot.tip(pir, Plot.pointer({x: "x", y: "categoria", maxRadius: Infinity, ...GLOBO, ...globo([["Grupo", (r) => r.serie], ["Sexo", (r) => r.sexo], ["Edad", (r) => `${r.categoria} años`], ["Parte del grupo", (r) => pct(r.pct, 2)], ["Personas", (r) => entero(r.num)]])})),
           Plot.ruleX([0])]})]),
     figura({titulo: "Qué parte de cada grupo de edad es indígena, 2010 - 2025", subtitulo: `Porcentaje de la población de cada grupo de edad que ${crit === "lengua" ? "habla una lengua indígena" : "se considera indígena"}`, pie: "Censos e intercensales (INEGI), muestras de la Ciudad de México · cada línea es un grupo de edad; cada punto, una edición"},
-      [Plot.plot({height: 260, width: Math.min(920, width), marginLeft: 50, marginRight: 110, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {domain: [0, MAX_PROP]}),
+      [Plot.plot({height: Math.round(Math.min(400, Math.max(260, Math.min(1320, width) * 0.3))), width: Math.min(1320, width), marginLeft: 50, marginRight: 110, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {domain: [0, MAX_PROP]}),
         color: {domain: Object.values(EDAD_ETIQ), range: ordinal(4)},
         marks: [Plot.line(prop, {x: "anio", y: "pct", stroke: "edadEt", strokeWidth: 2}), Plot.dot(prop, {x: "anio", y: "pct", fill: "edadEt", r: 3.5}),
           Plot.text(prop.filter((r) => r.anio === Math.max(...prop.map((x) => x.anio))), {x: "anio", y: "pct", text: "edadEt", dx: 8, textAnchor: "start", fontSize: 11}),

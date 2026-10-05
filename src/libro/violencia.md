@@ -43,7 +43,7 @@ function seccionEndireh({id, indicadores, titulo, pie, explica, fuentes = {}}) {
     const faltaFamiliar = indicadores.includes("Familiar") && cPer.value === "vida";
     cuerpo.replaceChildren(
       figura({titulo, subtitulo: `${cGeo.value === "Nacional" ? "Todo el país" : "Ciudad de México"} · 2021 · ${cPer.value === "vida" ? "a lo largo de la vida" : "últimos 12 meses"}${sep ? " · un panel por grupo de edad" : cEdad.value !== "Todas" ? ` · ${EDAD_ETIQ[cEdad.value]}` : ""}`, pie},
-        [dumbbell(f.map((r) => ({...r, fila: r.indicador, valor: r.pct})), {ancho: Math.min(1000, width), series, colores: series.map((s) => COLOR_SERIE[s]), dominio: [0, maxX], orden: cats,
+        [dumbbell(f.map((r) => ({...r, fila: r.indicador, valor: r.pct})), {ancho: Math.min(1320, width), series, colores: series.map((s) => COLOR_SERIE[s]), dominio: [0, maxX], orden: cats,
           fx: sep ? "faceta" : null, fxDominio: Object.values(EDAD_ETIQ), etiquetaX: "% de las mujeres del grupo",
           renglones: [["Ámbito o tipo", (r) => r.indicador], ["Grupo", (r) => r.serie], ["Edad", (r) => r.faceta || null], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Mujeres", (r) => `${entero(r.num)} de ${entero(r.den)}`], ["Entrevistas", (r) => r.casos]]})]),
       faltaFamiliar ? html`<p class="beta-nota">La violencia familiar solo se pregunta para los últimos 12 meses; elige ese periodo para verla.</p>` : "",

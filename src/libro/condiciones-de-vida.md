@@ -72,7 +72,7 @@ function pintarA() {
   const tieneResto = f.some((r) => r.grupo === "Resto");
   cuerpoA.replaceChildren(
     figura({titulo: `${ind} en la población indígena y en el resto, 2016 - ${Math.max(...f.map((r) => r.anio))}`, subtitulo: `${CRITERIOS.find((c) => c.clave === crit).etiqueta}${sexoSep ? " · por sexo" : cSexo.value !== "Total" ? ` · ${cSexo.value}` : ""}`, pie: "CONEVAL, medición multidimensional de la pobreza, anexo estadístico 2022; 2024 del INEGI · cada punto es una medición bienal"},
-      [Plot.plot({height: 300, width: Math.min(920, width), marginLeft: 50, marginRight: 230, x: {label: null, tickFormat: (d) => String(d), domain: [2015.5, 2024.5]}, y: ejePct(null, {domain: [0, Math.min(100, MAX_IND.get(ind) * 1.1)]}),
+      [Plot.plot({height: 300, width: Math.min(1320, width), marginLeft: 50, marginRight: 230, x: {label: null, tickFormat: (d) => String(d), domain: [2015.5, 2024.5]}, y: ejePct(null, {domain: [0, Math.min(100, MAX_IND.get(ind) * 1.1)]}),
         color: {domain: series, range: colores},
         marks: [Plot.line(f.filter((r) => !(sexoSep && !soloIndigena && r.sexo === "Hombres")), {x: "anio", y: "pct", stroke: "serie", strokeWidth: 2}),
           Plot.line(f.filter((r) => sexoSep && !soloIndigena && r.sexo === "Hombres"), {x: "anio", y: "pct", stroke: "serie", strokeWidth: 2, strokeDasharray: "5,3"}),
@@ -113,7 +113,7 @@ function pintarB() {
   const series = [NOMBRE[crit]["Indígena"], NOMBRE[crit]["Resto"]];
   cuerpoB.replaceChildren(
     figura({titulo: "Carencias sociales y bienestar económico de la población indígena y del resto", subtitulo: `${CRITERIOS.find((c) => c.clave === crit).etiqueta} · ${comparar ? "un panel por año, 2016 y 2022" : anios[0]}`, pie: "CONEVAL, medición multidimensional de la pobreza, anexo estadístico 2022 · cada par de puntos es una carencia"},
-      [dumbbell(f.map((r) => ({...r, fila: r.indicador, valor: r.pct})), {ancho: Math.min(1000, width), series, colores: [COLOR("Indígena"), COLOR("Resto")], dominio: [0, 100], orden: IND_CAR, margenIzq: 290,
+      [dumbbell(f.map((r) => ({...r, fila: r.indicador, valor: r.pct})), {ancho: Math.min(1320, width), series, colores: [COLOR("Indígena"), COLOR("Resto")], dominio: [0, 100], orden: IND_CAR, margenIzq: 290,
         fx: comparar ? "anioT" : null, fxDominio: ["2016", "2022"], etiquetaX: "% de la población",
         renglones: [["Indicador", (r) => r.indicador], ["Grupo", (r) => r.serie], ["Año", (r) => r.anio], ["Porcentaje", (r) => pct(r.pct)], ["Personas", (r) => `${r.millones.toFixed(1)} millones`]]})]),
     fuenteDe({datos: ["D-CONEVAL-AE-2022"], cotejos: ["pobreza_indigena_2022"], nota: "Las carencias se leen del mismo anexo estadístico del CONEVAL (cuadros 16, 17, 23 y 24); el cotejo de la pobreza confirma la lectura de los cuadros."}),

@@ -4509,3 +4509,100 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
   font-size: 0.8rem;
   cursor: pointer;
 }
+
+/* ==========================================================================
+   Estilo limpio de todo el sitio. Sin cajas ni líneas grises: las figuras, las
+   cifras y los filtros se separan con aire, la gráfica ocupa todo el ancho de
+   la columna (hasta 1,320 px) y va alineada a la izquierda con su título. Va
+   al final de la hoja para ganar por cascada a las reglas de tarjeta de arriba.
+   ========================================================================== */
+/* La regla de medida lleva las mismas cajas que la figura: de ella sale el
+   ancho con que se dibujan las gráficas de los componentes. */
+#observablehq-main .medida-ancho {
+  width: auto;
+  max-width: 1320px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  border: 0;
+}
+/* Paneles de filtros y rejillas de figuras: mismo ancho y mismo borde
+   izquierdo que las figuras, ya no centrados sobre la columna. */
+#observablehq-main .seccion-tablero .panel-filtros,
+#observablehq-main .seccion-cuerpo .grid,
+#observablehq-main .rejilla-figuras {
+  width: auto;
+  max-width: 1320px;
+  margin-left: 0;
+  margin-right: 0;
+}
+#observablehq-main .rejilla-figuras {
+  gap: 1.25rem 2.5rem;
+}
+#observablehq-main :is(figure[class^="grafica-"], figure[class*=" grafica-"]) {
+  width: auto;
+  max-width: 1320px;
+  margin: 2.4rem 0 1rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#observablehq-main :is(figure[class^="grafica-"], figure[class*=" grafica-"]) > h3 {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  color: var(--brand-dark);
+  margin-bottom: 0.25rem;
+}
+.grafica-sub {
+  font-size: 0.92rem;
+  margin-bottom: 0.9rem;
+  max-width: 80ch;
+}
+#observablehq-main :is(figure[class^="grafica-"], figure[class*=" grafica-"]) svg {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+}
+#observablehq-main :is(figure[class^="grafica-"], figure[class*=" grafica-"]) > figcaption {
+  font-size: 0.82rem;
+  max-width: 80ch;
+  border-top: 0;
+  padding-top: 0;
+}
+/* Ejes y rótulos un punto más grandes: la gráfica ahora es más ancha. */
+#observablehq-main figure[class^="grafica-"] svg { font-size: 12px; }
+/* Cifras: sin tarjeta; el número manda y una línea fina arriba las agrupa. */
+.kpi-fila {
+  gap: 1.2rem 2.4rem;
+  margin: 1.2rem 0 0.4rem;
+  max-width: 1320px;
+}
+.kpi-tarjeta {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.kpi-cifra {
+  font-size: 2rem;
+}
+.kpi-nota {
+  font-size: 0.84rem;
+  white-space: normal;
+}
+/* Filtros: una franja sin borde sobre un fondo apenas más oscuro. */
+#observablehq-main .panel-filtros {
+  border: 0;
+  box-shadow: none;
+  border-radius: 8px;
+  background: var(--surface-3);
+  padding: 0.8rem 1rem;
+  max-width: 1320px;
+  box-sizing: border-box;
+}
+#observablehq-main .beta-seccion > div > :is(details, .claves-lectura, p) {
+  max-width: 1320px;
+}

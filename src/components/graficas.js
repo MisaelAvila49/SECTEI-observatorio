@@ -375,7 +375,7 @@ export function puntosPorBanda(filas, {formatoValor = (v) => formatear(v, "pct")
   const aire = (hi - lo || 1) * 0.18;
   const fig = Plot.plot({
     style: ESTILO_EJES,
-    width: Math.min(width, 980), height: orden.length * 40 + 96,
+    width: Math.min(width, 1320), height: orden.length * 40 + 96,
     marginLeft: 250, marginRight: 70, marginTop: 44, marginBottom: 30,
     x: {label: etiquetaX, axis: "top", grid: true, domain: [Math.max(0, lo - aire), hi + aire]},
     y: {domain: orden, label: null, tickSize: 0},

@@ -104,7 +104,7 @@ function pintarLA() {
   const otras = filasAlc.map((n) => ({alcaldia: n, share: 100 - celdas.filter((c) => c.alcaldia === n).reduce((s, c) => s + c.share, 0)}));
   cuerpoLA.replaceChildren(
     figura({titulo: `Las diez lenguas con más hablantes en la ciudad, en cada alcaldía, ${anio}`, subtitulo: `${sexo !== "Total" ? `${sexo} · ` : ""}cada celda es la parte de los hablantes de la alcaldía que habla esa lengua; las alcaldías van de más a menos hablantes`, pie: `${alc[0]?.fuente ?? "INEGI"} · cada fila es una alcaldía y cada columna una lengua; más oscuro, mayor parte de los hablantes de la alcaldía`},
-      [Plot.plot({marginLeft: 170, marginTop: 70, marginRight: 10, height: 30 * filasAlc.length + 90, width: Math.min(1000, width), padding: 0.06,
+      [Plot.plot({marginLeft: 170, marginTop: 70, marginRight: 10, height: 30 * filasAlc.length + 90, width: Math.min(1320, width), padding: 0.06,
         color: colorLA(),
         x: {label: null, domain: lenguasTop, axis: "top", tickRotate: -30}, y: {label: null, domain: filasAlc},
         marks: [
