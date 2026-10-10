@@ -30,7 +30,7 @@ Este mapa pinta cada manzana urbana de la Ciudad de México según la proporció
 // sufijo _F o _M, que es como el Censo publica el desglose.
 //
 // `porSexo: false` marca los indicadores que el Censo NO desagrega. PHOG_IND
-// cuenta hogares completos —donde conviven ambos sexos— y no tiene versión
+// cuenta hogares completos (donde conviven ambos sexos) y no tiene versión
 // femenina ni masculina: al elegirlo, el filtro de sexo se apaga en vez de
 // ofrecer una opción que devolvería celdas vacías.
 const INDICADORES = [
@@ -41,8 +41,8 @@ const INDICADORES = [
     corto: "Hogares con lengua indígena",
     porSexo: false,
     definicion:
-      "Cuenta a todos los integrantes de un hogar —incluidos quienes no hablan " +
-      "la lengua— cuando la persona de referencia, su cónyuge o alguno de sus " +
+      "Cuenta a todos los integrantes de un hogar (incluidos quienes no hablan " +
+      "la lengua) cuando la persona de referencia, su cónyuge o alguno de sus " +
       "ascendientes declararon hablarla. Es un indicador de HOGAR: mide dónde " +
       "vive la población ligada a una lengua indígena por vínculo familiar, no " +
       "cuánta gente la habla. El Censo no lo publica por sexo, porque un hogar " +
@@ -220,7 +220,7 @@ const colonias = await FileAttachment("data/colonias_resumen.csv").csv({typed: t
 
 ```js
 // El sexo elegido solo aplica si el indicador tiene desglose. En PHOG_IND no
-// existe —el Censo no publica hogares por sexo— y se cae a Total en vez de
+// existe (el Censo no publica hogares por sexo) y se cae a Total en vez de
 // buscar una columna inexistente, que dejaría el mapa gris entero.
 const sexoEfectivo = indicador.porSexo ? sexo : SEXOS[0];
 const campo = `tasa_${(indicador.base + sexoEfectivo.sufijo).toLowerCase()}`;
@@ -342,7 +342,7 @@ if (umbral.valor > 0) display(
 ```js
 // El formato se adapta a la magnitud de los cortes. Con un decimal fijo, los
 // dos primeros escalones de varios indicadores se imprimían ambos como "0.0 %"
-// —el segundo corte vale 0.04 %— y la leyenda parecía repetir una clase.
+// (el segundo corte vale 0.04 %) y la leyenda parecía repetir una clase.
 const decimales = cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1;
 
 display(
@@ -399,8 +399,8 @@ display(
 En el grupo de población indígena, los tres indicadores de hablantes son
 **subconjuntos anidados de personas**: quienes hablan una lengua indígena se
 dividen en bilingües y monolingües, y la suma de ambos da el total de hablantes.
-El de hogares es de otra naturaleza —cuenta hogares completos, incluidos los
-integrantes que ya no hablan la lengua—, y por eso siempre arroja una cifra mayor.
+El de hogares es de otra naturaleza (cuenta hogares completos, incluidos los
+integrantes que ya no hablan la lengua), y por eso siempre arroja una cifra mayor.
 Los indicadores de conectividad cuentan viviendas y se dividen entre las
 viviendas particulares habitadas con características de la manzana. Comparar el porcentaje de hogares con el de hablantes en la
 misma manzana no revela una contradicción sino esa diferencia de universo.

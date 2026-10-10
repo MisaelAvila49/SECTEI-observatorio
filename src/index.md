@@ -173,7 +173,7 @@ display(seccion({numero: "01", titulo: "Treinta y cinco años de hablantes"}));
       Plot.dot(filas, {x: "anio", y: "pct", stroke: color(), fill: (d) => (d.cota === "censo" ? color() : "white"), r: 4.5, strokeWidth: 1.6}),
       Plot.text(filas, {x: "anio", y: "pct", text: (d) => `${d.pct.toFixed(2)} %`, dy: -12, fontSize: 11}),
       Plot.tip(filas, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, ...GLOBO,
-        ...globo([["Año", (d) => d.anio], ["Porcentaje", (d) => `${d.pct.toFixed(2)} %${d.ee ? ` (± ${(196 * d.ee).toFixed(2)})` : ""}`], ["Hablantes", (d) => punto(Math.round(d.num))], ["Fuente", (d) => (d.cota === "censo" ? "conteo censal" : "estimación de encuesta")]])})),
+        ...globo([["Año", (d) => d.anio], ["Porcentaje", (d) => `${d.pct.toFixed(2)} %`], ["Hablantes", (d) => punto(Math.round(d.num))], ["Fuente", (d) => (d.cota === "censo" ? "conteo censal" : "estimación de encuesta")]])})),
       Plot.ruleY([0]),
     ],
   })])));

@@ -1,8 +1,8 @@
 /* --- 1. Theme Imports --- */
 /* El tablero es CLARO por omisión y el modo oscuro se activa con el botón del
    sidebar, no con la preferencia del sistema. La razón: es un producto
-   editorial que se lee y se cita, y su forma canónica —la que sale en una
-   captura o en una impresión— es sobre blanco. Que el sistema decidiera por su
+   editorial que se lee y se cita, y su forma canónica, la que sale en una
+   captura o en una impresión, es sobre blanco. Que el sistema decidiera por su
    cuenta hacía que la misma página se viera distinta según la máquina, sin que
    nadie lo hubiera pedido.
    La elección vive en `data-tema` sobre <html>, la escribe el script de
@@ -24,8 +24,8 @@
 
 /* --- 3. Variables de marca y overrides de tema --- */
 /* Un solo bloque de tokens para todo el sitio. Antes había dos `:root` (aquí y
-   en la capa de tablero) con DOS rojos de acento distintos —#e30a18 y
-   #c4101b— mientras `base.js` dibujaba las gráficas con #C4101B. El rojo del
+   en la capa de tablero) con DOS rojos de acento distintos, #e30a18 y
+   #c4101b, mientras `base.js` dibujaba las gráficas con #C4101B. El rojo del
    chrome y el rojo de los datos tienen que ser el mismo color, o la marca se
    lee como dos marcas en la misma página. Se conserva #C4101B, que es el que
    pasó el validador de paleta de la skill `dataviz` en claro y en oscuro.
@@ -72,8 +72,8 @@
   --radio-2: 12px;
 
   /* Tinta de la portada del libro. La cubierta pinta su propio fondo oscuro
-     en los dos modos —representa un objeto real, no una superficie de la
-     interfaz— así que su texto es blanco SIEMPRE y no puede leer
+     en los dos modos, representa un objeto real, no una superficie de la
+     interfaz, así que su texto es blanco SIEMPRE y no puede leer
      --surface-1: en modo oscuro esa variable es casi negra y el título de la
      cubierta desaparecería sobre su propio fondo. */
   --tinta-portada: #ffffff;
@@ -106,7 +106,7 @@
      Se calculaba con `100vw`, y eso es el ancho de la VENTANA: incluye el
      sidebar (272 px) y la columna del índice (192 px), que no son espacio
      disponible. A 1500 px la gráfica arrancaba en x=192 con el sidebar
-     llegando hasta 272 —tapada— y a 1280 px se salía 67 px por la derecha,
+     llegando hasta 272 (tapada) y a 1280 px se salía 67 px por la derecha,
      por debajo del índice. Se descuentan las dos columnas más un margen de
      respiro, y el mínimo con 1180 px pone el techo.
      Las dos columnas aparecen y desaparecen por media query, así que sus
@@ -129,9 +129,10 @@
   --tablero-superficie: var(--surface-3);
 
   /* Overrides de Observable Framework */
-  --sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans-serif: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
-  --monospace: "JetBrains Mono", Menlo, Consolas, monospace;
+  --monospace: ui-monospace, Consolas, Menlo, monospace;
   --theme-foreground: var(--text-primary);
   --theme-foreground-focus: var(--brand-red);
   --theme-background-a: var(--surface-1);
@@ -150,7 +151,7 @@
    Las condiciones son LAS MISMAS EXPRESIONES que usa Framework en su hoja
    (layout.css) para mostrar u ocultar cada columna, copiadas literalmente en
    vez de un número redondo medido a ojo en el navegador. Los valores que había
-   antes —1199 y 1023— estaban desplazados respecto a los reales y entre 912 y
+   antes (1199 y 1023) estaban desplazados respecto a los reales y entre 912 y
    1010 px la gráfica se salía por la izquierda de la ventana y pasaba por
    debajo del índice.
 
@@ -198,7 +199,7 @@
 
     /* El rojo de marca a plena saturación sobre fondo oscuro queda en 3.2:1 y
        vibra. #E8474F es el paso que el validador de `dataviz` deja en la banda
-       L 0.48–0.67 con 5.4:1 contra la superficie oscura. */
+       L 0.48, 0.67 con 5.4:1 contra la superficie oscura. */
     --brand-red: #e8474f;
     --brand-red-dark: #f27076;
     --brand-dark: #ecebe8;
@@ -242,12 +243,12 @@
 
 /* --- 4. Tipografía base --- */
 body {
-  /* El tamaño base es RELATIVO, no 16px fijos. Toda la hoja mide en rem —más
-     de cuatrocientas declaraciones—, así que anclar el body a un valor
+  /* El tamaño base es RELATIVO, no 16px fijos. Toda la hoja mide en rem, más
+     de cuatrocientas declaraciones, , así que anclar el body a un valor
      absoluto convertía cada uno de esos rem en un píxel fijo y dejaba fuera a
      quien sube el tamaño de letra en su navegador, que es el ajuste de
      accesibilidad más usado (WCAG 1.4.4). Con `1rem` el 16 px sigue siendo el
-     valor de partida —es el tamaño por omisión de todo navegador—, pero ahora
+     valor de partida (es el tamaño por omisión de todo navegador), pero ahora
      acompaña a quien lo cambia. */
   font: 1rem/1.65 var(--sans-serif);
   /* Fondo y tinta explícitos. El tema de Framework deja el body transparente y
@@ -387,7 +388,7 @@ tt {
 
 /* --- 9. Cards --- */
 /* Tarjeta: definición ÚNICA. Estaba repartida en cuatro bloques de esta hoja
-   —uno por tablero del que se heredó CSS— y aunque cada uno aportaba una
+   (uno por tablero del que se heredó CSS) y aunque cada uno aportaba una
    propiedad distinta y no se pisaban, bastaba con que dos tocaran la misma
    para que ganara la de abajo en silencio. Si hace falta cambiar el aspecto de
    una tarjeta, se cambia aquí. */
@@ -474,8 +475,7 @@ hr {
 #observablehq-sidebar summary {
   font-weight: 700;
   font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--text-primary);
   position: relative;
   transition: color 0.2s ease, background-color 0.2s ease;
@@ -639,7 +639,7 @@ hr {
   font-family: var(--sans-serif);
   font-size: 0.78rem;
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   color: var(--text-secondary);
   margin-top: -0.1rem;
 }
@@ -691,7 +691,7 @@ hr {
 
    POR QUÉ ESTE BLOQUE EXISTE. La lista de resultados es `position: absolute`
    respecto al SIDEBAR (no al input), y Framework la ancla con `top: 6.5rem`
-   —la altura de SU cabecera: una línea de título—. La marca de Social Data
+   (la altura de SU cabecera: una línea de título). La marca de Social Data
    es un logo de 72px más título y subtítulo, así que los resultados nacían
    dentro de la marca y se encimaban con ella y con el propio buscador.
 
@@ -701,8 +701,8 @@ hr {
    fue el primer intento, los mete justo debajo de la marca sticky y se
    encima todo.
 
-   La altura no se puede calcular en CSS —depende de cuánto ocupe el SVG del
-   logo, del texto y del ancho de la ventana—, así que la mide un script en
+   La altura no se puede calcular en CSS, depende de cuánto ocupe el SVG del
+   logo, del texto y del ancho de la ventana, , así que la mide un script en
    `head` (ver observablehq.config.js) y la publica en --alto-cabecera. El
    respaldo de 10.5rem solo aplica si ese script no llegó a correr. */
 #observablehq-search-results {
@@ -770,8 +770,7 @@ hr {
   font-family: var(--monospace);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--text-muted);
 }
 
@@ -806,8 +805,7 @@ hr {
   font-family: var(--monospace);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--text-muted);
 }
 
@@ -914,7 +912,7 @@ hr {
   background-color: color-mix(in srgb, var(--brand-red) 20%, transparent);
 }
 
-/* --- 17. Index / Home — portada, metadata editorial y citación --- */
+/* --- 17. Index / Home, portada, metadata editorial y citación --- */
 
 /* Los enlaces "Ir a X" de las tarjetas llevan la flecha puesta por CSS y no
    en el texto: así el copy se lee bien solo (lector de pantalla, texto
@@ -957,8 +955,7 @@ hr {
   font-family: var(--monospace);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--brand-red);
   margin-bottom: 0.25rem;
 }
@@ -1066,8 +1063,7 @@ a.book-cta-primary:focus-visible {
   font-family: var(--sans-serif);
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--brand-gray);
   margin: 0;
 }
@@ -1136,8 +1132,6 @@ a.book-cta-primary:focus-visible {
   height: 14px;
   vertical-align: text-bottom;
   margin-left: 0.2rem;
-  opacity: 0.85;
-  transition: opacity 0.15s ease;
 }
 
 .book-authors .mail-icon {
@@ -1147,14 +1141,8 @@ a.book-cta-primary:focus-visible {
   vertical-align: text-bottom;
   margin-left: 0.15rem;
   color: var(--brand-red);
-  opacity: 0.85;
-  transition: opacity 0.15s ease;
 }
 
-.book-authors a:hover .orcid-icon,
-.book-authors a:hover .mail-icon {
-  opacity: 1;
-}
 
 /* Cómo citar */
 .book-citation {
@@ -1504,8 +1492,7 @@ img.book-cover-logo {
   font-family: var(--monospace);
   font-size: 0.58rem;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--brand-red);
   padding: 0.15rem 0.5rem;
   border: 1px solid color-mix(in srgb, var(--brand-red) 55%, transparent);
@@ -1558,7 +1545,7 @@ img.book-cover-logo {
   font-size: 0.66rem;
   font-weight: 500;
   color: color-mix(in srgb, var(--tinta-portada) 70%, transparent);
-  letter-spacing: 0.22em;
+  letter-spacing: 0;
   padding-top: 0.4rem;
   border-top: 1px solid color-mix(in srgb, var(--brand-gray) 25%, transparent);
   animation: cover-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -1691,8 +1678,7 @@ figure svg {
 }
 .filtro-etiqueta {
   font-size: 0.72rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   font-weight: 700;
   color: var(--text-muted);
 }
@@ -1701,7 +1687,7 @@ figure svg {
    propia clase `inputs-XXXX-input` y no heredan nada de aquí.
 
    `appearance: none` es lo que arregla el modo oscuro: con la apariencia
-   nativa, el navegador dibuja el widget con SUS colores —un gris medio— y
+   nativa, el navegador dibuja el widget con SUS colores (un gris medio) y
    ninguna regla de fondo o borde lo toca. Al quitarla hay que reponer la
    flecha, que se dibuja como imagen de fondo en SVG con el color de la tinta
    codificado en la URL; por eso hay dos declaraciones, una por modo. */
@@ -1764,14 +1750,13 @@ figure svg {
 /* Kicker de sección ("01 · El panorama"). Definición ÚNICA: estaba en tres
    bloques distintos de esta hoja, cada uno con su propio `margin`, así que el
    espacio real lo fijaba el último por cascada (1rem) mientras los dos de
-   arriba —los que se editaban— no tenían efecto alguno. */
+   arriba (los que se editaban) no tenían efecto alguno. */
 .kicker {
   display: block;
   margin: 1rem 0 0.2rem;
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--brand-red);
 }
 /* Separa el número de sección del título que emite seccion() en graficas.js. */
@@ -1826,8 +1811,7 @@ figure svg {
 }
 .kpi-etiqueta {
   font-size: 0.72rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   font-weight: 700;
   color: var(--text-muted);
 }
@@ -1835,7 +1819,7 @@ figure svg {
   font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.1;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 
 /* La tarjeta aparece al desplegar: colapsado es una línea de texto como sus
@@ -1879,7 +1863,7 @@ figure svg {
   font-size: 0.78rem;
 }
 .tabla-datos td {
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 
 /* --- Animación de entrada de las gráficas --- */
@@ -2087,8 +2071,7 @@ h2.toc-anchor {
    así que top: 0 no tapa nada.
 
    OJO: Framework pone `container-type: inline-size` en #observablehq-main
-   (grid.css), y eso ANULA `position: sticky` en todos sus descendientes —
-   un contenedor de tamaño ("containment") corta el contexto de scroll que
+   (grid.css), y eso ANULA `position: sticky` en todos sus descendientes, un contenedor de tamaño ("containment") corta el contexto de scroll que
    sticky necesita. Sin esta corrección, el panel de abajo simplemente no se
    pega, sin ningún error visible. */
 #observablehq-main {
@@ -2106,8 +2089,8 @@ h2.toc-anchor {
    1152 las tarjetas se partían en dos columnas de 400 px.
 
    Ahora se le devuelve el contenedor a las páginas que no tienen panel de
-   filtros, que son justamente las que llevan rejillas. Donde sí lo hay —las
-   páginas de análisis— se mantiene sin contenedor, porque `container-type`
+   filtros, que son justamente las que llevan rejillas. Donde sí lo hay, las
+   páginas de análisis, se mantiene sin contenedor, porque `container-type`
    anula el `position: sticky` de todos sus descendientes. Así el corte lo pone
    Framework contra el ancho REAL de la columna y no una cuenta paralela. */
 #observablehq-main:not(:has(.panel-filtros)) {
@@ -2230,8 +2213,8 @@ h2.toc-anchor {
 /* --- Panel de filtros: piezas nuevas ------------------------------------- */
 /* El panel se hereda; lo que se agrega es la fila de campos y la ranura del
    buscador, que se reconstruye al cambiar de nivel de análisis. */
-/* Todos los campos del panel viven en la MISMA rejilla —los homologados y los
-   propios de cada gráfica— para que compartan línea base y ancho de columna.
+/* Todos los campos del panel viven en la MISMA rejilla, los homologados y los
+   propios de cada gráfica, para que compartan línea base y ancho de columna.
    Antes el buscador colgaba en su propia fila y los selectores de eje y de
    área quedaban fuera de la tarjeta, encima de la gráfica: se leían como tres
    controles sin relación entre sí. */
@@ -2268,8 +2251,7 @@ h2.toc-anchor {
 .panel-campos > .filtro-extra > label {
   width: auto;
   font-size: 0.72rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   font-weight: 700;
   color: var(--text-muted);
   padding: 0;
@@ -2347,7 +2329,7 @@ h2.toc-anchor {
   scroll-margin-top: 7.5rem;
 }
 
-/* En las gráficas altas —el ranking son 1,400 px y la matriz 1,870— el panel
+/* En las gráficas altas (el ranking son 1,400 px y la matriz 1,870) el panel
    tapa las primeras filas mientras se recorre. Se le da un margen superior a
    la gráfica para que su cabecera no nazca justo debajo del panel. */
 .seccion-tablero .seccion-cuerpo > figure:first-child {
@@ -2516,8 +2498,7 @@ figure[class*=" grafica-"] figure > h2 {
 .leyenda-biv-titulo {
   display: block;
   font-size: 0.72rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   font-weight: 700;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
@@ -2542,7 +2523,7 @@ figure[class*=" grafica-"] figure > h2 {
   font-size: 0.7rem;
   line-height: 1.25;
   color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 .leyenda-biv-escalaA {
   grid-area: escalaA;
@@ -2620,13 +2601,13 @@ figure[class*=" grafica-"] figure > h2 {
 .tabla-datos td.num,
 .tabla-datos th.num {
   text-align: right;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 
 /* --- Gráfico de la portada de libro -------------------------------------- */
 /* La portada dibuja el dato del proyecto, no un adorno: son las trayectorias
-   ternarias reales de doce países a lo largo de los ciclos de PISA — las
-   mismas "cometas" que el tablero muestra en el panorama—, con el punto rojo
+   ternarias reales de doce países a lo largo de los ciclos de PISA, las
+   mismas "cometas" que el tablero muestra en el panorama, , con el punto rojo
    en el ciclo más reciente de cada uno.
 
    Se sirve con <img> y no inlinado: `${...}` dentro de HTML crudo escaparía el
@@ -2705,8 +2686,7 @@ figure[class*=" grafica-"] figure > h2 {
   top: 30px;
   left: 4px;
   font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   font-weight: 700;
   color: var(--text-muted);
   white-space: nowrap;
@@ -2748,8 +2728,8 @@ figure[class*=" grafica-"] figure > h2 {
 }
 
 /* La regla con la que base.js mide el ancho de las gráficas. Comparte con la
-   tarjeta de figura todo lo que decide su ancho —el desbordamiento de la
-   columna, el tope, los rellenos y los bordes laterales— y aquí se le quita
+   tarjeta de figura todo lo que decide su ancho, el desbordamiento de la
+   columna, el tope, los rellenos y los bordes laterales, y aquí se le quita
    todo lo que ocupa alto. La medida sale de la hoja de estilos y no de una
    fórmula repetida en JS, que se desincronizaría al primer retoque de aquí.
 
@@ -2770,7 +2750,7 @@ figure[class*=" grafica-"] figure > h2 {
    hay nada que escalar: `max-width: 100%` solo estorbaría en el único caso en
    que el SVG es más ancho que la tarjeta, que es cuando el ancho disponible
    cae por debajo del piso de base.js. Ahí se prefiere recorrer la gráfica en
-   horizontal —el `overflow-x: auto` de la tarjeta ya está puesto— a encogerle
+   horizontal (el `overflow-x: auto` de la tarjeta ya está puesto) a encogerle
    la tipografía, que es la misma decisión que ya tomaba la matriz de países.
    Los márgenes automáticos de `figure svg` no hacen falta anularlos: cuando el
    hijo es más ancho que el contenedor, CSS los trata como cero, así que el
@@ -2828,8 +2808,7 @@ figure[class*=" grafica-"] figure > h2 {
 }
 .descarga-etiqueta {
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--brand-red);
 }
 .descarga-boton {
@@ -2977,8 +2956,7 @@ input:focus-visible,
   font-family: inherit;
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   cursor: pointer;
   transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
@@ -3070,7 +3048,7 @@ input:focus-visible,
   color: var(--text-secondary);
   /* Las cifras de las tablas (I.B1.2b.24, 362.6, 57.24) se leen mejor con
      cifras de ancho fijo: sin esto los dígitos bailan dentro de la frase. */
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 
 /* Rejilla de dos columnas: rótulo y contenido. Con el rótulo en línea el
@@ -3090,8 +3068,7 @@ input:focus-visible,
 .verificado-etiqueta {
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   line-height: 1.7;
   /* Rojo de marca: da 5.1:1 sobre la superficie de la tarjeta. */
   color: var(--brand-red);
@@ -3435,7 +3412,7 @@ input:focus-visible,
 }
 
 .globo-tabla td {
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
   font-weight: 600;
 }
 
@@ -3476,7 +3453,7 @@ input:focus-visible,
    mismo, sin depender del escalón. */
 .mapa-leyenda-valor {
   font-size: 11px;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
   color: var(--text-primary, #1a1a1a);
   text-align: center;
 }
@@ -3702,7 +3679,7 @@ body:not(:has(#observablehq-toc)) #observablehq-main {
 }
 .nota-referencia strong {
   color: var(--theme-foreground);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 .nota-referencia-trazo {
   display: inline-block;
@@ -3776,8 +3753,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
   font-size: 0.68rem;
   font-weight: 500;
   color: var(--text-muted);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0;
 }
 .mapa-cabecera-titulo {
   flex: 1;
@@ -3866,7 +3842,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
   font-size: 1.7rem;
   font-weight: 700;
   line-height: 1.1;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 .mapa-cifra-error {
   font-size: 0.95rem;
@@ -4023,10 +3999,9 @@ body:has(.mapa-pantalla) #observablehq-footer {
   max-width: none;
   padding: 0.65rem 0.8rem;
   border-radius: 10px;
-  background: color-mix(in srgb, var(--surface-1) 92%, transparent);
+  background: var(--surface-1);
   border: 1px solid var(--border-subtle);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(6px);
   font-size: 0.8rem;
   line-height: 1.4;
   color: var(--theme-foreground);
@@ -4055,7 +4030,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
 }
 .mapa-tarjeta .globo-tabla td {
   text-align: right;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -4097,8 +4072,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
 }
 .panel-mapa .panel-grupo-titulo {
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
@@ -4114,7 +4088,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
 }
 .panel-mapa .filtro-etiqueta {
   font-size: 0.68rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
 }
 .panel-mapa select {
   border-radius: 8px;
@@ -4139,7 +4113,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .mapa-variante-total {
   font-weight: 500;
   color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums;
 }
 
 /* Globo que sigue al cursor (MapLibre Popup) con la misma tabla que la tarjeta. */
@@ -4155,7 +4129,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .mapa-globo .globo-sub { color: var(--text-muted); }
 .mapa-globo .globo-tabla { width: 100%; border-collapse: collapse; margin-top: 0.25rem; }
 .mapa-globo .globo-tabla th { text-align: left; font-weight: 500; color: var(--text-muted); padding: 0.08rem 0.5rem 0.08rem 0; }
-.mapa-globo .globo-tabla td { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.mapa-globo .globo-tabla td { text-align: right; font-variant-numeric: lining-nums; font-weight: 600; white-space: nowrap; }
 /* Pila de unidades fijadas con clic, debajo de la tarjeta de la ciudad. */
 .mapa-fijadas {
   display: flex;
@@ -4181,7 +4155,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .mapa-fijada .globo-sub { color: var(--text-muted); }
 .mapa-fijada .globo-tabla { width: 100%; border-collapse: collapse; margin-top: 0.2rem; }
 .mapa-fijada .globo-tabla th { text-align: left; font-weight: 500; color: var(--text-muted); padding: 0.06rem 0.5rem 0.06rem 0; }
-.mapa-fijada .globo-tabla td { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.mapa-fijada .globo-tabla td { text-align: right; font-variant-numeric: lining-nums; font-weight: 600; white-space: nowrap; }
 .mapa-fijada-quitar {
   position: absolute;
   top: 0.25rem;
@@ -4271,11 +4245,11 @@ body:has(.mapa-pantalla) #observablehq-footer {
   background: var(--surface-1);
 }
 .mapa-seleccion-titulo { margin: 0 0 0.15rem; font-size: 1rem; font-weight: 700; border: 0; padding: 0; max-width: none; }
-.mapa-seleccion-sub { margin: 0.5rem 0 0.2rem; font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); max-width: none; }
+.mapa-seleccion-sub { margin: 0.5rem 0 0.2rem; font-size: 0.74rem; letter-spacing: 0; color: var(--text-muted); max-width: none; }
 .mapa-seleccion-nota { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
 .mapa-detalle-tabla { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
 .mapa-detalle-tabla th { text-align: left; font-weight: 500; padding: 0.18rem 0.5rem 0.18rem 0; border-top: 1px solid var(--border-subtle); color: var(--theme-foreground); }
-.mapa-detalle-tabla td { text-align: right; padding: 0.18rem 0; border-top: 1px solid var(--border-subtle); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mapa-detalle-tabla td { text-align: right; padding: 0.18rem 0; border-top: 1px solid var(--border-subtle); font-variant-numeric: lining-nums; white-space: nowrap; }
 .mapa-variantes-lista li.es-destacada { background: color-mix(in srgb, var(--brand-red) 8%, transparent); border-radius: 6px; padding-left: 0.3rem; padding-right: 0.3rem; }
 .mapa-variantes-lista li.es-tenue { opacity: 0.45; }
 
@@ -4298,7 +4272,7 @@ body:has(.mapa-pantalla) #observablehq-footer {
 .beta-cuerpo .mapa-leyenda { margin: 0 0 0.6rem; }
 .nav-lienzo .maplibregl-canvas-container, .nav-lienzo .maplibregl-canvas { width: 100% !important; height: 100% !important; }
 .nav-migas { position: absolute; z-index: 5; top: 0.75rem; left: 0.75rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; padding: 0.3rem 0.5rem; border-radius: 999px;
-  background: color-mix(in srgb, var(--surface-1) 92%, transparent); border: 1px solid var(--border-subtle); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); backdrop-filter: blur(6px); font-size: 0.8rem; }
+  background: var(--surface-1); border: 1px solid var(--border-subtle); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); font-size: 0.8rem; }
 .nav-miga { border: 0; background: transparent; color: var(--brand-red-dark, #8b0d15); font: inherit; font-weight: 600; padding: 0.15rem 0.35rem; border-radius: 6px; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
 .nav-miga:hover, .nav-miga:focus-visible { background: color-mix(in srgb, var(--brand-red-dark, #8b0d15) 10%, transparent); }
 .nav-miga[disabled] { color: var(--theme-foreground); text-decoration: none; cursor: default; }
@@ -4333,7 +4307,7 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 .panel-seccion .panel-grupo + .panel-grupo { border-top: 0; padding-top: 0; margin-top: 0; }
 .panel-seccion .panel-grupo:first-child { border-left: 3px solid var(--brand-red); padding-left: 0.8rem; }
 .panel-seccion .panel-grupo-unidad select { font-weight: 600; }
-.panel-seccion .panel-grupo-titulo { display: block; font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 0.4rem; padding: 0; float: none; }
+.panel-seccion .panel-grupo-titulo { display: block; font-size: 0.68rem; letter-spacing: 0; color: var(--text-muted); margin: 0 0 0.4rem; padding: 0; float: none; }
 .panel-seccion .panel-campos { display: flex; flex-wrap: wrap; gap: 0.5rem 0.7rem; align-items: flex-start; }
 .panel-seccion .filtro { width: 12.5rem; }
 .panel-seccion .filtro-etiqueta { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -4381,8 +4355,7 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
   display: block;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--text-secondary);
   margin-bottom: 0.3rem;
 }
@@ -4606,3 +4579,1189 @@ body:has(.beta-seccion) #observablehq-main > * { max-width: none; }
 #observablehq-main .beta-seccion > div > :is(details, .claves-lectura, p) {
   max-width: 1320px;
 }
+
+
+/* ==========================================================================
+   CAPA EDITORIAL (octubre 2026)
+   El aspecto del capítulo aprobado (Pruebas Diseño/framework-v2) llevado a
+   todo el sitio: Newsreader para leer y titular, Schibsted Grotesk para la
+   interfaz y las cifras, índice lateral de libro, portada oscura a todo lo
+   ancho en cada capítulo y anatomía de figura editorial. Los colores son los
+   de este sitio: la capa no trae hex nuevos de superficie ni de tinta, solo
+   nombra con los roles del prototipo los tokens que ya existían arriba.
+   Va al final de la hoja para ganar por cascada.
+   ========================================================================== */
+
+/* --- Roles del prototipo sobre los tokens del sitio ------------------------ */
+:root {
+  --canvas: var(--surface-1);
+  --surface: var(--surface-1);
+  --ink: var(--text-primary);
+  --ink-muted: var(--text-secondary);
+  --ink-subtle: var(--text-muted);
+  --hairline: var(--border-subtle);
+  --hairline-strong: var(--border-strong);
+  --primary: var(--brand-red);
+  --primary-texto: var(--brand-red);
+  /* Tierra de los mapas: los grises neutros de base.js (GRIS), no el beige
+     del prototipo. */
+  --land: #e6e6e2;
+  --land-edge: #cfcfc9;
+  /* Una serie de datos frente al rojo resaltado: el par rojo y azul que ya
+     validó base.js (indígena #C4101B, resto #2166AC). */
+  --dato: #2166ac;
+  --dato-soft: #a6c2de;
+  /* Magnitudes: la rampa morada única del sitio (SECUENCIAL de base.js). */
+  --rampa-0: #edf8fb;
+  --rampa-1: #8c96c6;
+  --rampa-2: #6e016b;
+  --verificado: var(--estado-bien);
+  --radio: 6px;
+  --lectura: 68ch;
+  --ancho-explora: 1240px;
+}
+:root[data-tema="oscuro"] {
+  /* En oscuro la capa elevada es la más clara (bloque 3b). */
+  --surface: var(--surface-3);
+  --primary-texto: var(--brand-red-dark);
+  --land: #262624;
+  --land-edge: #3a3a37;
+  --dato: #4a90d9;
+  --dato-soft: #3d5a78;
+  --rampa-0: #2a2233;
+  --rampa-1: #71479b;
+  --rampa-2: #d6b6e6;
+  --verificado: color-mix(in srgb, var(--estado-bien) 55%, #ffffff);
+}
+
+/* --- Tipografía ------------------------------------------------------------ */
+body {
+  font: 1rem/1.6 var(--sans-serif);
+  font-optical-sizing: auto;
+}
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+p { text-wrap: pretty; }
+button, input, select, textarea { font-family: var(--sans-serif); }
+#observablehq-main h1 {
+  border-bottom: 0;
+  padding-bottom: 0;
+  letter-spacing: -0.02em;
+}
+/* La prosa del libro va en Newsreader; la interfaz (filtros, figuras,
+   tablas, globos) sigue en Schibsted. */
+#observablehq-main > p,
+#observablehq-main > ul > li,
+#observablehq-main > ol > li,
+#observablehq-main > blockquote,
+#observablehq-main .entrada-capitulo,
+#observablehq-main .hero-entrada,
+#observablehq-main .seccion-entrada,
+#observablehq-main .relato-cierre p,
+#observablehq-main .book-hero-subtitle,
+#observablehq-main .book-hero-abstract {
+  font-family: var(--serif);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+}
+#observablehq-main > h2:not(.toc-anchor) {
+  font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem);
+  line-height: 1.15;
+  margin-top: 3rem;
+}
+#observablehq-main > h3 {
+  font-size: 1.375rem;
+  line-height: 1.25;
+}
+#observablehq-main hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin: 4rem 0 0;
+  max-width: 1320px;
+}
+:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+
+/* --- Sangrías de Framework, para sacar bloques a todo lo ancho -------------
+   Las condiciones son las expresiones literales de layout.css de Framework:
+   el centro tiene 2rem de margen; con el sidebar abierto suma 1rem a cada
+   lado, y el índice de la derecha reserva 192px + 1rem dentro de main. */
+#observablehq-main {
+  --sangria-izq: 2rem;
+  --sangria-der: 2rem;
+}
+@media (min-width: calc(640px + 5rem + 192px)) {
+  #observablehq-toc ~ #observablehq-main { --sangria-der: calc(3rem + 192px); }
+}
+@media (min-width: calc(640px + 6rem + 272px)) {
+  #observablehq-sidebar-toggle:checked ~ #observablehq-center #observablehq-main,
+  #observablehq-sidebar-toggle:indeterminate ~ #observablehq-center #observablehq-main {
+    --sangria-izq: 3rem;
+    --sangria-der: 3rem;
+  }
+}
+@media (min-width: calc(640px + 7rem + 272px + 192px)) {
+  #observablehq-sidebar-toggle:checked ~ #observablehq-center #observablehq-toc ~ #observablehq-main,
+  #observablehq-sidebar-toggle:indeterminate ~ #observablehq-center #observablehq-toc ~ #observablehq-main {
+    --sangria-der: calc(4rem + 192px);
+  }
+}
+/* Con portada, la página arranca pegada arriba. */
+body:has(.portada-capitulo, .portada-cap) #observablehq-center { margin-top: 0; }
+/* Mientras la portada ocupa la parte de arriba, el índice se aparta (lo
+   marca el script de la cabecera con un IntersectionObserver). */
+#observablehq-toc { transition: opacity 160ms ease, visibility 160ms ease; }
+:root.portada-a-la-vista #observablehq-toc { opacity: 0; visibility: hidden; }
+
+/* --- Índice lateral como índice de libro ---------------------------------- */
+#observablehq-sidebar { background: var(--surface-2); }
+#observablehq-sidebar summary {
+  font: 600 1rem/1.3 var(--serif);
+  letter-spacing: 0;
+  color: var(--text-secondary);
+}
+#observablehq-sidebar details.observablehq-section-active > summary { color: var(--text-primary); }
+#observablehq-sidebar details summary:hover { color: var(--text-primary); background: transparent; }
+/* Una sola marca roja: la de la parte que se está leyendo. */
+#observablehq-sidebar details[open]:not(.observablehq-section-active) > summary::before { opacity: 0; }
+#observablehq-sidebar .observablehq-link a {
+  font: 400 0.875rem/1.35 var(--sans-serif);
+  color: var(--text-secondary);
+}
+#observablehq-sidebar .observablehq-link a:hover { color: var(--text-primary); background: transparent; }
+#observablehq-sidebar .observablehq-link-active a {
+  color: var(--text-primary);
+  font-weight: 700;
+  background: transparent;
+}
+#observablehq-sidebar .observablehq-link-active::before { background: var(--brand-red); }
+.sidebar-brand-title { font: 600 1.375rem/1.05 var(--serif); letter-spacing: -0.01em; }
+.sidebar-brand-obs { font-family: var(--sans-serif); }
+.boton-tema {
+  min-height: 36px;
+  padding: 0 0.8rem;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radio);
+  font: 600 0.875rem/1 var(--sans-serif);
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+.boton-tema:hover { color: var(--text-primary); border-color: var(--text-primary); background: transparent; }
+@media (max-width: calc(640px + 6rem + 272px - 1px)) {
+  /* Sin sidebar el botón del índice es una pastilla, no una franja encima
+     del texto (y se lee sobre la portada oscura). */
+  #observablehq-sidebar-toggle {
+    top: 0.5rem; left: 0.5rem; width: 44px; height: 44px; z-index: 20;
+    background: var(--surface-1); color: var(--text-primary);
+    border: 1px solid var(--border-strong); border-radius: var(--radio);
+  }
+}
+
+/* --- Portada de capítulo --------------------------------------------------- */
+.portada-capitulo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-items: end;
+  box-sizing: border-box;
+  min-height: min(66svh, 600px);
+  margin: -1rem calc(-1 * var(--sangria-der)) 0 calc(-1 * var(--sangria-izq));
+  max-width: none;
+  background: var(--papel-portada);
+  color: var(--tinta-portada);
+}
+.portada-capitulo-mapa {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(58%, 820px);
+  height: 100%;
+  padding: clamp(1.5rem, 5svh, 3rem) clamp(1rem, 3vw, 3rem);
+  box-sizing: border-box;
+  object-fit: contain;
+  object-position: right center;
+}
+.portada-capitulo-texto {
+  padding: clamp(5rem, 14svh, 8rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2.25rem, 7svh, 4.5rem);
+  max-width: 44rem;
+}
+#observablehq-main .portada-capitulo h1 {
+  font: 600 clamp(2.75rem, 1.6rem + 4.6vw, 5.75rem)/0.95 var(--serif);
+  letter-spacing: -0.03em;
+  color: var(--tinta-portada);
+  margin: 0.5rem 0 0;
+  max-width: 13ch;
+}
+.portada-capitulo-parte {
+  margin: 0;
+  font: 600 0.9375rem/1.4 var(--sans-serif);
+  color: color-mix(in srgb, var(--tinta-portada) 80%, var(--papel-portada));
+}
+#observablehq-main .portada-capitulo-dek {
+  margin: 1.25rem 0 0;
+  max-width: 34ch;
+  font: 400 clamp(1.25rem, 1.05rem + 0.7vw, 1.5625rem)/1.4 var(--serif);
+  color: color-mix(in srgb, var(--tinta-portada) 92%, var(--papel-portada));
+}
+@media (max-width: 759px) {
+  .portada-capitulo { min-height: min(78svh, 620px); }
+  .portada-capitulo-mapa {
+    left: 0; right: 0; bottom: auto; width: 100%; height: 46%;
+    padding: 4rem 1.25rem 0.5rem; object-position: center top;
+  }
+  .portada-capitulo-texto { padding-top: 48%; }
+}
+/* Lo que sigue a la portada: el resto del texto de entrada. */
+#observablehq-main .entrada-capitulo {
+  margin: clamp(2rem, 6svh, 3.5rem) 0 0;
+  max-width: var(--lectura);
+  color: var(--text-primary);
+}
+/* Páginas sin portada (metodología, mapa por AGEB): cabecera clara. */
+.hero-pagina { border-bottom: 0; margin: 1.5rem 0 2rem; padding: 0; }
+.hero-pagina .kicker {
+  font: 600 0.9375rem/1.4 var(--sans-serif);
+  color: var(--text-secondary);
+  margin: 0;
+}
+#observablehq-main .hero-pagina h1 {
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+  line-height: 1.02;
+  margin: 0.5rem 0 0;
+  max-width: 18ch;
+}
+#observablehq-main .hero-entrada {
+  margin-top: 1rem;
+  max-width: var(--lectura);
+  color: var(--text-secondary);
+}
+
+/* --- Cabecera de sección --------------------------------------------------- */
+.seccion-cabeza { margin: 3rem 0 1.25rem; }
+#observablehq-main .seccion-cabeza .kicker {
+  display: block;
+  margin: 0;
+  font: 600 clamp(1.625rem, 1.3rem + 1vw, 2.125rem)/1.15 var(--serif);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  text-wrap: balance;
+  max-width: 34ch;
+}
+/* La numeración 01, 02 no aporta en el índice de una página: se oculta a la
+   vista y queda en el texto. */
+.seccion-cabeza .kicker-num {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+#observablehq-main .seccion-entrada {
+  margin-top: 0.75rem;
+  max-width: var(--lectura);
+  color: var(--text-primary);
+}
+/* En las secciones de tablero el título ya no se pega arriba: es grande y se
+   comería el alto de la gráfica. Se pega solo el panel de filtros. */
+.seccion-tablero .kicker {
+  position: static;
+  background: transparent;
+  padding: 0;
+}
+
+/* --- Cifras ---------------------------------------------------------------- */
+.kpi-etiqueta { font: 600 0.875rem/1.35 var(--sans-serif); color: var(--text-secondary); letter-spacing: 0; }
+.kpi-cifra {
+  font: 800 clamp(2.25rem, 1.8rem + 1.5vw, 3rem)/1 var(--sans-serif);
+  letter-spacing: -0.03em;
+  font-variant-numeric: lining-nums;
+}
+.kpi-nota { font: 0.875rem/1.45 var(--sans-serif); color: var(--text-muted); }
+
+/* --- Panel de filtros ------------------------------------------------------ */
+#observablehq-main .panel-filtros {
+  background: var(--surface-2);
+  border: 0;
+  border-radius: var(--radio);
+  padding: 1rem 1.25rem 1.1rem;
+  font-family: var(--sans-serif);
+}
+.seccion-tablero .panel-filtros { box-shadow: 0 1px 0 var(--border-subtle); }
+#observablehq-main .panel-grupo-titulo,
+#observablehq-main .panel-seccion .panel-grupo-titulo {
+  font: 700 0.9375rem/1.3 var(--sans-serif);
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+.filtro-etiqueta,
+.panel-filtros [class*="inputs-"] > label {
+  font: 600 0.8125rem/1.3 var(--sans-serif);
+  letter-spacing: 0;
+  color: var(--text-secondary);
+}
+.filtro select,
+.panel-filtros [class*="inputs-"] select,
+.panel-filtros [class*="inputs-"] input[type="text"],
+.panel-filtros [class*="inputs-"] input[type="search"],
+.filtro-caja input {
+  min-height: 42px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radio);
+  font: 500 0.9375rem/1.2 var(--sans-serif);
+  background-color: var(--surface-1);
+  color: var(--text-primary);
+}
+.filtro select:hover,
+.panel-filtros [class*="inputs-"] select:hover { border-color: var(--text-primary); }
+
+/* --- Figura ---------------------------------------------------------------- */
+#observablehq-main :is(figure[class^="grafica-"], figure[class*=" grafica-"]) > h3 {
+  font: 600 1.4375rem/1.2 var(--serif);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 0;
+  max-width: 46ch;
+}
+#observablehq-main .grafica-sub {
+  margin: 0.35rem 0 0.9rem;
+  font: 0.9375rem/1.45 var(--sans-serif);
+  color: var(--text-secondary);
+  max-width: 90ch;
+}
+#observablehq-main :is(figure[class^="grafica-"], figure[class*=" grafica-"]) > figcaption {
+  margin-top: 0.85rem;
+  font: 0.875rem/1.45 var(--sans-serif);
+  color: var(--text-muted);
+  max-width: 90ch;
+}
+.descarga { font: 0.875rem var(--sans-serif); color: var(--text-muted); }
+.descarga-boton {
+  min-height: 34px;
+  padding: 0 0.65rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radio);
+  font: 600 0.8125rem/1 var(--sans-serif);
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+.descarga-boton:hover { border-color: var(--text-primary); background: var(--surface-2); }
+.nota-referencia, .claves-lectura, .aviso-muestra { font-family: var(--sans-serif); }
+
+/* --- Desplegables: idénticos cerrados, uno debajo de otro ------------------ */
+#observablehq-main :is(details.verificado, details.explica-analisis, details.tabla-datos) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--border-subtle);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  max-width: 1320px;
+  font-family: var(--sans-serif);
+}
+#observablehq-main :is(details.verificado, details.explica-analisis, details.tabla-datos):not(:is(details.verificado, details.explica-analisis, details.tabla-datos) + details) {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+#observablehq-main :is(details.verificado, details.explica-analisis, details.tabla-datos) > summary {
+  display: list-item;
+  list-style-position: inside;
+  padding: 0.8rem 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  font: 600 1rem/1.4 var(--sans-serif);
+  letter-spacing: 0;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+#observablehq-main :is(details.verificado, details.explica-analisis, details.tabla-datos) > summary:hover { color: var(--primary-texto); }
+#observablehq-main :is(details.verificado, details.explica-analisis, details.tabla-datos)[open] {
+  padding-bottom: 1.25rem;
+  background: transparent;
+}
+#observablehq-main details.explica-analisis p {
+  margin: 0 0 0.5rem;
+  padding: 1rem 1.25rem;
+  border: 0;
+  border-radius: var(--radio);
+  background: var(--surface-2);
+  font: 0.9375rem/1.55 var(--sans-serif);
+  color: var(--text-secondary);
+  max-width: 80ch;
+}
+#observablehq-main details.verificado[open] > :not(summary) {
+  background: var(--surface-2);
+  border-radius: var(--radio);
+}
+
+/* --- Tablas ---------------------------------------------------------------- */
+#observablehq-main .tabla-datos table,
+#observablehq-main .cap-tabla table {
+  border-collapse: collapse;
+  font: 0.875rem/1.4 var(--sans-serif);
+  font-variant-numeric: lining-nums;
+}
+#observablehq-main .tabla-datos th,
+#observablehq-main .cap-tabla th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-strong);
+  padding: 0.4rem 1.25rem 0.4rem 0;
+  white-space: nowrap;
+}
+#observablehq-main .tabla-datos td,
+#observablehq-main .cap-tabla td {
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.4rem 1.25rem 0.4rem 0;
+  color: var(--text-primary);
+}
+#observablehq-main :is(.tabla-datos, .cap-tabla) :is(td, th).num { text-align: right; }
+
+/* --- Portada del libro (inicio) --------------------------------------------
+   Los bloques obligatorios se quedan; cambia la tipografía. */
+.book-hero-eyebrow {
+  font: 600 0.9375rem/1.4 var(--sans-serif);
+  letter-spacing: 0;
+  color: var(--text-secondary);
+}
+#observablehq-main .book-hero-title {
+  font: 600 clamp(2.25rem, 1.5rem + 3vw, 4rem)/1.02 var(--serif);
+  letter-spacing: -0.025em;
+  max-width: 18ch;
+}
+#observablehq-main .book-hero-subtitle {
+  font-size: 1.375rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+#observablehq-main .book-hero-abstract { color: var(--text-primary); max-width: var(--lectura); }
+.book-cta {
+  font: 700 1rem var(--sans-serif);
+  letter-spacing: 0;
+  border-radius: var(--radio);
+  min-height: 48px;
+}
+.book-cover-title { font-family: var(--serif); letter-spacing: -0.01em; }
+.book-meta-label { font: 600 0.875rem/1.4 var(--sans-serif); letter-spacing: 0; color: var(--text-muted); }
+.book-meta-value { font-family: var(--sans-serif); font-variant-numeric: lining-nums; }
+.book-citation-header h2 { font-size: 1.75rem; }
+.book-citation-tab { font-family: var(--sans-serif); letter-spacing: 0; }
+.book-citation-text { font-family: var(--sans-serif); }
+.instituciones-eyebrow { letter-spacing: 0; }
+/* Tarjetas de la portada (las cinco partes): título en Newsreader. */
+#observablehq-main .card h2, #observablehq-main .card h3 { font-family: var(--serif); }
+
+/* --- Pie --------------------------------------------------------------------- */
+#observablehq-footer { font-family: var(--sans-serif); }
+.book-footer-col-title { font: 600 1rem var(--serif); letter-spacing: 0; }
+
+/* ==========================================================================
+   Capítulo «De dónde vienen» (components/capitulo/). Acotado a .capitulo-v2
+   con el id de main, para ganar a las reglas generales del sitio.
+   ========================================================================== */
+#observablehq-main .capitulo-v2 { max-width: none; font-family: var(--serif); }
+.capitulo-v2 [hidden] { display: none !important; }
+.capitulo-v2 .aviso-lector {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; margin: 0; padding: 0;
+}
+/* Personalización. */
+.capitulo-v2 .personaliza { max-width: var(--lectura); margin: clamp(3rem, 8svh, 5rem) auto 0; }
+#observablehq-main .capitulo-v2 .personaliza-titulo { font-size: clamp(1.625rem, 1.3rem + 1vw, 2.125rem); line-height: 1.15; margin: 0; }
+.capitulo-v2 .personaliza-titulo label { cursor: pointer; }
+#observablehq-main .capitulo-v2 .personaliza-nota { color: var(--ink-muted); font: 1.0625rem/1.55 var(--serif); margin: 0.75rem 0 0; }
+.capitulo-v2 .personaliza-campo { position: relative; margin-top: 1.25rem; max-width: 26rem; }
+.capitulo-v2 .personaliza-campo select, .capitulo-v2 .campo select {
+  appearance: none; -webkit-appearance: none; width: 100%; min-height: 48px; box-sizing: border-box;
+  padding: 0 2.5rem 0 0.9rem; font: 600 1.0625rem/1.2 var(--sans-serif);
+  color: var(--ink); background: var(--surface); border: 1.5px solid var(--ink); border-radius: var(--radio);
+  cursor: pointer; transition: background-color 120ms ease;
+}
+.capitulo-v2 .personaliza-campo select:hover, .capitulo-v2 .campo select:hover { background: var(--surface-2); }
+.capitulo-v2 .personaliza-campo::after, .capitulo-v2 .campo-alc::after {
+  content: ""; position: absolute; right: 1rem; bottom: 1.25rem; width: 0.5rem; height: 0.5rem;
+  border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); pointer-events: none;
+}
+#observablehq-main .capitulo-v2 .personaliza-confirmacion { font: 600 1rem/1.5 var(--sans-serif); color: var(--ink); margin: 0.75rem 0 0; min-height: 1.5em; }
+
+/* Escena fija de cada bloque. */
+.capitulo-v2 .escena { position: relative; width: 100%; height: 100%; }
+.capitulo-v2 .escena-svg { display: block; overflow: hidden; }
+.capitulo-v2 .escena-estatica { height: 360px; }
+
+/* Gráfica de cada bloque (escena): colores por clase, cambian con el tema. */
+.capitulo-v2 .esc-tierra { fill: var(--land); stroke: var(--canvas); }
+.capitulo-v2 .esc-tierra.es-ciudad { fill: var(--land-edge); }
+.capitulo-v2 .esc-tierra.es-activo { fill: color-mix(in srgb, var(--ink) 20%, var(--land)); }
+.capitulo-v2 .esc-tierra.es-lector-ent { fill: color-mix(in srgb, var(--primary) 28%, var(--land)); }
+.capitulo-v2 .esc-alc { fill: var(--land); stroke: var(--canvas); }
+.capitulo-v2 .esc-burbuja { fill: var(--dato); fill-opacity: 0.28; stroke: var(--dato); stroke-width: 1; }
+.capitulo-v2 .esc-burbuja.es-lector { fill: var(--primary); fill-opacity: 0.6; stroke: var(--primary); }
+.capitulo-v2 .esc-destino-punto { fill: var(--ink); stroke: var(--canvas); stroke-width: 1.5; }
+.capitulo-v2 .esc-arco { fill: none; stroke: var(--dato); stroke-opacity: 0.42; stroke-linecap: round; }
+.capitulo-v2 .esc-arco.activo { stroke: var(--ink); stroke-opacity: 0.95; }
+.capitulo-v2 .esc-arco.es-lector { stroke: var(--primary); stroke-opacity: 0.95; }
+.capitulo-v2 .esc-circulo { fill: var(--dato); fill-opacity: 0.3; stroke: var(--dato); }
+.capitulo-v2 .esc-circulo.es-lector { fill: var(--primary); fill-opacity: 0.55; stroke: var(--primary); }
+.capitulo-v2 .esc-contorno-rojo { fill: none; stroke: var(--primary); }
+.capitulo-v2 .esc-unidad { fill: transparent; stroke: var(--hairline-strong); stroke-width: 1; transition: fill 160ms ease; }
+.capitulo-v2 .esc-unidad.lleno.cat-otra { fill: var(--primary); stroke: none; }
+.capitulo-v2 .esc-unidad.lleno.cat-pais { fill: var(--dato); stroke: none; }
+.capitulo-v2 .esc-unidad.lleno.cat-ne { fill: var(--dato-soft); stroke: none; }
+.capitulo-v2 .esc-unidad.lleno.cat-ciudad { fill: var(--surface); stroke: var(--ink-subtle); stroke-width: 1.5; }
+.capitulo-v2 .esc-unidad.lleno.es-lector { stroke: var(--ink); stroke-width: 2.5; }
+.capitulo-v2 .esc-flujo { fill: none; stroke: var(--dato); stroke-opacity: 0.26; }
+.capitulo-v2 .esc-flujo.activo { stroke: var(--ink); stroke-opacity: 0.6; }
+.capitulo-v2 .esc-flujo.activo.es-lector { stroke: var(--primary); stroke-opacity: 0.7; }
+.capitulo-v2 .esc-nodo { fill: var(--ink-subtle); }
+.capitulo-v2 .esc-nodo.activo { fill: var(--ink); }
+.capitulo-v2 .esc-nodo.activo.es-lector { fill: var(--primary); }
+.capitulo-v2 .esc-rotulo-san { fill: var(--ink); font-family: var(--sans-serif); font-weight: 600; }
+.capitulo-v2 .esc-rotulo-san .cifra-san { fill: var(--ink-muted); font-weight: 400; font-variant-numeric: lining-nums; }
+.capitulo-v2 .esc-rotulo-san.activo.es-lector { fill: var(--primary-texto); }
+.capitulo-v2 .esc-trazo { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.capitulo-v2 .esc-trazo.lector { stroke: var(--primary); }
+.capitulo-v2 .esc-punto { fill: var(--ink); stroke: var(--canvas); stroke-width: 1.5; }
+.capitulo-v2 .esc-punto.lector { fill: var(--primary); }
+.capitulo-v2 .esc-valor { font: 700 13px var(--sans-serif); fill: var(--ink); font-variant-numeric: lining-nums; paint-order: stroke; stroke: var(--canvas); stroke-width: 4px; stroke-linejoin: round; }
+.capitulo-v2 .esc-valor.lector { fill: var(--primary-texto); font-weight: 600; }
+.capitulo-v2 .esc-ejes .rejilla { stroke: var(--hairline); }
+.capitulo-v2 .esc-ejes .base { stroke: var(--ink-subtle); }
+.capitulo-v2 .eje-texto { font: 12.5px var(--sans-serif); fill: var(--ink-subtle); font-variant-numeric: lining-nums; }
+.capitulo-v2 .rotulo text { font-family: var(--sans-serif); font-size: 13px; paint-order: stroke; stroke: var(--canvas); stroke-width: 4px; stroke-linejoin: round; }
+.capitulo-v2 .rotulo .r1 { font-weight: 700; fill: var(--ink); }
+.capitulo-v2 .rotulo .r2 { fill: var(--ink-muted); font-variant-numeric: lining-nums; }
+.capitulo-v2 .rotulo .guia { stroke: var(--ink-subtle); stroke-width: 1; }
+.capitulo-v2 .rotulo.es-lector .r1 { fill: var(--primary-texto); }
+.capitulo-v2 .escena-anio {
+  position: absolute; right: clamp(0.75rem, 3vw, 2.5rem); top: clamp(0.5rem, 4svh, 3rem);
+  font: 800 clamp(2.5rem, 2rem + 3vw, 5rem)/1 var(--sans-serif); color: var(--ink-subtle);
+  font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.03em;
+}
+.capitulo-v2 .escena-leyenda {
+  position: absolute; right: clamp(0.75rem, 3vw, 2.5rem); bottom: 0.75rem; max-width: min(34rem, calc(100% - 1.5rem));
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.25rem 1rem; font: 0.8125rem/1.35 var(--sans-serif); color: var(--ink-muted);
+}
+.capitulo-v2 .escena-estatica .escena-leyenda { left: 0; right: 0; justify-content: flex-start; bottom: 0; }
+.capitulo-v2 .escena-estatica .escena-anio { top: 0; right: 0; }
+.capitulo-v2 .ley-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+.capitulo-v2 .ley-muestra { display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 50%; flex: none; }
+.capitulo-v2 .m-rojo { background: var(--primary); }
+.capitulo-v2 .m-dato { background: color-mix(in srgb, var(--dato) 45%, var(--canvas)); border: 1px solid var(--dato); }
+.capitulo-v2 .m-hueco { background: var(--surface); border: 1.5px solid var(--ink-subtle); }
+.capitulo-v2 .m-anillo { background: var(--primary); box-shadow: 0 0 0 2px var(--canvas), 0 0 0 3.5px var(--ink); }
+.capitulo-v2 .m-tinta { background: var(--ink); height: 3px; border-radius: 0; width: 1.2rem; }
+.capitulo-v2 .m-punto { background: var(--ink); width: 0.55rem; height: 0.55rem; }
+.capitulo-v2 .ley-rampa { flex-direction: column; align-items: stretch; gap: 0.25rem; min-width: 14rem; }
+.capitulo-v2 .rampa { display: block; height: 0.6rem; border-radius: 2px; }
+.capitulo-v2 .rampa-ejes { display: flex; justify-content: space-between; font-variant-numeric: lining-nums; }
+
+/* Explora. */
+.capitulo-v2 .explora { max-width: var(--ancho-explora); margin: 6rem auto 0; scroll-margin-top: 1rem; }
+#observablehq-main .capitulo-v2 .explora > h2 { font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.375rem); line-height: 1.1; margin: 0; max-width: none; }
+.capitulo-v2 .cap-panel {
+  display: flex; flex-direction: column; align-items: stretch; gap: 1rem; margin-top: 1.5rem;
+  background: var(--surface-2); border-radius: var(--radio); padding: 1rem 1.25rem 1.1rem; font-family: var(--sans-serif);
+}
+.capitulo-v2 .cap-grupo { border: 0; margin: 0; padding: 0; min-width: 0; width: 100%; }
+.capitulo-v2 .cap-grupo > legend { font: 700 0.9375rem var(--sans-serif); color: var(--ink); padding: 0; margin-bottom: 0.5rem; }
+.capitulo-v2 .cap-campos { display: grid; grid-template-columns: auto minmax(12rem, 1fr) minmax(12rem, 1fr); gap: 0.75rem 1.25rem; align-items: start; }
+@media (max-width: 1100px) { .capitulo-v2 .cap-campos { grid-template-columns: 1fr 1fr; } .capitulo-v2 .campo-anio { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .capitulo-v2 .cap-campos { grid-template-columns: 1fr; } }
+.capitulo-v2 .campo { border: 0; margin: 0; padding: 0; min-width: 0; position: relative; }
+.capitulo-v2 .campo-etiqueta { display: block; font: 600 0.8125rem/1.3 var(--sans-serif); color: var(--ink-muted); padding: 0; margin-bottom: 0.3rem; }
+.capitulo-v2 .campo select { min-height: 42px; font-size: 0.9375rem; border-width: 1px; border-color: var(--hairline-strong); }
+.capitulo-v2 .campo-alc::after { bottom: 1.05rem; }
+.capitulo-v2 .segmentos { display: flex; flex-wrap: wrap; gap: 0; }
+.capitulo-v2 .segmento { position: relative; }
+.capitulo-v2 .segmento input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.capitulo-v2 .segmento span {
+  display: inline-flex; align-items: center; min-height: 42px; padding: 0 0.8rem; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--hairline-strong); margin-left: -1px; font: 600 0.9375rem/1 var(--sans-serif);
+  font-variant-numeric: tabular-nums lining-nums; cursor: pointer; transition: background-color 120ms ease, color 120ms ease;
+}
+.capitulo-v2 .segmento:first-child span { border-radius: var(--radio) 0 0 var(--radio); margin-left: 0; }
+.capitulo-v2 .segmento:last-child span { border-radius: 0 var(--radio) var(--radio) 0; }
+.capitulo-v2 .segmento span:hover { background: var(--surface-2); }
+.capitulo-v2 .segmento input:checked + span { background: var(--ink); color: var(--canvas); border-color: var(--ink); position: relative; z-index: 1; }
+.capitulo-v2 .segmento input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; position: relative; z-index: 2; }
+.capitulo-v2 .buscador { display: flex; }
+.capitulo-v2 .buscador input {
+  flex: 1; min-width: 0; min-height: 42px; padding: 0 0.75rem; font: 500 0.9375rem var(--sans-serif); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--hairline-strong); border-right: 0; border-radius: var(--radio) 0 0 var(--radio);
+}
+.capitulo-v2 .buscador input::placeholder { color: var(--ink-subtle); opacity: 1; }
+.capitulo-v2 .buscador-limpiar {
+  min-height: 42px; padding: 0 0.8rem; background: var(--surface); color: var(--ink); border: 1px solid var(--hairline-strong);
+  border-radius: 0 var(--radio) var(--radio) 0; font: 600 0.875rem/1 var(--sans-serif); cursor: pointer; transition: background-color 120ms ease;
+}
+.capitulo-v2 .buscador-limpiar:hover { background: var(--surface-2); }
+#observablehq-main .capitulo-v2 .campo-aviso { font: 0.8125rem/1.4 var(--sans-serif); color: var(--ink); margin: 0.3rem 0 0; max-width: none; }
+.capitulo-v2 .campo-aviso:empty { display: none; }
+#observablehq-main .capitulo-v2 .explora-estado { font: 0.875rem var(--sans-serif); color: var(--ink-muted); margin: 0.75rem 0 0; max-width: none; }
+#observablehq-main .capitulo-v2 figure.grafica { margin: 1.5rem 0 0; max-width: none; overflow: visible; }
+#observablehq-main .capitulo-v2 .cifra { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; margin: 0 0 1rem; max-width: none; }
+.capitulo-v2 .cifra-valor { font: 800 clamp(2.75rem, 2rem + 2.5vw, 4rem)/1 var(--sans-serif); color: var(--primary); letter-spacing: -0.03em; font-variant-numeric: lining-nums; }
+#observablehq-main .capitulo-v2 .cifra-texto { font: 1.0625rem/1.4 var(--sans-serif); color: var(--ink); max-width: 46ch; margin: 0; }
+#observablehq-main .capitulo-v2 figure.grafica > h3 { font: 600 1.4375rem/1.2 var(--serif); margin: 0; max-width: none; color: var(--ink); }
+#observablehq-main .capitulo-v2 .leyenda { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0.75rem 0 0; font: 0.875rem var(--sans-serif); color: var(--ink-muted); max-width: none; }
+.capitulo-v2 .grafica-lienzo { margin-top: 1rem; position: relative; }
+.capitulo-v2 .explora-vistas.lado { display: grid; grid-template-columns: 56fr 44fr; gap: 0 32px; align-items: start; }
+.capitulo-v2 .explora-vistas > * { min-width: 0; }
+.capitulo-v2 .explora-vistas svg { display: block; max-width: 100%; }
+.capitulo-v2 .vista-barras svg .barra-fila { cursor: default; outline: none; }
+.capitulo-v2 .vista-barras svg .barra-fila:focus-visible .barra-marco { stroke: var(--ink); stroke-width: 2; }
+.capitulo-v2 .sin-dato { display: grid; place-items: center; min-height: 220px; border: 1px dashed var(--hairline-strong); border-radius: var(--radio); color: var(--ink-muted); font: 0.9375rem var(--sans-serif); padding: 1rem; text-align: center; }
+.capitulo-v2 .globo {
+  position: absolute; z-index: 10; pointer-events: none; display: grid; gap: 0.1rem; min-width: 11rem; max-width: 16rem;
+  background: var(--ink); color: var(--canvas); padding: 0.55rem 0.75rem; border-radius: var(--radio);
+  font: 0.875rem/1.35 var(--sans-serif); font-variant-numeric: lining-nums;
+}
+.capitulo-v2 .globo-dim { font-size: 0.75rem; color: var(--canvas); }
+.capitulo-v2 .globo strong { font-size: 0.9375rem; }
+#observablehq-main .capitulo-v2 figure.grafica > figcaption { margin-top: 0.85rem; font: 0.875rem/1.45 var(--sans-serif); color: var(--ink-subtle); max-width: 90ch; }
+.capitulo-v2 .descarga { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.75rem; }
+.capitulo-v2 .desplegables { margin-top: 1.5rem; border-top: 1px solid var(--hairline); font-family: var(--sans-serif); }
+.capitulo-v2 .desplegables details { border-bottom: 1px solid var(--hairline); max-width: none; margin: 0; }
+.capitulo-v2 .desplegables summary { padding: 0.8rem 0; cursor: pointer; font: 600 1rem var(--sans-serif); color: var(--ink); list-style-position: inside; }
+.capitulo-v2 .desplegables summary:hover { color: var(--primary-texto); }
+.capitulo-v2 .desplegables details[open] > div { margin: 0 0 1.25rem; padding: 1rem 1.25rem; background: var(--surface-2); border-radius: var(--radio); }
+#observablehq-main .capitulo-v2 .desplegables :is(p, li) { font: 0.9375rem/1.55 var(--sans-serif); color: var(--ink-muted); max-width: 80ch; }
+.capitulo-v2 .desplegables ul { padding-left: 1.1rem; margin: 0.25rem 0; }
+.capitulo-v2 .cotejo-ok { color: var(--verificado); font-weight: 700; }
+.capitulo-v2 .cotejo-pendiente { color: var(--ink); font-weight: 700; }
+.capitulo-v2 .cap-tabla { overflow-x: auto; max-width: 100%; }
+
+/* Cierre del capítulo. */
+#observablehq-main .capitulo-cierre { max-width: var(--ancho-explora); margin: 6rem auto 0; padding-top: 2rem; border-top: 1px solid var(--hairline); }
+#observablehq-main .cierre-texto { font: 1.25rem/1.5 var(--serif); max-width: 52ch; margin: 0; }
+.cierre-tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+#observablehq-main a.cierre-tarjeta {
+  display: grid; gap: 0.25rem; padding: 1.25rem 1.4rem; border: 1px solid var(--hairline-strong); border-radius: var(--radio);
+  background: var(--surface); color: var(--ink); text-decoration: none; transition: border-color 120ms ease, background-color 120ms ease;
+}
+#observablehq-main a.cierre-tarjeta:hover { border-color: var(--ink); background: var(--surface-2); }
+.cierre-rotulo { font: 600 0.875rem var(--sans-serif); color: var(--ink-subtle); }
+.cierre-nombre { font: 600 1.5rem/1.15 var(--serif); color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .capitulo-v2 *, .capitulo-v2 *::before, .capitulo-v2 *::after { transition-duration: 0.01ms !important; }
+}
+
+/* --- Ajustes tras la primera revisión de capturas --------------------------- */
+/* Separador: una línea fina, sin el degradado heredado. */
+#observablehq-main hr { background: none; height: 0; }
+/* Rótulos que eran monoespaciados: pasan a Schibsted (el código sigue en mono). */
+.book-footer-col-title, .instituciones-eyebrow, .card-numero, .book-cover-eyebrow, .book-cover-year {
+  font-family: var(--sans-serif);
+}
+.instituciones-eyebrow { font-size: 0.8125rem; font-weight: 600; color: var(--text-muted); }
+#observablehq-main code { overflow-wrap: anywhere; }
+/* La marca del sidebar no lleva la barra de página activa. */
+#observablehq-sidebar > ol:first-child > li.observablehq-link-active::before { display: none; }
+/* Grupos del panel apilados como en el prototipo: sin costados de color. */
+#observablehq-main .panel-seccion .panel-grupo,
+#observablehq-main .panel-seccion .panel-grupo:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+.panel-mapa .panel-grupo-unidad, .mapa-aviso, .mapa-fijada, .mapa-seleccion-caja { border-left-color: var(--border-strong); }
+.book-citation-bibtex { border-left: 0; }
+/* Marcador nativo de los desplegables en tinta, no en rojo. */
+#observablehq-main details > summary::marker { color: var(--text-primary); }
+/* Título de figura en tinta también en oscuro (había una regla roja con más
+   peso para ese tema). */
+:root[data-tema="oscuro"] #observablehq-main :is(figure[class^="grafica-"], figure[class*=" grafica-"]) > h3 {
+  color: var(--text-primary);
+}
+#observablehq-main :is(figure[class^="grafica-"], figure[class*=" grafica-"]) > h3 { max-width: 60ch; }
+.filtro select,
+.panel-filtros [class*="inputs-"] select,
+.filtro-caja input { font-size: 0.875rem; }
+/* Portada del libro: botón principal en tinta, el rojo queda en la cifra. */
+#observablehq-main .book-cta-primary { background: var(--text-primary); border-color: var(--text-primary); color: var(--surface-1); box-shadow: none; }
+#observablehq-main .book-cta-primary:hover { background: var(--text-secondary); border-color: var(--text-secondary); color: var(--surface-1); }
+#observablehq-main .book-cta:not(.book-cta-primary) { color: var(--text-primary); border-color: var(--border-strong); background: transparent; }
+#observablehq-main .book-cta:not(.book-cta-primary):hover { border-color: var(--text-primary); }
+/* Metadatos y cita sin caja: una línea fina arriba, como el prototipo. */
+#observablehq-main .book-meta-grid,
+#observablehq-main .book-citation {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.descarga-etiqueta { color: var(--text-muted); font: 600 0.875rem var(--sans-serif); letter-spacing: 0; }
+:root[data-tema="oscuro"] .descarga-etiqueta { color: var(--text-muted); }
+/* Entre 760 y 1279 px el mapa de la portada pasaba por debajo del título. */
+@media (min-width: 760px) and (max-width: 1279px) {
+  .portada-capitulo-mapa { width: 42%; opacity: 0.75; }
+}
+
+/* >>> motivos de portada (generado) */
+/* Generado por motivos2.mjs: motivo de la portada de cada parte.
+   Estado base = dibujo completo (lo que se ve con prefers-reduced-motion).
+   La animacion corre una vez cuando la portada recibe .en-vista. */
+.motivo { display: block; width: 100%; height: 100%; overflow: visible; }
+.motivo .a-dib { stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+.motivo :is(.a-crx, .a-cry, .a-esc, .a-sep) { transform-box: fill-box; }
+.motivo .a-crx { transform-origin: left center; }
+.motivo .a-cry { transform-origin: center bottom; }
+.motivo .a-esc { transform-origin: center; }
+.motivo .a-sep { transform: translateX(110px); }
+@keyframes m-dib-0 { 0%, 0% { stroke-dashoffset: 1; } 30%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-1 { 0%, 3% { stroke-dashoffset: 1; } 33%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-2 { 0%, 6% { stroke-dashoffset: 1; } 36%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-3 { 0%, 9% { stroke-dashoffset: 1; } 39%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-4 { 0%, 12% { stroke-dashoffset: 1; } 42%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-5 { 0%, 15% { stroke-dashoffset: 1; } 45%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-6 { 0%, 18% { stroke-dashoffset: 1; } 48%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-7 { 0%, 21% { stroke-dashoffset: 1; } 51%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-8 { 0%, 24% { stroke-dashoffset: 1; } 54%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-9 { 0%, 27% { stroke-dashoffset: 1; } 57%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-10 { 0%, 30% { stroke-dashoffset: 1; } 60%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-dib-11 { 0%, 33% { stroke-dashoffset: 1; } 63%, 100% { stroke-dashoffset: 0; } }
+@keyframes m-crx-0 { 0%, 0% { transform: scaleX(0); } 30%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-1 { 0%, 3% { transform: scaleX(0); } 33%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-2 { 0%, 6% { transform: scaleX(0); } 36%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-3 { 0%, 9% { transform: scaleX(0); } 39%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-4 { 0%, 12% { transform: scaleX(0); } 42%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-5 { 0%, 15% { transform: scaleX(0); } 45%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-6 { 0%, 18% { transform: scaleX(0); } 48%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-7 { 0%, 21% { transform: scaleX(0); } 51%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-8 { 0%, 24% { transform: scaleX(0); } 54%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-9 { 0%, 27% { transform: scaleX(0); } 57%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-10 { 0%, 30% { transform: scaleX(0); } 60%, 100% { transform: scaleX(1); } }
+@keyframes m-crx-11 { 0%, 33% { transform: scaleX(0); } 63%, 100% { transform: scaleX(1); } }
+@keyframes m-cry-0 { 0%, 0% { transform: scaleY(0); } 30%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-1 { 0%, 3% { transform: scaleY(0); } 33%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-2 { 0%, 6% { transform: scaleY(0); } 36%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-3 { 0%, 9% { transform: scaleY(0); } 39%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-4 { 0%, 12% { transform: scaleY(0); } 42%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-5 { 0%, 15% { transform: scaleY(0); } 45%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-6 { 0%, 18% { transform: scaleY(0); } 48%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-7 { 0%, 21% { transform: scaleY(0); } 51%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-8 { 0%, 24% { transform: scaleY(0); } 54%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-9 { 0%, 27% { transform: scaleY(0); } 57%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-10 { 0%, 30% { transform: scaleY(0); } 60%, 100% { transform: scaleY(1); } }
+@keyframes m-cry-11 { 0%, 33% { transform: scaleY(0); } 63%, 100% { transform: scaleY(1); } }
+@keyframes m-esc-0 { 0%, 0% { transform: scale(0); } 30%, 100% { transform: scale(1); } }
+@keyframes m-esc-1 { 0%, 3% { transform: scale(0); } 33%, 100% { transform: scale(1); } }
+@keyframes m-esc-2 { 0%, 6% { transform: scale(0); } 36%, 100% { transform: scale(1); } }
+@keyframes m-esc-3 { 0%, 9% { transform: scale(0); } 39%, 100% { transform: scale(1); } }
+@keyframes m-esc-4 { 0%, 12% { transform: scale(0); } 42%, 100% { transform: scale(1); } }
+@keyframes m-esc-5 { 0%, 15% { transform: scale(0); } 45%, 100% { transform: scale(1); } }
+@keyframes m-esc-6 { 0%, 18% { transform: scale(0); } 48%, 100% { transform: scale(1); } }
+@keyframes m-esc-7 { 0%, 21% { transform: scale(0); } 51%, 100% { transform: scale(1); } }
+@keyframes m-esc-8 { 0%, 24% { transform: scale(0); } 54%, 100% { transform: scale(1); } }
+@keyframes m-esc-9 { 0%, 27% { transform: scale(0); } 57%, 100% { transform: scale(1); } }
+@keyframes m-esc-10 { 0%, 30% { transform: scale(0); } 60%, 100% { transform: scale(1); } }
+@keyframes m-esc-11 { 0%, 33% { transform: scale(0); } 63%, 100% { transform: scale(1); } }
+@keyframes m-ap-0 { 0%, 0% { opacity: 0; } 30%, 100% { opacity: 1; } }
+@keyframes m-ap-1 { 0%, 3% { opacity: 0; } 33%, 100% { opacity: 1; } }
+@keyframes m-ap-2 { 0%, 6% { opacity: 0; } 36%, 100% { opacity: 1; } }
+@keyframes m-ap-3 { 0%, 9% { opacity: 0; } 39%, 100% { opacity: 1; } }
+@keyframes m-ap-4 { 0%, 12% { opacity: 0; } 42%, 100% { opacity: 1; } }
+@keyframes m-ap-5 { 0%, 15% { opacity: 0; } 45%, 100% { opacity: 1; } }
+@keyframes m-ap-6 { 0%, 18% { opacity: 0; } 48%, 100% { opacity: 1; } }
+@keyframes m-ap-7 { 0%, 21% { opacity: 0; } 51%, 100% { opacity: 1; } }
+@keyframes m-ap-8 { 0%, 24% { opacity: 0; } 54%, 100% { opacity: 1; } }
+@keyframes m-ap-9 { 0%, 27% { opacity: 0; } 57%, 100% { opacity: 1; } }
+@keyframes m-ap-10 { 0%, 30% { opacity: 0; } 60%, 100% { opacity: 1; } }
+@keyframes m-ap-11 { 0%, 33% { opacity: 0; } 63%, 100% { opacity: 1; } }
+@keyframes m-sep-0 { 0%, 45% { transform: translateX(0); } 85%, 100% { transform: translateX(110px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .motivo .a-dib.f0 { animation: m-dib-0 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f1 { animation: m-dib-1 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f2 { animation: m-dib-2 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f3 { animation: m-dib-3 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f4 { animation: m-dib-4 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f5 { animation: m-dib-5 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f6 { animation: m-dib-6 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f7 { animation: m-dib-7 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f8 { animation: m-dib-8 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f9 { animation: m-dib-9 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f10 { animation: m-dib-10 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-dib.f11 { animation: m-dib-11 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f0 { animation: m-crx-0 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f1 { animation: m-crx-1 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f2 { animation: m-crx-2 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f3 { animation: m-crx-3 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f4 { animation: m-crx-4 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f5 { animation: m-crx-5 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f6 { animation: m-crx-6 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f7 { animation: m-crx-7 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f8 { animation: m-crx-8 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f9 { animation: m-crx-9 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f10 { animation: m-crx-10 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-crx.f11 { animation: m-crx-11 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f0 { animation: m-cry-0 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f1 { animation: m-cry-1 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f2 { animation: m-cry-2 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f3 { animation: m-cry-3 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f4 { animation: m-cry-4 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f5 { animation: m-cry-5 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f6 { animation: m-cry-6 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f7 { animation: m-cry-7 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f8 { animation: m-cry-8 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f9 { animation: m-cry-9 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f10 { animation: m-cry-10 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-cry.f11 { animation: m-cry-11 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f0 { animation: m-esc-0 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f1 { animation: m-esc-1 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f2 { animation: m-esc-2 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f3 { animation: m-esc-3 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f4 { animation: m-esc-4 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f5 { animation: m-esc-5 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f6 { animation: m-esc-6 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f7 { animation: m-esc-7 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f8 { animation: m-esc-8 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f9 { animation: m-esc-9 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f10 { animation: m-esc-10 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-esc.f11 { animation: m-esc-11 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f0 { animation: m-ap-0 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f1 { animation: m-ap-1 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f2 { animation: m-ap-2 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f3 { animation: m-ap-3 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f4 { animation: m-ap-4 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f5 { animation: m-ap-5 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f6 { animation: m-ap-6 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f7 { animation: m-ap-7 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f8 { animation: m-ap-8 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f9 { animation: m-ap-9 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f10 { animation: m-ap-10 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-ap.f11 { animation: m-ap-11 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .motivo .a-sep.f0 { animation: m-sep-0 3.6s cubic-bezier(0.3, 0.6, 0.3, 1) 1 both paused; }
+  .en-vista .motivo :is(.a-dib, .a-crx, .a-cry, .a-esc, .a-ap, .a-sep) { animation-play-state: running; }
+}
+/* <<< motivos de portada */
+
+/* --- Portadas animadas (octubre 2026) --------------------------------------- */
+/* Un motivo por parte, en línea (SVG) para que la animación de una sola vez y
+   prefers-reduced-motion lo alcancen; ocupa el lado derecho, lejos del texto. */
+.portada-capitulo-arte {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(54%, 760px);
+  padding: clamp(3.5rem, 9svh, 5rem) clamp(1rem, 3vw, 3rem) clamp(1.5rem, 5svh, 3rem);
+  box-sizing: border-box;
+  pointer-events: none;
+}
+@media (min-width: 760px) and (max-width: 1279px) {
+  .portada-capitulo-arte { width: 40%; }
+}
+@media (max-width: 759px) {
+  .portada-capitulo-arte { left: 0; right: 0; bottom: auto; width: 100%; height: 44%; padding: 4rem 1.25rem 0.5rem; }
+}
+/* --- De dónde vienen en bloques normales del libro ----------------------- */
+.capitulo-v2 .capitulo-bloques { max-width: 1240px; margin: clamp(3rem, 8svh, 5rem) auto 0; }
+.capitulo-v2 .bloque-capitulo { margin: 0; padding: 3.5rem 0 0; border-top: 1px solid var(--hairline); }
+.capitulo-v2 .bloque-capitulo + .bloque-capitulo { margin-top: 3.5rem; }
+#observablehq-main .capitulo-v2 .bloque-capitulo h2 {
+  font: 600 clamp(1.625rem, 1.3rem + 1vw, 2.125rem)/1.15 var(--serif);
+  letter-spacing: -0.01em; color: var(--ink); margin: 0; max-width: 34ch;
+}
+#observablehq-main .capitulo-v2 .bloque-cifra { display: flex; align-items: baseline; gap: 0.6rem; margin: 0 0 0.5rem; font-family: var(--sans-serif); max-width: none; }
+.capitulo-v2 .bloque-cifra-num { font-size: clamp(3.5rem, 2.6rem + 3vw, 5rem); font-weight: 800; line-height: 0.85; color: var(--primary); letter-spacing: -0.04em; font-variant-numeric: lining-nums; }
+.capitulo-v2 .bloque-cifra-texto { font-size: 1.25rem; font-weight: 700; color: var(--ink); }
+#observablehq-main .capitulo-v2 .bloque-texto p { font: 1.1875rem/1.6 var(--serif); color: var(--ink); margin: 0.85rem 0 0; max-width: var(--lectura); }
+#observablehq-main .capitulo-v2 .bloque-lectura { font: 1rem/1.55 var(--sans-serif); margin: 1rem 0 0; color: var(--ink); font-variant-numeric: lining-nums; max-width: var(--lectura); }
+.capitulo-v2 .bloque-lectura strong { font-weight: 800; }
+#observablehq-main .capitulo-v2 .bloque-lector { font: 600 1rem/1.5 var(--sans-serif); margin: 0.85rem 0 0; color: var(--primary-texto); max-width: var(--lectura); }
+#observablehq-main .capitulo-v2 .bloque-figura { margin: 1.5rem 0 0; max-width: 980px; }
+.capitulo-v2 .bloque-lienzo { position: relative; }
+#observablehq-main .capitulo-v2 .bloque-figura figcaption { margin-top: 0.75rem; font: 0.875rem/1.45 var(--sans-serif); color: var(--ink-subtle); max-width: 90ch; }
+/* La portada pasa a rejilla: texto a la izquierda y motivo a la derecha, en
+   columnas propias, para que nada se mueva detrás del título (con el motivo
+   en absoluto, los títulos largos lo pisaban). En angosta, motivo arriba. */
+.portada-capitulo {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: end;
+}
+.portada-capitulo-texto { grid-column: 1; grid-row: 1; min-width: 0; }
+.portada-capitulo-arte {
+  position: relative;
+  z-index: 0;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: stretch;
+  width: auto;
+  height: auto;
+  inset: auto;
+  min-height: 0;
+}
+#observablehq-main .portada-capitulo h1 { font-size: clamp(2.5rem, 1.3rem + 3.6vw, 5rem); max-width: none; overflow-wrap: break-word; }
+@media (min-width: 760px) and (max-width: 1279px) {
+  .portada-capitulo { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+  .portada-capitulo-arte { width: auto; }
+}
+@media (max-width: 759px) {
+  .portada-capitulo { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; min-height: 0; }
+  .portada-capitulo-arte { grid-column: 1; grid-row: 1; height: clamp(180px, 34svh, 280px); width: auto; padding: 3.75rem 1.25rem 0; }
+  .portada-capitulo-texto { grid-column: 1; grid-row: 2; padding-top: 1.25rem; }
+}
+/* La columna del texto nunca es más angosta que la palabra más larga del
+   título («Discriminación» se partía a media palabra). */
+.portada-capitulo { grid-template-columns: minmax(min-content, 1.3fr) minmax(0, 1fr); }
+#observablehq-main .portada-capitulo h1 { overflow-wrap: normal; }
+@media (max-width: 759px) {
+  .portada-capitulo { grid-template-columns: minmax(0, 1fr); }
+  #observablehq-main .portada-capitulo h1 { font-size: clamp(2.25rem, 1.2rem + 5vw, 3rem); }
+}
+
+/* Entrada de las gráficas: una sola vez, cuando su sección entra en pantalla
+   (el script de la cabecera le pone .en-vista y después .animada). Los
+   repintados por un filtro ya no animan. */
+@media (prefers-reduced-motion: no-preference) {
+  .seccion-cuerpo:not(.en-vista) .grafica-anim,
+  .seccion-cuerpo:not(.en-vista) .grafica-anim svg g[aria-label="bar"] rect,
+  .beta-cuerpo:not(.en-vista) .grafica-anim,
+  .beta-cuerpo:not(.en-vista) .grafica-anim svg g[aria-label="bar"] rect { animation-play-state: paused; }
+}
+.animada .grafica-anim,
+.animada .grafica-anim svg g[aria-label="bar"] rect { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .grafica-anim, .grafica-anim svg g[aria-label="bar"] rect { animation: none; }
+}
+@media print {
+  .grafica-anim, .grafica-anim *, .motivo * { animation: none !important; }
+}
+
+/* --- Mapa: filtros e información con el diseño de los temas ---------------- */
+/* Estilo limpio: el panel es UNA franja gris clara sin borde con los grupos
+   rotulados y separados con aire; sin tarjetas ni costados de color. */
+.mapa-lateral { background: var(--surface-1); padding: 1rem 1.1rem 2rem; gap: 1rem; }
+#observablehq-main .mapa-lateral .panel-filtros.panel-mapa {
+  display: flex; flex-direction: column; align-items: stretch; gap: 1.35rem;
+  background: var(--surface-2); border: 0; border-radius: var(--radio); padding: 1.1rem 1.15rem 1.2rem; box-shadow: none;
+}
+#observablehq-main .panel-mapa .panel-grupo,
+#observablehq-main .panel-mapa .panel-grupo + .panel-grupo,
+#observablehq-main .panel-mapa .panel-grupo-unidad {
+  border: 0; border-radius: 0; background: transparent; padding: 0; margin: 0; box-shadow: none;
+}
+#observablehq-main .panel-mapa .panel-grupo-titulo { font: 700 0.9375rem/1.3 var(--sans-serif); letter-spacing: 0; color: var(--text-primary); margin: 0 0 0.55rem; padding: 0; }
+#observablehq-main .panel-mapa .panel-campos { gap: 0.75rem; }
+#observablehq-main .panel-mapa .filtro-etiqueta { font: 600 0.8125rem/1.3 var(--sans-serif); letter-spacing: 0; color: var(--text-secondary); }
+#observablehq-main .panel-mapa select {
+  min-height: 42px; border: 1px solid var(--border-strong); border-radius: var(--radio);
+  font: 500 0.875rem/1.2 var(--sans-serif); background-color: var(--surface-1); color: var(--text-primary);
+}
+#observablehq-main .panel-mapa select:hover { border-color: var(--text-primary); }
+#observablehq-main .panel-mapa select:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; border-color: var(--text-primary); }
+#observablehq-main .panel-mapa .panel-grupo-unidad select { font-weight: 600; font-size: 0.9375rem; }
+/* Pestañas y botones de vista: los mismos que los segmentos y botones del libro. */
+.mapa-pestanas button { font: 600 0.9375rem/1 var(--sans-serif); letter-spacing: 0; }
+.mapa-boton-origen, .mapa-volver {
+  align-self: flex-start; min-height: 40px; padding: 0 0.9rem;
+  border: 1px solid var(--border-strong); border-radius: var(--radio);
+  background: var(--surface-1); color: var(--text-primary);
+  font: 600 0.875rem/1 var(--sans-serif); cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+.mapa-boton-origen:hover, .mapa-boton-origen:focus-visible,
+.mapa-volver:hover, .mapa-volver:focus-visible { border-color: var(--text-primary); background: var(--surface-2); color: var(--text-primary); }
+/* Información: títulos en tinta (Newsreader) y bloques sin costado de color. */
+#observablehq-main .mapa-titulo { font: 600 1.25rem/1.2 var(--serif); color: var(--text-primary); letter-spacing: -0.01em; }
+#observablehq-main .mapa-variantes-titulo, #observablehq-main .mapa-seleccion-titulo { font-family: var(--serif); font-weight: 600; color: var(--text-primary); }
+.mapa-definicion { font: 0.9375rem/1.55 var(--sans-serif); color: var(--text-secondary); }
+.mapa-resumen, .mapa-variantes { border-top: 1px solid var(--border-subtle); padding-top: 1rem; }
+.mapa-seleccion-caja, .mapa-aviso {
+  border: 0; border-left: 0; border-radius: var(--radio); background: var(--surface-2); box-shadow: none;
+}
+.mapa-seleccion-caja { padding: 1rem 1.1rem; }
+.mapa-aviso { padding: 0.75rem 0.9rem; font: 0.875rem/1.45 var(--sans-serif); }
+.mapa-variantes-lista li.es-destacada { background: var(--surface-2); }
+
+/* --- Globos (tooltips) con el diseño nuevo ---------------------------------- */
+/* Los de Plot: tarjeta oscura con texto claro, Schibsted, sombra suave. El
+   trazo grueso del mismo color con uniones redondas da las esquinas
+   redondeadas que un path de SVG no trae. Mismo aspecto que el globo del
+   capítulo y que los de los mapas. */
+#observablehq-main svg g[aria-label="tip"] { font-family: var(--sans-serif); }
+#observablehq-main svg g[aria-label="tip"] path {
+  fill: var(--text-primary);
+  stroke: var(--text-primary);
+  stroke-width: 9px;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 6px 14px rgb(0 0 0 / 0.22));
+}
+#observablehq-main svg g[aria-label="tip"] text { fill: var(--surface-1); font-variant-numeric: lining-nums; }
+#observablehq-main svg g[aria-label="tip"] tspan[font-weight="bold"] { font-weight: 600; fill: color-mix(in srgb, var(--surface-1) 78%, var(--text-primary)); }
+/* Globos de MapLibre (mapa unificado, navegador de la sección por alcaldía). */
+.maplibregl-popup-content {
+  background: var(--text-primary);
+  color: var(--surface-1);
+  border-radius: var(--radio);
+  padding: 0.6rem 0.8rem;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.22);
+  font: 0.875rem/1.4 var(--sans-serif);
+  font-variant-numeric: lining-nums;
+}
+.maplibregl-popup-content :is(th, td, div, span, p) { color: inherit; }
+.maplibregl-popup-content :is(.mapa-tarjeta-pista, .mapa-cifra-nota, .globo-sub, .mapa-cifra-error) { color: color-mix(in srgb, var(--surface-1) 78%, var(--text-primary)); }
+.maplibregl-popup-content th, .maplibregl-popup-content td { border-color: color-mix(in srgb, var(--surface-1) 25%, var(--text-primary)) !important; }
+.maplibregl-popup-tip { display: none; }
+.maplibregl-popup-close-button { color: var(--surface-1); }
+.maplibregl-popup.mapa-globo .maplibregl-popup-content {
+  background: var(--text-primary); color: var(--surface-1); border: 0; border-radius: var(--radio);
+  padding: 0.6rem 0.8rem; box-shadow: 0 6px 18px rgb(0 0 0 / 0.22); font: 0.875rem/1.4 var(--sans-serif);
+}
+.maplibregl-popup.mapa-globo :is(.globo-sub, .globo-tabla th) { color: color-mix(in srgb, var(--surface-1) 78%, var(--text-primary)); }
+.maplibregl-popup.mapa-globo .globo-tabla :is(th, td) { color: inherit; }
+.maplibregl-popup.mapa-globo .globo-tabla th { color: color-mix(in srgb, var(--surface-1) 78%, var(--text-primary)); }
+
+/* --- Una sola línea entre secciones ----------------------------------------
+   Cuando una sección termina en sus desplegables, el borde inferior del
+   último ya es la línea divisoria: el hr de Markdown que sigue se queda solo
+   con su espacio (antes salían dos líneas a 64 px una de otra). */
+#observablehq-main > :has(:is(details.verificado, details.explica-analisis, details.tabla-datos):last-child) + hr {
+  border-top-color: transparent;
+}
+/* Desplegables: mismo ancho y misma alineación en todas las secciones,
+   cerrados o abiertos (el contenido ancho se desplaza dentro). */
+#observablehq-main :is(details.verificado, details.explica-analisis, details.tabla-datos) {
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 0;
+  margin-right: 0;
+  min-width: 0;
+}
+#observablehq-main :is(details.verificado, details.explica-analisis, details.tabla-datos) > :not(summary) { max-width: 100%; overflow-x: auto; }
+
+/* --- Globo con jerarquía (ronda 4) ------------------------------------------
+   El globo de Plot queda invisible (marca la posición) y encima va la tarjeta
+   HTML que arma el script de la cabecera: rótulos chicos en gris, la muestra
+   de la serie junto al grupo, la cifra grande en negrita con el color de la
+   serie y la población en un renglón tenue. Tarjeta clara en claro y elevada
+   en oscuro, para que el rojo y el azul de las series tengan contraste. */
+#observablehq-main svg g[aria-label="tip"] { opacity: 0; }
+.globo-tarjeta {
+  position: absolute; z-index: 60; pointer-events: none;
+  display: grid; gap: 0.12rem; min-width: 9rem; max-width: 17rem;
+  padding: 0.55rem 0.75rem 0.6rem;
+  background: var(--surface-1); color: var(--text-primary);
+  border: 1px solid var(--border-strong); border-radius: var(--radio);
+  box-shadow: 0 8px 22px rgb(29 29 27 / 0.16);
+  font: 0.8125rem/1.35 var(--sans-serif); font-variant-numeric: lining-nums;
+}
+:root[data-tema="oscuro"] .globo-tarjeta { background: var(--surface-3); box-shadow: 0 8px 22px rgb(0 0 0 / 0.5); }
+.globo-tarjeta[hidden] { display: none; }
+.globo-tarjeta .gt-ref { color: var(--text-muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.01em; }
+.globo-tarjeta .gt-grupo { display: flex; align-items: center; gap: 0.4rem; color: var(--text-secondary); font-size: 0.78rem; font-weight: 600; }
+.globo-tarjeta .gt-muestra { width: 0.7rem; height: 0.7rem; border-radius: 50%; flex: none; box-shadow: 0 0 0 1px var(--surface-1); }
+.globo-tarjeta .gt-cifra { margin-top: 0.15rem; font-size: 1.375rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; color: var(--text-primary); }
+.globo-tarjeta .gt-que { color: var(--text-muted); font-size: 0.75rem; margin-top: -0.05rem; }
+.globo-tarjeta .gt-pob { color: var(--text-muted); font-size: 0.75rem; }
+
+/* El mismo diseño en el globo del capítulo y en los de los mapas. */
+.capitulo-v2 .globo {
+  background: var(--surface-1); color: var(--text-primary);
+  border: 1px solid var(--border-strong); box-shadow: 0 8px 22px rgb(29 29 27 / 0.16);
+  font: 0.8125rem/1.35 var(--sans-serif); gap: 0.12rem;
+}
+:root[data-tema="oscuro"] .capitulo-v2 .globo { background: var(--surface-3); box-shadow: 0 8px 22px rgb(0 0 0 / 0.5); }
+.maplibregl-popup-content,
+.maplibregl-popup.mapa-globo .maplibregl-popup-content {
+  background: var(--surface-1); color: var(--text-primary);
+  border: 1px solid var(--border-strong); box-shadow: 0 8px 22px rgb(29 29 27 / 0.16);
+}
+:root[data-tema="oscuro"] :is(.maplibregl-popup-content, .maplibregl-popup.mapa-globo .maplibregl-popup-content) { background: var(--surface-3); box-shadow: 0 8px 22px rgb(0 0 0 / 0.5); }
+.maplibregl-popup-content :is(.globo-titulo) { color: var(--text-muted); font-size: 0.78rem; font-weight: 600; }
+.maplibregl-popup-content .globo-tabla th,
+.maplibregl-popup.mapa-globo .globo-tabla th { color: var(--text-muted) !important; font-size: 0.75rem; font-weight: 600; }
+.maplibregl-popup-content .globo-tabla td { color: var(--text-muted); font-size: 0.75rem; }
+.maplibregl-popup-content .globo-tabla tr:first-child td,
+.maplibregl-popup.mapa-globo .globo-tabla tr:first-child td { color: var(--text-primary) !important; font-size: 1.25rem; font-weight: 800; }
+.maplibregl-popup-content :is(.mapa-tarjeta-pista, .mapa-cifra-nota, .globo-sub, .mapa-cifra-error) { color: var(--text-muted); }
+.maplibregl-popup-content th, .maplibregl-popup-content td { border-color: var(--border-subtle) !important; }
+.maplibregl-popup-close-button { color: var(--text-muted); }
+
+/* --- Filtros compactos y pegajosos en todas las secciones (ronda 4) -------- */
+#observablehq-main .panel-filtros:not(.panel-mapa) {
+  position: sticky; top: 0; z-index: 6;
+  display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start;
+  gap: 0.35rem 1.25rem; padding: 0.55rem 0.8rem 0.6rem;
+  box-shadow: none;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-grupo,
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-grupo + .panel-grupo {
+  flex: 1 1 22rem; width: auto; margin: 0; padding: 0; border: 0;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-grupo-titulo { font-size: 0.8125rem; margin: 0 0 0.25rem; padding: 0; }
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-campos { display: flex; flex-wrap: wrap; gap: 0.3rem 0.75rem; align-items: center; grid-template-columns: none; }
+/* Rótulo y control en un renglón. */
+#observablehq-main .panel-filtros:not(.panel-mapa) .filtro { flex-direction: row; align-items: center; gap: 0.35rem; flex-wrap: nowrap; }
+#observablehq-main .panel-filtros:not(.panel-mapa) :is(.filtro-etiqueta, [class*="inputs-"] > label) {
+  font: 600 0.75rem/1.2 var(--sans-serif); white-space: nowrap; margin: 0; padding: 0; width: auto;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa) [class*="inputs-"] { display: flex; align-items: center; gap: 0.35rem; width: auto; }
+#observablehq-main .panel-filtros:not(.panel-mapa) :is(.filtro select, [class*="inputs-"] select, [class*="inputs-"] input, .filtro-caja input) {
+  min-height: 30px; height: 30px; padding: 0.15rem 1.6rem 0.15rem 0.5rem;
+  font-size: 0.8125rem; width: auto; min-width: 0; max-width: 16rem; background-position: right 0.5rem center;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-nota { flex: 1 1 100%; margin: 0.1rem 0 0; font-size: 0.75rem; }
+/* Fijo arriba: solo los controles (los rótulos siguen para el lector). */
+#observablehq-main .panel-filtros.pegado:not(.panel-mapa) {
+  padding: 0.35rem 0.6rem; gap: 0.3rem 0.6rem;
+  box-shadow: 0 1px 0 var(--border-subtle), 0 6px 14px rgb(29 29 27 / 0.08);
+}
+#observablehq-main .panel-filtros.pegado:not(.panel-mapa) :is(.panel-grupo-titulo, .filtro-etiqueta, [class*="inputs-"] > label, .panel-nota, .beta-nota) {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; margin: 0; padding: 0;
+}
+#observablehq-main .panel-filtros.pegado:not(.panel-mapa) .panel-grupo { flex: 0 1 auto; }
+.panel-boton { display: none; }
+@media (max-width: 639px) {
+  #observablehq-main .panel-filtros:not(.panel-mapa) { padding: 0.4rem 0.6rem; }
+  .panel-boton {
+    display: inline-flex; align-items: center; gap: 0.4rem; min-height: 36px; padding: 0 0.8rem;
+    border: 1px solid var(--border-strong); border-radius: var(--radio); background: var(--surface-1); color: var(--text-primary);
+    font: 600 0.875rem/1 var(--sans-serif); cursor: pointer;
+  }
+  .panel-boton::before { content: ""; width: 0.8rem; height: 0.55rem; border-top: 2px solid currentColor; border-bottom: 2px solid currentColor; box-sizing: border-box; }
+  #observablehq-main .panel-filtros:not(.panel-mapa):not(.abierto) > :not(.panel-boton) { display: none !important; }
+  #observablehq-main .panel-filtros.abierto:not(.panel-mapa) { max-height: 70vh; overflow-y: auto; }
+  #observablehq-main .panel-filtros.abierto.pegado:not(.panel-mapa) :is(.panel-grupo-titulo, .filtro-etiqueta, [class*="inputs-"] > label) {
+    position: static !important; width: auto; height: auto; clip: auto; clip-path: none; overflow: visible;
+  }
+  #observablehq-main .panel-filtros:not(.panel-mapa) .filtro { flex-wrap: wrap; }
+}
+.capitulo-v2 .globo .gt-ref { color: var(--text-muted); font-size: 0.78rem; font-weight: 600; }
+.capitulo-v2 .globo .gt-grupo { display: flex; align-items: center; gap: 0.4rem; color: var(--text-secondary); font-size: 0.78rem; font-weight: 600; }
+.capitulo-v2 .globo .gt-muestra { width: 0.7rem; height: 0.7rem; border-radius: 50%; flex: none; }
+.capitulo-v2 .globo .gt-cifra { margin-top: 0.15rem; font-size: 1.375rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+.capitulo-v2 .globo :is(.gt-que, .gt-pob) { color: var(--text-muted); font-size: 0.75rem; }
+/* Los Inputs de Observable venían en columna (rótulo encima): en línea. */
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-campos > :is(form, .filtro, .filtro-extra) {
+  flex-direction: row; align-items: center; gap: 0.35rem; width: auto; flex: 0 1 auto;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-campos > form select,
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-campos > .filtro-extra select { width: auto; }
+#observablehq-main .panel-filtros:not(.panel-mapa) .panel-campos > form > label { font-size: 0.75rem; color: var(--text-secondary); }
+@media (max-width: 639px) {
+  #observablehq-main .panel-filtros:not(.panel-mapa) .panel-campos > :is(form, .filtro, .filtro-extra) { flex-wrap: wrap; }
+}
+/* Fijo: los grupos se disuelven y todos los controles comparten un solo
+   renglón que se parte; cada select más angosto (el texto completo de la
+   opción vuelve al soltarse el panel o en el globo nativo del select). */
+#observablehq-main .panel-filtros.pegado:not(.panel-mapa) :is(.panel-grupo, .panel-campos) { display: contents; }
+#observablehq-main .panel-filtros.pegado:not(.panel-mapa) :is(.filtro select, [class*="inputs-"] select, [class*="inputs-"] input, .filtro-caja input) { max-width: 11.5rem; }
+.panel-centinela { height: 0; margin: 0; padding: 0; }

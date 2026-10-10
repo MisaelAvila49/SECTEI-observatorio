@@ -137,6 +137,9 @@ export function aplicarModo(oscuro) {
   SECUENCIAL.length = 0;
   SECUENCIAL.push(...(oscuro ? SECUENCIAL_OSCURO : SECUENCIAL_CLARO));
   ROJO = oscuro ? ROJO_OSCURO : ROJO_CLARO;
+  // El globo con jerarquía (script de la cabecera) colorea la cifra y la
+  // muestra con el color de la serie del grupo.
+  globalThis.__sdiColores = {...COLOR_SERIE};
   for (const fn of suscriptores) fn(oscuro);
 }
 
@@ -301,3 +304,24 @@ if (typeof document !== "undefined") {
   aplicarModo(leer());
   addEventListener("sdi:tema", () => aplicarModo(leer()));
 }
+
+
+// Texto legible sobre un relleno: blanco o negro según la luminancia relativa
+// del color (WCAG). Para las cifras escritas dentro de tramos y celdas.
+export function tintaSobre(hex) {
+  const c = String(hex).replace("#", "");
+  if (c.length !== 6) return "currentColor";
+  const lin = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+  const [r, g, b] = [0, 2, 4].map((i) => lin(parseInt(c.slice(i, i + 2), 16)));
+  const L = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return (1.05) / (L + 0.05) >= (L + 0.05) / 0.05 ? "white" : "black";
+}
+
+// Tramos de una apilada al 100 % con categorías ordenadas por frecuencia (los
+// motivos): tres pasos de la rampa morada y «Otros» en un gris neutro, por
+// tema. Validados con scripts/validate_palette.js: en claro el par más cercano
+// queda en ΔE 18.0 (deuteranopía) y 21.1 (visión normal); en oscuro, 13.7 y
+// 15.7. La gris no tiene croma a propósito; cada tramo lleva además su cifra
+// escrita y una separación blanca.
+export const APILADAS_CLARO = ["#4d004b", "#88419d", "#8c96c6", "#dcdcd6"];
+export const APILADAS_OSCURO = ["#d6b6e6", "#9163b6", "#55377a", "#2e2e2b"];

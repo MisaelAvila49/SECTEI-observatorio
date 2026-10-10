@@ -14,12 +14,12 @@
 
 // La versión de maplibre-gl va FIJADA a la 5, no abierta con ^: Observable
 // resuelve `npm:` contra su CDN y no contra node_modules, así que sin el número
-// exacto sirve la última publicada —la 6— por más que package.json diga otra
+// exacto sirve la última publicada (la 6) por más que package.json diga otra
 // cosa, y el caché de `src/.observablehq/cache/_npm` la conserva entre
 // arranques aunque se reinstalen las dependencias.
 //
 // La 6 no sirve para esto por dos razones: dejó de publicar un export default,
-// y —ya corregido eso— su protocolo personalizado no llega a pedir teselas a
+// y (ya corregido eso) su protocolo personalizado no llega a pedir teselas a
 // pmtiles. El handler se invoca UNA sola vez, para el TileJSON; MapLibre lee
 // minzoom y maxzoom correctos y después no solicita ni una tesela, sin emitir
 // un error. Además su worker se referencia como `/npm/maplibre-gl@6.8.0/...`,
@@ -58,8 +58,8 @@ export function registrarProtocolo() {
  *
  * NO se usa Carto: sus teselas `basemaps.cartocdn.com` ahora exigen clave y
  * devuelven HTTP 200 con una imagen que dice "API KEY REQUIRED", así que el
- * fallo no se detecta comprobando el código de respuesta —hay que mirar el
- * contenido: la tesela del aviso tiene 25 colores únicos y una real, 55—.
+ * fallo no se detecta comprobando el código de respuesta (hay que mirar el
+ * contenido: la tesela del aviso tiene 25 colores únicos y una real, 55).
  *
  * El fondo se atenúa y se dessatura por CSS: el dato vive en el color de las
  * manzanas, y un mapa base a plena intensidad compite con la rampa y hace
@@ -111,8 +111,8 @@ export function expresionColor(campo, cortes, rampa = RAMPA_MORADA, origen = "ge
 
   // `step` exige al menos un par valor/color después del color base. Cuando la
   // distribución es tan asimétrica que todos los cuantiles colapsan en un solo
-  // corte —pasa con los hablantes monolingües, que valen cero en la enorme
-  // mayoría de las manzanas—, no queda ningún par y MapLibre rechaza el estilo
+  // corte (pasa con los hablantes monolingües, que valen cero en la enorme
+  // mayoría de las manzanas), no queda ningún par y MapLibre rechaza el estilo
   // entero con "Expected at least 4 arguments, but found only 2": el mapa se
   // queda sin capa y solo se nota al cambiar de indicador.
   const porValor = escalones.length
@@ -191,8 +191,8 @@ export function cortesPorCuantil(valores, n = 5) {
   if (!v.length) return [0];
 
   // Los cuantiles se calculan sobre los valores POSITIVOS, no sobre todos. En
-  // indicadores muy concentrados —los hablantes monolingües son cero en más del
-  // 80 % de las colonias— los cinco cuantiles caían todos en 0: la escala
+  // indicadores muy concentrados (los hablantes monolingües son cero en más del
+  // 80 % de las colonias) los cinco cuantiles caían todos en 0: la escala
   // colapsaba a un solo corte y el mapa entero se pintaba de un color, sin
   // distinguir la manzana con veinte monolingües de la que no tiene ninguno.
   // El cero conserva su propia clase, la más clara, y el resto de la rampa se
@@ -249,7 +249,7 @@ export function mapaManzanas({
   contenedor.style.height = `${alto}px`;
   // Observable inserta el nodo DESPUÉS de que este código corre, así que al
   // construirse el contenedor todavía mide 0x0. MapLibre se queda entonces con
-  // su tamaño por defecto de 400x300 y —más grave— no llega a crear el caché
+  // su tamaño por defecto de 400x300 y (más grave) no llega a crear el caché
   // de teselas de la fuente, de modo que el mapa se queda vacío sin lanzar un
   // solo error. Se le avisa en cuanto el nodo entra al documento y cada vez que
   // cambia de tamaño.
@@ -329,8 +329,8 @@ export function mapaManzanas({
     // Se resalta con feature-state y NO filtrando por CVEGEO. La clave no es
     // única dentro de las teselas: toda manzana que cruza el borde de una
     // tesela se parte y aparece en las dos, así que un filtro por CVEGEO
-    // encendía a la vez varios trozos repartidos por el mapa —249 duplicados
-    // entre solo cuatro teselas contiguas a z14—, que es de dónde salían los
+    // encendía a la vez varios trozos repartidos por el mapa (249 duplicados
+    // entre solo cuatro teselas contiguas a z14), que es de dónde salían los
     // contornos rojos sueltos que parpadeaban al mover el ratón.
     // feature-state marca la geometría concreta que está bajo el cursor.
     //

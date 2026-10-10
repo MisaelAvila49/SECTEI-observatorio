@@ -7,7 +7,7 @@ import * as Plot from "npm:@observablehq/plot";
 import {html} from "npm:htl";
 import {campo, SEPARADO} from "./panel-seccion.js";
 import {figura, explicacion, tablaColumnas} from "./graficas.js";
-import {punto, COLOR_SERIE, alCambiarModo, GLOBO, globo} from "./base.js";
+import {punto, COLOR_SERIE, SECUENCIAL, MODO, tintaSobre, alCambiarModo, GLOBO, globo} from "./base.js";
 
 const entero = (n) => punto(Math.round(Number(n)));
 const CONJUNTO = "En conjunto", UNA = "Una a una";
@@ -17,7 +17,10 @@ const EDAD_ETIQ = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "3
 
 /**
  * temas: [{clave, etiqueta, dimension, categorias (orden), edades (grupos válidos),
- *          anios (opcional), titulo(v), pie, explica}]
+ *          anios (opcional), titulo(v), pie, explica, forma}]
+ * forma: "agrupadas" (por omisión, una barra por grupo y categoría) o
+ * "apiladas": una barra al 100 % por grupo, para categorías ORDENADAS que
+ * suman 100 (el nivel de estudios), con los pasos de la rampa morada.
  */
 export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) {
   const filas = tabla.map((r) => ({...r, anio: Number(r.anio)}));
@@ -70,9 +73,26 @@ export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) 
     const alto = (60 + 44 * nCat) * (sep[1] ? sep[1].cats.length : 1);
     const maxX = MAX_TEMA.get(tema.clave);
     const series = Object.values(SERIE);
-    const renglones = [["Grupo", (r) => r.serie], ["Categoría", (r) => r.categoria], ["Corte", (r) => [r.f0, r.f1].filter(Boolean).join(" · ") || null], ["Porcentaje", (r) => `${r.pct.toFixed(1)} %${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]];
+    // Globo de cuatro renglones: categoría (con el corte), grupo, valor y
+    // población. El intervalo y el denominador van en la tabla.
+    const renglones = [[tema.etiqueta, (r) => [r.categoria, r.f0, r.f1].filter(Boolean).join(", ")], ["Grupo", (r) => r.serie], ["Porcentaje", (r) => `${r.pct.toFixed(1)} %`], ["Personas", (r) => entero(r.num)]];
     const subt = [fijo.anio ?? "", fijo.sexo && fijo.sexo !== "Total" ? fijo.sexo : "", fijo.edad && fijo.edad !== "Todas" ? EDAD_ETIQ[fijo.edad] : "", sep.length ? `un panel por ${sep.map((s) => s.rotulo).join(" y ")}` : ""].filter(Boolean).join(" · ");
-    const plot = sel.length ? Plot.plot({marginLeft: 190, marginRight: 60, height: alto, width: Math.max(360, ancho || 900), ...facetas,
+    const apiladas = tema.forma === "apiladas";
+    // Pasos de la rampa morada del tema actual (claro u oscuro), del primer
+    // nivel al último: más tinta, nivel más alto. La cifra de cada tramo, en
+    // blanco o negro según la luminancia de su relleno.
+    const pasos = {2: [2, 6], 3: [1, 4, 6], 4: [1, 3, 5, 6], 5: [1, 2, 4, 5, 6]}[Math.max(2, Math.min(5, nCat))];
+    const rampa = pasos.map((i) => SECUENCIAL[i]);
+    const tintaTramo = (r) => tintaSobre(rampa[tema.categorias.indexOf(r.categoria)] ?? rampa[0]);
+    const plot = !sel.length ? html`<p class="beta-nota">Sin datos para esta combinación.</p>` : apiladas ? Plot.plot({
+      marginLeft: 170, marginRight: 16, height: (70 + 2 * 46) * (sep[1] ? sep[1].cats.length : 1), width: Math.max(360, ancho || 900), ...facetas,
+      color: {domain: tema.categorias, range: rampa, legend: true},
+      x: {label: null, domain: [0, 100], axis: "top", ticks: [0, 25, 50, 75, 100], tickFormat: (d) => `${d} %`}, y: {label: null, domain: series, padding: 0.3}, fy: facetas.fy,
+      marks: [
+        Plot.barX(sel, Plot.stackX({y: "serie", x: "pct", fill: "categoria", order: tema.categorias, ...canal, stroke: "var(--theme-background, #fff)", strokeWidth: 1.5})),
+        Plot.text(sel, Plot.stackX({y: "serie", x: "pct", z: "categoria", order: tema.categorias, ...canal, text: (r) => (r.pct >= 7 ? `${Math.round(r.pct)} %` : ""), fontSize: 11, fontWeight: 600, fill: tintaTramo})),
+        Plot.tip(sel, Plot.pointerY(Plot.stackX({y: "serie", x: "pct", z: "categoria", order: tema.categorias, ...canal, maxRadius: Infinity, ...GLOBO, ...globo(renglones)}))),
+      ]}) : Plot.plot({marginLeft: 190, marginRight: 60, height: alto, width: Math.max(360, ancho || 900), ...facetas,
       color: {domain: series, range: series.map((s) => COLOR_SERIE[s]), legend: true},
       x: {label: tema.eje ?? "% del grupo", grid: true, domain: [0, maxX]}, y: {label: null, domain: tema.categorias}, fy: facetas.fy,
       // Una marca por serie con desplazamiento constante: `dy` de Plot no
@@ -86,9 +106,9 @@ export function seccionPerfil(tabla, {id, temas, inicial = {}, fuentes = null}) 
             Plot.text(d, {x: "pct", y: "categoria", text: (r) => `${r.pct.toFixed(1)} %`, dx: 6, dy, textAnchor: "start", fontSize: 11, ...canal}),
           ];
         }),
-        Plot.tip(sel, Plot.pointer({x: "pct", y: "categoria", ...canal, maxRadius: Infinity, ...GLOBO, ...globo(renglones)})),
+        Plot.tip(sel, Plot.pointerY({x: "pct", y: "categoria", ...canal, maxRadius: Infinity, ...GLOBO, ...globo(renglones)})),
         Plot.ruleX([0]),
-      ]}) : html`<p class="beta-nota">Sin datos para esta combinación.</p>`;
+      ]});
     cuerpo.replaceChildren(
       figura({titulo: tema.titulo({crit: CRITERIOS.find((c) => c.clave === crit).etiqueta.toLowerCase()}), subtitulo: subt, pie: tema.pie}, [plot]),
       aviso ? html`<p class="beta-nota">${aviso}</p>` : "",

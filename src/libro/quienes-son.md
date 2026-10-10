@@ -32,11 +32,16 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 const EDAD_ETIQ = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "30 a 59 años", "60+": "60 años y más"};
 ```
 
-<div class="hero-pagina">
-  <span class="kicker">Parte 3 · Quiénes son y cómo viven · 1 de 4</span>
+<header class="portada-capitulo">
+  <div class="portada-capitulo-arte" data-motivo="parte-3"><svg class="motivo motivo-vida" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path d="M24,300 H64 V246 L98,216 L132,246 V300 H168 V226 L201,198 L234,226 V300 H268 V150 H340 V300 H372 V238 H446 V300 H576" fill="none" stroke="#3a3a37" stroke-width="3" stroke-linejoin="round"/><path class="a-dib f5" pathLength="1" d="M88,300 V272 H108 V300" fill="none" stroke="#8a8a86" stroke-width="2.5"/><path class="a-dib f6" pathLength="1" d="M201,198 V176 L220,182 L201,188" fill="none" stroke="#8a8a86" stroke-width="2.5" stroke-linejoin="round"/><path class="a-dib f7" pathLength="1" d="M282,172 H326 M282,196 H326 M282,220 H326 M282,244 H326" fill="none" stroke="#8a8a86" stroke-width="2.5"/><path class="a-dib f8" pathLength="1" d="M409,252 V284 M393,268 H425" fill="none" stroke="#8a8a86" stroke-width="3" stroke-linecap="round"/><path class="a-dib f0" pathLength="1" d="M24,300 H64 V246 L98,216 L132,246 V300 H168 V226 L201,198 L234,226 V300 H268 V150 H340 V300 H372 V238 H446 V300 H576" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><circle class="a-esc f10" cx="520" cy="282" r="13" fill="#e8474f"/></svg></div>
+  <div class="portada-capitulo-texto">
+  <p class="portada-capitulo-parte">Parte 3 · Quiénes son y cómo viven · 1 de 4</p>
   <h1>Edad y sexo</h1>
-  <p class="hero-entrada">La tercera parte compara a la población indígena de la ciudad con el resto, con la misma pregunta y en el mismo año. Empieza por lo más básico: la edad y el sexo.</p>
-</div>
+  <p class="portada-capitulo-dek">La tercera parte compara a la población indígena de la ciudad con el resto, con la misma pregunta y en el mismo año.</p>
+  </div>
+</header>
+
+<p class="entrada-capitulo">Empieza por lo más básico: la edad y el sexo.</p>
 
 ---
 
@@ -71,7 +76,7 @@ function pintarA() {
         color: {domain: ["Población indígena", "Resto de la población"], range: [COLOR_SERIE["Población indígena"], COLOR_SERIE["Resto de la población"]], legend: true},
         marks: [Plot.barX(pir.filter((r) => r.serie === "Resto de la población"), {x: "x", y: "categoria", fill: "serie", fillOpacity: 0.35}),
           Plot.barX(pir.filter((r) => r.serie === "Población indígena"), {x: "x", y: "categoria", fill: "none", stroke: "serie", strokeWidth: 1.6, insetTop: 1, insetBottom: 1}),
-          Plot.tip(pir, Plot.pointer({x: "x", y: "categoria", maxRadius: Infinity, ...GLOBO, ...globo([["Grupo", (r) => r.serie], ["Sexo", (r) => r.sexo], ["Edad", (r) => `${r.categoria} años`], ["Parte del grupo", (r) => pct(r.pct, 2)], ["Personas", (r) => entero(r.num)]])})),
+          Plot.tip(pir, Plot.pointer({x: "x", y: "categoria", maxRadius: Infinity, ...GLOBO, ...globo([["Edad y sexo", (r) => `${r.categoria} años, ${r.sexo.toLowerCase()}`], ["Grupo", (r) => r.serie], ["Parte del grupo", (r) => pct(r.pct, 2)], ["Personas", (r) => entero(r.num)]])})),
           Plot.ruleX([0])]})]),
     figura({titulo: "Qué parte de cada grupo de edad es indígena, 2010 - 2025", subtitulo: `Porcentaje de la población de cada grupo de edad que ${crit === "lengua" ? "habla una lengua indígena" : "se considera indígena"}`, pie: "Censos e intercensales (INEGI), muestras de la Ciudad de México · cada línea es un grupo de edad; cada punto, una edición"},
       [Plot.plot({height: Math.round(Math.min(400, Math.max(260, Math.min(1320, width) * 0.3))), width: Math.min(1320, width), marginLeft: 50, marginRight: 110, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {domain: [0, MAX_PROP]}),

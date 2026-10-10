@@ -32,11 +32,14 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 const EDAD_ETIQ = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "30 a 59 años", "60+": "60 años y más"};
 ```
 
-<div class="hero-pagina">
-  <span class="kicker">Parte 3 · Quiénes son y cómo viven · 3 de 4</span>
+<header class="portada-capitulo">
+  <div class="portada-capitulo-arte" data-motivo="parte-3"><svg class="motivo motivo-vida" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path d="M24,300 H64 V246 L98,216 L132,246 V300 H168 V226 L201,198 L234,226 V300 H268 V150 H340 V300 H372 V238 H446 V300 H576" fill="none" stroke="#3a3a37" stroke-width="3" stroke-linejoin="round"/><path class="a-dib f5" pathLength="1" d="M88,300 V272 H108 V300" fill="none" stroke="#8a8a86" stroke-width="2.5"/><path class="a-dib f6" pathLength="1" d="M201,198 V176 L220,182 L201,188" fill="none" stroke="#8a8a86" stroke-width="2.5" stroke-linejoin="round"/><path class="a-dib f7" pathLength="1" d="M282,172 H326 M282,196 H326 M282,220 H326 M282,244 H326" fill="none" stroke="#8a8a86" stroke-width="2.5"/><path class="a-dib f8" pathLength="1" d="M409,252 V284 M393,268 H425" fill="none" stroke="#8a8a86" stroke-width="3" stroke-linecap="round"/><path class="a-dib f0" pathLength="1" d="M24,300 H64 V246 L98,216 L132,246 V300 H168 V226 L201,198 L234,226 V300 H268 V150 H340 V300 H372 V238 H446 V300 H576" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><circle class="a-esc f10" cx="520" cy="282" r="13" fill="#e8474f"/></svg></div>
+  <div class="portada-capitulo-texto">
+  <p class="portada-capitulo-parte">Parte 3 · Quiénes son y cómo viven · 3 de 4</p>
   <h1>Salud, discapacidad y español</h1>
-  <p class="hero-entrada">Tres condiciones pesan a la hora de ejercer un derecho en la ciudad: tener un servicio de salud, vivir con una discapacidad y poder comunicarse en español.</p>
-</div>
+  <p class="portada-capitulo-dek">Tres condiciones pesan a la hora de ejercer un derecho en la ciudad: tener un servicio de salud, vivir con una discapacidad y poder comunicarse en español.</p>
+  </div>
+</header>
 
 ---
 
@@ -93,7 +96,7 @@ function pintarM() {
         marks: [Plot.areaY(f.filter((r) => r.ee), {x: "anio", y1: (r) => Math.max(0, r.pct - 196 * r.ee), y2: (r) => Math.min(MAX_MONO, r.pct + 196 * r.ee), fill: "serie", fillOpacity: 0.12, z: "serie"}),
           Plot.line(f, {x: "anio", y: "pct", stroke: "serie", strokeWidth: 2}), Plot.dot(f, {x: "anio", y: "pct", fill: "serie", r: 3.5}),
           Plot.text(f.filter((r) => r.anio === 2025), {x: "anio", y: "pct", text: "serie", dx: 8, textAnchor: "start", fontSize: 11}),
-          Plot.tip(f, Plot.pointerX({x: "anio", y: "pct", z: "serie", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Grupo", (r) => r.serie], ["No habla español", (r) => `${pct(r.pct, 2)}${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}`], ["Hablantes", (r) => `${entero(r.num)} de ${entero(r.den)}`]])})), Plot.ruleY([0])]})]),
+          Plot.tip(f, Plot.pointerX({x: "anio", y: "pct", z: "serie", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Grupo", (r) => r.serie], ["No habla español", (r) => `${pct(r.pct, 2)}`], ["Hablantes", (r) => `${entero(r.num)} de ${entero(r.den)}`]])})), Plot.ruleY([0])]})]),
     avisoM,
     fuenteDe({datos: PERFIL_DATOS, cotejos: ["monolingue_2025", "sepi_monolingues_alcaldia_iguales"], lectura: ["R-SEPI-2024-DIV"]}),
     explicacion("De quienes hablan una lengua indígena, qué parte declaró no hablar español. En la ciudad es una proporción chica y con mucho error por la muestra; por eso la banda. El universo son los hablantes que respondieron la pregunta; en 2010 y 2015 más de una décima parte no la respondió."),

@@ -485,8 +485,8 @@ en su corte censal, y ambas fuentes se unen por la clave geoestadística CVEGEO 
 dieciséis dígitos, que concatena entidad, municipio, localidad, AGEB y manzana.
 
 De ese cruce quedan **66,449 manzanas** con dato y geometría. Se pierden 340
-manzanas rurales, que la cartografía dibuja pero el tabulado no cubre —solo
-publica manzanas urbanas—, y siete filas del tabulado sin polígono
+manzanas rurales, que la cartografía dibuja pero el tabulado no cubre (solo
+publica manzanas urbanas), y siete filas del tabulado sin polígono
 correspondiente. En conjunto reúnen 9,145,155 habitantes, es decir el 99.3 % de
 la población de la Ciudad de México en 2020.
 
@@ -499,8 +499,8 @@ deja fuera 1,273 manzanas donde viven 16,613 personas en hogares indígenas: el
 
 Los pueblos originarios se identifican con el **padrón de la Secretaría de
 Pueblos y Barrios Originarios y Comunidades Indígenas Residentes (SEPI)**, que
-reconoce **50 pueblos** y publica la clave de unidad territorial de cada uno —la
-misma del IECM—, de modo que el cruce es exacto y no depende de comparar
+reconoce **50 pueblos** y publica la clave de unidad territorial de cada uno (la
+misma del IECM), de modo que el cruce es exacto y no depende de comparar
 geometrías. Los 50 son de etnia náhuatl y se distribuyen en siete alcaldías:
 Xochimilco (14), Milpa Alta (11), Tlalpan (8), Tláhuac (7), Cuajimalpa (4), La
 Magdalena Contreras (4) y Álvaro Obregón (2).
@@ -508,7 +508,7 @@ Magdalena Contreras (4) y Álvaro Obregón (2).
 Una versión anterior de este tablero derivaba esa marca del campo `clasif` del
 catálogo de colonias, señalando toda unidad con más del 30 % de su área dentro
 de alguno de sus 281 polígonos de "Pueblos y Barrios Originarios". Ese método
-marcaba 260 unidades —224 de más y 14 de menos frente al padrón oficial— y
+marcaba 260 unidades (224 de más y 14 de menos frente al padrón oficial) y
 convertía cualquier cifra "en pueblos originarios" en el promedio de un universo
 cinco veces mayor que el reconocido. Con el padrón, la proporción de población en
 hogares indígenas en los pueblos originarios pasa de 3.73 % a **4.59 %**: el
@@ -557,9 +557,9 @@ doce de cada cien mujeres.
 Conviene saber que **las cifras por sexo no suman el total**. En la Ciudad de
 México, la suma de hablantes mujeres y hombres da 80,367 frente a 98,631 del
 total: faltan 18,264, el 18.5 %. No es un error de cálculo sino un efecto de la
-supresión por confidencialidad —7,640 manzanas publican el total pero ocultan
+supresión por confidencialidad (7,640 manzanas publican el total pero ocultan
 uno o ambos sexos, porque al partir la cifra en dos, más celdas caen bajo el
-umbral—. Las tasas por sexo se calculan, entonces, sobre menos manzanas que las
+umbral). Las tasas por sexo se calculan, entonces, sobre menos manzanas que las
 del total.
 
 **No hay filtro de edad**, y no por omisión: se revisaron las 230 columnas del
@@ -595,7 +595,7 @@ abajo justo en las manzanas más pequeñas.
 ### El reparto de manzanas entre colonias
 
 Los límites de colonia no siguen los de la cartografía censal, así que **5,925
-manzanas —el 8.9 %— caen en más de una colonia**. A cada una se le reparte la
+manzanas (el 8.9 %) caen en más de una colonia**. A cada una se le reparte la
 población en proporción al área que queda dentro de cada colonia: si el 30 % de
 la superficie de una manzana cae en cierta colonia, esa colonia recibe el 30 % de
 sus habitantes.
@@ -886,7 +886,7 @@ nada.
 Este mapa replica y extiende el publicado por el INIDE de la Universidad
 Iberoamericana en `estudianteshlicdmxinide.webflow.io/mapa`. Se verificó que
 parte del mismo dato: al reproducir su cruce se obtienen exactamente sus cifras
-—66,449 manzanas, 9,145,155 habitantes, 273,851 personas en hogares indígenas—.
+(66,449 manzanas, 9,145,155 habitantes, 273,851 personas en hogares indígenas).
 
 Las diferencias son de construcción. Aquel mapa publica una capa por indicador y
 muestra una a la vez, con los cortes de color fijados en el código; sus datos no

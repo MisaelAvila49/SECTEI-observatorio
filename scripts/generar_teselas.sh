@@ -31,6 +31,11 @@ echo "Generando manzanas.pmtiles..."
 # --coalesce-densest-as-needed las fusiona antes de tirarlas, lo que conserva
 # mejor la mancha urbana.
 # --extend-zooms-if-still-dropping evita huecos a zoom alto.
+# --low-detail=10 (octubre 2026): debajo de z15 las coordenadas van a 1024
+# unidades por tesela en vez de 4096. Con --no-tile-size-limit las teselas de
+# zoom bajo llevan las 66 mil manzanas y elegir «Manzana» con la ciudad
+# completa bajaba 6.3 MB; así baja 2.2 MB, sin tirar ninguna manzana ni
+# atributo. A z14 la precisión sigue siendo de medio píxel.
 tippecanoe \
   -o "$SALIDA/manzanas.pmtiles" \
   --force \
@@ -38,6 +43,7 @@ tippecanoe \
   --name="Manzanas CDMX · Censo 2020" \
   --attribution="INEGI, Censo de Población y Vivienda 2020" \
   -z15 -Z8 \
+  --low-detail=10 \
   --coalesce-densest-as-needed \
   --drop-densest-as-needed \
   --extend-zooms-if-still-dropping \
@@ -73,7 +79,7 @@ echo "Generando manzanas_2010.pmtiles y agebs_2010.pmtiles..."
 # (scripts/construir_2010.py). Mismas opciones que las de 2020 para que el
 # cambio de año no cambie el dibujo por razones de teselado.
 if [ -f "$ENTRADA/manzanas_2010_cdmx.geojson" ]; then
-tippecanoe   -o "$SALIDA/manzanas_2010.pmtiles"   --force   --layer=manzanas   --name="Manzanas CDMX · Censo 2010"   --attribution="INEGI, Censo de Población y Vivienda 2010"   -z15 -Z8   --coalesce-densest-as-needed   --drop-densest-as-needed   --extend-zooms-if-still-dropping   --no-tile-size-limit   --generate-ids   "$ENTRADA/manzanas_2010_cdmx.geojson"
+tippecanoe   -o "$SALIDA/manzanas_2010.pmtiles"   --force   --layer=manzanas   --name="Manzanas CDMX · Censo 2010"   --attribution="INEGI, Censo de Población y Vivienda 2010"   -z15 -Z8   --low-detail=10   --coalesce-densest-as-needed   --drop-densest-as-needed   --extend-zooms-if-still-dropping   --no-tile-size-limit   --generate-ids   "$ENTRADA/manzanas_2010_cdmx.geojson"
 tippecanoe   -o "$SALIDA/agebs_2010.pmtiles"   --force   --layer=agebs   --name="AGEB urbanas CDMX · Censo 2010"   --attribution="INEGI Censo 2010"   -z14 -Z8   --no-tile-size-limit   --generate-ids   "$ENTRADA/agebs_2010_cdmx.geojson"
 fi
 

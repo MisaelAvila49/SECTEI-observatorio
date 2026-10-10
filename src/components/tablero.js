@@ -18,7 +18,7 @@ import {
 import {panelFiltros, filtrar, geometria, prepararSeries, brechaDe, DIMENSIONES} from "./filtros.js";
 import {
   barrasComparadas, dumbbell, pendiente, mapasComparados, avisoMuestra, kpis, seccion, figura,
-  tablaDatos, explicacion,
+  tablaDatos, explicacion, barrasAgrupadas, heatmapIndicadores, wafflesIndicadores, apiladas100,
 } from "./graficas.js";
 import {COMPARACION_POR_CLAVE, CRITERIO_POR_CLAVE, SERIE_INDIGENA} from "./grupos.js";
 import {CATALOGO} from "./catalogo.js";
@@ -81,7 +81,7 @@ function bloqueFuentes(fuentes, encuesta, propio = null) {
 // filtradas y la geometría del panel. TODAS las gráficas de análisis pasan
 // por aquí, así que cualquier indicador queda disponible en cada forma.
 function bloqueGrafica(filas, {v, geo, anios, formato, titulo, subtitulo, fuente, explica = null,
-    geoEntidades = null, fuentesBloque = null, ancho, referencia = null}) {
+    geoEntidades = null, fuentesBloque = null, ancho, referencia = null, soloFigura = false}) {
   const base = {comparacion: v.comparacion, criterio: v.criterio, formato};
   const vacio = html`<p class="aviso-vacio">Sin datos para esta combinación de filtros. Prueba con otra edición o quita un desglose.</p>`;
 
@@ -112,12 +112,31 @@ function bloqueGrafica(filas, {v, geo, anios, formato, titulo, subtitulo, fuente
       referencia: geo.modo === "entidades" ? referencia : null});
   }
 
-  return [
-    conDescarga(figura({titulo, subtitulo, pie: pieDe(fuente, geo.modo)}, [grafica, avisoMuestra(series)])),
-    explicacion(explica),
-    fuentesBloque,
-    tablaDatos(series, {dims, formato}),
-  ];
+  const fig = conDescarga(figura({titulo, subtitulo, pie: pieDe(fuente, geo.modo)}, [grafica, avisoMuestra(series)]));
+  if (soloFigura) return fig;
+  // Los tres desplegables, siempre en el mismo orden en todo el sitio:
+  // fuentes y verificación, explicación, tabla.
+  return [fig, fuentesBloque, explicacion(explica), tablaDatos(series, {dims, formato})];
+}
+
+// Forma de un bloque de varios indicadores, según la pregunta de la sección
+// (catalogo.js, campo `forma`): barras agrupadas para comparar los dos grupos
+// indicador por indicador, heatmap para cruzar los indicadores con un
+// desglose (edad, localidad, decil), dumbbell para la brecha ordenada y
+// waffle para «cuántos de cada 100» con pocos indicadores.
+const PIE_FORMA = {
+  agrupadas: "cada par de barras es un indicador; el largo, la proporción dentro de cada grupo",
+  heatmap: "cada celda es un indicador en una categoría del desglose; más oscuro, mayor proporción",
+  dumbbell: "cada fila es un indicador, los dos puntos las proporciones de cada grupo y el segmento la brecha",
+  waffle: "cada cuadro es una de cada 100 personas del grupo; en color, las que cumplen",
+  apiladas: "cada barra es un grupo y cada tramo, la parte que declara ese motivo",
+};
+function graficaDeBloque(forma, series, {comparacion, extra, ancho}) {
+  if (forma === "agrupadas") return barrasAgrupadas(series, {comparacion, filas: "indicador", faceta: extra, width: Math.min(ancho, 1320)});
+  if (forma === "heatmap" || (forma === "waffle" && extra)) return heatmapIndicadores(series, {comparacion, filas: "indicador", columnas: extra, width: Math.min(ancho, 1320)});
+  if (forma === "waffle") return wafflesIndicadores(series, {comparacion, filas: "indicador", width: Math.min(ancho, 1320)});
+  return dumbbell(series, {comparacion, formato: "pct", filas: "indicador", faceta: extra, width: Math.min(ancho, 1320),
+    ordenarPorBrecha: true, etiquetaFilas: "Indicador"});
 }
 
 // Sección con panel propio que se repinta al cambiar un filtro, el ancho o
@@ -186,7 +205,15 @@ export function seccionesTema(clave, datos, {geoEntidades = null, datosDecil = n
   const encuesta = tema.encuesta;
   const formato = tema.formato ?? "pct";
   const todo = datos.concat(datosDecil ?? [], datosEscolaridad ?? [], datosEstrato ?? []);
-  const deIndicador = (nombre) => todo.filter((d) => d.indicador === nombre);
+  // Agrupado UNA vez por indicador: antes cada llamada recorría todas las
+  // filas del tema, y se llama en cada repintado de cada sección.
+  const porIndicador = new Map();
+  for (const d of todo) {
+    let lista = porIndicador.get(d.indicador);
+    if (!lista) porIndicador.set(d.indicador, (lista = []));
+    lista.push(d);
+  }
+  const deIndicador = (nombre) => porIndicador.get(nombre) ?? [];
   const titulos = titulosDeSecciones(clave);
   let n = 0;
 
@@ -249,6 +276,36 @@ export function seccionesTema(clave, datos, {geoEntidades = null, datosDecil = n
       opciones: {entidadInicial: TODAS, edadInicial: bloque.abre === "edad" ? POR_SEPARADO : AGREGADO,
         ambitoInicial: bloque.abre === "localidad" ? POR_SEPARADO : AGREGADO, decilInicial: bloque.abre === "decil" ? COMPARAR : TODOS, mostrarMapa: Boolean(geoEntidades)},
       construir: ({v, geo, anios, ancho}) => {
+        const forma = bloque.forma ?? "dumbbell";
+        const titulos = new Map(bloque.indicadores.map((i) => [i.indicador, i.titulo ?? i.indicador]));
+        // Explicación SIEMPRE presente: la del catálogo, si la hay, más qué
+        // mide cada indicador y su denominador, leído de los propios datos.
+        const uniDe = new Map();
+        for (const d of datosB) if (d.universo && !uniDe.has(d.indicador)) uniDe.set(d.indicador, d.universo);
+        const unis = [...new Set(uniDe.values())];
+        const universos = unis.length === 1 ? `El denominador de todos es el mismo: ${unis[0].toLowerCase()}.`
+          : `Cada indicador tiene su propio denominador: ${bloque.indicadores.map((i) => `${(i.titulo ?? i.indicador).toLowerCase()}, ${(uniDe.get(i.indicador) ?? "").toLowerCase()}`).join("; ")}.`;
+        const explicaBloque = [bloque.explica ?? "Cada indicador es el porcentaje de la población indígena y del resto de la población que cumple esa condición, calculado con el factor de expansión de la encuesta.", universos];
+        const conTitulo = (filas) => filas.map((d) => ({...d, indicador: titulos.get(d.indicador) ?? d.indicador}));
+        const unico = bloque.indicadores.every((i) => (i.formato ?? formato) === "pct");
+        const ffilB = filtrar(datosB, v);
+        if (!ffilB.length) return [html`<p class="aviso-vacio">Ningún indicador de esta sección admite esta combinación de filtros.</p>`];
+        const consolidable = unico && bloque.indicadores.length > 1 && (geo.modo === "barras" || (geo.modo === "dumbbell" && !geo.faceta));
+        if (consolidable) {
+          const extra = geo.modo === "dumbbell" ? geo.filas : null;
+          const dims = ["indicador", extra].filter(Boolean);
+          const series = prepararSeries(conTitulo(ffilB), {comparacion: v.comparacion, criterio: v.criterio, dims, formato: "pct"});
+          if (!series.length) return [html`<p class="aviso-vacio">Sin datos para esta combinación de filtros.</p>`];
+          const grafica = graficaDeBloque(forma, series, {comparacion: v.comparacion, extra, ancho});
+          const fuente = ffilB[0]?.fuente ?? "INEGI";
+          return [
+            conDescarga(figura({titulo: bloque.tituloFigura ?? bloque.titulo, subtitulo: notaSeleccion(v, anios),
+              pie: `${fuente}: ${PIE_FORMA[forma === "waffle" && extra ? "heatmap" : forma] ?? PIE_FORMA.dumbbell}.`}, [grafica, avisoMuestra(series)])),
+            bloqueFuentes(fuentes, encuesta, bloque.fuentes ?? tema.fuentes),
+            explicacion(explicaBloque),
+            tablaDatos(series, {dims, formato: "pct", etiquetas: {indicador: "Indicador"}}),
+          ];
+        }
         const tarjetas = [];
         for (const i of bloque.indicadores) {
           const fsec = deIndicador(i.indicador);
@@ -257,26 +314,30 @@ export function seccionesTema(clave, datos, {geoEntidades = null, datosDecil = n
           const aniosSec = [...new Set(fsec.map((d) => String(d.anio)))].sort();
           const geoSec = geometria(v, {aniosDisponibles: aniosSec});
           tarjetas.push(html`<div class="bloque-indicador">${bloqueGrafica(ffil, {
-            v, geo: geoSec, anios: aniosSec, formato: i.formato ?? formato,
+            v, geo: geoSec, anios: aniosSec, formato: i.formato ?? formato, soloFigura: true,
             // En rejilla de dos columnas cada tarjeta mide la mitad.
             ancho: tarjetas.length === 0 && bloque.indicadores.length % 2 === 1 ? ancho : Math.floor((ancho - 24) / 2),
             titulo: i.titulo ?? i.indicador,
             subtitulo: [i.universo ? `Universo: ${i.universo.toLowerCase()}.` : "", notaSeleccion(v, aniosSec)].filter(Boolean).join(" "),
             fuente: ffil[0]?.fuente ?? "",
-            explica: [i.explica ?? bloque.explica, ffil[0]?.universo ? `Denominador: ${ffil[0].universo.toLowerCase()}.` : ""],
             geoEntidades,
-            fuentesBloque: bloqueFuentes(fuentes, encuesta, i.fuentes ?? bloque.fuentes ?? tema.fuentes),
             referencia: geoSec.modo === "entidades" ? referenciaNacional(filtrar(fsec, {...v, entidad: TODAS}), v, i.formato ?? formato) : null,
           })}</div>`);
         }
         if (!tarjetas.length) return [html`<p class="aviso-vacio">Ningún indicador de esta sección admite esta combinación de filtros.</p>`];
         // Rejilla 1 + 2: la primera a ancho completo cuando el total es impar.
-        if (tarjetas.length === 1) return [html`<div class="grid">${tarjetas}</div>`];
-        if (tarjetas.length % 2 === 1) {
-          const [primera, ...resto] = tarjetas;
-          return [html`<div class="grid">${primera}</div>`, html`<div class="grid grid-cols-2">${resto}</div>`];
-        }
-        return [html`<div class="grid grid-cols-2">${tarjetas}</div>`];
+        const rejilla = tarjetas.length === 1 ? [html`<div class="grid">${tarjetas}</div>`]
+          : tarjetas.length % 2 === 1 ? [html`<div class="grid">${tarjetas[0]}</div>`, html`<div class="grid grid-cols-2">${tarjetas.slice(1)}</div>`]
+          : [html`<div class="grid grid-cols-2">${tarjetas}</div>`];
+        // Un solo juego de desplegables para toda la sección, a lo ancho.
+        const dimsTabla = [...new Set(["indicador", geo.modo === "mapa" ? "entidad" : null, geo.filas, geo.faceta, geo.modo === "pendiente" ? "anio" : null].filter(Boolean))];
+        const seriesTabla = unico ? prepararSeries(conTitulo(ffilB), {comparacion: v.comparacion, criterio: v.criterio, dims: dimsTabla, formato: "pct"}) : [];
+        return [
+          ...rejilla,
+          bloqueFuentes(fuentes, encuesta, bloque.fuentes ?? tema.fuentes),
+          explicacion(explicaBloque),
+          seriesTabla.length ? tablaDatos(seriesTabla, {dims: dimsTabla, formato: "pct", etiquetas: {indicador: "Indicador"}}) : null,
+        ];
       },
     });
   });
@@ -303,13 +364,21 @@ export function seccionesTema(clave, datos, {geoEntidades = null, datosDecil = n
         const dims = ["indicador", faceta].filter(Boolean);
         const series = prepararSeries(ffil, {comparacion: v.comparacion, criterio: v.criterio, dims, formato: "pct"});
         if (!series.length) return [html`<p class="aviso-vacio">Sin datos para esta combinación de filtros.</p>`];
-        const grafica = dumbbell(series, {comparacion: v.comparacion, formato: "pct", filas: "indicador",
-          faceta: faceta && new Set(series.map((d) => d[faceta])).size > 1 ? faceta : null, width: ancho, ordenarPorBrecha: true, alturaFila: 30});
+        // Sin desglose, la forma de la sección (catalogo.js): los motivos se
+        // excluyen y suman 100, así que admiten la apilada al 100 %. Con un
+        // desglose activo, el dumbbell con facetas de siempre.
+        const forma = !faceta ? (m.forma ?? "dumbbell") : "dumbbell";
+        const grafica = forma === "apiladas" ? apiladas100(series, {comparacion: v.comparacion, categorias: "indicador", width: Math.min(ancho, 1320)})
+          : forma === "agrupadas" ? barrasAgrupadas(series, {comparacion: v.comparacion, filas: "indicador", width: Math.min(ancho, 1320), etiquetaFilas: "Motivo"})
+          : dumbbell(series, {comparacion: v.comparacion, formato: "pct", filas: "indicador",
+            faceta: faceta && new Set(series.map((d) => d[faceta])).size > 1 ? faceta : null, width: ancho, ordenarPorBrecha: true, alturaFila: 30});
+        const pie = forma === "apiladas" ? PIE_FORMA.apiladas : forma === "agrupadas" ? "cada par de barras es un motivo y su largo, la fracción de cada grupo que lo declara"
+          : "cada fila es un motivo y los dos puntos, la fracción de cada grupo que lo declara";
         return [
           conDescarga(figura({titulo: m.titulo, subtitulo: [`Universo: ${ffil[0].universo.toLowerCase()}.`, notaSeleccion(v, anios)].join(" "),
-            pie: `${ffil[0].fuente}: cada fila es un motivo y los dos puntos, la fracción de cada grupo que lo declara.`}, [grafica, avisoMuestra(series)])),
-          explicacion([m.explica, `Denominador: ${ffil[0].universo.toLowerCase()}.`]),
+            pie: `${ffil[0].fuente}: ${pie}.`}, [grafica, avisoMuestra(series)])),
           bloqueFuentes(fuentes, encuesta, m.fuentes ?? tema.fuentes),
+          explicacion([m.explica, `Denominador: ${ffil[0].universo.toLowerCase()}.`]),
           tablaDatos(series, {dims: ["indicador", ...(faceta ? [faceta] : [])], formato: "pct"}),
         ];
       },

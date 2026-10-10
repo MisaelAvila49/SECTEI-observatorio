@@ -43,7 +43,9 @@ const PAGINAS = [
   {ruta: "/libro/variantes", esperado: [{nombre: "barras de variantes", sel: 'g[aria-label="bar"] rect', minimo: 30}]},
   {ruta: "/libro/lenguas-en-riesgo", esperado: [{nombre: "barras de lenguas en riesgo", sel: 'g[aria-label="bar"] rect', minimo: 20}, {nombre: "flechas de cambio", sel: 'g[aria-label="link"] path', minimo: 5}]},
   {ruta: "/libro/la-ciudad-en-el-pais", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [{nombre: "marcas de la ciudad en el país", sel: 'g[aria-label="bar"] rect, g[aria-label="dot"] circle, g[aria-label="rect"] rect, g[aria-label="cell"] rect', minimo: 30}, {nombre: "línea de lenguas por edición", sel: 'g[aria-label="line"] path', minimo: 1}]},
-  {ruta: "/libro/de-donde-vienen", esperado: [{nombre: "marcas de origen y llegadas (burbujas, flujos y puntos)", sel: 'g[aria-label="bar"] rect, g[aria-label="dot"] circle, g[aria-label="rect"] rect, g[aria-label="cell"] rect, g[aria-label="link"] path', minimo: 25}, {nombre: "líneas de origen y llegadas", sel: 'g[aria-label="line"] path', minimo: 2}]},
+  // Capitulo con el formato del prototipo (components/capitulo/): d3 propio,
+  // no Plot. Se cuentan las marcas de la portada, de la escena y de Explora.
+  {ruta: "/libro/de-donde-vienen", espera: ".vista-barras .barra-fila", esperado: [{nombre: "marcas de los bloques (rejilla y mapas)", sel: ".esc-unidad, .esc-tierra", minimo: 100}, {nombre: "burbujas y barras de Explora", sel: ".vista-mapa .burbuja, .vista-barras .barra-fila", minimo: 40}]},
   {ruta: "/libro/donde-viven", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [{nombre: "barras por alcaldía", sel: 'g[aria-label="bar"] rect', minimo: 10}, {nombre: "celdas de lenguas por alcaldía", sel: 'g[aria-label="cell"] rect', minimo: 100}]},
   {ruta: "/libro/colonias-y-marginacion", esperado: [{nombre: "marcas de marginación y colonias", sel: 'g[aria-label="bar"] rect, g[aria-label="dot"] circle, g[aria-label="rect"] rect, g[aria-label="cell"] rect', minimo: 20}]},
   {ruta: "/libro/quienes-son", esperado: [{nombre: "barras de la pirámide", sel: 'g[aria-label="bar"] rect', minimo: 30}, {nombre: "líneas por edad", sel: 'g[aria-label="line"] path', minimo: 4}]},
@@ -72,7 +74,9 @@ const servidor = () => servirEstatico(RAIZ, PUERTO);
 // canvas y se le espera por los escalones de su leyenda.
 async function esperarDibujo(page, espera = null) {
   await page.waitForFunction(
-    (sel) => document.querySelectorAll(sel ?? "#observablehq-main svg").length > 0,
+    // Las portadas llevan un motivo SVG en linea desde el inicio: se espera a una
+    // grafica, no a ese motivo.
+    (sel) => document.querySelectorAll(sel ?? "#observablehq-main svg:not(.motivo)").length > 0,
     espera, {timeout: 30000}
   );
   // El primer SVG no basta: la portada pinta el dumbbell y después, en otras

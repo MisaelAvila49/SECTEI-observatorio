@@ -67,12 +67,12 @@ export function agrupar(datos, llaves) {
 // denominador (no es cero: es "no calculable", y una barra en cero mentiría).
 // El ×100 solo aplica cuando el indicador es un porcentaje: en pesos u horas,
 // num/den YA es la cifra final (pesos, horas), y multiplicarla por 100 la
-// infla cien veces — $13,444 de ingreso mensual se convertía en $1,344,400.
+// infla cien veces ( $13,444 de ingreso mensual se convertía en $1,344,400.
 //
 // "conteo" es distinto de los demás: no es una RAZÓN de nada (num/den), es
 // un CONTEO absoluto de personas (num), y `den` en ese indicador solo existe
 // para que la fila conserve la forma común num/den/casos del resto del
-// tablero — ahí `den` es la población nacional total, una constante que no
+// tablero ) ahí `den` es la población nacional total, una constante que no
 // varía por grupo, así que dividir por ella daría "qué fracción del país es
 // este grupo" (~0.2%), no el conteo real de millones de personas que se
 // quiere mostrar. Por eso "conteo" usa `num` directo, sin dividir.
@@ -154,10 +154,44 @@ export function razon(filas, llaveSerie, serieA, serieB) {
 // columnas numéricas indicadas con Number(). Sin esto, los valores quedan como
 // tipos Arrow que no suman ni comparan bien, y la tabla solo se puede iterar
 // una vez.
+//
+// Se lee por COLUMNA y no por fila: recorrer la tabla fila a fila pasa por un
+// Proxy de Arrow en cada campo, y con 90 mil filas de 19 columnas eso costaba
+// unos 5 s de hilo principal por página (medido con scripts/perfil_carga.mjs).
+// Los valores son los mismos: el iterador de cada vector entrega null donde
+// falta el dato y decodifica los diccionarios; las numéricas pasan por Number().
 export function materializar(tabla, numericas = ["num", "den", "casos"]) {
-  return [...tabla].map((fila) => {
-    const o = {...fila};
-    for (const k of numericas) if (k in o) o[k] = Number(o[k]);
-    return o;
+  const nombres = tabla.schema.fields.map((f) => f.name);
+  const n = tabla.numRows;
+  const columnas = nombres.map((nombre) => {
+    const v = tabla.getChild(nombre);
+    const valores = v ? Array.from(v) : new Array(n).fill(null);
+    return numericas.includes(nombre) ? valores.map((x) => Number(x)) : valores;
   });
+  const filas = new Array(n);
+  for (let i = 0; i < n; i++) {
+    const o = {};
+    for (let j = 0; j < nombres.length; j++) o[nombres[j]] = columnas[j][i];
+    filas[i] = o;
+  }
+  return filas;
+}
+
+// Lee un parquet del tablero directamente a objetos JS, sin pasar por Arrow.
+// FileAttachment.parquet() de Framework descarga parquet-wasm (5.25 MB) en
+// cada página de encuesta; hyparquet es JavaScript puro y, con el
+// descompresor ZSTD de hyparquet-compressors, lee los mismos archivos. Las
+// columnas numéricas pasan por Number(), igual que en materializar().
+import {parquetReadObjects} from "npm:hyparquet@1.31.1";
+import {compressors} from "npm:hyparquet-compressors@1.1.1";
+
+export async function leerParquet(adjunto, numericas = ["num", "den", "casos"]) {
+  const file = await adjunto.arrayBuffer();
+  const filas = await parquetReadObjects({file, compressors});
+  for (const o of filas) {
+    for (const k of numericas) if (k in o) o[k] = Number(o[k]);
+    // Arrow entregaba null donde falta el dato; se conserva igual.
+    for (const k in o) if (o[k] === undefined) o[k] = null;
+  }
+  return filas;
 }

@@ -192,7 +192,7 @@ export function waffle(datos, {ancho, colorDe = () => COLOR_UNICO, texto = (d) =
     fx: {label: null, padding: 0.18, domain: datos.map((d) => d.grupo), axis: null},
     x: {axis: null}, y: {axis: null},
     marks: [
-      Plot.waffleY(datos, {fx: "grupo", y: 100, multiple: 10, fill: "#dcdcd6", rx: 2}),
+      Plot.waffleY(datos, {fx: "grupo", y: 100, multiple: 10, fill: MODO.oscuro ? GRIS.fondo : "#dcdcd6", rx: 2}),
       Plot.waffleY(datos, {fx: "grupo", y: (d) => Math.round(d.valor), multiple: 10, fill: colorDe, rx: 2}),
       Plot.text(datos, {fx: "grupo", frameAnchor: "top", dy: -44, lineAnchor: "top", lineHeight: 1.3, fontSize: TIPO.valor, fontWeight: 700, fill: "currentColor", text: texto}),
     ],

@@ -27,6 +27,21 @@ const pr = (r) => (r ? 100 * r.num / r.den : null);
 // Sección genérica: barras por categoría de un indicador de la ENADIS, con
 // año (2017, 2022 o las dos), sexo, edad y tipo de localidad; sexo, edad y
 // localidad admiten "por separado" (una faceta; la segunda vuelve al total).
+// Barras horizontales ordenadas (catálogo: «¿Quién está arriba y quién
+// abajo?»), para indicadores con pocas categorías. Una sola serie: la
+// población indígena, en el color de serie única; la cifra al final de cada barra.
+function rankingBarras(d, {maxX, renglones}) {
+  return Plot.plot({marginLeft: 280, marginRight: 60, height: 40 + 34 * d.length, width: Math.min(1320, width),
+    x: {label: "% de la población indígena", grid: true, domain: [0, maxX], axis: "top"}, y: {label: null, domain: d.map((r) => r.categoria)},
+    marks: [
+      Plot.barX(d, {x: "pct", y: "categoria", fill: COLOR_UNICO, insetTop: 5, insetBottom: 5}),
+      Plot.text(d, {x: "pct", y: "categoria", text: (r) => pct(r.pct), dx: 6, textAnchor: "start", fontSize: 11.5}),
+      Plot.barX(d, Plot.pointerY({x: "pct", y: "categoria", fill: "none", stroke: "currentColor", strokeWidth: 1.6, insetTop: 5, insetBottom: 5, maxRadius: Infinity})),
+      Plot.tip(d, Plot.pointerY({x: "pct", y: "categoria", maxRadius: Infinity, ...GLOBO, ...globo(renglones)})),
+      Plot.ruleX([0]),
+    ]});
+}
+
 function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloAnios = null, inicialAnio = "2022", fuentes = {}, forma = "barras"}) {
   const anios = soloAnios ?? [2017, 2022];
   const cAnio = campo({id: `${id}-anio`, nombre: "anio", etiqueta: "Año", opciones: [...(anios.length > 1 ? [{clave: SEPARADO, etiqueta: "2017 y 2022 (comparar)", grupo: "En conjunto"}] : []), ...anios.map((a) => ({clave: String(a), etiqueta: String(a), grupo: "Una edición"}))], valor: anios.length > 1 ? inicialAnio : String(anios[0])});
@@ -61,7 +76,7 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
     const inset = comparar ? {insetTop: 13, insetBottom: 13} : {};
     const maxX = MAX_X;
     const color = comparar ? {domain: ["2017", "2022"], range: [COLOR_ANIO["2017"], COLOR_ANIO["2022"]], legend: true} : {domain: ["x"], range: [COLOR_UNICO]};
-    const renglones = [["Categoría", (r) => r.categoria], ["Año", (r) => r.anio], ["Corte", (r) => r.faceta || null], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]];
+    const renglones = [["Categoría", (r) => [r.categoria, comparar ? r.anio : null, r.faceta || null].filter(Boolean).join(", ")], ["Porcentaje", (r) => pct(r.pct)], ["Personas", (r) => entero(r.num)]];
     // La forma sigue a la comparación: dos ediciones, mujeres y hombres o urbana
     // y rural van en dumbbell (la brecha es la historia); una sola edición sin
     // cortes, en puntos; los tres grupos de edad, en barras por panel.
@@ -70,6 +85,7 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
       : !comparar && sepCampo === "ambito" ? {campo: "faceta", series: ["Urbana", "Rural"], colores: [COLOR_REFERENCIA, COLOR_UNICO]} : null;
     const grafica = !f.length || forma === "likert" ? null
       : par ? dumbbell(f.map((r) => ({...r, fila: r.categoria, serie: r[par.campo], valor: r.pct})), {ancho: Math.min(1320, width), series: par.series, colores: par.colores, dominio: [0, maxX], orden: cats, margenIzq: 280, etiquetaX: "% de la población indígena", renglones})
+      : !comparar && !sepCampo && forma === "ranking" ? rankingBarras(cats.map((c) => f.find((r) => r.categoria === c)).filter(Boolean), {maxX, renglones})
       : !comparar && !sepCampo ? lollipop(cats.map((c) => f.find((r) => r.categoria === c)).filter(Boolean).map((r) => ({...r, nombre: r.categoria, valor: r.pct})), {ancho: Math.min(1320, width), dominio: [0, maxX], margenIzq: 280, formato: (v) => pct(v), etiquetaX: "% de la población indígena", renglones})
       : null;
     const sub = [comparar ? "2017 y 2022" : cAnio.value, fijo.sexo && fijo.sexo !== "Total" ? fijo.sexo : "", fijo.edad && fijo.edad !== "Todas" ? EDAD_ETIQ[fijo.edad] : "", fijo.ambito && fijo.ambito !== "Total" ? `localidades ${fijo.ambito === "Rural" ? "rurales" : "urbanas"}` : "", sepCampo ? `un panel por ${{sexo: "sexo", edad: "grupo de edad", ambito: "tipo de localidad"}[sepCampo]}` : ""].filter(Boolean).join(" · ");
@@ -80,7 +96,7 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
           // desfavorable (nada, poco) a la izquierda del cero y lo favorable a la derecha.
           ? likert(f.map((r) => ({...r, respuesta: r.categoria, fila: [comparar ? String(r.anio) : null, r.faceta || null].filter(Boolean).join(" · ") || "Población indígena"})),
             {ancho: Math.min(1320, width), orden: ["Nada", "Poco", "Algo", "Mucho"], negativas: 2, dominio: [-75, 75], margenIzq: 170,
-              renglones: [["Grupo", (r) => r.fila], ["Respuesta", (r) => r.respuesta], ["Porcentaje", (r) => `${pct(r.pct)}${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]]})
+              renglones: [["Grupo", (r) => r.fila], ["Respuesta", (r) => r.respuesta], ["Porcentaje", (r) => pct(r.pct)], ["Personas", (r) => entero(r.num)]]})
           : grafica ? grafica
           : f.length ? Plot.plot({marginLeft: 280, marginRight: 60, height: alto, width: Math.min(1320, width), ...facetas, color, x: {label: "% de la población indígena", grid: true, domain: [0, maxX]}, y: {label: null, domain: cats},
           marks: [...(comparar ? [[2017, -8], [2022, 8]] : [[null, 0]]).flatMap(([a, dy]) => {
@@ -90,7 +106,7 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
                 Plot.ruleX(d.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => Math.min(maxX, r.pct + 196 * r.ee), y: "categoria", dy, stroke: "currentColor", strokeOpacity: 0.55, ...fx}),
                 Plot.text(d, {x: "pct", y: "categoria", text: (r) => pct(r.pct), dx: 6, dy, textAnchor: "start", fontSize: 11, ...fx})];
             }),
-            Plot.tip(f, Plot.pointer({x: "pct", y: "categoria", ...(sepCampo ? {fx: "faceta"} : {}), maxRadius: Infinity, ...GLOBO, ...globo(renglones)})), Plot.ruleX([0])]}) : html`<p class="beta-nota">La pregunta no existe en esta edición.</p>`]),
+            Plot.tip(f, Plot.pointerY({x: "pct", y: "categoria", ...(sepCampo ? {fx: "faceta"} : {}), maxRadius: Infinity, ...GLOBO, ...globo(renglones)})), Plot.ruleX([0])]}) : html`<p class="beta-nota">La pregunta no existe en esta edición.</p>`]),
       extra.length ? html`<p class="beta-nota">Solo un corte puede ir por separado a la vez; los demás vuelven al total.</p>` : "",
       fuenteDe({datos: ["D-ENADIS-2017", "D-ENADIS-2022"], ...fuentes}),
       explicacion(explica),
@@ -103,11 +119,16 @@ function seccionEnadis({id, indicador, titulo, pie, explica, orden = null, soloA
 }
 ```
 
-<div class="hero-pagina">
-  <span class="kicker">Parte 5 · Lo que enfrentan · 1 de 3</span>
+<header class="portada-capitulo">
+  <div class="portada-capitulo-arte" data-motivo="parte-5"><svg class="motivo motivo-personas" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g class="a-esc f0"><circle cx="157" cy="89.5" r="10.5" fill="#55554f"/><path d="M139,133.2 V116.1 a18.1,14.3 0 0 1 36.1,0 V133.2 z" fill="#55554f"/></g><g class="a-esc f1"><circle cx="215" cy="89.5" r="10.5" fill="#8a8a86"/><path d="M197,133.2 V116.1 a18.1,14.3 0 0 1 36.1,0 V133.2 z" fill="#8a8a86"/></g><g class="a-esc f1"><circle cx="273" cy="89.5" r="10.5" fill="#3a3a37"/><path d="M255,133.2 V116.1 a18.1,14.3 0 0 1 36.1,0 V133.2 z" fill="#3a3a37"/></g><g class="a-esc f2"><circle cx="128" cy="153.5" r="10.5" fill="#55554f"/><path d="M110,197.2 V180.1 a18.1,14.3 0 0 1 36.1,0 V197.2 z" fill="#55554f"/></g><g class="a-esc f2"><circle cx="186" cy="153.5" r="10.5" fill="#8a8a86"/><path d="M168,197.2 V180.1 a18.1,14.3 0 0 1 36.1,0 V197.2 z" fill="#8a8a86"/></g><g class="a-esc f3"><circle cx="244" cy="153.5" r="10.5" fill="#3a3a37"/><path d="M226,197.2 V180.1 a18.1,14.3 0 0 1 36.1,0 V197.2 z" fill="#3a3a37"/></g><g class="a-esc f3"><circle cx="302" cy="153.5" r="10.5" fill="#55554f"/><path d="M284,197.2 V180.1 a18.1,14.3 0 0 1 36.1,0 V197.2 z" fill="#55554f"/></g><g class="a-esc f4"><circle cx="99" cy="217.5" r="10.5" fill="#8a8a86"/><path d="M81,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#8a8a86"/></g><g class="a-esc f4"><circle cx="157" cy="217.5" r="10.5" fill="#3a3a37"/><path d="M139,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#3a3a37"/></g><g class="a-esc f5"><circle cx="215" cy="217.5" r="10.5" fill="#55554f"/><path d="M197,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#55554f"/></g><g class="a-esc f5"><circle cx="273" cy="217.5" r="10.5" fill="#8a8a86"/><path d="M255,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#8a8a86"/></g><g class="a-esc f6"><circle cx="331" cy="217.5" r="10.5" fill="#3a3a37"/><path d="M313,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#3a3a37"/></g><g class="a-esc f6"><circle cx="128" cy="281.5" r="10.5" fill="#55554f"/><path d="M110,325.2 V308.1 a18.1,14.3 0 0 1 36.1,0 V325.2 z" fill="#55554f"/></g><g class="a-esc f7"><circle cx="186" cy="281.5" r="10.5" fill="#8a8a86"/><path d="M168,325.2 V308.1 a18.1,14.3 0 0 1 36.1,0 V325.2 z" fill="#8a8a86"/></g><g class="a-esc f7"><circle cx="244" cy="281.5" r="10.5" fill="#3a3a37"/><path d="M226,325.2 V308.1 a18.1,14.3 0 0 1 36.1,0 V325.2 z" fill="#3a3a37"/></g><g class="a-esc f8"><circle cx="302" cy="281.5" r="10.5" fill="#55554f"/><path d="M284,325.2 V308.1 a18.1,14.3 0 0 1 36.1,0 V325.2 z" fill="#55554f"/></g><g class="a-sep f0"><circle cx="340" cy="217.5" r="10.5" fill="#e8474f"/><path d="M322,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#e8474f"/></g></svg></div>
+  <div class="portada-capitulo-texto">
+  <p class="portada-capitulo-parte">Parte 5 · Lo que enfrentan · 1 de 3</p>
   <h1>Discriminación</h1>
-  <p class="hero-entrada">La quinta parte trata de lo que la población indígena enfrenta. La ENADIS pregunta directamente a las personas indígenas si han sido discriminadas, por qué, dónde y qué derechos se les han negado. Sus cifras son del país.</p>
-</div>
+  <p class="portada-capitulo-dek">La quinta parte trata de lo que la población indígena enfrenta.</p>
+  </div>
+</header>
+
+<p class="entrada-capitulo">La ENADIS pregunta directamente a las personas indígenas si han sido discriminadas, por qué, dónde y qué derechos se les han negado. Sus cifras son del país.</p>
 
 ```js
 display(kpis([
@@ -156,7 +177,7 @@ display(seccionEnadis({id: "c7b", indicador: "motivo", fuentes: {cotejos: ["por_
 </header>
 
 ```js
-display(seccionEnadis({id: "c7c", indicador: "ambito", fuentes: {cotejos: ["ambito_2017"]}, 
+display(seccionEnadis({id: "c7c", indicador: "ambito", forma: "ranking", fuentes: {cotejos: ["ambito_2017"]}, 
   titulo: "Lugares donde las personas indígenas fueron discriminadas",
   pie: "INEGI, ENADIS 2017 y 2022 · cada fila es un ámbito; una persona puede señalar varios",
   explica: "Porcentaje de la población indígena de 12 años y más que en los últimos doce meses fue discriminada en cada lugar: el trabajo o la escuela, la familia, los servicios médicos, una oficina de gobierno, un negocio o banco, la calle o el transporte, las redes sociales y, desde 2022, ante la policía o el Ministerio Público. La barra 'en al menos un ámbito' reúne a quien señaló cualquiera."}));
@@ -171,7 +192,7 @@ display(seccionEnadis({id: "c7c", indicador: "ambito", fuentes: {cotejos: ["ambi
 </header>
 
 ```js
-display(seccionEnadis({id: "c7d", indicador: "derecho", fuentes: {cotejos: ["derecho_2017", "derecho_2022"]},
+display(seccionEnadis({id: "c7d", indicador: "derecho", inicialAnio: SEPARADO, fuentes: {cotejos: ["derecho_2017", "derecho_2022"]},
   titulo: "Derechos que les negaron injustificadamente en los últimos cinco años",
   pie: "INEGI, ENADIS 2017 y 2022 · cada fila es un derecho, sobre quienes respondieron sí o no",
   explica: "Porcentaje de la población indígena a la que en los últimos cinco años le negaron sin justificación cada derecho, sobre quienes lo intentaron ejercer (se excluye a quien respondió 'no aplica'). Estudiar solo se preguntó a personas de 12 a 35 años, y trabajar, crédito y renta a las de 18 y más; rentar una vivienda solo existe en 2022. El INEGI publica 26.9 % con al menos un derecho negado en 2022 (18 años y más) y 29.2 % en 2017."}));

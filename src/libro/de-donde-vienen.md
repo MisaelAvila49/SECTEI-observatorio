@@ -1,222 +1,55 @@
 ---
 title: De dónde vienen
+toc: false
+pager: false
 ---
 
-```js
-import * as Plot from "npm:@observablehq/plot";
-import {html} from "npm:htl";
-import {datosCenso, seccionCenso} from "../components/seccion-censo.js";
-import {campo} from "../components/panel-seccion.js";
-import {figura, explicacion, tablaColumnas, kpis} from "../components/graficas.js";
-import {punto, ejePct, COLOR_UNICO, ROJO, alCambiarModo, GLOBO, globo} from "../components/base.js";
-import {procedencia} from "../components/fuentes.js";
-
-const [nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, lenguasAlc, origen] = await Promise.all([
-  FileAttachment("../data/hablantes_nacional_2020.csv").csv({typed: true}),
-  FileAttachment("../data/inpi_2020.csv").csv({typed: true}),
-  FileAttachment("../data/serie_alcaldias.csv").csv({typed: true}),
-  FileAttachment("../data/agebs_resumen.csv").csv({typed: true}),
-  FileAttachment("../data/agebs_resumen_2010.csv").csv({typed: true}),
-  FileAttachment("../data/geo_catalogo.csv").csv(),
-  FileAttachment("../data/mx_entidades.json").json(),
-  FileAttachment("../data/lenguas_alcaldia.csv").csv({typed: true}),
-  FileAttachment("../data/lenguas_origen.csv").csv({typed: true}),
-]);
-const pmtiles = {municipios: await FileAttachment("../data/municipios.pmtiles").url(), agebs: await FileAttachment("../data/agebs.pmtiles").url(), manzanas: await FileAttachment("../data/manzanas.pmtiles").url(), agebs2010: null, manzanas2010: null};
-try { pmtiles.agebs2010 = await FileAttachment("../data/agebs_2010.pmtiles").url(); } catch { pmtiles.agebs2010 = null; }
-try { pmtiles.manzanas2010 = await FileAttachment("../data/manzanas_2010.pmtiles").url(); } catch { pmtiles.manzanas2010 = null; }
-const datos = datosCenso({nacional, inpi, serie, agebs, agebs2010, geoFilas, geoEntidades, pmtiles});
-const fuenteDe = procedencia({fuentes: await FileAttachment("../data/fuentes.csv").csv(), verificaciones: await FileAttachment("../data/verificaciones.csv").csv(), calculado: await FileAttachment("../data/calculado.csv").csv()});
-const entero = (n) => punto(Math.round(Number(n)));
-const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
-```
-
-```js
-// Las gráficas ocupan todo el ancho de la columna, hasta 1,320 px, y su alto
-// crece con el ancho.
-const anchoG = Math.min(1320, width);
-// El mapa crece en alto con el ancho: se topa para que quepa en una pantalla.
-const anchoMapa = Math.min(980, anchoG);
-const altoLinea = Math.round(Math.min(400, Math.max(240, anchoG * 0.3)));
-```
-
-<div class="hero-pagina">
-  <span class="kicker">Parte 2 · La ciudad · 2 de 4</span>
+<header class="portada-capitulo">
+  <div class="portada-capitulo-arte" data-motivo="parte-2"><svg class="motivo motivo-ciudad" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path d="M280.9,72.3L284,73.1L286.4,71.9L289.1,72.5L291.5,73.6L293.9,74.4L297.1,75.5L298,77.9L298.9,80.4L299.7,82.9L300.7,85.6L301.6,88.3L302.5,90.8L303.4,93.3L304.3,95.8L305.2,98.3L306.1,100.9L303.9,102.1L301.3,102.8L298.8,102.4L296.1,102.1L294.6,104.1L293,106.5L290.4,106.8L286.4,106.1L283.8,105.7L281,105.2L277.7,104.5L276.5,102L275.5,99.4L274.2,97.2L271.6,96.5L269,95.7L266.2,96.5L263.7,96.7L260.9,95.9L258.2,95.2L256,93.9L256.7,91.2L257.5,88.7L258.4,86.1L259.3,83.2L260.2,80.4L261.2,77.1L261.9,74L262.5,71.2L263.5,68.9L265.7,67.6L268.2,67.7L271.4,68.7L274.6,69.7L276.9,70.7L279.4,71.8Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M311.8,175.5L314,174.1L316.7,174.4L319.3,174.7L320.1,177.3L320.9,179.7L322.5,182.2L323.8,184.4L324.7,186.8L325.4,189.6L327,191.5L328.4,193.8L330,195.9L332.1,197.7L334.2,199.5L334.2,203L333.9,207.4L333.6,211.1L333.3,214.1L330.7,214.3L328,214.4L325.6,213.8L323.1,213.2L320.4,212.4L318.1,211.4L315.7,210.4L313.4,209.3L310.6,209.6L309,211.5L307.3,213.5L304.8,213.7L301.9,214.5L299.2,215.9L296.6,215.2L294.4,213.5L291.7,213L289,212.6L286.2,212.2L283.3,211.8L280.5,212L277.1,212.3L274,212.7L271.3,212.4L268.6,211L266.2,210.4L267.7,208.2L269.5,204.7L271.6,201L272.8,198.3L272.8,195.6L272.5,192.9L270.6,191.3L272.6,189.4L275.1,189L276.8,186.7L278.9,184.8L280.4,182.6L282.3,180.5L284,178.6L286.1,176.3L287.6,173.6L290.2,174.2L293,174.3L295.5,174.5L298.1,174.6L300.7,174.8L303.3,174.9L305.9,175L308.6,175.3L311.3,175.5Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M232.5,145.1L233.6,147.7L231.4,149.4L233.8,150.2L236.4,150.3L239,149.8L238.3,152.2L238.5,154.9L237,156.9L234.5,158.6L232.3,160.2L230.4,162L227.5,163.1L225.1,163.9L225.2,166.6L227.2,165L226.5,167.5L226.6,170.2L228.7,171.6L230.4,174.3L230.9,177.1L231.2,179.6L230,181.9L227.8,183.2L225.8,185L223.4,186.2L221.1,187.3L218.6,188.4L216.5,189.8L214,190.8L213,193.1L210.7,194.1L210.6,196.7L211.1,199.1L209.1,200.8L206.6,201.2L205,199L204.1,201.4L204.8,204.2L204.2,206.6L201.9,207.9L200.1,209.7L197.5,209.5L196.2,211.7L194.8,213.8L194.1,216.6L194,219.2L194.6,221.9L194.5,224.8L194.5,228L193.9,230.4L189.7,238L189.8,247.4L189.4,256.3L189.3,259L185.3,256.9L181.9,255.6L177.7,254.4L177.9,250L178.3,246.8L179.3,241.7L180.7,238.7L179.7,236.2L177.2,235.6L175.2,233.8L168.8,231.2L165.1,230.7L170.4,219.7L171.9,217.6L168.7,212.8L168.5,209.6L183.2,193.3L184.4,190.3L184.9,187.7L186,185.3L186.4,182.7L186.7,180.2L186.9,177.7L188.8,176.1L190.7,174.1L193.3,174.4L192.4,170.7L194.1,168.9L196.1,166.8L198.7,165.5L201,163.9L202.2,161.3L204.1,163.7L204.3,166.3L206.9,166.8L209.2,165.5L210.9,163.4L212.9,161.8L214.9,159.9L217.5,158.1L220.4,155.7L222.4,153.8L224.6,152.4L226.9,150.8L229.7,148.6L230,146.1L231.5,143.6Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M326.7,35.4L324.3,38.1L322,41.8L320.4,43.8L319.4,46.2L317.6,48.4L315.8,50.5L314.2,52.8L316.3,55.8L315.8,59.3L316.7,61.9L318.2,64.1L320.4,66.3L322.8,68.2L327.1,69.8L329.6,70.3L332.1,69.7L334.6,69.1L337.1,69.5L339.8,70.8L342.1,71.8L344.4,72.9L346.8,73.9L349.1,75L351.4,76L353.8,76.9L356.3,77.9L356.3,80.4L355.4,82.8L354.8,85.4L355.7,87.7L356.8,90.1L357.8,92.6L358.8,95.1L360.1,98.2L361.1,100.6L362.1,103L363.1,105.4L364.1,107.9L365,110.2L364.5,112.7L362.2,113.7L359.4,114.7L356.7,114.6L354.2,114.1L350.4,112.7L347.7,111.8L345,112.4L342.4,114.4L340.6,112.7L338.8,110.9L336.2,110.9L333.8,111.8L331.3,111L328.8,110.1L326.4,109.1L324.4,107.5L322.3,105.9L319.9,105.1L316.9,104L314.3,102.6L312.1,101.4L309,101.3L306.5,101L305.3,98.5L304.3,95.8L303.5,93.4L302.5,90.8L301.6,88.3L300.7,85.6L299.8,83L298.9,80.4L298,77.9L297.1,75.5L296,72.5L295.1,70.1L294.1,67.3L292.9,64.9L290.6,63.5L288.2,62.1L285.8,61L287.9,58.9L285.4,56.9L288.5,56.8L290.9,57.6L293.4,58.4L296,58.8L297,56.5L296.5,53.3L298.3,51L299.8,48.8L299.8,46.2L297.5,45L295.2,43.9L296.5,40.7L296.5,38.2L299,35.5L302.2,35L304.3,32.4L305.1,29L307.9,26.3L308.7,23.8L311.5,20.1L314.1,17.8L316.5,16.9L318.6,14L321.3,14.5L321.9,19.7L324.5,22.9L325.6,27L326.3,30.4L328.7,33.1L326.7,35.4Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M361.3,141.2L361,144L360.7,146.8L360.4,149.5L360,152.2L359.6,154.7L359.2,157.2L356.5,157.2L353.9,156.2L351.6,154.9L349.2,153.6L346.9,152.3L344.5,151L342.6,152.6L340.2,153.9L338.9,156.1L337.6,158.4L335.2,159.6L332,159.2L329.5,158.9L326.9,158.6L324.4,158.2L321.8,158L319.4,158.6L319.4,161.1L316.9,161.9L314.2,161.5L311.3,161.3L311.6,158.6L312.2,155.6L312.8,152.8L313.4,150.3L314,147.4L311.5,146.5L310.3,143.9L313,143.6L315.7,143.3L318.5,142.7L321.2,142.2L323.9,142L327.4,141.4L330,140.8L332.7,140.2L335.2,139.7L337.8,139.8L340.7,140.2L343.4,140.7L345.9,141L348.4,140.6L349.6,138.3L351,136.1L352.3,133.9L353.9,131.8L356.6,131.6L359.8,131.6L362.2,130.7L362.1,133.4L361.8,136.2L361.5,138.9Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M387.5,158.2L389.8,159.5L392,160.8L394.2,162.1L396.5,163.6L398.7,164.9L400.9,166.3L403.1,167.7L403.2,170.3L402.7,172.7L403.2,175.7L405.1,177.5L407.4,179.8L409.6,182.1L411.5,184L413.1,186.1L414.5,188.4L416.5,190.3L418.8,192.3L420.7,194L422.5,195.6L420.2,196.6L417.5,197.1L414.7,196.6L412.3,197.3L407.1,196.1L402.9,195.9L399.7,195.7L393.5,197L386.3,199.4L381.7,200.9L375.9,202.7L373.4,203.4L371.2,204.6L368.6,204.4L366.5,205.8L363.7,206.1L362.2,208L359.8,211.1L357.2,211.1L356.9,213.7L358,216L358.7,218.6L357.3,220.7L355.4,222.8L352.4,223L350.4,221.4L348.6,219L346.8,217L344.8,214.4L343.2,212.2L341.4,210.2L339.9,208.2L338.3,206.2L336.6,204L335.1,201.9L334.2,199.5L332.1,197.7L330,195.9L328.4,193.8L327.1,191.6L325.4,189.6L324.7,186.9L323.8,184.5L322.5,182.2L321.1,180L320.1,177.3L319.8,174.8L317.2,174.5L314.7,174.2L312.3,175.5L309.6,175.4L308.7,172.8L309.2,170.2L309.7,167.7L310.2,165.2L310.7,162.8L313,161.3L315.6,161.7L318.1,162.2L319.4,159.5L321.4,158L324,158.2L326.5,158.5L329,158.8L331.5,159.1L334.2,159.4L336.7,159.8L338.1,157.5L339.4,155.3L340.7,153.2L343.6,152.9L345.9,151.8L348.2,153L350.5,154.3L352.7,155.5L355.4,157L358.2,157.5L359.5,155.4L359.9,152.7L360.3,150.1L360.6,147.3L363,146.2L365.3,147.4L367.5,148.4L369.8,149.5L372.1,150.6L374.3,151.7L376.7,152.9L379.1,154.1L381.4,155.2L383.7,156.3L386,157.4Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M264.2,189.1L263.3,191.7L261.8,194.7L260.2,196.9L258.1,198.4L256.1,199.9L255.8,202.5L256.3,205L254,206.7L251.9,208.4L250,210.2L248.4,212.5L248.4,215L247,217.2L244.6,217.8L242.2,219L242.1,221.5L242.4,224.1L241.3,226.4L240.4,228.9L241.3,231.3L241.3,233.8L239.9,236.2L239.5,238.8L239,241.3L240.3,243.6L240.7,246.1L239.8,248.5L238.1,250.5L236.6,252.6L236.3,255.1L235.5,257.8L233.6,259.8L231.7,261.4L229.2,262.6L227,264L224.9,265.6L222.7,267.3L221.7,269.7L220.2,271.8L218,273L215.3,273.2L212.8,273.5L210.5,272.5L208,271.5L205.9,270.2L203.4,269.5L201.5,267.4L199.2,266.1L197.1,264.7L195.1,262.5L191.3,260.1L190.2,257.6L190.4,254.9L192,253L193.6,251L194,248.1L195.1,245.6L196.9,243.6L199.3,242.8L202.5,242.6L204.3,240.9L206.7,239.9L208.7,238.3L209.7,235.9L211.9,234.4L214.4,233.4L215.7,231.2L216.4,228.5L218.4,226.7L222.2,224.3L220.3,221.6L222.3,218.8L223.2,216.3L224.3,213.8L224.4,211.2L223.5,208.5L224.1,206.1L226.4,204.9L228.4,203.2L230.1,200.8L231.8,198.9L233.3,196.8L235.5,195.7L238.1,195.3L240.7,194.7L243,196.9L245.7,197.2L247.9,195.6L249.7,193.6L252.3,192.6L255,191.2L257.5,190.7L259.7,189.4L262.2,189.4L264.6,188.3Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M400.2,263.7L402.6,264.5L406,266.3L408.5,268.6L411.5,271.3L414.5,272.5L416.6,274.2L419.2,275.8L419.3,278.3L419.6,282.5L419.2,289.4L424.3,296.7L426.4,298.4L429.1,303.9L420.6,306.4L421.2,308.9L422.9,311L424.5,313L427.6,316.9L424.5,318.4L422.2,319.5L420,320.8L420.9,323.1L422.1,325.5L423.5,328.2L424.5,331.4L425.6,334.9L425.5,338.5L425,341.4L424.8,344.5L424.8,347.8L423.4,353.7L422.1,356.1L420.5,360.3L416.8,363.5L411.9,368.1L409.8,366L379.7,360.7L370.5,367.2L367,373.5L361.9,382.4L359.8,386L331,379.6L317.5,376.6L311.2,358.3L303.7,350.3L298.6,344.7L293.1,338.8L298.5,326.6L300.1,322L300.4,316L301.9,309.9L304.6,310.3L306.4,312.4L307.7,314.9L309.9,316.1L313,317.5L314.4,314.8L321.6,301L325.3,293.8L326.5,291.4L328,288.5L329.4,285.8L330.9,283.7L332.6,281.7L332.8,279.2L334.3,277L336.8,276.4L339,275L341.5,274.5L344,274L346.6,273.4L349.5,272.8L352.6,272.1L355.6,271.4L359.4,270.6L361.8,270.1L364.6,269.4L367.3,268.9L370.7,268.1L373.9,267.4L376.4,266.9L378.9,266.3L381.5,266.1L384.4,265.8L386.9,265.6L390.3,265.2L393.8,264.9L396.4,264.7L399,263.8Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M276.5,148.8L276.5,151.9L275.9,154.4L275.1,156.7L274.8,159.3L274.8,162L274.7,164.7L274.9,167.3L275.3,169.9L277.8,171.6L280.3,171.8L282.8,170.8L285.5,171.4L287.7,173.5L286.5,175.8L284.3,178.2L282.5,180.1L280.8,182.2L279.5,184.4L277.6,186.1L275.7,187.7L273.1,189.3L270.7,189.9L272.2,192.3L272.8,195.6L272.7,198.1L271.6,201L270.3,203.4L268.7,205.9L266.2,209.7L263.4,209.8L260.9,209.4L258.6,208.4L256.9,206.3L256,203.9L255.6,201.4L257,199.2L259.2,197.6L261.2,195.9L262.6,193.2L263.9,190.7L261.8,189.4L259.3,190L256.5,191L253.8,191.8L251.3,192.9L249.1,194.1L246.2,196.5L243.8,197.4L242.1,195.3L239.5,195L237,195.7L234.2,195.9L232.8,197.9L230.9,199.7L229.7,202L227.8,203.9L225.3,204.6L224.1,206.8L223.6,209.4L223.4,212L223.4,214.7L223,217.2L221.3,220.1L221.1,222.7L220.1,225.5L217.8,227.2L215.9,229.3L215.1,231.7L213.9,234.2L211.3,234.7L209.2,236.8L207.7,239.1L205.7,240.6L203.5,242.2L201,243L198.4,243.3L195.9,243.7L195,246L194,248.6L193.6,251.1L192,253.1L190.2,255.3L190.2,257.9L189.8,247.8L189.7,238.6L192.9,232.4L193.9,229.8L194.6,227.3L194.2,223.6L194.8,221.1L193.9,218.7L194.4,215.9L195.2,213.3L197.1,211.3L198.3,209.1L200.8,209.2L202.6,206.9L204.8,205.4L204.2,202.6L204.6,200.1L206.9,201.3L209.2,200.4L210.4,198.1L210.9,195.7L211.3,193.1L213.5,191.9L214.5,189.5L217.5,190.1L219.2,188.2L221.6,187.1L223.9,186L226,184.6L228.1,183.2L230.3,181.9L231.2,179.5L230.8,176.4L230.2,173.3L228.4,171.5L226.6,169.6L226.9,166.6L224.5,165.3L226.3,163.6L228.8,162.9L231.4,161.1L233.3,159.4L235.6,157.8L238,156.1L240,154.5L242.8,154L244.3,151.9L246.2,150.2L248.7,149.3L251.3,148.8L253.8,148.7L256.9,147.8L259.9,146.7L262.4,145.6L265.5,145.1L268,144.8L270.5,143.9L273,143.4L274.7,145.3L276,147.5Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M412.1,197.8L414.3,196.6L417,196.8L420.1,196.6L422.6,196.8L425.2,198L423.6,200.9L422,203.9L421.7,206.6L421.1,209.5L419.3,211.6L418.9,214.4L418.5,216.9L418.2,219.6L417.6,223.5L416.8,228.9L415.6,236.2L414.6,241.8L413.5,246.2L420.3,248.3L419,257.6L418.6,260.4L421.6,261.4L425,262.6L428.3,263.7L430.6,264.5L433.2,265.4L436.9,266.6L435.9,270.2L430,270.1L428.3,271.9L425.2,272.3L422.5,272.8L419.8,274.4L417.1,274.4L415.1,272.7L412.5,272.2L410.2,270.1L407.6,267.8L404.5,264.8L402.1,263.7L399.6,263.6L397,263.8L394.7,264.8L392.2,265.1L387.1,265.5L384.4,265.8L381.5,266.1L378.9,266.3L386.7,256.7L388.2,254.8L389.3,252.4L391.2,250.7L392.5,248.3L392.4,245.6L390.7,243.7L388.4,241.9L386.1,240.9L382.9,240.3L380.4,240L378.5,238.3L376.6,236.2L374.9,234L372.5,232.6L369.3,231.3L365.8,229.5L363.3,228.2L360.6,227.9L356.9,226.5L354.3,224.8L355.6,222.5L357.4,220.6L358.7,218.2L357.9,215.8L356.8,213.4L357.3,210.9L360.7,209.9L362.4,207.7L364.8,206.6L367.2,205.7L370.3,205.8L372.1,203.8L375.9,202.7L381.6,200.9L386.3,199.4L392.3,197.4L397.5,195.6L402.9,195.9L407.1,196.1L410.7,196.3Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M271.6,212.5L274.9,212.6L278.3,212.2L280.8,211.9L284,211.9L286.6,212.2L289.4,212.6L292.1,213L294.7,213.6L296.9,215.6L300.3,215.6L302.5,214.1L305.1,213.9L307.5,213.2L309.3,211.2L311,209.2L313.6,209.4L316,210.5L318.4,211.6L321.1,212.6L323.8,213.4L326.6,214L329.2,214.4L332,214.2L333.1,216.5L331.4,218.2L328.7,219.4L325.6,220.8L322.4,222.3L320,223.4L317.5,224.3L314.9,225.1L312,226L309.5,226.3L307.3,227.8L307,230.8L307,233.4L305.3,235.4L306.6,237.9L306.7,240.5L307.9,242.8L308.5,245.3L307.5,247.7L308.1,250.1L307.9,252.6L305.4,251.9L305.6,254.5L304,256.5L305.3,258.9L302.8,258.6L301.1,260.5L300.1,262.9L299.9,265.4L300.4,267.9L309.2,271.7L311.7,274.5L312.8,276.8L313.8,279.2L314.9,281.7L314.9,284.2L314.3,286.7L315,289.4L316.2,291.7L314.5,293.6L313.4,296.1L313.1,298.6L314.3,300.9L314.4,303.7L314.2,306.4L313,308.9L312.8,312.1L313.2,314.6L313,317.5L309.9,316.1L307.7,314.9L306.4,312.4L304.6,310.3L301.9,309.5L300.5,315.6L300.1,322L299.1,324.7L293.1,338.8L298.6,344.7L303.7,350.3L310.4,357.9L283.5,355.8L255.9,353.7L252.2,353.4L232.9,339.4L218.7,329.1L216.2,324.6L214.4,321.5L213,318.9L209.4,306.1L207.8,301L204.9,293L204.1,290.4L202.9,286.8L202.4,283.6L202,280.6L201,278.2L200.6,274.9L199.6,272.5L197.1,270.1L194.5,267.8L195,263.7L197.3,264.7L199.4,266.3L201.9,267.9L203.7,269.7L206.2,270.1L208.2,271.9L210.7,272.6L213.3,273.5L215.9,273.5L218.6,272.8L220.5,271.1L221.7,268.7L223.2,266.6L225.5,265L228.2,263.2L230.6,262.2L232.5,260.3L234.6,258.9L235.7,256.4L236.1,253.8L237,251.2L238.8,249.5L240.3,247.4L240.3,244.9L241.2,242.3L240,240L239.6,237.5L241,235.3L240.7,232.7L240.3,230.2L240.7,227.7L242.4,225.8L242.8,223.3L241.8,220.9L242.7,218.5L245.2,218L247.5,216.8L248.3,214.4L248.7,211.6L250.5,209.7L253.2,207.4L255.7,206.6L258,207.8L260.2,209.2L263,209.8L265.7,210.3L268.6,211L270.9,212.2Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M334.7,200.2L335.6,202.7L337.2,204.8L338.9,206.9L340.4,208.9L341.9,211L343.7,212.8L345.3,215.1L347,217.3L349.5,220.3L351.7,222.4L353.8,224.3L356.7,226.4L359.9,227.6L362.8,228.2L365.8,229.5L369.3,231.3L372.3,232.4L374.6,233.7L376.6,236.2L378.4,238.1L380.4,240L382.9,240.3L385.5,240.8L388,241.6L390.2,243L392,245.2L393.8,247.2L392.1,249.2L390.4,251.1L388.8,253.4L387.4,255.6L380.4,264.5L377.2,266.7L374.7,267.2L371.9,267.9L369.1,268.5L366.5,269L363.7,269.7L360.9,270.3L357.6,271L355,271.6L351.8,272.3L348.9,272.9L346.2,273.5L343.1,274.2L339.9,274.9L337.4,274.6L335.9,276.6L333.9,278.1L332.7,280.6L331.3,282.8L329.9,285L328.7,287.2L327.3,289.9L326,292.5L321.9,300.4L314.4,314.8L312.8,312.6L312.8,309.7L313.9,307L314.5,304.1L314.3,301.6L313.2,299.2L313.2,296.6L314.4,294.4L316,292L315,289.4L314.2,287L314.8,284.4L314.9,281.7L313.8,279.3L313,276.9L311.7,274.5L309.2,271.7L302,269.3L298.9,268.4L300.6,266.6L299.8,264.1L300.5,261.6L301.2,259.2L303.7,259L304,256.5L305.6,254.5L305.4,251.9L307.9,252.7L308.1,250.1L307.5,247.7L308.5,245.3L308,242.8L306.6,240.7L306.5,238.1L305,236.1L306.7,234.2L306.8,231.5L307.2,228.9L307.4,226.3L310.1,226.3L313,225.7L315.7,224.9L318.2,224.1L322.4,222.3L325.6,220.8L327.9,219.8L330.2,218.8L332.5,217.7L333.3,214.1L333.6,211.1L333.9,207.4L334.1,203.6L334.3,201Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M303.2,143.1L305.9,143.2L308.7,143.4L310,145.9L312.7,146.5L313.6,148.9L313.1,151.8L312.5,154.4L311.9,157.2L311.4,159.9L310.7,162.8L310.2,165.2L309.7,167.7L309.2,170.2L308.7,172.8L307.9,175.2L305.3,175L302.4,174.9L299.6,174.7L297.1,174.6L294.1,174.4L291.1,174.2L288.5,174L286.4,172.4L284.5,170.4L282,171.2L279.2,171.9L276.8,171.1L275.4,168.8L274.7,166.4L274.6,163.4L274.8,160.8L274.8,157.7L275.7,155.3L276.3,152.6L276.9,150.1L279,148.6L281.6,147.8L284.5,147.3L287.3,146.4L290,145.6L292.4,144.7L294.9,143.8L297.4,143.1L300.1,143.1L302.7,143.1Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M314.9,103L317.5,104.2L318.7,106.8L318.2,109.4L317.4,111.8L318.1,115.1L318.9,117.9L318.5,120.9L318,124L317.7,126.5L317.3,129.2L316.5,131.6L316,134.7L316,137.4L316.8,140.2L317.4,142.9L314.9,143.5L312.2,143.6L309.7,143.4L307,143.3L304.3,143.1L301.6,143.1L298.3,143.1L295.4,143.6L292.8,144.5L290.4,145.5L288.2,144.2L286.1,142.8L283.7,141.9L280.8,140.9L280.7,138.4L282,136.2L283.4,133.4L284.7,131.3L284.5,128.6L286,126.3L287.4,123.7L289,121L290.3,118.5L291.4,116.2L292.1,113.5L292.5,110.4L292.8,107.7L293.4,105.2L295.2,103L297.8,102.2L300.6,102.7L303.1,102.4L306.1,101.3L308.6,101.3L311.4,101.4L314,102.4Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M275.6,97.7L275.5,100.7L277,103.2L279.6,104.9L282.4,105.4L285.1,105.9L288.1,106.4L291.6,107L292.5,109.8L292.2,112.9L291.7,115.3L290.5,118.2L289,121L287.7,123.2L286.4,125.6L284.8,128.1L284.7,131.2L283.4,133.4L282.1,135.9L280.9,138.1L279.6,140.5L282.5,141.5L285.4,142.5L288.1,143.4L288.5,146L285.9,146.8L283.5,147.5L281,147.9L278.5,148.7L276,147.5L274.7,145.3L273,143.4L270.5,143.9L268,144.8L265.5,145.1L262.7,145.5L260.1,146.6L257.6,147.5L255.2,148.3L252.7,148.8L250.1,149.1L246.6,150.1L244.3,151.5L242.9,153.9L240.4,154.4L238.2,152.5L239.3,150.2L236.8,150.1L234.4,149.3L232.2,150.8L233.1,148.2L233.8,145.8L233.6,143.2L235.8,141.7L237.9,140.3L240.4,139.2L242.7,137.9L245.4,137.4L246.9,135.1L248.2,132.8L249.9,130.9L251.8,129.2L253.6,127.4L252.4,124.6L251.8,122.1L251.3,119.6L254.2,117.4L256.5,115.9L256.5,113L256.6,110.4L258.6,108.7L260.3,105.8L261.3,103.1L261.5,100.4L263.1,98.4L265.3,97L268,95.9L270.5,96.2L272.9,96.9L275.5,97.6Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><path d="M327.8,109.7L330.3,110.6L332.7,111.5L335.2,111.2L337.6,110.4L339.8,112L341.7,113.8L344.3,113L346.4,111.6L349.6,112.4L352.6,113.5L356.3,114.5L358.9,115L361.4,114L364,112.9L366.6,113.4L367.8,115.7L367.6,118.3L366.2,121.2L364.7,124.9L363.6,127.5L362.5,130.3L359.8,131.6L356.6,131.6L354.1,131.7L352.4,133.7L351.1,135.9L349.7,138.1L348.4,140.6L345.9,141L343.4,140.7L340.7,140.2L338.1,139.8L335.5,139.6L332.7,140.2L330,140.8L327.4,141.4L324.6,142L321.8,142.1L318.9,142.6L317,140.9L316.1,138.3L315.9,135.2L316.4,131.9L317.3,129.2L317.7,126.5L318,124L318.5,120.9L318.9,118.4L318.5,115.8L317.3,113.5L317.7,110.9L318.4,108.4L319,105.8L321.7,105.7L324,107.1L326,108.8Z" fill="#2a2a28" stroke="#55554f" stroke-width="1.2" stroke-linejoin="round"/><circle class="a-esc f9" cx="281" cy="87.5" r="11.4" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f4" cx="301.4" cy="195.9" r="17.6" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f11" cx="197.9" cy="197.5" r="9.1" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f1" cx="323.7" cy="74.7" r="23.9" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f7" cx="337.6" cy="147.9" r="13.3" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f0" cx="361.8" cy="180.6" r="34" fill="#e8474f" fill-opacity="0.85"/><circle class="a-esc f10" cx="225.3" cy="235.3" r="10.8" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f6" cx="365.4" cy="323.8" r="14.1" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f4" cx="239.3" cy="189.4" r="18.5" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f6" cx="396.6" cy="229.9" r="14" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f1" cx="265.4" cy="283.6" r="21.9" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f2" cx="340.1" cy="251.6" r="20.7" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f8" cx="294.5" cy="159.1" r="11.9" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f3" cx="302.3" cy="124.4" r="19.1" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f8" cx="266.5" cy="126.6" r="12" fill="#ffffff" fill-opacity="0.55"/><circle class="a-esc f5" cx="338.4" cy="125" r="14.1" fill="#ffffff" fill-opacity="0.55"/></svg></div>
+  <div class="portada-capitulo-texto">
+  <p class="portada-capitulo-parte">Parte 2 · La ciudad · 2 de 4</p>
   <h1>De dónde vienen</h1>
-  <p class="hero-entrada">Las lenguas viajan con las personas. Esta página sigue el camino: en qué entidad nacieron los hablantes que viven en la ciudad, en qué alcaldía viven y quiénes llegaron hace poco.</p>
-</div>
-
----
-
-<h2 id="de-donde-vienen" class="toc-anchor">De dónde vienen quienes hablan</h2>
-<header class="seccion-cabeza relato-seccion">
-  <span class="kicker"><span class="kicker-num">01</span> De dónde vienen quienes hablan</span>
-  <p class="seccion-entrada">El lugar de nacimiento distingue dos historias: la de quienes nacieron en la ciudad y la de quienes llegaron de otra entidad. Se miden por separado porque cada una plantea necesidades distintas.</p>
+  <p class="portada-capitulo-dek">Las lenguas viajan con las personas.</p>
+  </div>
 </header>
 
-```js
-import {burbujas, lollipop} from "../components/formas.js";
-import * as d3 from "npm:d3";
-const nac = origen.filter((r) => r.tipo === "nacimiento").map((r) => ({...r, anio: Number(r.anio), ent: String(r.ent).padStart(3, "0"), lengua: String(r.lengua).padStart(4, "0"), cve_alc: String(r.cve_alc).padStart(3, "0")}));
-const aniosO = [...new Set(nac.map((r) => r.anio))].sort();
-// Opciones compartidas por las tres secciones: lenguas ordenadas por hablantes
-// en la última edición y alcaldías por nombre.
-const nombreAlcO = new Map(lenguasAlc.filter((r) => r.nivel === "alcaldia").map((r) => [String(r.cve).padStart(3, "0"), r.nombre]));
-const lenguasO = [...d3.rollup(nac.filter((r) => r.anio === aniosO.at(-1) && r.lengua < "8000"), (v) => ({num: d3.sum(v, (r) => r.num), nombre: v[0].lengua_nombre}), (r) => r.lengua).entries()].sort((a, b) => b[1].num - a[1].num);
-const OPC_LEN = [{clave: "", etiqueta: "Todas las lenguas", grupo: "En conjunto"}, ...lenguasO.map(([k, d]) => ({clave: k, etiqueta: d.nombre, grupo: "Una a una"}))];
-const OPC_ALC = [{clave: "", etiqueta: "Toda la ciudad", grupo: "En conjunto"}, ...[...nombreAlcO.entries()].sort((a, b) => a[1].localeCompare(b[1], "es")).map(([k, n]) => ({clave: k, etiqueta: n, grupo: "Una a una"}))];
-const nombreLen = (k) => lenguasO.find(([c]) => c === k)?.[1].nombre ?? k;
-// Subtítulo con los filtros activos: "Náhuatl · Iztapalapa · ".
-const quienesO = (len, alc) => `${len ? `${nombreLen(len)} · ` : ""}${alc ? `${nombreAlcO.get(alc)} · ` : ""}`;
-const enOtraEntidad = (r) => r.ent !== "009" && r.ent <= "032";
-const selAnioO = campo({id: "c2o-anio", nombre: "anio", etiqueta: "Año", opciones: aniosO.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: String(aniosO.at(-1))});
-const selLenO = campo({id: "c2o-len", nombre: "lengua", etiqueta: "Lengua", opciones: OPC_LEN, valor: ""});
-const selAlcO = campo({id: "c2o-alc", nombre: "alcaldia", etiqueta: "Alcaldía donde viven", opciones: OPC_ALC, valor: ""});
-const panelO = html`<div class="panel-filtros"><div class="panel-campos">${selAnioO}${selLenO}${selAlcO}</div></div>`;
-const cuerpoO = document.createElement("div");
-function pintarO() {
-  const anio = Number(selAnioO.value), len = selLenO.value, alc = selAlcO.value;
-  const base = nac.filter((r) => (!len || r.lengua === len) && (!alc || r.cve_alc === alc));
-  const fuera = aniosO.map((a) => { const f = base.filter((r) => r.anio === a); const tot = f.reduce((s, r) => s + r.num, 0); const ciu = f.filter((r) => r.ent === "009").reduce((s, r) => s + r.num, 0); const otro = f.filter((r) => r.ent > "032" && r.ent < "999").reduce((s, r) => s + r.num, 0); return {anio: a, total: tot, ciudad: ciu, otraEntidad: tot - ciu - otro, otroPais: otro, pctFuera: tot ? 100 * (tot - ciu) / tot : 0}; }).filter((r) => r.total > 0);
-  const sel = fuera.find((r) => r.anio === anio);
-  const lugar = alc ? nombreAlcO.get(alc) : "la ciudad";
-  const quienes = quienesO(len, alc);
-  const porEntidad = (a) => [...d3.rollup(base.filter((r) => r.anio === a && enOtraEntidad(r)), (v) => ({num: d3.sum(v, (r) => r.num), nombre: v[0].ent_nombre}), (r) => r.ent.slice(1)).entries()];
-  // Escala fija de los círculos: el máximo de todas las ediciones en la selección.
-  const tope = Math.max(1, ...aniosO.flatMap((a) => porEntidad(a).map(([, d]) => d.num)));
-  const entNac = sel ? porEntidad(anio).map(([cve, d]) => ({cve, ...d, share: 100 * d.num / sel.total})).sort((a, b) => b.num - a.num) : [];
-  const nodos = [];
-  if (sel) nodos.push(kpis([{etiqueta: `Hablantes nacidos fuera de la ciudad, ${anio}`, cifra: pct(sel.pctFuera), nota: `${entero(sel.total - sel.ciudad)} de ${entero(sel.total)} hablantes`}, {etiqueta: "Nacidos en la ciudad", cifra: entero(sel.ciudad), nota: "hablantes de lengua indígena"}, {etiqueta: "Entidad de origen mayor", cifra: entNac[0]?.nombre ?? "", nota: entNac[0] ? `${pct(entNac[0].share)} de los hablantes de ${lugar}` : ""}]));
-  else nodos.push(html`<p class="beta-nota">Sin hablantes en la muestra de ${anio} para esta selección.</p>`);
-  if (fuera.length) nodos.push(figura({titulo: `Hablantes de ${lugar} nacidos en otra entidad, por edición`, subtitulo: `${quienes}porcentaje de los hablantes de lengua indígena que viven en ${lugar} y nacieron en otra entidad o en otro país`, pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada punto es una edición; en rojo, la elegida"},
-    [Plot.plot({height: altoLinea, width: anchoG, marginLeft: 50, x: {label: null, ticks: aniosO, tickFormat: (d) => String(d), domain: [aniosO[0] - 1, aniosO.at(-1) + 1]}, y: ejePct(null, {domain: [0, 100]}),
-      marks: [Plot.line(fuera, {x: "anio", y: "pctFuera", stroke: COLOR_UNICO, strokeWidth: 2}), Plot.dot(fuera, {x: "anio", y: "pctFuera", fill: (r) => (r.anio === anio ? ROJO : COLOR_UNICO), r: (r) => (r.anio === anio ? 6 : 4.5)}),
-        Plot.text(fuera, {x: "anio", y: "pctFuera", text: (r) => `${r.pctFuera.toFixed(0)} %`, dy: -10, fontSize: 11}),
-        Plot.tip(fuera, Plot.pointerX({x: "anio", y: "pctFuera", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Nacidos fuera de la ciudad", (r) => pct(r.pctFuera)], ["En otra entidad", (r) => entero(r.otraEntidad)], ["En otro país", (r) => entero(r.otroPais)], ["Nacidos en la ciudad", (r) => entero(r.ciudad)]])})),
-        Plot.ruleY([0])]})]));
-  if (entNac.length) nodos.push(figura({titulo: `En qué entidad nacieron los hablantes que viven en ${lugar}, ${anio}`, subtitulo: `${quienes}el área de cada círculo es proporcional al número de hablantes nacidos en esa entidad, con la misma escala en todas las ediciones`, pie: "Censos, conteos e intercensales (INEGI), muestras por alcaldía · cada círculo está en el centro de su entidad"},
-    [burbujas(entNac, geoEntidades, {ancho: anchoMapa, tope, renglones: [["Entidad de nacimiento", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], [`Parte de los hablantes de ${lugar}`, (r) => pct(r.share)]]})]));
-  nodos.push(html`<p class="beta-nota">El mapa de origen, con una flecha por entidad y variante probable de cada lengua, está en <a href="../mapa">el mapa</a>: elige una lengua y pulsa "Ver de dónde vienen".</p>`,
-    fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["hli_nacidos_fuera_2020"], lectura: ["R-SEPI-2024-DIV"]}),
-    explicacion("El Censo pregunta en qué entidad o país nació cada persona. Aquí se toma a los hablantes de lengua indígena que viven en la ciudad y se cuenta qué parte nació fuera de ella. Es una medida de origen, no de fecha de llegada: alguien nacido en Oaxaca pudo llegar hace cincuenta años o el año pasado. Al elegir una lengua o una alcaldía la muestra se reduce y las cifras son menos precisas."),
-    tablaColumnas(entNac, [{etiqueta: "Entidad de nacimiento", valor: (r) => r.nombre}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los hablantes", num: true, valor: (r) => r.share.toFixed(2)}], {titulo: "Ver todas las entidades"}));
-  cuerpoO.replaceChildren(...nodos);
-}
-panelO.addEventListener("input", pintarO);
-alCambiarModo(() => pintarO());
-pintarO();
-display(html`<section class="beta-seccion">${panelO}${cuerpoO}</section>`);
-```
-
----
-
-<h2 id="a-donde-llegan" class="toc-anchor">De su entidad a su alcaldía</h2>
-<header class="seccion-cabeza relato-seccion">
-  <span class="kicker"><span class="kicker-num">02</span> De su entidad a su alcaldía</span>
-  <p class="seccion-entrada">Esta gráfica une cada entidad de nacimiento con las alcaldías donde viven sus hablantes. Sirve para ver si quienes vienen del mismo lugar viven en las mismas zonas de la ciudad.</p>
-</header>
+<p class="entrada-capitulo">Esta página sigue el camino: en qué entidad nacieron los hablantes que viven en la ciudad, en qué alcaldía viven y quiénes llegaron hace poco.</p>
 
 ```js
-import {sankey} from "../components/formas.js";
-const nacS = origen.filter((r) => r.tipo === "nacimiento").map((r) => ({...r, anio: Number(r.anio), ent: String(r.ent).padStart(3, "0"), cve_alc: String(r.cve_alc).padStart(3, "0"), lengua: String(r.lengua).padStart(4, "0")}))
-  .filter((r) => r.ent !== "009" && r.ent <= "032");
-const nombreAlcS = new Map(lenguasAlc.filter((r) => r.nivel === "alcaldia").map((r) => [String(r.cve).padStart(3, "0"), r.nombre]));
-const aniosS = [...new Set(nacS.map((r) => r.anio))].sort();
-const TOPE_S = 7;
-const sumaS = (filas, k) => { const m = new Map(); for (const r of filas) m.set(r[k], (m.get(r[k]) ?? 0) + r.num); return [...m.entries()].sort((a, b) => b[1] - a[1]); };
-const entUltimo = sumaS(nacS.filter((r) => r.anio === aniosS.at(-1)), "ent_nombre").slice(0, TOPE_S).map(([n]) => n);
-const selAnioS = campo({id: "c2s-anio", nombre: "anio", etiqueta: "Año", opciones: aniosS.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: String(aniosS.at(-1))});
-const selEntS = campo({id: "c2s-ent", nombre: "entidad", etiqueta: "Resaltar entidad de nacimiento", opciones: [{clave: "", etiqueta: "Ninguna"}, ...entUltimo.map((n) => ({clave: n, etiqueta: n}))], valor: entUltimo[0] ?? ""});
-const selLenS = campo({id: "c2s-len", nombre: "lengua", etiqueta: "Lengua", opciones: OPC_LEN, valor: ""});
-const panelS = html`<div class="panel-filtros"><div class="panel-campos">${selAnioS}${selLenS}${selEntS}</div></div>`;
-const cuerpoS = document.createElement("div");
-function pintarS() {
-  const anio = Number(selAnioS.value);
-  const len = selLenS.value;
-  const f = nacS.filter((r) => r.anio === anio && (!len || r.lengua === len));
-  const total = f.reduce((s, r) => s + r.num, 0);
-  if (!total) { cuerpoS.replaceChildren(html`<p class="beta-nota">Sin hablantes nacidos en otra entidad en la muestra de ${anio} para esta lengua.</p>`); return; }
-  const origenes = sumaS(f, "ent_nombre").slice(0, TOPE_S).map(([n]) => n);
-  const destinos = sumaS(f.map((r) => ({...r, alc: nombreAlcS.get(r.cve_alc) ?? r.cve_alc})), "alc").slice(0, TOPE_S).map(([n]) => n);
-  const o = (r) => (origenes.includes(r.ent_nombre) ? r.ent_nombre : "Otras entidades");
-  const d = (r) => { const n = nombreAlcS.get(r.cve_alc) ?? r.cve_alc; return destinos.includes(n) ? n : "Otras alcaldías"; };
-  const flujos = new Map();
-  for (const r of f) { const k = `${o(r)}|${d(r)}`; flujos.set(k, (flujos.get(k) ?? 0) + r.num); }
-  const enlaces = [...flujos.entries()].map(([k, value]) => { const [a, b] = k.split("|"); return {source: `o:${a}`, target: `d:${b}`, value}; }).filter((e) => e.value > 0);
-  const nodos = [...[...origenes, "Otras entidades"].map((n) => ({id: `o:${n}`, nombre: n})), ...[...destinos, "Otras alcaldías"].map((n) => ({id: `d:${n}`, nombre: n}))]
-    .filter((n) => enlaces.some((e) => e.source === n.id || e.target === n.id));
-  const destacado = selEntS.value && nodos.some((n) => n.id === `o:${selEntS.value}`) ? `o:${selEntS.value}` : null;
-  cuerpoS.replaceChildren(
-    figura({titulo: `De qué entidad nacieron y en qué alcaldía viven los hablantes, ${anio}`, subtitulo: `${len ? `Hablantes de ${nombreLen(len)}` : "Hablantes de lengua indígena"} nacidos en otra entidad · las ${TOPE_S} entidades y alcaldías con más hablantes; las demás, agrupadas${selEntS.value ? ` · resaltada: ${selEntS.value}` : ""}`,
-      pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · el grosor de cada flujo es proporcional al número de hablantes"},
-      [sankey({nodos, enlaces}, {ancho: anchoG, alto: Math.round(Math.min(600, Math.max(420, anchoG * 0.45))), destacado,
-        renglonesEnlace: [["Nacieron en", (l) => l.source.nombre], ["Viven en", (l) => l.target.nombre], ["Hablantes", (l) => entero(l.value)], ["Parte de los nacidos fuera", (l) => pct(100 * l.value / total)]]})]),
-    fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], cotejos: ["hli_nacidos_fuera_2020"], lectura: ["R-SEPI-2024-DIV"]}),
-    explicacion("A la izquierda, la entidad donde nacieron los hablantes de lengua indígena que viven en la ciudad; a la derecha, la alcaldía donde viven. Cada flujo une un lugar de nacimiento con una alcaldía, y su grosor es el número de hablantes. Se muestran las siete entidades y las siete alcaldías con más hablantes; las demás se suman en un solo nodo para que los flujos se puedan seguir. Quienes nacieron en la ciudad o en otro país no aparecen."),
-    tablaColumnas(enlaces.map((e) => ({de: e.source.slice(2), a: e.target.slice(2), num: e.value})).sort((x, y) => y.num - x.num), [{etiqueta: "Nacieron en", valor: (r) => r.de}, {etiqueta: "Viven en", valor: (r) => r.a}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de los nacidos fuera", num: true, valor: (r) => (100 * r.num / total).toFixed(1)}], {titulo: "Ver los flujos"}));
-}
-panelS.addEventListener("input", pintarS);
-alCambiarModo(() => pintarS());
-pintarS();
-display(html`<section class="beta-seccion">${panelS}${cuerpoS}</section>`);
+// Capítulo en el formato del prototipo aprobado (framework-v2): la portada de
+// la parte (arriba, en HTML), personalización, el capítulo en bloques normales
+// del libro (cada uno con su gráfica fija) y "Explora".
+// Los componentes viven en components/capitulo/ para no chocar con los del
+// resto del sitio; todo el capítulo cuelga de .capitulo-v2, que acota su CSS.
+import {preparar} from "../components/capitulo/datos.js";
+import {crearLector, personaliza} from "../components/capitulo/personaliza.js";
+import {bloques} from "../components/capitulo/bloques.js";
+import {explora} from "../components/capitulo/explora.js";
+
+const [origen, lenguasAlc, geoEnt, geoAlc] = await Promise.all([
+  FileAttachment("../data/lenguas_origen.csv").csv(),
+  FileAttachment("../data/lenguas_alcaldia.csv").csv(),
+  FileAttachment("../data/mx_entidades.json").json(),
+  FileAttachment("../data/cdmx_alcaldias.geojson").json()
+]);
+const datos = preparar({origen, lenguasAlc});
+const H = datos.historia;
+const lector = crearLector(H, datos.entidades);
+
+const capitulo = document.createElement("div");
+capitulo.className = "capitulo-v2";
+capitulo.append(
+  personaliza({lector, entidades: datos.entidades}),
+  bloques({H, geoEnt, geoAlc, alcNombre: datos.alcNombre, entNombre: datos.entNombre, lector}),
+  explora({datos, geoEnt, lector})
+);
+display(capitulo);
 ```
 
----
-
-<h2 id="llegadas-recientes" class="toc-anchor">Quiénes llegaron en los últimos cinco años</h2>
-<header class="seccion-cabeza relato-seccion">
-  <span class="kicker"><span class="kicker-num">03</span> Quiénes llegaron en los últimos cinco años</span>
-  <p class="seccion-entrada">Nacer en otra entidad no dice cuándo se llegó. La pregunta sobre dónde se vivía cinco años antes separa la llegada reciente de la antigua, y muestra de dónde y con qué lenguas siguen llegando hablantes.</p>
-</header>
-
-```js
-const res5 = origen.filter((r) => r.tipo === "residencia5").map((r) => ({...r, anio: Number(r.anio), ent: String(r.ent).padStart(3, "0"), lengua: String(r.lengua).padStart(4, "0"), cve_alc: String(r.cve_alc).padStart(3, "0")}));
-const aniosR = [...new Set(res5.map((r) => r.anio))].sort();
-const sumaPor = (filas, campoK) => { const m = new Map(); for (const r of filas) m.set(r[campoK], (m.get(r[campoK]) ?? 0) + r.num); return [...m.entries()].map(([nombre, num]) => ({nombre, num})).sort((a, b) => b.num - a.num); };
-const selAnioR = campo({id: "c2r-anio", nombre: "anio", etiqueta: "Año", opciones: aniosR.map((a) => ({clave: String(a), etiqueta: String(a)})), valor: String(aniosR.at(-1))});
-const selLenR = campo({id: "c2r-len", nombre: "lengua", etiqueta: "Lengua", opciones: OPC_LEN, valor: ""});
-const selAlcR = campo({id: "c2r-alc", nombre: "alcaldia", etiqueta: "Alcaldía a la que llegaron", opciones: OPC_ALC, valor: ""});
-const panelR = html`<div class="panel-filtros"><div class="panel-campos">${selAnioR}${selLenR}${selAlcR}</div></div>`;
-const cuerpoR = document.createElement("div");
-function pintarR() {
-  const anio = Number(selAnioR.value), len = selLenR.value, alc = selAlcR.value;
-  const base = res5.filter((r) => (!len || r.lengua === len) && (!alc || r.cve_alc === alc));
-  const quienes = quienesO(len, alc);
-  const lugar = alc ? nombreAlcO.get(alc) : "la ciudad";
-  const llegadas = aniosR.map((a) => { const f = base.filter((r) => r.anio === a); return {anio: a, num: f.reduce((s, r) => s + r.num, 0), casos: f.reduce((s, r) => s + (r.casos ?? 0), 0)}; });
-  // Ejes fijos al cambiar de año: el máximo de todas las ediciones en la selección.
-  const TOPE_R = {serie: Math.max(1, ...llegadas.map((r) => r.num)) * 1.15,
-    ent: Math.max(1, ...aniosR.flatMap((a) => sumaPor(base.filter((r) => r.anio === a), "ent_nombre").map((r) => r.num))) * 1.2,
-    len: Math.max(1, ...aniosR.flatMap((a) => sumaPor(base.filter((r) => r.anio === a), "lengua_nombre").map((r) => r.num))) * 1.2};
-  const f = base.filter((r) => r.anio === anio);
-  const total = f.reduce((s, r) => s + r.num, 0);
-  const porEntR = sumaPor(f, "ent_nombre").slice(0, 10).map((r) => ({...r, share: 100 * r.num / total}));
-  const porLenR = sumaPor(f, "lengua_nombre").slice(0, 15).map((r) => ({...r, share: 100 * r.num / total}));
-  const entR = [...d3.rollup(f, (v) => ({num: d3.sum(v, (r) => r.num), nombre: v[0].ent_nombre}), (r) => r.ent.slice(1)).entries()].map(([cve, d]) => ({cve, ...d, share: 100 * d.num / total}));
-  cuerpoR.replaceChildren(
-    kpis([{etiqueta: `Hablantes que llegaron en los cinco años previos, ${anio}`, cifra: entero(total), nota: "vivían en otra entidad cinco años antes del censo"}, {etiqueta: "Entidad de la que llegaron más", cifra: porEntR[0]?.nombre ?? "", nota: porEntR[0] ? `${pct(porEntR[0].share)} de quienes llegaron` : ""}, ...(len ? [] : [{etiqueta: "Lengua más hablada entre quienes llegaron", cifra: porLenR[0]?.nombre ?? "", nota: porLenR[0] ? `${pct(porLenR[0].share)} de quienes llegaron` : ""}])]),
-    figura({titulo: `Hablantes que llegaron a ${lugar} en los cinco años previos, por edición`, subtitulo: `${quienes}personas de 5 años y más que hablan una lengua indígena y cinco años antes vivían en otra entidad`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada punto es una edición; en rojo, la elegida"},
-      [Plot.plot({height: altoLinea, width: anchoG, marginLeft: 60, marginRight: 30, x: {label: null, tickFormat: (d) => String(d), inset: 30}, y: {label: "personas", grid: true, domain: [0, TOPE_R.serie], tickFormat: (d) => entero(d)},
-        marks: [Plot.line(llegadas, {x: "anio", y: "num", stroke: COLOR_UNICO, strokeWidth: 2}), Plot.dot(llegadas, {x: "anio", y: "num", fill: (r) => (r.anio === anio ? ROJO : COLOR_UNICO), r: (r) => (r.anio === anio ? 6 : 4.5)}),
-          Plot.text(llegadas, {x: "anio", y: "num", text: (r) => entero(r.num), dy: -12, fontSize: 11}),
-          Plot.tip(llegadas, Plot.pointerX({x: "anio", y: "num", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Llegaron de otra entidad", (r) => `${entero(r.num)} hablantes`], ["Entrevistas en la muestra", (r) => entero(r.casos)]])})), Plot.ruleY([0])]})]),
-    ...(entR.length ? [figura({titulo: `De qué entidad llegaron, ${anio}`, subtitulo: `${quienes}entidad donde vivían cinco años antes; el área de cada círculo es proporcional al número de hablantes, con la misma escala en todas las ediciones`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada círculo está en el centro de su entidad"},
-      [burbujas(entR, geoEntidades, {ancho: anchoMapa, tope: TOPE_R.ent / 1.2, renglones: [["Entidad de origen", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], ["Parte de quienes llegaron", (r) => pct(r.share)]]})])] : [html`<p class="beta-nota">Sin llegadas en la muestra de ${anio} para esta selección.</p>`]),
-    ...(len || !porLenR.length ? [] : [figura({titulo: `Qué lenguas hablan quienes llegaron, ${anio}`, subtitulo: `${quienes}las quince lenguas con más hablantes entre quienes llegaron en los cinco años previos`, pie: "Censos, conteos e intercensales (INEGI), muestras de la ciudad · cada punto es una lengua"},
-      [lollipop(porLenR.map((r) => ({...r, valor: r.num})), {ancho: anchoG, dominio: [0, TOPE_R.len], etiquetaX: "hablantes", formato: (v) => entero(v),
-        renglones: [["Lengua", (r) => r.nombre], ["Hablantes", (r) => entero(r.num)], ["Parte de quienes llegaron", (r) => pct(r.share)]]})])]),
-    fuenteDe({datos: ["D-CENSO-1990-MUESTRA", "D-CENSO-2000-AMP", "D-CONTEO-2005-MUESTRA", "D-CENSO-2010-AMP", "D-EIC-2015", "D-CENSO-2020", "D-EIC-2025-MICRO"], referencia: ["R-SECULT-LENGUAS"],
-      nota: "El INEGI no publica la migración reciente de los hablantes por entidad de origen y lengua; la referencia más cercana es el documento de la Secretaría de Cultura, que describe la llegada de hablantes a la ciudad."}),
-    explicacion("Cada censo pregunta dónde vivía la persona cinco años antes. Aquí se cuenta a quienes hablan una lengua indígena, viven en la ciudad y cinco años antes vivían en otra entidad: es una medida de llegada reciente, que no incluye a quienes llegaron antes ni a quienes se fueron. Las cifras son estimaciones de las muestras censales; en 1990 y 2005 la muestra no trae diseño para calcular su error. Al elegir una lengua o una alcaldía la muestra se reduce y las cifras son menos precisas."),
-    tablaColumnas(sumaPor(f, "ent_nombre").map((r) => ({...r, share: 100 * r.num / total})), [{etiqueta: "Entidad de residencia cinco años antes", valor: (r) => r.nombre}, {etiqueta: "Hablantes", num: true, valor: (r) => entero(r.num)}, {etiqueta: "% de quienes llegaron", num: true, valor: (r) => r.share.toFixed(2)}], {titulo: "Ver todas las entidades"}));
-}
-panelR.addEventListener("input", pintarR);
-alCambiarModo(() => pintarR());
-pintarR();
-display(html`<section class="beta-seccion">${panelR}${cuerpoR}</section>`);
-```
-
-<div class="relato-cierre">
-  <p>Sabemos de dónde vienen. Ya en la ciudad, la pregunta es dónde viven.</p>
-  <a class="book-cta book-cta-primary" href="./donde-viven">Sigue: Dónde viven</a>
-</div>
+<nav class="capitulo-cierre" aria-label="Capítulos vecinos">
+  <p class="cierre-texto">El siguiente capítulo sigue a los hablantes dentro de la ciudad: en qué alcaldías, colonias y manzanas viven.</p>
+  <div class="cierre-tarjetas">
+    <a class="cierre-tarjeta" href="./la-ciudad-en-el-pais"><span class="cierre-rotulo">Anterior</span><span class="cierre-nombre">La ciudad en el país</span></a>
+    <a class="cierre-tarjeta" href="./donde-viven"><span class="cierre-rotulo">Sigue</span><span class="cierre-nombre">Dónde viven</span></a>
+  </div>
+</nav>

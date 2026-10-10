@@ -215,7 +215,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
     const notaSel = v.seleccion && cifra.d ? ` · resaltado: ${cifra.nombre}, ${pct(cifra.d.valor)}` : "";
     const esSel = (r) => v.seleccion && r.cve === v.seleccion;
     const rotuloUnidad = v.nivel === "nacional" ? "Población" : nivelDe(nivelCapa).singular.charAt(0).toUpperCase() + nivelDe(nivelCapa).singular.slice(1);
-    const renglones = [[rotuloUnidad, (r) => r.nombre], ["Corte", (r) => r.categoria || null], ["Porcentaje", (r) => `${r.pct.toFixed(1)} %${r.ee ? ` (± ${(196 * r.ee).toFixed(1)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`]];
+    const renglones = [[rotuloUnidad, (r) => (r.categoria ? `${r.nombre}, ${r.categoria}` : r.nombre)], ["Porcentaje", (r) => `${r.pct.toFixed(1)} %`], ["Personas", (r) => entero(r.num)]];
     const marcasBarras = (datos, opciones = {}, sel = esSel) => [
       Plot.barX(datos, {x: "pct", y: "nombre", fill: (r) => colorDe(r.pct), stroke: (r) => (sel(r) ? ROJO_IBERO : "none"), strokeWidth: 2, ...opciones}),
       Plot.ruleX(datos.filter((r) => r.ee), {x1: (r) => Math.max(0, r.pct - 196 * r.ee), x2: (r) => r.pct + 196 * r.ee, y: "nombre", stroke: "currentColor", strokeOpacity: 0.55, clip: "frame", ...opciones}),
@@ -301,7 +301,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
         [Plot.plot({height: 260, width: anchoGrafica(), marginLeft: 50, x: {label: null, tickFormat: (d) => String(d)}, y: ejePct(null, {zero: true}),
           marks: [Plot.line(s, {x: "anio", y: "pct", stroke: RAMPA_MORADA[3], strokeWidth: 2}), Plot.dot(s, {x: "anio", y: "pct", fill: (r) => (r.cota === "censo" ? RAMPA_MORADA[3] : "white"), stroke: RAMPA_MORADA[3], r: 4.5}),
             Plot.text(s, {x: "anio", y: "pct", text: (r) => `${r.pct.toFixed(1)} %`, dy: -10, fontSize: 11}),
-            Plot.tip(s, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Porcentaje", (r) => `${r.pct.toFixed(2)} %${r.ee ? ` (± ${(196 * r.ee).toFixed(2)})` : ""}`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`], ["Fuente", (r) => (r.cota === "censo" ? "conteo censal" : "estimación de encuesta")]])})),
+            Plot.tip(s, Plot.pointerX({x: "anio", y: "pct", maxRadius: Infinity, ...GLOBO, ...globo([["Año", (r) => r.anio], ["Porcentaje", (r) => `${r.pct.toFixed(2)} %`], ["Personas", (r) => `${entero(r.num)} de ${entero(r.den)}`], ["Fuente", (r) => (r.cota === "censo" ? "conteo censal" : "estimación de encuesta")]])})),
             Plot.ruleY([0])]})]));
     }
     if (fuentes) nodos.push(fuentes(v));

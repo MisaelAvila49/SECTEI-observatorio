@@ -93,7 +93,7 @@ function figuraASvg(figura, {fondo, tinta, tenue}) {
     for (const l of lineas) {
       y += tam * 1.35;
       piezas.push(
-        `<text x="${MARGEN}" y="${y.toFixed(1)}" font-family="Inter, system-ui, sans-serif" ` +
+        `<text x="${MARGEN}" y="${y.toFixed(1)}" font-family="Schibsted Grotesk, system-ui, sans-serif" ` +
         `font-size="${tam}" font-weight="${peso}" fill="${color}">${
           l.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
         }</text>`
@@ -133,7 +133,7 @@ function figuraASvg(figura, {fondo, tinta, tenue}) {
   // forma de leer el color. Se redibuja como rectángulos y texto.
   const ley = figura.querySelector(".leyenda-bivariada");
   if (ley) {
-    const F = 'font-family="Inter, system-ui, sans-serif"';
+    const F = 'font-family="Schibsted Grotesk, system-ui, sans-serif"';
     const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     const texto = (x, yy, t, {tam = 10, peso = 400, color = tenue, ancla = "start"} = {}) =>
       piezas.push(`<text x="${x}" y="${yy.toFixed(1)}" ${F} font-size="${tam}" font-weight="${peso}" fill="${color}" text-anchor="${ancla}">${esc(t)}</text>`);
@@ -175,7 +175,7 @@ function figuraASvg(figura, {fondo, tinta, tenue}) {
   piezas.push(`<line x1="${MARGEN}" y1="${y}" x2="${ancho - MARGEN}" y2="${y}" stroke="${tenue}" stroke-opacity="0.35"/>`);
   y += ALTO_CREDITO;
   piezas.push(
-    `<text x="${MARGEN}" y="${y.toFixed(1)}" font-family="Inter, system-ui, sans-serif" ` +
+    `<text x="${MARGEN}" y="${y.toFixed(1)}" font-family="Schibsted Grotesk, system-ui, sans-serif" ` +
     `font-size="11" font-weight="600" fill="${ROJO}">${CREDITO}</text>`
   );
 

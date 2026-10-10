@@ -41,7 +41,7 @@ export const CATALOGO = {
     },
     bloques: [
       {
-        titulo: "Dispositivos para conectarse",
+        titulo: "Dispositivos para conectarse", forma: "heatmap",
         abre: "edad",
         indicadores: [
           {indicador: "Vive en una vivienda con teléfono celular"},
@@ -56,7 +56,7 @@ export const CATALOGO = {
           la infancia, la vida laboral y la vejez.`,
       },
       {
-        titulo: "Otros servicios de comunicación",
+        titulo: "Otros servicios de comunicación", forma: "dumbbell",
         abre: "localidad",
         indicadores: [
           {indicador: "Vive en una vivienda con línea telefónica fija"},
@@ -105,7 +105,7 @@ export const CATALOGO = {
           dentro de cada decil.`,
       },
       {
-        titulo: "Dispositivos y servicios del hogar",
+        titulo: "Dispositivos y servicios del hogar", forma: "heatmap",
         abre: "edad",
         indicadores: [
           {indicador: "Vive en un hogar con teléfono celular"},
@@ -149,7 +149,7 @@ export const CATALOGO = {
     },
     bloques: [
       {
-        titulo: "Dispositivos y conexión",
+        titulo: "Dispositivos y conexión", forma: "heatmap",
         abre: "edad",
         indicadores: [
           {indicador: "Usa celular",
@@ -167,7 +167,7 @@ export const CATALOGO = {
           figura.`,
       },
       {
-        titulo: "Desde qué equipo y en qué lugar",
+        titulo: "Desde qué equipo y en qué lugar", forma: "agrupadas",
         abre: "localidad",
         indicadores: [
           {indicador: "Se conecta desde un celular inteligente", universo: "Personas de 6 años o más que usan internet"},
@@ -183,7 +183,7 @@ export const CATALOGO = {
           dicen con qué y desde dónde se conecta quien ya se conecta.`,
       },
       {
-        titulo: "El hogar de quien responde",
+        titulo: "El hogar de quien responde", forma: "waffle",
         indicadores: [
           {indicador: "Vive en un hogar con internet"},
           {indicador: "Vive en un hogar con computadora, laptop o tableta"},
@@ -194,7 +194,7 @@ export const CATALOGO = {
           la ENIGH; estas tres figuras permiten cotejar las tres fuentes.`,
       },
       {
-        titulo: "La radio",
+        titulo: "La radio", forma: "agrupadas",
         abre: "edad",
         indicadores: [
           {indicador: "Escuchó la radio en la última semana"},
@@ -236,7 +236,7 @@ export const CATALOGO = {
     },
     bloques: [
       {
-        titulo: "Estudiar, trabajar e informarse",
+        titulo: "Estudiar, trabajar e informarse", forma: "heatmap",
         abre: "edad",
         indicadores: [
           {indicador: "Usa internet para actividades laborales"},
@@ -249,7 +249,7 @@ export const CATALOGO = {
         ],
       },
       {
-        titulo: "Trámites, dinero y compras",
+        titulo: "Trámites, dinero y compras", forma: "dumbbell",
         indicadores: [
           {indicador: "Se comunicó con el gobierno"},
           {indicador: "Consultó información del gobierno"},
@@ -263,7 +263,7 @@ export const CATALOGO = {
           internet. El periodo de referencia de compras, ventas, pagos y gobierno son doce meses.`,
       },
       {
-        titulo: "Comunicarse y entretenerse",
+        titulo: "Comunicarse y entretenerse", forma: "agrupadas",
         indicadores: [
           {indicador: "Usa redes sociales"},
           {indicador: "Envía mensajes instantáneos"},
@@ -278,7 +278,7 @@ export const CATALOGO = {
         ],
       },
       {
-        titulo: "Habilidades y riesgos",
+        titulo: "Habilidades y riesgos", forma: "waffle",
         indicadores: [
           {indicador: "Usa servicios en la nube"},
           {indicador: "Creó sitios de internet o blogs"},
@@ -311,7 +311,7 @@ export const CATALOGO = {
     },
     bloques: [
       {
-        titulo: "Quién queda fuera",
+        titulo: "Quién queda fuera", forma: "heatmap",
         abre: "edad",
         indicadores: [
           {indicador: "No usa internet"},
@@ -325,17 +325,17 @@ export const CATALOGO = {
       },
     ],
     motivos: [
-      {titulo: "Por qué no usa internet", prefijo: "Motivo para no usar internet: ",
+      {titulo: "Por qué no usa internet", forma: "apiladas", prefijo: "Motivo para no usar internet: ",
        explica: `Cada persona que no usa internet declara un motivo principal, de una lista
          cerrada del cuestionario.`},
-      {titulo: "Por qué no usa computadora", prefijo: "Motivo para no usar computadora: ",
+      {titulo: "Por qué no usa computadora", forma: "agrupadas", prefijo: "Motivo para no usar computadora: ",
        explica: `Un motivo principal por persona, de una lista cerrada del cuestionario.`},
-      {titulo: "Por qué no dispone de celular", prefijo: "Motivo para no disponer de celular: ",
+      {titulo: "Por qué no dispone de celular", forma: "apiladas", prefijo: "Motivo para no disponer de celular: ",
        explica: `Un motivo principal por persona sin celular, de una lista cerrada del cuestionario.`},
-      {titulo: "Por qué el hogar no tiene internet", prefijo: "Motivo del hogar para no tener internet: ",
+      {titulo: "Por qué el hogar no tiene internet", forma: "agrupadas", prefijo: "Motivo del hogar para no tener internet: ",
        explica: `Lo responde el hogar, no la persona; aquí se cuenta a las personas de 6 años
          o más que viven en hogares sin internet según el motivo que declaró su hogar.`},
-      {titulo: "Por qué no escucha la radio", prefijo: "Motivo para no escuchar la radio: ",
+      {titulo: "Por qué no escucha la radio", forma: "apiladas", prefijo: "Motivo para no escuchar la radio: ",
        explica: `Un motivo principal por persona que no escuchó la radio en la última semana,
          de una lista cerrada del cuestionario.`},
     ],

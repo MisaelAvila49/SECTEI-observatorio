@@ -17,7 +17,7 @@
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
 import {html} from "npm:htl";
-import {ROJO, GRIS, FONDO, RAMPA, SECUENCIAL, TIPO, ESTILO_EJES, ORDEN_EDAD, punto, diferencia, anio as fmtAnio, formatear, poblacionCorta, animar, GLOBO} from "./base.js";
+import {ROJO, GRIS, FONDO, RAMPA, SECUENCIAL, ORDINAL, MODO, tintaSobre, APILADAS_CLARO, APILADAS_OSCURO, TIPO, ESTILO_EJES, ORDEN_EDAD, punto, diferencia, anio as fmtAnio, formatear, poblacionCorta, animar, GLOBO} from "./base.js";
 import {COMPARACION_POR_CLAVE, escalaColor} from "./grupos.js";
 import {MIN_CASOS} from "./agregar.js";
 import {DIMENSIONES} from "./filtros.js";
@@ -144,14 +144,14 @@ export function avisoMuestra(filas, {umbral = MIN_CASOS} = {}) {
 // `intervalo: false` y `etiquetaCasos` son para datos CENSALES: ahí no hay error
 // de muestreo que publicar y los "casos" son unidades territoriales, no entrevistas.
 export function tablaDatos(filas, {dims = [], formato = "pct", titulo = "Ver los datos",
-    intervalo = true, etiquetaCasos = "Casos en muestra", etiquetaNum = "Pob. cumple", etiquetaDen = "Pob. total"} = {}) {
+    intervalo = true, etiquetaCasos = "Casos en muestra", etiquetaNum = "Pob. cumple", etiquetaDen = "Pob. total", etiquetas = {}} = {}) {
   if (!filas.length) return document.createDocumentFragment();
   const lista = dims.filter(Boolean);
   return html`<details class="tabla-datos">
     <summary>${titulo} (${punto(filas.length)} filas)</summary>
     <div class="tabla-scroll"><table>
       <thead><tr>
-        ${lista.map((d) => html`<th>${DIMENSIONES[d]?.etiqueta ?? d}</th>`)}
+        ${lista.map((d) => html`<th>${etiquetas[d] ?? DIMENSIONES[d]?.etiqueta ?? d}</th>`)}
         <th>Grupo</th><th>${etiquetaMedida(formato)}</th>
         ${formato === "conteo" || !intervalo ? "" : html`<th>Intervalo 95 %</th>`}
         ${formato === "pct" ? html`<th>${etiquetaNum}</th>` : ""}
@@ -266,8 +266,8 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
     ...(p.b ? [{...p.b, fila: p.fila, faceta: p.faceta, grupo: serieB, valor: p.vb, brecha: p.brecha}] : []),
   ]);
   const canales = {
-    [dimFila?.etiqueta ?? "Fila"]: (d) => rotulo(filas, d.fila),
-    ...(faceta ? {[dimFaceta?.etiqueta ?? "Panel"]: (d) => rotulo(faceta, d.faceta)} : {}),
+    // Fila y panel en un solo renglón: el globo se queda en cuatro.
+    [dimFila?.etiqueta ?? "Fila"]: (d) => (faceta ? `${rotulo(filas, d.fila)}, ${rotulo(faceta, d.faceta)}` : rotulo(filas, d.fila)),
     "Grupo": (d) => d.grupo,
     [etiquetaMedida(formato)]: (d) => formatear(d.valor, formato) + (d.fragil ? " *" : ""),
     ...(formato === "pct" ? {[etiquetaPoblacion]: (d) => poblacionCorta(d.num)} : {}),
@@ -281,7 +281,7 @@ export function dumbbell(datos, {comparacion, filas = "entidad", faceta = null, 
     style: ESTILO_EJES,
     width,
     height: nFilas * alto + 96,
-    marginLeft: filas === "entidad" ? 150 : filas === "indicador" ? 250 : 130,
+    marginLeft: filas === "entidad" ? 150 : filas === "indicador" ? 320 : 130,
     marginRight: 44, marginTop: 44, marginBottom: 36,
     x: {...ejeValor(formato), axis: "top", domain: [0, formato === "pct" ? 100 : maxV * 1.1]},
     y: {domain: ordenFilas.map(String), label: null, tickSize: 0, tickFormat: (v) => rotulo(filas, v)},
@@ -543,3 +543,199 @@ export function mapasComparados(geo, series, {comparacion, formato = "pct", widt
 // Repinta las gráficas al cambiar de tema: los paneles vuelven a emitir
 // `input`, que es lo que ya dispara el redibujo.
 export {ROJO, ORDEN_EDAD};
+
+
+// ============================================================================
+// Formas para comparar VARIOS indicadores a la vez (secciones de bloque y de
+// motivos de las páginas de encuesta). Reciben las series ya agregadas por
+// prepararSeries con la dimensión "indicador" (y a lo más una dimensión de
+// desglose) y siguen las reglas del tablero: paleta validada, globo de tres
+// o cuatro renglones (dimensión, grupo, valor, población) y contorno por el
+// eje de las categorías.
+// ============================================================================
+
+const ordenPorPrimeraSerie = (series, campo, serieA) => {
+  const v = new Map();
+  for (const d of series) if (d.serie === serieA) v.set(d[campo], d.pct ?? -1);
+  return [...new Set(series.map((d) => d[campo]))].sort((a, b) => (v.get(b) ?? -1) - (v.get(a) ?? -1));
+};
+const ordenDe = (series, dim) => {
+  const def = DIMENSIONES[dim];
+  const presentes = [...new Set(series.map((d) => String(d[dim])))];
+  return def?.orden ? def.orden.filter((v) => presentes.includes(v)) : presentes.sort();
+};
+
+// --- Barras agrupadas: dos barras por categoría ------------------------------
+// Pregunta: ¿cómo se comparan los dos grupos en cada uno de estos indicadores?
+// Las categorías van en filas (ordenadas por el valor del primer grupo) y, si
+// hay un desglose, cada una de sus categorías es una columna.
+export function barrasAgrupadas(series, {comparacion, filas = "indicador", faceta = null, formato = "pct",
+    width = 1120, etiquetaFilas = "Indicador"} = {}) {
+  asegurarTrama();
+  const comp = COMPARACION_POR_CLAVE[comparacion];
+  const color = escalaColor(comparacion);
+  const ordenFilas = ordenPorPrimeraSerie(series, filas, comp?.series?.[0]);
+  const fx = faceta ? {fx: (d) => String(d[faceta])} : {};
+  const canales = {
+    [etiquetaFilas]: (d) => (faceta ? `${rotulo(filas, d[filas])}, ${rotulo(faceta, d[faceta])}` : rotulo(filas, d[filas])),
+    "Grupo": (d) => d.serie,
+    [etiquetaMedida(formato)]: (d) => formatear(d.pct, formato) + (d.fragil ? " *" : ""),
+    ...canalPoblacion(formato),
+  };
+  const fig = Plot.plot({
+    style: ESTILO_EJES,
+    width,
+    height: ordenFilas.length * 46 + 76,
+    // Con paneles, el nombre de cada panel arriba y el eje de valores abajo;
+    // el dominio pasa de 100 para que la cifra de una barra larga no invada
+    // el panel vecino.
+    marginLeft: 320, marginRight: faceta ? 20 : 52, marginTop: faceta ? 34 : 30, marginBottom: faceta ? 34 : 16,
+    x: {...ejeValor(formato), axis: faceta ? "bottom" : "top", ticks: formato === "pct" ? [0, 50, 100] : undefined,
+      domain: [0, formato === "pct" ? (faceta ? 118 : 100) : d3.max(series, (d) => d.pct) * 1.15]},
+    fy: {domain: ordenFilas, label: null, tickFormat: (v) => rotulo(filas, v), padding: 0.16},
+    y: {domain: color.domain, axis: null, padding: 0.1},
+    ...(faceta ? {fx: {domain: ordenDe(series, faceta), label: null, axis: "top", padding: 0.08, tickFormat: (v) => rotulo(faceta, v)}} : {}),
+    color,
+    marks: [
+      Plot.ruleX([0], {stroke: GRIS.regla}),
+      Plot.barX(series, {fy: filas, ...fx, y: "serie", x: "pct", fill: "serie", fillOpacity: 0.92,
+        channels: canales, tip: {...GLOBO, channels: canales, format: {x: false, y: false, fy: false, fx: false, fill: false}}}),
+      Plot.barX(series.filter((d) => d.fragil), {fy: filas, ...fx, y: "serie", x: "pct", fill: `url(#${ID_TRAMA})`}),
+      Plot.text(series, {fy: filas, ...fx, y: "serie", x: "pct",
+        text: (d) => formatear(d.pct, formato) + (d.fragil ? "*" : ""), dx: 5, textAnchor: "start",
+        fontSize: TIPO.etiqueta, fill: "currentColor", stroke: FONDO, strokeWidth: 3}),
+      Plot.barX(series, Plot.pointerY({fy: filas, ...fx, y: "serie", x: "pct",
+        fill: "none", stroke: GRIS.tinta, strokeWidth: 1.6, pointerEvents: "none", maxRadius: Infinity})),
+    ],
+  });
+  return animar(fig);
+}
+
+// --- Heatmap: indicador × categoría, una rejilla por grupo -----------------
+// Pregunta: ¿cómo cambia cada indicador a lo largo de un desglose (edad,
+// tamaño de localidad, decil) y en cada grupo? Sin desglose, las columnas son
+// los dos grupos. Escala de color fija de 0 a 100 (lección 74) con la rampa
+// morada del sitio, y la cifra escrita en cada celda.
+export function heatmapIndicadores(series, {comparacion, filas = "indicador", columnas = null, formato = "pct",
+    width = 1120, etiquetaFilas = "Indicador"} = {}) {
+  const comp = COMPARACION_POR_CLAVE[comparacion];
+  const ordenFilas = ordenPorPrimeraSerie(series, filas, comp?.series?.[0]);
+  const col = columnas ?? "serie";
+  const ordenCols = columnas ? ordenDe(series, columnas) : (comp?.series ?? []);
+  const nCols = ordenCols.length * (columnas ? 2 : 1);
+  const anchoCelda = Math.max(52, Math.min(96, (width - 290) / nCols));
+  const fx = columnas ? {fx: "serie"} : {};
+  const canales = {
+    [etiquetaFilas]: (d) => (columnas ? `${rotulo(filas, d[filas])}, ${rotulo(columnas, d[columnas])}` : rotulo(filas, d[filas])),
+    "Grupo": (d) => d.serie,
+    [etiquetaMedida(formato)]: (d) => formatear(d.pct, formato) + (d.fragil ? " *" : ""),
+    ...canalPoblacion(formato),
+  };
+  const fig = Plot.plot({
+    style: ESTILO_EJES,
+    width: Math.min(width, 310 + anchoCelda * nCols + (columnas ? 30 : 0)),
+    height: ordenFilas.length * 34 + (columnas ? 130 : 90),
+    // Con paneles por grupo: el grupo arriba y las categorías del desglose abajo.
+    marginLeft: 300, marginRight: 10, marginTop: columnas ? 34 : 40, marginBottom: columnas ? 40 : 10, padding: 0.06,
+    x: {domain: ordenCols.map(String), axis: columnas ? "bottom" : "top", label: null, tickFormat: (v) => (columnas ? rotulo(columnas, v).replace(" años", "") : v)},
+    y: {domain: ordenFilas, label: null, tickSize: 0, tickFormat: (v) => rotulo(filas, v)},
+    ...(columnas ? {fx: {domain: comp?.series ?? [], label: null, axis: "top", padding: 0.06}} : {}),
+    color: {type: "linear", domain: [0, 100], interpolate: d3.interpolateRgbBasis(SECUENCIAL),
+      legend: true, label: `${etiquetaMedida(formato)}${columnas ? ` según ${(DIMENSIONES[columnas]?.etiqueta ?? columnas).toLowerCase()}` : ""}`, tickFormat: (d) => `${d} %`},
+    marks: [
+      Plot.cell(series, {x: (d) => String(d[col]), y: filas, ...fx, fill: "pct", inset: 0.5,
+        channels: canales, tip: {...GLOBO, channels: canales, format: {x: false, y: false, fx: false, fill: false}}}),
+      Plot.text(series, {x: (d) => String(d[col]), y: filas, ...fx,
+        text: (d) => Math.round(d.pct) + (d.fragil ? "*" : ""), fontSize: TIPO.etiqueta,
+        fill: (d) => ((d.pct >= 55) !== MODO.oscuro ? "white" : "black")}),
+      Plot.cell(series, Plot.pointerY({x: (d) => String(d[col]), y: filas, ...fx,
+        fill: "none", stroke: GRIS.tinta, strokeWidth: 1.8, pointerEvents: "none", maxRadius: Infinity})),
+    ],
+  });
+  return animar(fig);
+}
+
+// --- Waffles: cuántos de cada 100, por indicador y grupo ---------------------
+// Pregunta: de cada 100 personas de cada grupo, ¿cuántas cumplen? Con pocos
+// indicadores (hasta cuatro) se lee sin ejes: una rejilla de 10 × 10 por
+// indicador y grupo, con la cifra encima.
+export function wafflesIndicadores(series, {comparacion, filas = "indicador", width = 1120} = {}) {
+  const comp = COMPARACION_POR_CLAVE[comparacion];
+  const color = escalaColor(comparacion);
+  const ordenFilas = ordenPorPrimeraSerie(series, filas, comp?.series?.[0]);
+  const canales = {
+    "Indicador": (d) => d[filas],
+    "Grupo": (d) => d.serie,
+    "De cada 100": (d) => `${Math.round(d.pct)} (${formatear(d.pct, "pct")})`,
+    "Población": (d) => poblacionCorta(d.num),
+  };
+  const panel = 118;
+  const fig = Plot.plot({
+    style: ESTILO_EJES,
+    width: Math.min(width, 2 * panel + 400),
+    height: ordenFilas.length * (panel + 34) + 40,
+    marginLeft: 370, marginTop: 40, marginBottom: 6, marginRight: 10,
+    x: {axis: null}, y: {axis: null},
+    fx: {domain: comp?.series ?? [], label: null, padding: 0.14},
+    fy: {domain: ordenFilas, label: null, padding: 0.2},
+    color,
+    marks: [
+      Plot.waffleY(series, {fx: "serie", fy: filas, y: 100, multiple: 10, fill: MODO.oscuro ? GRIS.fondo : "#dcdcd6", rx: 2, gap: 2}),
+      Plot.waffleY(series, {fx: "serie", fy: filas, y: (d) => Math.round(d.pct), multiple: 10, fill: "serie", rx: 2, gap: 2,
+        channels: canales, tip: {...GLOBO, channels: canales, format: {x: false, y: false, fx: false, fy: false, fill: false}}}),
+      Plot.text(series, {fx: "serie", fy: filas, frameAnchor: "top", dy: -6, text: (d) => `${Math.round(d.pct)} de cada 100`,
+        fontSize: TIPO.etiqueta, fontWeight: 600, fill: "currentColor", lineAnchor: "bottom"}),
+    ],
+  });
+  return animar(fig);
+}
+
+// --- Barras apiladas al 100 %: de qué se compone el total de cada grupo ----
+// Solo para categorías que se excluyen y suman 100 (los motivos: cada persona
+// declara UNO; se comprobó que suman 100 en cada celda). Las tres categorías
+// con más peso en el primer grupo llevan los pasos de la rampa morada, de la
+// más a la menos frecuente, y el resto va junto en «Otros motivos», en gris:
+// máximo tres colores de identidad.
+export function apiladas100(series, {comparacion, categorias = "indicador", width = 1120,
+    etiquetaOtros = "Otros motivos", etiquetaCategoria = "Motivo"} = {}) {
+  const comp = COMPARACION_POR_CLAVE[comparacion];
+  const grupos = comp?.series ?? [...new Set(series.map((d) => d.serie))];
+  const top = ordenPorPrimeraSerie(series, categorias, grupos[0]).slice(0, 3);
+  const filas = [];
+  for (const g of grupos) {
+    const del = series.filter((d) => d.serie === g);
+    for (const c of top) {
+      const d = del.find((x) => x[categorias] === c);
+      if (d) filas.push({...d, cat: c});
+    }
+    const resto = del.filter((d) => !top.includes(d[categorias]));
+    if (resto.length) filas.push({serie: g, cat: etiquetaOtros, pct: d3.sum(resto, (d) => d.pct), num: d3.sum(resto, (d) => d.num), den: resto[0].den});
+  }
+  const dominio = [...top, etiquetaOtros];
+  const rango = MODO.oscuro ? APILADAS_OSCURO : APILADAS_CLARO;
+  const tinta = (d) => tintaSobre(rango[dominio.indexOf(d.cat)] ?? rango[3]);
+  const canales = {
+    [etiquetaCategoria]: (d) => d.cat,
+    "Grupo": (d) => d.serie,
+    "Porcentaje": (d) => formatear(d.pct, "pct"),
+    "Población": (d) => poblacionCorta(d.num),
+  };
+  const fig = Plot.plot({
+    style: ESTILO_EJES,
+    width,
+    height: grupos.length * 64 + 80,
+    marginLeft: 170, marginRight: 30, marginTop: 34, marginBottom: 10,
+    x: {domain: [0, 100], axis: "top", label: null, ticks: [0, 25, 50, 75, 100], tickFormat: (d) => `${d} %`},
+    y: {domain: grupos, label: null, tickSize: 0, padding: 0.3},
+    color: {domain: dominio, range: rango, legend: true},
+    marks: [
+      Plot.barX(filas, Plot.stackX({y: "serie", x: "pct", fill: "cat", order: dominio, stroke: FONDO, strokeWidth: 1.5,
+        channels: canales, tip: {...GLOBO, channels: canales, format: {x: false, y: false, fill: false}}})),
+      Plot.text(filas, Plot.stackX({y: "serie", x: "pct", z: "cat", order: dominio,
+        text: (d) => (d.pct >= 7 ? `${Math.round(d.pct)} %` : ""), fontSize: TIPO.etiqueta, fontWeight: 600, fill: tinta})),
+      Plot.barX(filas, Plot.pointerY(Plot.stackX({y: "serie", x: "pct", z: "cat", order: dominio,
+        fill: "none", stroke: GRIS.tinta, strokeWidth: 1.8, pointerEvents: "none", maxRadius: Infinity}))),
+    ],
+  });
+  return animar(fig);
+}

@@ -2,11 +2,14 @@
 title: Derechos y política cultural
 ---
 
-<div class="hero-pagina">
-  <span class="kicker">Parte 5 · Lo que enfrentan · 3 de 3</span>
+<header class="portada-capitulo">
+  <div class="portada-capitulo-arte" data-motivo="parte-5"><svg class="motivo motivo-personas" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g class="a-esc f0"><circle cx="157" cy="89.5" r="10.5" fill="#55554f"/><path d="M139,133.2 V116.1 a18.1,14.3 0 0 1 36.1,0 V133.2 z" fill="#55554f"/></g><g class="a-esc f1"><circle cx="215" cy="89.5" r="10.5" fill="#8a8a86"/><path d="M197,133.2 V116.1 a18.1,14.3 0 0 1 36.1,0 V133.2 z" fill="#8a8a86"/></g><g class="a-esc f1"><circle cx="273" cy="89.5" r="10.5" fill="#3a3a37"/><path d="M255,133.2 V116.1 a18.1,14.3 0 0 1 36.1,0 V133.2 z" fill="#3a3a37"/></g><g class="a-esc f2"><circle cx="128" cy="153.5" r="10.5" fill="#55554f"/><path d="M110,197.2 V180.1 a18.1,14.3 0 0 1 36.1,0 V197.2 z" fill="#55554f"/></g><g class="a-esc f2"><circle cx="186" cy="153.5" r="10.5" fill="#8a8a86"/><path d="M168,197.2 V180.1 a18.1,14.3 0 0 1 36.1,0 V197.2 z" fill="#8a8a86"/></g><g class="a-esc f3"><circle cx="244" cy="153.5" r="10.5" fill="#3a3a37"/><path d="M226,197.2 V180.1 a18.1,14.3 0 0 1 36.1,0 V197.2 z" fill="#3a3a37"/></g><g class="a-esc f3"><circle cx="302" cy="153.5" r="10.5" fill="#55554f"/><path d="M284,197.2 V180.1 a18.1,14.3 0 0 1 36.1,0 V197.2 z" fill="#55554f"/></g><g class="a-esc f4"><circle cx="99" cy="217.5" r="10.5" fill="#8a8a86"/><path d="M81,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#8a8a86"/></g><g class="a-esc f4"><circle cx="157" cy="217.5" r="10.5" fill="#3a3a37"/><path d="M139,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#3a3a37"/></g><g class="a-esc f5"><circle cx="215" cy="217.5" r="10.5" fill="#55554f"/><path d="M197,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#55554f"/></g><g class="a-esc f5"><circle cx="273" cy="217.5" r="10.5" fill="#8a8a86"/><path d="M255,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#8a8a86"/></g><g class="a-esc f6"><circle cx="331" cy="217.5" r="10.5" fill="#3a3a37"/><path d="M313,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#3a3a37"/></g><g class="a-esc f6"><circle cx="128" cy="281.5" r="10.5" fill="#55554f"/><path d="M110,325.2 V308.1 a18.1,14.3 0 0 1 36.1,0 V325.2 z" fill="#55554f"/></g><g class="a-esc f7"><circle cx="186" cy="281.5" r="10.5" fill="#8a8a86"/><path d="M168,325.2 V308.1 a18.1,14.3 0 0 1 36.1,0 V325.2 z" fill="#8a8a86"/></g><g class="a-esc f7"><circle cx="244" cy="281.5" r="10.5" fill="#3a3a37"/><path d="M226,325.2 V308.1 a18.1,14.3 0 0 1 36.1,0 V325.2 z" fill="#3a3a37"/></g><g class="a-esc f8"><circle cx="302" cy="281.5" r="10.5" fill="#55554f"/><path d="M284,325.2 V308.1 a18.1,14.3 0 0 1 36.1,0 V325.2 z" fill="#55554f"/></g><g class="a-sep f0"><circle cx="340" cy="217.5" r="10.5" fill="#e8474f"/><path d="M322,261.2 V244.1 a18.1,14.3 0 0 1 36.1,0 V261.2 z" fill="#e8474f"/></g></svg></div>
+  <div class="portada-capitulo-texto">
+  <p class="portada-capitulo-parte">Parte 5 · Lo que enfrentan · 3 de 3</p>
   <h1>Derechos y política cultural</h1>
-  <p class="hero-entrada">El recorrido termina con el marco que da sentido a las cifras: las leyes que reconocen a las lenguas indígenas como lenguas nacionales y a la ciudad como un espacio plurilingüe.</p>
-</div>
+  <p class="portada-capitulo-dek">El recorrido termina con el marco que da sentido a las cifras: las leyes que reconocen a las lenguas indígenas como lenguas nacionales y a la ciudad como un espacio plurilingüe.</p>
+  </div>
+</header>
 
 ## El marco legal
 
