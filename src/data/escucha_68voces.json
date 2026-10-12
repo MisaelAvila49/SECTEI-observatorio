@@ -1,0 +1,422 @@
+[
+ {
+  "id": "2dwQnMEIJ8E",
+  "lengua": "Náhuatl",
+  "familia": "yuto-nahua",
+  "historia": "Cuando Muere una Lengua",
+  "variante": "Náhuatl de la Huasteca de Hidalgo",
+  "narra": "Reyna Alvarado Reyes",
+  "segundos": 110,
+  "hablantes_cdmx": 38303
+ },
+ {
+  "id": "PrFtcGmEqA8",
+  "lengua": "Mazateco",
+  "familia": "oto-mangue",
+  "historia": "El origen del arcoíris",
+  "variante": "Mazateco del Norte, Oaxaca",
+  "narra": "Brígida Zacarías Ortela",
+  "segundos": 65,
+  "hablantes_cdmx": 16816
+ },
+ {
+  "id": "C-2OdBIkk4o",
+  "lengua": "Mixteco",
+  "familia": "oto-mangue",
+  "historia": "La Muerte",
+  "variante": "Mixteco de la Costa de Oaxaca",
+  "narra": "Hermenegildo López Castro",
+  "segundos": 170,
+  "hablantes_cdmx": 14346
+ },
+ {
+  "id": "37kwuNMV3i0",
+  "lengua": "Otomí",
+  "familia": "oto-mangue",
+  "historia": "El inicio del mundo como lo conocemos",
+  "variante": "Otomí del Centro, Estado de México",
+  "narra": "Javier Cruz González",
+  "segundos": 65,
+  "hablantes_cdmx": 13848
+ },
+ {
+  "id": "XZCdmSL0Cso",
+  "lengua": "Mazahua",
+  "familia": "oto-mangue",
+  "historia": "Los Niños del Río",
+  "variante": "Mazahua, Estado de México",
+  "narra": "Elvira Marín Antonio",
+  "segundos": 70,
+  "hablantes_cdmx": 8817
+ },
+ {
+  "id": "QtjAEqbQHi4",
+  "lengua": "Zapoteco",
+  "familia": "oto-mangue",
+  "historia": "Imagen de Prometeo",
+  "variante": "Zapoteco de la Planicie Costera, Oaxaca",
+  "narra": "German Ramirez Martinez",
+  "segundos": 200,
+  "hablantes_cdmx": 8652
+ },
+ {
+  "id": "wzP6KZCsuRE",
+  "lengua": "Totonaco",
+  "familia": "totonaco-tepehua",
+  "historia": "Muere mi Rostro",
+  "variante": "Totonaco, Puebla",
+  "narra": "Noé Gómez Salazar",
+  "segundos": 75,
+  "hablantes_cdmx": 5689
+ },
+ {
+  "id": "vjCXaIC1j4U",
+  "lengua": "Mixe",
+  "familia": "mixe-zoque",
+  "historia": "El Rey Kong Oy",
+  "variante": "Mixe, Oaxaca",
+  "narra": "Regina Dominguez Juan",
+  "segundos": 65,
+  "hablantes_cdmx": 3989
+ },
+ {
+  "id": "s_rPpv416bE",
+  "lengua": "Chinanteco",
+  "familia": "oto-mangue",
+  "historia": "La niña del Río",
+  "variante": "Chinanteco, Oaxaca",
+  "narra": "Alicia Gregorio Velasco",
+  "segundos": 65,
+  "hablantes_cdmx": 2978
+ },
+ {
+  "id": "8uaHWt8uaic",
+  "lengua": "Tseltal",
+  "familia": "maya",
+  "historia": "El origen del sol y la luna",
+  "variante": "Tseltal de los altos de Chiapas",
+  "narra": "Patricia Sántiz Mendez",
+  "segundos": 65,
+  "hablantes_cdmx": 2528
+ },
+ {
+  "id": "lcd_WhKgLR4",
+  "lengua": "Maya",
+  "familia": "maya",
+  "historia": "La última danza",
+  "variante": "Maya, Yucatán",
+  "narra": "Fidencio Briceño Chel y Aída Noemí Euan Cen",
+  "segundos": 135,
+  "hablantes_cdmx": 1589
+ },
+ {
+  "id": "HZlH3yCOawE",
+  "lengua": "Tarasco (purépecha)",
+  "familia": "tarasca",
+  "historia": "La Virgen de la Salud y el Pescado Blanco",
+  "variante": "Purépecha, Michoacán",
+  "narra": "Angélica Agustín Diego",
+  "segundos": 70,
+  "hablantes_cdmx": 1099
+ },
+ {
+  "id": "ERGSadkhW3w",
+  "lengua": "Huasteco",
+  "familia": "maya",
+  "historia": "Cómo llegó el conejo a la luna",
+  "variante": "Huasteco del occidente, San Luis Potosí",
+  "narra": "María Leonila Gómez Ramírez",
+  "segundos": 110,
+  "hablantes_cdmx": 606
+ },
+ {
+  "id": "tn8XEmE7pL4",
+  "lengua": "Tsotsil",
+  "familia": "maya",
+  "historia": "La Reunión de los Espantagentes",
+  "variante": "Tsotsil, Chiapas",
+  "narra": "Agustín Sántiz Sántiz",
+  "segundos": 65,
+  "hablantes_cdmx": 505
+ },
+ {
+  "id": "-h6Q93ytZG4",
+  "lengua": "Triqui",
+  "familia": "oto-mangue",
+  "historia": "Una Mariposa en mi corazón",
+  "variante": "",
+  "narra": "",
+  "segundos": 106,
+  "hablantes_cdmx": 381
+ },
+ {
+  "id": "XkU7aqNfUdQ",
+  "lengua": "Ch'ol",
+  "familia": "maya",
+  "historia": "El origen de la vida",
+  "variante": "Ch´ol, Chiapas",
+  "narra": "Eugenia Cruz Montejo",
+  "segundos": 65,
+  "hablantes_cdmx": 321
+ },
+ {
+  "id": "UFfiJFdXmDI",
+  "lengua": "Matlatzinca",
+  "familia": "oto-mangue",
+  "historia": "Las Luciérnagas que Embellecen los Árboles",
+  "variante": "Matlatzinca, Estado de México",
+  "narra": "Ma. de Jesús Díaz García",
+  "segundos": 85,
+  "hablantes_cdmx": 251
+ },
+ {
+  "id": "hoRLbw_o5QY",
+  "lengua": "Tepehua",
+  "familia": "totonaco-tepehua",
+  "historia": "La fiera que no quería ensuciarse",
+  "variante": "Tepehua, Veracruz",
+  "narra": "Camerino Tesillos",
+  "segundos": 70,
+  "hablantes_cdmx": 236
+ },
+ {
+  "id": "34oH9XsjB0w",
+  "lengua": "Tlahuica",
+  "familia": "oto-mangue",
+  "historia": "La Bruja",
+  "variante": "Tlahuica de San Juan Atzingo, Estado de México",
+  "narra": "Jesús Raymundo Mendiola",
+  "segundos": 65,
+  "hablantes_cdmx": 160
+ },
+ {
+  "id": "N00CtChx1lw",
+  "lengua": "Popoloca",
+  "familia": "oto-mangue",
+  "historia": "El pueblo de la música y la palma",
+  "variante": "Ngiwa (Popoloca) de San Felipe Otlaltepec, Puebla",
+  "narra": "",
+  "segundos": 96,
+  "hablantes_cdmx": 147
+ },
+ {
+  "id": "KMNE_Lpa6E4",
+  "lengua": "Yaqui",
+  "familia": "yuto-nahua",
+  "historia": "Wo'ochi Yee Sisibome",
+  "variante": "Yaqui, Sonora",
+  "narra": "Felipa Morales Campoy, Ignacio Zavala Buitimea",
+  "segundos": 170,
+  "hablantes_cdmx": 99
+ },
+ {
+  "id": "HAUsTjQyyrQ",
+  "lengua": "Tarahumara",
+  "familia": "yuto-nahua",
+  "historia": "El origen de los Rarámuri y los Chabochi",
+  "variante": "Tarahumara del Norte, Chihuahua",
+  "narra": "Tirza González",
+  "segundos": 65,
+  "hablantes_cdmx": 96
+ },
+ {
+  "id": "_EPtE58bbCM",
+  "lengua": "Chocholteco",
+  "familia": "oto-mangue",
+  "historia": "La Niña de la Lanilla",
+  "variante": "Chocholteco, Oaxaca",
+  "narra": "Marcelino López Cruz",
+  "segundos": 70,
+  "hablantes_cdmx": 67
+ },
+ {
+  "id": "77YVkcInGDk",
+  "lengua": "Huichol",
+  "familia": "yuto-nahua",
+  "historia": "El primer amanecer",
+  "variante": "Huichol del Este, Jalisco",
+  "narra": "Wiyeme Salvador López",
+  "segundos": 65,
+  "hablantes_cdmx": 39
+ },
+ {
+  "id": "HdrT2EuZi4k",
+  "lengua": "Tojolabal",
+  "familia": "maya",
+  "historia": "El tigre y el grillo",
+  "variante": "Tojolabal, Chiapas",
+  "narra": "Pedro Hernández",
+  "segundos": 65,
+  "hablantes_cdmx": 22
+ },
+ {
+  "id": "LnmCZCZrW0E",
+  "lengua": "Mayo",
+  "familia": "yuto-nahua",
+  "historia": "El origen del fuego",
+  "variante": "Mayo de Salitral, Sonora",
+  "narra": "Francisco Almada Leyva",
+  "segundos": 65,
+  "hablantes_cdmx": 19
+ },
+ {
+  "id": "qhIz0bu3I2Q",
+  "lengua": "Akateko",
+  "familia": "maya",
+  "historia": "La aparición de san Miguel Arcángel",
+  "variante": "Kuti' (Akateko) de Chiapas",
+  "narra": "",
+  "segundos": 74,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "zLzAzgZtyWA",
+  "lengua": "Ayapaneco",
+  "familia": "mixe-zoque",
+  "historia": "El Viento",
+  "variante": "Zoque-Ayapaneco, Tabasco",
+  "narra": "Manuel Segovia Segovia",
+  "segundos": 65,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "IH9dBNuRxFs",
+  "lengua": "Chuj",
+  "familia": "maya",
+  "historia": "El origen de las minas de sal de San Mateo",
+  "variante": "Koti', Chiapas",
+  "narra": "",
+  "segundos": 71,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "PTMPm_5E2vk",
+  "lengua": "Cora",
+  "familia": "yuto-nahua",
+  "historia": "La Creación del Mundo",
+  "variante": "Cora, Jalisco, Nayarit, Durango",
+  "narra": "Pedro Muñiz López",
+  "segundos": 65,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "UdV2xN084v8",
+  "lengua": "Cucapá",
+  "familia": "cochimí-yumana",
+  "historia": "El origen de los montes",
+  "variante": "Cucapá, Baja California",
+  "narra": "Inocencia González Sainz",
+  "segundos": 65,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "hOBKVtQajIc",
+  "lengua": "Guarijío",
+  "familia": "yuto-nahua",
+  "historia": "La creación de la Fiesta de la Tuburada",
+  "variante": "Guarijío, Sonora",
+  "narra": "Brenda López Santaneño",
+  "segundos": 60,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "5tJOYmmwGVQ",
+  "lengua": "Ixcateco",
+  "familia": "oto-mangue",
+  "historia": "Por qué de la Palma en Ixcatlán",
+  "variante": "Ixcateco, Santa María Ixcatlán, Oaxaca",
+  "narra": "",
+  "segundos": 75,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "kR8QU4cUKWY",
+  "lengua": "Kiliwa",
+  "familia": "cochimí-yumana",
+  "historia": "Volvamos a mirar el arcoíris",
+  "variante": "Ko´lew (Kiliwa), Baja California",
+  "narra": "",
+  "segundos": 71,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "i_8VE-MrUAw",
+  "lengua": "Ku'ahl",
+  "familia": "cochimí-yumana",
+  "historia": "Nuestro corazón Kua'hl",
+  "variante": "Ku'ahl de Baja California",
+  "narra": "",
+  "segundos": 56,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "7OXvAzbFZpU",
+  "lengua": "Kumiai",
+  "familia": "cochimí-yumana",
+  "historia": "La Creación de los Kumiai",
+  "variante": "Kumiai, Baja California",
+  "narra": "Gregorio Guadalupe Monstes Castañeda",
+  "segundos": 65,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "lJ4wjADqKJg",
+  "lengua": "Lacandón",
+  "familia": "maya",
+  "historia": "El Origen de los Aluxes",
+  "variante": "Lacandón, Chiapas",
+  "narra": "Mario Chambor Chanabor",
+  "segundos": 65,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "X3c65HmHeu0",
+  "lengua": "Oluteco",
+  "familia": "mixe-zoque",
+  "historia": "La Danza de la Malinche",
+  "variante": "Popoluca – mixe de Oluta, Veracruz",
+  "narra": "Don Diósgoro Prisciliano Esteban",
+  "segundos": 75,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "jsWOavVi7v0",
+  "lengua": "Paipai",
+  "familia": "cochimí-yumana",
+  "historia": "El origen de los celos",
+  "variante": "Pai pai de Santa Catarina, Baja California",
+  "narra": "Delfina Albañez Arballo",
+  "segundos": 65,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "PxtK_iCRVFc",
+  "lengua": "Pápago",
+  "familia": "yuto-nahua",
+  "historia": "El origen de las mariposas",
+  "variante": "Tojono O´otam de Cumarito, Sonora",
+  "narra": "Maestro Rafael García",
+  "segundos": 65,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "BzfoKhao22o",
+  "lengua": "Q'anjob'al",
+  "familia": "maya",
+  "historia": "La fiesta del Maíz",
+  "variante": "Q´anjob´al, Chiapas",
+  "narra": "",
+  "segundos": 66,
+  "hablantes_cdmx": 0
+ },
+ {
+  "id": "gEMGPztT_wo",
+  "lengua": "Seri",
+  "familia": "seri",
+  "historia": "El Origen de la Tierra",
+  "variante": "Seri de Punta Chueca, Sonora",
+  "narra": "Viviana Romero, Valeria Jusacanea Romero",
+  "segundos": 65,
+  "hablantes_cdmx": 0
+ }
+]

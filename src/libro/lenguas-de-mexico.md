@@ -157,7 +157,7 @@ display(html`<section class="beta-seccion">${panelB}${cuerpoB}</section>`);
 
 <div class="beta-seccion">
   <p>El territorio de cada lengua está en el mapa: cada municipio del país se pinta con la variante que el Catálogo del INALI ubica ahí, y con "Todas las lenguas" cada municipio toma la lengua con más hablantes según el Censo 2020. Es el territorio histórico de la lengua, no dónde vive hoy cada hablante; <a href="./de-donde-vienen">De dónde vienen</a> muestra el origen de quienes la hablan en la ciudad.</p>
-  <p><a class="beta-boton-enlace" href="../mapa">Abrir el mapa de la lengua</a></p>
+  <p class="botones-seccion"><a class="beta-boton-enlace" href="../mapa">Abrir el mapa de la lengua</a> <a class="beta-boton-enlace beta-boton-secundario" href="../escucha">Escuchar las lenguas</a></p>
 </div>
 
 <div class="relato-cierre">

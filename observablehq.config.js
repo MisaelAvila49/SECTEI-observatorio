@@ -35,6 +35,7 @@ const DESCRIPCION_SITIO = "La población indígena de la Ciudad de México y las
 const DESCRIPCIONES = {
   "/": DESCRIPCION_SITIO,
   "/mapa": "Mapa de la población indígena de la Ciudad de México por alcaldía, AGEB y manzana: hablantes, hogares indígenas y autoadscripción de 1990 a 2025, con la lengua, sus variantes probables y el origen de quienes la hablan.",
+  "/escucha": "Cortos animados narrados en 42 lenguas indígenas de México por personas hablantes, de la serie 68 voces - 68 corazones, con los hablantes de cada lengua en la Ciudad de México.",
   "/libro/lenguas-de-mexico": "Cuántas lenguas y variantes reconoce México, cuántas personas hablan cada una y en qué entidades, con el Censo 2020 y el Catálogo del INALI.",
   "/libro/hablantes-en-el-tiempo": "Hablantes de lengua indígena de 5 años y más de 1990 a 2025 en el país y en cada alcaldía de la Ciudad de México.",
   "/libro/variantes": "La variante probable de los hablantes de la Ciudad de México por lengua, año y alcaldía, inferida por su lugar de origen con el método del INALI, y qué tan segura es cada asignación.",
@@ -86,6 +87,7 @@ export default {
   pages: [
     {name: "Inicio", path: "/"},
     {name: "Mapa", path: "/mapa"},
+    {name: "Escúchalos", path: "/escucha"},
     {
       name: "Parte 1. Las lenguas",
       open: true,
