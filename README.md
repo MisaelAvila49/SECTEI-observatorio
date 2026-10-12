@@ -1,4 +1,4 @@
-# Grupos originarios
+# Observatorio de Pueblos Indígenas de la Ciudad de México
 
 Tablero de Social Data Ibero sobre la población indígena de México, en dos
 etapas:

@@ -3594,7 +3594,7 @@ body:not(:has(#observablehq-toc)) #observablehq-main {
 
 /* --- Marca del sidebar ----------------------------------------------------- */
 /* El subtítulo heredaba un margen negativo pensado para la palabra
-   "Observatorio" bajo un título de una línea; con "Grupos originarios" se
+   "Observatorio" bajo un título de una línea; con un nombre de dos líneas se
    encimaba con el título. */
 .sidebar-brand-obs {
   margin-top: 0.3rem;
@@ -5765,3 +5765,320 @@ body:has(.portada-capitulo, .portada-cap) #observablehq-center { margin-top: 0; 
 #observablehq-main .panel-filtros.pegado:not(.panel-mapa) :is(.panel-grupo, .panel-campos) { display: contents; }
 #observablehq-main .panel-filtros.pegado:not(.panel-mapa) :is(.filtro select, [class*="inputs-"] select, [class*="inputs-"] input, .filtro-caja input) { max-width: 11.5rem; }
 .panel-centinela { height: 0; margin: 0; padding: 0; }
+
+/* >>> Ronda 5: encabezado claro y acentos rojos ------------------------------
+   El encabezado de cada página va sobre el fondo normal (sin banda oscura ni
+   motivo animado). Rojo de marca con medida: #E30A18 en el chrome y #C4101B
+   en la capa de datos; un solo acento rojo por bloque.
+   Contraste medido: #E30A18 sobre blanco 4.86:1; sobre #F6F6F6 4.50:1 (no
+   alcanza para texto chico, ahí va #C4101B, 5.65:1); blanco sobre #E30A18
+   4.86:1. En oscuro #E30A18 sobre #0A0A09 da 4.08:1, así que el texto rojo
+   pasa a #F27076 (6.94:1 sobre el fondo, 6.51:1 sobre #131312). */
+:root {
+  --rojo-chrome: #e30a18;
+  --rojo-chrome-hover: #b80813;   /* blanco encima: 6.81:1 */
+  --rojo-texto: #e30a18;          /* texto rojo sobre el fondo de página */
+  --rojo-texto-gris: #c4101b;     /* texto rojo sobre superficies grises */
+}
+:root[data-tema="oscuro"] {
+  --rojo-texto: #f27076;
+  --rojo-texto-gris: #f27076;
+}
+
+/* Encabezado de página */
+.encabezado-capitulo {
+  margin: clamp(2rem, 6svh, 3.5rem) 0 2rem;
+  max-width: var(--lectura);
+}
+#observablehq-main .encabezado-capitulo .antetitulo {
+  margin: 0;
+  font: 600 0.9375rem/1.4 var(--sans-serif);
+  letter-spacing: 0;
+  color: var(--rojo-texto);
+  max-width: none;
+}
+/* Si el título ya lleva su palabra en rojo, el antetítulo vuelve a gris. */
+#observablehq-main .encabezado-capitulo:has(.h1-clave) .antetitulo { color: var(--text-secondary); }
+#observablehq-main .encabezado-capitulo h1 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(2.25rem, 1.4rem + 3vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  max-width: 20ch;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.h1-clave { color: var(--rojo-texto); }
+#observablehq-main .encabezado-capitulo .entradilla {
+  margin: 1rem 0 0;
+  font: 400 clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem)/1.5 var(--serif);
+  color: var(--text-secondary);
+  max-width: var(--lectura);
+}
+@media (max-width: 639px) {
+  .encabezado-capitulo { margin-top: 3.75rem; }  /* deja libre el botón del índice */
+}
+
+/* Antetítulo de sección: el número 01, 02 vuelve a la vista, chico y en rojo,
+   encima del título. */
+#observablehq-main .seccion-cabeza .kicker-num {
+  position: static; width: auto; height: auto; overflow: visible;
+  clip: auto; clip-path: none; white-space: normal;
+  display: block;
+  margin-bottom: 0.35rem;
+  font: 700 0.875rem/1.2 var(--sans-serif);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--rojo-texto);
+}
+
+/* Cifra principal de cada sección: rojo de datos (grande, 3:1 basta; 6.11:1
+   en claro, 5.14:1 en oscuro). */
+#observablehq-main .kpi-destacado .kpi-cifra { color: var(--brand-red); }
+
+/* Botones: el principal lleno de rojo con texto blanco, los secundarios con
+   contorno. */
+#observablehq-main a.book-cta-primary,
+#observablehq-main .book-cta-primary {
+  background: var(--rojo-chrome);
+  border-color: var(--rojo-chrome);
+  color: #fff;
+  box-shadow: none;
+}
+#observablehq-main a.book-cta-primary:hover,
+#observablehq-main a.book-cta-primary:focus-visible,
+#observablehq-main .book-cta-primary:hover {
+  background: var(--rojo-chrome-hover);
+  border-color: var(--rojo-chrome-hover);
+  color: #fff;
+}
+#observablehq-main a.book-cta-primary:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
+
+/* Estados activos */
+#observablehq-sidebar .observablehq-link-active a { color: var(--rojo-texto-gris); }
+#observablehq-sidebar .observablehq-link-active::before { background: var(--rojo-chrome); }
+.mapa-pestanas [role="tab"][aria-selected="true"] {
+  background: var(--rojo-chrome);
+  color: #fff;
+}
+.book-citation-tab.is-active { color: var(--rojo-texto); border-bottom-color: var(--rojo-chrome); }
+.book-citation-tab:hover { color: var(--rojo-texto); }
+#observablehq-main .panel-filtros :is(select, input):focus-visible {
+  border-color: var(--rojo-chrome);
+  outline: 2px solid var(--rojo-chrome);
+  outline-offset: 1px;
+}
+#observablehq-main .panel-boton[aria-expanded="true"] {
+  color: var(--rojo-texto-gris);
+  border-color: var(--rojo-chrome);
+}
+/* Cierre de página: el acento es el botón rojo; el filete de arriba, neutro. */
+.relato-cierre { border-top-color: var(--border-strong); }
+/* Cabecera del mapa con el nombre nuevo, más largo: en pantallas angostas el
+   nombre se parte en dos renglones y el botón de tema sigue a la vista. */
+@media (max-width: 639px) {
+  #observablehq-main .mapa-cabecera-marca { white-space: normal; min-width: 0; flex: 1 1 auto; font-size: 0.9375rem; }
+  .mapa-cabecera { gap: 0.75rem; }
+  .mapa-cabecera .boton-tema-caja { flex: none; }
+}
+/* <<< Ronda 5 */
+
+/* >>> Portada del inicio: distribución A y tapa «Las lenguas» ----------------
+   Texto a la izquierda y libro a la derecha; en una sola columna el libro va
+   debajo, centrado y más chico. Copia fiel de la opción 3 de
+   Pruebas Diseño/portadas-libro. La tapa es un objeto físico: conserva sus
+   colores claros también en tema oscuro; cambian la sombra y el canto. */
+#observablehq-main .book-hero--libro {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr));
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+  row-gap: 2.5rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: clamp(1.5rem, 5vh, 3.5rem) 0 2.5rem;
+}
+#observablehq-main .book-hero--libro .book-hero-content { order: 0; gap: 0; }
+#observablehq-main .book-hero--libro .book-hero-eyebrow { margin: 0 0 0.875rem; color: var(--rojo-texto); }
+#observablehq-main .book-hero--libro .book-hero-title {
+  /* Con la barra lateral la columna es más angosta que en la prueba: a 4.2rem el título ocupaba cinco
+     renglones y empujaba los botones fuera de la primera pantalla en 1366 × 768. */
+  font: 600 clamp(2.2rem, 1.2rem + 2.4vw, 3.4rem)/1.05 var(--serif);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  max-width: 19ch;
+}
+#observablehq-main .book-hero--libro .book-hero-title .clave { color: var(--rojo-texto); }
+#observablehq-main .book-hero--libro .book-hero-dek {
+  margin: 0.875rem 0 0;
+  font: 400 clamp(1.25rem, 1rem + 0.8vw, 1.6rem)/1.3 var(--serif);
+  color: var(--text-secondary);
+  max-width: none;
+}
+#observablehq-main .book-hero--libro .book-hero-subtitle {
+  margin: 1.375rem 0 0;
+  max-width: 58ch;
+  font: 400 1.0625rem/1.55 var(--sans-serif);
+  color: var(--text-secondary);
+}
+#observablehq-main .book-hero--libro .book-hero-abstract {
+  margin: 0.75rem 0 0;
+  max-width: 62ch;
+  font: 400 0.9375rem/1.6 var(--sans-serif);
+  color: var(--text-secondary);
+}
+#observablehq-main .book-hero--libro .book-hero-ctas { margin-top: 1.75rem; gap: 0.75rem; }
+
+.lugar-libro { display: grid; place-items: center; min-width: 0; }
+:root {
+  --sombra-libro: 0 30px 60px -20px rgba(29, 29, 27, .35), 0 12px 24px -12px rgba(29, 29, 27, .25);
+}
+:root[data-tema="oscuro"] {
+  --sombra-libro: 0 30px 60px -20px rgba(0, 0, 0, .7), 0 12px 24px -12px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .06);
+}
+.libro { --ancho: min(400px, 82vw); width: var(--ancho); aspect-ratio: 0.7; perspective: 1600px; }
+.libro-cuerpo {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(-16deg) rotateX(3deg);
+  transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+}
+.libro:hover .libro-cuerpo { transform: rotateY(-6deg) rotateX(1deg); }
+.tapa {
+  position: absolute; inset: 0; overflow: hidden;
+  border-radius: 3px 8px 8px 3px;
+  box-shadow: var(--sombra-libro);
+  container-type: inline-size;
+}
+/* Lomo: sombra y brillo de la bisagra, del lado izquierdo */
+.tapa::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 7%; z-index: 3; pointer-events: none;
+  background: linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.08) 35%, rgba(255,255,255,.22) 48%, rgba(0,0,0,.06) 62%, transparent 100%);
+}
+/* Canto de las hojas, del lado derecho */
+.hojas {
+  position: absolute; top: 1.2%; bottom: 1.2%; right: -9px; width: 12px;
+  transform: rotateY(90deg) translateZ(-6px); transform-origin: left center;
+  background: repeating-linear-gradient(90deg, #f4f2ee 0 1px, #e3e0da 1px 2px);
+  border-radius: 0 2px 2px 0;
+}
+:root[data-tema="oscuro"] .hojas { background: repeating-linear-gradient(90deg, #d8d5cf 0 1px, #bdb9b2 1px 2px); }
+.tapa-contenido {
+  position: absolute; inset: 0; z-index: 2;
+  display: grid; grid-template-rows: auto 1fr auto;
+  padding: 8cqw 8cqw 7cqw 11cqw;
+}
+.t-centro { align-self: end; }
+.tapa .t-sello { font: 600 2.9cqw var(--sans-serif); letter-spacing: .14em; text-transform: uppercase; }
+#observablehq-main .tapa .t-titulo { margin: 0; max-width: none; font: 600 9.6cqw/1.02 var(--serif); letter-spacing: -.01em; text-wrap: balance; }
+#observablehq-main .tapa .t-sub { margin: 2.6cqw 0 0; max-width: none; font: 400 4.4cqw/1.25 var(--serif); }
+.t-pie { display: flex; align-items: end; justify-content: space-between; gap: 4cqw; margin-top: 5cqw; }
+.tapa .t-anio { font: 600 2.8cqw var(--sans-serif); letter-spacing: .12em; }
+.tapa .t-logo { width: 26cqw; height: auto; display: block; }
+/* Opción 3, «Las lenguas»: gris claro, nombres del tamaño de sus hablantes */
+.v3 .tapa { background: #eef0f1; color: #1d1d1b; }
+.v3 .t-sello { color: #c4101b; }
+.v3 .t-sub, .v3 .t-anio { color: #4a4846; }
+.v3 .muro {
+  position: absolute; z-index: 1; left: 11cqw; right: 8cqw; top: 16cqw;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .05em .32em;
+  font-family: var(--serif); line-height: 1; color: #8a8682;
+}
+.v3 .muro span { font-size: calc(2.6cqw + var(--k) * 8.4cqw); }
+.v3 .muro span.mayor { color: #c4101b; font-weight: 600; }
+.v3 .muro span.media { color: #1d1d1b; }
+/* Entrada una sola vez al cargar. `backwards` y no `both`: al terminar, la
+   transformación vuelve a la de la regla y el hover puede enderezar el libro. */
+@keyframes libro-llega { from { opacity: 0; transform: translateY(18px) rotateY(-28deg); } to { opacity: 1; transform: rotateY(-16deg) rotateX(3deg); } }
+@keyframes libro-brota { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  .lugar-libro .libro-cuerpo { animation: libro-llega .9s cubic-bezier(.2, .7, .2, 1) backwards; }
+  .lugar-libro .muro span { animation: libro-brota .7s ease-out backwards; animation-delay: calc(var(--i, 0) * 30ms); }
+}
+@media (prefers-reduced-motion: reduce) { .libro-cuerpo { transition: none; } }
+@media (max-width: 639px) {
+  .libro { --ancho: min(260px, 70vw); }
+}
+/* <<< Portada del inicio */
+
+/* >>> Ronda 6 ------------------------------------------------------------------
+   Reserva del panel pegajoso: toma el alto que el panel suelta al compactarse
+   (la ajusta panelesCompactos en la config), así el flujo no cambia. */
+.panel-reserva { margin: 0; padding: 0; pointer-events: none; }
+
+/* Paneles con grupos rotulados («Qué se compara y dónde», «Entre quiénes»,
+   «Nivel y vista»…): rejilla ordenada en vez de rótulos en línea. Cada control
+   lleva su rótulo arriba; los grupos tienen el mismo ancho y la misma plantilla
+   de columnas, así que las columnas quedan alineadas de un grupo a otro; todos
+   los selects tienen el mismo alto y llenan su columna (10.5 rem como mínimo).
+   La nota va en su propio renglón. Solo en estado normal: al quedar fijo, el
+   panel sigue con su versión compacta de un renglón. */
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado):has(> .panel-grupo) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr));
+  gap: 1rem 2rem;
+  align-items: start;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado) > .panel-grupo {
+  min-width: 0; margin: 0; padding: 0; border: 0;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado) > .panel-grupo > .panel-grupo-titulo {
+  margin: 0 0 0.5rem; padding: 0;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado) > .panel-grupo > .panel-campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+  gap: 0.75rem 1rem;
+  align-items: end;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado) > .panel-grupo > .panel-campos > :is(form, .filtro, .filtro-extra) {
+  display: flex; flex-direction: column; align-items: stretch; gap: 0.3rem;
+  width: auto; min-width: 0; margin: 0; flex: none;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado) > .panel-grupo > .panel-campos > :is(form, .filtro, .filtro-extra) > label {
+  margin: 0; padding: 0; width: auto;
+  font: 600 0.8125rem/1.25 var(--sans-serif);
+  color: var(--text-secondary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado) > .panel-grupo > .panel-campos :is(select, .filtro-caja, .filtro-caja input) {
+  width: 100%; max-width: none; min-width: 0; box-sizing: border-box;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado) > .panel-grupo > .panel-campos :is(select, .filtro-caja input) {
+  height: 2.125rem; text-overflow: ellipsis;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado):has(> .panel-grupo) > :is(.panel-nota, .panel-boton, .filtro-nota) {
+  grid-column: 1 / -1; margin: 0;
+}
+#observablehq-main .panel-filtros:not(.panel-mapa):not(.pegado):has(> .panel-grupo) > .panel-boton { justify-self: start; }
+
+/* Waffle de 10 x 10 con su lista al lado (Lenguas en riesgo). */
+.waffle-con-lista {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2.5rem;
+  margin-top: 0.5rem;
+}
+.waffle-con-lista > svg { flex: none; max-width: 100%; height: auto; }
+.waffle-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; min-width: 14rem; flex: 1 1 14rem; max-width: 24rem; }
+.waffle-lista li {
+  display: grid; grid-template-columns: 1.25rem 1fr; column-gap: 0.75rem; row-gap: 0.1rem; align-items: baseline;
+  margin: 0; padding: 0; max-width: none;
+}
+.waffle-lista-muestra { grid-row: 1 / span 3; width: 1.25rem; height: 1.25rem; border-radius: 3px; align-self: start; margin-top: 0.15rem; }
+.waffle-lista-grado { font: 600 0.9375rem/1.3 var(--sans-serif); color: var(--text-secondary); }
+.waffle-lista-cifra { font: 800 1.75rem/1.05 var(--sans-serif); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+.waffle-lista-de { font: 600 0.875rem/1 var(--sans-serif); letter-spacing: 0; color: var(--text-secondary); }
+.waffle-lista-nota { font: 400 0.875rem/1.35 var(--sans-serif); color: var(--text-secondary); }
+@media (max-width: 639px) {
+  .waffle-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
+  .waffle-lista-cifra { font-size: 1.375rem; }
+}
+
+/* Autor de correspondencia: marca discreta junto al nombre. */
+.book-authors .autor-correspondencia {
+  margin-left: 0.35rem;
+  font: 400 0.8125rem/1 var(--sans-serif);
+  color: var(--text-secondary);
+}
+@media (max-width: 639px) {
+  .book-authors li { white-space: normal; min-width: 0; }
+  .book-authors .autor-correspondencia { display: block; margin: 0.15rem 0 0; }
+}
+/* <<< Ronda 6 */

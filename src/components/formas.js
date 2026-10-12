@@ -267,7 +267,9 @@ export function likert(filas, {ancho, orden, negativas, renglones, dominio = [-7
 // personas) y el color, su categoría. Con `escala100` los valores son
 // porcentajes y se redondean por el mayor residuo para que sumen 100.
 // `datos`: [{categoria, valor}]; `orden` y `colores` fijan la leyenda.
-export function unidades(datos, {ancho, orden, colores, renglones, escala100 = false, porFila = 20, alto = null}) {
+// `ladoMax` topa el lado de cada cuadro (26 px por omisión); `leyenda: false`
+// quita la leyenda de Plot cuando la figura lleva su propia lista.
+export function unidades(datos, {ancho, orden, colores, renglones, escala100 = false, porFila = 20, alto = null, ladoMax = 26, leyenda = true}) {
   const W = Math.max(ancho, 360);
   let filas = orden.map((c) => ({categoria: c, valor: datos.find((d) => d.categoria === c)?.valor ?? 0, dato: datos.find((d) => d.categoria === c)}));
   if (escala100) {
@@ -278,12 +280,12 @@ export function unidades(datos, {ancho, orden, colores, renglones, escala100 = f
   } else filas = filas.map((f) => ({...f, n: Math.round(f.valor)}));
   const total = d3.sum(filas, (f) => f.n);
   const nFilas = Math.ceil(total / porFila);
-  const lado = Math.min(26, (W - 20) / porFila);
+  const lado = Math.min(ladoMax, (W - 20) / porFila);
   const g = globo(renglones.map(([k, fn]) => [k, (f) => fn(f.dato ?? f)]));
   return Plot.plot({
     style: ESTILO_EJES, width: Math.round(porFila * lado + 20), height: alto ?? Math.round(nFilas * lado + 20), marginTop: 10, marginBottom: 6, marginLeft: 10, marginRight: 10,
     x: {axis: null}, y: {axis: null},
-    color: {domain: orden, range: colores, legend: true},
+    color: {domain: orden, range: colores, legend: leyenda},
     marks: [
       Plot.waffleY(filas.filter((f) => f.n > 0), {y: "n", fill: "categoria", order: orden, multiple: porFila, rx: 2, gap: 2,
         channels: g.channels, tip: {format: g.format, fontSize: g.fontSize, textPadding: g.textPadding, lineWidth: g.lineWidth}}),

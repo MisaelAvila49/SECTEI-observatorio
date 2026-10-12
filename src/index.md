@@ -2,10 +2,11 @@
 toc: false
 ---
 
-<div class="book-hero">
+<div class="book-hero book-hero--libro">
   <div class="book-hero-content">
     <span class="book-hero-eyebrow">Tablero de datos de Social Data Ibero</span>
-    <h1 class="book-hero-title">Grupos originarios: dónde vive la población indígena de la Ciudad de México</h1>
+    <h1 class="book-hero-title">Observatorio de <span class="clave">Pueblos Indígenas</span> de la Ciudad de México</h1>
+    <p class="book-hero-dek">Dónde vive y qué lenguas habla</p>
     <p class="book-hero-subtitle">Hablantes, hogares indígenas y autoadscripción por alcaldía, AGEB y manzana, de 1990 a 2025; las lenguas, sus variantes probables y de dónde vienen quienes las hablan</p>
     <p class="book-hero-abstract">Este tablero reúne los censos, conteos y encuestas intercensales del INEGI de 1990 a 2025 para describir la distribución de la población indígena en la Ciudad de México: cuánta es según tres definiciones, dónde vive, qué lenguas habla, de qué entidades llegó y qué variante es probable que hable según el Catálogo del INALI.</p>
     <div class="book-hero-ctas">
@@ -13,22 +14,41 @@ toc: false
       <a class="book-cta" href="./metodologia">Cómo se hizo</a>
     </div>
   </div>
+  <div class="lugar-libro" aria-hidden="true">
+  <div class="libro v3">
+  <div class="libro-cuerpo">
+  <div class="tapa">
+  <div class="muro" id="muro-lenguas"></div>
+  <div class="tapa-contenido">
+  <div><span class="t-sello">Social Data Ibero</span></div>
+  <div class="t-centro"><p class="t-titulo">Observatorio de Pueblos Indígenas</p><p class="t-sub">de la Ciudad de México</p></div>
+  <div class="t-pie"><span class="t-anio">MMXXVI · 2026</span><img class="t-logo" src="./images/social_data_gris.svg" alt=""></div>
+  </div>
+  </div>
+  <div class="hojas"></div>
+  </div>
+  </div>
+  </div>
+</div>
 
-<div class="book-cover">
-  <div class="book-cover-inner">
-  <div class="book-cover-accent"><span class="book-cover-accent-shimmer"></span></div>
-<div class="book-cover-brillo" aria-hidden="true"></div>
-  <img class="book-cover-grafico" src="./images/portada-brecha.svg" alt="" aria-hidden="true">
-  <div class="book-cover-text">
-  <span class="book-cover-eyebrow">Social Data Ibero</span>
-  <span class="book-cover-title">Grupos originarios</span>
-  <span class="book-cover-subtitle">Población indígena de la Ciudad de México: dónde vive y qué lenguas habla</span>
-</div>
-  <span class="book-cover-year">MMXXVI · 2026</span>
-  <img class="book-cover-logo" src="./images/social_data_blanco.svg" alt="Social Data Ibero">
-</div>
-</div>
-</div>
+```js
+// Muro de la tapa: las 30 lenguas con más hablantes en la ciudad (2025), del
+// tamaño de cuántos las hablan. Sale de un JSON chico que arma el loader
+// data/muro_lenguas.json.js en el build; las 5 mayores en rojo, de la 6 a la
+// 12 en tinta y el resto en gris.
+{
+  const {lenguas} = await FileAttachment("./data/muro_lenguas.json").json();
+  document.getElementById("muro-lenguas")?.replaceChildren(...lenguas.map((l, i) => {
+    const t = document.createElement("span");
+    t.textContent = l.nombre;
+    t.style.setProperty("--k", l.k);
+    t.style.setProperty("--i", i);
+    if (i < 5) t.className = "mayor";
+    else if (i < 12) t.className = "media";
+    return t;
+  }));
+}
+```
 
 <div class="instituciones-fila instituciones-fila--hero">
   <span class="instituciones-eyebrow">Un proyecto de</span>
@@ -40,8 +60,9 @@ toc: false
   <div class="book-meta-field book-meta-field--wide">
     <span class="book-meta-label">Autores</span>
     <ul class="book-authors">
+      <li>Andrea Moctezuma <a href="https://orcid.org/0000-0001-7181-3699" target="_blank" rel="noopener" aria-label="ORCID de Andrea Moctezuma"><img class="orcid-icon" src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" alt=""></a></li>
       <li>Misael Saúl Avila López <a href="https://orcid.org/0009-0003-9606-354X" target="_blank" rel="noopener" aria-label="ORCID de Misael Saúl Avila López"><img class="orcid-icon" src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" alt=""></a></li>
-      <li>Dr. Wilfrido Gómez Arias <a href="https://orcid.org/0009-0002-2406-8555" target="_blank" rel="noopener" aria-label="ORCID de Wilfrido Gómez Arias"><img class="orcid-icon" src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" alt=""></a> <a href="mailto:wilfrido.gomez@ibero.mx" aria-label="Correo de Wilfrido Gómez Arias (autor de correspondencia)"><svg class="mail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><polyline points="22,7 12,14 2,7"/></svg></a></li>
+      <li>Wilfrido A. Gómez-Arias <a href="https://orcid.org/0009-0002-2406-8555" target="_blank" rel="noopener" aria-label="ORCID de Wilfrido A. Gómez-Arias"><img class="orcid-icon" src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" alt=""></a> <a href="mailto:wilfrido.gomez@ibero.mx" aria-label="Correo de Wilfrido A. Gómez-Arias, autor de correspondencia"><svg class="mail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><polyline points="22,7 12,14 2,7"/></svg></a> <span class="autor-correspondencia">autor de correspondencia</span></li>
     </ul>
   </div>
   <div class="book-meta-field">
@@ -81,24 +102,24 @@ toc: false
   </div>
 
   <div class="book-citation-panel is-active" id="cite-apa" role="tabpanel" aria-labelledby="tab-apa">
-    <div class="book-citation-text">Avila López, M. S., &amp; Gómez Arias, W. (2026). <em>Grupos originarios: la población indígena de la Ciudad de México, 1990 - 2025</em>. Social Data Ibero, Universidad Iberoamericana.</div>
+    <div class="book-citation-text">Moctezuma, A., Avila López, M. S., &amp; Gómez-Arias, W. A. (2026). <em>Observatorio de Pueblos Indígenas de la Ciudad de México, 1990 - 2025</em>. Social Data Ibero, Universidad Iberoamericana.</div>
     <button type="button" class="book-citation-copy" data-copy-target="#cite-apa .book-citation-text" aria-label="Copiar cita en formato APA 7">Copiar</button>
   </div>
 
   <div class="book-citation-panel" id="cite-chicago" role="tabpanel" aria-labelledby="tab-chicago" hidden>
-    <div class="book-citation-text">Avila López, Misael Saúl y Wilfrido Gómez Arias. <em>Grupos originarios: la población indígena de la Ciudad de México, 1990 - 2025</em>. Ciudad de México: Social Data Ibero, Universidad Iberoamericana, 2026.</div>
+    <div class="book-citation-text">Moctezuma, Andrea, Misael Saúl Avila López y Wilfrido A. Gómez-Arias. <em>Observatorio de Pueblos Indígenas de la Ciudad de México, 1990 - 2025</em>. Ciudad de México: Social Data Ibero, Universidad Iberoamericana, 2026.</div>
     <button type="button" class="book-citation-copy" data-copy-target="#cite-chicago .book-citation-text" aria-label="Copiar cita en formato Chicago">Copiar</button>
   </div>
 
   <div class="book-citation-panel" id="cite-ieee" role="tabpanel" aria-labelledby="tab-ieee" hidden>
-    <div class="book-citation-text">M. S. Avila López y W. Gómez Arias, <em>Grupos originarios: la población indígena de la Ciudad de México, 1990 - 2025</em>. Ciudad de México: Social Data Ibero, Universidad Iberoamericana, 2026. [En línea].</div>
+    <div class="book-citation-text">A. Moctezuma, M. S. Avila López y W. A. Gómez-Arias, <em>Observatorio de Pueblos Indígenas de la Ciudad de México, 1990 - 2025</em>. Ciudad de México: Social Data Ibero, Universidad Iberoamericana, 2026. [En línea].</div>
     <button type="button" class="book-citation-copy" data-copy-target="#cite-ieee .book-citation-text" aria-label="Copiar cita en formato IEEE">Copiar</button>
   </div>
 
   <div class="book-citation-panel book-citation-panel--code" id="cite-bibtex" role="tabpanel" aria-labelledby="tab-bibtex" hidden>
-    <pre class="book-citation-bibtex"><code>@misc{avila2026gruposoriginarios,
-  title     = {Grupos originarios: la poblaci{\'o}n ind{\'i}gena de la Ciudad de M{\'e}xico, 1990 - 2025},
-  author    = {Avila L{\'o}pez, Misael Sa{\'u}l and G{\'o}mez Arias, Wilfrido},
+    <pre class="book-citation-bibtex"><code>@misc{moctezuma2026observatorioindigena,
+  title     = {Observatorio de Pueblos Ind{\'i}genas de la Ciudad de M{\'e}xico, 1990 - 2025},
+  author    = {Moctezuma, Andrea and Avila L{\'o}pez, Misael Sa{\'u}l and G{\'o}mez-Arias, Wilfrido A.},
   year      = {2026},
   publisher = {Social Data Ibero, Universidad Iberoamericana},
   address   = {Ciudad de M{\'e}xico},

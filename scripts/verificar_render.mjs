@@ -43,9 +43,10 @@ const PAGINAS = [
   {ruta: "/libro/variantes", esperado: [{nombre: "barras de variantes", sel: 'g[aria-label="bar"] rect', minimo: 30}]},
   {ruta: "/libro/lenguas-en-riesgo", esperado: [{nombre: "barras de lenguas en riesgo", sel: 'g[aria-label="bar"] rect', minimo: 20}, {nombre: "flechas de cambio", sel: 'g[aria-label="link"] path', minimo: 5}]},
   {ruta: "/libro/la-ciudad-en-el-pais", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [{nombre: "marcas de la ciudad en el país", sel: 'g[aria-label="bar"] rect, g[aria-label="dot"] circle, g[aria-label="rect"] rect, g[aria-label="cell"] rect', minimo: 30}, {nombre: "línea de lenguas por edición", sel: 'g[aria-label="line"] path', minimo: 1}]},
-  // Capitulo con el formato del prototipo (components/capitulo/): d3 propio,
-  // no Plot. Se cuentan las marcas de la portada, de la escena y de Explora.
-  {ruta: "/libro/de-donde-vienen", espera: ".vista-barras .barra-fila", esperado: [{nombre: "marcas de los bloques (rejilla y mapas)", sel: ".esc-unidad, .esc-tierra", minimo: 100}, {nombre: "burbujas y barras de Explora", sel: ".vista-mapa .burbuja, .vista-barras .barra-fila", minimo: 40}]},
+  // Misma anatomía que el resto del libro: burbujas por entidad, líneas por
+  // edición, lollipop de alcaldías y lenguas, sankey de flujos y barras de
+  // llegadas recientes.
+  {ruta: "/libro/de-donde-vienen", espera: 'g[aria-label="link"] path', esperado: [{nombre: "burbujas por entidad y puntos de lollipop", sel: 'g[aria-label="dot"] circle', minimo: 40}, {nombre: "líneas por edición", sel: 'g[aria-label="line"] path', minimo: 2}, {nombre: "flujos del sankey", sel: 'g[aria-label="link"] path', minimo: 10}, {nombre: "barras de llegadas recientes", sel: 'g[aria-label="bar"] rect', minimo: 5}]},
   {ruta: "/libro/donde-viven", espera: ".nav-leyenda .mapa-leyenda-paso", esperado: [{nombre: "barras por alcaldía", sel: 'g[aria-label="bar"] rect', minimo: 10}, {nombre: "celdas de lenguas por alcaldía", sel: 'g[aria-label="cell"] rect', minimo: 100}]},
   {ruta: "/libro/colonias-y-marginacion", esperado: [{nombre: "marcas de marginación y colonias", sel: 'g[aria-label="bar"] rect, g[aria-label="dot"] circle, g[aria-label="rect"] rect, g[aria-label="cell"] rect', minimo: 20}]},
   {ruta: "/libro/quienes-son", esperado: [{nombre: "barras de la pirámide", sel: 'g[aria-label="bar"] rect', minimo: 30}, {nombre: "líneas por edad", sel: 'g[aria-label="line"] path', minimo: 4}]},

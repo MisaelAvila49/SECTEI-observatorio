@@ -1,14 +1,17 @@
 cff-version: 1.2.0
 message: "Si usas este tablero, cítalo con los datos de este archivo."
-title: "Grupos originarios: el acceso digital de la población indígena de México"
+title: "Observatorio de Pueblos Indígenas de la Ciudad de México"
 type: dataset
 authors:
+  - family-names: "Moctezuma"
+    given-names: "Andrea"
+    orcid: "https://orcid.org/0000-0001-7181-3699"
   - family-names: "Avila López"
     given-names: "Misael Saúl"
     orcid: "https://orcid.org/0009-0003-9606-354X"
     affiliation: "Social Data Ibero, Universidad Iberoamericana"
-  - family-names: "Gómez Arias"
-    given-names: "Wilfrido"
+  - family-names: "Gómez-Arias"
+    given-names: "Wilfrido A."
     orcid: "https://orcid.org/0009-0002-2406-8555"
     affiliation: "Social Data Ibero, Universidad Iberoamericana"
     email: "wilfrido.gomez@ibero.mx"

@@ -175,6 +175,41 @@ for (const ruta of []) {
     }
   }
 }
+// De dónde vienen: secciones con la anatomía del libro (section.beta-seccion,
+// selects de campo()). Cada select pasa a una opción distinta de la activa y
+// el dibujo de su sección tiene que cambiar; luego vuelve a la original.
+{
+  const ruta = "/libro/de-donde-vienen";
+  await pg.goto(`http://127.0.0.1:8838${ruta}`,{waitUntil:"networkidle"});
+  await pg.waitForSelector('section.beta-seccion g[aria-label="link"] path', {timeout: 60000}).catch(() => {});
+  await pg.waitForTimeout(1500);
+  const secs = await pg.$$("section.beta-seccion");
+  console.log(`\n=== ${ruta} · ${secs.length} secciones ===`);
+  if (secs.length < 4) fallos.push(`${ruta}: se esperaban 4 secciones y hay ${secs.length}`);
+  for (let i=0;i<secs.length;i++){
+    const sec=secs[i];
+    const titulo=await sec.evaluate((s,n)=>s.querySelector("figure h3")?.textContent?.slice(0,42) ?? `sección ${n}`, i);
+    const sels = await sec.$$(".panel-filtros select");
+    for (const sel of sels){
+      const info = await sel.evaluate(s=>({
+        etiqueta: (s.id && document.querySelector(`label[for="${s.id}"]`)?.textContent?.trim()) || s.name || "?",
+        opciones: [...s.options].map(o=>o.textContent),
+        actual: s.selectedOptions[0]?.textContent,
+      }));
+      const destino = info.opciones.find(o => o !== info.actual);
+      if (!destino) continue;
+      const antes = await sec.evaluate(HUELLA);
+      await sel.selectOption({label: destino});
+      await pg.waitForTimeout(900);
+      const desp = await sec.evaluate(HUELLA);
+      const ok = antes!==desp;
+      console.log(`  ${ok?"ok   ":"INERTE"} [${titulo}] select «${info.etiqueta}» → «${destino}»`);
+      if(!ok) fallos.push(`${ruta} · ${titulo} · select «${info.etiqueta}» → «${destino}» no cambia el dibujo`);
+      await sel.selectOption({label: info.actual});
+      await pg.waitForTimeout(700);
+    }
+  }
+}
 // Mapa unificado: se cuentan las marcas que de verdad se pintan en cada
 // unidad (queryRenderedFeatures), el color de las alcaldías al cambiar de
 // lengua, las líneas de la vista de origen y el recorte del cruce. Un filtro

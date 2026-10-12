@@ -13,6 +13,7 @@
     "verificar:filtros": "node scripts/verificar_filtros.mjs",
     "verificar:a11y": "node scripts/verificar_a11y.mjs",
     "verificar:paleta": "node scripts/verificar_paleta.mjs",
+    "verificar:quieto": "node scripts/verificar_quieto.mjs",
     "verificar:todo": "npm run verificar && npm run build && npm run verificar:render && npm run verificar:filtros && npm run verificar:a11y && npm run verificar:paleta"
   },
   "dependencies": {

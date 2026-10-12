@@ -1,4 +1,4 @@
-// Tablero de grupos originarios: acceso digital de la población indígena de
+// Observatorio de Pueblos Indígenas de la Ciudad de México: acceso digital de la población indígena de
 // México (Censo 2020, ENIGH 2020-2024 y ENDUTIH 2025) y el mapa por manzana
 // de la Ciudad de México con el Censo 2020.
 //
@@ -26,7 +26,7 @@ const logoSidebar = fs.readFileSync(
 const SITE_URL = process.env.GITHUB_ACTIONS
   ? `https://${process.env.GITHUB_REPOSITORY.split("/")[0]}.github.io${BASE}`
   : "http://localhost:3000/";
-const TITULO_SITIO = "Grupos originarios";
+const TITULO_SITIO = "Observatorio de Pueblos Indígenas de la Ciudad de México";
 const DESCRIPCION_SITIO = "La población indígena de la Ciudad de México y las lenguas de México, 1990 - 2025: cuántas personas hablan una lengua indígena o se consideran indígenas, dónde viven, quiénes son, cómo viven y qué discriminación enfrentan, con censos, intercensales y encuestas del INEGI, el INALI, el INPI, CONAPO y el CONEVAL. Social Data Ibero, Universidad Iberoamericana.";
 
 // Descripción propia de cada página para buscadores y vistas previas. Va
@@ -142,7 +142,7 @@ export default {
   home: `<span class="sidebar-brand">
   <span class="sidebar-brand-logo" aria-hidden="true">${logoSidebar}</span>
   <span class="sidebar-brand-text">
-    <span class="sidebar-brand-title">Grupos originarios</span>
+    <span class="sidebar-brand-title">Observatorio de Pueblos Indígenas</span>
     <span class="sidebar-brand-obs">Social Data Ibero</span>
   </span>
 </span>`,
@@ -392,9 +392,37 @@ export default {
     // Se vigila la SECCION con umbrales densos (cualquier desplazamiento
     // dentro de ella avisa) y se decide con la posicion del centinela: un
     // salto directo de abajo a arriba no pasa por "visible" y no avisaba.
+    // Al compactarse, el panel NO cambia el flujo del documento: una reserva
+    // justo despues de el toma el alto que el panel suelta. Sin eso, cerca del
+    // final de la seccion el panel se compactaba, la seccion se acortaba y
+    // salia de la ventana, el panel se soltaba, recuperaba su alto, la seccion
+    // volvia a entrar y el panel se fijaba otra vez: la pagina temblaba sola.
+    // La reserva se ajusta midiendo donde queda lo que sigue al panel. Con
+    // alto deja de colapsar los margenes del panel y de lo que sigue (un salto
+    // que puede ser mayor que lo que se compacta), asi que lleva 1 px de alto
+    // fijo y el ajuste va en su margen superior, que puede ser negativo y es
+    // lineal: tres pasadas lo dejan exacto.
+    const posSiguiente = (panel) => {
+      const sig = panel.reserva.nextElementSibling;
+      const sec = panel.parentElement.getBoundingClientRect();
+      return sig ? sig.getBoundingClientRect().top - sec.top : sec.height;
+    };
+    const fijar = (panel, pegar) => {
+      if (panel.classList.contains("pegado") === pegar) return;
+      const reserva = panel.reserva;
+      if (!pegar) { panel.classList.remove("pegado"); reserva.style.height = "0px"; reserva.style.marginTop = "0px"; return; }
+      const antes = posSiguiente(panel);
+      panel.classList.add("pegado");
+      reserva.style.height = "1px";
+      let margen = 0;
+      for (let i = 0; i < 3; i++) {
+        margen += antes - posSiguiente(panel);
+        reserva.style.marginTop = margen + "px";
+      }
+    };
     vigiaPanel ??= ("IntersectionObserver" in window) ? new IntersectionObserver((entradas) => {
       for (const e of entradas) for (const [panel, centinela] of e.target.panelesDentro ?? []) {
-        panel.classList.toggle("pegado", centinela.getBoundingClientRect().top < 0 && e.isIntersecting);
+        fijar(panel, centinela.getBoundingClientRect().top < 0 && e.isIntersecting);
       }
     }, {threshold: Array.from({length: 41}, (_, i) => i / 40)}) : null;
     let n = 0;
@@ -418,6 +446,12 @@ export default {
       centinela.setAttribute("aria-hidden", "true");
       centinela.panel = panel;
       panel.before(centinela);
+      const reserva = document.createElement("div");
+      reserva.className = "panel-reserva";
+      reserva.setAttribute("aria-hidden", "true");
+      reserva.style.height = "0px";
+      panel.after(reserva);
+      panel.reserva = reserva;
       const seccion = panel.parentElement;
       seccion.panelesDentro ??= [];
       seccion.panelesDentro.push([panel, centinela]);

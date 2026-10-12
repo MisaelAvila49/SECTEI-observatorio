@@ -39,11 +39,14 @@ export function mapaNavegador({panel, catalogo, fuente, geoEntidades, pmtilesMun
   mapa.addControl(new maplibregl.NavigationControl({showCompass: false}), "top-right");
   mapa.addControl(new maplibregl.ScaleControl({unit: "metric"}), "bottom-right");
   nodo.mapa = mapa;
-  let encuadrado = false, pendiente = null, cargado = false;
+  // `caja`: el último encuadre pedido. Si el mapa estaba oculto (la sección
+  // arranca en «Gráfica»), se aplica al primer tamaño real; antes se volvía a
+  // encuadrar al país y la ciudad quedaba diminuta al cambiar a «Mapa».
+  let encuadrado = false, pendiente = null, cargado = false, caja = MEXICO;
   new ResizeObserver(() => {
     if (lienzo.clientWidth <= 0) return;
     mapa.resize();
-    if (!encuadrado) { encuadrado = true; mapa.fitBounds(MEXICO, {padding: 12, duration: 0}); }
+    if (!encuadrado) { encuadrado = true; mapa.fitBounds(caja, {padding: caja === MEXICO ? 12 : 24, duration: 0}); }
   }).observe(lienzo);
 
   const popup = new maplibregl.Popup({closeButton: false, closeOnClick: false, className: "mapa-globo", offset: 12});
@@ -186,8 +189,9 @@ export function mapaNavegador({panel, catalogo, fuente, geoEntidades, pmtilesMun
     visibles([relleno, `${c.id}-borde`, `${c.id}-hover`, sel]);
     // Encuadre al contenedor.
     const cont = contenedorDe(v);
-    const caja = cont.nivel === "nacional" ? MEXICO : catalogo.de(cont.nivel, cont.cve)?.caja ?? MEXICO;
-    mapa.fitBounds(caja, {padding: 24, duration: 500});
+    caja = cont.nivel === "nacional" ? MEXICO : catalogo.de(cont.nivel, cont.cve)?.caja ?? MEXICO;
+    if (lienzo.clientWidth > 0) mapa.fitBounds(caja, {padding: 24, duration: 500});
+    else encuadrado = false;
     pintarMigas(v);
     leyendaCaja.replaceChildren(leyenda({cortes, titulo, formato, notaSinDato}));
     enReposo = htmlTarjeta;

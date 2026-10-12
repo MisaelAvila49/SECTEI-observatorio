@@ -32,16 +32,11 @@ const pct = (v, d = 1) => `${Number(v).toFixed(d)} %`;
 const EDAD_ETIQ = {"3-14": "3 a 14 años", "15-29": "15 a 29 años", "30-59": "30 a 59 años", "60+": "60 años y más"};
 ```
 
-<header class="portada-capitulo">
-  <div class="portada-capitulo-arte" data-motivo="parte-3"><svg class="motivo motivo-vida" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path d="M24,300 H64 V246 L98,216 L132,246 V300 H168 V226 L201,198 L234,226 V300 H268 V150 H340 V300 H372 V238 H446 V300 H576" fill="none" stroke="#3a3a37" stroke-width="3" stroke-linejoin="round"/><path class="a-dib f5" pathLength="1" d="M88,300 V272 H108 V300" fill="none" stroke="#8a8a86" stroke-width="2.5"/><path class="a-dib f6" pathLength="1" d="M201,198 V176 L220,182 L201,188" fill="none" stroke="#8a8a86" stroke-width="2.5" stroke-linejoin="round"/><path class="a-dib f7" pathLength="1" d="M282,172 H326 M282,196 H326 M282,220 H326 M282,244 H326" fill="none" stroke="#8a8a86" stroke-width="2.5"/><path class="a-dib f8" pathLength="1" d="M409,252 V284 M393,268 H425" fill="none" stroke="#8a8a86" stroke-width="3" stroke-linecap="round"/><path class="a-dib f0" pathLength="1" d="M24,300 H64 V246 L98,216 L132,246 V300 H168 V226 L201,198 L234,226 V300 H268 V150 H340 V300 H372 V238 H446 V300 H576" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><circle class="a-esc f10" cx="520" cy="282" r="13" fill="#e8474f"/></svg></div>
-  <div class="portada-capitulo-texto">
-  <p class="portada-capitulo-parte">Parte 3 · Quiénes son y cómo viven · 2 de 4</p>
+<header class="encabezado-capitulo">
+  <p class="antetitulo">Parte 3 · Quiénes son y cómo viven · 2 de 4</p>
   <h1>Escuela y trabajo</h1>
-  <p class="portada-capitulo-dek">La escuela y el trabajo son las dos puertas principales al ingreso y a los servicios en una ciudad.</p>
-  </div>
+  <p class="entradilla">La escuela y el trabajo son las dos puertas principales al ingreso y a los servicios en una ciudad. Esta página compara cómo las cruzan la población indígena y el resto.</p>
 </header>
-
-<p class="entrada-capitulo">Esta página compara cómo las cruzan la población indígena y el resto.</p>
 
 ---
 
