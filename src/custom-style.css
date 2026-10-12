@@ -6110,3 +6110,7 @@ body:has(.portada-capitulo, .portada-cap) #observablehq-center { margin-top: 0; 
 #observablehq-main .escucha [data-campo="buscar"] input { height: 34px; padding: 0 0.625rem; border: 1px solid var(--border-1, #d0cdc9); border-radius: 6px; background: var(--surface-1); color: var(--text-primary); font: 400 0.9375rem var(--sans-serif); }
 @media (prefers-reduced-motion: reduce) { #observablehq-main .escucha-fachada img { transition: none; } }
 /* <<< Escucha las lenguas */
+
+/* Leyenda de los mapas: la muestra del cero va vacía (el cero no se pinta: se ve el mapa base) */
+.mapa-leyenda .mapa-leyenda-cero { background: transparent !important; box-shadow: inset 0 0 0 1px var(--text-secondary); }
+.mapa-leyenda .mapa-leyenda-valor { line-height: 1.25; font-variant-numeric: normal; }   /* los rangos pueden partirse en dos renglones */

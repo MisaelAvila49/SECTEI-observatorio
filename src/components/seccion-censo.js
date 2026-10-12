@@ -185,7 +185,7 @@ export function seccionCenso(datos, {id = "sec", inicial = {}, ocultar = [], con
     // Rangos fijos de presencia, igual que el mapa grande: los de la ciudad para toda unidad dentro de la
     // ciudad (alcaldía, AGEB, manzana) y los del país para entidades y municipios de otros estados.
     cortes = v.nivel === "ageb" || v.nivel === "manzana" || (v.nivel === "municipio" && enCiudad(v)) ? CORTES_CIUDAD : CORTES_PAIS;
-    const colorDe = (x) => (x == null ? "#d9d9d9" : RAMPA_MORADA[Math.min(RAMPA_MORADA.length - 1, cortes.filter((c, i) => i > 0 && x >= c).length)]);
+    const colorDe = (x) => (x == null ? "#d9d9d9" : x === 0 ? "transparent" : RAMPA_MORADA[Math.min(RAMPA_MORADA.length - 1, cortes.filter((c, i) => i > 0 && x >= c).length)]);
     const formatoLeyenda = (x) => x.toFixed(cortes.some((c) => c > 0 && c < 0.1) ? 2 : 1) + " %";
     const etiqueta = `${pob.corto}${v.sexo !== "Total" ? `, ${v.sexo.toLowerCase()}` : ""}${v.edad !== "Todas" ? `, ${etiquetaEdad(v.edad).toLowerCase()}` : ""}`;
     const tituloLeyenda = v.nivel === "nacional" ? "Formas de ser indígena (% de la población de 3 años y más; los cortes son los de hablantes por entidad)" : `${etiqueta} (% de la población de cada ${nivelDe(nivelCapa).singular})`;

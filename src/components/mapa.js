@@ -102,7 +102,8 @@ export function estiloBase() {
 // tesela (manzanas, AGEB) y "feature-state" del estado que la página escribe
 // con setFeatureState (alcaldías y entidades, cuyo valor cambia con el año y
 // la lengua sin regenerar el GeoJSON).
-export function expresionColor(campo, cortes, rampa = RAMPA_MORADA, origen = "get") {
+export const CERO_VACIO = "rgba(0, 0, 0, 0)";
+export function expresionColor(campo, cortes, rampa = RAMPA_MORADA, origen = "get", {ceroVacio = rampa === RAMPA_MORADA} = {}) {
   const leer = [origen, campo];
   const escalones = [];
   for (let i = 1; i < cortes.length; i++) {
@@ -122,6 +123,7 @@ export function expresionColor(campo, cortes, rampa = RAMPA_MORADA, origen = "ge
   return [
     "case",
     ["==", leer, null], SIN_DATO,
+    ...(ceroVacio ? [["==", ["to-number", leer], 0], CERO_VACIO] : []),
     porValor
   ];
 }
@@ -499,13 +501,30 @@ export function mapaManzanas({
 // `abierta: false` es para escalas de CATEGORÍAS ordenadas (los cinco grados de
 // marginación): ahí el último escalón no es "o más", es una categoría.
 export function leyenda({cortes, rampa = RAMPA_MORADA, titulo, formato = (x) => x.toFixed(1),
-    abierta = true, notaSinDato = "Sin dato publicado (INEGI suprime la cifra por confidencialidad)"}) {
+    abierta = true, notaSinDato = "Sin dato publicado (INEGI suprime la cifra por confidencialidad)",
+    ceroVacio = rampa === RAMPA_MORADA}) {
   const nodo = document.createElement("figure");
   nodo.className = "mapa-leyenda";
 
   const h = document.createElement("figcaption");
   h.textContent = titulo;
   nodo.append(h);
+
+  // Rangos con su unidad una sola vez: «0.01 - 1.99 %», «2 - 4.99 %»… «20 %+». El tope de cada rango es el
+  // corte siguiente menos la resolución de la cifra (0.01 en porcentajes; 1 en conteos), porque las clases
+  // son semiabiertas: 2 ya pertenece a la siguiente.
+  const muestraTexto = formato(cortes.find((c) => c > 0) ?? 1);
+  const unidad = /\s*%\s*$/.test(muestraTexto) ? " %" : "";
+  const esConteo = !unidad && !/[.,]\d/.test(formato(1.5));
+  const decimales = cortes.some((c) => c > 0 && c < 0.1) ? 3 : 2;
+  const paso = esConteo ? 1 : 10 ** -decimales;
+  const num = (x) => (esConteo ? formato(x) : String(+Number(x).toFixed(decimales)));
+  const rango = (i) => {
+    const desde = i === 0 && ceroVacio && cortes[0] === 0 ? paso : cortes[i];
+    if (i === cortes.length - 1) return `${num(desde)}${unidad}+`;
+    const hasta = cortes[i + 1] - paso;
+    return hasta <= desde ? `${num(desde)}${unidad}` : `${num(desde)} - ${esConteo ? formato(hasta) : hasta.toFixed(decimales)}${unidad}`;
+  };
 
   // La etiqueta va DEBAJO de su escalón, no encima del color. Antes se
   // superponía con un halo blanco, y sobre los dos tonos más oscuros de la
@@ -514,28 +533,24 @@ export function leyenda({cortes, rampa = RAMPA_MORADA, titulo, formato = (x) => 
   // importa leer. Fuera del color, el contraste no depende del escalón.
   const tira = document.createElement("div");
   tira.className = "mapa-leyenda-tira";
-  for (let i = 0; i < cortes.length; i++) {
-    const columna = document.createElement("div");
-    columna.className = "mapa-leyenda-columna";
-
+  const columna = (fondo, etiqueta, titulo, extra = "") => {
+    const c = document.createElement("div");
+    c.className = "mapa-leyenda-columna";
     const muestra = document.createElement("div");
-    muestra.className = "mapa-leyenda-paso";
-    muestra.style.background = rampa[Math.min(i, rampa.length - 1)];
-    muestra.title = !abierta ? formato(cortes[i])
-      : i === cortes.length - 1
-      ? `${formato(cortes[i])} o más`
-      : `de ${formato(cortes[i])} a ${formato(cortes[i + 1])}`;
-
+    muestra.className = "mapa-leyenda-paso" + extra;
+    muestra.style.background = fondo;
+    muestra.title = titulo;
     const texto = document.createElement("span");
     texto.className = "mapa-leyenda-valor";
-    // El último escalón es abierto: se marca con "+" en vez de un tope que no
-    // existe. Los demás muestran el valor donde empieza la clase.
-    texto.textContent = abierta && i === cortes.length - 1
-      ? `${formato(cortes[i])}+`
-      : formato(cortes[i]);
-
-    columna.append(muestra, texto);
-    tira.append(columna);
+    texto.textContent = etiqueta;
+    c.append(muestra, texto);
+    tira.append(c);
+  };
+  if (abierta && ceroVacio && cortes[0] === 0) columna(CERO_VACIO, `0${unidad}`, "Cero: sin color, se ve el mapa base", " mapa-leyenda-cero");
+  for (let i = 0; i < cortes.length; i++) {
+    const fondo = rampa[Math.min(i, rampa.length - 1)];
+    if (!abierta) columna(fondo, formato(cortes[i]), formato(cortes[i]));
+    else columna(fondo, rango(i), rango(i));
   }
   nodo.append(tira);
 
